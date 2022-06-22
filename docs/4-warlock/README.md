@@ -7,7 +7,7 @@ category:
 
 # 4.术士大叔
 
-![warlock](warlock_icon.png)
+![warlock](/warlock_icon.png)
 
 无视魔免的地狱火加上致命链接，可以瞬间改变局势。
 
