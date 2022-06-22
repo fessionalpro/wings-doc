@@ -6,7 +6,7 @@ import { themeOption } from './configs/theme';
 export default defineUserConfig({
   lang: 'zh-CN',
   title: 'WingsBoot',
-  description: '快速实现业务目标；快速偿还技术债务；安全重构程序和业务',
+  description: '快速实现业务目标；及时偿还技术债务；安全重构程序和业务',
   base: '/',
   theme: hopeTheme(themeOption),
   head: [

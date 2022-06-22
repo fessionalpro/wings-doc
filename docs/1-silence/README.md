@@ -1,83 +1,62 @@
 ---
 isOriginal: true
-icon: study
+icon: flower
 category:
-  - 摘要
+  - 沉默
+  - 配置
 ---
 
-# 02.自学成才
+# 1.沉默术士
 
-主动学习，是一种重要能力，它是很多成功现象的本质推动力。
-我认同『师傅领进门，修行在个人』，也主张『攻城狮精神』。
+![silencer](/silencer_icon.png)
 
-## 02A.代码怪的等级
+silence fool，一切魔法，遭遇了他，都将归于寂静。
 
-想象一下玩游戏时的打怪升级，出现在review中的`代码怪`也是有等级和经验值。
-不同的是`代码怪`是程序猿生成的，等级和经验值和生成他的程序猿当时的状态有关。
+最小化依赖springboot，提供以下自动配置和叠加能力
 
-等级的评定其实比较主观，但为了便于理解和度量，主要参考以下方面的，
+* 自动加载SpringBoot配置(wings-conf)
+* properties中的直接写中文，不需要unicode转码。
+* 自动加载i8n配置(wings-i18n)
+* 自动加载`**/spring/bean/`，配置console logger
 
-* 代码行数 - 累计量，主要指手写代码，非模板或自动生成。
-* 反思点数 - 累计量，每迭代时，提升自己能力的10%算一个点。
-* 方案数量 - 碰到问题时，大脑中能立即验证的可行方案数量。
+## 1.1.层叠和分隔配置
 
-注意，此等级和简历中的`精通`，职场中的`P#`，没任何关系，它仅表示代码怪的凶残程度。
-同时，等级中间也非严格的进阶或排斥关系，大概是，既要还要，有时有时那种。
+wings中主张按功能或项目，把application的大配置，分隔成独立的小配置。
+并且，提供80%情况适用的默认值，利用配置文件加载的优先级，层叠配置项。
 
-### A1.初级程序猿^猿初^
+与CSS（层叠样式表）类似，同一个key的配置，可能存在多个配置文件，多个值，
+最终，以最高优先级的值作为系统配置值。
 
-10K代码行，10反思点，0方案。怪物特征，不看。
+## 1.2.spring自动装配
 
-* 代码主要靠复制粘贴，来源于百度/CSDN等低质量平台。
-* 代码以能运行为主，有一定的可读性，缺少健壮性和安全性。
-* 很多IDE的代码分析提示的警告，都没有消除。
-* 不知道解决方案，拿来就用。
+wings中的spring命名，主要集中在以下（后续目录结构有详解）
 
-### A2.中级程序猿^猿中^
+* `/wings-conf/` 自动加载，放置拆分的配置文件，按字母顺序加载和覆盖。
+* `/wings-i18n/` 自动加载，放置拆分的多国语的信息文件。
+* `*Configuration` 必须都条件加载，前缀`spring.wings.`，可以关闭。
+* `**/spring/boot/` 手动加载，boot有关的配置，如`spring.factories`
+* `**/spring/bean/`  自动加载，比如@ComponentScan指定。
+* `**/spring/conf/` 自动或手动加载，需要暴露的properties的配置。
 
-30K代码行，20反思点，1方案。怪物特征，不听。
+使用`idea`开发时，会有黄色警告或提示，不影响运行，但看着碍眼
 
-* 开始出现大量的手写代码，开始复制团队代码。
-* 代码会思考复用，有一定健壮性，能够考虑安全性。
-* 手写代码几乎没有IDE警告。
-* 对一类问题，心中有1个解决方案。
+* 提示Application context not configured for this file，
+  在`Project Structure`/`Facets`/`Spring`手动添加`boot/WingsAutoConfiguration`一个即可。
+* 提示 annotation processing的设置，在`Settings`/`Annotation Processors`/`Enable annotation processing`
+  注意：在`@Configuration`中的内部类，`static class`是按独立类处理的，不受外层约束。
 
-### A3.高级程序猿^猿高^
+在wings工程中，会存在`spring-wings-enabled.properties`配置，作为功能开关
+可以通过属性`spring.wings.silencer.enabled.verbose=true` 通过日志INFO查看。
 
-50K代码行，30反思点，2方案。怪物特征，不说。
+## 1.3.配置bind和meta提示
 
-* 手写代码比较高效，有质量保证，有代码直觉。
-* 为项目提供框架支持和工具类，写核心代码。
-* 对问题有自己的见解，有主方案和备选方案。
+配置类，统一使用`*Prop`和@Data，经过配置后，可以自动提示。
 
-### A4.初级架构狮^狮初^
+* 手动添加 additional-spring-configuration-metadata.json
+* 自动生成 spring-configuration-metadata.json
 
-100K代码行，40反思点，3方案。怪物特征，精英。
+参考资料
 
-* 写框架代码，容易在多概念和设计中纠结。
-* 能够把代码直觉和业务能力结合。
-* 通常由主方案，备选方案，还有考虑回退方案。
-
-## 02B.成才最优路线
-
-有句话叫『聪明人都下笨功夫，愚蠢者总想走捷径』，真没有捷径，只有方法。
-写代码其实是一种哲学写作，必须有足够的积累，才能翻译这个世界。
-
-* 读代码，写博客 - 官方指南，手册，必读。
-* 功能导向写代码 - 必须持续交付，功能可用。
-* 回顾和改良代码 - 必须反思，改良。不用妄想100%完美。
-* 系统的读些书籍 - 把知识碎片系统化，结构化。
-* 把知识分享出去 - 检验掌握程度的唯一标准。
-
-初级的代码，和中英文翻译很像，就是把人懂需求，翻译成机懂代码。
-而高级的代码，也和高级翻译一样，是一种再创作。
-
-## 02C.工具辅助思考
-
-脑力不够，工具来凑，任何工具都只是思想的局部表达和投影。
-工具的好处，就是可以节省脑力，传递或保存信息时做兼容协议。
-
-* 语音是一维的，顺序读，文字是一维的，随机读。
-* 图片是二维的，视频是二维，二维可模拟三维。
-
-我们的思维，总是三维或跳跃的，所有工具是一方面，思考更重要。
+* <https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#configuration-metadata>
+* <https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-Configuration-Binding>
+* <https://github.com/spring-projects/spring-boot/wiki/IDE-binding-features#simple-pojo>

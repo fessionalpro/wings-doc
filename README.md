@@ -1,6 +1,8 @@
-# WingsBoot的文档
+# WingsBoot Document
 
-本项目主要使用了以下技术，特别感谢！
+this is the [WingsBoot](https://github.com/trydofor/pro.fessional.wings) document.
 
-* <https://v2.vuepress.vuejs.org/zh>
-* <https://vuepress-theme-hope.github.io/v2>
+and special thanks to the following projects,
+
+* [vuepress](https://v2.vuepress.vuejs.org/zh)
+* [vuepress-theme-hope](https://vuepress-theme-hope.github.io/v2)

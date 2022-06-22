@@ -1,9 +1,9 @@
 {
-  "name": "notbad-java-code-review",
+  "name": "wingsboot-docs",
   "version": "1.0.0",
   "private": true,
-  "description": "Java新手和小队长都说好的项目规范及代码审查",
-  "license": "MIT",
+  "description": "WingsBoot Document",
+  "license": "Apache2",
   "scripts": {
     "docs:build": "vuepress build docs",
     "docs:clean-dev": "vuepress dev docs --clean-cache",

@@ -52,9 +52,9 @@ export const themeOption: HopeThemeOptions = {
     comment: {
       provider: 'Giscus',
       repo: 'trydofor/pro.fessional.wings',
-      repoId: 'R_kgDOHVWlGQ',
-      category: 'Announcements',
-      categoryId: 'DIC_kwDOHVWlGc4CPK4C',
+      repoId: 'MDEwOlJlcG9zaXRvcnkxOTUxNjgwMzE=',
+      category: 'General',
+      categoryId: 'DIC_kwDOC6IHH84CPy0E',
     },
 
     mdEnhance: {
@@ -67,10 +67,6 @@ export const themeOption: HopeThemeOptions = {
         stylizeIt(/^(?:SHOULD|推荐)$/u, '', 'tip', 'strong', 'sup'),
         stylizeIt(/^(?:MAY|可选)$/u, '', 'note', 'strong', 'sup'),
         stylizeIt(/^(?:NOT|慎用)$/u, '', 'warning', 'strong', 'sup'),
-        stylizeIt('猿初', '🙈猿初', 'note', 'sup'),
-        stylizeIt('猿中', '🙉猿中', 'note', 'sup'),
-        stylizeIt('猿高', '🙊猿高', 'note', 'sup'),
-        stylizeIt('狮初', '🦁狮初', 'tip', 'sup'),
       ],
     },
   },
