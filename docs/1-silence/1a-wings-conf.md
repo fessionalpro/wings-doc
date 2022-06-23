@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: flower
+icon: setting
 category:
   - 沉默
   - 配置

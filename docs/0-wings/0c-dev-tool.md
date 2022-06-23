@@ -1,14 +1,14 @@
 ---
 isOriginal: true
-icon: config
+icon: tool
 category:
   - 神翼
   - 工具
 ---
 
-# 0C.开发环境
+# 0C.开发工具
 
-工欲善其事，必先利其器。
+工欲善其事，必先利其器，推荐的工具及配置。
 
 ## 0C.1.Java开发
 

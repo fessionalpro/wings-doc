@@ -1,15 +1,15 @@
 ---
 isOriginal: true
-icon: question
+icon: git
 category:
   - 虚空
-  - Flywave
-  - 问答
+  - 版本
+  - 话题
 ---
 
-# 2E.Flywave问题
+# 2E.Flywave话题
 
-Flywave版本及日志表有关的问题
+Flywave版本及日志表有关的话题
 
 ## 2E.01.如何自定义journalService
 

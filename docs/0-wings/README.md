@@ -1,15 +1,16 @@
 ---
 isOriginal: true
-icon: advance
+icon: discover
 category:
-  - wings
+  - 神翼
+  - 首页
 ---
 
 # 0.纹丝不忒
 
 ![wings ti6](/wings-ti6-champion.png)
 
-WingsBoot(代号：神翼)是SpringBoot的一个脚手架，没有魔法和定制，主要有以下特点：
+WingsBoot(代号神翼)是SpringBoot的一个脚手架，没有魔法和定制，主要有以下特点：
 
 * 提供了多语言多时区真实解决方案（动态语言包，时区，夏令时，闰秒）
 * 提供了数据库版本和数据版本管理（表变更变多了，数据维护多了）
@@ -59,3 +60,12 @@ Wings由多个子项目构成，都采用了Dota相关的命名，主要包括�
 * Guava, commons-lang3, commons-io - 进阶必备的工具包.
 * ShardingSphere - 分表分库，足以解决90%的`数据大`的问题。
 * Hazelcast - 相比于Redist，Hazelcast更简单，集成度更高。
+
+## 0.4.更多章节
+
+* [编码风格](0a-code-style.md) -  价值观，编码哲学，编码风格
+* [RestHalf规范](0b-rest-half.md) - 场景化业务的URL规范
+* [开发工具](0c-dev-tool.md) - 工欲善其事，必先利其器
+* [开发运维](0d-qa-devops.md) - 编码开发，线上运行等话题
+* [配置话题](0e-qa-config.md) - maven，properties，spring的配置话题
+* [其他话题](0f-qa-others.md) - 未归类的话题

@@ -8,7 +8,7 @@ category:
 
 # 0B.RestHalf规范
 
-URL设计中，参考了RESTFul和GraphQL，但有场景化业务无法资源化，故取名叫`RestHalf`。
+场景化业务的URL命名规范，参考了RESTFul和GraphQL，适用于无法资源化的业务，故取名叫`RestHalf`。
 
 ## 0B.1.业务场景化
 

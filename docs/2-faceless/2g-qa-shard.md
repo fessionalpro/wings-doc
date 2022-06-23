@@ -1,15 +1,15 @@
 ---
 isOriginal: true
-icon: question
+icon: tree
 category:
   - 虚空
   - 数据
-  - 问答
+  - 话题
 ---
 
-# 2G.数据问题
+# 2G.分表分库话题
 
-有关数据库和数据操作的问题
+有关数据库和数据操作的话题
 
 ## 2G.01. No implementation SPI
 

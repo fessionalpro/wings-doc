@@ -1,4 +1,12 @@
-# 3.5.鱼人守卫/Hazelcast
+---
+isOriginal: true
+icon: emmet
+category:
+  - 鱼人
+  - 缓存
+  - 事件
+---
+# 3B.Hazelcast中间件
 
 使用hazelcast作为session，缓存和消息中间件，包括，
 
@@ -8,7 +16,7 @@
 * global event - HazelcastSyncPublisher
 * snowflake id - FlakeIdHazelcastImpl
 
-## 3.5.1.hazelcast 管理
+## 3B.1.默认配置
 
 * ClassNotFound - user-code-deployment需要设置
 * 重连机制，client时，需要设置重连时间
@@ -22,6 +30,8 @@
 通过 spring.hazelcast.config 选择不同的配置文件，建议xml。
 
 hazelcast 3.x和4.x差异很大，也就是在spring-boot 2.2和2.4是不兼容的。
+
+## 3B.2.分布式锁
 
 hazelcast提供了3类锁，推荐使用CP系统，但集群要求至少3台，默认为0单机unsafe模式。
 
@@ -42,7 +52,7 @@ slardar采用了springboot默认的配置方式，client和server的配置文件
 * <https://hazelcast.com/blog/hazelcast-imdg-3-12-introduces-cp-subsystem/>
 * <https://hazelcast.com/blog/long-live-distributed-locks/>
 
-## 3.5.2.远程缓存Hazelcast
+## 3B.2.分布式缓存
 
 通过hazelcastCacheManager用hazelcast实现ServerCacheManager
 
@@ -53,3 +63,7 @@ slardar采用了springboot默认的配置方式，client和server的配置文件
 <max-idle-seconds>0</max-idle-seconds>
 <eviction size="5000"/>
 ```
+
+## 3B.3.消息订阅
+
+hazelcast的topic(#HazelcastTopic)按SpringEvent模式

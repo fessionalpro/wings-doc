@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: proxy
+icon: network
 category:
   - warlock
 ---
@@ -9,7 +9,7 @@ category:
 
 ![warlock](/warlock_icon.png)
 
-无视魔免的地狱火加上致命链接，可以瞬间改变局势。
+> 无视魔免的地狱火加上致命链接，可以瞬间改变局势。
 
 基于wings脚手架，包装了一些业务组件，复用或复制，可以快速实现业务功能。
 

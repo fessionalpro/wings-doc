@@ -1,15 +1,16 @@
 ---
 isOriginal: true
-icon: ability
+icon: git
 category:
   - 虚空
-  - 数据
-  - Flywave
+  - 版本
 ---
 
-# 2A.时间结界
+# 2A.表和数据的版本
 
-在时空中创造一个泡状遮罩，将所有位于其中的单位定住。
+> 时间结界，在时空中创造一个泡状遮罩，将所有位于其中的单位定住。
+
+以Sql和Git为核心，绑定表结构和代码关系，可以方便的Diff和Merge
 
 ## 2A.1.飞波(flywave)是一个实践
 

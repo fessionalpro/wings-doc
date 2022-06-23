@@ -1,9 +1,9 @@
 ---
 isOriginal: true
-icon: flower
+icon: language
 category:
   - 沉默
-  - 配置
+  - 多国语
 ---
 
 # 1B.I18n自动配置

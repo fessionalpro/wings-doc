@@ -1,15 +1,15 @@
 ---
 isOriginal: true
-icon: question
+icon: ability
 category:
   - 虚空
   - Jooq
-  - 问答
+  - 话题
 ---
 
-# 2F.Jooq问题
+# 2F.Jooq使用话题
 
-Jooq有关的问题
+Jooq有关的话题
 
 ## 2F.01.jooq执行plain sql
 

@@ -1,12 +1,17 @@
 ---
 isOriginal: true
-icon: speed
+icon: json
 category:
   - 鱼人
-  - Web
+  - 约定
+  - Json
 ---
 
-# 3.1.Json格式约定
+# 3A.Jackson格式约定
+
+在Mvc对外服务时，约定常见数据类型的转换关系。
+
+## 3A.1.常用类型约定
 
 考虑到java和js的差异，数据传递和功能上，有以下约定。
 
@@ -18,7 +23,9 @@ category:
 * java.日时，都以`yyyy-MM-dd HH:mm:ss`格式与js.string互传。
 * java.时区，以ZoneId字符串格式与js.string互传。
 
-此外，要注意js的特殊性，和一些宽松的json格式。
+## 3A.2.精度及类型丢失
+
+因为js的特殊性，会出现精度和类型丢失问题，比如object的key可视为顺序丢失。
 
 * Json中最好只有2种基本数据类型：boolean,string
 * Js不应该有任何有精度要求的金额计算，只应负责显示服务器端计算结果。
@@ -30,9 +37,9 @@ category:
 * 带时区(`Z`)的序列化与反序列化过程，会丢失夏令时信息。
 
 注意：属性名前缀不可以单字母，建议3字母以上，要符合wings规范。
-同时，`sCount`会导致解析错误，见测试用例 OkHttpClientHelperTest.testPostBad。
+同时，`sCount`会导致解析错误，见测试用例 OkHttpClientHelperTest.testPostBad
 
-### 3.1.1.Json内容的国际化
+## 3A.3.内容的国际化
 
 通过注解和类型自动对内容进行i18n转换，以字符串输出。
 
@@ -42,7 +49,7 @@ category:
 * `R.I<T>`为常用返回值类型，当存在`i18nCode`时，会用i18n信息自动替换`message`。
   自动转化时，使用注入的`messageSource`和`WingsI18nContext`获得相应语言。
 
-### 3.1.2.日期格式化
+## 3A.4.日期格式化
 
 支持java.time中以下日期格式的定制，包括Json和Spring。
 
@@ -62,7 +69,7 @@ wings.slardar.datetime.date.parser=\
 # 参考 SmartFormatter.java 测试
 ```
 
-### 3.1.3.数字格式化
+## 3A.5.数字格式化
 
 对Int,Long,Float,Double,BigDecimal支持（Json）输出时格式和舍入格式的定制
 需要注意的是，实际项目中，应该避免使用Float和Double，应该使用BigDecimal。
@@ -85,14 +92,14 @@ wings.slardar.number.decimal.separator=_
 当JS场景数字value超越 Number.M##_SAFE_INTEGER时，`digital=auto`自动切换number和string。
 默认配置中，仅对int32和int64使用了auto，需要谨慎使用，检查类型或关闭auto为false
 
-### 3.1.4.empty数据处理
+## 3A.6.empty数据处理
 
 此功能默认开启，会造成正反序列化的不一致。需要自行处理差异
 
 * 日期empty视为null，不输出，避免出现很多1000-01-01的数据
 * array/Collection/Map为empty时，不输出。
 
-### 3.1.5.常用的Jackson注解
+## 3A.7.常用Jackson注解
 
 * @JsonRawValue - number不变字符串，字符串不转义。
 * @JsonFormat - 指定格式
@@ -121,6 +128,8 @@ wings.slardar.number.decimal.separator=_
 * [baeldung 示例](https://www.baeldung.com/jackson-annotations)
 * [jackson注解](https://github.com/FasterXML/jackson-annotations/wiki/Jackson-Annotations)
 * [spring定制jackson](https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/howto-customize-the-jackson-objectmapper)
+
+## 3A.8.反序列化泛型
 
 Jackson中涉及到泛型，参数类型，必备技能
 

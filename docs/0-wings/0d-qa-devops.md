@@ -1,14 +1,14 @@
 ---
 isOriginal: true
-icon: question
+icon: repair
 category:
   - 神翼
-  - 问答
+  - 话题
 ---
 
-# 0D.开发运维问题
+# 0D.开发运维
 
-编码及运行时问题
+编码开发，线上运行等话题。
 
 ## 0D.01.getHostName()很长时间
 

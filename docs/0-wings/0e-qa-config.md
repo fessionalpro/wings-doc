@@ -1,12 +1,12 @@
 ---
 isOriginal: true
-icon: question
+icon: config
 category:
   - 神翼
-  - 问答
+  - 话题
 ---
 
-# 0E.配置问题
+# 0E.配置话题
 
 工程配置，如maven，properties，spring等设置项。
 

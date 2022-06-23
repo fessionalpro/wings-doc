@@ -1,19 +1,18 @@
 ---
 isOriginal: true
-icon: geometry
+icon: mysql
 category:
   - 虚空
   - 数据
-  - 知识
 ---
 
-# 2D.数据库知识
+# 2D.Mysql体系的知识
 
 mysql体系指mysql分支如(Percona,MariaDB)或兼容mysql协议的数据库，wings使用mysql-8.0.x（5.7已充分测试）。
 原则上DB不应该封装（自定义function或procedure）业务逻辑，但可以使用db提供的功能，简化工作实现业务目标。
 [mysql 8.0 官方文档](https://dev.mysql.com/doc/refman/8.0/en/)
 
-## 2D.1.本地创建mysql docker
+## 2D.1.创建Mysql Docker
 
 wings需要mysqld中以下重点设置，包括命名小写，语音时区，用户权限，[全文检索的分词](https://dev.mysql.com/doc/refman/8.0/en/fulltext-boolean.html)
 以下配置适应于mysql5.7, mysql8, native, cloud

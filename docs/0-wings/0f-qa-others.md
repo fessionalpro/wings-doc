@@ -3,10 +3,12 @@ isOriginal: true
 icon: question
 category:
   - 神翼
-  - 问答
+  - 话题
 ---
 
-# 0F.其他问题
+# 0F.其他话题
+
+未归类的话题。
 
 ## 0F.01.为什么是dota的英雄
 
