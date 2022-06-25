@@ -69,3 +69,4 @@ Wings由多个子项目构成，都采用了Dota相关的命名，主要包括�
 * [开发运维](0d-qa-devops.md) - 编码开发，线上运行等话题
 * [配置话题](0e-qa-config.md) - maven，properties，spring的配置话题
 * [其他话题](0f-qa-others.md) - 未归类的话题
+* [幽灵船模型](0g-ghost-ship.md) - wings功能的基本构建模型

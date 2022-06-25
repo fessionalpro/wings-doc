@@ -5,7 +5,7 @@ export const navbar: HopeThemeNavbarConfig = [
   { text: '沉默', icon: 'define', link: '/1-silence/' },
   { text: '虚空', icon: 'time', link: '/2-faceless/' },
   { text: '鱼人', icon: 'speed', link: '/3-slardar/' },
-  { text: '术士', icon: 'network', link: '/4-warlock/' },
+  { text: '术士', icon: 'proxy', link: '/4-warlock/' },
   { text: '天辉', icon: 'config', link: '/5-radiant/' },
-  { text: '例子', icon: 'actions', link: '/9-example/' },
+  { text: '实战', icon: 'actions', link: '/9-example/' },
 ];

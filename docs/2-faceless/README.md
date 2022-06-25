@@ -13,7 +13,7 @@ category:
 > `Void`，J8脸, `public static void main`  
 > 他是来自超维视界的一名访客，一个时间之外的境域。
 
-可对MySql系(mysql及分支,h2)做Sharding，表结构和数据做版本管理。
+数据层（MySql兼容系，如H2)封装。支持表和数据的版本管理，强类型支持，分表分库能力。
 
 ## 2.1.分布式主键(LightId)
 

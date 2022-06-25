@@ -3,7 +3,7 @@ isOriginal: true
 icon: speed
 category:
   - 鱼人
-  - Mvc
+  - 首页
 ---
 
 # 3.鱼人守卫
@@ -12,18 +12,18 @@ category:
 
 > 大鱼人，是一个水手，他会星星点灯。
 
-为SpringMvc(不支持WebFlux)提供i18n和security,cache,session的基础支持和封装。
+SpringMvc(不支持WebFlux)封装和扩展，如多语言，多时区，安全，缓存，会话等。
 
-## 3.1.默认方案及配置
+## 3.1.方案及配置
 
-Slardar按以下配置和架构，进行了默认优化和配置。
+Slardar按以下配置，架构及性能指标，进行了默认配置。
 
+* Nginx反向代理，提供post+json为主的服务
 * `Undertow`为默认的Servlet容器
 * `Hazelcast`作为`Cache`及`Session`方案
-* `4核8G`的普通云服务器或容器
-* 同步Service在80%情况下`30ms`完成业务
-* 单机单应用TPS，99th-pct约`3k`，最高`8k`
-* Nginx反向代理，提供post+json为主的服务
+* 业务层在80%可以`20-30ms`结束，阻塞系数`0.9`
+* `8核3GHz`云主机，模拟`10k*50`请求，单应用
+* `95th`，response=`2s`，`tps`=`2k-5k`
 
 ## 3.2.Mvc的封装加强
 

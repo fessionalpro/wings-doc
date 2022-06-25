@@ -13,7 +13,7 @@ actions:
     link: /2-faceless/2a-flywave.html
 
   - text: 角色权限 🔐
-    link: /4-warlock.html
+    link: /4-warlock/4b-authz.html
 
 features:
   - icon: config
