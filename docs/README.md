@@ -3,7 +3,7 @@ home: true
 icon: home
 heroImage: /logo.png
 heroText: BKB+飞鞋+SpringBoot
-tagline: 🎉快速交付 ⛑安全重构 ♻️低技术债
+tagline: 🎉快速交付 🧩安全重构 🍵低技术债
 actions:
   - text: 项目规约 🔖
     link: /0-wings/0a-code-style.html
@@ -12,8 +12,8 @@ actions:
   - text: 数据版本 💡
     link: /2-faceless/2a-flywave.html
 
-  - text: 角色权限 🔐
-    link: /4-warlock/4b-authz.html
+  - text: 属性配置 🧭
+    link: /0-wings/0h-prop-index.html
 
 features:
   - icon: config
@@ -69,12 +69,12 @@ features:
   - icon: command
     title: 第三方登录，角色权限管理
     details: 集成Oauth登录，可按应用，功能，来源等细粒度的管理权限
-    link: /3-slardar/3g-fun-server.html
+    link: /4-warlock/4c-security.html
 
   - icon: more
     title: 开箱即用的功能，可插拔模块
     details: 开箱即用的功能，可插拔模块，devops脚本和手册，代码自动生成器
-    link: /3-slardar/3g-fun-server.html
+    link: /5-radiant/
 ---
 
 # 🥾 纹丝不忒
@@ -100,7 +100,9 @@ features:
 * [![H2Database](https://img.shields.io/badge/h2db-2.0-blue)](https://h2database.com/html/main.html) 单机数据库，以离线及断线业务 [MPL2]或[EPL1]
 * [![Hazelcast](https://img.shields.io/badge/hazelcast-4.2-lightblue)](https://hazelcast.org/imdg/) IMDG，分布式缓存，消息，流等 [Apache2]
 
-## 👌 无脑使用
+## 🐵 无脑使用
+
+直接作为parent，通过OSS获得发布的Snapshot
 
 ```xml
 <parent>
@@ -108,6 +110,23 @@ features:
     <artifactId>wings</artifactId>
     <version>${wings.version}</version>
 </parent>
+```
+
+## 🦁 积极动手
+
+建议动手搞定代码，避免低水平使用，无法发挥潜力实现初衷。
+
+```bash
+# ① 国内镜像，成功后进入项目目录
+git clone https://gitee.com/trydofor/pro.fessional.wings.git
+# ② 安装依赖，可跳过，支持java8编译
+# sdk use java 8.0.332-zulu
+git submodule update
+(cd observe/meepo && mvn package install)
+(cd observe/mirana && mvn package install)
+# ③ 安装wings，java-11
+sdk use java 11.0.2-open
+mvn package install
 ```
 
 [Apache2]: https://www.apache.org/licenses/LICENSE-2.0

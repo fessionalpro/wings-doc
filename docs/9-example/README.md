@@ -7,7 +7,7 @@ category:
 
 # 9.实战演示
 
-运行`winx-devops/wings-init-project.sh`生成一个样板工程。
+运行`wings-init-project.sh`生成一个样板工程。
 
 ## 9.1.前置条件
 
@@ -118,9 +118,9 @@ server {
 ```bash
 # 打包和启动
 mvn -U clean package
-winx-devops/wings-starter.sh start
+wings-starter.sh start
 # Ctrl-C停止日志输出
-winx-devops/wings-starter.sh stop
+wings-starter.sh stop
 ```
 
 使用jmeter 模拟10K*50请求
