@@ -20,9 +20,9 @@ export default defineUserConfig({
   ],
   plugins: [
     docsearchPlugin({
-      appId: '8YBPIAAF53',
-      apiKey: '115c7d17dacbf60d985d6389e9eff675',
-      indexName: 'java-code-review-moilioncircle',
+      appId: '2OIWW9DS0Z',
+      apiKey: 'c70807b7265d204d74d39aeee10b4474',
+      indexName: 'wingsboot',
     }),
   ],
 });
