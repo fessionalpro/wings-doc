@@ -11,5 +11,5 @@ category:
 
 ## 5.1.相关项目
 
-* [米拉娜工具](5a.mirana-util.md) - guava,commons的补充
-* [米波英雄模板](5b.meepo-tmpl.md) - 不破坏母版语法的非专业模板引擎
+* [米拉娜工具](5a.mirana/) - guava,commons的补充
+* [米波英雄模板](5b.meepo/) - 不破坏母版语法的非专业模板引擎

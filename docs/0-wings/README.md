@@ -50,13 +50,13 @@ Wings由多个子项目构成，都采用了Dota相关的命名，主要包括�
 技术选型，遵循Unix哲学，部分回答了`为什么`和`为什么不`？
 
 * SpringBoot - 事实标准，从业人员基数大，容易拉扯队伍和技术衔接。
-* Jooq/QueryDsl - 基于`限制的艺术`，看重其强类型而放弃留下的mybatis体系。
+* Jooq/QueryDsl - 基于`限制的艺术`，看重其强类型而放弃流行的mybatis体系。
   jooq强类型，可以受到IDE加持；不能写成过于复杂的SQL，有利于分库，分服务。
-* kotlin - 比`scala`更胜任`更好的java`，目前仅在flywave支撑性项目中用了kotlin，
+* Kotlin - 比`scala`更胜任`更好的java`，目前仅在flywave支撑性项目中用了kotlin，
   而在主要业务场景，仍然主张【少吃糖，写好java】
-* webmvc - 尽管`webflux`在模型和性能好于serverlet体系，但当前更多的是阻塞IO，多线程场景。
-* lombok - 简化代码，使用了Experimental功能，开发时，需要自己在pom中引入。
-* git-flow - git管理的最佳实践。
+* WebMvc - 尽管`webflux`在模型和性能好于serverlet体系，但当前更多的是阻塞IO，多线程场景。
+* Lombok - 简化代码，使用了Experimental功能，开发时，需要自己在pom中引入。
+* Git-flow - git管理的最佳实践。
 * Guava, commons-lang3, commons-io - 进阶必备的工具包.
 * ShardingSphere - 分表分库，足以解决90%的`数据大`的问题。
 * Hazelcast - 相比于Redist，Hazelcast更简单，集成度更高。

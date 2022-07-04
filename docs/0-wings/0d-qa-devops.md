@@ -160,7 +160,7 @@ flywave版本管理和journal的delete_dt时，都采用了时间，可以快速
 
 Warlock启动时自动检查jvm，jdbc和mysql的时区，不一致时，在控制台以Error形式输出。
 
-更多信息，参考 [04.日时零值和时区问题](wings/faceless/readme.md#04日时零值和时区问题)
+更多信息，参考[时间和时区](../2-faceless/2h-time-zone.md)
 
 ## 0D.14.无外网mysql如何执行flywave版本管理
 
