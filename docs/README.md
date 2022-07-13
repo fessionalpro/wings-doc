@@ -81,6 +81,13 @@ features:
 
 > WingsBoot(代号神翼)=BKB+飞鞋+SpringBoot，如果你也喜欢过Dota，你懂的。
 
+![silencer](/silencer_minimap_icon.png)
+![faceless](/faceless_minimap_icon.png)
+![slardar](/slardar_minimap_icon.png)
+![warlock](/warlock_minimap_icon.png)
+![mirana](/mirana_minimap_icon.png)
+![meepo](/meepo_minimap_icon.png)
+
 适合成长型团队在成长型业务中平稳的实现，技术过渡，团队拉扯和业务升级。
 其核心价值是：①快速交付业务目标；②及时偿还技术债务；③安全重构程序和业务。
 例如从单应用起，到分表分库，再到服务治理及云化等项目阶段，团队都能够，
@@ -99,6 +106,12 @@ features:
 * [![Mysql](https://img.shields.io/badge/mysql-8.0-blue)](https://dev.mysql.com/downloads/mysql/) 主要的业务数据库，支持5.7，推荐8体系 💡 [GPLv2]
 * [![H2Database](https://img.shields.io/badge/h2db-2.0-blue)](https://h2database.com/html/main.html) 单机数据库，以离线及断线业务 [MPL2]或[EPL1]
 * [![Hazelcast](https://img.shields.io/badge/hazelcast-4.2-lightblue)](https://hazelcast.org/imdg/) IMDG，分布式缓存，消息，流等 [Apache2]
+
+[Apache2]: https://www.apache.org/licenses/LICENSE-2.0
+[GPLv2+CE]: https://openjdk.org/legal/gplv2+ce.html
+[GPLv2]: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+[MPL2]: https://www.mozilla.org/MPL/2.0
+[EPL1]: https://opensource.org/licenses/eclipse-1.0.php
 
 ## 🐵 无脑使用
 
@@ -128,9 +141,3 @@ git submodule update
 sdk use java 11.0.2-open
 mvn package install
 ```
-
-[Apache2]: https://www.apache.org/licenses/LICENSE-2.0
-[GPLv2+CE]: https://openjdk.org/legal/gplv2+ce.html
-[GPLv2]: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-[MPL2]: https://www.mozilla.org/MPL/2.0
-[EPL1]: https://opensource.org/licenses/eclipse-1.0.php

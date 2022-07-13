@@ -109,9 +109,9 @@ The jOOQ template parser behaves according to the following rules:
 ## 2F.03.常见的jooq查询操作
 
 更多信息，参考`官方文档`和sample代码`pro.fessional.wings.faceless.sample`
-在wings中，鼓励使用Dao做各种查询，避免使用静态表或注入DSL。
-
 <https://www.jooq.org/doc/latest/manual/sql-execution/fetching/>
+
+在wings中，^推荐^使用Dao做各种查询，避免使用静态表或注入DSL。
 
 ```java
 class SelectFetch {

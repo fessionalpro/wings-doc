@@ -21,6 +21,7 @@ wings需要mysqld中以下重点设置，包括命名小写，语音时区，用
 sudo tee /data/docker/mysql/conf/moilioncircle.cnf << EOF
 [mysqld]
 max_allowed_packet          = 16777216
+max_connections             = 1024
 # table store lowercase compare case-sensitive
 lower_case_table_names      = 1
 # FULLTEXT indexes by MeCab parser and ngram parser
