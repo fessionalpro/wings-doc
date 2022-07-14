@@ -35,8 +35,10 @@ public R<Object> debounceBody(@RequestParam String p, @RequestBody Q<String> q) 
 
 ## 3G.2.防止连击
 
-与Debounce不同，`@DoubleKill`类似Cacheable采用AOP方式，主要用于Service层防抖。
-沿用Dota命名，通过Jvm全局锁和DoubleKillException完成重复检查和流程控制。
+与Debounce不同，`@DoubleKill`类似Cacheable采用AOP方式，主要用于Service层防同时计算。
+此防抖不是基于时间间隔，而是依赖于前一个处理是否结束，仅当前一个处理中时，才kill后续。
+
+虽沿用Dota命名，但却保留一除掉二，通过Jvm全局锁和DoubleKillException完成重复检查和流程控制。
 
 也可以作用于Controller层，需要显示使用并通过Spel指定参数，如@RequestParam等参数。
 默认是session级别的控制，可使用@bean进行处理。默认返回202 Accepted
@@ -45,7 +47,7 @@ public R<Object> debounceBody(@RequestParam String p, @RequestBody Q<String> q) 
 需要注意ExceptionResolver或ExceptionHandler的Order，避免异常捕获的层级错误。
 
 ```java
-@DoubleKill(expression = "#root.methodName + #root.targetClass + #type + '-' + #p1 * 1000")
+@DoubleKill(expression = "#type + '-' + #p1 * 1000")
 public String sleepSecondExp(String type, int s) {
 }
 
