@@ -23,6 +23,16 @@ category:
 `@Debounce`底层基于HandlerInterceptor和，request流复用和response流缓存。
 作用于Controller层，Session级，以URL特征及参数为判断重复的依据。
 
+```java
+@PostMapping("/test/debounce-body.json")
+@Debounce(waiting = 600, header = {"User-Agent"}, body = true, reuse = true)
+public R<Object> debounceBody(@RequestParam String p, @RequestBody Q<String> q) {
+    return R.ok(p + "::" + seq.getAndIncrement() + "::" + q.getQ());
+}
+```
+
+更多示例参考Debounce代码文档或测试代码[TestDebounceController.java](https://gitee.com/trydofor/pro.fessional.wings/blob/master/wings/slardar/src/test/java/pro/fessional/wings/slardar/controller/TestDebounceController.java)
+
 ## 3G.2.防止连击
 
 与Debounce不同，`@DoubleKill`类似Cacheable采用AOP方式，主要用于Service层防抖。
@@ -34,7 +44,22 @@ category:
 默认对DoubleKillException返回固定的json字符串，注入DoubleKillExceptionResolver可替换，
 需要注意ExceptionResolver或ExceptionHandler的Order，避免异常捕获的层级错误。
 
-详细用法，可参考TestDoubleKillController和DoubleKillService
+```java
+@DoubleKill(expression = "#root.methodName + #root.targetClass + #type + '-' + #p1 * 1000")
+public String sleepSecondExp(String type, int s) {
+}
+
+@DoubleKill(expression = "@httpSessionIdResolver.resolveSessionIds(#p0)")
+public R<String> doubleKill(HttpServletRequest request) throws InterruptedException {
+    Thread.sleep(10_000);
+    return R.ok("login page");
+}
+```
+
+详细用法，参考DoubleKill源码文档，或参考测试代码
+
+* [TestDoubleKillController.java](https://gitee.com/trydofor/pro.fessional.wings/blob/master/wings/slardar/src/test/java/pro/fessional/wings/slardar/controller/TestDoubleKillController.java)
+* [DoubleKillService.java](https://gitee.com/trydofor/pro.fessional.wings/blob/master/wings/slardar/src/test/java/pro/fessional/wings/slardar/service/DoubleKillService.java)
 
 ## 3G.3.验证码
 
