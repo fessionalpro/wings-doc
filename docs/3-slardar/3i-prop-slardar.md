@@ -112,10 +112,9 @@ category:
 
 `Boolean`=`true`，是否开启swagger配置
 
-### # 是否开启监控
+### spring.wings.slardar.enabled.monitor
 
-spring.wings.slardar.enabled.monitor
-`Boolean`=`true`，是否开在有spring-boot-devtool时开启devtool兼容配置
+`Boolean`=`true`，是否开开启监控
 
 ### spring.wings.slardar.enabled.monitor-jvm
 

@@ -58,7 +58,7 @@ common.email.size=The author email '${validatedValue}' must be between {min} and
 
 而在 Message的ResourceBundle中，默认使用java.text.MessageFormat的数组`{0}`格式。
 
-### 3D.4.三种DateTime
+## 3D.4.三种DateTime
 
 多时区，要兼顾数据可读性和编码便利性，在slardar中统一约定如下。
 

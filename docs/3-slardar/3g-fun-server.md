@@ -107,7 +107,7 @@ slardar验证码的默认是基于图片的，在现今的AI算法识别上，�
 
 TerminalContext保存了，远程ip，agent信息，locale和timezone
 
-### 3G.6.请求复用和应答缓存
+## 3G.6.请求复用和应答缓存
 
 WingsReuseStreamFilter 实行了request流的循环读，和response的缓存。
 在使用以下filter时，会出现bytes重复复制而浪费空间，建议自行Override。
@@ -141,7 +141,7 @@ org.springframework.boot.autoconfigure.web.client.RestTemplateAutoConfiguration
 
 在springboot默认是3.x，而just-auth需要4.x，所以需要手动okhttp3.version属性
 
-### 3G.9.负载过滤器
+## 3G.9.负载过滤器
 
 OverloadFilter可限定请求并发，默认`spring.wings.slardar.enabled.overload=false`
 

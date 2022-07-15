@@ -29,7 +29,7 @@ header的名字和cookie同名，默认是`session`。
 * 不建议使用rememberMe，设置session的timeout和cookie的maxAge较长时间。
 * 如果没有特殊要求，建议使用cookie体系，因其生态成熟。
 
-## 3E.2. cookie的定制功能
+## 3E.2.cookie的定制功能
 
 cookie体系下，可通过定制Filter和Wrapper实现以下功能。
 

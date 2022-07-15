@@ -172,7 +172,7 @@ public interface TradeService {
 * springdoc.api-docs.enabled=true
 * springdoc.swagger-ui.enabled=true
 
-## 0A.10.resource结构
+## 0A.A.resource结构
 
 文件或包，一般以wings或项目代号为前缀。wings前缀表示统一服务，项目代号为项目特有。
 
@@ -191,7 +191,7 @@ src/main/resources
 └── application.properties - spring 默认配置，用于覆盖wings
 ```
 
-## 0A.11.自动配置结构
+## 0A.B.自动配置结构
 
 wings对`spring/bean`包有特殊处理，可以自动 @ComponentScan
 
@@ -214,7 +214,7 @@ src/**/spring - spring有个配置
 * 可使用Field注入。
 * 避免使用Setter注入，因为不能提前暴露依赖错误。
 
-## 0A.12.常见的命名约定
+## 0A.C.常见的命名约定
 
 * 接口默认实现为`Default*`
 * 适配器类为`*Adapter`
@@ -234,13 +234,13 @@ enum Jane {
 }
 ```
 
-## 0A.13.Event同步内部优先
+## 0A.D.Event同步内部优先
 
 * 内部Event，内部Publish，内部Listen
 * 能内部Listen的，就不用外部的Subscribe。
 * 能同步的就不用异步
 
-## 0A.14.有关过渡设计和技术债务
+## 0A.E.有关过渡设计和技术债务
 
 因为需求的渐进明细，外部的环境变化，几乎所有业务系统的开发都是演进式。
 基于以上事实，在实际交付中，力求完美很容易误人误事，应该遵循以下规则：
@@ -249,7 +249,7 @@ enum Jane {
 * 任何技术或方案的妥协都不得牺牲质量。
 * 每次迭代，偿还10%-20%的技术债务。
 
-## 0A.15.时间是神奇的类型
+## 0A.F.时间是神奇的类型
 
 系统内有2种时间`系统时间`和`本地时间`，数据库和 java 映射上，
 
@@ -295,7 +295,7 @@ enum Jane {
 
 如果需要转换时间，需要在用户界面统一（如controller）处理。
 
-## 0A.16.不是科学家就别用浮点型
+## 0A.G.不是科学家就别用浮点型
 
 wings中不应该有浮点类型float/double，而只有整数(int/long)，小数用BigDecimal，
 他们对应的数据库类型分别为 INT/BIGINT/DECIMAL。
@@ -309,7 +309,7 @@ wings中不应该有浮点类型float/double，而只有整数(int/long)，小�
 `Effective Java`是java从业人员必备知识，在此不做赘述，参考以下章节：
 Avoid Float and Double If Exact Answers Are Required
 
-## 0A.17.实际中如何优雅的消除null
+## 0A.H.实际中如何优雅的消除null
 
 如同【攻城狮朋友圈】代码的坏味道所讲，wings工程实际，基本上以empty取代了null。
 
