@@ -28,7 +28,7 @@ features:
 
   - icon: mysql
     title: 表及数据的版本管理
-    details: 基于flywave工具可像git一样管理表结构和数据变化
+    details: 基于flywave工具，用git和sql管理表结构和数据变化
     link: /2-faceless/2a-flywave.html
 
   - icon: software
@@ -93,7 +93,7 @@ features:
 例如从单应用起，到分表分库，再到服务治理及云化等项目阶段，团队都能够，
 
 * 快速的重构业务及其代码，变更的变更数据模型 - 强类型和团队哲学，可插拔的模块和工具
-* 像git一样对数据表及表数据做好版本管理 - Flywave工具（非Flyweight）
+* 用git和sql对数据表及表数据做好版本管理 - Flywave工具（非Flyweight）
 * 对线上数据变化的追溯，复盘，恢复 - 日志体系及跟踪策略
 
 ## 📦 技术体系

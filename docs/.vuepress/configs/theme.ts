@@ -1,6 +1,6 @@
-import type { HopeThemeOptions } from 'vuepress-theme-hope';
-import { navbar } from './navbar';
-import { sidebar } from './sidebar';
+import type {HopeThemeOptions} from 'vuepress-theme-hope';
+import {navbar} from './navbar';
+import {sidebar} from './sidebar';
 
 function stylizeIt(key: string | RegExp, txt: string, type: string, ...tags: string[]) {
   return {
@@ -57,7 +57,7 @@ export const themeOption: HopeThemeOptions = {
       category: 'General',
       categoryId: 'DIC_kwDOC6IHH84CPy0E',
     },
-    components: ['Badge', 'FontIcon'],
+    //components: ['Badge', 'FontIcon'],
     mdEnhance: {
       gfm: true,
       container: true,
