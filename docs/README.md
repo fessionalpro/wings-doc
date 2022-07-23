@@ -74,19 +74,20 @@ features:
   - icon: more
     title: 开箱即用的功能，可插拔模块
     details: 开箱即用的功能，可插拔模块，devops脚本和手册，代码自动生成器
-    link: /5-radiant/
+    link: /8-radiant/
 ---
 
 # 🥾 纹丝不忒
 
 > WingsBoot(代号神翼)=BKB+飞鞋+SpringBoot，如果你也喜欢过Dota，你懂的。
 
+![mirana](/mirana_minimap_icon.png)
+![meepo](/meepo_minimap_icon.png)
 ![silencer](/silencer_minimap_icon.png)
 ![faceless](/faceless_minimap_icon.png)
 ![slardar](/slardar_minimap_icon.png)
 ![warlock](/warlock_minimap_icon.png)
-![mirana](/mirana_minimap_icon.png)
-![meepo](/meepo_minimap_icon.png)
+![batrider](/batrider_minimap_icon.png)
 
 适合成长型团队在成长型业务中平稳的实现，技术过渡，团队拉扯和业务升级。
 其核心价值是：①快速交付业务目标；②及时偿还技术债务；③安全重构程序和业务。

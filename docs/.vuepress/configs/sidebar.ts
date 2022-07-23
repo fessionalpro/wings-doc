@@ -17,7 +17,13 @@ export const sidebar: HopeThemeSidebarConfig = {
   '/2-faceless/': 'structure',
   '/3-slardar/': 'structure',
   '/4-warlock/': 'structure',
-  '/5-radiant/': 'structure',
+  '/5-batrider/': 'structure',
+  '/8-radiant/': [
+    '/a-mirana/',
+    '/b-meepo/'
+  ],
   '/9-example/': 'structure',
+  '/a-mirana/': 'structure',
+  '/b-meepo/': 'structure',
   '/': 'structure',
 };

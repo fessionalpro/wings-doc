@@ -128,6 +128,10 @@ category:
 
 `Boolean`=`true`，是否开启默认的mock Controller
 
+### spring.wings.warlock.enabled.controller-test
+
+`Boolean`=`true`，是否开启默认的test Controller
+
 ## 4D.2.wings-flywave-fit-79.properties
 
 ### wings.faceless.flywave.fit.warlock-enum-i18n
@@ -479,56 +483,64 @@ Controller中RequestMapping的URL常量
 
 ### wings.warlock.urlmap.auth-login-list
 
-`Boolean`=`/auth/login-list.{extName}`，集成登录默认页，默认返回支持的type类表，需要PathVar {extName}
+`String`=`/auth/login-list.{extName}`，集成登录默认页，默认返回支持的type类表，需要PathVar {extName}
 
 ### wings.warlock.urlmap.auth-login-page
 
-`Boolean`=`/auth/{authType}/login-page.{extName}`，具体验证登录默认页，根据content-type自动返回，需要PathVar {extName} {authType}
+`String`=`/auth/{authType}/login-page.{extName}`，具体验证登录默认页，根据content-type自动返回，需要PathVar {extName} {authType}
 
 ### wings.warlock.urlmap.auth-login-page2
 
-`Boolean`=`/auth/login-page.{extName}`，具体验证登录默认页，把authType变成RequestParam
+`String`=`/auth/login-page.{extName}`，具体验证登录默认页，把authType变成RequestParam
 
 ### wings.warlock.urlmap.auth-nonce-check
 
-`Boolean`=`/auth/nonce/check.json`，验证一次性token是否有效，oauth2使用state作为token
+`String`=`/auth/nonce/check.json`，验证一次性token是否有效，oauth2使用state作为token
 
 ### wings.warlock.urlmap.auth-login-proc
 
-`Boolean`=`/auth/{authType}/login.json`，登录登录实际处理url
+`String`=`/auth/{authType}/login.json`，登录登录实际处理url
 
 ### wings.warlock.urlmap.auth-logout-proc
 
-`Boolean`=`/auth/logout.json`，登录登出实际处理url
+`String`=`/auth/logout.json`，登录登出实际处理url
 
 ### wings.warlock.urlmap.user-authed-user
 
-`Boolean`=`/user/authed-user.json`，获得登录用户的自身基本信息
+`String`=`/user/authed-user.json`，获得登录用户的自身基本信息
 
 ### wings.warlock.urlmap.user-authed-perm
 
-`Boolean`=`/user/authed-perm.json`，检查登录用户的权限，不区分大小写比较
+`String`=`/user/authed-perm.json`，检查登录用户的权限，不区分大小写比较
 
 ### wings.warlock.urlmap.user-list-session
 
-`Boolean`=`/user/list-session.json`，列出用户所有登录session
+`String`=`/user/list-session.json`，列出用户所有登录session
 
 ### wings.warlock.urlmap.user-drop-session
 
-`Boolean`=`/user/drop-session.json`，踢出用户登录session
+`String`=`/user/drop-session.json`，踢出用户登录session
 
 ### wings.warlock.urlmap.mock-captcha
 
-`Boolean`=`/mock/captcha.json`，直接返回验证码
+`String`=`/mock/captcha.json`，直接返回验证码
 
 ### wings.warlock.urlmap.mock-doubler
 
-`Boolean`=`/mock/doubler.json`，30秒内防链接
+`String`=`/mock/doubler.json`，30秒内防链接
 
 ### wings.warlock.urlmap.mock-righter
 
-`Boolean`=`/mock/righter.json`，防篡改
+`String`=`/mock/righter.json`，防篡改
 
 ### wings.warlock.urlmap.mock-echo0o0
 
-`Boolean`=`/mock/echo0o0.json`，按输入返回
+`String`=`/mock/echo0o0.json`，按输入返回
+
+### wings.warlock.urlmap.test-run-mode
+
+`String`=`/test/envs/run-mode.json`，查询运行模式，返回 Product, Test, Develop, Local
+
+### wings.warlock.urlmap.test-timestamp
+
+`String`=`/test/envs/timestamp.json`，查询服务器时间，1970毫秒
