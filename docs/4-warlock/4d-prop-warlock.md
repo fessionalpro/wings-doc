@@ -290,7 +290,7 @@ Spring Security设置
 
 ### wings.warlock.security.login-proc-url
 
-`String`=`${wings.warlock.urlmap.auth-login-proc}`
+`String`=`/auth/{authType}/login.json`
 
 loginProcessingUrl，处理登录的Ant格式URL，由filter处理，不需要controller。
 支持变量`authType`和`authZone`，可以通过param或path获得（PathPattern）
@@ -301,7 +301,7 @@ loginProcessingUrl，处理登录的Ant格式URL，由filter处理，不需要co
 
 ### wings.warlock.security.logout-url
 
-`String`=`${wings.warlock.urlmap.auth-logout-proc}`
+`String`=`/auth/logout.json`
 
 登出地址，由filter处理，不需要controller
 
@@ -477,7 +477,7 @@ cache-manager的bean name，同`wings.slardar.cache.primary`
 * `boot-admin.auth-role`=`∅`
 * `boot-admin.auth-perm`=`∅`
 
-## 4D.10.wings-warlock-urlmap-77.properties
+## 4D.A.wings-warlock-urlmap-77.properties
 
 Controller中RequestMapping的URL常量
 
@@ -496,14 +496,6 @@ Controller中RequestMapping的URL常量
 ### wings.warlock.urlmap.auth-nonce-check
 
 `String`=`/auth/nonce/check.json`，验证一次性token是否有效，oauth2使用state作为token
-
-### wings.warlock.urlmap.auth-login-proc
-
-`String`=`/auth/{authType}/login.json`，登录登录实际处理url
-
-### wings.warlock.urlmap.auth-logout-proc
-
-`String`=`/auth/logout.json`，登录登出实际处理url
 
 ### wings.warlock.urlmap.user-authed-user
 
@@ -544,3 +536,13 @@ Controller中RequestMapping的URL常量
 ### wings.warlock.urlmap.test-timestamp
 
 `String`=`/test/envs/timestamp.json`，查询服务器时间，1970毫秒
+
+## 4D.B.wings-warlock-runtime-77.properties
+
+### wings.warlock.runtime.run-mode
+
+`RunMode`=`Local`，默认的运行模式
+
+### wings.warlock.runtime.api-mode
+
+`ApiMode`=`Nothing`，默认的Api模式
