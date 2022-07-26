@@ -125,7 +125,35 @@ ReuseStream的流仅提供了复用功能，默认不开启，不使用时无空
 通过WingsReuseStreamFilter注入RequestResponseLogging可实现请求应答日志。
 相比于CommonsRequestLoggingFilter，此功能按需复用，同时支持request和response。
 
-实现AbstractRequestResponseLogging，并通过以下方式set到WingsReuseStreamFilter中，
+实现AbstractRequestResponseLogging Bean即可，参考代码如下。
+
+```java
+@Bean
+public RequestResponseLogging requestResponseLogging() {
+    return new AbstractRequestResponseLogging() {
+        @Override
+        public Condition loggingConfig(@NotNull ReuseStreamRequestWrapper req) {
+            if (!req.getRequestURI().contains("/test/debounce")) return null;
+
+            final Condition cond = new Condition();
+            cond.setRequestEnable(true);
+            cond.setRequestPayload(true);
+            cond.setRequestHeader(s -> s.contains("User-Agent"));
+
+            cond.setResponseEnable(true);
+            cond.setResponsePayload(true);
+            return cond;
+        }
+
+        @Override
+        protected void logging(@NotNull String message) {
+            logger.warn(message);
+        }
+    };
+}
+```
+
+其原理是，WingsReuseStreamFilter配置时，自动实现了以下步骤。
 
 * @AutoConfigureBefore(SlardarRestreamConfiguration.class)
 * 获取 WingsReuseStreamFilter，然后setRequestResponseLogging

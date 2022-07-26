@@ -120,6 +120,10 @@ category:
 
 `Boolean`=`true`，是否开启默认的auth Controller
 
+### spring.wings.warlock.enabled.controller-proc
+
+`Boolean`=`true`，是否开启由filter处理仅做文档的login/out proc
+
 ### spring.wings.warlock.enabled.controller-user
 
 `Boolean`=`true`，是否开启默认的user Controller
@@ -327,7 +331,7 @@ loginProcessingUrl，处理登录的Ant格式URL，由filter处理，不需要co
 
 ### wings.warlock.security.logout-success-body
 
-`String`=`{"success":true,"message":"logout success"}`，登出成功返回的body
+`String`=`{"success":true,"message":"logout success"}`，登出成功返回的body，空时不注入handler
 
 ### wings.warlock.security.session-maximum
 
