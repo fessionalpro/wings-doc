@@ -80,6 +80,8 @@ features:
 # 🥾 纹丝不忒
 
 > WingsBoot(代号神翼)=BKB+飞鞋+SpringBoot，如果你也喜欢过Dota，你懂的。
+>
+> 我们主张防御式编程风格，May The `false` Be With You !
 
 ![mirana](/mirana_minimap_icon.png)
 ![meepo](/meepo_minimap_icon.png)
