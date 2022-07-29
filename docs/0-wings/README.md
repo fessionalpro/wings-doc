@@ -59,7 +59,7 @@ Wings由多个子项目构成，都采用了Dota相关的命名，主要包括�
 * Git-flow - git管理的最佳实践。
 * Guava, commons-lang3, commons-io - 进阶必备的工具包.
 * ShardingSphere - 分表分库，足以解决90%的`数据大`的问题。
-* Hazelcast - 相比于Redist，Hazelcast更简单，集成度更高。
+* Hazelcast - 相比于Redis，Hazelcast更简单，集成度更高。
 
 ## 0.4.更多章节
 

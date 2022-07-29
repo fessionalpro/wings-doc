@@ -67,7 +67,7 @@ wings对配置文件的处理方式，是层叠和过滤，配置以路径顺序
 以`@`区分profile主要是因为，wings-conf文件名中存在`-`，避免造成误解析。
 在使用`spring.profiles.active`时，要确保配置文件按spring约定加载。
 
-wings和spring的profile在处理上也有区别，默认wings有些于spring处理。
+wings和spring的profile在处理上也有区别，默认wings优先于spring处理。
 
 * application-{profile}，wings扫描排序，spring处理。
 * wings-conf/layered-config@{profile}，wings扫描及处理。
