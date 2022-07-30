@@ -92,7 +92,7 @@ SavedRequestAwareAuthenticationSuccessHandler和RequestCache 进行搭配即可�
 * saving the original request in the session - 要session支持。
 * base64 original URL to the redirected login URL - 通常的SSO实现
 
-不过，spring security默认不支持地三种。如果要定制的话，需要看ExceptionTranslationFilter，
+不过，spring security默认不支持第三种。如果要定制的话，需要看ExceptionTranslationFilter，
 在sendStartAuthentication方法中，对requestCache或authenticationEntryPoint上进行定制。
 也可以通过interceptor对loginPage进行定制。
 

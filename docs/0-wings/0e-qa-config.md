@@ -13,7 +13,7 @@ category:
 ## 0E.01.哪些参数是必须打开的
 
 ```bash
-# 找到所以开关文件
+# 找到所有开关文件
 find . -name 'spring-wings-enabled.properties' \
 | egrep -v -E 'target/|example/' 
 
@@ -21,7 +21,7 @@ find . -name 'spring-wings-enabled.properties' \
 ./faceless/src/main/resources/wings-conf/spring-wings-enabled.properties
 ./silencer/src/main/resources/wings-conf/spring-wings-enabled.properties
 
-# 找到所false的开关
+# 找到所有false的开关
 find . -name 'spring-wings-enabled.properties' \
 | egrep -v -E 'target/|example/' \
 | xargs grep 'false'
