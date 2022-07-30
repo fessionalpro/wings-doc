@@ -12,4 +12,4 @@ category:
 
 > 只要翱翔于天空，可以从四面八方发动攻势。
 
-基于ServiceComb的微服务及云实现。
+ServiceComb是一种更紧凑和工程化的微服务及云实现。
