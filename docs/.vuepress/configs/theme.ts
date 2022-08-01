@@ -79,5 +79,6 @@ export const themeOption: HopeThemeOptions = {
         stylizeIt(/^(?:NOT|慎用)$/u, '', 'warning', 'strong', 'sup'),
       ],
     },
+    copyCode: {},
   },
 };

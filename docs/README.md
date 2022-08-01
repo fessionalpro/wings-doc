@@ -63,7 +63,7 @@ features:
 
   - icon: compare
     title: 防连击，防抖，防篡改
-    details: 后端请求防抖，服务防连击，编辑内容放篡改，请求验证码等
+    details: 后端请求防抖，服务防连击，编辑内容放防篡改，请求验证码等
     link: /3-slardar/3g-fun-server.html
 
   - icon: command
