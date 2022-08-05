@@ -64,6 +64,6 @@ jooq的CUD监听设置
 
 `Map<String, Set<String>>`，监听表及其字段。
 
-cud监听的表及字段，不区分大小写，默认
+cud监听的表及字段，区分大小写，默认
 
 * `win_order`=`id,order_num`

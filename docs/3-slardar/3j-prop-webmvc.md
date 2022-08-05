@@ -36,7 +36,7 @@ category:
 
 ### wings.slardar.cookie.nop
 
-`Set<String>`=`${server.servlet.cookie.cookie.name}`
+`Set<String>`=`${server.servlet.session.cookie.name}`
 
 ### wings.slardar.cookie.b64
 

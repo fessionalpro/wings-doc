@@ -56,3 +56,23 @@ EventPublishHelper默认提供了3种事件发布机制，可实现，同步/异
 
 基于jooq的listener，可获得特定表和字段的CUD事件，
 默认通过AsyncGlobal发布，可供表和字段有关缓存evict
+
+通过`TableCudListener`和`wings.faceless.jooq.cud.table`设置，以Authn为例，
+`[win_user_authn]`=`user_id,username,auth_type`，当对win_user_authn进行
+Insert/Update/Delete时，都会在集群内发布携带设定的字段值TableChangeEvent。
+
+通过以下代码，即可监听和处理，以下是根据认证表变更，而清空缓存的代码
+
+```java
+// ComboWarlockAuthnService.java 72-81
+@EventListener
+@CacheEvict(allEntries = true, condition = "#result")
+public boolean evictAllAuthnCache(TableChangeEvent event) {
+    final String tb = CacheEventHelper.fire(event, EventTables, DELETE | UPDATE);
+    if (tb != null) {
+        log.info("evictAllAuthnCache by {}, {}", tb, event == null ? -1 : event.getChange());
+        return true;
+    }
+    return false;
+}
+```
