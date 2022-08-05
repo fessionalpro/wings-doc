@@ -27,7 +27,7 @@ category:
 
 wings中，默认存在2个AuthenticationEntryPoint，
 
-* LoginUrlAuthenticationEntryPoint - 用户侧的的通常登录
+* LoginUrlAuthenticationEntryPoint - 用户侧的通常登录
 * BasicAuthenticationEntryPoint - 监控侧的basic验证
 
 对于LoginUrl可以配置login-forward，选择以何种形式提供给用户端登录。

@@ -35,7 +35,7 @@ category:
 * 已知header默认自动转小写有swagger-ui和webpack-dev-server(node http)
 
 NonceLoginSuccessHandler配合NonceTokenSessionHelper实现了oauth一次性token换取session的功能。
-所以如果需要此功能，需要在自行实现AuthenticationSuccessHandler继承NonceLoginSuccessHandler。
+所以如果需要此功能，需要自行实现AuthenticationSuccessHandler继承NonceLoginSuccessHandler。
 
 Oauth通过定制host和state参数，构造指令，完成重定向定制，参考 AuthStateBuilder 类。
 
