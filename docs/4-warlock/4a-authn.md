@@ -14,7 +14,7 @@ category:
 
 因为Github最广泛和最简单，以其作为Oauth登录的演示。
 
-在github上设置，需要`App ID`，`Client ID`和`Client secret`，注意不用外泄。
+在github上设置，需要`App ID`，`Client ID`和`Client secret`，注意不要外泄。
 设置入口如下，`Settings` | `Developer settings` | `GitHub Apps`
 
 * Homepage URL - <http://127.0.0.1:8084>

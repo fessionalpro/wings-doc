@@ -57,7 +57,7 @@ Oauth通过定制host和state参数，构造指令，完成重定向定制，参
 
 ## 4C.3.定制授权
 
-除了默认实现的user，role，perm体系外，warlock支持一下用户和权限的细粒度定制
+除了默认实现的user，role，perm体系外，warlock支持以下用户和权限的细粒度定制
 
 * NonceUserDetailsCombo - 一次性登录。
 * MemoryUserDetailsCombo - 按uid，登录名，登录方式，挂载用户和权限。

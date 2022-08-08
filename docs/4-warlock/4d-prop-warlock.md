@@ -523,7 +523,7 @@ Controller中RequestMapping的URL常量
 
 ### wings.warlock.urlmap.mock-doubler
 
-`String`=`/mock/doubler.json`，30秒内防链接
+`String`=`/mock/doubler.json`，30秒内防连击
 
 ### wings.warlock.urlmap.mock-righter
 
