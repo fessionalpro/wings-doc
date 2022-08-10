@@ -33,7 +33,7 @@ wings中的spring命名，主要集中在以下（后续目录结构有详解）
 
 ## 1C.2.属性bind和meta提示
 
-配置类，统一使用`*Prop`和@Data，经过配置后，可以自动提示。
+属性类，统一使用`*Prop`和@Data，经过配置后，可以自动提示。
 
 * 手动添加 additional-spring-configuration-metadata.json
 * 自动生成 spring-configuration-metadata.json
@@ -43,3 +43,27 @@ wings中的spring命名，主要集中在以下（后续目录结构有详解）
 * <https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#configuration-metadata>
 * <https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-Configuration-Binding>
 * <https://github.com/spring-projects/spring-boot/wiki/IDE-binding-features#simple-pojo>
+
+## 1C.3.按条件配置事项
+
+* 配置类为`*Configuration.java`在`/spring/bean/`中
+* 属性类为`*Prop.java`在`/spring/prop/`中
+* 嵌套配置不继承`@Conditional`
+  - 要合并为`@ConditionalOnExpression`
+  - 或自定义一个`@Conditional`
+
+The `@Conditional` annotation may be used in any of the following ways:
+
+* as a type-level annotation on any class directly or
+  indirectly annotated with `@Component`, including
+  `@Configuration` classes
+* as a meta-annotation, for the purpose of composing
+  custom stereotype annotations
+* as a method-level annotation on any `@Bean` method
+
+If a `@Configuration` class is marked with `@Conditional`,all of the
+`@Bean` methods, `@Import` annotations, and `@ComponentScan` annotations
+associated with that class will be subject to the conditions.
+
+NOTE: Inheritance of `@Conditional` annotations is not supported;
+any conditions from superclasses or from overridden methods will not be considered.
