@@ -18,3 +18,44 @@ category:
 * Rest以path定，`cse://microserviceName/path?querystring`
 * 接口可为lib共享或自定义，方法签名一直即可
 * `@RpcReference`只能field注入，可用`Invoker.createProxy`
+
+## 5B.2.消费方式转换
+
+以调用winx-api的sayHello为例，其配置如下，
+
+* `servicecomb.service.name`=`winx-api`
+* `schemaId`为`@RestSchema(schemaId = "winx-hello")`
+* base path为`@RequestMapping(path = "/")`
+* path为`@RequestMapping(path = "/winx-hello/say-hello")`
+
+其自动生成的swagger摘要信息如下
+
+```yml
+basePath: "/"
+schemes:
+- "http"
+paths:
+  /winx-hello/say-hello:
+    get:
+      operationId: "sayHello"
+      produces:
+      - "text/plain"
+      parameters:
+      - name: "name"
+        in: "query"
+        required: true
+        type: "string"
+```
+
+以下的调用方式都可以访问此服务，
+
+* `@RpcReference(microserviceName = "winx-api", schemaId = "winx-hello")`
+* restTemplate `cse://winx-api/winx-hello/say-hello?name=bbb`
+* broswer `http://192.168.3.14:8095/servcomber/winx-hello/say-hello?name=ccc`
+
+通过观察`OperationLocator`可以确认，他们的区别如下，
+
+* Rpc根据microserviceName和schemaId以及方法operationId定位
+* restTemplate通过microserviceName和path定位
+* broswer http 通过endpoint的ip端口，rest前缀和path定位
+* path为`basePath`+`paths`

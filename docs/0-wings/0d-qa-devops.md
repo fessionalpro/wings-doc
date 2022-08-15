@@ -295,9 +295,16 @@ Type tp1 = new TypeReference<R<Dto>>(){}.getType();
 Type tp2 = ResolvableType.forClassWithGenerics(R.class, Dto.class).getType();
 ```
 
-## 0D.23.kotlin编译失败的可能
+## 0D.24.kotlin编译失败的可能
 
 * kotlin-maven-plugin 插件，要同时编译java和kotlin
 * kotlin-stdlib-jdk8 这是最新的stdlib
 * mvn profile中的maven.compiler.target 优先与pom.xml
 * JAVA_HOME是否指定正确的jdk版本
+
+## 0D.25.ApplicationContextHelper空指针
+
+Silencer的ApplicationContextHelper提供了静态的Ioc能力，有空指针情况
+
+* 在SpringBoot生命周期的PreparedEvent之前使用
+* 在不同的classloader中使用，比如devtool的restart
