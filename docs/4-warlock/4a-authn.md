@@ -17,8 +17,8 @@ category:
 在github上设置，需要`App ID`，`Client ID`和`Client secret`，注意不要外泄。
 设置入口如下，`Settings` | `Developer settings` | `GitHub Apps`
 
-* Homepage URL - <http://127.0.0.1:8084>
-* Callback URL - <http://127.0.0.1:8084/auth/github/login.json>
+* Homepage URL - <http://localhost:8084>
+* Callback URL - <http://localhost:8084/auth/github/login.json>
 
 ## 4A.2.是401还是302
 
@@ -56,6 +56,6 @@ wings默认配置swagger，提供了text和json类型，分别对应LoginUrl和B
 
 ```bash
 curl -vX 'POST' \
-  'http://127.0.0.1:8084/user/authed-user.json' \
+  'http://localhost:8084/user/authed-user.json' \
   -H 'accept: text/html'
 ```

@@ -292,7 +292,7 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ### wings.slardar.monitor.view.domain
 
-`String`=`http://127.0.0.1:${server.port:80}`，外部访问的主机,ip等
+`String`=`http://${server.address:localhost}:${server.port:80}`，外部访问的主机,ip等
 
 ### wings.slardar.monitor.view.ignore
 

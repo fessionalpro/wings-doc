@@ -51,11 +51,12 @@ paths:
 
 * `@RpcReference(microserviceName = "winx-api", schemaId = "winx-hello")`
 * restTemplate `cse://winx-api/winx-hello/say-hello?name=bbb`
-* broswer `http://192.168.3.14:8095/servcomber/winx-hello/say-hello?name=ccc`
+* 有验证 `http://localhost:8095/servcomber/winx-hello/say-hello?name=null`
+* 无验证 `http://localhost:8085/servcomber/batrider-hello/say-hello?name=undefined`
 
 通过观察`OperationLocator`可以确认，他们的区别如下，
 
 * Rpc根据microserviceName和schemaId以及方法operationId定位
 * restTemplate通过microserviceName和path定位
 * broswer http 通过endpoint的ip端口，rest前缀和path定位
-* path为`basePath`+`paths`
+* path为`basePath`+`paths`，basePath默认为`/`

@@ -40,11 +40,11 @@ servicecomb [官方文档](https://servicecomb.apache.org/references/java-chassi
 
 ### servicecomb.service.registry.address
 
-`List<String>`=`http://127.0.0.1:30100` 服务中心的地址信息，可以配置多个，用逗号分隔
+`List<String>`=`http://localhost:30100` 服务中心的地址信息，可以配置多个，用逗号分隔
 
 ### servicecomb.rest.address
 
-`String`=`${server.address:0.0.0.0}:${server.port}` 服务监听地址，必须配置为与web容器监听相同
+`String`=`${server.address:localhost}:${server.port}` 服务监听地址，必须配置为与web容器监听相同
 
 ### servicecomb.rest.servlet.urlPattern
 

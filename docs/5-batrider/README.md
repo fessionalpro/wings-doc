@@ -31,7 +31,7 @@ ServiceComb是一种更紧凑和工程化的微服务及云实现。
 
 可以启动`winx-api`和`batrider-test`工程，然后通过swagger演示
 
-* <http://127.0.0.1:8085/swagger-ui/index.html#/batrider-controller> - swagger页面
+* <http://localhost:8085/swagger-ui/index.html#/batrider-controller> - swagger页面
 * /batrider/batx-hello-pxy - 通过Invoker调用batrider服务
 * /batrider/winx-hello-cse - 通过Rest的cse调用winx服务
 * /batrider/winx-hello-rpc - 通过Rpc调用winx服务

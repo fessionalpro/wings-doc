@@ -17,7 +17,7 @@ category:
 * 包工头`@RestSchema`实现契约，如`HelloContractor`
 * 类的`@RequestMapping(path = "/")`为basePath
 * 方法的`@RequestMapping`为全路径，以`SchemaId`开头
-* 若有多态方法，以不同的url后缀区分，url全局唯一
+* 若有多态方法，以不同的path后缀区分，path全局唯一
 * 仅使用`@RestSchema`，禁止扫描`@RestController`
 
 ## 5A.2.契约类型约定

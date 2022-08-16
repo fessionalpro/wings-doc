@@ -295,7 +295,7 @@ Type tp1 = new TypeReference<R<Dto>>(){}.getType();
 Type tp2 = ResolvableType.forClassWithGenerics(R.class, Dto.class).getType();
 ```
 
-## 0D.24.kotlin编译失败的可能
+## 0D.24.kotlin可能编译失败
 
 * kotlin-maven-plugin 插件，要同时编译java和kotlin
 * kotlin-stdlib-jdk8 这是最新的stdlib
@@ -308,3 +308,19 @@ Silencer的ApplicationContextHelper提供了静态的Ioc能力，有空指针情
 
 * 在SpringBoot生命周期的PreparedEvent之前使用
 * 在不同的classloader中使用，比如devtool的restart
+
+## 0D.26.IDEA无法打开工程，错误ClassFormatError
+
+IDEA无法正常显示项目，关闭后也无法打开，但命令行下mvn正常。
+Errors中有以下信息，升级IDEA或避免其Maven插件升级。
+
+```txt
+java.lang.ClassFormatError: 
+Illegal exception table range in class file 
+kotlin/reflect/jvm/internal/impl/builtins/KotlinBuiltIns
+```
+
+## 0D.27.IDEA下properties文件乱码
+
+在`Preferences` | `Editor` | `File Encodings` 下，
+Default encoding for properties files 选择`UTF8`
