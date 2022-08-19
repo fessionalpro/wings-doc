@@ -158,6 +158,17 @@ public RequestResponseLogging requestResponseLogging() {
 * @AutoConfigureBefore(SlardarRestreamConfiguration.class)
 * 获取 WingsReuseStreamFilter，然后setRequestResponseLogging
 
+注意`POST`提交传统表单提交，以下2中类型，包括参数和文件，
+
+* `application/x-www-form-urlencoded`
+* `multipart/form-data`
+
+因底层的参数解析和获取流是二选一关系，即先解析则流读尽，获取流则参数为空。
+所以，对应此两种请求需要记录Payload时，会存在以下差异
+
+* form-urlencoded，因后置构造body，所以其中会包括query参数
+* form-data，body同上，文件需要实现buildRequestPayload获取parts记录
+
 ## 3G.8.Rest和Client
 
 默认使用okhttp3作为restTemplate的实现。按spring boot官方文档和源码约定。并可以 Autowired OkHttpClient

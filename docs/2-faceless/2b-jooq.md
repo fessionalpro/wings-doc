@@ -95,7 +95,7 @@ jooq生成代码，默认使用`table.column`限定列名，而ShardingJdbc做�
 * [ShardingSphere#5330 replace into](https://github.com/apache/shardingsphere/issues/5330)
 * [ShardingSphere#5210 on duplicate key update](https://github.com/apache/shardingsphere/issues/5210)
 
-在jooq`3.17.0`版本之前，使用`spring.wings.faceless.jooq.enabled.auto-qualify=true`，
+在jooq`3.18`版本之前，使用`spring.wings.faceless.jooq.enabled.auto-qualify=true`，
 完成限定名的自动处理，其规则是，`不存在alias时，不增加限定名`。
 
 使用Jooq的主要原因之一是`限制的艺术`，避免写出比较复杂的SQL，所以约定如下，

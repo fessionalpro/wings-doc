@@ -246,3 +246,23 @@ DSLContext 在spring中Autowired和Dao中获取都可安全使用。
 
 * <https://www.jooq.org/doc/3.14/manual/sql-execution/performance-considerations/>
 * <https://www.jooq.org/doc/3.14/manual/sql-building/dsl-context/thread-safety/>
+
+## 2F.11.Jooq 3.16的Jakarta EE 9+
+
+> @lukaseder commented on Dec 9, 2019
+> The Java EE `javax.*` namespace has not been donated to Jakarta EE
+
+以上原因，jooq先行以`jakarta.*`取代了`javax.*`，其与springboot的不兼容。
+springboot 可能在3.0中停止支持jooq，摘要如下，详情看issue链接。
+
+> @wilkinsona commented on Dec 1, 2021
+> Spring Boot 2.x is stuck on jOOQ 3.14 by default due to 3.15's move to Java 11 by default.
+>
+> For Boot 2.x users that want to upgrade jOOQ's version, switching to the `jakarta.xml.bind.*`
+> classes may cause problems if other parts of their app use `javax.xml.bind.*`. This is
+> compounded by the fact that the jakarta.xml.bind:jakarta.xml.bind-api coordinates can provide
+> either the `jakarta.*` classes or the `javax.xml.bind.*` classes depending on theversion you use.
+> This makes it hard to have both on the classpath if that's something you can tolerate.
+
+* <https://github.com/jOOQ/jOOQ/issues/9641>
+* <https://github.com/spring-projects/spring-boot/issues/28821>
