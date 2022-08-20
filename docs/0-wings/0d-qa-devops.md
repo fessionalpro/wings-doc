@@ -314,7 +314,7 @@ Silencer的ApplicationContextHelper提供了静态的Ioc能力，有空指针情
 IDEA无法正常显示项目，关闭后也无法打开，但命令行下mvn正常。
 Errors中有以下信息，升级IDEA或避免其Maven插件升级。
 
-```txt
+```text
 java.lang.ClassFormatError: 
 Illegal exception table range in class file 
 kotlin/reflect/jvm/internal/impl/builtins/KotlinBuiltIns

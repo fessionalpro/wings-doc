@@ -69,10 +69,18 @@ Oauth通过定制host和state参数，构造指令，完成重定向定制，参
 比如admin中，必须具有ROLE_ADMIN才可以访问，否则登录成功后，所有功能都是403，并不友好。
 
 所以在登录时，使用authType前缀，可以直接验证基本权限，如果不具备，则登录失败。
-```java
+
+```properties
 wings.warlock.security.zone-perm.admin=ROLE_ADMIN
-/auth/user-admin/login.json
+# 支持变量`authType`和`authZone`，可以通过param或path获得（PathPattern）
+wings.warlock.security.login-proc-url=/auth/{authType}-{authZone}/login.json
+# 兼容性更好，通过路径参数同时支持authType和authZone
+#/auth/{authType:[^-]+}{splitter:-?}{authZone:[^-]*}/login.json
 ```
+则以下URL都能传递authZone，推荐QueryString，不支持时使用PathVariable
+
+* QueryString - /auth/username/login.json?authZone=admin
+* PathVariable - /auth/username-admin/login.json
 
 此外，也可以在登录成功后，使用authedPerm验证权限，也具备自动登出功能。与前者的区别是
 
