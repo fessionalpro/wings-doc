@@ -139,6 +139,12 @@ SpringBoot内置以下log groups [Log Groups](https://docs.spring.io/spring-boot
 * org.springframework.jdbc.core
 * org.jooq.tools.LoggerListener
 
+> Spring Boot uses Commons Logging for all internal logging
+> but leaves the underlying log implementation open
+
+Wings也遵循这一实践，`@Configuration`等spring功能为Commons Logging，
+而业务代码中使用lombok的`@Slf4j`配置为`static` `logger`
+
 ## 0E.09.mvn resources filtering
 
 因为在swagger的配置中使用了变量`@project.version@`，所以会配置
