@@ -143,7 +143,7 @@ SpringBoot内置以下log groups [Log Groups](https://docs.spring.io/spring-boot
 > but leaves the underlying log implementation open
 
 Wings也遵循这一实践，`@Configuration`等spring功能为Commons Logging，
-而业务代码中使用lombok的`@Slf4j`配置为`static` `logger`
+而业务代码中使用lombok的`@Slf4j`配置为`static` `log`
 
 ## 0E.09.mvn resources filtering
 

@@ -24,7 +24,7 @@ Wings项目实践中，主张防御式编程，秉承以下价值观和哲学，
 
 遵循标准的java规范（Idea提示即可），但可读性优先。
 
-* `static final` 不必全大写。如`logger`比`LOG`可读性好。
+* `static final` 不必全大写。如`log`比`LOG`可读性好。
 * `BIG_SNAKE`可使用`PascalNaming`，因为大写单词不如小写易读。
 * 全大写名词（缩写或专有）只首字母大写驼峰法。`Json`,`Html`,`Id`。
 * 前后缀或缩写，不可以单字母，必须2字母以上，建议3个字母（驼峰法）。
@@ -342,4 +342,3 @@ Avoid Float and Double If Exact Answers Are Required
 * `Null`类，定义了用来代替null的类型和检查方法，包括enum等
 * 方法签名尽量使用`@NotNull`注解，是IDE辅助检查，编译时解决
 * `ArgsAssert`和`StateAssert`进行业务assert，支持多国语
-  

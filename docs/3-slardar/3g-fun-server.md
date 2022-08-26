@@ -147,7 +147,7 @@ public RequestResponseLogging requestResponseLogging() {
 
         @Override
         protected void logging(@NotNull String message) {
-            logger.warn(message);
+            log.warn(message);
         }
     };
 }
