@@ -14,7 +14,13 @@ category:
 
 ServiceComb是一种更紧凑和工程化的微服务及云实现。
 
-## 5.1.微服务基本约定
+## 5.1.模块划分
+
+* batrider - 基于servicecomb的基本设置
+* batrider-zero - 组播的registry-zero-config
+* batrider-test - 测试包，混合rest和rpc
+
+## 5.2.微服务基本约定
 
 * 通讯模型，与SpringMvc共存时为`RestOverServlet`
 * 编程模型，提供者为`SpringMvc`，消费者为`Rpc`
@@ -27,7 +33,7 @@ ServiceComb是一种更紧凑和工程化的微服务及云实现。
 * 默认不对外提供网关，与springMvc共存
 * 异步仅在消费者端实现，提供者默认都是同步服务
 
-## 5.2.基本工程演示
+## 5.3.基本工程演示
 
 可以启动`winx-api`和`batrider-test`工程，然后通过swagger演示
 

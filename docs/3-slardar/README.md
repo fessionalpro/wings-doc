@@ -14,7 +14,16 @@ category:
 
 SpringMvc(不支持WebFlux)封装和扩展，如多语言，多时区，安全，缓存，会话等。
 
-## 3.1.方案及配置
+## 3.1.模块划分
+
+* slardar - 缓存，事件，序列化等基本功能
+* slardar-hazel-caching - 基于hazelcast的分布式缓存
+* slardar-hazel-session - 基于hazelcast的分布式session
+* slardar-webmvc - webmvc,session, security
+* slardar-sprint - 集成webmvc,hazelcast
+* slardar-test - 测试包，基础的登录
+
+## 3.2.方案及配置
 
 Slardar按以下配置，架构及性能指标，进行了默认配置。
 
@@ -25,7 +34,7 @@ Slardar按以下配置，架构及性能指标，进行了默认配置。
 * `8核3GHz`云主机，模拟`10k*50`请求，单应用
 * `95th`，response=`2s`，`tps`=`2k-5k`
 
-## 3.2.Mvc的封装加强
+## 3.3.Mvc的封装加强
 
 Slardar基于SpringMvc做了工具级封装和加强，有些仅提供能力，有些开箱即用，主要包括，
 
@@ -35,7 +44,7 @@ Slardar基于SpringMvc做了工具级封装和加强，有些仅提供能力，�
 * Terminal和Security的Context
 * 登录，权限，会话，令牌等控制力
 
-## 3.3.更多章节
+## 3.4.更多章节
 
 * [Jackson格式约定](3a-jackson.md) - Json格式约定，国际化处理
 * [Hazelcast中间件](3b-hazelcast.md) - 作为session，缓存和消息中间件

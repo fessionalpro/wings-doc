@@ -14,7 +14,15 @@ category:
 
 基于Faceless和Slardar，提供了基本用户，鉴权授权，访问控制，数据隔离等功能。
 
-## 4.1.访问控制
+## 4.1.模块划分
+
+* warlock - 集成jooq和slardar
+* warlock-shadow - 集成slardar-sprint
+* warlock-bond - 集成登录授权的实现
+* warlock-codegen - 工程代码生成
+* warlock-test - 测试包，安全的登录
+
+## 4.2.访问控制
 
 Warlock的访问控制，聚焦在以下几个场景和技术层面，
 
@@ -33,7 +41,7 @@ Warlock的访问控制，聚焦在以下几个场景和技术层面，
 wings配置顺序由宽松到严格(PermitAll > Authenticated > Authority)，最后AnyRequest收尾。
 在Authority配置时，会按URL分组合并权限，最后以URL的ascii倒序设置，即英数先于`*`，宽松规则在后。
 
-## 4.2.部分使用
+## 4.3.部分使用
 
 Warlock提供了一套预定义的auth-perm-role体系，包括表结构，数据关系等。
 
@@ -43,7 +51,7 @@ Warlock提供了一套预定义的auth-perm-role体系，包括表结构，数�
 
 默认实现中，读取及累积计数时，若数据库不存在对应表，则返回empty或忽略。
 
-## 4.3.全部使用
+## 4.4.全部使用
 
 WebSecurity在SpringBoot需要继承Adapter实现配置，其约束很多，
 因此在使用wings提供的自动配置功能时，需要注意以下特殊Bean的声明。
@@ -60,7 +68,7 @@ WebSecurity在SpringBoot需要继承Adapter实现配置，其约束很多，
 以上错误，会发生在注入WebSecurityConfiguration的`@Bean`时。
 总之，WebSecurity有特殊Bean，Configurer的链式调用也有顺序要求。
 
-## 4.4.更多章节
+## 4.5.更多章节
 
 * [集成登录](4a-authn.md) - 多种登录方式，身份验证和令牌策略
 * [组合授权](4b-authz.md) - 权限(Perm)和角色(Role)的令牌体系
