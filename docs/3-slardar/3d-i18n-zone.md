@@ -58,7 +58,48 @@ common.email.size=The author email '${validatedValue}' must be between {min} and
 
 而在 Message的ResourceBundle中，默认使用java.text.MessageFormat的数组`{0}`格式。
 
-## 3D.4.三种DateTime
+## 3D.4.项目中I18n实践
+
+项目支持I18n，除了为静态Message定义Code外，更大的工作量在于处理动态的业务消息。
+比较常见的如输入参数的检查，运行状态的校验，输出结果的确认等。
+
+### 前置条件检查
+
+```java
+// 抛出无堆栈的CodeException
+@RequestMapping("/test/code-exception.json")
+public String codeException() {
+    ArgsAssert.isTrue(false, CommonErrorEnum.AssertEmpty1,"args");
+    throw new CodeException(false, CommonErrorEnum.AssertEmpty1, "test");
+}
+
+// 使用Validation注解
+@Data
+public static class Ins {
+    @NotBlank(message = "{test.name.empty}")
+    private String name;
+    @Email(message = "{test.email.invalid}")
+    private String email;
+}
+
+@RequestMapping("/test/binding-error-from.json")
+public R<?> bindingErrorFrom(@Valid Ins ins) {
+    log.info(">>>" + ins.toString());
+    return R.okData(ins);
+}
+```
+
+### 运行时状态检查
+
+预定义CodeEnum，关联Message资源，通过全局的异常处理输出I18n信息
+
+* `StateAssert` - 同ArgsAssert，抛出无堆栈异常
+* `MessageException` - 抛出带有code的无堆栈异常
+* `CodeException` - 默认为有堆栈异常
+* `I18nString` - 通过json自动转换为String类型输出
+* `@JsonI18nString` - 注解字段，实现自动json转换
+
+## 3D.5.三种DateTime
 
 多时区，要兼顾数据可读性和编码便利性，在slardar中统一约定如下。
 
