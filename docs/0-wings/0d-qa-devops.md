@@ -44,13 +44,17 @@ wings中和springboot一样，默认采用了jackson进行json和xml绑定。
 
 * 使用2套jackson配置
 * 使用jackson注解 @JsonRawValue
-* 使用fastjson(不推荐，需1.2.69+，SafeMode, 安全漏洞)
+* 使用fastjson(不推荐，需1.2.83+，SafeMode, 安全漏洞)
 
 在Jackson和Fastjson的使用上，考虑到安全及兼容性，遵循以下约定
 
 * FastJson用于①安全环境的读写，②对不安全的写，不读入外部json
 * FastJson用于静态环境，即不能优雅注入jackson的情况
 * 此外，都应该使用Jackson
+
+在wings中，以Fastjson2及其兼容包替代了fastjson。注意以下lib依赖
+
+* JustAuth - fastjson 1.2.83 无AutoType，默认features的parse
 
 ## 0D.04.类型间Mapping比较
 
