@@ -121,7 +121,7 @@ wings中和springboot一样，默认采用了jackson进行json和xml绑定。
 
 * 临时用 ssh - `ssh -R 9988:127.0.0.1:8080 user@remote`
 * 持久用 frp - <https://gofrp.org/docs/>
-* 钉钉提供的 ngrok - <https://github.com/open-dingtalk/dingtalk-pierced-client>
+* 简单用 netapp - <https://natapp.cn/>
 
 ## 0D.10.IDEA提示component/scanned
 
