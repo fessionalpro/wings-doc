@@ -52,6 +52,14 @@ EventPublishHelper默认提供了3种事件发布机制，可实现，同步/异
 * AsyncSpring - 异步，spring原生的jvm内，使用slardarEventExecutor线程池
 * AsyncGlobal - 异步，基于topic的发布订阅机制
 
+注意，springboot默认提供的为同步，不处理异常，这样能够很好的同步处理业务等。
+SlardarAsyncConfiguration在启动后，检查这个机制，若被破坏，则以Warn输出到日志。
+
+* ApplicationEventMulticaster - 底层处理机制
+* AbstractApplicationContext#initApplicationEventMulticaster() - 默认Bean
+* AbstractApplicationContext#publishEvent(Object, ResolvableType) - 入口
+* SimpleApplicationEventMulticaster - 默认实现，无TaskExecutor，无ErrorHandler
+
 ## 3F.3.数据CUD事件
 
 基于jooq的listener，可获得特定表和字段的CUD事件，
