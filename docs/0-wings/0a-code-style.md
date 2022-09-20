@@ -33,6 +33,8 @@ Wings项目实践中，主张防御式编程，秉承以下价值观和哲学，
 * 以Empty消除null。Set/List/Array/Map用empty
 * 显示标注@NotNull，@Nullable，@Contract，声明null约束
 
+提高代码质量，左转[攻城狮的Java代码审查](https://java-code-review.moilioncircle.com)
+
 ## 0A.2.Sql命名snake_case
 
 即全小写，下划线分割。因实践中发现，小写词比大写容易识别。
@@ -296,6 +298,12 @@ enum Jane {
 * 协作类业务，通常写入时，使用系统时间，读取时转换。
 
 如果需要转换时间，需要在用户界面统一（如controller）处理。
+
+对应java7过来的选手，参考以下替代关系。
+
+* Instant 代替 Date
+* LocalDateTime 代替 Calendar
+* DateTimeFormatter 代替 SimpleDateFormat
 
 ## 0A.G.不是科学家就别用浮点型
 
