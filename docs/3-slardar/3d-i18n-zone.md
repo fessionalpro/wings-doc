@@ -58,6 +58,26 @@ common.email.size=The author email '${validatedValue}' must be between {min} and
 
 而在 Message的ResourceBundle中，默认使用java.text.MessageFormat的数组`{0}`格式。
 
+以下是在Mvc中推荐的实战模式之一
+```java
+// FormData，一个类包括全部字段，比较简洁，但注意使用
+// 继承的模式 OutSkuUpd extends OutSkuAdd，比较啰嗦，但强类型
+@Data
+public class OutSkuForm {
+    @NotNull(message = "{form.validate.updateoutsku.id}", groups = {Update.class})
+    @Schema(description = "规格id，更新时需要")
+    private Long id;
+}
+
+// Controller 采用 @Validated 分组
+@Operation(summary = "修改出库规格")
+@PostMapping("/wh/outsku/update-outsku.json")
+public R<Object> updateOutSku(@RequestBody @Validated(value = {Update.class}) OutSkuForm ins) {
+    // ...
+    return R.ok();
+}
+```
+
 ## 3D.4.项目中I18n实践
 
 项目支持I18n，除了为静态Message定义Code外，更大的工作量在于处理动态的业务消息。
