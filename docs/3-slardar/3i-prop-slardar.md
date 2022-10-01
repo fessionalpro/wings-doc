@@ -185,7 +185,7 @@ com.fasterxml.jackson.core.JsonParser.Feature
 * `spring.jackson.parser.ALLOW_YAML_COMMENTS`=`true`
 * `spring.jackson.parser.ALLOW_UNQUOTED_FIELD_NAMES`=`true`
 * `spring.jackson.parser.ALLOW_SINGLE_QUOTES`=`true`
-* `spring.jackson.parser.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER`=`true`
+* `spring.jackson.parser.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER`=`false`
 * `spring.jackson.parser.ALLOW_NUMERIC_LEADING_ZEROS`=`true`
 * `spring.jackson.parser.ALLOW_MISSING_VALUES`=`true`
 * `spring.jackson.parser.ALLOW_TRAILING_COMMA`=`true`

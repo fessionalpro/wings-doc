@@ -314,9 +314,13 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 `String`=`∅`，消息签名，`空`表示不使用
 
-### wings.slardar.monitor.ding-talk.report-keyword
+### wings.slardar.monitor.ding-talk.notice-keyword
 
 `String`=`WARNING`，自定义关键词，消息中至少包含1个关键词才可以发送成功。
+
+### wings.slardar.monitor.ding-talk.notice-mobiles
+
+`Set<String>`，被通知人的手机号，非群内成员手机号会被脱敏。会自动添加到正文@155xxxx
 
 ### wings.slardar.monitor.ding-talk.webhook-url
 
