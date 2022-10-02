@@ -9,7 +9,15 @@ category:
 
 # 2H.时间和时区
 
-数据库有关的时间，时区，零值约定
+数据库有关的时间，时区，零值约定。
+
+是`TimeZone`还是`timezone`，是大`Z`还是小`z`，这是一个问题:)
+
+首先，java中`TimeZone`和`ZoneId`都是中间大写的，两个词的。
+但是，为了命名转换中不出现`time_zone`或`time-zone`，
+Wings在配置和数据层，全做一词处理，即`timezone`和`Zoneid`。
+
+同样的处理方式，有时也出现在 DateTime上。
 
 ## 2H.1.日时零值和时区
 

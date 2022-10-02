@@ -123,9 +123,9 @@ public R<?> bindingErrorFrom(@Valid Ins ins) {
 
 多时区，要兼顾数据可读性和编码便利性，在slardar中统一约定如下。
 
-* `系统时区` - 系统运行时区，其在Jvm，Db上是统一的。
-* `数据时区` - 数据流动时，参与者所在的时区。
-* `用户时区` - 数据使用者，阅读数据时希望看到的时区。
+* `系统时区` system - 系统运行的时区，其在Jvm，Db上是统一的。
+* `数据时区` origin - 数据产生的时区，参与者所在的时区。
+* `用户时区` client - 数据使用者，阅读数据时希望看到的时区。
 
 在一般情况下，此三者是统一的，比如都在北京时间，GMT+8。
 在时区不敏感的数据上，一般直接使用LocalDateTime，忽略时区。
@@ -133,12 +133,30 @@ public R<?> bindingErrorFrom(@Valid Ins ins) {
 在slardar的适用的业务场景中，在业务层统一使用系统时区，用LocalDateTime。
 而在Controller层，负责进行系统和用户时区的双向转换，使用ZonedDateTime。
 
-* 时区不敏感或只做本地时间标签的情况，统一使用LocalDateTime，
+* 时区不敏感或只做本地时间标签的情况，统一使用`LocalDateTime`，
 * 时区敏感时，在Jackson和RequestParam中自动转换。
   - Request时，自动把用户时间调至系统时区。
   - Response时，自动把系统时间调至用户时区。
 * 自动转换类型，目前只有一下2中，其中。
-  - ZonedDatetime 默认关闭
-  - OffsetDateTime 默认开启
+  - `ZonedDatetime` 默认关闭
+  - `OffsetDateTime` 默认开启
+* 使用`@AutoTimeZone`标记，明确转换行为
 
-注意，因util.Date的缺陷，在wings中，默认禁用其使用，需要使用java.time.*
+注意，因util.Date的缺陷，在wings中，默认禁用其使用，必须使用`java.time.*`
+
+举例说明，3个时区的不一样。
+
+例A：一个在线约课应用，中国学生和纽约老师，约定上课时间。那么，
+
+* 假设系统运行在UTC时间上，即system=`UTC+0`
+* 学生和老师client时区，分别为`Asia/Shanghai`和`America/New_York`
+* 约课时，需要分别按client显示时间，提高约课体验。
+
+例B：一个跨境电商应用，纽约用户，经海外发货仓，在某宝买东西。那么，
+
+* 假设某宝运行在东八区上，即 system=`UTC+8`
+* 纽约用户的client=`America/New_York`
+* LA的发货仓，即 origin=`America/Los_Angeles`
+* 订单信息，会以client时间显示。
+* 物流信息，会以origin时间显示，一般不做转换。
+* 统计类信息，一般也会以origin时间显示。

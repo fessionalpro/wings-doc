@@ -82,10 +82,6 @@ https 下发送，不设置时不处理
 
 json和bind中，支持更宽松的日期，时间和时区格式。
 
-### wings.slardar.datetime.date.auto
-
-`Boolean`=`false`，LocalDate是否自动转换时区
-
 ### wings.slardar.datetime.date.format
 
 `String`=`yyyy[-MM][-dd]`，LocalDate的输出格式
@@ -99,7 +95,19 @@ json和bind中，支持更宽松的日期，时间和时区格式。
 ,[MMMM][MMM][M][-][/][.][d][-][/][.][yyyy][yy]
 ```
 
-### wings.slardar.datetime.time.auto
+### wings.slardar.datetime.time.format
+
+`String`=`HH[:mm][:ss]`，LocalTime的输出格式
+
+### wings.slardar.datetime.time.parser
+
+`List<String>`，LocalTime输入的解析格式，
+
+```text
+H[:m][:s][.SSS]
+```
+
+### wings.slardar.datetime.datetime.auto
 
 `Boolean`=`false`，LocalDateTime是否自动转换时区
 
