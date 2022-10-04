@@ -137,14 +137,17 @@ public R<?> bindingErrorFrom(@Valid Ins ins) {
 * 时区敏感时，在Jackson和RequestParam中自动转换。
   - Request时，自动把用户时间调至系统时区。
   - Response时，自动把系统时间调至用户时区。
-* 自动转换类型，目前只有一下2中，其中。
-  - `ZonedDatetime` 默认关闭
+* 自动转换类型，目前只有一下3种，其中。
+  - `LocalDateTime` 默认关闭，不建议转换
+  - `ZonedDatetime` 默认关闭，历史兼容性
   - `OffsetDateTime` 默认开启
-* 使用`@AutoTimeZone`标记，明确转换行为
+* 使用`@AutoTimeZone`标记，明确3种日期的转换行为
+  - 用在Dto的Field上，可在RequestBody和ResponseBody中自动转换
+  - 同Spring的@RequestParam一起作用于Param
 
 注意，因util.Date的缺陷，在wings中，默认禁用其使用，必须使用`java.time.*`
 
-举例说明，3个时区的不一样。
+举例说明，3个时区的不一样，更多测试用例参考 `DateTimeConverterTest.java`
 
 例A：一个在线约课应用，中国学生和纽约老师，约定上课时间。那么，
 
