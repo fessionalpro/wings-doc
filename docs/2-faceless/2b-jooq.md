@@ -118,7 +118,7 @@ jooq 默认有2中Mapper都区分大小写，对应的功能如下
 SimpleFlatMapper的mapper更为宽松，不区分大小写，单有一下不足。
 
 * [intoArray的bug](https://github.com/arnaudroger/SimpleFlatMapper/issues/764)
-* 不支持primary type，如int.class，仅Integer.class
+* 不支持primitive type，如int.class，仅Integer.class
 
 在官方修复前，不推荐使用，因为除了以上bug，并未充分测试。
 
