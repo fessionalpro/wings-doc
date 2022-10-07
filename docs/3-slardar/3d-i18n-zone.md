@@ -144,6 +144,11 @@ public R<?> bindingErrorFrom(@Valid Ins ins) {
 * 使用`@AutoTimeZone`标记，明确3种日期的转换行为
   - 用在Dto的Field上，可在RequestBody和ResponseBody中自动转换
   - 同Spring的@RequestParam一起作用于Param
+* 使用 AutoDtoHelper 在Spring管理外替换Dto属性，目前支持以下注解
+  - @AutoDtoAble - 遍历内部属性
+  - @AutoTimeZone - 自动转换3种日期
+  - @AutoI18nString - 自动转换String或I18nString
+
 
 注意，因util.Date的缺陷，在wings中，默认禁用其使用，必须使用`java.time.*`
 
