@@ -80,6 +80,8 @@ JdbcTemplate用于功能性或复杂的数据库操作，以自动注入Bean。
 
 如`LightId`在读写分离时，需要强制master，可使用注解`MasterRouteOnly`。
 
+若工程中有大量jdbc操作，且感觉jdbcTemplate偏底层，可考虑[JDBI](http://jdbi.org)
+
 ## 2B.2.Sharding的兼容问题
 
 `flywave`对jooq的`Dao`包装，提供了`reader`和`writer`表，跟踪表。
@@ -115,12 +117,14 @@ jooq 默认有2中Mapper都区分大小写，对应的功能如下
 * DefaultRecordMapper 负责Record#into(Class), Result#into(Class)
 * DefaultRecordUnmapper 负责DSL.newRecord(Table, Object), Record#from(Object)
 
-SimpleFlatMapper的mapper更为宽松，不区分大小写，单有一下不足。
+SimpleFlatMapper的mapper更为宽松，不区分大小写，但有以下不足。
 
 * [intoArray的bug](https://github.com/arnaudroger/SimpleFlatMapper/issues/764)
 * 不支持primitive type，如int.class，仅Integer.class
 
-在官方修复前，不推荐使用，因为除了以上bug，并未充分测试。
+官方在2020-05-11最后一次提交后，有2年多没有活跃了，wings于2022年10月已将其移除。
+
+ModelMapper也比较优秀，但其体积过大（4.5M），目前没有必要使用，也未做充分测试。
 
 ## 2B.4.参考资料
 

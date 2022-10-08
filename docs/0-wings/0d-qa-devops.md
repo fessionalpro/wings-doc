@@ -77,11 +77,13 @@ wings中和springboot一样，默认采用了jackson进行json和xml绑定。
 可以使用wings提供的`wgmp`(live template)做`A2B`的into生成器。
 
 * 在业务层代码，推荐MapStruct或列编辑和正则（分享视频有讲）手工制品。
-* 在jdbc中推荐`SimpleFlatMapper`或手工RowMapper，避免使用`BeanPropertyRowMapper`。
-* 在jooq中推荐jooq自动生成的record，或SimpleFlatMapper。
+* 在jdbc中推荐手工RowMapper，避免使用`BeanPropertyRowMapper`。
+* 在jooq中推荐jooq自动生成的record，目前不需要其他mapper。
 
 纯wings中的converter以`-or`结尾(convertor)，以和其他框架的converter区分。  
 包名以converter为准，类名以目的区分，通常纯wings的使用`-or`，其他用`-er`。
+
+SimpleFlatMapper因其不在活跃，modelmapper因其体积过大，暂时不推荐使用。
 
 ## 0D.05.文件系统或对象存储
 

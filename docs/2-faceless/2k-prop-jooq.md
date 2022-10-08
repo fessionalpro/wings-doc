@@ -18,12 +18,6 @@ Flywave功能的默认开关，如下
 
 `Boolean`=`true`，是否开启jooq配置
 
-### spring.wings.faceless.jooq.enabled.simpleflatmapper
-
-`Boolean`=`false`，是否注使用 simpleflatmapper
-
-已知存在以下问题 <https://github.com/arnaudroger/SimpleFlatMapper/issues/764>
-
 ### spring.wings.faceless.jooq.enabled.auto-qualify
 
 `Boolean`=`true`，是否jooq自动设置qualify
