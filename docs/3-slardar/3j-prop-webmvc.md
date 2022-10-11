@@ -158,6 +158,10 @@ H[:m][:s][.SSS]
 ,[MMMM][MMM][M][-][/][.][d][-][/][.][yyyy][yy][ ]['T'][H][:m][:s][.SSS][XXXXX][XXXX][XXX][XX][X]['['][ ][VV][']']
 ```
 
+### wings.slardar.datetime.clock-offset
+
+`long`=`0`，设置系统时钟偏移的offset毫秒数。
+
 ## 3J.3.wings-jackson-79.properties
 
 以下会造成序列化和反序列化不一致。
