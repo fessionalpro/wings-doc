@@ -14,10 +14,6 @@ category:
 
 Faceless功能的默认开关，如下
 
-### spring.wings.faceless.enabled.jdbctemplate
-
-`Boolean`=`true`，是否注入 jdbcTemplate
-
 ### spring.wings.faceless.enabled.lightid
 
 `Boolean`=`true`，是否注入lingthid
@@ -100,6 +96,7 @@ sql扫描pattern，逗号分隔。PathMatchingResourcePatternResolver格式
 
 * `sql` - 查询数据库，唯一返回值为id
 * `fix` - 固定数字，int
+* `biz` - 使用自定义的业务Bean
 
 ### wings.faceless.lightid.provider.block-para
 
@@ -189,3 +186,11 @@ AND table_name = ?
 ```
 
 输入`表名`（作为序列名），返回数据库中的`表名`和`列名`。
+
+### wings.faceless.lightid.layout.block-bits
+
+`Integer`=`∅`，设置block字节数，范围[3,23]，配置项默认空。LightId默认为9，2^9=512个区
+
+### wings.faceless.lightid.layout.block-first
+
+`Boolean`=`∅`，序列布局，是否Block先于Sequence，配置项默认空。LightId默认为true
