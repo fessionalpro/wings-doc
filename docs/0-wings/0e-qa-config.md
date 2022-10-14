@@ -145,6 +145,14 @@ SpringBoot内置以下log groups [Log Groups](https://docs.spring.io/spring-boot
 Wings也遵循这一实践，`@Configuration`等spring功能为Commons Logging，
 而业务代码中使用lombok的`@Slf4j`配置为`static` `log`
 
+在Configuration的Commons Logging中，日志遵循以下通用的log.info格式 
+
+* 声明`@Bean` - {ModuleName} spring-bean {BeanName}
+* 立即执行`@Autowired` - {ModuleName} spring-auto {MethodName}
+* 后置执行`CommandLineRunner` - {ModuleName} spring-runs {BeanName}
+* 处理器`Bean*PostProcessor` - {ModuleName} spring-proc {BeanName}
+* 过程日志 - {ModuleName} conf
+
 ## 0E.09.mvn resources filtering
 
 因为在swagger的配置中使用了变量`@project.version@`，所以会配置
