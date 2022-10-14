@@ -162,7 +162,7 @@ category:
 * `revi`=`2020_1025_01L`
 * `lost`=`WARN`
 
-## 4D.3.wings-just-auth-77.properties
+## 4D.3.wings-warlock-justauth-77.properties
 
 Oauth登录支持，使用just-auth
 
@@ -234,13 +234,13 @@ Jooq对用户和授权相关表的CUD监听
 
 global exception handler，全局异常控制，`CodeException`类型，支持变量 {message}
 
-### wings.slardar.error.code-exception
+### wings.warlock.error.code-exception
 
 * `http-status`=`200`
 * `content-type`=`application/json;charset=UTF-8`
 * `response-body`=`{"success":false,"message":"{message}"}`
 
-### wings.slardar.error.all-exception
+### wings.warlock.error.all-exception
 
 * `http-status`=`200`
 * `content-type`=`application/json;charset=UTF-8`
