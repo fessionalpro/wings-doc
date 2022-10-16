@@ -53,7 +53,7 @@ features:
 
   - icon: token
     title: 分布式session和多种认证
-    details: 基于Hazel分布式Session，Cookie的加密，别名
+    details: 基于Hazelcast分布式Session，Cookie的加密，别名
     link: /3-slardar/3e-auth-session.html
 
   - icon: stack
@@ -95,7 +95,7 @@ features:
 其核心价值是：①快速交付业务目标；②及时偿还技术债务；③安全重构程序和业务。
 例如从单应用起，到分表分库，再到服务治理及云化等项目阶段，团队都能够，
 
-* 快速的重构业务及其代码，变更的变更数据模型 - 强类型和团队哲学，可插拔的模块和工具
+* 快速的重构业务及其代码，安全的变更数据模型 - 强类型和团队哲学，可插拔的模块和工具
 * 用git和sql对数据表及表数据做好版本管理 - Flywave工具（非Flyweight）
 * 对线上数据变化的追溯，复盘，恢复 - 日志体系及跟踪策略
 
@@ -106,7 +106,6 @@ features:
 * [![Java11](https://img.shields.io/badge/java-11-gold)](https://adoptium.net/temurin/releases/?version=11) 主要业务语言，OpenJDK长期运行 ☕️ [GPLv2+CE]
 * [![Kotlin1.6](https://img.shields.io/badge/kotlin-1.6-gold)](https://kotlinlang.org/docs/reference/) 辅助语音，做更好的Java [Apache2]
 * [![Jooq](https://img.shields.io/badge/jooq-3.14-cyan)](https://www.jooq.org/download/)  主要的强类型SqlMapping 🏅 [Apache2]
-* [![QueryDsl](https://img.shields.io/badge/querydsl-5.0-cyan)](https://querydsl.com/static/querydsl/5.0.0/reference/html_single) 支持但未使用的Jooq备用选择 [Apache2]
 * [![Mysql](https://img.shields.io/badge/mysql-8.0-blue)](https://dev.mysql.com/downloads/mysql/) 主要的业务数据库，支持5.7，推荐8体系 💡 [GPLv2]
 * [![H2Database](https://img.shields.io/badge/h2db-2.0-blue)](https://h2database.com/html/main.html) 单机数据库，以离线及断线业务 [MPL2]或[EPL1]
 * [![Hazelcast](https://img.shields.io/badge/hazelcast-4.2-violet)](https://hazelcast.org/imdg/) IMDG，分布式缓存，消息，流等 [Apache2]
