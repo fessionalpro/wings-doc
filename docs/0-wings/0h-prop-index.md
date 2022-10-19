@@ -8,8 +8,8 @@ category:
 
 # 0H.属性配置
 
-配置项推荐Properties形式，因为这样有利于分隔，叠加和查找。
-每个`*.properties`文件都会有一个`*Prop.java`，有强类型的Key映射。
+配置项推荐Properties形式，因为这样有利于分隔，层叠和查找。
+每个`*.properties`都会对应一个`*Prop.java`，以强类型的Key映射。
 
 [Properties File Format](https://docs.oracle.com/cd/E23095_01/Platform.93/ATGProgGuide/html/s0204propertiesfileformat01.html)
 
@@ -17,9 +17,9 @@ category:
 
 在Silence中，默认约定了配置文件的类型和命名规则。
 
-* `wings-auto-config.cnf` - Silence自定义配置
-* `wings-conf-block-list.cnf` - 配置黑名单
-* `wings-prop-promotion.cnf` - 属性提升配置
+* `wings-auto-config.cnf` - Silence功能配置
+* `wings-conf-block-list.cnf` - 配置文件黑名单
+* `wings-prop-promotion.cnf` - 配置项提升到系统变量
 * `spring-*.properties` - spring的配置项
 * `wings-*.properties` - wings的配置项
 

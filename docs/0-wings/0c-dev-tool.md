@@ -46,11 +46,11 @@ find . -name '*.iml' -o -name '.idea' | tr '\n' '\0' | xargs -0 rm -r
 
 安装以下插件
 
-* .ignore - 和版本管理中ignore有关的。
+* .ignore - 和版本管理中ignore有关的
 * Any2dto - 支持jooq, sql查询直接生成dto，减少复制和赋值
 * CheckStyle - 代码质量
 * Comments Highlighter - 注释中划重点
-* Error Prone Compiler - google出品（java8不好整）
+* Error Prone Compiler - 设置Java Compiler选择Javac with error-prone
 * GenerateAllSetter - alt-enter 生成全部 po.setXxx("")
 * Git Flow Integration - 集成了git-flow
 * GitToolBox - 自动 fetch
@@ -65,13 +65,13 @@ find . -name '*.iml' -o -name '.idea' | tr '\n' '\0' | xargs -0 rm -r
 * Rainbow Brackets - 彩虹括号
 * Request mapper - 快速查找 mapping
 * Statistic - 统计一下自己的代码
-* String Manipulation - 对字符串的各种操作和转换。
+* String Manipulation - 对字符串的各种操作和转换
 * HTTP Client - 官方对`*.http`文件格式的支持
 
 ## 0C.2.SQL工具
 
 * Mysql Workbench - SQL优先的场景，如DDL，Admin，权限等
-* DataGrid - 数据优先的场景，如查询，局部导出等。
+* DataGrid - 数据优先的场景，如查询，局部导出等
 
 ## 0C.3.文本工具
 
@@ -90,9 +90,9 @@ find . -name '*.iml' -o -name '.idea' | tr '\n' '\0' | xargs -0 rm -r
 
 使用建议如下
 
-* 使用`*.http`时，通常先从chrome中抓取 cURL 命令，复制过来即可。
+* 使用`*.http`时，通常先从chrome中抓取 cURL 命令，复制过来即可
 * 变量`{{variable_name}}`，来自`http-client*.env.json`，`client.global.`或系统自带
 * 处理Response. prepend it with `>` and enclose it in `{%` `%}`
-* 很长的请求折多个短行. Indent all query string lines but the first one.
+* 很长的请求折多个短行. Indent all query string lines but the first one
 * HTTP Response Handler 的2个对象 client 和 response
 * <https://www.jetbrains.com/help/idea/http-response-handling-examples.html>

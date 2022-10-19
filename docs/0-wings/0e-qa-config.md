@@ -33,11 +33,11 @@ spring.wings.faceless.enabled.enumi18n=false
 
 ## 0E.02.调整springboot版本和依赖
 
-wings工程，仅对spring-boot的标准生命周期进行了配置文件加载的hook，非强依赖于任何固定版本。
+wings仅在SpringBoot标准生命周期中，对配置文件的加载，进行了处理，不依赖于任何特定版本。
 对于不想跟随wings一同升级spring及其依赖的，只把wings做dependency，而不parent和import即可。
 
-wings随时跟进升级spring boot的最新版本，目的是为了测试sharding-jdbc和jooq的兼容性。
-而在二进制兼容方面，wings编译的版本是java=1.8，kotlin=1.4。
+wings随时跟进升级SpringBoot的次一级稳定版，目的是为了测试sharding-jdbc和jooq的兼容性。
+而在二进制兼容方面，wings210版本的编译的目标是java=11，kotlin=1.6
 
 对于maven继承依赖有parent和import两种，其重要区别在于property覆盖。
 
@@ -52,7 +52,7 @@ wings随时跟进升级spring boot的最新版本，目的是为了测试shardin
 
 ## 0E.03.lib工程和boot工程的区别
 
-Springboot的打包机制使boot.jar 不是普通的lib.jar
+SpringBoot打包的executable是boot.jar 不是普通的lib.jar
 
 ```xml
 <plugin>
@@ -64,7 +64,7 @@ Springboot的打包机制使boot.jar 不是普通的lib.jar
 </plugin>
 ```
 
-lib工程的配置，跳过repackage，参考example之外的工程
+lib工程的配置，跳过`repackage`，参考example之外的工程
 
 ```xml
 <plugin>
@@ -84,19 +84,19 @@ lib工程的配置，跳过repackage，参考example之外的工程
 </plugin>
 ```
 
-所以，wings推荐的工程结构是，在parent工程pom.xml的`project/build/plugins`中，
-对以下`plugin`的`configuration`设置，
+wings推荐的工程结构是，parent的pom.xml的`project/build/plugins`项，
+对以下`plugin`的`configuration`进行默认设置，
 
-* spring-boot-maven-plugin executable=true
-* maven-deploy-plugin skip=true
-* maven-install-plugin skip=true
+* spring-boot-maven-plugin - executable=true
+* maven-deploy-plugin - skip=true
+* maven-install-plugin - skip=true
 
-这样，为所以子模块，以boot工程提供默认的build（boot打包，不deploy，不install）。
-在lib子模块中跳过boot打包，spring-boot-maven-plugin/repackage skip=true
+这样，所有子模块，以boot工程提供默认的build（boot打包，不deploy，不install）。
+在lib子模块中跳过boot打包，即repackage中skip=true
 
 ## 0E.04.缺少mirana和meepo依赖lib
 
-因是非吃货的大翅项目，一些`-SNAPSHOT`依赖，需要自行编译并本地安装。
+因是非吃货的大翅项目（曾用名），一些`SNAPSHOT`依赖，需要自行编译并本地安装。
 偶尔可以在`sonatype`上找到，需要自行添加`repository`，如`~/.m2/settings.xml`
 
 ```xml
@@ -110,26 +110,28 @@ lib工程的配置，跳过repackage，参考example之外的工程
 
 ## 0E.05.配置和注入时的占位符
 
-* 编码中，autowired StringValueResolver
+* 硬编码中，@Autowired
+  - PropertyResolver - 以key获取或解析value字符串
+  - StringValueResolver - 解析value字符串
 * properties配置中`${VAR}`
 * @Value和@RequestMapping中`${VAR}`
 
-## 0E.06.Tomcat和hazelcast的排除
+## 0E.06.移除Tomcat或hazelcast
 
 使用wings为parent时通过dependencyManagement，继承wings默认不需要修改。
 但若是没有继承wings依赖，以下2项视情况需要自行调整。
 
 * spring-boot-starter-web/spring-boot-starter-tomcat，因默认使用undertow
-* spring-session-hazelcast/hazelcast，使用最新版本。
+* spring-session-hazelcast/hazelcast，使用最新版本
 
 ## 0E.07.Java和Kotlin版本
 
-目前编译目标是java 8，kotlin 1.4，如果在IDE中出现编译失败，很可能是编译版本不对。
-从210起，wings全面适配java 11，kotlin自动更新为1.6，未做java8证兼性测试。
+通过pom设置java和kotlin的编译版本，若IDE中出现编译失败，很可能是编译版本不对。
+从210起，wings全面适配java 11，kotlin自动更新为1.6，但未做java8证兼性测试。
 
 ## 0E.08.如何配置logger和log groups
 
-SpringBoot内置以下log groups [Log Groups](https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/#features.logging.log-groups)
+SpringBoot内置以下[Log Groups](https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/#features.logging.log-groups)
 
 * org.springframework.core.codec
 * org.springframework.http
@@ -142,10 +144,10 @@ SpringBoot内置以下log groups [Log Groups](https://docs.spring.io/spring-boot
 > Spring Boot uses Commons Logging for all internal logging
 > but leaves the underlying log implementation open
 
-Wings也遵循这一实践，`@Configuration`等spring功能为Commons Logging，
+Wings遵循这一实践，`@Configuration`等spring功能为CommonsLogging，
 而业务代码中使用lombok的`@Slf4j`配置为`static` `log`
 
-在Configuration的Commons Logging中，日志遵循以下通用的log.info格式 
+在Configuration的CommonsLogging中，日志遵循以下通用的log.info格式
 
 * 声明`@Bean` - {ModuleName} spring-bean {BeanName}
 * 立即执行`@Autowired` - {ModuleName} spring-auto {MethodName}
@@ -155,18 +157,19 @@ Wings也遵循这一实践，`@Configuration`等spring功能为Commons Logging�
 
 ## 0E.09.mvn resources filtering
 
+注：在210版后，以spring变量取代了mvn变量，不再需要filter。
+
 因为在swagger的配置中使用了变量`@project.version@`，所以会配置
 build/resources/resource/filtering=true，以便mvn自动替换。
 
 但是开启filter会引起错误替换，比如二进制文件等，wings默认忽略一些二进制文件
-同时在210版后，以spring变量取代了mvn变量，因此不需要filter。
 
 ## 0E.10.SPA及反向代理的缓存设置
 
 默认情况下springboot自动增加以下Response Header，使得反向代理无需设置
 `Cache-Control`=`no-cache,no-store,max-age=0,must-revalidate`
 
-但对于SPA页面，需要进行如下的手动设置。
+但对于SPA页面，需要进行手动设置，如nginx配置。
 ```nginx
 location / {
     #add_header 'Access-Control-Allow-Origin' '*'; #允许跨域
