@@ -11,13 +11,13 @@ category:
 
 数据库有关的时间，时区，零值约定。
 
-是`TimeZone`还是`timezone`，是大`Z`还是小`z`，这是一个问题:)
+是`TimeZone`还是`timezone`，是大`Z`还是小`z`，这是一个问题 :)
 
 首先，java中`TimeZone`和`ZoneId`都是中间大写的，两个词的。
 但是，为了命名转换中不出现`time_zone`或`time-zone`，
 Wings在配置和数据层，全做一词处理，即`timezone`和`Zoneid`。
 
-同样的处理方式，有时也出现在 DateTime上。
+同样的处理方式，有时也出现在`DateTime`上。
 
 ## 2H.1.日时零值和时区
 
@@ -26,9 +26,9 @@ Wings在配置和数据层，全做一词处理，即`timezone`和`Zoneid`。
 如果服务器和执行环境时区不一致，可以通过以下方式协调。
 
 * 通过wings的参数设置时区 `wings.silencer.i18n.zoneid=Asia/Shanghai`
-* java的启动参数， `-Duser.timezone=Asia/Shanghai`
-* mysql的jdbc的url参数， `connectionTimeZone=%2B08:00&forceConnectionTimeZoneToSession=true`
-* java的代码参数， `TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));`
+* java的启动参数 `-Duser.timezone=Asia/Shanghai`
+* mysql的jdbc的url参数 `connectionTimeZone=%2B08:00&forceConnectionTimeZoneToSession=true`
+* java的代码参数 `TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));`
 
 在数据库和java配置上，需要统一时区和dev状态下的用户名和密码，一般团队一致。
 
@@ -43,8 +43,8 @@ spring.datasource.url=jdbc:mysql://localhost:3306/wings_example\
 
 引发问题的原因，目前断定为jdbc和timestamp历史问题（wings210后统一mysql8，已统一解决）
 
-* jooq，使用timestamp作为localDatetime的值，设置preparedStatement。
-* jdbc，setTimestamp(int parameterIndex, Timestamp x),
+* jooq - 使用timestamp作为localDatetime的值，设置preparedStatement
+* jdbc - setTimestamp(int parameterIndex, Timestamp x),
   the JDBC driver uses the time zone of the virtual machine
   to calculate the date and time of the timestamp in that time zone.
 
@@ -85,8 +85,8 @@ from the session time zone to UTC for storage, and from UTC to the session time 
 
 常用的时区有2中格式，不管那种，都推荐使用稳定时区，如政策不会变，没有夏令时。
 
-* 容易理解的ZoneId形式 - 地理城市 Asia/Shanghai，America/New_York
-* 规则稳定的Offset形式 - 相对于UTC的时差，UTC，+08:00
+* 容易理解的ZoneId形式 - 地理城市 `Asia/Shanghai`，`America/New_York`
+* 规则稳定的Offset形式 - 相对于UTC的时差，`UTC`，`+08:00`
 
 wings中使用DatabaseChecker检查以下②③④时差是否一致，推荐全部一致。
 
@@ -117,7 +117,7 @@ wings中使用DatabaseChecker检查以下②③④时差是否一致，推荐全
 
 以上是数据库层面需要注意的地方，而以下为jdbc及java体系中的注意点，
 
-* connectionTimeZone和forceConnectionTimeZoneToSession同时使用。
+* connectionTimeZone和forceConnectionTimeZoneToSession同时使用
 * connectionTimeZone的值，建议使用offset形式，`UTC`, `-40:00`, `+80:00`
 * 在jdbc url中，需要转义`+`，以`%2B08:00`表示`+80:00`
 * 业务侧建议使用ZoneId形式，mysql配置项，建议是有offset形式
@@ -132,5 +132,5 @@ connectionTimeZone参数（8.0之前是serverTimezone）可以协调好jvm和mys
 在配置JdbcUrl时，若使用`+`时（如下所示），会发生DateTimeException，因为在URL中`+`标识空格。
 需要转义为`%2B`，即正确的格式为connectionTimeZone=%2B08:00
 
->wings_test?connectionTimeZone=+08:00`
+>wings_test?connectionTimeZone=+08:00
 >Invalid ID for region-based ZoneId, invalid format:  08:00

@@ -67,3 +67,5 @@ associated with that class will be subject to the conditions.
 
 NOTE: Inheritance of `@Conditional` annotations is not supported;
 any conditions from superclasses or from overridden methods will not be considered.
+
+<https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.developing-auto-configuration>

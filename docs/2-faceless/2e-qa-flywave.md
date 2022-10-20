@@ -45,8 +45,8 @@ Flywave版本及日志表有关的话题
 * drop 类语句确认 `wings.faceless.flywave.ver.ask-drop=true`
 * drop 类语句定义 `wings.faceless.flywave.ver.drop-reg[drop-table]`
 
-如果UnitTest中控制台中无响应，需要在IDE中打开 console，如在Idea中
-`-Deditable.java.test.console=true` ('Help' > 'Edit Custom VM Options...')
+如果UnitTest中控制台中无响应，需要在IDE中打开`console`，如在Idea中
+`-Deditable.java.test.console=true` (Help/Edit Custom VM Options...)
 
 ## 2E.06.影子表不需要增加index
 
@@ -118,8 +118,8 @@ WHERE table_schema = DATABASE()
 
 对于老工程，需要保留原来的表结构和数据，可能无法使用wings的命名，分作以下情况。
 
-* 不能用`sys_schema_*`表，可以通过wings-flywave-79.properties配置设置对于表，并手工创建同结构表。
-* 希望用`sys_schema_*`表，也希望版本连续，可通过replace方法把1ST_SCHEMA改名为新名字。
+* 不能用`sys_schema_*`表，可以通过wings-flywave-79.properties配置设置对于表，并手工创建同结构表
+* 希望用`sys_schema_*`表，也希望版本连续，可通过replace方法把1ST_SCHEMA改名为新名字
 * 不希望rename的，可以使用branch分支管理初始化脚本，使用forceExecuteSql方法执行
 
 以上方法，推荐使用最后一种，做好手工初始化后，后续通过flywave管理数据库版本。
@@ -320,10 +320,10 @@ select @triggerSql;
 
 ## 2E.14.工具或DB不支持`$`命名怎么办
 
-从210开始，wings以双下划线命名，取代dollar命名。
+从210版本开始，wings以双下划线`__`命名，取代Dollar`$`命名。
 
-英数美刀下划线(`[0-9,a-z,A-Z$_]`)都是mysql官方无需转义的合法的[命名字符](https://dev.mysql.com/doc/refman/5.7/en/identifiers.html)
-但某些不完备的云DB或工具，未做好处理，属于其功能缺陷。
+英数美刀下划线(`[0-9,a-z,A-Z$_]`)都是mysql官方允许的合法的[命名字符](https://dev.mysql.com/doc/refman/5.7/en/identifiers.html)
+但某些不完备的云DB或工具，未做好处理，但wings需要避开外来的功能缺陷。
 
 若无法更换DB或工具，可以修改wings的默认约定及实现。
 此选项，为隐藏功能，通过基本测试，通常情况下不建议使用。

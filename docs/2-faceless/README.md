@@ -21,7 +21,7 @@ category:
 * faceless-flywave - 数据库版本管理
 * faceless-jooq - 基于Jooq的数据库访问层
 * faceless-jooqggen - jooq 代码生成
-* faceless-shard -基于shardingsphere的分表分库配置
+* faceless-shard - 基于shardingsphere的分表分库配置
 * faceless-test - 测试包，含数据源
 
 ## 2.2.分布式主键(LightId)
@@ -42,16 +42,14 @@ i18n可以使用CombinableMessageSource动态添加，处理service内消息的�
 ## 2.4.事件服务EventService
 
 单进程的异步和解耦，guava的EventBus和Spring的Event都可以胜任。
-为单Jvm，多Jvm提高一个基于数据库的Event服务，主要用来。
+为单Jvm，多Jvm提高一个基于数据库的Event服务，主要用来，
 
 * the event should extend ApplicationEvent
 * the publisher should inject an ApplicationEventPublisher object
 * the listener should implement the ApplicationListener interface
 * @EventListener 和 @TransactionalEventListener
 
-对应线程池直接传递上下文，可使用
-
-<https://github.com/alibaba/transmittable-thread-local>
+对应线程池直接传递上下文，可使用[transmittable-thread-local](https://github.com/alibaba/transmittable-thread-local)
 
 ## 2.5.更多章节
 

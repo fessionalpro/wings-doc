@@ -8,13 +8,13 @@ category:
 
 # 2D.Mysql体系的知识
 
-mysql体系指mysql分支如(Percona,MariaDB)或兼容mysql协议的数据库，wings使用mysql-8.0.x（5.7已充分测试）。
+MySql体系指其分支(Percona,MariaDB)或兼容协议的数据库，wings使用mysql8（5.7已充分测试）。
 原则上DB不应该封装（自定义function或procedure）业务逻辑，但可以使用db提供的功能，简化工作实现业务目标。
 [mysql 8.0 官方文档](https://dev.mysql.com/doc/refman/8.0/en/)
 
 ## 2D.1.创建Mysql Docker
 
-wings需要mysqld中以下重点设置，包括命名小写，语音时区，用户权限，[全文检索的分词](https://dev.mysql.com/doc/refman/8.0/en/fulltext-boolean.html)
+wings需要mysqld中以下的重点设置项，包括命名小写，语音时区，用户权限，[全文检索的分词](https://dev.mysql.com/doc/refman/8.0/en/fulltext-boolean.html)
 以下配置适应于mysql5.7, mysql8, native, cloud
 
 ```bash
@@ -50,7 +50,8 @@ sudo docker run -d \
 mysql:8.0
 ```
 
-可以通过以下sql创建高权限用户，建议使用wings-mysql-user.sh独立权限的用户
+通过以下sql创建高权限用户，建议使用wings-mysql-user.sh管理不同权限的用户
+
 ```sql
 CREATE USER 'trydofor'@'%' IDENTIFIED BY 'moilioncircle';
 GRANT ALL ON *.*  TO 'trydofor'@'%'; -- 通常写法
@@ -64,11 +65,11 @@ FLUSH PRIVILEGES;
 
 wings中，数据库仅用持久化功能，估应避免SQL含有运算和业务逻辑。
 
-* 必须知道where条件的索引情况。
-* 把字段运算比较，做等式变换后，变为定值比较。
-* 避免复杂SQL，鼓励单表查询。
-* 分页时，先定分页数据，再定向补充关联数据。
-* 避免循环查询和N+1查询。
+* 必须知道where条件的索引情况
+* 把字段运算比较，做等式变换后，变为定值比较
+* 避免复杂SQL，鼓励单表查询
+* 分页时，先定分页数据，再定向补充关联数据
+* 避免循环查询和N+1查询
 
 ## 2D.2.MySql非通常用法
 
@@ -134,7 +135,7 @@ SELECT FOUND_ROWS();
 
 ### 08.自增主键AUTO_INCREMENT和LAST_INSERT_ID()
 
-项目中避免使用自增主键，特事特办的时候，可以如上获得。  
+项目中避免使用自增主键，特事特办的时候，可以采用标题的写法。  
 注意value多值插入时，只返回第一个。
 
 ### 09.字符串/字段链接 CONCAT和CONCAT_WS
@@ -150,7 +151,7 @@ SELECT CONCAT_WS(',','First name',NULL,'Last Name');
 ### 10.时区转换CONVERT_TZ
 
 转换类操作，应该在write时，此方法应在临时性读取时使用。  
-注意闰秒(leap second) `:59:60` or `:59:61`都以`:59:59`返回
+注意闰秒(leap second) `:59:60`或`:59:61`都以`:59:59`返回
 ```sql
 SELECT  CONVERT_TZ('2007-03-11 2:00:00','America/New_york','Asia/Shanghai') AS time_cn
 ```
@@ -190,8 +191,8 @@ SELECT 'Michael!' NOT REGEXP '.*';
 
 ### 14.VarChar和Text类型
 
-* VarChar 有长度限制，可以设置默认值，这符合wings NOT NULL的规范。
-* TEXT可认为无限制，不可设置默认值，不符合wings规范。
+* VarChar 有长度限制，能够设置默认值，这符合wings的NotNull约定
+* TEXT可认为无限制，不能设置默认值，不符合wings约定
 * MySQL has hard limit of 4096 columns
 * maximum row size limit of 65535 bytes
 
