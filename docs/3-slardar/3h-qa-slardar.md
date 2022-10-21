@@ -14,7 +14,7 @@ category:
 > Error creating bean with name 'hazelcastInstance'
 > Invalid content was found starting with element 'cluster-name'，
 
-若是有以上信息，是hazelcast 3.x和4.x配置的兼容问题，boot-2.2.x为hazelcast 3.12.x
+若是有以上信息，是hazelcast 3和4配置的兼容问题，boot-2.2.x为hazelcast 3.12.x
 
 ## 3H.02.修改默认配置
 
@@ -31,9 +31,11 @@ slardar，使用undertow，并提供了一下默认配置
 关于hazelcast和spring，主要的管理场景是cache,session,security
 
 * spring-boot优先尝试创建client，不成则创建embedded server
-* spring session 使用@Enable*HttpSession手动配置。文档中是hazelcast3的配置，实际支持4
+* spring session 使用@Enable*HttpSession手动配置
 
-文档中的例子都是通过编码方式配置的，实际可以通过xml配置，交由boot处理。 系统默认提供了server和client的组播配置。
+文档中是hazelcast3的配置，实际支持4。
+文档中的例子都是通过编码方式配置的，实际可以通过xml配置，交由boot处理。
+系统默认提供了server和client的组播配置。
 
 ## 3H.04.异常处理或handler
 
@@ -41,10 +43,10 @@ slardar，使用undertow，并提供了一下默认配置
 但是不要使用`spring.mvc.throw-exception-if-no-handler-found=true`，
 因为，异常之所以叫异常，就不能当做正常，避免用来处理正常事情。
 
-* controller层异常用`@ControllerAdvice` 和 `@ExceptionHandler`
+* controller层异常用`@ControllerAdvice`或`@ExceptionHandler`
 * service层异常，自行做业务处理，或AOP日志
 * 静态，src/main/resources/public/error/404.html
-* 模板，src/main/resources/templates/error/5xx.ftlh
+* 模板，src/main/resources/templates/error/5xx.ftl
 * `class MyErrorPageRegistrar implements ErrorPageRegistrar`
 
 ```java
@@ -54,7 +56,7 @@ public class AcmeControllerAdvice extends ResponseEntityExceptionHandler
 public ModelAndView resolveErrorView(HttpServletRequest request,
 ```
 
-[error-handling](https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/#boot-features-error-handling)
+文档位于[error-handling](https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/#boot-features-error-handling)
 
 ## 3H.05.启动时Warn UT026010
 
@@ -80,7 +82,7 @@ security一定是系统中最为重要的部分，也是所有渗透入侵的重
 
 ## 3H.08.多线程下的SecurityContext
 
-* DelegatingSecurityContext*
+* DelegatingSecurityContext
 * transmittable-thread-local
 
 ## 3H.09.成功登陆后跳转
@@ -89,7 +91,7 @@ SavedRequestAwareAuthenticationSuccessHandler和RequestCache 进行搭配即可�
 在前后端分离的情况下，不需要后端控制，所以应该关闭RequestCache。
 
 * HTTP Referer header - 有些浏览器不给refer
-* saving the original request in the session - 要session支持。
+* saving the original request in the session - 要session支持
 * base64 original URL to the redirected login URL - 通常的SSO实现
 
 不过，spring security默认不支持第三种。如果要定制的话，需要看ExceptionTranslationFilter，
@@ -107,7 +109,7 @@ SavedRequestAwareAuthenticationSuccessHandler和RequestCache 进行搭配即可�
 * `a[]=1&a[]=2&a[]=3`，spring支持，js的qs需要`{ arrayFormat: 'brackets' }`
 * `a[0]=1&a[1]=2&a[2]=3`，spring支持，js的qs默认格式
 
-其中，servlet支持时，@RequestParam也生效；spring支持指，默认的DataBinding
+其中，servlet支持时，@RequestParam也生效；spring支持，指默认的DataBinding
 
 参考资料
 

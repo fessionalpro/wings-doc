@@ -9,18 +9,20 @@ category:
 
 # 3F.多级缓存及事件
 
-基于Caffeine和Hazelcast，提供了多级缓存，本地及分布式缓存，分布式对象。
+基于Caffeine和Hazelcast，提供了分级缓存，本地及分布式缓存，分布式对象。
 
 ## 3F.1.分级缓存
 
 默认提供JCache约定下的Memory和Server两个CacheManager，名字和实现如下，
 
-* MemoryCacheManager caffeineCacheManager
-* ServerCacheManager 如hazelcast/redis等具体实现
+* MemoryCacheManager - caffeineCacheManager
+* ServerCacheManager - 如hazelcast/redis等具体实现
 
-因为已注入了CacheManager，会使spring-boot的自动配置不满足条件而无效。 If you have not defined a bean of
-type CacheManager or a CacheResolver named cacheResolver (see CachingConfigurer)
-, Spring Boot tries to detect the following providers (in the indicated order):
+因为已注入了CacheManager，会使SpringBoot的自动配置不满足条件而无效。
+
+> If you have not defined a bean of type CacheManager or
+> a CacheResolver named cacheResolver (see CachingConfigurer),
+> Spring Boot tries to detect the following providers (in the indicated order):
 
 三种不同缓存级别前缀，分别定义不同的ttl,idle,size
 
@@ -52,7 +54,7 @@ EventPublishHelper默认提供了3种事件发布机制，可实现，同步/异
 * AsyncSpring - 异步，spring原生的jvm内，使用slardarEventExecutor线程池
 * AsyncGlobal - 异步，基于topic的发布订阅机制
 
-注意，springboot默认提供的为同步，不处理异常，这样能够很好的同步处理业务等。
+注意，SpringBoot默认为同步的不处理异常的，以便能够很好的同步处理业务等。
 SlardarAsyncConfiguration在启动后，检查这个机制，若被破坏，则以Warn输出到日志。
 
 * ApplicationEventMulticaster - 底层处理机制

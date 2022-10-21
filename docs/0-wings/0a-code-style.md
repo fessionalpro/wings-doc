@@ -32,6 +32,7 @@ Wings项目实践中，主张防御式编程，秉承以下价值观和哲学，
 * 要求4-8字母的单词都记住，命名采用动宾或形容词结构。
 * 以Empty消除null，Set/List/Array/Map用empty
 * 显示标注@NotNull，@Nullable，@Contract，声明null约束
+* 正向的业务语义，使用正向的词汇，参数等，如true
 
 提高编码质量，升级编程技能，请左转至[攻城狮的Java代码审查](https://java-code-review.moilioncircle.com)
 

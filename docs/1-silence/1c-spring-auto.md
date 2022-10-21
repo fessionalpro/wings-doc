@@ -68,4 +68,29 @@ associated with that class will be subject to the conditions.
 NOTE: Inheritance of `@Conditional` annotations is not supported;
 any conditions from superclasses or from overridden methods will not be considered.
 
-<https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.developing-auto-configuration>
+## 1C.4.ConditionalOnClass无效
+
+如下代码，ConditionalOnClass置于同类型的Bean声明上，会报错 NoClassDefFoundError
+
+```java
+@Bean
+@ConditionalOnClass(SomeService.class)
+public SomeService someService() {
+    return new SomeService();
+}
+```
+
+需要改为如下这种，内类控制的Configuration
+
+```java
+@Configuration(proxyBeanMethods = false)
+@ConditionalOnClass(SomeService.class)
+public static class SomeServiceConfiguration {
+    @Bean
+    public SomeService someService() {
+        return new SomeService();
+    }
+}
+```
+
+参考[9.1. Understanding Auto-configured Beans](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.developing-auto-configuration)

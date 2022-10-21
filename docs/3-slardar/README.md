@@ -19,8 +19,8 @@ SpringMvc(不支持WebFlux)封装和扩展，如多语言，多时区，安全�
 * slardar - 缓存，事件，序列化等基本功能
 * slardar-hazel-caching - 基于hazelcast的分布式缓存
 * slardar-hazel-session - 基于hazelcast的分布式session
-* slardar-webmvc - webmvc,session, security
-* slardar-sprint - 集成webmvc,hazelcast
+* slardar-webmvc - webmvc, session, security-web
+* slardar-sprint - hazelcast, security-conf, admin, actuator
 * slardar-test - 测试包，基础的登录
 
 ## 3.2.方案及配置

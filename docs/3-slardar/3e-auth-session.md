@@ -13,33 +13,33 @@ category:
 * 安全不高的url-string的凭证类ticket
 * 用户可管理session，控制登录，踢人
 * 可配置的cookie-name，token-name
-* 不同级别的控制并发登录，如财务只许单登录。
+* 不同级别的控制并发登录，如财务只许单端登录
 * 集成第三方登录，验证码登录，凭证登录
 * 管理端马甲，超级用户身份切换
 * session别名，附加token
 
 ## 3E.1.header和cookie
 
-通过spring默认的server.servlet.session.cookie.name设置，
-在WingsSessionIdResolver中，会加入header和cookie两个resolver。
-header的名字和cookie同名，默认是`session`。
+默认通过server.servlet.session.cookie.name设置token的名字，
+在WingsSessionIdResolver中，同时支持header和cookie两种resolver。
+header和cookie同名，默认都是`session`。
 
 实施建议，
 
-* 不建议使用rememberMe，设置session的timeout和cookie的maxAge较长时间。
-* 如果没有特殊要求，建议使用cookie体系，因其生态成熟。
+* 不建议使用rememberMe，可设置session的timeout和cookie的maxAge较长时间
+* 如果没有特殊要求，建议使用cookie体系，因其生态成熟
 
 ## 3E.2.cookie的定制功能
 
 cookie体系下，可通过定制Filter和Wrapper实现以下功能。
 
-* cookie前缀，适用同domain同path下，多个应用共享一套Session-cookie体系的情况。
-* cookie别名，用于混淆发布时cookie key的情况，受前缀影响。
-* cookie编码，用于可读性粒度控制。
+* cookie前缀，适用同domain同path下，多个应用共享一套Session-cookie体系的情况
+* cookie别名，用于混淆发布时cookie key的情况，受前缀影响
+* cookie编码，用于可读性粒度控制
   - noop - 不加密，明文，如随机token，没必要消耗计算资源
   - b64 - base64,spring默认的加密机制，只用了防止特殊字符干扰
   - aes - aes128,非敏感数据的初级加密，基本的防偷窥功能
-* 定制 http-only, secure, domain, path。
+* 定制 http-only, secure, domain, path
 
 其中需要注意的是，
 
@@ -48,7 +48,7 @@ cookie体系下，可通过定制Filter和Wrapper实现以下功能。
 
 ## 3E.3.多验证及登录
 
-加强了spring security的userPassword登录，通过继承或替换以下类，实现无缝替代。
+加强了SpringSecurity的userPassword登录，通过继承或替换以下类，实现无缝替代。
 
 * WingsBindLoginConfigurer : FormLoginConfigurer
 * WingsBindAuthenticationToken : UsernamePasswordAuthenticationToken
@@ -63,19 +63,19 @@ cookie体系下，可通过定制Filter和Wrapper实现以下功能。
 举例，实现短信验证或第三方绑定时，只需实现WingsUserDetailService，处理验证类型。
 
 * 短信验证，UserDetailsService在缓存中取得passwordEncoder加密后的短信
-* 三方绑定，推荐集成justAuth，设置loginProcessingUrl为callback地址，通过
+* 第三方绑定，推荐justAuth，设置loginProcessingUrl为callback地址，通过，
   - 在AuthnDetailsSource构造的请求中的Authentication.details
   - 在AuthnProvider先UserDetailsService.load，NotFound时尝试创建用户
   - 尤其Oauth这种2次获取detail的，强依赖AuthnDetailsSource获取Detail
 
-在使用 WingsBindAuthnProvider 代替默认的DaoAuthenticationProvider时，有2种方法，
+在使用WingsBindAuthnProvider代替默认的DaoAuthenticationProvider时，有以下方法，
 
 * 继承configure(AuthenticationManagerBuilder)，通过wingsHelper手动构建
-* 无上述继承，直接 @Bean WingsBindAuthnProvider，自动全局配置（推荐）
+* 无上述继承，直接声明WingsBindAuthnProvider的Bean，自动全局配置（推荐）
 * 无AuthenticationProvider，有WingsUserDetailsService，自动配置Wings全套（默认）
 
-当手动配置userDetailsService，和默认配置一样，会自动new一个Provider添加。
-如果不需要添加Provider，可设置wingsBindAuthnProvider(false)，与spring原始不同。
+当手动配置userDetailsService，和默认配置一样，会自动new一个Provider添加进去。
+如果不需要添加Provider，可设置wingsBindAuthnProvider(false)，与原始spring不同。
 
 ## 3E.4.实现原理
 
@@ -110,7 +110,7 @@ SessionManagementFilter -> SecurityContextRepository: saveContext()
 @enduml
 ```
 
-## 3E.6.相关知识
+## 3E.5.相关知识
 
 * RequestContextHolder - SecurityContextHolder
 * CookieSerializer HttpSessionIdResolver
