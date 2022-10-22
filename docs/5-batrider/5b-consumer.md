@@ -14,10 +14,10 @@ category:
 
 * 令`microserviceName`为`${servicecomb.service.name}`
 * 令`path`为Mapping的全路径，如`/full/path/`
-* Rpc以`SchemaId`和接口定位
-* Rest以path定，`cse://microserviceName/path?querystring`
-* 接口可为lib共享或自定义，方法签名一直即可
-* `@RpcReference`只能field注入，可用`Invoker.createProxy`
+* Rpc以`SchemaId`和接口定位服务
+* Mvc以rest风格的url定位 `cse://microserviceName/path?querystring`
+* 接口可打包成lib共享，也可自己定义，只要方法签名一致即可
+* `@RpcReference`推荐setter注入(2.8.0)，可用`Invoker.createProxy`
 
 ## 5B.2.消费方式转换
 

@@ -20,14 +20,14 @@ category:
 
 ## 5A.2.数据类型约定
 
-数据类型，以wings中json约定为准，避免使用复杂类型及结构。
+数据类型，以Wings的Json约定为准，避免使用复杂类型及结构。
 
 纯String作为body时，Request的consumes和Response的produces
 都需要使用`MediaType.TEXT_PLAIN_VALUE`，这一点和Spring不同。
 
 ## 5A.3.契约风格约定
 
-契约有两种风格，都可以方便定位和理解。
+契约有Mvc和Rpc两种风格，都可以方便定位和理解。
 
 ### Mvc风格，basePath为根路径
 
@@ -53,7 +53,7 @@ public class BatriderContractor implements HelloContract {
 
 ### Rpc风格，basePath指定SchemaId
 
-通过IDE类型定位，把SchemaId置于契约接口上，
+通过IDE类型更容易定位，把SchemaId置于契约接口上，
 
 ```java
 public interface HelloContract {

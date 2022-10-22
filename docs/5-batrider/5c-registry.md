@@ -8,7 +8,7 @@ category:
 
 # 5C.注册中心
 
-默认registry-zero-config，更推荐ervicecomb-service-center
+默认使用registry-zero-config，更推荐servicecomb-service-center
 
 ## 5C.1.zero-config事项
 

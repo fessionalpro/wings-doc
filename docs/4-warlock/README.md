@@ -32,14 +32,14 @@ Warlock的访问控制，聚焦在以下几个场景和技术层面，
 
 通过Url前缀特征，比较集中和简单，推荐使用。而Aop比较分散，粒度更细致。
 
-在通过Url做Matcher时，尽量避免规则交叉，特殊配置在前，AnyRequest在最后做默认配置，
-当规则交叉时，按配置FIFO匹配，spring中的调用关系如下，其底层数据结构是LinkedHashMap。
+在做Url的Matcher时，尽量避免规则交叉，特殊配置在前，AnyRequest在最后做默认配置，
+当规则有交叉时，按FIFO匹配，spring中的调用关系如下，其底层数据结构是LinkedHashMap。
 
 * FilterSecurityInterceptor.beforeInvocation
 * DefaultFilterInvocationSecurityMetadataSource.getAttributes
 
 wings配置顺序由宽松到严格(PermitAll > Authenticated > Authority)，最后AnyRequest收尾。
-在Authority配置时，会按URL分组合并权限，最后以URL的ascii倒序设置，即英数先于`*`，宽松规则在后。
+在Authority配置时，会按URL分组合并权限，以URL的ascii倒序排序，即英数先于`*`，宽松规则在后。
 
 ## 4.3.部分使用
 

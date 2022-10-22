@@ -8,30 +8,30 @@ category:
 
 # 4C.安全定制
 
-在Wings所有工程中，配置`*.properties`和expose `@Bean`都可以定制功能。
+在Wings所有工程中，配置`*.properties`和声明`@Bean`都可以定制功能。
 但很多功能间存在复杂依赖，需要使用者自行关照，需要阅读代码。
 
 ## 4C.1.定制登录
 
-登录分登录页面`login-page*`和处理接口`*login*`，前者（有`page`），区别如下，
+登录页面`login-page*`（带`page`的）和处理接口`*login*`，区别如下，
 
-* login-page，展示给用户的登录页面，一般是401时自动重定向(302)。
-* login，为提交凭证后的处理或回调接口，由filter执行。
+* login-page - 展示给用户的登录页面，一般是401时自动302重定向
+* login - 为提交凭证后的处理或回调接口，由filter执行
 
 可以通过以下4种方式，不同程度的改变Warlock提供的默认登录页面和返回结果。
 
-* expose ComboWingsAuthPageHandler.Combo，增加处理细节。
-* expose WingsAuthPageHandler，替换处理细节。
-* 指定 wings.warlock.security.login-page，定向到自定义页面。
-* expose AuthenticationSuccessHandler，AuthenticationFailureHandler处理登录事件。
-* expose LogoutSuccessHandler 处理登出的事件。
+* expose ComboWingsAuthPageHandler.Combo，增加处理细节
+* expose WingsAuthPageHandler，替换处理细节
+* 指定 wings.warlock.security.login-page，定向到自定义页面
+* expose AuthenticationSuccessHandler，AuthenticationFailureHandler处理登录事件
+* expose LogoutSuccessHandler 处理登出的事件
 
-默认实现中，login中会在cookie和header中放置sessionId，logout是清空session。
+默认实现中，login时在cookie和header中放置sessionId，logout时清空session。
 
-需要注意的是，http协议的header和cookie的大小写问题，因此建议全小写。
+需要注意的，http协议的header和cookie的大小写问题，因此建议全小写。
 
-* header RFC2616 *不*区分大小写，有些代理或工具会自动转为全小写。
-* cookie RFC2019 区分大小写，一般保存原样。
+* header RFC2616 *不*区分大小写，有些代理或工具会自动转为全小写
+* cookie RFC2019 区分大小写，一般保存原样
 * 已知header默认自动转小写有swagger-ui和webpack-dev-server(node http)
 
 NonceLoginSuccessHandler配合NonceTokenSessionHelper实现了oauth一次性token换取session的功能。
@@ -39,13 +39,13 @@ NonceLoginSuccessHandler配合NonceTokenSessionHelper实现了oauth一次性toke
 
 Oauth通过定制host和state参数，构造指令，完成重定向定制，参考 AuthStateBuilder 类。
 
-* 重定向 - `http`或`/`开头的302 跳转。
-* 回写 - 非空的内容，直接写回到response。
+* 重定向 - `http`或`/`开头的302跳转
+* 回写 - 非空的内容，直接写回到response
 * 考虑到安全性，以上必须预设在配置文件中，参考`wings.warlock.just-auth.safe-*`
 
 注意，`safe-host`对以下功能有约束。
 
-* 用request有host参数时，检查redirect-uri的{host}，通过则使用host参数构造uri
+* 用request有host参数时，检查redirect-uri的`{host}`，通过则使用host参数构造uri
 * state中重定向是以http开头时，检查host，不通过时，直接回写，而非重定向。
 
 ## 4C.2.定制验证
@@ -57,11 +57,11 @@ Oauth通过定制host和state参数，构造指令，完成重定向定制，参
 
 ## 4C.3.定制授权
 
-除了默认实现的user，role，perm体系外，warlock支持以下用户和权限的细粒度定制
+除了默认实现的User，Role，Perm体系外，Warlock支持以下用户和权限的细粒度定制，
 
-* NonceUserDetailsCombo - 一次性登录。
-* MemoryUserDetailsCombo - 按uid，登录名，登录方式，挂载用户和权限。
-* NonceTokenSessionHelper - oauth2流程外，通过一次性state换取sessionId。
+* NonceUserDetailsCombo - 一次性登录
+* MemoryUserDetailsCombo - 按uid，登录名，登录方式，挂载用户和权限
+* NonceTokenSessionHelper - oauth2流程外，通过一次性state换取SessionId
 
 ## 4C.4.登录时验证权限
 
@@ -77,15 +77,16 @@ wings.warlock.security.login-proc-url=/auth/{authType}-{authZone}/login.json
 # 兼容性更好，通过路径参数同时支持authType和authZone
 #/auth/{authType:[^-]+}{splitter:-?}{authZone:[^-]*}/login.json
 ```
-则以下URL都能传递authZone，推荐QueryString，不支持时使用PathVariable
+
+以下URL都能传递authZone，推荐QueryString，不支持时使用PathVariable，
 
 * QueryString - /auth/username/login.json?authZone=admin
 * PathVariable - /auth/username-admin/login.json
 
-此外，也可以在登录成功后，使用authedPerm验证权限，也具备自动登出功能。与前者的区别是
+此外，也可以在登录成功后，使用authedPerm验证权限，也具备自动登出功能，其区别是，
 
-* 前者以登录失败返回，没有写入session，是一半的登录动作，即加载信息并验证时间点。
-* 后者先登录成功，写入全局session，验证时再次登出session，是登录+登出2个动作
+* authZone以登录失败返回，没有写入session，是一般的登录动作，即加载信息并验证
+* authedPerm则先登录成功，写入session，无权限时再登出session，是登录+登出2个动作
 
 ## 4C.5.按appName设定
 
@@ -98,4 +99,4 @@ wings.warlock.security.login-proc-url=/auth/{authType}-{authZone}/login.json
 
 ## 4C.6.按登录ip设定
 
-可以通过remote ip控制登录或权限集大小。不过要考虑代理和移动网络等情况。
+可以通过remote ip控制登录或权限集大小。不过要考虑代理和移动网络等动态ip的情况。
