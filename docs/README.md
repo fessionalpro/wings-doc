@@ -119,7 +119,7 @@ features:
 
 ## 🐵 无脑使用
 
-直接作为parent，通过OSS获得发布的Snapshot
+直接作为parent使用，可通过OSS获得不定期发布的Snapshot版本。
 
 ```xml
 <parent>
@@ -145,3 +145,5 @@ git submodule update
 sdk use java 11.0.2-open
 mvn package install
 ```
+
+🚀 Built on <a :href="'https://github.com/fessionalpro/wings-doc/tree/' + $frontmatter.GIT_REPO_HEAD.substring(11)" target="_blank"> {{ $frontmatter.GIT_REPO_HEAD.substring(0, 21) }} </a> Commit
