@@ -58,6 +58,14 @@ jooq的CUD监听设置
 
 `Map<String, Set<String>>`，监听表及其字段。
 
-cud监听的表及字段，区分大小写，默认
+cud监听的表及字段，表和字段都区分大小写，默认
 
 * `win_order`=`id,order_num`
+
+### wings.faceless.jooq.cud.diff
+
+`Map<String, Set<String>>`，JournalDiff默认的忽略字段
+
+表区分大小写，字段不区分大小写，default表示所有表，否则为具体表。
+
+* `default`=`create_dt,modify_dt,delete_dt,commit_id`
