@@ -102,14 +102,14 @@ features:
 ## 📦 技术体系
 
 <!-- markdownlint-disable MD013 -->
-* [![SpringBoot](https://img.shields.io/badge/springboot-2.6-green?logo=springboot)](https://spring.io/projects/spring-boot) 框架哲学和约定下的无入侵性增强 🌱 [Apache2]
-* [![Java11](https://img.shields.io/badge/java-11-gold)](https://adoptium.net/temurin/releases/?version=11) 主要业务语言，OpenJDK长期运行 ☕️ [GPLv2+CE]
-* [![Kotlin1.6](https://img.shields.io/badge/kotlin-1.6-gold)](https://kotlinlang.org/docs/reference/) 辅助语音，做更好的Java [Apache2]
-* [![Jooq](https://img.shields.io/badge/jooq-3.14-cyan)](https://www.jooq.org/download/)  主要的强类型SqlMapping 🏅 [Apache2]
-* [![Mysql](https://img.shields.io/badge/mysql-8.0-blue)](https://dev.mysql.com/downloads/mysql/) 主要的业务数据库，支持5.7，推荐8体系 💡 [GPLv2]
-* [![H2Database](https://img.shields.io/badge/h2db-2.1-blue)](https://h2database.com/html/main.html) 单机数据库，以离线及断线业务 [MPL2]或[EPL1]
-* [![Hazelcast](https://img.shields.io/badge/hazelcast-4.2-violet)](https://hazelcast.org/imdg/) IMDG，分布式缓存，消息，流等 [Apache2]
-* [![ServiceComb](https://img.shields.io/badge/servicecomb-2.8-violet)](https://servicecomb.apache.org) 更工程化和紧凑的Cloud方案 [Apache2]
+* [![SpringBoot-2.6](https://img.shields.io/badge/springboot-2.6-green?logo=springboot)](https://spring.io/projects/spring-boot) 框架哲学和约定下的无入侵性增强 🌱 [Apache2]
+* [![Java-11](https://img.shields.io/badge/java-11-gold)](https://adoptium.net/temurin/releases/?version=11) 主要业务语言，OpenJDK长期运行 ☕️ [GPLv2+CE]
+* [![Kotlin-1.6](https://img.shields.io/badge/kotlin-1.6-gold)](https://kotlinlang.org/docs/reference/) 辅助语音，做更好的Java [Apache2]
+* [![Jooq-3.14](https://img.shields.io/badge/jooq-3.14-cyan)](https://www.jooq.org/download/)  主要的强类型SqlMapping 🏅 [Apache2]
+* [![Mysql-8](https://img.shields.io/badge/mysql-8.0-blue)](https://dev.mysql.com/downloads/mysql/) 主要的业务数据库，支持5.7，推荐8体系 💡 [GPLv2]
+* [![H2Database-2.1](https://img.shields.io/badge/h2db-2.1-blue)](https://h2database.com/html/main.html) 单机数据库，以离线及断线业务 [MPL2]或[EPL1]
+* [![Hazelcast-4.2](https://img.shields.io/badge/hazelcast-4.2-violet)](https://hazelcast.org/imdg/) IMDG，分布式缓存，消息，流等 [Apache2]
+* [![ServiceComb-2.8](https://img.shields.io/badge/servicecomb-2.8-violet)](https://servicecomb.apache.org) 更工程化和紧凑的Cloud方案 [Apache2]
 
 [Apache2]: https://www.apache.org/licenses/LICENSE-2.0
 [GPLv2+CE]: https://openjdk.org/legal/gplv2+ce.html
@@ -135,10 +135,11 @@ features:
 
 ```bash
 # ① 国内镜像，成功后进入项目目录
-git clone https://gitee.com/trydofor/pro.fessional.wings.git
+git clone --depth 1 https://github.com/\
+trydofor/pro.fessional.wings.git
 # ② 安装依赖，可跳过，支持java8编译
 # sdk use java 8.0.332-zulu
-git submodule update
+git submodule update --remote --init
 (cd observe/meepo && mvn package install)
 (cd observe/mirana && mvn package install)
 # ③ 安装wings，java-11
@@ -146,4 +147,4 @@ sdk use java 11.0.2-open
 mvn package install
 ```
 
-🚀 Built on <a :href="'https://github.com/fessionalpro/wings-doc/tree/' + $frontmatter.GIT_REPO_HEAD.substring(11)" target="_blank"> {{ $frontmatter.GIT_REPO_HEAD.substring(0, 21) }} </a> Commit
+🚀 Built on <a :href="'https://github.com/fessionalpro/wings-doc/commits/' + $frontmatter.GIT_REPO_HEAD.substring(11)" target="_blank"> {{ $frontmatter.GIT_REPO_HEAD.substring(0, 21) }} </a> Commit
