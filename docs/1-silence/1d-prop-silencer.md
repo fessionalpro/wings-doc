@@ -140,3 +140,9 @@ Crc8Long的默认seed，强安全需求时建议修改。^建议^
 `Set<String>`=`FILE`
 
 当存在以上appender出现的时候，进行自动日志调整。
+
+### wings.silencer.mirana.debug.stack=false
+
+`Boolean`=`false`
+
+设置CodeException的Global有栈或无栈。

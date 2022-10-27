@@ -115,7 +115,16 @@ Wings支持多配置，多profile，其路径优先级和profile优先级与spri
 
 推荐使用`wings-starter.sh`启动，用`wings-starter.env`设置基础参数。
 
-## 1A.6.参考资料
+## 1A.6.动态调试
+
+根据业务需求，按特定条件，触发线程级的日志输出。
+
+* Slf4j - 仅支持logback，通过LogbackFilter完成
+* CodeException - 全局或线程级是否输出Stack
+
+<https://logback.qos.ch/manual/mdc.html>
+
+## 1A.7.参考资料
 
 [参考资料 docs.spring.io](https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/)
 
