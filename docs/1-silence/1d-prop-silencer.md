@@ -127,7 +127,7 @@ Crc8Long的默认seed，强安全需求时建议修改。^建议^
 
 `String`=`WARN`，Slf4j格式
 
-自动设置日志的级别，如`WARN`，`INFO`，`DEBUG`
+自动设置日志的级别，如 ALL, TRACE, DEBUG, INFO, WARN, ERROR, OFF
 
 ### wings.silencer.mirana.auto-log.target
 
@@ -141,8 +141,12 @@ Crc8Long的默认seed，强安全需求时建议修改。^建议^
 
 当存在以上appender出现的时候，进行自动日志调整。
 
-### wings.silencer.mirana.debug.stack=false
+## 1D.8.wings-debug-79.properties
 
-`Boolean`=`false`
+### wings.silencer.debug.code-stack
 
-设置CodeException的Global有栈或无栈。
+`Boolean`=`false`，初始CodeException的Global有栈或无栈
+
+### wings.silencer.debug.clock-offset
+
+`Long`=`0`，初始系统时钟 offset ms

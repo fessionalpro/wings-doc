@@ -119,10 +119,9 @@ Wings支持多配置，多profile，其路径优先级和profile优先级与spri
 
 根据业务需求，按特定条件，触发线程级的日志输出。
 
-* Slf4j - 仅支持logback，通过LogbackFilter完成
-* CodeException - 全局或线程级是否输出Stack
-
-<https://logback.qos.ch/manual/mdc.html>
+* LoggerDebug - 仅支持logback，通过LogbackFilter完成
+* NowDebug - 全局或线程级调整时间
+* StackDebug - 全局或线程级是否输出Stack
 
 ## 1A.7.参考资料
 

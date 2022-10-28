@@ -266,7 +266,7 @@ name（建议全小写）在cookie和header中都会使用，为WingsSessionIdRe
 
 ## 3I.7.spring-springdoc-79.properties
 
-[SpringDoc设置](https://springdoc.org/#properties)
+### [SpringDoc设置](https://springdoc.org/#properties)
 
 * `springdoc.api-docs.enabled`=`true`
 * `springdoc.swagger-ui.enabled`=`true`
@@ -274,7 +274,7 @@ name（建议全小写）在cookie和header中都会使用，为WingsSessionIdRe
 * `springdoc.writer-with-default-pretty-printer`=`true`
 * `springdoc.use-fqn`=`true`
 
-Swagger设置
+### Swagger设置
 
 * `springdoc.swagger-ui.path`=`/swagger-ui.html`
 * `springdoc.swagger-ui.filter`=`true`
@@ -283,7 +283,7 @@ Swagger设置
 
 ## 3I.8.spring-task-79.properties
 
-execution的线程池设置
+### execution的线程池设置
 
 * `spring.task.execution.pool.core-size`=`8`
 * `spring.task.execution.pool.keep-alive`=`60s`
@@ -293,7 +293,7 @@ execution的线程池设置
 * `spring.task.execution.shutdown.await-termination-period`=`30s`
 * `spring.task.execution.thread-name-prefix`=`wings-task-`
 
-scheduling的线程池设置
+### scheduling的线程池设置
 
 * `spring.task.scheduling.pool.size`=`8`
 * `spring.task.scheduling.shutdown.await-termination`=`true`
