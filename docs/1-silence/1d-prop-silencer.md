@@ -150,3 +150,7 @@ Crc8Long的默认seed，强安全需求时建议修改。^建议^
 ### wings.silencer.debug.clock-offset
 
 `Long`=`0`，初始系统时钟 offset ms
+
+### wings.silencer.debug.mdc-threshold
+
+`Boolean`=`true`，是否配置WingsMdcThresholdFilter
