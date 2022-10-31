@@ -73,3 +73,5 @@ WebSecurity在SpringBoot需要继承Adapter实现配置，其约束很多，
 * [集成登录](4a-authn.md) - 多种登录方式，身份验证和令牌策略
 * [组合授权](4b-authz.md) - 权限(Perm)和角色(Role)的令牌体系
 * [安全定制](4c-security.md) - 权限(Perm)和角色(Role)的令牌体系
+* [安全定制](4d-prop-warlock.md) - 属性文件
+* [动态调试](4e-debug.md) - 全局及线程级调试时间，日志和异常

@@ -20,6 +20,10 @@ category:
 
 `Boolean`=`true`，打开flywave module
 
+### spring.wings.warlock.enabled.dynamic-debug
+
+`Boolean`=`true`，是否支持动态debug
+
 ### spring.wings.warlock.enabled.security-auto
 
 `Boolean`=`true`，是否支持 warlock security web and http配置
@@ -135,6 +139,10 @@ category:
 ### spring.wings.warlock.enabled.controller-test
 
 `Boolean`=`true`，是否开启默认的test Controller
+
+### spring.wings.warlock.enabled.controller-debug
+
+`Boolean`=`false`，是否开启默认的debug Controller
 
 ## 4D.2.wings-flywave-fit-79.properties
 
@@ -537,9 +545,25 @@ Controller中RequestMapping的URL常量
 
 `String`=`/test/envs/run-mode.json`，查询运行模式，返回 Product, Test, Develop, Local
 
-### wings.warlock.urlmap.test-timestamp
+### wings.warlock.urlmap.test-system-mills
 
-`String`=`/test/envs/timestamp.json`，查询服务器时间，1970毫秒
+`String`=`/test/envs/test-system-mills.json`，查询服务器系统时间，1970毫秒
+
+### wings.warlock.urlmap.test-thread-mills
+
+`String`=`/test/envs/test-thread-mills.json`，查询服务器线程时间，1970毫秒
+
+### wings.warlock.urlmap.admin-debug-logger
+
+`String`=`/admin/debug/logger.json`，线程级设置用户的日志级别
+
+### wings.warlock.urlmap.admin-debug-stack
+
+`String`=`/admin/debug/stack.json`，线程级设置用户的异常栈有无
+
+### wings.warlock.urlmap.admin-debug-clock
+
+`String`=`/admin/debug/clock.json`，线程级设置用户的时钟
 
 ## 4D.B.wings-warlock-runtime-77.properties
 
