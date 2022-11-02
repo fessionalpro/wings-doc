@@ -141,16 +141,16 @@ Crc8Long的默认seed，强安全需求时建议修改。^建议^
 
 当存在以上appender出现的时候，进行自动日志调整。
 
-## 1D.8.wings-debug-79.properties
+## 1D.8.wings-tweak-79.properties
 
-### wings.silencer.debug.code-stack
+### wings.silencer.tweak.code-stack
 
 `Boolean`=`false`，初始CodeException的Global有栈或无栈
 
-### wings.silencer.debug.clock-offset
+### wings.silencer.tweak.clock-offset
 
 `Long`=`0`，初始系统时钟 offset ms
 
-### wings.silencer.debug.mdc-threshold
+### wings.silencer.tweak.mdc-threshold
 
 `Boolean`=`true`，是否配置WingsMdcThresholdFilter

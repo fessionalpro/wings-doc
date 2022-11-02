@@ -14,15 +14,15 @@ category:
 
 在SilenceCurse模块中，存在以下结构类似的类，用于全局控制
 
-* DebugClock - 调试时钟
-* DebugLogger - 调试日志级别，仅限于Logback
-* DebugStack - 调试CodeException的异常堆栈
+* TweakClock - 调试时钟
+* TweakLogger - 调试日志级别，仅限于Logback
+* TweakStack - 调试CodeException的异常堆栈
 
 其原理是，static或ThreadLocal设置参数，按需取得有效值。
 
 ## 4E.2.使用方法
 
-设置好AdminDebugController的URL及其权限，避免滥用，造成不良后果。
+设置好AdminTweakController的URL及其权限，避免滥用，造成不良后果。
 
 对于时钟的调试，需要在编码时，需要进行以下替换，
 
@@ -30,11 +30,12 @@ category:
 * java.time.Xxxx.now - Now.xxx()
 * 任何需要调试的日期，都应该从Now取值
 
-在SlardarWebmvc中，通过TerminalIterceptor设置TerminalContext，
-此时，触发TerminalContext.Lisenter，完成线程级控制。
+在Slardar中，通过TerminalIterceptor设置TerminalContext，
+此时，通过TweakEventListener及对应的事件，可完成但应用或集群的调试控制。
 
-在Warlock中，通过DebugEventListener及对应的事件，可完成但应用或集群的调试控制。
-而在WarlockShow中，提供了AdminDebugController，可供管理员按用户简单调试。
+OkHttpTweakLogInterceptor可以使okhttp日志与TweakLogger联动
+
+而在WarlockShow中，提供了AdminTweakController，可供管理员按用户简单调试。
 
 因系统级全局设置影响较大，Wings中没有提供默认实现。
 

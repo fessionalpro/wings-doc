@@ -128,6 +128,10 @@ category:
 
 `Boolean`=`true`，是否开启SpringBootAdmin配置
 
+### spring.wings.slardar.enabled.tweaking
+
+`Boolean`=`true`，是否支持动态调试
+
 ## 3I.2.wings-prop-promotion.cnf
 
 * `spring.session.timeout`
