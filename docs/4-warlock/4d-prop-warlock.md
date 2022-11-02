@@ -20,10 +20,6 @@ category:
 
 `Boolean`=`true`，打开flywave module
 
-### spring.wings.warlock.enabled.dynamic-debug
-
-`Boolean`=`true`，是否支持动态debug
-
 ### spring.wings.warlock.enabled.security-auto
 
 `Boolean`=`true`，是否支持 warlock security web and http配置
@@ -140,9 +136,9 @@ category:
 
 `Boolean`=`true`，是否开启默认的test Controller
 
-### spring.wings.warlock.enabled.controller-debug
+### spring.wings.warlock.enabled.controller-tweak
 
-`Boolean`=`false`，是否开启默认的debug Controller
+`Boolean`=`false`，是否开启默认的TweakController
 
 ## 4D.2.wings-flywave-fit-79.properties
 
@@ -553,17 +549,17 @@ Controller中RequestMapping的URL常量
 
 `String`=`/test/envs/test-thread-mills.json`，查询服务器线程时间，1970毫秒
 
-### wings.warlock.urlmap.admin-debug-logger
+### wings.warlock.urlmap.admin-tweak-logger
 
-`String`=`/admin/debug/logger.json`，线程级设置用户的日志级别
+`String`=`/admin/tweak/logger.json`，线程级设置用户的日志级别
 
-### wings.warlock.urlmap.admin-debug-stack
+### wings.warlock.urlmap.admin-tweak-stack
 
-`String`=`/admin/debug/stack.json`，线程级设置用户的异常栈有无
+`String`=`/admin/tweak/stack.json`，线程级设置用户的异常栈有无
 
-### wings.warlock.urlmap.admin-debug-clock
+### wings.warlock.urlmap.admin-tweak-clock
 
-`String`=`/admin/debug/clock.json`，线程级设置用户的时钟
+`String`=`/admin/tweak/clock.json`，线程级设置用户的时钟
 
 ## 4D.B.wings-warlock-runtime-77.properties
 
