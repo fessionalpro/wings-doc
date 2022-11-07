@@ -28,7 +28,7 @@ category:
 
 `String`=`aes`, cookie编码，默认
 
-* `aes` - aes128，
+* `aes` - aes256，
 * `b64` - base64
 * `nop` - 不加密
 
