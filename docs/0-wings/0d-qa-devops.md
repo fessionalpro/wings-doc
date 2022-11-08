@@ -56,6 +56,11 @@ wings中和springboot一样，默认采用了jackson进行json和xml绑定。
 
 * JustAuth-1.16.5 - fastjson-1.2.83 无AutoType，默认features的parse
 
+考虑到当前Fastjson-2.0.18的兼容性和稳定性仍存在很大问题，必须避免使用。
+
+* FastJsonHelper - 对FastJson的兼容性全局配置，所有JSON都应该使用该类。
+* JacksonHelper - 对Jackson的全局配置，推荐静态使用。
+
 ## 0D.04.类型间Mapping比较
 
 根据以下文章，推荐使用静态性的`MapStruct`。
