@@ -140,6 +140,10 @@ category:
 
 `Boolean`=`false`，是否开启默认的TweakController
 
+### spring.wings.warlock.enabled.controller-oauth
+
+`Boolean`=`true`，是否开启默认的OauthController
+
 ## 4D.2.wings-flywave-fit-79.properties
 
 ### wings.faceless.flywave.fit.warlock-enum-i18n
@@ -504,6 +508,18 @@ Controller中RequestMapping的URL常量
 ### wings.warlock.urlmap.auth-nonce-check
 
 `String`=`/auth/nonce/check.json`，验证一次性token是否有效，oauth2使用state作为token
+
+### wings.warlock.urlmap.oauth-authorize
+
+`String`=`/oauth/authorize`，简单的authorization code授权类型
+
+### wings.warlock.urlmap.oauth-access-token
+
+`String`=`/oauth/access-token`，简单的获取access-token
+
+### wings.warlock.urlmap.oauth-revoke-token
+
+`String`=`/oauth/revoke-token`，吊销authorize或access-token
 
 ### wings.warlock.urlmap.user-authed-user
 

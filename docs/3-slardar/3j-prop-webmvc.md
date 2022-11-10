@@ -369,3 +369,13 @@ setDefaultPasswordEncoderForMatches，id不匹配时，默认解码算法。
 ### wings.slardar.session.cookie-route
 
 `String`=`∅`，增加session的jvm route，空表示忽略。
+
+## 3J.A.wings-terminal-79.properties
+
+### wings.slardar.terminal.request-ignore
+
+`Map<String, String>`，不需要TerminalInterceptor处理的URL
+
+* `error`=`/error`
+* `api`=`/api/**`
+* `oauth`=`/oauth/**`
