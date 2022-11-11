@@ -147,14 +147,6 @@ SpringBoot内置以下[Log Groups](https://docs.spring.io/spring-boot/docs/2.6.6
 Wings遵循这一实践，`@Configuration`等spring功能为CommonsLogging，
 而业务代码中使用lombok的`@Slf4j`配置为`static` `log`
 
-在Configuration的CommonsLogging中，日志遵循以下通用的log.info格式
-
-* 声明`@Bean` - {ModuleName} spring-bean {BeanName}
-* 立即执行`@Autowired` - {ModuleName} spring-auto {MethodName}
-* 后置执行`CommandLineRunner` - {ModuleName} spring-runs {BeanName}
-* 处理器`Bean*PostProcessor` - {ModuleName} spring-proc {BeanName}
-* 过程日志 - {ModuleName} conf
-
 ## 0E.09.mvn resources filtering
 
 注：在210版后，以spring变量取代了mvn变量，不再需要filter。
@@ -187,3 +179,33 @@ wings原则上，所以配置项都必有默认配置，而有时候需要忽略
 * `String`无效值 - `空`或`-`是默认的无效值
 * `Map<String, String>`  - 无效值key的value
 * `Map<String, Set<String>>` - 全覆盖key的value
+
+## 0E.12.Spring中的执行顺序
+
+在Spring生命周期中，以@Configuration为例，存在以下顺序执行
+
+* Constructor - 够函数优先执行
+* @Autowired - 依赖注入
+* @PostConstruct - 依赖注入后执行，无参数
+* @Bean - 按需或按顺序执行
+* ApplicationStartedEvent - Started，事件参数
+* CommandLineRunner - Runner，注入依赖
+* ApplicationReadyEvent -  Ready，事件参数
+
+## 0E.13.Spring配置中的日志格式
+
+在Configuration的CommonsLogging中，日志遵循以下通用的log.info格式
+
+* `@Bean` - {ModuleName} spring-bean {BeanName}
+* `@Autowired` - {ModuleName} spring-auto {MethodName}
+* `@PostConstruct` - {ModuleName} spring-auto {MethodName}
+* `CommandLineRunner` - {ModuleName} spring-runs {BeanName}
+* `Bean*PostProcessor` - {ModuleName} spring-proc {BeanName}
+* 过程日志 - {ModuleName} conf
+
+Wings中常用的配置方式为以下
+
+* Constructor - 全局的，必须的依赖，以final构造注入
+* @Autowired - 局部的，选用的依赖，以setter注入
+* @PostConstruct - 执行当前配置的收尾，无参数的
+* CommandLineRunner - 执行全局收尾，可条件输出Bean

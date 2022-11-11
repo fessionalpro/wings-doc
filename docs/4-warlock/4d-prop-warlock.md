@@ -140,6 +140,10 @@ category:
 
 `Boolean`=`false`，是否开启默认的TweakController
 
+### spring.wings.warlock.enabled.controller-oauth
+
+`Boolean`=`true`，是否开启默认的OauthController
+
 ## 4D.2.wings-flywave-fit-79.properties
 
 ### wings.faceless.flywave.fit.warlock-enum-i18n
@@ -505,6 +509,18 @@ Controller中RequestMapping的URL常量
 
 `String`=`/auth/nonce/check.json`，验证一次性token是否有效，oauth2使用state作为token
 
+### wings.warlock.urlmap.oauth-authorize
+
+`String`=`/oauth/authorize`，简单的authorization code授权类型
+
+### wings.warlock.urlmap.oauth-access-token
+
+`String`=`/oauth/access-token`，简单的获取access-token
+
+### wings.warlock.urlmap.oauth-revoke-token
+
+`String`=`/oauth/revoke-token`，吊销authorize或access-token
+
 ### wings.warlock.urlmap.user-authed-user
 
 `String`=`/user/authed-user.json`，获得登录用户的自身基本信息
@@ -570,3 +586,36 @@ Controller中RequestMapping的URL常量
 ### wings.warlock.runtime.api-mode
 
 `ApiMode`=`Nothing`，默认的Api模式
+
+## 4D.C.wings-warlock-ticket-77.properties
+
+### wings.warlock.ticket.aes-key
+
+`String`=`${random.uuid}${random.uuid}`，Aes256的key
+
+### wings.warlock.ticket.pub-mod
+
+`String`=`win`，ticket的PubMod
+
+### wings.warlock.ticket.code-ttl
+
+`Duration`=`60s`，authorization code 过期时间，默认60秒
+
+### wings.warlock.ticket.code-max
+
+`Integer`=`3`，有效authorization code的最大数量，默认3
+
+### wings.warlock.ticket.token-ttl
+
+`Duration`=`1H`，access token的过期时间，默认1小时
+
+### wings.warlock.ticket.token-max
+
+`Integer`=`5`，有效access token的最大数量，默认5
+
+### wings.warlock.ticket.client
+
+`Map<String, Pass>`，静态配置 client 登录信息。
+
+* 测试 `wings-trydofor.user-id`=`79`
+* 测试 `wings-trydofor.secret`=`wings-trydofor-secret`

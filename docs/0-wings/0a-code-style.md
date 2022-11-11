@@ -147,6 +147,7 @@ public interface TradeService {
 * 在service层，通过自动java模板生成enum，通过*EnumUtil，转换
 * 在db层，以基本类型(int,varchar)读取和写入
 * 在用户层，以多国语形式显示枚举内容
+* 不能enum的魔法值，使用@MagicConstant标注
 
 ## 0A.8.maven管理的约定
 

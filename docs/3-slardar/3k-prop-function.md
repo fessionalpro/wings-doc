@@ -449,7 +449,7 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 `String`=`{"success":false,"message":"forgery of editor"}`，告知编辑越权的回复文本内容
 
-## 3K.10.wings-swagger-79.properties
+## 3K.A.wings-swagger-79.properties
 
 Swagger文档设置
 
