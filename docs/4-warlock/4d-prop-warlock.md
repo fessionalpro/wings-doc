@@ -240,19 +240,19 @@ Jooq对用户和授权相关表的CUD监听
 
 ## 4D.6.wings-warlock-error-77.properties
 
-global exception handler，全局异常控制，`CodeException`类型，支持变量 {message}
+全局异常控制，`CodeException`类型，支持变量`{message}`，
+default为默认配置，兜底处理所以异常并为其他同类型提供默认值。
+
+### wings.warlock.error.default-exception
+
+* `http-status`=`200`
+* `content-type`=`application/json;charset=UTF-8`
+* `message-body`=`{"success":false,"message":"{message}"}`
+* `response-body`=`{"success":false,"message":"unknown error"}`
 
 ### wings.warlock.error.code-exception
 
-* `http-status`=`200`
-* `content-type`=`application/json;charset=UTF-8`
-* `response-body`=`{"success":false,"message":"{message}"}`
-
-### wings.warlock.error.all-exception
-
-* `http-status`=`200`
-* `content-type`=`application/json;charset=UTF-8`
-* `response-body`=`{"success":false,"message":"{message}"}`
+同 default-exception
 
 ## 4D.7.wings-warlock-i18n-77.properties
 
@@ -641,3 +641,27 @@ Controller中RequestMapping的URL常量
 ### wings.warlock.apiauth.digest-max
 
 `DataSize`=`5MB`，超过此size不做digest，默认5M
+
+### wings.warlock.apiauth.must-signature
+
+`Boolean`=`true`，是否一定要签名，可兼容旧api
+
+
+### wings.warlock.apiauth.file-json-body
+
+`String`=`FILE_JSON_BODY`，既又文件又有json的时候，以此命名json body作为File提交
+
+### wings.warlock.apiauth.error-client
+
+* `http-status`=`401`
+* `message-body`=`{"success":false,"message":"{message}"}`
+
+### wings.warlock.apiauth.error-signature
+
+* `http-status`=`403`
+* `message-body`=`{"success":false,"message":"{message}"}`
+
+### wings.warlock.apiauth.error-unhandled
+
+* `http-status`=`200`
+* `message-body`=`{"success":false,"message":"{message}"}`

@@ -19,13 +19,22 @@ BindAuth有完整的SecurityContext，而ApiAuth仅有TerminalContext。
 
 ApiAuth的模式约定是双向的，response采用request相同的约定回复，包括，
 
-* 签名方式 - response使用request的签名算法，根据长度判定
-* timestamp - response和request一致，同有同无
+* client - 相当于登录名，也称为clientId, appId, accessKey
+* secret - 相当于密码，也称为clientSecret, appKey, accessSecret
+* timestamp - 应答使用请求的时间戳，若请求中没有，应答使用当前时间戳
+* signature - 应答使用请求的签名算法，根据长度判定
 * digest - 文件摘要，交换文件时使用
 * secret - 用户设定，明文存在，用于签名
 
-关于status code，除了验签阶段，都应该返回200，并以业务code定义错误
+一个Request用以下3个部分用来发送信息，而Response没有QuereyString，
 
+* 验签参数 - `key:value`格式，getHeader获取
+* 业务参数 - `k=v(&k1=v1)*`格式，getParameterMap获取
+* 业务主体 - getInputStream()获取Json，getParts获取File
+
+关于应答的StatusCode，除了验签阶段，都应该返回200，并以业务code定义错误，
+
+* 400 - 参数解析错误，例如QueryString中有未编码的json
 * 401 - client错误时
 * 403 - 验签失败时，可以使用body返回错误细节
 * 200 - 仅表示response成功，而业务成功与否由body中的业务code定义
@@ -33,26 +42,23 @@ ApiAuth的模式约定是双向的，response采用request相同的约定回复�
 ## 4F.1.PostJson模式
 
 设计上，BS和SS在服务对象，请求频次，安全等级，功能粒度都是不同的，不应该混用。
-Api采用HTTP的POST发送JSON数据，并签名防伪，简称`PostJson`，参数有，
-
-* client - 相当于登录名，也称为clientId, appId, accessKey
-* secret - 相当于密码，也称为clientSecret, appKey, accessSecret
-* timestamp - 当前毫秒时间戳，用辅助签名，消息时序等
-* signature - 消息体签名，验证消息有消息
-
+Api采用HTTP的POST发送JSON数据，并签名防伪，简称`PostJson`，
 此种方式以成为国内API的事实标准，参考微信付款的[安全规范-签名算法](https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=4_3)，重点如下，
 
 * key - 以ASCII码从小到大排序（字典序），TreeMap即可
-* value - 使用原值，不需要URL Encode，避免编码差异
+* value - 使用原值，不需要UrlEncode，避免编码差异
 * null - 不参与签名，字符串空可参与
 * utf8 - 数据都为UTF8编码，以UTF8获取bytes签名
 
-签名数据为，`param`+`body`+`secret`+`timestamp`，算法为MD5或HMAC-SHA256
+签名数据为，`param`+`body`+`secret`+`timestamp`
 
-* param - 业务参数`k=v(&k1=v1)*`格式的QueryString
-* body - 业务载荷，json格式的body
+* param - 业务参数`k=v(&k1=v1)*`格式
+* body - 业务主体，json格式的body
 * secret - 客户的密码，不要外泄！
 * timestamp - 有则也参与签名
+
+注意，param参与签名时，使用的是原值，不需要UrlEncode，
+但作为QueryString请求时，需要UrlEncode，否则会有400错误。
 
 验签参数，都通过header传递，包括4个，
 
@@ -63,8 +69,8 @@ Api采用HTTP的POST发送JSON数据，并签名防伪，简称`PostJson`，参�
 
 关于签名算法，支持以下3种，并根据签名长度自动适配
 
-* MD5 - 摘要算法，历史兼容，128bit，Hex长度32
-* SHA1 - 摘要算法，历史兼容，160bit，Hex长度40
+* MD5 - 摘要（指纹）算法，历史兼容，128bit，Hex长度32
+* SHA1 - 摘要（指纹）算法，历史兼容，160bit，Hex长度40
 * HMAC-SHA256 - 安全的签名算法，256bit，Hex长度64
 
 response为Json时，采用和request相同的算法和方式，若为文件下载，则使用PostFile模式。
@@ -113,21 +119,21 @@ assertEquals("6A5CC747FCEE6999094A331F88D723BA682C5163BBB08D73B97C55E1A45DC372",
 
 ## 4F.2.PostFile模式
 
-上传文件的场景，使用`multipart/form-data`，即表单提交文件的方式。
+上传文件使用`multipart/form-data`，用表单的`字段`提交文件。
 除了没有Json的Body，增加Digest头外，参数的签名和PostJson相同，
 
 * 不含文件 - 仅对文件之外的参数，排序，拼接，签名
-* 包含文件 - 以`字段.sum`为key，`文件签名`为value，参与签名
-* 应答签名 - 以文件回复时，文件内容的digest，参与签名
+* 包含文件 - 以`字段.sum`=`文件指纹`为参数提交，参与签名
+* 应答签名 - 以文件回复时，文件指纹（digest），参与签名
 
-因文件内容的签名仅为了其完整性，所以仅需Digest算法，不需要Hmac算法，
-同时为了避免混淆HMAC-SHA256，内容签名也没有支持Sha256算法。
+因文件内容的指纹仅为了其完整性，所以仅需Digest算法，不需要Hmac算法，
+同时为了避免混淆HMAC-SHA256，内容指纹也没有支持Sha256算法。
 
 可以看出，在ApiAuth中，文件是作为消息的附件存在的，是一种可选项，
-Hmac为了验证身份，而Digest仅为了完成性。同时考虑文件体积一半较大，
-所以Digest也自动对超过指定大小的文件，放弃签名和验签。
+Hmac为了验证身份，而Digest仅为了完成性。同时考虑文件体积一般较大，
+所以Digest也自动对超过指定大小的文件，放弃指纹和验证。
 
-以下是java伪代码，及演示的shell命令，文件的签名是以二进制读取的
+以下是java伪代码，及演示的shell命令，文件的指纹是以二进制读取的
 
 ```java
 final TreeMap<String, Object> queryString = new TreeMap<>();
@@ -148,19 +154,12 @@ queryString.put("file2.sum", "62FC6660706728022C6B5FF4AAA03D9E8C30F830");
 
 ## 4F.3.Signature Api
 
-一个Request用以下3个部分用来发送信息，而Response没有QuereyString，
-
-* Header - `key:value`格式，验签参数
-* QuereyString - `k=v(&k1=v1)*`格式，业务参数
-* Body - 有效载荷，分为Json和File
-
 同时支持PostJson和PostFile模式，便是ApiAuth，其参与者和大概流程如下，
 
 * 服务商 - ApiAuth的提供者，server
 * 客户端 - ApiAuth的使用者，client
 * client - 服务商生成固定不变的clientId
 * secret - 服务商生成或客户端写入clientSecret
-* 设置约定 - 确定version及签名算法（自动）
 
 现假设，服务商和客户端的配置如下，
 
@@ -209,7 +208,7 @@ public ResponseEntity<String> testJsonApi(
 )
 ```
 
-再进行身份验证和签名验证等，步骤大概如下，
+再进行身份验证，指纹，签名验证等，步骤大概如下，
 
 * 获取client身份及secret信息
 * 构造signData，timestamp=null时不参与
@@ -231,11 +230,11 @@ public ResponseEntity<String> testJsonApi(
 ### 发送File
 
 ```java
-// 放入文件名及其内容的签名
-queryString.put("file1.sum", "EE048AF1B8AB675654DDB522F6575909"); // 文件签名
+// 放入文件名及其内容的指纹
+queryString.put("file1.sum", "EE048AF1B8AB675654DDB522F6575909"); // 文件指纹
 assertEquals("file1.sum=EE048AF1B8AB675654DDB522F6575909&query=string", para);
 
-// 没有Body，使用了文件签名代替
+// 没有Body，使用了文件指纹代替
 final String signData = para + secret + timestamp;
 assertEquals("file1.sum=EE048AF1B8AB675654DDB522F6575909&query=string高密级1668167709172", signData);
 // echo -n 'file1.sum=EE048AF1B8AB675654DDB522F6575909&query=string高密级1668167709172' > goodman.txt
@@ -259,9 +258,14 @@ curl -i -X POST \
  'https://wings.fessional.pro/api/test.json?query=string&file1.sum=EE048AF1B8AB675654DDB522F6575909'
 ```
 
+* Kv业务参数，扁平化为Form的字段提交，并参与签名
+* 多个文件对应多个的File字段，一对一且唯一，比如`file1..n`
+* Json业务主体，以名为`FILE_JSON_BODY`提交，可对内容做指纹
+* 同时提交多个文件，也发送Json的情况，即结合以上2条
+
 ### 接受File
 
-服务器端接受MULTIPART_FORM_DATA_VALUE，并通过file接收文件，para接收签名。
+服务器端接受`multipart/form-data`，并通过file接收文件，para接收指纹。
 
 ```java
 // 举例说明，非最优写法
@@ -277,18 +281,27 @@ public ResponseEntity<String> testFileApi(
 
 构造签名验证时，除了增加以下文件验签部分，和Json部分一样，
 
-* 以file中的key，构造`${key}.sum`到param中查找签名
-* 若存在签名，验证file中的MultipartFile内容，错误则403
+* 以file中的key，构造`${key}.sum`到param中查找指纹
+* 若存在指纹，验证file中的MultipartFile内容，错误则403
 
 response文件时，不对body直接签名，增加以下步骤外，和Json部分一样。
 
-* 业务侧返回文件，记作bytes，但超大size不做digest
-* 若请求中有文件签名，则以相同算法对bytes签名，记作digest
+* 业务侧返回文件，记作bytes，对其做指纹，记作digest，
+* 若是File请求且有文件指纹，则采用相同指纹算法
+* 若是Json请求且有json的`Auth-Digest`，则以相同指纹算法
+* 超大size不做digest，请求中无指纹时，也不做指纹
 * 用request的方法签名，sign1=sign(digest + secret + timestamp)
 * 设置头 `Content-Type: application/octet-stream`
 * 设置头 `Content-Disposition: attachment; filename="filename.jpg"`
 * 设置头 `Auth-Digest: ${digest}`
 * 客户端收到文件是，先验签digest，再验签Signature，及后续业务
+
+`Auth-Digest`一定是业务主体（请求的Json或应答的文件）的指纹，有时可以省略，
+
+* JsonJson - 可以省略，因签名中已包括Json验证
+* JsonFile - 若应答时需求指纹，则请求要对Json设置指纹
+* FileFile - 请求的指纹在`*.sum`的Param中，应答时按需设置
+* FileJson - 请求的指纹在`*.sum`的Param中，应答时不需要
 
 ## 4F.4.OAuth Api
 
