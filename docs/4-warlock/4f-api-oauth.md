@@ -120,8 +120,12 @@ assertEquals("6A5CC747FCEE6999094A331F88D723BA682C5163BBB08D73B97C55E1A45DC372",
 * 包含文件 - 以`字段.sum`为key，`文件签名`为value，参与签名
 * 应答签名 - 以文件回复时，文件内容的digest，参与签名
 
-因文件内容的签名仅为了其完整性，所以不需要使用Hmac算法，
+因文件内容的签名仅为了其完整性，所以仅需Digest算法，不需要Hmac算法，
 同时为了避免混淆HMAC-SHA256，内容签名也没有支持Sha256算法。
+
+可以看出，在ApiAuth中，文件是作为消息的附件存在的，是一种可选项，
+Hmac为了验证身份，而Digest仅为了完成性。同时考虑文件体积一半较大，
+所以Digest也自动对超过指定大小的文件，放弃签名和验签。
 
 以下是java伪代码，及演示的shell命令，文件的签名是以二进制读取的
 
@@ -278,7 +282,7 @@ public ResponseEntity<String> testFileApi(
 
 response文件时，不对body直接签名，增加以下步骤外，和Json部分一样。
 
-* 业务侧返回文件，记作bytes
+* 业务侧返回文件，记作bytes，但超大size不做digest
 * 若请求中有文件签名，则以相同算法对bytes签名，记作digest
 * 用request的方法签名，sign1=sign(digest + secret + timestamp)
 * 设置头 `Content-Type: application/octet-stream`

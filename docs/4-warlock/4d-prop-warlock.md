@@ -619,3 +619,25 @@ Controller中RequestMapping的URL常量
 
 * 测试 `wings-trydofor.user-id`=`79`
 * 测试 `wings-trydofor.secret`=`wings-trydofor-secret`
+
+## 4D.D.wings-warlock-apiauth-77.properties
+
+### wings.warlock.apiauth.client-header
+
+`String`=`Auth-Client`，Header name of Client Id
+
+### wings.warlock.apiauth.signature-header
+
+`String`=`Auth-Signature`，Header name of Message Signature
+
+### wings.warlock.apiauth.timestamp-header
+
+`String`=`Auth-Timestamp`，Header name of Request Timestamp
+
+### wings.warlock.apiauth.digest-header
+
+`String`=`Auth-Digest`，Header name of Response Body Digest
+
+### wings.warlock.apiauth.digest-max
+
+`DataSize`=`5MB`，超过此size不做digest，默认5M
