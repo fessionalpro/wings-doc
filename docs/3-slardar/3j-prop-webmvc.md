@@ -372,10 +372,14 @@ setDefaultPasswordEncoderForMatches，id不匹配时，默认解码算法。
 
 ## 3J.A.wings-terminal-79.properties
 
-### wings.slardar.terminal.request-ignore
+### wings.slardar.terminal.exclude-patterns
 
 `Map<String, String>`，不需要TerminalInterceptor处理的URL
 
 * `error`=`/error`
 * `api`=`/api/**`
 * `oauth`=`/oauth/**`
+
+### wings.slardar.terminal.include-patterns
+
+`Map<String, String>`，exclude优先于include

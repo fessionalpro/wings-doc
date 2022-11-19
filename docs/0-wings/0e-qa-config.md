@@ -187,6 +187,7 @@ wings原则上，所以配置项都必有默认配置，而有时候需要忽略
 * Constructor - 够函数优先执行
 * @Autowired - 依赖注入
 * @PostConstruct - 依赖注入后执行，无参数
+* afterPropertiesSet - InitializingBean接口
 * @Bean - 按需或按顺序执行
 * ApplicationStartedEvent - Started，事件参数
 * CommandLineRunner - Runner，注入依赖
