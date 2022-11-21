@@ -19,7 +19,7 @@ category:
 
 ```bash
 cd wings
-id_config=~/Library/ApplicationSupport/JetBrains/IntelliJIdea2021.1
+id_config=~/Library/Application\ Support/JetBrains/IntelliJIdea*
 # 通过复制，备份
 cat $id_config/templates/wings.xml > wings-idea-live.xml
 cat $id_config/codestyles/Wings-Idea.xml > wings-idea-style.xml
