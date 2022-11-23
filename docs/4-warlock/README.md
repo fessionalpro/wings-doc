@@ -76,3 +76,4 @@ WebSecurity在SpringBoot需要继承Adapter实现配置，其约束很多，
 * [安全定制](4d-prop-warlock.md) - 属性文件
 * [动态调试](4e-tweak.md) - 全局及线程级调试时间，日志和异常
 * [对外Api](4f-api-oauth.md) - 限定功能的对外Api
+* [调用计时](4g-watching.md) - 对慢请求做计时及日志
