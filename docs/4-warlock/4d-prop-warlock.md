@@ -144,6 +144,10 @@ category:
 
 `Boolean`=`true`，是否开启默认的OauthController
 
+### spring.wings.warlock.enabled.watching
+
+`Boolean`=`false`，是否支持计时分析
+
 ## 4D.2.wings-flywave-fit-79.properties
 
 ### wings.faceless.flywave.fit.warlock-enum-i18n
@@ -646,7 +650,6 @@ Controller中RequestMapping的URL常量
 
 `Boolean`=`true`，是否一定要签名，可兼容旧api
 
-
 ### wings.warlock.apiauth.file-json-body
 
 `String`=`FILE_JSON_BODY`，既又文件又有json的时候，以此命名json body作为File提交
@@ -665,3 +668,23 @@ Controller中RequestMapping的URL常量
 
 * `http-status`=`200`
 * `message-body`=`{"success":false,"message":"{message}"}`
+
+## wings-warlock-watching-77.properties
+
+对代码进行跟踪，默认`-1`，表示关闭；`0`为全开启
+
+* controller层由Interceptor实现
+* service依赖注解 @Watching
+* jooq层，依赖于lisenter
+
+### wings.warlock.watching.jooq-threshold
+
+`Long`=`-1`，jooq执行的阈值毫秒
+
+### wings.warlock.watching.service-threshold
+
+`Long`=`-1`，Watching注解的阈值毫秒
+
+### wings.warlock.watching.controller-threshold
+
+`Long`=`-1`，Controller的阈值毫秒
