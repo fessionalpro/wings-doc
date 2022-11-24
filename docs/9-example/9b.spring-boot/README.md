@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: note
+icon: leaf
 index: false
 category:
   - 实战

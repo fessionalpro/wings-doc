@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: command
+icon: api
 category:
   - 术士
   - 安全

@@ -1,9 +1,9 @@
 ---
 isOriginal: true
-icon: command
+icon: debug
 category:
   - 术士
-  - 安全
+  - 调试
 ---
 
 # 4G.调用计时
@@ -31,14 +31,14 @@ category:
 
 ```text
 +--s--ms------ns-+---%-+---------------+---------------
-|  1,426,497,039 | 100 | thread        | task and timing 
-|    922,167,066 |  64 | XNIO-4 task-1 | /test/watching.json
-|    504,329,973 |  35 | wings-task-1  | AsyncWatch.BadSelect
-|    504,059,463 |  35 | wings-task-1  | ¦-AsyncWatch.BadSelect.sleep
-|    663,100,505 |  46 | XNIO-4 task-1 | ¦-WatchingService#normalFetch
-|    128,767,339 |   9 | XNIO-4 task-1 | ¦-¦-JooqSlowSql:SelectQueryImpl
-|    213,964,147 |  14 | XNIO-4 task-1 | ¦-WatchingService#errorFetch
-|    199,774,730 |  14 | XNIO-4 task-1 | ¦-¦-JooqSlowSql:SelectQueryImpl
+|  1,426,497,039 | 100 | thread  | task and timing 
+|    922,167,066 |  64 | XNIO-4  | /test/watching.json
+|    504,329,973 |  35 | wings-1 | AsyncWatch.BadSelect
+|    504,059,463 |  35 | wings-1 | ¦-AsyncWatch.sleep
+|    663,100,505 |  46 | XNIO-4  | ¦-Service#normalFetch
+|    128,767,339 |   9 | XNIO-4  | ¦-¦-JooqSlowSql:SelectQuery
+|    213,964,147 |  14 | XNIO-4  | ¦-Service#errorFetch
+|    199,774,730 |  14 | XNIO-4  | ¦-¦-JooqSlowSql:SelectQuery
 ```
 
 * 第1列为耗时，最多999秒，精确到ns
