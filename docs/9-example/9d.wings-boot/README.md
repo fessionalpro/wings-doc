@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: note
+icon: alias
 index: false
 category:
   - 实战

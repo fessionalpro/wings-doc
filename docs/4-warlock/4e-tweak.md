@@ -1,9 +1,9 @@
 ---
 isOriginal: true
-icon: command
+icon: debug
 category:
   - 术士
-  - 安全
+  - 调试
 ---
 
 # 4E.动态调试

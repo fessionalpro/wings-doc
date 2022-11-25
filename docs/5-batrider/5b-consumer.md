@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: proxy
+icon: cache
 category:
   - 蝙蝠
   - 消费者

@@ -10,16 +10,16 @@
     "docs:dev": "vuepress dev docs"
   },
   "devDependencies": {
-    "@vuepress/client": "^2.0.0-beta.51",
-    "@vuepress/plugin-docsearch": "^2.0.0-beta.51",
-    "@vuepress/plugin-register-components": "^2.0.0-beta.51",
-    "vuepress": "^2.0.0-beta.51",
-    "vuepress-theme-hope": "^2.0.0-beta.110",
-    "vue": "^3.2.40",
+    "@vuepress/client": "^2.0.0-beta.53",
+    "@vuepress/plugin-docsearch": "^2.0.0-beta.53",
+    "@vuepress/plugin-register-components": "^2.0.0-beta.53",
+    "vuepress": "^2.0.0-beta.53",
+    "vuepress-theme-hope": "^2.0.0-beta.126",
+    "vue": "^3.2.45",
     "execa": "^6.1.0",
     "prettier": "*"
   },
-  "packageManager": "pnpm@7.13.4",
+  "packageManager": "pnpm@7.17.0",
   "engines": {
     "node": ">=16",
     "pnpm": ">=7"
