@@ -323,7 +323,7 @@ response文件时，不对body直接签名，增加以下步骤外，和Json部�
 
 ### 获取Token
 
-同OAuth的AuthorizationCode，首先获取code，然后获取token。
+支持OAuth的authorization_code和client_credentials模式，根据code参数的有无自动切换。
 
 ```bash
 curl -X 'GET' \
@@ -343,7 +343,7 @@ curl -X 'GET' \
 }
 ```
 
-使用上一步的code
+使用上一步的code，如没有code（没有或空值）等于client_credentials模式
 
 ```bash
 curl -X 'POST' \

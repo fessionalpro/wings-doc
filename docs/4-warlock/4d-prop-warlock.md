@@ -623,6 +623,8 @@ Controller中RequestMapping的URL常量
 
 * 测试 `wings-trydofor.user-id`=`79`
 * 测试 `wings-trydofor.secret`=`wings-trydofor-secret`
+* 测试 `wings-trydofor.hosts`=`localhost` 302的主机名，不要使用ipv6
+* 测试 `wings-trydofor.scopes`=`api`  区分大小写，逗号分隔
 
 ## 4D.D.wings-warlock-apiauth-77.properties
 

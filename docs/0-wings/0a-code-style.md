@@ -360,3 +360,42 @@ Avoid Float and Double If Exact Answers Are Required
 * `Null`类，定义了用来代替null的类型和检查方法，包括enum等
 * 方法签名尽量使用`@NotNull`注解，是IDE辅助检查，编译时解决
 * `ArgsAssert`和`StateAssert`进行业务assert，支持多国语
+
+## 0A.I.类型系统的逆变/协变/PECS
+
+```java
+// ① 字段使用具体类型，还是抽象类型
+private List<E> field1 = new ArrayList<>();
+private ArrayList<E> field2 = new ArrayList<>();
+
+// ② 方法返回值
+public Map<String, ?> provide1();
+public TreeMap<String, Object> provide2();
+
+// ③ 方法输入参数
+public void consume1(List<String> list);
+public void consume2(Collection<? extends CharSequence> list);
+
+// ④ Map的方法签名
+replaceAll(BiFunction<? super K, ? super V, ? extends V> function)
+```
+
+Wings在编码中鼓励，在保证兼容性（主要是行为特性）的情况下，接口（以嘴做比喻）
+
+* 吃的时候 - 输入项尽量抽象，尽量吃的更广
+* 吐的时候 - 输出项尽量具体，尽量嚼的更碎
+* 内部东西 - 保持原样，用的人知道特征
+
+以Map举例来说，输入时，使用Map+superK+extendsV来，
+输出时，不要抹杀特征，比如是否SortedMap及RandomAccess，
+比如TreeMap是字典序，LinkedHashMap是插入序，HashMap是乱序等。
+
+## 0A.J.类和方法的泄露（副作用）
+
+Wings把非以下特征的方法，统称为泄露或者副作用
+
+* Pure functions（纯函数）
+* referential transparency（透明引用）
+* Side Effects(副作用）
+
+变成中，尽量避免方法泄露，规避隐式变量
