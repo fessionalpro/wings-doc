@@ -323,7 +323,12 @@ response文件时，不对body直接签名，增加以下步骤外，和Json部�
 
 ### 获取Token
 
-同OAuth的AuthorizationCode，首先获取code，然后获取token。
+支持OAuth的authorization_code和client_credentials模式，根据code参数的有无自动切换。
+
+* authorization_code - client使用其他user的资源
+* client_credentials - client使用自己的资源，Api推荐
+
+#### authorization_code模式
 
 ```bash
 curl -X 'GET' \
@@ -333,7 +338,7 @@ curl -X 'GET' \
 -H 'accept: application/json'
 ```
 
-取得code，并在有效期内，换取token
+取得code，并在有效期内，换取token。此处仅测试功能，默认得到授权，正常业务，需要用户通过授权的确认页面。
 
 ```json
 {
@@ -343,7 +348,9 @@ curl -X 'GET' \
 }
 ```
 
-使用上一步的code
+#### client_credentials模式或code的后续步骤
+
+使用上一步的code，如没有code（没有或空值）等于client_credentials模式
 
 ```bash
 curl -X 'POST' \
@@ -377,3 +384,13 @@ curl -X 'POST' \
 
 # {"access_token":"","scope":"","expires_in":0}
 ```
+
+## 4F.5.OkHttpClient
+
+若第三方Api没有SDK，需要走Http调用，推荐使用OkHttp，Wings也做了以下的封装，
+
+* OkHttpClientHelper - 可获得Wings配置好的HttpClient及辅助方法
+* OkHttpTokenClient - 自动完成基于Header的Token验证功能
+* OkHttpTokenizeLogin - 传统Form登录的Token验证
+* OkHttpTokenizeOauth - OAuth2的Token验证
+* OkHttpRedirectNopInterceptor - 在follow重定向时，是否可暂时不follow

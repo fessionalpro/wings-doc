@@ -382,6 +382,10 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 `Boolean`=`true`，是否以host为单位保留cookie
 
+### wings.slardar.okhttp.redirect-nop
+
+`Boolean`=`false`，是否在follow-redirect时，暂时不follow
+
 ## 3K.8.wings-overload-79.properties
 
 过载保护过滤器，如何处理快请求和慢响应。默认关闭。
