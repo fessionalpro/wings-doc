@@ -194,7 +194,25 @@ ALTER TABLE `win_admin` DROP INDEX ix_login_name;
 * 若需要执行Revision，把SKIP替换成EXEC即可
 * 建议重要版本为FAIL或EXEC
 
-wings的内置Revision和真实日期无关，主要集中在2019和2020，不超过2022。
+wings的内置Revision和真实日期无关，主要集中在2019至2021，仅表示顺序。
+
+* `2019` - 一般为基础功能，是Wings的服务基础
+* `2020` - 业务功能，一般性的业务功能
+* `2021` - 分支功能，可以不要考虑顺序
+
+目前已使用的版本号有，
+
+* branch/feature/01-enum-i18n/2019-05-21v01-enum-i18n.sql
+* branch/somefix/01-authn-fix/2021-09-18v01-rename-authn.sql
+* branch/somefix/01-v227-fix/2019-05-12v02-version-add-column.sql
+* branch/somefix/02-v242-201/2021-12-20v01-journal-trg-insert.sql
+* master/00-init/2019-05-12v01-version-journal.sql
+* master/01-light/2019-05-20v01-light-commit.sql
+* master/03-enum/2020-10-23v01-auth_enum.sql
+* master/04-auth/2020-10-24v01-user_login.sql
+* master/04-auth/2020-10-24v02-role_permit.sql
+* master/05-conf/2020-10-25v01-conf_runtime.sql
+* master/06-task/2020-10-26v01-tiny_task.sql
 
 ## 2A.5.数据库约定
 
@@ -207,7 +225,7 @@ wings的内置Revision和真实日期无关，主要集中在2019和2020，不�
 ### 版本号
 
 `版本号`(revision)=`版本号`+`修订号`。
-`版本号`的初始值是`2019051201`,任何小于此值都被忽略。
+`版本号`的初始值是`2019051201`，任何小于此值都被忽略。
 
 ### 主版号
 

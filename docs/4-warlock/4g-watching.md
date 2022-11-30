@@ -10,10 +10,10 @@ category:
 
 开箱即用的简单的性能分析，慢请求记录，属于调试功能，默认关闭。
 
-* 模块开关 - spring.wings.warlock.enabled.watching
-* 数据层 - wings.warlock.watching.jooq-threshold
-* 服务层 - wings.warlock.watching.service-threshold
-* Web层 - wings.warlock.watching.controller-threshold
+* 模块开关 - spring.wings.warlock.enabled.watching=false
+* 数据层 - wings.warlock.watching.jooq-threshold=60
+* 服务层 - wings.warlock.watching.service-threshold=200
+* Web层 - wings.warlock.watching.controller-threshold=2000
 
 通过以上配置文件，设置模块是否开启，以及各层的慢响应的阈值，
 `-1`表示关闭，而`0`表示全部开启，其他正式值是slow的阈值，毫秒数。
