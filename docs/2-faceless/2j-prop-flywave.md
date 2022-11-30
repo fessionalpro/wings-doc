@@ -18,6 +18,10 @@ Flywave功能的默认开关，如下
 
 `Boolean`=`false`，是否注入Flywave相关Bean。
 
+### spring.wings.faceless.flywave.enabled.checker
+
+`Boolean`=`true`，flywave是否进行数据库的版本检查。
+
 ## 2J.2.wings-flywave-fit-79.properties
 
 Flywave对依赖的`flywave-init`版本进行检查。
