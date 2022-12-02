@@ -326,6 +326,10 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 `String`=`https://oapi.dingtalk.com/robot/send?access_token=${wings.slardar.monitor.ding-talk.access-token}`，钉钉通知的URL模板
 
+### wings.slardar.monitor.ding-talk.msg-type
+
+`String`=`markdown`，消息类型，支持 text, markdown
+
 ## 3K.7.wings-okhttp-79.properties
 
 [SpringBoot RestTemplate定制](https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/#boot-features-resttemplate-customization)
