@@ -303,9 +303,29 @@ name（建议全小写）在cookie和header中都会使用，为WingsSessionIdRe
 
 ### scheduling的线程池设置
 
-与 @EnableScheduling @Scheduled threadPoolTaskScheduler 有关
+与 @EnableScheduling @Scheduled threadPoolTaskScheduler 有关。
+不可以设置@Primary，否则@Async线程池被覆盖。
 
 * `spring.task.scheduling.pool.size`=`8`
 * `spring.task.scheduling.shutdown.await-termination`=`true`
 * `spring.task.scheduling.shutdown.await-termination-period`=`30s`
 * `spring.task.scheduling.thread-name-prefix`=`win-task-`
+
+## 3I.9.wings-async-79.properties
+
+### event 事件总线线程池
+
+* wings.slardar.async.event.pool.core-size=8
+* wings.slardar.async.event.pool.keep-alive=60s
+* wings.slardar.async.event.pool.max-size=64
+* wings.slardar.async.event.pool.queue-capacity=2048
+* wings.slardar.async.event.shutdown.await-termination=true
+* wings.slardar.async.event.shutdown.await-termination-period=60s
+* wings.slardar.async.event.thread-name-prefix=win-event-
+
+### heavy 重任务线程池
+
+* wings.slardar.async.heavy.pool.size=8
+* wings.slardar.async.heavy.shutdown.await-termination=true
+* wings.slardar.async.heavy.shutdown.await-termination-period=60s
+* wings.slardar.async.heavy.thread-name-prefix=win-heavy-
