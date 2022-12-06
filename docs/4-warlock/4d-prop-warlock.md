@@ -593,10 +593,6 @@ Controller中RequestMapping的URL常量
 
 ## 4D.C.wings-warlock-ticket-77.properties
 
-### wings.warlock.ticket.aes-key
-
-`String`=`${random.uuid}${random.uuid}`，Aes256的key
-
 ### wings.warlock.ticket.pub-mod
 
 `String`=`win`，ticket的PubMod
