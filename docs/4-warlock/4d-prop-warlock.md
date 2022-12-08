@@ -581,17 +581,7 @@ Controller中RequestMapping的URL常量
 
 `String`=`/admin/tweak/clock.json`，线程级设置用户的时钟
 
-## 4D.B.wings-warlock-runtime-77.properties
-
-### wings.warlock.runtime.run-mode
-
-`RunMode`=`Local`，默认的运行模式
-
-### wings.warlock.runtime.api-mode
-
-`ApiMode`=`Nothing`，默认的Api模式
-
-## 4D.C.wings-warlock-ticket-77.properties
+## 4D.B.wings-warlock-ticket-77.properties
 
 ### wings.warlock.ticket.pub-mod
 
@@ -622,7 +612,7 @@ Controller中RequestMapping的URL常量
 * 测试 `wings-trydofor.hosts`=`localhost` 302的主机名，不要使用ipv6
 * 测试 `wings-trydofor.scopes`=`api`  区分大小写，逗号分隔
 
-## 4D.D.wings-warlock-apiauth-77.properties
+## 4D.C.wings-warlock-apiauth-77.properties
 
 ### wings.warlock.apiauth.client-header
 
@@ -667,7 +657,7 @@ Controller中RequestMapping的URL常量
 * `http-status`=`200`
 * `message-body`=`{"success":false,"message":"{message}"}`
 
-## wings-warlock-watching-77.properties
+## 4D.D.wings-warlock-watching-77.properties
 
 对代码进行跟踪，默认`-1`，表示关闭；`0`为全开启
 

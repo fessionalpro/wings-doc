@@ -163,3 +163,13 @@ Crc8Long的默认seed，强安全需求时建议修改。^建议^
 ### wings.silencer.tweak.mdc-threshold
 
 `Boolean`=`true`，是否配置WingsMdcThresholdFilter
+
+## 1D.A.wings-runtime-77.properties
+
+### wings.silencer.runtime.run-mode
+
+`RunMode`=`Local`，默认的运行模式
+
+### wings.silencer.runtime.api-mode
+
+`ApiMode`=`Nothing`，默认的Api模式
