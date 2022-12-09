@@ -44,7 +44,16 @@ Slardar基于SpringMvc做了工具级封装和加强，有些仅提供能力，�
 * Terminal和Security的Context
 * 登录，权限，会话，令牌等控制力
 
-## 3.4.更多章节
+## 3.4.线程池
+
+SlardarAsyncConfiguration提供了4个Ttl配置的线程池，前缀和用途分别如下，
+
+* `win-async-` - `spring.task.execution.`配置，用于`@Async`
+* `win-task-` - `spring.task.scheduling.`配置，用于`@Scheduled`
+* `win-event-` - `wings.slardar.async.event.`配置，Spring的Event
+* `win-heavy-` - `wings.slardar.async.heavy.`配置，Wings重任务线程
+
+## 3.5.更多章节
 
 * [Jackson格式约定](3a-jackson.md) - Json格式约定，国际化处理
 * [Hazelcast中间件](3b-hazelcast.md) - 作为session，缓存和消息中间件

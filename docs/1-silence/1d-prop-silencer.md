@@ -107,41 +107,50 @@ Silence功能的默认开关，如下
 
 默认的resource配置，逗号分隔的AntPath格式。
 
-## 1D.7.wings-mirana-79.properties
+## 1D.7.wings-autolog-79.properties
 
-mirana功能的默认配置，建议修改
-
-### wings.silencer.mirana.code.leap-code
-
-`String`=`BY2AH0IC9SX4UTV7GP5LNR6FK1WOE8ZQD3JM`
-
-LeapCode的默认seed，强安全需求时建议修改。^建议^
-
-### wings.silencer.mirana.code.crc8-long
-
-`String`=`15,13,11,9,7,5,3,1`
-
-Crc8Long的默认seed，强安全需求时建议修改。^建议^
-
-### wings.silencer.mirana.auto-log.level
+### wings.silencer.autolog.level
 
 `String`=`WARN`，Slf4j格式
 
 自动设置日志的级别，如 ALL, TRACE, DEBUG, INFO, WARN, ERROR, OFF
 
-### wings.silencer.mirana.auto-log.target
+### wings.silencer.autolog.target
 
 `Set<String>`=`CONSOLE,STDOUT`
 
 可被mirana自动被调整的appender名字，逗号分隔
 
-### wings.silencer.mirana.auto-log.exists
+### wings.silencer.autolog.exists
 
 `Set<String>`=`FILE`
 
 当存在以上appender出现的时候，进行自动日志调整。
 
-## 1D.8.wings-tweak-79.properties
+## 1D.8.wings-encrypt-79.properties
+
+### wings.silencer.encrypt.leap-code
+
+`String`=`BY2AH0IC9SX4UTV7GP5LNR6FK1WOE8ZQD3JM`
+
+LeapCode的默认seed，强安全需求时建议修改。^建议^
+
+### wings.silencer.encrypt.crc8-long
+
+`String`=`15,13,11,9,7,5,3,1`
+
+Crc8Long的默认seed，强安全需求时建议修改。^建议^
+
+### wings.silencer.encrypt.aes-key
+
+`Map<String,String>`，默认的Aes256加密名字和密码，默认`${random.uuid}${random.uuid}`。
+
+* `system` - 系统默认，每次系统启动时随机生成，停机后消失
+* `ticket` - 用于Api Ticket，建议集群内统一
+* `cookie` - 用于 Http Cookie，建议集群内统一
+* `config` - 用于 配置文件中敏感数据，建议固定
+
+## 1D.9.wings-tweak-79.properties
 
 ### wings.silencer.tweak.code-stack
 
@@ -154,3 +163,13 @@ Crc8Long的默认seed，强安全需求时建议修改。^建议^
 ### wings.silencer.tweak.mdc-threshold
 
 `Boolean`=`true`，是否配置WingsMdcThresholdFilter
+
+## 1D.A.wings-runtime-77.properties
+
+### wings.silencer.runtime.run-mode
+
+`RunMode`=`Local`，默认的运行模式
+
+### wings.silencer.runtime.api-mode
+
+`ApiMode`=`Nothing`，默认的Api模式

@@ -46,12 +46,6 @@ category:
 
 `Set<String>`=`∅`
 
-### wings.slardar.cookie.aes-key
-
-`String`=`${random.uuid}`，key为`∅`，表示关闭aes功能
-
-RandomValuePropertySource，建议部署时替换成唯一key
-
 ### wings.slardar.cookie.http-only
 
 `Map<Boolean, Set<String>>`=`∅`
