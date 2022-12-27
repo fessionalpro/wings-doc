@@ -155,7 +155,7 @@ Map<Integer, List<String>>       group4 = create.selectFrom(BOOK).fetchGroups(BO
 
 参考Spring的`Pageable`和SQL的 order by，以下参数是效果相同的
 
-* PageQuery - pageSize=100&pageNumber=3&sortBy=id,-name
+* PageQuery - page=100&page=3&sortBy=id,-name
 * Pageable - size=100&page=3&sort=id,asc&sort=name,desc
 * SQL - order by id asc, name desc
 
