@@ -194,3 +194,15 @@ OverloadFilter可限定请求并发，默认`spring.wings.slardar.enabled.overlo
 
 * `快请求` - `wings.slardar.overload.request-capacity=-1`
 * `慢请求` - `wings.slardar.overload.response-warn-slow=0`
+
+## 3G.10.分页查询
+
+Wings中使用PageQuery和PageDefault取代了SpringData中的Pagable。
+
+* PageQuery只能使用QueryString方式传递，不属于RequesBody部分。
+* `@ParameterObject` PageQuery pq
+* `@ParameterObject`` @PageDefault(size=30)` PageQuery pq
+
+使用@ParameterObject注解，是为了Swagger能自动识别为Param类型
+
+同PageQuery一样，返回分页使用PageResult作为容器，Wings中有响应的工具类。

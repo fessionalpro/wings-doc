@@ -11,5 +11,5 @@ category:
 
 ## 8.1.相关项目
 
-* [米拉娜工具](../a-mirana/) - guava,commons的补充
-* [米波英雄模板](../b-meepo/) - 不破坏母版语法的非专业模板引擎
+* [小小任务](./8a-tinytask.md) - 以Database为核心可启停的任务
+* [任务的属性](./8b-prop-tinytask.md) - TinyTask的配置
