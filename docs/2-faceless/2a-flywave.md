@@ -213,6 +213,7 @@ wings的内置Revision和真实日期无关，主要集中在2019至2021，仅�
 * master/04-auth/2020-10-24v02-role_permit.sql
 * master/05-conf/2020-10-25v01-conf_runtime.sql
 * master/06-task/2020-10-26v01-tiny_task.sql
+* master/07-mail/2020-10-27v01-tiny_mail.sql
 
 ## 2A.5.数据库约定
 
