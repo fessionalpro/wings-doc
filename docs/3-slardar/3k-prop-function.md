@@ -306,29 +306,10 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 * `Jpa-Persistence`=`javax.persistence.spi::No valid providers found`
 * `UT005071-CONNECT`=`UT005071: Undertow request failed HttpServerExchange{ CONNECT`
 
-### wings.slardar.monitor.ding-talk.access-token
+### wings.slardar.monitor.ding-notice
 
-`String`=`∅`，警报时，使用钉钉通知的access_token，`空`表示不使用
-
-### wings.slardar.monitor.ding-talk.digest-secret
-
-`String`=`∅`，消息签名，`空`表示不使用
-
-### wings.slardar.monitor.ding-talk.notice-keyword
-
-`String`=`WARNING`，自定义关键词，消息中至少包含1个关键词才可以发送成功。
-
-### wings.slardar.monitor.ding-talk.notice-mobiles
-
-`Set<String>`，被通知人的手机号，非群内成员手机号会被脱敏。会自动添加到正文@155xxxx
-
-### wings.slardar.monitor.ding-talk.webhook-url
-
-`String`=`https://oapi.dingtalk.com/robot/send?access_token=${wings.slardar.monitor.ding-talk.access-token}`，钉钉通知的URL模板
-
-### wings.slardar.monitor.ding-talk.msg-type
-
-`String`=`markdown`，消息类型，支持 text, markdown
+`String`=`monitor`，默认使用钉钉机器人通知，使用的key为`monitor`，
+详见wings-dingnotice-79.properties熟悉
 
 ## 3K.7.wings-okhttp-79.properties
 
@@ -494,3 +475,29 @@ Swagger文档设置
 
 * `text/plain`=`*/*`
 * `application/json`=`*/*`
+
+## 3K.B.wings-dingnotice-79.properties
+
+### wings.slardar.ding-notice.default.access-token
+
+`String`=`∅`，警报时，使用钉钉通知的access_token，`空`表示不使用
+
+### wings.slardar.ding-notice.default.digest-secret
+
+`String`=`∅`，消息签名，`空`表示不使用
+
+### wings.slardar.ding-notice.default.notice-keyword
+
+`String`=`WARNING`，自定义关键词，消息中至少包含1个关键词才可以发送成功。
+
+### wings.slardar.ding-notice.default.notice-mobiles
+
+`Set<String>`，被通知人的手机号，非群内成员手机号会被脱敏。会自动添加到正文@155xxxx
+
+### wings.slardar.ding-notice.default.webhook-url
+
+`String`=`https://oapi.dingtalk.com/robot/send?access_token=`，钉钉通知的URL模板
+
+### wings.slardar.ding-notice.default.msg-type
+
+`String`=`markdown`，消息类型，支持 text, markdown

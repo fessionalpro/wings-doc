@@ -94,7 +94,7 @@ TinyTask自身任务，清理日志和心跳健康
 
 ### wings.tiny.task.define[default].notice-conf
 
-`String`，对noticeBean的默认配置的覆盖，默认为json格式，不做补充，null及空时使用Default配置
+`String`，通知Bean的配置文件名字，默认自动，空时使用Default配置
 
 ### wings.tiny.task.define[default].timing-zone
 
@@ -119,6 +119,10 @@ TinyTask自身任务，清理日志和心跳健康
 ### wings.tiny.task.define[default].timing-miss
 
 `Integer`=`0`，错过调度（misfire）多少秒内，需要补救执行，0表示不补救，不会使用Default配置
+
+### wings.tiny.task.define[default].timing-beat
+
+`Integer`=`0`，心跳间隔秒数，last_exec距今超过2个心态任务task异常，默认自动。取rate或idle最大值，cron需要自行指定，不会使用Default配置
 
 ### wings.tiny.task.define[default].during-from
 
