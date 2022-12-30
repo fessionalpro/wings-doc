@@ -87,10 +87,10 @@ TinyTask自身任务，清理日志和心跳健康
 
 ### wings.tiny.task.define[default].notice-when
 
-`String`=`fail`，通知的时机，exec|fail|done，逗号分隔忽略大小写，默认fail。null及空时使用Default配置
+`String`=`fail`，通知的时机，exec|fail|done|feed，逗号分隔忽略大小写，默认fail。null及空时使用Default配置
 
 * 时机大概表述为：exec;try{run...;done}catch{fail}
-* exec - 初始任务；done - 执行成功；fail - 执行失败
+* exec - 初始任务；done - 执行成功；fail - 执行失败；feed - 方法返回非空
 
 ### wings.tiny.task.define[default].notice-conf
 
@@ -143,6 +143,10 @@ TinyTask自身任务，清理日志和心跳健康
 ### wings.tiny.task.define[default].during-done
 
 `Integer`=`0`，总计成功执行多少次后，结束调度，不会使用Default配置
+
+### wings.tiny.task.define[default].during-boot=0
+
+`Integer`=`0`，每应用每启动时重新计数，总计成功执行多少次后，结束调度，默认无效，不会使用Default配置
 
 ### wings.tiny.task.define[default].result-keep
 
