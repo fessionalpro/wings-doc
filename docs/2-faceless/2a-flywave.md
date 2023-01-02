@@ -202,18 +202,18 @@ wings的内置Revision和真实日期无关，主要集中在2019至2021，仅�
 
 目前已使用的版本号有，
 
-* branch/feature/01-enum-i18n/2019-05-21v01-enum-i18n.sql
-* branch/somefix/01-authn-fix/2021-09-18v01-rename-authn.sql
-* branch/somefix/01-v227-fix/2019-05-12v02-version-add-column.sql
-* branch/somefix/02-v242-201/2021-12-20v01-journal-trg-insert.sql
-* master/00-init/2019-05-12v01-version-journal.sql
-* master/01-light/2019-05-20v01-light-commit.sql
-* master/03-enum/2020-10-23v01-auth_enum.sql
-* master/04-auth/2020-10-24v01-user_login.sql
-* master/04-auth/2020-10-24v02-role_permit.sql
-* master/05-conf/2020-10-25v01-conf_runtime.sql
-* master/06-task/2020-10-26v01-tiny_task.sql
-* master/07-mail/2020-10-27v01-tiny_mail.sql
+* 2019_0512_01 - master/00-init/2019-05-12v01-version-journal.sql
+* 2019_0512_02 - branch/somefix/01-v227-fix/2019-05-12v02-version-add-column.sql
+* 2019_0520_01 - master/01-light/2019-05-20v01-light-commit.sql
+* 2019_0521_01 - branch/feature/01-enum-i18n/2019-05-21v01-enum-i18n.sql
+* 2020_1023_01 - master/03-enum/2020-10-23v01-auth_enum.sql
+* 2020_1024_01 - master/04-auth/2020-10-24v01-user_login.sql
+* 2020_1024_02 - master/04-auth/2020-10-24v02-role_permit.sql
+* 2020_1025_01 - master/05-conf/2020-10-25v01-conf_runtime.sql
+* 2020_1026_01 - master/06-task/2020-10-26v01-tiny_task.sql
+* 2020_1027_01 - master/07-mail/2020-10-27v01-tiny_mail.sql
+* 2021_0918_01 - branch/somefix/01-authn-fix/2021-09-18v01-rename-authn.sql
+* 2021_1220_01 - branch/somefix/02-v242-201/2021-12-20v01-journal-trg-insert.sql
 
 ## 2A.5.数据库约定
 
