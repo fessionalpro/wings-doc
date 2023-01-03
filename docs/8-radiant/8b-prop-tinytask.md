@@ -14,6 +14,10 @@ category:
 
 `Boolean`=`true`，是否允许自动注册TinyTask.Auto
 
+### wings.tiny.task.enabled.dryrun
+
+`Boolean`=`false`，是否干跑，仅记录日志不真正执行任务
+
 ## 8B.2.wings-flywave-fit-79.properties
 
 ### wings.faceless.flywave.fit.tiny-task
