@@ -22,11 +22,11 @@ category:
 
 ### wings.faceless.flywave.fit.tiny-task
 
-数据库依赖，引入lib，自动执行
+数据库依赖，引入此lib后，自动执行次脚本
 
-* path=classpath*:/wings-flywave/master/06-task/*.sql
-* revi=2020_1026_01L
-* lost=EXEC
+* `path`=`classpath*:/wings-flywave/master/06-task/*.sql`
+* `revi`=`2020_1026_01L`
+* `lost`=`EXEC`
 
 ## 8B.3.wings-tinytask-beat-79.properties
 
