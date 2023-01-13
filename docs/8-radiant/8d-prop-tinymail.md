@@ -217,3 +217,37 @@ wings.tiny.mail.service.max-done
 ### wings.tiny.mail.service.only-run
 
 `Boolean`=`true`，是否仅发送本RumMode的邮件
+
+## 8D.7.wings-tinymail-urlmap-79.properties
+
+### wings.tiny.mail.urlmap.list-all
+
+`String`=`/admin/mail/list-all.json`，获取全部邮件的简要信息，默认倒序
+
+### wings.tiny.mail.urlmap.list-failed
+
+`String`=`/admin/mail/list-failed.json`，获取失败邮件的简要信息，默认倒序
+
+### wings.tiny.mail.urlmap.list-undone
+
+`String`=`/admin/mail/list-undone.json`，获取未成功邮件的简要信息，默认倒序
+
+### wings.tiny.mail.urlmap.by-bizmark
+
+`String`=`/admin/mail/by-bizmark.json`，根据Biz-Mark获取邮件的简要信息，默认倒序
+
+### wings.tiny.mail.urlmap.by-recipient
+
+`String`=`/admin/mail/by-recipient.json`，根据正则比较收件人to/cc/bcc获取邮件的简要信息，默认倒序
+
+### wings.tiny.mail.urlmap.by-sender
+
+`String`=`/admin/mail/by-sender.json`，根据收件人from获取邮件的简要信息，默认倒序
+
+### wings.tiny.mail.urlmap.by-subject
+
+`String`=`/admin/mail/by-subject.json`，根据正则比较邮件标题获取邮件的简要信息，默认倒序
+
+### wings.tiny.mail.urlmap.load-detail
+
+`String`=`/admin/mail/load-detail.json`，获取邮件详情
