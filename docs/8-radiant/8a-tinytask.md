@@ -8,7 +8,7 @@ category:
 
 # 8A.小小任务
 
-基于Spring Schedule提供的以database为中心的任务调度
+基于Spring Schedule提供了以database为中心的任务调度
 
 * 自动发现和执行
 * 中途取消，启动，修改配置

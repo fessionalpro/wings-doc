@@ -14,15 +14,19 @@ category:
 
 `Boolean`=`true`，是否允许自动注册TinyTask.Auto
 
+### wings.tiny.task.enabled.dryrun
+
+`Boolean`=`false`，是否干跑，仅记录日志不真正执行任务
+
 ## 8B.2.wings-flywave-fit-79.properties
 
 ### wings.faceless.flywave.fit.tiny-task
 
-数据库依赖，引入lib，自动执行
+数据库依赖，引入此lib后，自动执行次脚本
 
-* path=classpath*:/wings-flywave/master/06-task/*.sql
-* revi=2020_1026_01L
-* lost=EXEC
+* `path`=`classpath*:/wings-flywave/master/06-task/*.sql`
+* `revi`=`2020_1026_01L`
+* `lost`=`EXEC`
 
 ## 8B.3.wings-tinytask-beat-79.properties
 
@@ -87,14 +91,14 @@ TinyTask自身任务，清理日志和心跳健康
 
 ### wings.tiny.task.define[default].notice-when
 
-`String`=`fail`，通知的时机，exec|fail|done，逗号分隔忽略大小写，默认fail。null及空时使用Default配置
+`String`=`fail`，通知的时机，exec|fail|done|feed，逗号分隔忽略大小写，默认fail。null及空时使用Default配置
 
 * 时机大概表述为：exec;try{run...;done}catch{fail}
-* exec - 初始任务；done - 执行成功；fail - 执行失败
+* exec - 初始任务；done - 执行成功；fail - 执行失败；feed - 方法返回非空
 
 ### wings.tiny.task.define[default].notice-conf
 
-`String`，对noticeBean的默认配置的覆盖，默认为json格式，不做补充，null及空时使用Default配置
+`String`，通知Bean的配置文件名字，默认自动，空时使用Default配置
 
 ### wings.tiny.task.define[default].timing-zone
 
@@ -120,6 +124,10 @@ TinyTask自身任务，清理日志和心跳健康
 
 `Integer`=`0`，错过调度（misfire）多少秒内，需要补救执行，0表示不补救，不会使用Default配置
 
+### wings.tiny.task.define[default].timing-beat
+
+`Integer`=`0`，心跳间隔秒数，last_exec距今超过2个心态任务task异常，默认自动。取rate或idle最大值，cron需要自行指定，不会使用Default配置
+
 ### wings.tiny.task.define[default].during-from
 
 `String`，调度开始的日期时间，timingZone时区，yyyy-MM-dd HH:mm:ss，0表示无效，不会使用Default配置
@@ -139,6 +147,10 @@ TinyTask自身任务，清理日志和心跳健康
 ### wings.tiny.task.define[default].during-done
 
 `Integer`=`0`，总计成功执行多少次后，结束调度，不会使用Default配置
+
+### wings.tiny.task.define[default].during-boot=0
+
+`Integer`=`0`，每应用每启动时重新计数，总计成功执行多少次后，结束调度，默认无效，不会使用Default配置
 
 ### wings.tiny.task.define[default].result-keep
 

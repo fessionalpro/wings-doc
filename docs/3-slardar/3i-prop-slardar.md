@@ -80,6 +80,10 @@ category:
 
 `Boolean`=`true`，是否开启wings的jackson对Double，Float，BigDecimal的精度限定
 
+### spring.wings.slardar.enabled.resource
+
+`Boolean`=`true`，是否开启wings的jackson对Resource序列化成可读性好的URL
+
 ### spring.wings.slardar.enabled.undertow-ws
 
 `Boolean`=`true`，是否配置undertow ws for UT026010: Buffer pool
