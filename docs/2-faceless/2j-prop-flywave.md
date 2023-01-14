@@ -26,6 +26,10 @@ Flywave功能的默认开关，如下
 
 Flywave对依赖的`flywave-init`版本进行检查。
 
+### wings.faceless.flywave.auto-init
+
+`Boolean`=`false`，是否允许自动初始化，非空数据库，最好手工初始化
+
 ### wings.faceless.flywave.fit.flywave-init.path
 
 `String`=`classpath*:/wings-flywave/master/00-init/*.sql`
