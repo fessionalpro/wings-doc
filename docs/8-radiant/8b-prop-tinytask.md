@@ -18,6 +18,18 @@ category:
 
 `Boolean`=`false`，是否干跑，仅记录日志不真正执行任务
 
+### wings.tiny.task.enabled.controller-conf
+
+`Boolean`=`true`，是否开启 TaskConfController
+
+### wings.tiny.task.enabled.controller-exec
+
+`Boolean`=`true`，是否开启 TaskExecController
+
+### wings.tiny.task.enabled.controller-list
+
+`Boolean`=`true`，是否开启 TaskListController
+
 ## 8B.2.wings-flywave-fit-79.properties
 
 ### wings.faceless.flywave.fit.tiny-task
