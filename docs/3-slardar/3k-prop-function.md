@@ -476,6 +476,10 @@ Swagger文档设置
 * `text/plain`=`*/*`
 * `application/json`=`*/*`
 
+### wings.slardar.swagger.flat-pagequery
+
+`Boolean`=`true`，是否把PageQuery扁平化，作为querystring参数
+
 ## 3K.B.wings-dingnotice-79.properties
 
 ### wings.slardar.ding-notice.default.access-token

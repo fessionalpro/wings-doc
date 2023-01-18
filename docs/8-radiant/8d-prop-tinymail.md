@@ -62,6 +62,14 @@ spring-boot-starter-mail的配置，分为账号类和属性类
 
 `Boolean`=`false`，是否干跑，仅记录日志不真正执行任务
 
+### wings.tiny.mail.enabled.controller-list
+
+`Boolean`=`true`，是否开启 MailListController
+
+### wings.tiny.mail.enabled.controller-send
+
+`Boolean`=`true`，是否开启 MailSendController
+
 ## 8D.3.wings-flywave-fit-79.properties
 
 ### wings.faceless.flywave.fit.tiny-mail
@@ -251,3 +259,19 @@ wings.tiny.mail.service.max-done
 ### wings.tiny.mail.urlmap.load-detail
 
 `String`=`/admin/mail/load-detail.json`，获取邮件详情
+
+### wings.tiny.mail.urlmap.send-mail
+
+`String`=`/admin/mail/send-mail.json`，新建或编辑邮件，并同步立即或异步定时发送，`-1`为失败，`0`为同步，否则为异步
+
+### wings.tiny.mail.urlmap.send-save
+
+`String`=`/admin/mail/send-save.json`，仅新建或编辑邮件，但并不发送
+
+### wings.tiny.mail.urlmap.send-retry
+
+`String`=`/admin/mail/send-retry.json`，同步重试失败的邮件，发送成功或失败，或异常
+
+### wings.tiny.mail.urlmap.send-scan
+
+`String`=`/admin/mail/send-scan.json`，同步扫需要描补发的邮件，并异步发送，返回补发的件数
