@@ -262,7 +262,7 @@ wings.tiny.mail.service.max-done
 
 ### wings.tiny.mail.urlmap.send-mail
 
-`String`=`/admin/mail/send-mail.json`，新建或编辑邮件，并同步立即或异步定时发送
+`String`=`/admin/mail/send-mail.json`，新建或编辑邮件，并同步立即或异步定时发送，`-1`为失败，`0`为同步，否则为异步
 
 ### wings.tiny.mail.urlmap.send-save
 
