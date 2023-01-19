@@ -146,13 +146,13 @@ category:
 
 ## 3I.3.spring-actuator-77.properties
 
-[actuator endpoints 设置文档](https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/#actuator.endpoints)
+[actuator endpoints 设置文档](https://docs.spring.io/spring-boot/docs/2.7.7/reference/htmlsingle/#actuator.endpoints)
 
 * `spring.jmx.enabled=true` 默认开启本地JMX，远程用ssh tunnel
 * `management.endpoints.jmx.exposure.include=*`
 * `management.endpoints.web.exposure.include=*`
 
-[actuator properties 设置文档](https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/#application-properties.actuator)
+[actuator properties 设置文档](https://docs.spring.io/spring-boot/docs/2.7.7/reference/htmlsingle/#application-properties.actuator)
 
 * `management.endpoint.health.show-details`=`always`
 * `management.info.git.mode`=`full`
@@ -166,7 +166,7 @@ wings有关的endpoint
 
 ## 3I.4.spring-jackson-79.properties
 
-[SpringBoot自定义jackson](https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/#howto-customize-the-jackson-objectmapper)
+[SpringBoot自定义jackson](https://docs.spring.io/spring-boot/docs/2.7.7/reference/htmlsingle/#howto-customize-the-jackson-objectmapper)
 
 com.fasterxml.jackson.databind.DeserializationFeature
 
@@ -209,7 +209,7 @@ com.fasterxml.jackson.annotation.JsonInclude.Include
 
 ## 3I.5.spring-servlet-server-79.properties
 
-[SpringBoot默认属性](https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/#common-application-properties)
+[SpringBoot默认属性](https://docs.spring.io/spring-boot/docs/2.7.7/reference/htmlsingle/#common-application-properties)
 
 graceful shutdown
 
@@ -247,7 +247,7 @@ net.ipv4.tcp_mem = 786432 2097152 3145728
 
 ## 3I.6.spring-session-79.properties
 
-[SpringBoot session 设置](https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/#boot-features-session)
+[SpringBoot session 设置](https://docs.spring.io/spring-boot/docs/2.7.7/reference/htmlsingle/#boot-features-session)
 
 ### spring.session.timeout
 
@@ -291,7 +291,7 @@ name（建议全小写）在cookie和header中都会使用，为WingsSessionIdRe
 
 ## 3I.8.spring-task-79.properties
 
-<https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/#features.task-execution-and-scheduling>
+<https://docs.spring.io/spring-boot/docs/2.7.7/reference/htmlsingle/#features.task-execution-and-scheduling>
 
 ### execution的线程池设置
 
