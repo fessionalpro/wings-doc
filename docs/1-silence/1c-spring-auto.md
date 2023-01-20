@@ -18,7 +18,9 @@ category:
 * `/wings-i18n/` 自动加载，分割的多国语的信息文件
 * `**/spring/boot/` 手动加载，Boot有关的配置，如`spring.factories`
 * `**/spring/bean/` 自动加载，比如@ComponentScan指定
-* `**/spring/conf/` 自动或手动加载，需要暴露的properties的配置
+* `**/spring/conf/` Configurer或配置类
+* `**/spring/prop/` properties的映射
+* `**/spring/help/` 配置助手
 * `*Configuration.java` 条件加载，配置项以`spring.wings.`为前缀
 
 使用`idea`开发时，会有黄色警告或提示，不影响运行，但看着碍眼

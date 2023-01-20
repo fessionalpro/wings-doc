@@ -44,6 +44,10 @@ category:
 
 `Boolean`=`true`，是否支持 warlock security http auto
 
+### spring.wings.warlock.enabled.security-http-chain
+
+`Boolean`=`true`，是否配置默认的 SecurityFilterChain
+
 ### spring.wings.warlock.enabled.security-bean
 
 `Boolean`=`true`，是否支持 warlock security Bean配置
