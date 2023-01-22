@@ -75,7 +75,7 @@ Wings由多个子项目构成，都采用了Dota有关的命名，主要包括�
 * faceless ← curse | meepo | `jdbc` | 类型主键
 * faceless-flywave ← faceless | `kotlin` | 版本管理
 * faceless-jooq ← faceless | `jooq` | Jooq定制
-* faceless-jooqgen ← faceless-jooq | `jooq-codegen` | 代码生成
+* faceless-codegen ← faceless-jooq | `jooq-codegen` | 代码生成
 * faceless-shard ← faceless | `shardingsphere` | 分表分库
 * slardar ← curse | `jackson` | `fastjson` | `okhttp` | `cache` | `sentry` | 业务基础
 * slardar-hazel-caching ← slardar | `hazelcast` | 多级缓存
@@ -85,7 +85,7 @@ Wings由多个子项目构成，都采用了Dota有关的命名，主要包括�
 * warlock ← slardar | faceless-jooq | Db基础
 * warlock-shadow ← slardar-sprint | warlock | `JustAuth` | Db|Web|权限
 * warlock-bond ← warlock-shadow` | `auth-perm体系`
-* warlock-codegen ← warlock | faceless-jooqgen | flywave
+* warlock-codegen ← warlock | faceless-codegen | flywave
 
 ## 0.5.更多章节
 
