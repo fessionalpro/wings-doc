@@ -56,7 +56,7 @@ public class AcmeControllerAdvice extends ResponseEntityExceptionHandler
 public ModelAndView resolveErrorView(HttpServletRequest request,
 ```
 
-文档位于[error-handling](https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/#boot-features-error-handling)
+文档位于[error-handling](https://docs.spring.io/spring-boot/docs/2.7.7/reference/htmlsingle/#boot-features-error-handling)
 
 ## 3H.05.启动时Warn UT026010
 

@@ -66,13 +66,19 @@ servicecomb [官方文档](https://servicecomb.apache.org/references/java-chassi
 
 `List<String>`=`auth9-provider` 提供者默认处理链
 
-## 5D.2.wings-servicecomb-79.properties
+## 5D.2.spring-wings-enabled-79.properties
+
+### spring.wings.batrider.enabled.autoconf
+
+`Boolean`=`true`，是否启动自动配置
+
+## 5D.3.wings-servicecomb-79.properties
 
 ### wings.batrider.handler.auth-skip-schema
 
 `Set<String>`=`scb-discovery` 不需要验证的schemaId
 
-## 5D.3.wings-warlock-security-79.properties
+## 5D.4.wings-warlock-security-79.properties
 
 ### wings.warlock.security.web-ignore
 

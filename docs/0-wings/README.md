@@ -73,19 +73,23 @@ Wings由多个子项目构成，都采用了Dota有关的命名，主要包括�
 * silencer ← mirana | `boot-starter` | Spring自动配置
 * silencer-curse ← silencer | `aop` | Wings基本功能
 * faceless ← curse | meepo | `jdbc` | 类型主键
+* faceless-autogen ← faceless | 自动生成的代码
+* faceless-awesome ← faceless-autogen | 依赖自动生成代码的功能
+* faceless-codegen ← faceless-jooq | `jooq-codegen` | 代码生成
 * faceless-flywave ← faceless | `kotlin` | 版本管理
-* faceless-jooq ← faceless | `jooq` | Jooq定制
-* faceless-jooqgen ← faceless-jooq | `jooq-codegen` | 代码生成
-* faceless-shard ← faceless | `shardingsphere` | 分表分库
+* faceless-jooq ← faceless-awesome | `jooq` | Jooq定制
+* faceless-shard ← faceless-awesome | `shardingsphere` | 分表分库
 * slardar ← curse | `jackson` | `fastjson` | `okhttp` | `cache` | `sentry` | 业务基础
 * slardar-hazel-caching ← slardar | `hazelcast` | 多级缓存
 * slardar-hazel-session ← hazel-caching | slardar-webmvc | 分布式会话
 * slardar-webmvc ← slardar | `starter-json` | `starter-web` | `undertow` | `security-web` | `springdoc` | Web增强
 * slardar-sprint ← hazel-caching | hazel-session | slardar-webmvc | `starter-security` | `starter-actuator` | `boot-admin` | Web集成
 * warlock ← slardar | faceless-jooq | Db基础
-* warlock-shadow ← slardar-sprint | warlock | `JustAuth` | Db|Web|权限
+* warlock-autogen ← slardar | 自动生成的代码
+* warlock-awesome ← slardar-autogen | 依赖自动生成代码的功能
+* warlock-codegen ← warlock-awesome | faceless-codegen | flywave
+* warlock-shadow ← slardar-sprint | warlock-awesome | `JustAuth` | Db|Web|权限
 * warlock-bond ← warlock-shadow` | `auth-perm体系`
-* warlock-codegen ← warlock | faceless-jooqgen | flywave
 
 ## 0.5.更多章节
 

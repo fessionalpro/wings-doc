@@ -46,6 +46,10 @@ Silence的入口配置，定义了Silence的自动加载的路径和模式。
 
 Silence功能的默认开关，如下
 
+### spring.wings.silencer.enabled.autoconf
+
+`Boolean`=`true`，是否启动自动配置
+
 ### spring.wings.silencer.enabled.verbose
 
 `Boolean`=`false`，是否显示wings的conditional信息

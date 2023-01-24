@@ -58,15 +58,19 @@ spring-boot-starter-mail的配置，分为账号类和属性类
 
 ## 8D.2.spring-wings-enabled-79.properties
 
-### wings.tiny.mail.enabled.dryrun
+### spring.wings.tiny.mail.enabled.autoconf
+
+`Boolean`=`true`，是否启动自动配置
+
+### spring.wings.tiny.mail.enabled.dryrun
 
 `Boolean`=`false`，是否干跑，仅记录日志不真正执行任务
 
-### wings.tiny.mail.enabled.controller-list
+### spring.wings.tiny.mail.enabled.controller-list
 
 `Boolean`=`true`，是否开启 MailListController
 
-### wings.tiny.mail.enabled.controller-send
+### spring.wings.tiny.mail.enabled.controller-send
 
 `Boolean`=`true`，是否开启 MailSendController
 
