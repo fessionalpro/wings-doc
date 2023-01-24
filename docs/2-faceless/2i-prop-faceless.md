@@ -14,6 +14,10 @@ category:
 
 Faceless功能的默认开关，如下
 
+### spring.wings.faceless.enabled.autoconf
+
+`Boolean`=`true`，是否启动自动配置
+
 ### spring.wings.faceless.enabled.lightid
 
 `Boolean`=`true`，是否注入lingthid

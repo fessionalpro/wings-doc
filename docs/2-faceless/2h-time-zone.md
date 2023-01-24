@@ -132,5 +132,5 @@ connectionTimeZone参数（8.0之前是serverTimezone）可以协调好jvm和mys
 在配置JdbcUrl时，若使用`+`时（如下所示），会发生DateTimeException，因为在URL中`+`标识空格。
 需要转义为`%2B`，即正确的格式为connectionTimeZone=%2B08:00
 
->wings_test?connectionTimeZone=+08:00
+>wings?connectionTimeZone=+08:00
 >Invalid ID for region-based ZoneId, invalid format:  08:00

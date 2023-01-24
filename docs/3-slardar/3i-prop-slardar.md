@@ -12,6 +12,10 @@ category:
 
 ## 3I.1.spring-wings-enabled-79.properties
 
+### spring.wings.slardar.enabled.autoconf
+
+`Boolean`=`true`，是否启动自动配置
+
 ### spring.wings.slardar.enabled.jackson
 
 `Boolean`=`true`，是否默认配置jackson

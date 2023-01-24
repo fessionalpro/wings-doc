@@ -61,6 +61,21 @@ SHOW GRANTS FOR 'trydofor'@'%';
 FLUSH PRIVILEGES;
 ```
 
+Wings工程区分数据库，需要以下命名的数据库
+
+```sql
+-- DROP DATABASE IF EXISTS wings;
+CREATE DATABASE wings DEFAULT CHARACTER SET utf8mb4;
+
+-- wings /* auto codegen */
+-- wings_shard_0 /* sharding test */
+-- wings_shard_1 /* sharding test */
+-- wings_example /* winx example */
+-- wings_tiny /* winx example */
+-- wings_faceless /* faceless */
+-- wings_warlock /* warlock */
+```
+
 ## 2D.2.写高质量的SQL
 
 wings中，数据库仅用持久化功能，估应避免SQL含有运算和业务逻辑。
