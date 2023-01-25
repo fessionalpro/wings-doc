@@ -48,3 +48,5 @@ category:
 * [WebFun的属性](../3-slardar/3k-prop-function.md) - Spring Web加强功能的设置
 * [Hazelcast的属性](../3-slardar/3l-prop-hazelcast.md) - Hazelcast的设置
 * [术士的属性](../4-warlock/4d-prop-warlock.md) - 有关Warlock登录授权的设置
+* [小任务属性](../8-radiant/8b-prop-tinytask.md) - TinyTask的设置
+* [小邮件属性](../8-radiant/8d-prop-tinymail.md) - TinyMail的设置

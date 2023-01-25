@@ -6,7 +6,7 @@ category:
   - 任务
 ---
 
-# 8A.小小任务
+# 8A.小任务模块
 
 基于Spring Schedule提供了以database为中心的任务调度
 

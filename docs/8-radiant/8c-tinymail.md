@@ -6,7 +6,7 @@ category:
   - 邮件
 ---
 
-# 8C.小小邮件
+# 8C.小邮件模块
 
 基于Spring Mail提供了以database为中心的邮件发送
 

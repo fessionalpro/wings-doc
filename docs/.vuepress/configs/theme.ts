@@ -1,4 +1,4 @@
-import type {HopeThemeOptions} from 'vuepress-theme-hope';
+import type {ThemeOptions} from 'vuepress-theme-hope';
 import {navbar} from './navbar';
 import {sidebar} from './sidebar';
 
@@ -23,7 +23,7 @@ function stylizeIt(key: string | RegExp, txt: string, type: string, ...tags: str
   };
 }
 
-export const themeOption: HopeThemeOptions = {
+export const themeOption: ThemeOptions = {
   navbar,
   sidebar,
 
@@ -62,7 +62,7 @@ export const themeOption: HopeThemeOptions = {
       gfm: true,
       container: true,
       linkCheck: true,
-      vpre: true,
+      vPre: true,
       tabs: true,
       codetabs: true,
       align: true,
@@ -70,7 +70,7 @@ export const themeOption: HopeThemeOptions = {
       sub: true,
       footnote: true,
       mark: true,
-      imageMark: true,
+      imgMark: true,
       tasklist: true,
       stylize: [
         stylizeIt(/^(?:MUST|必须)$/u, '', 'info', 'strong', 'sup'),
