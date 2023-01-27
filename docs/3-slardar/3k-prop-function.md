@@ -21,13 +21,17 @@ category:
 * `MemoryCacheManager` - Caffeine的Jvm缓存
 * `ServerCacheManager` - Hazelcast的分布式缓存
 
-### wings.slardar.cache.nulls
+### wings.slardar.cache.null-size
 
-`String`=`weak`， 如何统一处理对null的缓存。
+`Integer`=`1000`，原则上不缓存null，但可对null统一处理。
 
-* `weak`:以Weak引用缓存;
-* `skip`:不缓存null；
-* 其他值则不统一处理
+* `正数` - 缓存大小
+* `0` - 不缓存null
+* `负数` - 不统一处理
+
+### wings.slardar.cache.null-live=300
+
+`Integer`=`300`，默认300s
 
 ### wings.slardar.cache.common
 
