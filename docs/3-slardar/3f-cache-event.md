@@ -9,13 +9,13 @@ category:
 
 # 3F.多级缓存及事件
 
-基于Caffeine和Hazelcast，提供了分级缓存，本地及分布式缓存，分布式对象。
+基于Cache2k和Hazelcast，提供了分级缓存，本地及分布式缓存，分布式对象。
 
 ## 3F.1.分级缓存
 
 默认提供JCache约定下的Memory和Server两个CacheManager，名字和实现如下，
 
-* MemoryCacheManager - caffeineCacheManager
+* MemoryCacheManager - Cache2kCacheManager
 * ServerCacheManager - 如hazelcast/redis等具体实现
 
 因为已注入了CacheManager，会使SpringBoot的自动配置不满足条件而无效。
@@ -35,16 +35,33 @@ category:
 
 ```java
 @CacheConfig(cacheManager = Manager.Memory, 
-cacheNames = Level.GENERAL + "OperatorService")
+cacheNames = Level.General + "OperatorService")
 
 @Cacheable(key = "'all'", 
-cacheNames = Level.GENERAL + "StandardRegion", 
+cacheNames = Level.General + "StandardRegion", 
 cacheManager = Manager.Server)
 
 @CacheEvict(key = "'all'", 
-cacheNames = Level.GENERAL + "StandardRegion", 
+cacheNames = Level.General + "StandardRegion", 
 cacheManager = Manager.Server)
 ```
+
+cacheName的命名要求，不可使用特殊字符，当前以`~`分隔，以`!`结尾表示Resolve扩展
+
+* <https://github.com/cache2k/cache2k/issues/201>
+* WingsCache - 具体定义的命名规则
+
+Resolve扩展，指在`@Cache*`注解指定`cacheResolver`，忽略`cacheManager`时，
+若cacheNames以`!`结尾，则会在其后追加所在类的全类名，详情参考 CacheConst，
+其用途在于代码层面统一缓存名，运行时换成按impl类独立。
+
+```java
+@CacheConfig(cacheNames = CacheName, cacheResolver = CacheResolver)
+public class WarlockPermServiceImpl implements WarlockPermService 
+```
+若上示代码中，CacheName=`WarlockPermService!`，全类名为`a.b.c.WarlockPermServiceImpl`，
+则最终的缓存名为`WarlockPermService!a.b.c.WarlockPermServiceImpl`
+
 
 ## 3F.2.多级事件
 

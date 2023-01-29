@@ -6,7 +6,7 @@ category:
   - 属性
 ---
 
-# 8B.TinyTask的属性
+# 8B.小任务属性
 
 ## 8B.1.spring-wings-enabled-79.properties
 

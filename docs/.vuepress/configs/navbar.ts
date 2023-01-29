@@ -1,6 +1,6 @@
-import { HopeThemeNavbarConfig } from 'vuepress-theme-hope';
+import { NavbarOptions } from 'vuepress-theme-hope';
 
-export const navbar: HopeThemeNavbarConfig = [
+export const navbar: NavbarOptions = [
   { text: '神翼', icon: 'discover', link: '/0-wings/' },
   { text: '沉默', icon: 'define', link: '/1-silence/' },
   { text: '虚空', icon: 'time', link: '/2-faceless/' },

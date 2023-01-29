@@ -6,7 +6,7 @@ category:
   - 属性
 ---
 
-# 8D.TinyMail的属性
+# 8D.小邮件属性
 
 ## 8D.1.spring-mail-79.properties
 

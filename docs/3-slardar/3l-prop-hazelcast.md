@@ -77,7 +77,9 @@ Hazelcast默认值，监控及诊断设置，
 
 ### wings.slardar.hazelcast.cluster-name
 
-`String`=`wings-default`，自行修改集群名字
+`String`=`wings-${random.uuid}`，自行修改集群名字。
+
+因社区版无安全设置，仅通过集群名便可加入，因此建议使用密码强度的名字，避开扫描。
 
 ### wings.slardar.hazelcast.diagnostics.period-seconds
 

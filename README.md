@@ -13,12 +13,14 @@ make sure the versions matches,
 
 * `vue` to [hope vue]
 * `vuepress/*` to [hope vue]
+* `execa` to [hope pnpm]
 * `pnpm` to [hope pnpm]
 
 then pnpm commands,
 
+* `npm -g install pnpm` - global install pnpm
 * `pnpm install` - install/update packages
 * `pnpm docs:dev-clean` - clean and review
 
-[hope vue]: https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/v2.0.0-beta.100/packages/components/package.json
+[hope vue]: https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/packages/components/package.json
 [hope pnpm]: https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/package.json

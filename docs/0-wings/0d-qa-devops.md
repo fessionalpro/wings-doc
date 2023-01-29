@@ -251,7 +251,7 @@ IDE使用了devtools的`restart`, 而非IDE内的jar则是`base`。
 > with 40% headroom to handle member failure or shutdown.
 
 * <https://hazelcast.com/blog/how-much-memory-do-i-need-for-my-data/>
-* <https://docs.hazelcast.org/docs/4.0.3/manual/html-single/index.html#sizing-practices>
+* <https://docs.hazelcast.com/hazelcast/5.1/configuration/understanding-configuration>
 
 ## 0D.17.建表时的`Table doesn't exist`
 
@@ -369,3 +369,12 @@ Default encoding for properties files 选择`UTF8`
 * Cache Recovery / Rescan或Refresh试一下，若不好用，则
 * Invalidate Caches and Restart，若仍不好用，则
 * 删除工程，清理`.idea`等文件，重新import
+
+## 0D.28.Jooq try-with-resources Warn
+
+Jooq的DSL代码是try-with-resources安全的，若IDE代码审查出现以下警告，可以安全关闭。
+
+选择`ignore AutoCloseable returned by this method`即可按类别关闭。
+
+> Warning:(62, 18) 'SelectSelectStep<Record2<Long, String>>'
+> used without 'try'-with-resources statement
