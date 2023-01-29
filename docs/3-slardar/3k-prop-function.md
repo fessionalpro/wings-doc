@@ -18,8 +18,12 @@ category:
 
 `String`=`MemoryCacheManager`，哪个CacheManager为primary
 
-* `MemoryCacheManager` - Caffeine的Jvm缓存
+* `MemoryCacheManager` - Cache2k的Jvm缓存
 * `ServerCacheManager` - Hazelcast的分布式缓存
+
+### wings.slardar.cache.expand
+
+`Boolean`=`true`，是否对cache name的进行Resolve扩展，即追加所在类
 
 ### wings.slardar.cache.null-size
 
@@ -44,7 +48,7 @@ level之外的默认配置
 ### wings.slardar.cache.level
 
 注意，Server使用hazelcast时，忽略common设置，避免非缓存IMap错误
-level设置，需要使用通配符，如`program:*`，参考WingsCache
+level设置，需要使用通配符，如`program~*`，参考WingsCache命名及分隔符
 
 * `wings.slardar.cache.level.program.max-live`=`0`
 * `wings.slardar.cache.level.program.max-idle`=`0`
@@ -65,7 +69,7 @@ level设置，需要使用通配符，如`program:*`，参考WingsCache
 
 ### wings.slardar.debounce.capacity
 
-`Long`=`10000`，等待区大小
+`Integer`=`10000`，等待区大小
 
 ### wings.slardar.debounce.max-wait
 

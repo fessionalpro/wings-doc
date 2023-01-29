@@ -58,7 +58,7 @@ features:
 
   - icon: stack
     title: Jvm及分布式的缓存、锁和对象
-    details: 基于Caffeine和hazelcast实现的Jvm及分布式对象，锁和事件
+    details: 基于Cache2k和hazelcast实现的Jvm及分布式对象，锁和事件
     link: /3-slardar/3f-cache-event.html
 
   - icon: compare
