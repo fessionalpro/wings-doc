@@ -74,7 +74,7 @@ export const themeOption: ThemeOptions = {
       tasklist: true,
       stylize: [
         stylizeIt(/^(?:MUST|必须)$/u, '', 'info', 'strong', 'sup'),
-        stylizeIt(/^(?:SHOULD|推荐)$/u, '', 'tip', 'strong', 'sup'),
+        stylizeIt(/^(?:SHOULD|推荐|建议)$/u, '', 'tip', 'strong', 'sup'),
         stylizeIt(/^(?:MAY|可选)$/u, '', 'note', 'strong', 'sup'),
         stylizeIt(/^(?:NOT|慎用)$/u, '', 'warning', 'strong', 'sup'),
       ],

@@ -139,3 +139,23 @@ jmeter -n \
 -j winx-devops/target/load-test/load-test.log \
 -e -o winx-devops/target/load-test/report
 ```
+
+## 9.6.安全选项
+
+wings工程中的默认密码均为`${random.uuid}`或环境变量。实际生产中，有些需要设置为固定密码。
+密码强度，必须在32位以上的随机字符，字母数字大小写混合最好。
+
+* `DING_TALK_TOKEN` - 系统变量，boot-admin登录密码
+* `wings.silencer.encrypt.leap-code` - 伪随机数，可不更换
+* `wings.silencer.encrypt.crc8-long` - 数字增加crc校验，可不更换
+* `wings.silencer.encrypt.aes-key.*` - ^建议^更换
+* `wings.slardar.hazelcast.cluster-name` - hazelcast集群名，^必须^更换
+
+example中的配置，默认以`DING_TALK_TOKEN`为密码
+
+* `spring.boot.admin.client.username` - boot.admin server端用户，^建议^更换
+* `spring.boot.admin.client.password` - boot.admin server端密码，^必须^更换
+* `spring.boot.admin.client.instance.metadata.user.name` - client端用户，^建议^更换
+* `spring.boot.admin.client.instance.metadata.user.password` - client端密码，^必须^更换
+
+上述全部配置项的默认值，以对应的配置项的手册或源代码为准，避免文档过期影响安全性。
