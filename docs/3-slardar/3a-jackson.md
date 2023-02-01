@@ -127,7 +127,7 @@ wings.slardar.number.decimal.separator=_
 
 * [baeldung 示例](https://www.baeldung.com/jackson-annotations)
 * [jackson注解](https://github.com/FasterXML/jackson-annotations/wiki/Jackson-Annotations)
-* [spring定制jackson](https://docs.spring.io/spring-boot/docs/2.7.7/reference/htmlsingle/howto-customize-the-jackson-objectmapper)
+* [spring定制jackson](https://docs.spring.io/spring-boot/docs/3.0.2/reference/htmlsingle/#howto.spring-mvc.customize-jackson-objectmapper)
 
 ## 3A.8.反序列化泛型
 
