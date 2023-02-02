@@ -378,3 +378,16 @@ Jooq的DSL代码是try-with-resources安全的，若IDE代码审查出现以下�
 
 > Warning:(62, 18) 'SelectSelectStep<Record2<Long, String>>'
 > used without 'try'-with-resources statement
+
+## 0D.29.Statement with empty body
+
+若IDE代码审查出现以下警告，可编辑器规则，挑选`Comments count as content`
+
+## 0D.30.IDEA inspect code
+
+排除 observer下的submodlue内容，尤其docs中的node内容。
+
+Custom Scope `WingsCode`，Pattern设置如下，
+
+`!file:*/docs//*&&!file:*/meepo//*&&!file:*/mirana//*`
+
