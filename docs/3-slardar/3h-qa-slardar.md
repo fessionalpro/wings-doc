@@ -56,7 +56,7 @@ public class AcmeControllerAdvice extends ResponseEntityExceptionHandler
 public ModelAndView resolveErrorView(HttpServletRequest request,
 ```
 
-文档位于[error-handling](https://docs.spring.io/spring-boot/docs/2.7.7/reference/htmlsingle/#boot-features-error-handling)
+文档位于[Error Handling](https://docs.spring.io/spring-boot/docs/3.0.2/reference/htmlsingle/#web.servlet.spring-mvc.error-handling)
 
 ## 3H.05.启动时Warn UT026010
 
@@ -114,5 +114,5 @@ SavedRequestAwareAuthenticationSuccessHandler和RequestCache 进行搭配即可�
 参考资料
 
 * [qs#stringifying](https://github.com/ljharb/qs#stringifying)
-* [nested properties Conventions](https://docs.spring.io/spring-framework/docs/5.0.0.M4/spring-framework-reference/html/validation.html#beans-beans-conventions)
-* [@MatrixVariable](https://docs.spring.io/spring-framework/docs/5.0.0.M4/spring-framework-reference/html/mvc.html#mvc-ann-matrix-variables)
+* [Basic and Nested Properties](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-beans-conventions)
+* [Matrix Variables](https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-matrix-variables)

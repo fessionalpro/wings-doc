@@ -36,7 +36,7 @@ Wings在配置和数据层，全做一词处理，即`timezone`和`Zoneid`。
 wings.silencer.i18n.zoneid=Asia/Shanghai
 # 常用jdbc参数
 spring.datasource.url=jdbc:mysql://localhost:3306/wings_example\
-  ?autoReconnect=true&useSSL=false\
+  ?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true\
   &useUnicode=true&characterEncoding=UTF-8\
   &connectionTimeZone=Asia/Shanghai
 ```

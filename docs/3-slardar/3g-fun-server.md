@@ -174,7 +174,7 @@ public RequestResponseLogging requestResponseLogging() {
 可以Autowired OkHttpClient直接使用，默认**信任所有ssl证书**，如安全高，需要关闭。
 如果需要按scope定制，使用RestTemplateBuilder，全局应用使用RestTemplateCustomizer。
 
-[RestTemplate 定制](https://docs.spring.io/spring-boot/docs/2.7.7/reference/htmlsingle/#boot-features-resttemplate-customization)
+[RestTemplate 定制](https://docs.spring.io/spring-boot/docs/3.0.2/reference/htmlsingle/#io.rest-client.resttemplate.customization)
 org.springframework.boot.autoconfigure.web.client.RestTemplateAutoConfiguration
 
 在springboot默认是3.x，而just-auth需要4.x，所以需要手动okhttp3.version属性
