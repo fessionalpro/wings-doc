@@ -391,3 +391,14 @@ Custom Scope `WingsCode`，Pattern设置如下，
 
 `!file:*/docs//*&&!file:*/meepo//*&&!file:*/mirana//*`
 
+## 0D.31.lombok错误 cannot find symbol
+
+> cannot find symbol
+> symbol:   method onMethod_()
+> location: @interface lombok.Setter
+
+当发生莫奇名秒的lombok编译错误时，需要按以下步骤排查，
+
+* 首先排除IDE影响，确认纯控制台下的mvn是否正常
+* 优先解决非lombok的编译错误
+* 优先解决静态编写的代码的错误

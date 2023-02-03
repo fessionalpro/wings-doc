@@ -61,6 +61,7 @@ val rd = dao.fetch(da, da.Id.eq(id))
 * DSLContext和DataSource不应该离开database层
 * `single/`包，表示单表，可含简单的条件子查询，一个包名一个表
 * `couple/`包， 表示多表，一般为join查询或子查询，包名以主表命名
+* 耦合操作，建议标记`@CouplingSelect`, `@CouplingModify`
 * `select|modify`分别对应数据库操作
 * 也可以`select|insert|update|delete`分类，只是autowired时比较多
 * 数据传递以Dto结尾，放到最临近使用的位子
