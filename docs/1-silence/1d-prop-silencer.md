@@ -77,6 +77,7 @@ Silence功能的默认开关，如下
 * `logging.logback.rollingpolicy.max-file-size`=`500MB`
 * `logging.logback.rollingpolicy.max-history`=`30`
 * `logging.level.root`=`INFO`
+* `logging.pattern.dateformat`=`yyyy-MM-dd HH:mm:ss.SSS`
 
 ## 1D.5.spring-message-79.properties
 
@@ -177,3 +178,9 @@ Crc8Long的默认seed，强安全需求时建议修改。^建议^
 ### wings.silencer.runtime.api-mode
 
 `ApiMode`=`Nothing`，默认的Api模式
+
+## 1D.B.wings-inspect-79.properties
+
+### wings.silencer.inspect.properties
+
+`Boolean`=`false`，是否审视properties的key,value,所在文件及层叠关系

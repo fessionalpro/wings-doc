@@ -12,7 +12,7 @@ category:
 ## 9.1.前置条件
 
 * 了解 `maven`，缺什么，补什么。
-* 了解 `spring*`，`看官方文档，不要百度` x 3！
+* 了解 `spring*`，`看官方文档` x 3！
 * 了解 `mysql*`数据库，mysql
 
 ## 9.2.自建环境
@@ -34,12 +34,14 @@ mysql:8.0
 
 ## 9.3.程序部署
 
-复制`ln -s` wings-starter.sh和`*.env`文件，以winx-admin为例。
+软连接(`ln -s`)wings-starter.sh到某个执行位置，以winx-admin为例。
 
 ```bash
 # 建立启动脚本，一个boot一个
 ln -s wings-starter.sh winx-admin.sh
 # 复制 wings-starter.env内容，与启动脚本同名(扩展名不同)
+cp wings-starter.env winx-admin.env
+# 视情况修改具体配置项
 vi winx-admin.env
 ```
 
@@ -159,3 +161,28 @@ example中的配置，默认以`DING_TALK_TOKEN`为密码
 * `spring.boot.admin.client.instance.metadata.user.password` - client端密码，^必须^更换
 
 上述全部配置项的默认值，以对应的配置项的手册或源代码为准，避免文档过期影响安全性。
+
+## 9.7.启动参数
+
+在springboot3，即java17后，必须正确设置`add-opens`，以避免`illegal-access`。
+Wings在pom.xml和starter.sh中已进行了正确的设置，其文件及变量名字如下，
+
+* `/pom.xml` - `wings.java-opens` 有原因说明
+* `/observe/scripts/wings-starter.sh` - `JDK9_ARG`
+
+`add-opens`的具体内容如下，使用时按需处理换行
+
+```text
+--add-modules java.se
+--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
+--add-opens java.base/java.lang=ALL-UNNAMED
+--add-opens=java.base/java.lang.invoke=ALL-UNNAMED
+--add-opens=java.base/java.util=ALL-UNNAMED
+--add-opens java.base/java.io=ALL-UNNAMED
+--add-opens java.base/java.nio=ALL-UNNAMED
+--add-opens java.base/sun.nio.ch=ALL-UNNAMED
+--add-opens java.management/sun.management=ALL-UNNAMED
+--add-opens jdk.management/com.sun.management.internal=ALL-UNNAMED
+--add-opens=java.base/sun.security.x509=ALL-UNNAMED
+--add-opens=jdk.unsupported/sun.misc=ALL-UNNAMED
+```
