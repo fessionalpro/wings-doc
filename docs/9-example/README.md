@@ -11,13 +11,39 @@ category:
 
 ## 9.1.前置条件
 
+基本知识及动手能力
+
 * 了解 `maven`，缺什么，补什么。
 * 了解 `spring*`，`看官方文档` x 3！
 * 了解 `mysql*`数据库，mysql
 
+目录约定
+
+* `WINGS_DIR` - wings_boot的工程根目录
+* `WINGS_BIN` - `WINGS_DIR`/observe/scripts
+* `PROJECT_DIR` - 示例工程的目录，例如`good-demo`
+* `PROJECT_PCD` - 示例工程的CodeName，例如`good`
+
 ## 9.2.自建环境
 
-默认采用H2内存数据库演示，可自建Docker演示Mysql。
+新建工程及打包的示例脚本
+
+```bash
+sdk use java 17.0.6-tem # 切换JDK版本
+mvn -v # 显示maven和java版本
+#> Apache Maven 3.8.7 (b89d5959fcde851dcb1c8946a785a163f14e1e29)
+#> Java version: 17.0.6, vendor: Eclipse Adoptium
+
+WINGS_DIR=~/Workspace/github.com/pro.fessional.wings
+WINGS_BIN=$WINGS_BOOT/observe/scripts
+PROJECT_DIR=~/Workspace/good-demo
+PROJECT_PCD=good
+
+# 使用模板初始化工程
+$WINGS_BIN/wings-init-project.sh
+```
+
+数据库，默认采用H2演示，可自建Docker演示Mysql，示例脚本如下。
 
 ```bash
 # 设置变量
@@ -25,7 +51,7 @@ PASS=S4f3_Password@MoilionCircle
 
 # 创建一个mysql数据库
 docker run -d \
---name winx-mysql-8.0 \
+--name good-mysql-8.0 \
 -e MYSQL_DATABASE=wings_example \
 -e MYSQL_ROOT_PASSWORD=${PASS} \
 -p 3306:3306 \
@@ -34,15 +60,17 @@ mysql:8.0
 
 ## 9.3.程序部署
 
-软连接(`ln -s`)wings-starter.sh到某个执行位置，以winx-admin为例。
+软连接(`ln -s`)wings-starter.sh到某个执行位置，以good-devops为例。
 
 ```bash
-# 建立启动脚本，一个boot一个
-ln -s wings-starter.sh winx-admin.sh
+cd $PROJECT_DIR
+# 建立启动脚本，一个boot.jar对应一组.sh和.env
+ln -s $WINGS_BIN/wings-starter.sh ${PROJECT_PCD}-devops-starter.sh
 # 复制 wings-starter.env内容，与启动脚本同名(扩展名不同)
-cp wings-starter.env winx-admin.env
-# 视情况修改具体配置项
-vi winx-admin.env
+cp $WINGS_BIN/wings-starter.env ${PROJECT_PCD}-devops-starter.env
+# good为默认项目代号，若已调整则要修改，否则找不到jar
+sed -i '' "s:../../:./:" ${PROJECT_PCD}-devops-starter.env
+sed -i '' "s:winx-:./${PROJECT_PCD}-:g" ${PROJECT_PCD}-devops-starter.env
 ```
 
 在env中，port,jar,log容易理解，按项目需要配置即可。
@@ -59,10 +87,10 @@ BOOT_CNF是用来替换默认配置的运行时配置，结构如下。
 通常的配置参考，包括强制https，保护误操作.git，前后端分离。
 
 ```nginx
-upstream winx_admin {
+upstream good_admin {
     ip_hash;
-    server winx_appser_01:8090;
-    server winx_appser_02:8090;
+    server good_appser_01:8090;
+    server good_appser_02:8090;
     keepalive 300; # 长连接
 }
 
@@ -90,7 +118,7 @@ server {
 
     # 后端分流，资源类遵循res-id-{base64_urlsafe}.{pdf}格式
     location ~* (\.json|/res-id-[\-=_0-9a-z]+\.[0-9a-z]+)$ {
-        proxy_pass http://winx_admin;
+        proxy_pass http://good_admin;
         proxy_http_version  1.1;
         proxy_cache_bypass  $http_upgrade;
     
@@ -105,7 +133,7 @@ server {
     # 前端分流
     location / {
         #add_header 'Access-Control-Allow-Origin' '*'; #允许跨域
-        root /data/static/winx-admin-spa/;
+        root /data/static/good-admin-spa/;
         if ($request_filename ~* \.(html|htm)$){
             add_header Cache-Control no-cache,no-store,max-age=0,must-revalidate;
         }
@@ -118,28 +146,28 @@ server {
 压力测试，必须`ulimit -n`在10k以上，同一内网以忽略带宽限制。
 
 ```bash
+cd $PROJECT_DIR
 # 打包和启动
 mvn -U clean package
-wings-starter.sh start
+./${PROJECT_PCD}-devops-starter.sh start
 # Ctrl-C停止日志输出
-wings-starter.sh stop
+./${PROJECT_PCD}-devops-starter.sh stop
 ```
 
 使用jmeter 模拟10K*50请求
 
 ```bash
-ulimit -n 50000
+ulimit -n 45535
+JVM_ARGS="-Xmx8G -XX:+UseG1GC -XX:MaxGCPauseMillis=100 -XX:G1ReservePercent=20"
 
-JVM_ARGS="-Xmx4G -XX:+UseG1GC -XX:MaxGCPauseMillis=100 -XX:G1ReservePercent=20"
-
-rm -rf winx-devops/target/load-test/ &&\
-mkdir -p winx-devops/target/load-test/report
+rm -rf ${PROJECT_PCD}-devops/target/load-test/ &&\
+mkdir -p ${PROJECT_PCD}-devops/target/load-test/report
 
 jmeter -n \
--t winx-devops/src/test/jmeter/load-test.jmx \
--l winx-devops/target/load-test/load-test.jtl \
--j winx-devops/target/load-test/load-test.log \
--e -o winx-devops/target/load-test/report
+-t ${PROJECT_PCD}-devops/src/test/jmeter/load-test.jmx \
+-l ${PROJECT_PCD}-devops/target/load-test/load-test.jtl \
+-j ${PROJECT_PCD}-devops/target/load-test/load-test.log \
+-e -o ${PROJECT_PCD}-devops/target/load-test/report
 ```
 
 ## 9.6.安全选项
