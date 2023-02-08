@@ -68,17 +68,38 @@ find . -name '*.iml' -o -name '.idea' | tr '\n' '\0' | xargs -0 rm -r
 * String Manipulation - 对字符串的各种操作和转换
 * HTTP Client - 官方对`*.http`文件格式的支持
 
-## 0C.2.SQL工具
+## 0C.2.Kotlin开发
 
-* Mysql Workbench - SQL优先的场景，如DDL，Admin，权限等
-* DataGrid - 数据优先的场景，如查询，局部导出等
+wings支持java和kotlin混合开发，但更主张优先写好java，以避免过渡语法糖及过于灵活。
+所以，工程默认为java编译，以下任一条件，均可激活kotlin编译。
 
-## 0C.3.文本工具
+* 自动激活 - 存在`src/test/kotlin`，注意不是`main`
+* 手动激活 - 指定 kotlin-support，如 `-P kotlin-support`
 
-* VsCode - 前端，markdown等
+当profile激活时，会生成`kotlin-supported=true`属性，配置stdlib和compile环境。
+检查当前项目是否激活kotlin，进入工程目录，执行一下mvn命令，
+
+```bash
+# 自动激活
+mvn help:active-profiles
+# 手动激活
+mvn help:active-profiles -P kotlin-support
+# 查看最终 pom.xml
+mvn help:effective-pom
+```
+
+## 0C.3.SQL工具
+
+* [Mysql Workbench](https://www.mysql.com/products/workbench/) - SQL优先的场景，如DDL，Admin，权限等
+* [DBeaver](https://dbeaver.io) - 支持颜色标识，eclipse风格
+* DataGrid - 支持颜色标识，数据优先的场景，如查询，局部导出等
+
+## 0C.4.文本工具
+
+* VsCode - 前端，markdown等，不适应于大文件
 * Sublime - 文本处理
 
-## 0C.4.http测试
+## 0C.5.http测试
 
 推荐在每个工程test下建立idea支持的 `*.http` 接口描述和测试脚本，官方文档如下
 
