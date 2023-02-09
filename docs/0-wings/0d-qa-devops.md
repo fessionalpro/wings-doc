@@ -403,3 +403,24 @@ Custom Scope `WingsCode`，Pattern设置如下，
 * 首先排除IDE影响，确认纯控制台下的mvn是否正常
 * 优先解决非lombok的编译错误
 * 优先解决静态编写的代码的错误
+
+## 0D.32.maven错误 Non-resolvable parent POM
+
+> FATAL Non-resolvable parent POM for com.x.xx:xxx:${revision}:
+> Could not find artifact pro.fessional:wings:pom:2.6.6.210-SNAPSHOT
+> and 'parent.relativePath' points at wrong local POM
+
+以上错误一般在首次安装中，原因是repository中找不到wings的pom，尝试以下方法，
+
+* 若存在历史repo，设定$MVN_HOME/conf/settings.xml的localRepository指向
+* 在当前pom中设置wings的ossrh-snapshots。非最新wings
+* 自行 `maven install` wings工程到本地，最新wings
+
+```xml
+<repository>
+    <id>ossrh-snapshots</id>
+    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    <snapshots><enabled>true</enabled></snapshots>
+    <releases><enabled>false</enabled></releases>
+</repository>
+```
