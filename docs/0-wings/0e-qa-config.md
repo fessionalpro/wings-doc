@@ -193,6 +193,22 @@ wings原则上，所以配置项都必有默认配置，而有时候需要忽略
 * CommandLineRunner - Runner，注入依赖
 * ApplicationReadyEvent -  Ready，事件参数
 
+Wings中常用的配置方式及顺序如下，
+
+* Constructor - 全局的，必须的依赖，以final构造注入
+* @Autowired - 局部的，选用的依赖，以setter注入
+* @PostConstruct - 执行当前配置的收尾，无参数的
+* ApplicationStartedEventRunner - before app/cmd runners 初始化Helper
+* ApplicationRunnerOrdered - 自定义ordered的ApplicationRunner
+* CommandLineRunnerOrdered - 自定义ordered的CommandLineRunner
+* ApplicationInspectRunner - LOWEST_PRECEDENCE ApplicationRunner
+* ApplicationReadyEventRunner - after app/cmd runners called
+
+Helper会在ApplicationStartedEvent时初始化。Configuration和常用Bean由常量定义
+
+* WingsBeanNaming - 重要bean的name
+* WingsBeanOrdered - Order及层叠
+
 ## 0E.13.Spring配置中的日志格式
 
 在Configuration的CommonsLogging中，日志遵循以下通用的log.info格式
@@ -203,10 +219,3 @@ wings原则上，所以配置项都必有默认配置，而有时候需要忽略
 * `CommandLineRunner` - {ModuleName} spring-runs {BeanName}
 * `Bean*PostProcessor` - {ModuleName} spring-proc {BeanName}
 * 过程日志 - {ModuleName} conf
-
-Wings中常用的配置方式为以下
-
-* Constructor - 全局的，必须的依赖，以final构造注入
-* @Autowired - 局部的，选用的依赖，以setter注入
-* @PostConstruct - 执行当前配置的收尾，无参数的
-* CommandLineRunner - 执行全局收尾，可条件输出Bean
