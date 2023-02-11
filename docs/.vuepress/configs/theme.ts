@@ -1,6 +1,6 @@
-import type {ThemeOptions} from 'vuepress-theme-hope';
-import {navbar} from './navbar';
-import {sidebar} from './sidebar';
+import type { ThemeOptions } from 'vuepress-theme-hope';
+import { navbarZh, navbarEn } from './navbar';
+import { sidebarZh, sidebarEn } from './sidebar';
 
 function stylizeIt(key: string | RegExp, txt: string, type: string, ...tags: string[]) {
   return {
@@ -24,8 +24,16 @@ function stylizeIt(key: string | RegExp, txt: string, type: string, ...tags: str
 }
 
 export const themeOption: ThemeOptions = {
-  navbar,
-  sidebar,
+  locales: {
+    '/': {
+      navbar: navbarZh,
+      sidebar: sidebarZh,
+    },
+    '/en/': {
+      navbar: navbarEn,
+      sidebar: sidebarEn,
+    },
+  },
 
   hostname: 'https://wings.fessional.pro',
   author: {

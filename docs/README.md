@@ -27,7 +27,7 @@ features:
     link: /1-silence/1b-wings-i18n.html
 
   - icon: mysql
-    title: 表及数据的版本管理
+    title: 库及数据的版本管理
     details: 基于flywave工具，用git和sql管理表结构和数据变化
     link: /2-faceless/2a-flywave.html
 
@@ -119,7 +119,7 @@ features:
 
 ## 🐵 无脑使用
 
-直接作为parent使用，可通过OSS获得不定期发布的Snapshot版本。
+直接作为parent使用，可通过OSS获得不定期发布的`SNAPSHOT`版本。
 
 ```xml
 <parent>
