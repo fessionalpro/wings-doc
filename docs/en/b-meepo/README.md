@@ -9,18 +9,19 @@ category:
 
 # B.Meepo Hero Template
 
-一个基于母版语法注释和标记的不破坏母版语法的非专业模板引擎。
+template engine that does not break the `master` syntax,
+and is based on the comments and markup of the `master` syntax.
 
-## B.1.功能文档
+## B.1.Feature Docs
 
-* [米波分则能成](b1.meepo.md)
-* [应用举例](b2.example.md)
-* [语法概要](b3.syntax.md)
-* [执行引擎](b4.engine.md)
-* [函数列表](b5.function.md)
-* [常见问题](b6.question.md)
+* [Meepo Hero Template](b1.meepo.md)
+* [Usage Example](b2.example.md)
+* [Syntax Summary](b3.syntax.md)
+* [Execution Engine](b4.engine.md)
+* [Function List](b5.function.md)
+* [Frequently Asked Questions](b6.question.md)
 
-## B.2.项目链接
+## B.2.Project Links
 
 * github - <https://github.com/trydofor/pro.fessional.meepo>
 * gitee - <https://gitee.com/trydofor/pro.fessional.meepo>

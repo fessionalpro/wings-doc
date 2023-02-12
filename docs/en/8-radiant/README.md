@@ -2,16 +2,16 @@
 isOriginal: true
 icon: ubuntu
 category:
-  - 天辉
+  - Radiant
 ---
 
 # 8.Randiant AllStars
 
-基于邮轮模型，提供了场景的业务场景和组合功能。
+Based on the `GhostShip` model, it provides pluggable business scenarios and combined functions.
 
-## 8.1.相关项目
+## 8.1.Related Projects
 
-* [小小任务](8a-tinytask.md) - 以Database为核心可启停的任务
-* [任务的属性](8b-prop-tinytask.md) - TinyTask的配置
-* [小小任务](8c-tinymail.md) - 以Database为核心可启停的任务
-* [任务的属性](8b-prop-tinymail.md) - TinyTask的配置
+* [Tiny Task](8a-tinytask.md) - Tasks based on database that can be started and stopped
+* [Tiny Task Properties](8b-prop-tinytask.md) - Properties of the Tiny Task
+* [Tiny Mail](8c-tinymail.md) - Mails based on database with some transactional features
+* [Tiny Mail Properties](8d-prop-tinymail.md) - Properties of the Tiny Mail

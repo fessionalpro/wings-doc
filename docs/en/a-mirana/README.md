@@ -11,7 +11,7 @@ category:
 
 java8, 0-dependency, is an addition to guava, `commons-*`.
 
-## A.1.Function Docs
+## A.1.Feature Docs
 
 * [Mirana the Moon Princess](a1.mirana.md)
 * [Mirana Utility](a2.utilities.md)

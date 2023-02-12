@@ -78,7 +78,7 @@ features:
 ---
 
 <!-- markdownlint-disable MD025 -->
-# 🥾 纹丝不忒
+# 🥾 WingsBoot
 
 > WingsBoot=BKB + BootsOfTravel + SpringBoot. if you've liked Dota, you know.
 >
