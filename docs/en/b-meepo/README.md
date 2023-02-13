@@ -7,7 +7,7 @@ category:
   - Template
 ---
 
-# B.Meepo Hero Template
+# B.Meepo Template
 
 template engine that does not break the `master` syntax,
 and is based on the comments and markup of the `master` syntax.
