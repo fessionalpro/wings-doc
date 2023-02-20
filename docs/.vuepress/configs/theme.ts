@@ -51,7 +51,7 @@ export const themeOption: ThemeOptions = {
   repo: 'trydofor/pro.fessional.wings',
   docsRepo: 'fessionalpro/wings-doc',
   docsDir: 'docs',
-  footer: '<a href="https://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">Apache2</a> licensed, <a href="https://vuepress-theme-hope.github.io/v2/zh/" target="_blank">Mr.Hope</a> powered',
+  footer: '<a href="https://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">Apache2</a> licensed, <a href="https://theme-hope.vuejs.press" target="_blank">Mr.Hope</a> powered',
   copyright: 'Copyright© <a href="https://www.trydofor.com" target="_blank">trydofor</a>',
   displayFooter: true,
   pageInfo: ['Author', 'Original', 'Date', 'Category', 'Tag', 'ReadingTime'],

@@ -2,11 +2,11 @@
 isOriginal: true
 icon: geometry
 category:
-  - 神翼
-  - 模型
+  - WingsGod
+  - Model
 ---
 
-# 0G.幽灵船模型
+# 0G.GhostShip Model
 
 WingsBoot体系的基本架构思路是，纵向做模型，横向贴功能。
 曾用代号【邮轮模型】，后在Dota系，改为GhostShip，更wings一点。

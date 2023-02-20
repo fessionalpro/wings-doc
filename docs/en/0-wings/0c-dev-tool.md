@@ -2,11 +2,11 @@
 isOriginal: true
 icon: tool
 category:
-  - 神翼
-  - 工具
+  - WingsGod
+  - Tool
 ---
 
-# 0C.开发工具
+# 0C.Dev Tool
 
 工欲善其事，必先利其器，推荐的工具及配置。
 

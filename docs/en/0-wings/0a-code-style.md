@@ -2,39 +2,37 @@
 isOriginal: true
 icon: linter
 category:
-  - 神翼
-  - 规范
+  - WingsGod
+  - standards
 ---
 
-# 0A.编码风格
+# 0A.Coding Style
 
-Wings项目实践中，主张防御式编程，秉承以下价值观和哲学，
+The Wings practice advocates defensive programming with the following values and philosophies.
 
-* 静态优于动态 - 能编码的，就不要反射
-* 强类型优于弱类型 - 能class或enum，就不要map或const
-* 编译时优于运行时 - 能编译时解决的，就不要到运行时处理
-* IDE优于Editor - 有上下文语法的，就不要字符串查找
-* 奥卡姆剃刀 - 能简单的就不要复杂，能明示的就不要暗示
-* 命名必须明确 - 明确业务语义，可读性优先，不怕长，不怕怪
-* 边界外参数不可信 - 边界层做验证和转换，边界内则都可信
+* Static over Dynamic - don't reflect if you can code
+* StrongType over WeakType - typed class/enum is better than magic map/const
+* Compile-time over Runtime - troubleshoot at compile-time instead of runtime
+* IDE over Editor - contextual lookup instead of string lookup
+* Occam's Razor - Don't complicate what can be simple, don't imply what can be explicit
+* Naming Must be Clear - precise business meaning, readability first, not afraid of long or weird
+* Outside is Untrusted - validate and convert at the boundary, while  inside is trusted
 
-防御式编程，处处考虑边界和异常，May The `false` Be With You !
+Defensive programming considers boundary and exception everywhere, May The `false` Be With You !
 
-## 0A.1.Java代码可读性优先
+## 0A.1.Readability First Java Coding
 
-遵循标准的java规范（Idea提示即可），但可读性优先。
+Follow the standard Java coding spec (idea hints are fine), but readability takes precedence.
 
-* `static final` 不必全大写。如`log`比`LOG`可读性好
-* `BIG_SNAKE`可使用`PascalNaming`，因为大写单词不如小写易读
-* 全大写名词（缩写或专有）只首字母大写驼峰法。`Json`,`Html`,`Id`
-* 前缀，后缀及缩写，必须大于1个字母，建议3个字母（驼峰法）
-* 英文无法明确的行业黑话，如`落地配`，可使用中文，但不建议用拼音。
-* 要求4-8字母的单词都记住，命名采用动宾或形容词结构。
-* 以Empty消除null，Set/List/Array/Map用empty
-* 显示标注@NotNull，@Nullable，@Contract，声明null约束
-* 正向的业务语义，使用正向的词汇，参数等，如true
-
-提高编码质量，升级编程技能，请左转至[攻城狮的Java代码审查](https://java-code-review.moilioncircle.com)
+* `static final` don't have to be all-caps, `log` is preferred to `LOG`
+* `BIG_SNAKE` could be`PascalNaming`, lowercase is readbale than uppercase
+* All-caps (abbr. or proper) should use PascalNaming. `Json`, `Html`, `Id`
+* Prefix/suffix/abbr must be 2+ letters, 3 letters recommended (camalNaming)
+* Local language can be used for industry jargon that has no common English name.
+* Remember words with 4-8 letters. Use verb-object or adverb to name
+* Null-safe, use empty instead of null, Set/List/Array/Map
+* Declare nullability using @NotNull, @Nullable, @Contract
+* Positive business meaning, positive words, parameters. such as true
 
 ## 0A.2.Sql命名snake_case
 

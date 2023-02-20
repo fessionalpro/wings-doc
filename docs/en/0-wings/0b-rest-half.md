@@ -2,11 +2,11 @@
 isOriginal: true
 icon: linter
 category:
-  - 神翼
-  - 规范
+  - WingsGod
+  - standards
 ---
 
-# 0B.RestHalf规范
+# 0B.RestHalf Spec
 
 场景化业务的URL命名规范，参考了RESTFul和GraphQL，适用于无法资源化的业务，故取名叫`RestHalf`。
 

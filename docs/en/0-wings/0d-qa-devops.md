@@ -2,11 +2,11 @@
 isOriginal: true
 icon: repair
 category:
-  - 神翼
-  - 话题
+  - WingsGod
+  - Topics
 ---
 
-# 0D.开发运维
+# 0D.DevOps Topics
 
 编码开发，线上运行等话题。
 

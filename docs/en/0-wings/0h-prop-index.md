@@ -2,11 +2,11 @@
 isOriginal: true
 icon: enum
 category:
-  - 神翼
-  - 首页
+  - WingsGod
+  - Home
 ---
 
-# 0H.属性配置
+# 0H.Properties Index
 
 配置项推荐Properties形式，因为这样有利于分隔，层叠和查找。
 每个`*.properties`都会对应一个`*Prop.java`，以强类型的Key映射。

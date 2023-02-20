@@ -2,11 +2,11 @@
 isOriginal: true
 icon: question
 category:
-  - 神翼
-  - 话题
+  - WingsGod
+  - Topics
 ---
 
-# 0F.其他话题
+# 0F.Other Topics
 
 未归类的话题。
 
