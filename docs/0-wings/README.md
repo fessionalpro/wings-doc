@@ -13,8 +13,8 @@ category:
 WingsBoot(代号神翼)是SpringBoot的一个脚手架，没有魔法和定制，主要有以下特点：
 
 * 提供了多语言多时区真实的解决方案（动态语言包，时区，夏令时，闰秒）
-* 提供了数据库版本和数据的版本管理（表变更变多了，数据维护多了）
-* 安排了一套呆的约定和笨的工程实践（枚举类，配置文件，模板等约定）
+* 提供了数据库版本和数据的版本管理（安全的表变更，安全的数据维护）
+* 安排了一套保守约定和稳健工程实践（枚举类，配置文件，模板等约定）
 * 解决了软件开发中最难的命名问题（允许使用中文命名，解决行业黑话）
 * 英雄池很深，对技能有独到的理解（读3遍官方文档，debug部分源码）
 * 不懂代码的看文档，都不看的，别用（这是你的homework，及格线）
@@ -89,7 +89,7 @@ Wings由多个子项目构成，都采用了Dota有关的命名，主要包括�
 * warlock-awesome ← slardar-autogen | 依赖自动生成代码的功能
 * warlock-codegen ← warlock-awesome | faceless-codegen | flywave
 * warlock-shadow ← slardar-sprint | warlock-awesome | `JustAuth` | Db|Web|权限
-* warlock-bond ← warlock-shadow` | `auth-perm体系`
+* warlock-bond ← warlock-shadow | auth-perm体系
 
 ## 0.5.更多章节
 
@@ -100,3 +100,4 @@ Wings由多个子项目构成，都采用了Dota有关的命名，主要包括�
 * [配置话题](0e-qa-config.md) - maven，properties，spring的配置话题
 * [其他话题](0f-qa-others.md) - 未归类的话题
 * [幽灵船模型](0g-ghost-ship.md) - wings功能的基本构建模型
+* [属性配置](0h-prop-index.md) - wings所有的属性配置
