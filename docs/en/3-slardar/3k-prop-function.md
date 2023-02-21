@@ -504,7 +504,7 @@ Swagger文档设置
 
 ### wings.slardar.ding-notice.default.notice-mobiles
 
-`Set<String>`，被通知人的手机号，非群内成员手机号会被脱敏。会自动添加到正文@155xxxx
+`Map<String, String>`，被通知人及手机号，非群内成员手机号会被脱敏。会自动添加到正文@155xxxx
 
 ### wings.slardar.ding-notice.default.webhook-url
 
