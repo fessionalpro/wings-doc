@@ -21,6 +21,7 @@ then pnpm commands,
 * `npm -g install pnpm` - global install pnpm
 * `pnpm install` - install/update packages
 * `pnpm docs:dev-clean` - clean and review
+* `pnpm dlx vp-update` - update deps helper
 
 [hope vue]: https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/packages/components/package.json
 [hope pnpm]: https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/package.json
