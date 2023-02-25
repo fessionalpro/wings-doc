@@ -45,8 +45,8 @@ wings随时跟进升级SpringBoot的次一级稳定版，目的是为了测试sh
 * import - does not let you override individual dependencies by using properties,
   as explained above. To achieve the same result, you need to add entries in the dependencyManagement
   section of your project before the spring-boot-dependencies entry.
-* <https://docs.spring.io/spring-boot/docs/3.0.2/maven-plugin/reference/htmlsingle/#using.parent-pom>
-* <https://docs.spring.io/spring-boot/docs/3.0.2/maven-plugin/reference/htmlsingle/#using-import>
+* <https://docs.spring.io/spring-boot/docs/3.0.3/maven-plugin/reference/htmlsingle/#using.parent-pom>
+* <https://docs.spring.io/spring-boot/docs/3.0.3/maven-plugin/reference/htmlsingle/#using-import>
 
 对于低于wings的spring-boot版本，一般来讲指定一下jooq版本就可以完全正常。
 
@@ -131,7 +131,7 @@ wings推荐的工程结构是，parent的pom.xml的`project/build/plugins`项，
 
 ## 0E.08.如何配置logger和log groups
 
-SpringBoot内置以下[Log Groups](https://docs.spring.io/spring-boot/docs/3.0.2/reference/htmlsingle/#features.logging.log-groups)
+SpringBoot内置以下[Log Groups](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.logging.log-groups)
 
 * org.springframework.core.codec
 * org.springframework.http

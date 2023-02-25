@@ -321,7 +321,7 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ## 3K.7.wings-okhttp-79.properties
 
-[RestTemplate Customization](https://docs.spring.io/spring-boot/docs/3.0.2/reference/htmlsingle/#io.rest-client.resttemplate.customization)
+[RestTemplate Customization](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#io.rest-client.resttemplate.customization)
 
 ### wings.slardar.okhttp.timeout-conn
 
