@@ -336,7 +336,7 @@ Type tp2 = ResolvableType.forClassWithGenerics(R.class, Dto.class).getType();
 * kotlin-stdlib-jdk8 这是最新的stdlib
 * mvn profile中的maven.compiler.target 优先与pom.xml
 * JAVA_HOME是否指定正确的jdk版本
-* kotlin-support profile，需要存在src/test/kotlin目录才自动生效
+* `wings-kotlin-*`的profile，在有`src/*/kotlin/`时自动生效
 
 ## 0D.24.ApplicationContextHelper空指针
 
