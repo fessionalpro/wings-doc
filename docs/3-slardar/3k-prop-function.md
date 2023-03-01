@@ -321,7 +321,7 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ## 3K.7.wings-okhttp-79.properties
 
-[RestTemplate Customization](https://docs.spring.io/spring-boot/docs/3.0.2/reference/htmlsingle/#io.rest-client.resttemplate.customization)
+[RestTemplate Customization](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#io.rest-client.resttemplate.customization)
 
 ### wings.slardar.okhttp.timeout-conn
 
@@ -504,7 +504,7 @@ Swagger文档设置
 
 ### wings.slardar.ding-notice.default.notice-mobiles
 
-`Set<String>`，被通知人的手机号，非群内成员手机号会被脱敏。会自动添加到正文@155xxxx
+`Map<String, String>`，被通知人及手机号，非群内成员手机号会被脱敏。会自动添加到正文@155xxxx
 
 ### wings.slardar.ding-notice.default.webhook-url
 

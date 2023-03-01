@@ -188,7 +188,7 @@ at org.jooq.impl.AbstractQuery.execute(AbstractQuery.java:390)
 原因是maven-resources-plugin的filter目录中存在非文本文件(不可按字符串读取)，
 不要降级到3.1.0，在nonFilteredFileExtension添加扩展名即可。
 
-[Automatic Property Expansion Using Maven](https://docs.spring.io/spring-boot/docs/3.0.2/reference/htmlsingle/#howto-properties-and-configuration)
+[Automatic Property Expansion Using Maven](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#howto-properties-and-configuration)
 
 ## 0D.12.通过mysql客户端能找到，wings查询不到数据
 
@@ -239,7 +239,7 @@ IDE使用了devtools的`restart`, 而非IDE内的jar则是`base`。
 * 方案二，自己暴露Config或ClientConfig，并设置好classloader
 * 方案三，配置spring-devtools.properties（不推荐，wings采用）
 
-不推荐在product环境使用devtool，参考springboot官方文档的[Known Limitations](https://docs.spring.io/spring-boot/docs/3.0.2/reference/htmlsingle/#using.devtools.restart.limitations)
+不推荐在product环境使用devtool，参考springboot官方文档的[Known Limitations](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#using.devtools.restart.limitations)
 
 ## 0D.16.Hazelcast的`OutOfMemoryError`及`CallerNotMemberException`
 
@@ -336,7 +336,7 @@ Type tp2 = ResolvableType.forClassWithGenerics(R.class, Dto.class).getType();
 * kotlin-stdlib-jdk8 这是最新的stdlib
 * mvn profile中的maven.compiler.target 优先与pom.xml
 * JAVA_HOME是否指定正确的jdk版本
-* kotlin-support profile，需要存在src/test/kotlin目录才自动生效
+* `wings-kotlin-*`的profile，在有`src/*/kotlin/`时自动生效
 
 ## 0D.24.ApplicationContextHelper空指针
 

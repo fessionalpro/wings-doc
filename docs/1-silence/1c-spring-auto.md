@@ -42,7 +42,7 @@ category:
 
 参考资料
 
-* <https://docs.spring.io/spring-boot/docs/3.0.2/reference/htmlsingle/#appendix.configuration-metadata>
+* <https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#appendix.configuration-metadata>
 * <https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-Configuration-Binding>
 * <https://github.com/spring-projects/spring-boot/wiki/IDE-binding-features#simple-pojo>
 
@@ -95,4 +95,4 @@ public static class SomeServiceConfiguration {
 }
 ```
 
-参考[Creating Your Own Auto-configuration](https://docs.spring.io/spring-boot/docs/3.0.2/reference/htmlsingle/#features.developing-auto-configuration)
+参考[Creating Your Own Auto-configuration](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.developing-auto-configuration)

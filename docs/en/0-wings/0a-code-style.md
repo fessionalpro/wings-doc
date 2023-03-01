@@ -34,92 +34,99 @@ Follow the standard Java coding spec (idea hints are fine), but readability take
 * Declare nullability using @NotNull, @Nullable, @Contract
 * Positive business meaning, positive words, parameters. such as true
 
-## 0A.2.Sql命名snake_case
+To improve coding quality and enhance your programming skills, go to [NotBad Review](https://java-code-review.moilioncircle.com)
 
-即全小写，下划线分割。因实践中发现，小写词比大写容易识别。
+## 0A.2.Sql using snake_case
 
-* 数据库，表名，字段名，全小写。
-* SQL关键词，内置词等建议`大写`，以区别。
-* `index`以`ix_`,`uq_`,`ft_`,`pk_`区分索引类型。
-* `trigger`以`(ai|au|db)__`表示触发的时机。
+All lowercase with underscore split. in practice, lowercase is easier to recognize than uppercase.
 
-wings主张业务表SQL化，即使用SQL管理表及数据，而GUI或对象映射都是辅助功能。
-SQL脚本可以很好的编辑，比较，文档化，包括业务表的分层，编号及注释格式。
+* Database, table, field, all lowercase
+* SQL keywords, built-ins, all uppercase, user-defined
+* Prefix `ix_`,`uq_`,`ft_`,`pk_` to `index` by its type
+* Prefix `(ai|au|db)__` to `trigger` by its event
 
-* 表`编号/名字:解释` - 105/常量枚举:自动生成enum类
-* 字段`注释/解释:选项|选项` - 验证账号/身份辨识:邮箱|手机|union_id|api_key
+Wings advocates the SQL-ization of business tables, which means using SQL to manage tables and data,
+with GUI or object mapping as a helper tool. SQL is well known and easy to edit, compare,
+document and version, including management of architecture, documentation and execution.
 
-编号由业务层规划，如10x为系统，11x为应用，12x为用户，13x为权限，2xx为商品，3xx为订单等。
+* table `number/name:explain` - 105/const:auto-gen enum
+* column `comment/explain:opt1|opt2` - verify account/identification:email|phone
 
-## 0A.3.配置类properties优先
+The number is planned by the business architecture, e.g. 10x for system, 11x for application,
+12x for user, 13x for permission, 2xx for product, 3xx for order, etc.
 
-尽量使用`properties`格式，因`yml`的缩进在局部编辑时，容易出现困扰。
+## 0A.3.Properties First in Configuration
 
-* 一组有关联的属性，放在一个`properties`，分成文件便于版本管理
-* `spring-wings-enabled.properties`用于ConditionalOnProperty配置
-  - 统一使用`spring.wings.**.enabled.*=true|false`格式
-  - 多模块时，模块本身为`spring.wings.**.enabled.module=true`
-* `spring-*`放置spring官方配置key
-* `wings-*`放置wings配置key，
-  - 带有工程或模块代号，如`wings.slardar.*`
-  - 提供默认配置，使用`-79`序号
-* 推荐`kebab-caseae`命名，即`key`全小写，使用`-`分割
+Recommand `properties`, as the indentation of `yml` is difficult to edit, copy, and share in parts.
 
-## 0A.4.spring注入注意事项
+* Group related properties in a separate `properties` file,
+  split the large file  into smaller ones for easy management and versioning
+* `spring-wings-enabled.properties` is used for ConditionalOnProperty
+  - Use `spring.wings.**.enabled.*=true|false` as a standard format.
+  - When multi-module, the module itself is `spring.wings.**.enabled.module=true`
+* `spring-*` is used for the spring official configuration
+* `wings-*` is used for the wings configuration,
+  - Use the codename of project/module, e.g. `wings.slardar.*`
+  - Provide the default configuration with `-79` serial number
+* Recommend `kebab-caseae` naming, i.e. `key` is all lowercase, `-` splitted
 
-* 优先使用`constructor`注入，用`lombok`的`@RequiredArgsConstructor`
-* 次之使用`setter`注入，用`lombok`的`@Setter(onMethod_ = {@Autowired})`
-  或`kotlin`的`@Autowired lateinit var`
-* 尽量避免使用`Field`注入，坏处自己搜一搜
-* 通常required时constructor注入，optional时setter注入
-* 但注入过多，使参数列表过长，影响理解和使用时，使用setter注入
+## 0A.4.Spring Injection Notes
 
-使用@Resource，@Inject和@Autowired，有细微差别，
+* `constructor` injection first, using `@RequiredArgsConstructor` of `lombok`
+* `setter` injection second, using `@Setter(onMethod_ = {@Autowired})` of `lombok`
+  or `@Autowired lateinit var` of `kotlin`
+* Avoid `Field` injection, you can google why not
+* Typically, constructor means required, setter means optional
+* However, too many injections makes the parameters too long to understand and use,
+  then use setter injection and `afterPropertiesSet` checking instead.
 
-* Resource由CommonAnnotationBeanPostProcessor处理，
-  查找顺序为①BeanName ②BeanType ③Qualifier
-* Autowired和Inject由AutowiredAnnotationBeanPostProcessor处理，
-  查找顺序为①BeanType ②Qualifier ③BeanName
-* type优先用Autowired和Inject，name优先用Resource(细粒度，难控制)
-* 在spring体系下推荐@Autowired，考虑兼容性用Inject
+The use of `@Resource`, `@Inject`, and `@Autowired` has some differences,
 
-继承父类时的注入规定（类无法得知是否被继承）
+* Resource is processed by CommonAnnotationBeanPostProcessor.
+  The search order is ①BeanName ②BeanType ③Qualifier
+* Autowired and Inject are processed by AutowiredAnnotationBeanPostProcessor,
+  The search order is ①BeanType ②Qualifier ③BeanName
+* by-type injection uses Autowired and Inject,
+  by-name injection uses Resource (fine-grained, hard to control)
+* recommend `@Autowired` in spring, use `@Inject` for compatibility 
 
-* 父类中有@Setter注入时，字段以protected替代private
-* 不希望子类覆盖时，需要final setter，避免父类无法注入
-* 继承时，一旦父类有setter，请不要override，除非确保DI无碍
-* 继承时，不希望父类DI，子类override，并自行注入
+Injection rules when extending a parent class (the class cannot know its subclass)
 
-## 0A.5.RequestMapping风格
+* If @Setter injection in the parent, the fields should protected than private
+* If deny override, use `final setter` to make DI in the parent
+* If the parent has setter DI, override it need to make sure subclass DI
+* Subclass override and inject itself can instead parent DI
 
-Url命名主要是场景化的前缀，参考[RestHalf](0b-rest-half.md)。
+## 0A.5.RequestMapping Style
 
-* 在方法上写全路径`@RequestMapping("/a/b/c.html")`
-* 在controller上写版本号`@RequestMapping("/v1")`
-* 不要相写相对路径，这样才可以通过URL直接搜索匹配
-* 不要使用prefix拼接路径(view，url)，避免无意义的碎片
-* 不管REST还是其他，url必须有扩展名，用来标识MIME和过滤
+Url naming is mainly scenario-based prefixes, see [RestHalf](0b-rest-half.md).
 
-## 0A.6.Service和Dto约定
+* Full path on method `@RequestMapping("/a/b/c.html")`
+* Version on the controller `@RequestMapping("/v1")`
+* Do not use relative path, so can search directly by URL match
+* Do not use prefix to concat path (view, url) to avoid meaningless fragmentation
+* The url must have an extension to identify the MIME or to filter, whether REST or otherwise.
 
-interface上使用annotation时，遵循以下规则，
+## 0A.6.Service and Dto Convention
 
-* `@Component`类注解，不要放在接口上，放在具体实现上
-* 功能约定类，放在接口上，如`@Transactional`
+When using annotation on the interface, see the following,
 
-Service定义为接口，Service中的Dto，定义为内类，作为锲约。
-Dto间的转换和复制，使用工具类生成Helper静态对拷属性。
-禁止使用反射，不仅是因为性能损失，主要是动态性，脱离了编译时检查。
+* `@Component`-like, not on interface, on the implementation
+* Functional annotation, on he interface, eg. `@Transactional`
 
-直接单向输出的model对象，可以使用map，否则一定强类型的class。
+Service is interface and its Dto is its inner class, these are contract.
+Conversion and copying between Dto, use code tool to generate static mapping helper.
+Prohibit the use of reflection, not only because of performance loss,
+but mainly because of the dynamics, out of compile-time checking.
 
+Direct one-way output model objects, you can use map, otherwise must be strongly typed class.
 ```java
 public interface TradeService {
 
     @Getter
     @RequiredArgsConstructor
     enum Err implements CodeEnum {
-        RateFailed("fedex.rate.unknown", "Fedex查询价格错误"),
+        RateFailed("fedex.rate.unknown", "Failed to get Fedex quote"),
         ;
 
         private final String code;
@@ -138,134 +145,139 @@ public interface TradeService {
 }
 ```
 
-## 0A.7.枚举类和code/const值
+## 0A.7.Enum, Code and Const
 
-因强类型原则，所有code和const都应该变成enum，在业务层传递。
+Because of the strong type principle, all magic code and const should be
+converted to enum and passed between business layers.
 
-* 在service层，通过自动java模板生成enum，通过*EnumUtil，转换
-* 在db层，以基本类型(int,varchar)读取和写入
-* 在用户层，以多国语形式显示枚举内容
-* 不能enum的魔法值，使用@MagicConstant标注
+* In the service layer, the enum is autogen by template, and converted by `*EnumUtil`
+* In the db layer, reading and writing with basic types (int,varchar)
+* In the user layer, display the enum content in an i18n format
+* Magic values that cannot be converted to enum, marked with `@MagicConstant`
 
-## 0A.8.maven管理的约定
+## 0A.8.Maven Management Convention
 
-* 多模块有主工程（parent|packaging=pom）和子工程（module|packaging=jar）
-* 主工程在dependencyManagement定义lib，不管理具体dependency
-* 子工程自己管理dependency，不可以重新定义版本号
-* 依赖冲突时，maven遵循路径最短原则，所以在就近工程重新定义
+* Multi-module has main project (parent|packaging=pom) and sub-projects (module|packaging=jar)
+* The main project defines libs in dependencyManagement and does not manage specific dependencies
+* the sbproject manage its own dependencies and cannot redefine version number
+* In dependency conflicts, Maven follows the shortest path principle, so redefining the project in the closest
 
-## 0A.9.Api测试及文档约定
+## 0A.9.Api Testing and Docs Convention
 
-wings默认开启swagger，访问路径为`/swagger-ui/index.html`
+Wings enable swagger by default, the path is `/swagger-ui/index.html`
 
-因swagger注解容易使doc部分冗长，且SpringDoc做了比较智能的推导，
-所以在能够表述清楚时，建议简化注解，参考以下注解。
+As swagger annotations will make the in-code doc complex and SpringDoc does a more intelligent derivation.
+So it is recommended to simplify the annotation when you can express it clearly, see the following annotations.
 
-* @Operation，以tag,summary,description等表述清楚
-* @Schema，输入或输出对象
-* @Parameter， 输入参数
-* @ApiResponse，必要时使用
+* @Operation use tag, summary and description
+* @Schema, input and output object
+* @Parameter, input param
+* @ApiResponse, if complex response
 
-在description中，支持Markdown，辅助jsdoc，可使文档更加清晰。
+the description supports Markdown, use jsdoc can make the docs more clear,
 
-* 参考param <https://jsdoc.app/tags-param.html>
-* 参考returns <https://jsdoc.app/tags-returns.html>
+* see param <https://jsdoc.app/tags-param.html>
+* see returns <https://jsdoc.app/tags-returns.html>
 * `@param [name=trydofor] - Somebody's name.`  -
-* `@return {200|Result(Dto)} 正常返回对象，status=200` - 小括号表示泛型(避免转义)。
-* `@return {200|Result(false)} 错误时返回，status=200` - 小括号表示简单约定参数。
+* `@return {200|Result(Dto)} success response，status=200` - Parentheses indicate generic (to avoid escaping)
+* `@return {200|Result(false)} failure response，status=200`- Parentheses indicate simple convention parameters
 
-使用swagger时，不可使用弱口令，在正式服上可通过以下属性关闭。  
+Do not use weak passwords in swagger, and should disable swagger in the live product with the following properties
 
 * springdoc.api-docs.enabled=true
 * springdoc.swagger-ui.enabled=true
 
-## 0A.A.resource结构
+## 0A.A.Resource Structure
 
-文件或包，一般以wings或项目代号为前缀。前缀表示统一服务，项目代号为项目特有。
+Files or packages, usually prefixed with wings or codename.
+The prefix indicates a unified service and the codename is project specific.
 
 ```text
 src/main/resources
-├── META-INF - spring 自动配置入口等
-│   └── spring.factories - EnableAutoConfiguration入口
-├── extra-conf/ - 非自动加载的其他配置
-├── wings-conf/ - wings自动加载配置 xml|yml|yaml|properties
-├── wings-flywave/ - flywave数据库版本管理，
-│   ├── branch/* - 分支脚本，如维护，功能
-│   └── master/* - 主线脚本，上线中
-└── wings-i18n/ - wings自动加载 bundle
-│   ├── base-validator_en.properties - 英文版
-│   └── base-validator_ja.properties - 日文版
-└── application.properties - spring 默认配置，用于覆盖wings
+├── META-INF - spring auto config entrance
+│   └── spring.factories - EnableAutoConfiguration
+├── extra-conf/ - non-auto loading config
+├── wings-conf/ - wings auto config, xml|yml|yaml|properties
+├── wings-flywave/ - flywave manage data and schema version,
+│   ├── branch/* - branch scripts, such as maintenance, functions
+│   └── master/* - mainline script, online
+└── wings-i18n/ - wings auto config bundle
+│   ├── base-validator_en.properties - english
+│   └── base-validator_ja.properties - japanese
+└── application.properties - spring config can override wings
 ```
 
-## 0A.B.自动配置结构
+## 0A.B.Auto Conf Structure
 
-wings对`spring/bean`包有特殊处理，可以自动 @ComponentScan
+Wings handle`spring/bean` special, can auto apply `@ComponentScan`
 
 ```text
-src/**/spring - spring有个配置
-├── bean/ - 自动扫描，产生可被Autowired的Bean
-│   └── WingsLightIdConfiguration.java - 内部用项目前缀，对外使用Wings前缀
-├── boot/ - spring boot 配置用，不产生Bean
-│   └── WingsAutoConfiguration.java - 兼容IDE和starter的配置入口
-├── conf/ - 配置辅助类Configurer
-├── help/ - 工具辅助类
-└── prop/ - 属性类，自动生成spring-configuration-metadata.json
-    └── FacelessEnabledProp.java - 开关类
+src/**/spring - all spring config
+├── bean/ - auto scan to produce `@Bean` to be `@Autowired`
+│   └── WingsLightIdConfiguration.java - prefix codename internally and Wings externally
+├── boot/ - spring boot config, not produce bean
+│   └── WingsAutoConfiguration.java - IDE and starter compatible entrance
+├── conf/ - Config helper, eg. Configurer
+├── help/ - Helper
+└── prop/ - property, autogen spring-configuration-metadata.json
+    └── FacelessEnabledProp.java - toggle feature
 ```
 
-在`@Configuration`类中配置`@Bean`时，对其依赖的注入，遵循以下原则，
+When config `@Bean` in the `@Configuration`, the DI principle as follows,
 
-* 优先使用Constructor+final形式
-* 使用Bean声明方法的参数
-* 可使用Config的Field注入
-* 避免使用Config的Setter注入，因为不能及时暴露依赖错误
-* 一般方法的Autowired用于工具类初始化
+* use constructor+final first
+* use parameters of methods to declare bean
+* can use Field inection in Config
+* avoid setter injection in Config, because the dependency error is too late
+* Autowired method for tool initialization
 
-## 0A.C.常见的命名约定
+## 0A.C.Common Naming Convention
 
-* 接口默认实现为`Default*`
-* 适配器类为`*Adapter`
+* The default impl is `Default*`
+* Adapter class is `*Adapter`
 
-常用命名组合，单词顺序和词义尽量保持一致，可读性优先。
+Common naming group, word order and meaning should be consistent, and readability first,
 
 * Ins/Out
 * Query/Reply
 
 ```java
-// Service中Journal 枚举类
+// enum in Journal Service
 enum Jane {
-    Create, // 新建
-    Modify, // 修改
-    Remove, // 逻辑删除
-    Delete, // 物理删除
+    Create, // insert
+    Modify, // update
+    Remove, // logic delete
+    Delete, // real delete
 }
 ```
 
-## 0A.D.Event同步内部优先
+## 0A.D.Sync Internal Event First
 
-* 内部Event，内部Publish，内部Listen
-* 能内部Listen的，就不用外部的Subscribe
-* 能同步的，就不用异步
+* Internal Event, Internal Publish, Internal Listen
+* If can listen internally, don't subscribe externally
+* If can synchronize, don't asynchronize
 
-## 0A.E.有关过渡设计和技术债务
+## 0A.E.Over-design and Tech-debt
 
-因为需求的渐进明细，外部的环境变化，几乎所有业务系统的开发都是演进式。
-基于以上事实，在实际交付中，力求完美很容易误人误事，应该遵循以下规则：
+Due to the progressively detailed requirements and external environmental changes,
+almost all business systems are developed in an evolutionary manner.
 
-* 仅做高出能力的10%的挑战，小于20%的远见
-* 任何技术或方案的妥协都不得牺牲质量
-* 每次迭代，偿还10%-20%的技术债务
+Based on the above facts, in actual delivery, over-design for perfection will
+easily lead to mistakes and should follow the following rules.
 
-## 0A.F.时间是神奇的类型
+* Do only 10% of the challenge above your ability, less than 20% of the further vision
+* Any compromise must not sacrifice quality, and things must not be done carelessly
+* Pay back 10-20% of tech debt with each iteration
 
-系统内有2种时间`系统时间`和`本地时间`，数据库和java类型映射上，
+## 0A.F.Time is Godlike Type
 
-* `日期时间`，以`DATETIME`或`DATETIME(3)`和`LocalDateTime`存储
-* `日期`，以`DATE`和`LocalDate`存储
-* `时间`，以`TIME`或`TIME(3)`和`LocalTime`存储
-* `时区`，以`VARCHAR(40)`或`INT(11)`存储
-* 特别场景，以`BIGINT(20)`或`VARCHAR(20)`存储
+There're 2 types of time `system` and `local` in wings. mapping on database and java,
+
+* `datetime` - `DATETIME` or `DATETIME(3)` to `LocalDateTime`
+* `date` - `DATE` to `LocalDate`
+* `time` - `TIME` or `TIME(3)` to `LocalTime`
+* `timezone` - `VARCHAR(40)` or `INT(11)` to `ZoneId`
+* Special scenario, stored as `BIGINT(20)` or `VARCHAR(20)`
 
 以跨境电商场景为例，服务器群采用`UTC`时区（系统时间），中国用户`Asia/Shanghai`（用户时间）,
 纽约NY商家`America/New_York`（数据时间），洛杉矶LA商家`America/Los_Angeles`（数据时间）。

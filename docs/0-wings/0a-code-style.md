@@ -28,7 +28,7 @@ Wings项目实践中，主张防御式编程，秉承以下价值观和哲学，
 * `BIG_SNAKE`可使用`PascalNaming`，因为大写单词不如小写易读
 * 全大写名词（缩写或专有）只首字母大写驼峰法。`Json`,`Html`,`Id`
 * 前缀，后缀及缩写，必须2个字母起，建议3个字母（驼峰法）
-* 英文无法明确的行业黑话，如`落地配`，可使用中文，但不建议用拼音。
+* 英文无法明确的行业黑话，可使用中文，但不建议用拼音。
 * 要求4-8字母的单词都记住，命名采用动宾或副词结构。
 * 以Empty消除null，Set/List/Array/Map用empty
 * 显示标注@NotNull，@Nullable，@Contract，声明null约束
@@ -49,7 +49,7 @@ wings主张业务表SQL化，即使用SQL管理表及数据，而GUI或对象映
 SQL脚本可以很好的编辑，比较，文档化，包括业务表的分层，编号及注释格式。
 
 * 表`编号/名字:解释` - 105/常量枚举:自动生成enum类
-* 字段`注释/解释:选项|选项` - 验证账号/身份辨识:邮箱|手机|union_id|api_key
+* 字段`注释/解释:选项1|选项2` - 验证账号/身份辨识:邮箱|手机|union_id|api_key
 
 编号由业务层规划，如10x为系统，11x为应用，12x为用户，13x为权限，2xx为商品，3xx为订单等。
 
@@ -74,23 +74,24 @@ SQL脚本可以很好的编辑，比较，文档化，包括业务表的分层�
   或`kotlin`的`@Autowired lateinit var`
 * 尽量避免使用`Field`注入，坏处自己搜一搜
 * 通常required时constructor注入，optional时setter注入
-* 但注入过多，使参数列表过长，影响理解和使用时，使用setter注入
+* 但注入过多，使参数列表过长，影响理解和使用时，
+  使用setter注入，加上`afterPropertiesSet`检查
 
-使用@Resource，@Inject和@Autowired，有细微差别，
+使用`@Resource`，`@Inject`和`@Autowired`，有细微差别，
 
 * Resource由CommonAnnotationBeanPostProcessor处理，
   查找顺序为①BeanName ②BeanType ③Qualifier
 * Autowired和Inject由AutowiredAnnotationBeanPostProcessor处理，
   查找顺序为①BeanType ②Qualifier ③BeanName
 * type优先用Autowired和Inject，name优先用Resource(细粒度，难控制)
-* 在spring体系下推荐@Autowired，考虑兼容性用Inject
+* 在spring体系下推荐`@Autowired`，考虑兼容性用`@Inject`
 
 继承父类时的注入规定（类无法得知是否被继承）
 
 * 父类中有@Setter注入时，字段以protected替代private
 * 不希望子类覆盖时，需要final setter，避免父类无法注入
 * 继承时，一旦父类有setter，请不要override，除非确保DI无碍
-* 继承时，不希望父类DI，子类override，并自行注入
+* 继承时，不希望父类DI，可子类override，并自行注入
 
 ## 0A.5.RequestMapping风格
 
@@ -144,7 +145,7 @@ public interface TradeService {
 
 因强类型原则，所有code和const都应该变成enum，在业务层传递。
 
-* 在service层，通过自动java模板生成enum，通过*EnumUtil，转换
+* 在service层，通过自动java模板生成enum，通过`*EnumUtil`，转换
 * 在db层，以基本类型(int,varchar)读取和写入
 * 在用户层，以多国语形式显示枚举内容
 * 不能enum的魔法值，使用@MagicConstant标注
@@ -172,7 +173,7 @@ wings默认开启swagger，访问路径为`/swagger-ui/index.html`
 
 * 参考param <https://jsdoc.app/tags-param.html>
 * 参考returns <https://jsdoc.app/tags-returns.html>
-* `@param [name=trydofor] - Somebody's name.`  -
+* `@param [name=trydofor] - Somebody's name.`
 * `@return {200|Result(Dto)} 正常返回对象，status=200` - 小括号表示泛型(避免转义)。
 * `@return {200|Result(false)} 错误时返回，status=200` - 小括号表示简单约定参数。
 
@@ -250,13 +251,13 @@ enum Jane {
 * 能内部Listen的，就不用外部的Subscribe
 * 能同步的，就不用异步
 
-## 0A.E.有关过渡设计和技术债务
+## 0A.E.有关过度设计和技术债务
 
 因为需求的渐进明细，外部的环境变化，几乎所有业务系统的开发都是演进式。
 基于以上事实，在实际交付中，力求完美很容易误人误事，应该遵循以下规则：
 
 * 仅做高出能力的10%的挑战，小于20%的远见
-* 任何技术或方案的妥协都不得牺牲质量
+* 任何技术或方案的妥协都不得牺牲质量，做事不可糊弄
 * 每次迭代，偿还10%-20%的技术债务
 
 ## 0A.F.时间是神奇的类型

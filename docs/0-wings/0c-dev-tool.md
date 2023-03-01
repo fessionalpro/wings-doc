@@ -73,17 +73,18 @@ find . -name '*.iml' -o -name '.idea' | tr '\n' '\0' | xargs -0 rm -r
 wings支持java和kotlin混合开发，但更主张优先写好java，以避免过渡语法糖及过于灵活。
 所以，工程默认为java编译，以下任一条件，均可激活kotlin编译。
 
-* 自动激活 - 存在`src/test/kotlin`，注意不是`main`
-* 手动激活 - 指定 kotlin-support，如 `-P kotlin-support`
+* 自动激活 - 存在`src/test/kotlin`或`src/main/kotlin`时，分别激活
+* 手动激活 - 指定`wings-kotlin-1test`或`wings-kotlin-2main`
+* 注意顺序，必须先test后main，如数字所示。因maven不支持多条件激活 MNG-5909
 
-当profile激活时，会生成`kotlin-supported=true`属性，配置stdlib和compile环境。
+当profile激活时，会生成`wings-kotlin-scope`属性，配置stdlib的scope为compile/test
 检查当前项目是否激活kotlin，进入工程目录，执行一下mvn命令，
 
 ```bash
 # 自动激活
 mvn help:active-profiles
-# 手动激活
-mvn help:active-profiles -P kotlin-support
+# 手动激活，逗号分隔，不用有空白
+mvn help:active-profiles -P wings-kotlin-1test,wings-kotlin-2main
 # 查看最终 pom.xml
 mvn help:effective-pom
 ```
