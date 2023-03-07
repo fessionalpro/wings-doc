@@ -101,12 +101,19 @@ wings在异步emit和补发时，采用批量发送，可减少登录次数。
 
 等待间隔，在设定的阈值内为sleep，否则抛出MailWaitException
 
-## 8C.6.错误处理
+## 8C.6.Error Handling
 
-邮件异常，主要分三个类别
+Email exceptions, mainly have three categories
 
-* 格式错误，邮件本身问题，重发一样出错
-* 账号错误，如服务商限频，账号锁死，带锁定结束后可以
-* 网络错误，试网络波动情况，一般很快可以重试
+* Format error - the mail itself problem, the same error when resending.
+* Account error - by mail provider, such as frequency limit, account lock, can resend when unlocked.
+* Network error - depending on the network, usually can retry soon
 
-按以上类型和异常的message特征，构造MailWaitException，交由调用者处理。
+according to the above types and the server response message,
+throw MailWaitException  and leave it to the caller to handle.
+
+## 8C.7.Status Hook
+
+use StatusHook to handle success/failure status when sending emails with TinyMailService,
+
+* stop() - true, it will stop retrying the email and set NextSend to empty.
