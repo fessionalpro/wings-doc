@@ -90,6 +90,7 @@ features:
 ![slardar](/slardar_minimap_icon.png)
 ![warlock](/warlock_minimap_icon.png)
 ![batrider](/batrider_minimap_icon.png)
+![tiny](/tiny_minimap_icon.png)
 
 适合成长型团队在成长型业务中平稳的实现，技术过渡，团队拉扯和业务升级。
 其核心价值是：①快速实现业务目标；②及时偿还技术债务；③安全重构程序和业务。

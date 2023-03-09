@@ -91,6 +91,7 @@ features:
 ![slardar](/slardar_minimap_icon.png)
 ![warlock](/warlock_minimap_icon.png)
 ![batrider](/batrider_minimap_icon.png)
+![tiny](/tiny_minimap_icon.png)
 
 It is suitable for growing teams to smoothly achieve business growth, technology evolution, team pulling and business upgrading.
 The core values are: ① quickly achieve business goals; ② timely repay technical debt; ③ safely refactor programs and business.
