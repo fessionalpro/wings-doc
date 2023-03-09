@@ -279,133 +279,146 @@ There're 2 types of time `system` and `local` in wings. mapping on database and 
 * `timezone` - `VARCHAR(40)` or `INT(11)` to `ZoneId`
 * Special scenario, stored as `BIGINT(20)` or `VARCHAR(20)`
 
-以跨境电商场景为例，服务器群采用`UTC`时区（系统时间），中国用户`Asia/Shanghai`（用户时间）,
-纽约NY商家`America/New_York`（数据时间），洛杉矶LA商家`America/Los_Angeles`（数据时间）。
+For example, in the cross-border e-commerce scenario, the servers run in the `UTC` time zone (system time),
+the Chinese customer (C1) in`Asia/Shanghai` (user time), New York merchant (NY) in `America/New_York` (data time),
+Los Angeles merchant (LA) in `America/Los_Angeles` (data time).
 
-本地日时，必须有`时区`配合，又分为`用户时间`和`数据时间`，命名后缀如下，
+The local datetime, which must have a `timezone` to match, is further divided into `UserTime` and `DataTime`,
+named with the following suffixes.
 
-* `时区` - 以`_tz`或`_zid`为后缀，内容为`ZoneId`的字符串名字
-* `日时` -系统/用户/数据，分别以`_dt`/`_udt`/`_ldt`结尾
-* `日期` -系统/用户/数据，分别以`_dd`/`_udd`/`_ldd`结尾
-* `时间` - 系统/用户/数据，分别以`_tm`/`_utm`/`_ltm`结尾
+* `timezone` - string ,`_tz` or `_zid` as suffix and `ZoneId` as content.
+* `datetime` - system/user/data time end with `_dt`/`_udt`/`_ldt` respectively
+* `date` - system/user/data time end with `_dd`/`_udd`/`_ldd` respectively
+* `time` - system/user/data time end with `_tm`/`_utm`/`_ltm` respectively
 
-举例，北京时间`2020-08-09 01:00:00`，中国用户C1，分表在NY和LA商家下单。
+E.g. at BST `2020-08-09 01:00:00 +08:00`, Chinese customer C1, places an order at NY and LA merchants respectively.
 
 * Sys_dt(UTC) = `2020-08-08 17:00:00`
 * C1_udt(Asia/Shanghai, UTC+8) = `2020-08-09 01:00:00`
 * NY_ldt(America/New_York, UTC-4) = `2020-08-08 13:00:00`
 * LA_ldt(America/Los_Angeles, UTC-7) = `2020-08-08 10:00:00`
 
-哎，不对啊，记得纽约是`西五区`啊，应该`UTC-5`啊，怎么时间不对呢？
-系统中不要使用`UTC-5`，所以需要city标志`zoneid`，
-因为同一经线上国家很多，并且时区本非按经线换分，有些区域存在`夏令时`。
+Ahh, it's not right, I remember New York is `Western 5 Zone`, it should be `UTC-5`, `UTC-4` is wrong.
+We don't use `UTC-5` in the system, we have to use the city `zoneid`.
+Because there are many countries on the same longitude, and the time zone is not divided by the longitude,
+and some regions have `Daylight Saving Time`.
 
-系统时区，推荐为核心用户所在时区，要考虑UTC是否为最优解。
+It's recommended to use the main user's timezone as the system timezone,
+and should consider whether UTC is the best solution.
 
-于是，以下场景时，我们会用到不同的时间，
+So, we will use different time in the following scenarios,
 
-* 当跟踪系统日志时，我们使用`Sys_dt`，可以保证统一的时间线
-* 当统计北美商家`上午`的营运报表时，我们使用`*_ldt`
-* 当追求用户体验，用户不关心时区时，用户看到的所有时间都是`C1_udt`
-* 有些行业惯例（航空，物流）使用本地时间，我们使用`*_ldt`
+* When tracking system logs, we use `Sys_dt` to ensure the consistent timeline.
+* When counting North American merchant `AM` operating reports, We use `*_ldt`.
+* When for user experience or timezone insensitive, all time for C1 is `C1_udt`.
+* Some industry practices (airlines, logistics) use local time, we use `*_ldt`.
 
-按数据的读写比例，处理时间存储时，要考虑。
+According to the reading and writing ratio, when storing datetime, should consider,
 
-* 统计类业务，通常写入时转化，存入用户本地时间（和时区），读取时不转换
-* 协作类业务，通常写入时，使用系统时间，读取时转换
+* Statistical services, usually converte on write, store the user localtime (and timezone), not converted on read
+* Collaborative operations, typically using system time on write and convert on read
 
-如果需要转换时间，需要在用户界面统一（如controller）处理。
+If time conversion is required, it should to be handled uniformly in the user interface (e.g. controller).
 
-对应java7过来的选手，参考以下替代关系。
+For players coming from java7, see the following alternative relationships.
 
-* Instant 代替 Date
-* LocalDateTime 代替 Calendar
-* DateTimeFormatter 代替 SimpleDateFormat
+* Instant instead of Date
+* LocalDateTime instead of Calendar
+* DateTimeFormatter instead of SimpleDateFormat
 
-## 0A.G.不是科学家就别用浮点型
+## 0A.G.Don't Use float unless ur Scientist
 
-wings中不应该有浮点类型float/double，而只有整数(int/long)，小数用BigDecimal，
-他们对应的数据库类型分别为 INT/BIGINT/DECIMAL。
+In Wings there is no float/double, only integer (int/long) and BigDecimal. Their database types are INT/BIGINT/DECIMAL.
 
-但在实践过程中，因科普不到位，一些外部惯性未被消除而污染wings代码，尤其在js体系中更为明显。
+However, in practice, due to the lack of technology transfer, some external inertia is not change and pollute wings code,
+especially in the js ecosystem.
 
 * `0.1` + `0.2` = `0.30000000000000004`
 * `0.12` - `0.02` = `0.099999999999999`
 
-其根本原因在用IEEE754格式，浮点型不适合非科学计算场景，除科学家外普通人慎用。
-`Effective Java`是java从业人员必备知识，在此不做赘述，参考以下章节：
-Avoid Float and Double If Exact Answers Are Required
+The main reason for this is the IEEE754 format, floating point is not suitable for non-scientific scenarios,
+our normal developer should avoid using it.
 
-## 0A.H.实际中如何优雅的消除null
+`Effective Java` is a necessary knowledge for java developers, here without further ado, see the following sections.
 
-如同【攻城狮朋友圈】代码的坏味道所讲，wings工程实际，基本上以empty取代了null。
+"Avoid Float and Double If Exact Answers Are Required"
 
-* 若null是业务有效值，需要首先做业务判断。
-* 若null是业务无效值，应该采用PreCheck或以@NotNull及empty取代
-* 业务方法，一般提供get()和get(boolean)两类方法
-  - get()用于获取NotNull的业务对象，等同于get(true)，肯定语义
-  - get(false)用于获取可以为null的业务对象，即否定语义
+## 0A.H.Graceful null-safety in Practice
 
-分情况讲，尽管我们都主张避免使null变成业务有效值，但有时系统外的因素不可控。
-常见的数据库，API，JNI，都可能导致null进入数据流。此时，应该在进入业务流之前拦截，
-或显示的做null判断，比如 `Objects.equals`，`foo == null`等。
+As "MoilionCircle" "bad code smell" said, wings practically use `empty` instead of `null`.
 
-需要注意的是，业界流传一种『高级』秘籍，流行到被视为高级程序猿标配。
+* If null is a valid business value, you must first perform a business check.
+* If null is an invalid business value, should PreCheck or @NotNull and use empty instead.
+* Business methods, generally provide get() and get(boolean) of two types,
+  - get() is used to get NotNull value, equivalent to get(true), positive semantics.
+  - get(false) is used to get Nullable value, negative semantics.
 
-* `!"foo".equals(bar)` 可以安全的处理，bar是null的情况
-* `null != foo`，null前置，变成左值。
+Speaking from different situations, although we all advocate avoiding making `null` a valid business value,
+sometimes factors outside the system are uncontrollable. Common databases, APIs, and JNI can all cause `null`
+to enter the data flow. At this time, it should be intercepted before entering the business flow,
+or `null` should be explicitly checked, such as using `Objects.equals`，`foo == null`, etc.
 
-这两个小技巧在工程中很容易挖坑，应当引起警觉或避免，大概的不好之处如下。
+It should be noted that there is a "advanced" trick in the industry,
+which has become popular and is considered a standard for advanced programmers.
 
-* equals和hashCode的实现，有基本要求的，并非equals都对null友好。
-* 混淆了逻辑，容易搞丢逻辑分支，`!=null`和`!=foo`是两个分支。
-  - 若null是业务值，应该采用`Objects.equals`显示的合并分支；
-  - 否则应assert或PreCheck，null进入业务逻辑，就意味着沦陷了。
-* null变左值，破坏一致性，好比Junit中expected和actual互换，攻城狮应该维护一致性。
+* `!"foo".equals(bar)` safe to handle the case that bar is null.
+* `null != foo`, prepend null as a left-hand value.
 
-理论归理论，实际中都有取舍和无奈，要尊重历史，遵守团队约定。在wings中，这样做，
+These two tricks can easily create pitfalls, should be with caution or avoided. The potential drawbacks are
 
-* `EmptyValue`和`EmptySugar`，在业务中确立了empty值及工具类
-* Collection，Map，Array等集合或容器类型，都需要以Empty返回
-* `Null`类，定义了用来代替null的类型和检查方法，包括enum等
-* 方法签名尽量使用`@NotNull`注解，是IDE辅助检查，编译时解决
-* `ArgsAssert`和`StateAssert`进行业务assert，支持多国语
+* equals and hashCode have basic requirements, not all equals are null-safe.
+* Confusing the logic, easy to lose logic branches, `!=null` and `!=foo` are two branches.
+  - If null is a business value, `Objects.equals` should be used.
+  - Otherwise it should assert/PreCheck, null in the logic flow means fallen.
+* null as the left-hand value breaks consistency, as if expected and actual are swapped in Junit.
 
-## 0A.I.类型系统的逆变/协变/PECS
+Theory is theory, in practice we often make compromise or have no  choice,
+we should respect history and team conventions. In wings,
+
+* `EmptyValue` and `EmptySugar`, provide empty values and utility for biz.
+* Collection/Container type like List/Map/Array/Option use Empty instead of null.
+* The `Null` class defines the value and validation to handle null, including enum, etc.
+* Use `@NotNull` on method signatures, IDE and compile time checking.
+* `ArgsAssert` and `StateAssert` for business assert with i18n support.
+
+## 0A.I.Contravariance/Covariance/PECS in TypeSystem
 
 ```java
-// ① 字段使用具体类型，还是抽象类型
+// ① field should use a concrete type or an abstract type
 private List<E> field1 = new ArrayList<>();
 private ArrayList<E> field2 = new ArrayList<>();
 
-// ② 方法返回值
+// ② return type
 public Map<String, ?> provide1();
 public TreeMap<String, Object> provide2();
 
-// ③ 方法输入参数
+// ③ input parameters
 public void consume1(List<String> list);
 public void consume2(Collection<? extends CharSequence> list);
 
-// ④ Map的方法签名
+// ④ Method Signature of Map
 replaceAll(BiFunction<? super K, ? super V, ? extends V> function)
 ```
 
-Wings在编码中鼓励，在保证兼容性（主要是行为特性）的情况下，接口（以嘴做比喻）
+In wings coding, ensure the compatibility first, the interface (using the mouth as an analogy) should,
 
-* 吃的时候 - 输入项尽量抽象，尽量吃的更广
-* 吐的时候 - 输出项尽量具体，尽量嚼的更碎
-* 内部东西 - 保持原样，用的人知道特征
+* For input - as abstract as possible, try to eat more.
+* For output - as specific as possible, try to say detail.
+* For internal variable - keep it as it is, those who use it know it.
 
-以Map举例来说，输入时，使用Map+superK+extendsV来，
-输出时，不要抹杀特征，比如是否SortedMap及RandomAccess，
-比如TreeMap是字典序，LinkedHashMap是插入序，HashMap是乱序等。
+Take Map as an example. For input, use Map+superK+extendsV.
+For output, keep the details like SortedMap or RandomAccess.
 
-## 0A.J.类和方法的泄露（副作用）
+* TreeMap is dictionary order
+* LinkedHashMap is insertion order
+* HashMap is chaotic order.
 
-Wings把非以下特征的方法，统称为泄露或者副作用
+## 0A.J.Leak of Class/Method (SideEffects)
 
-* Pure functions（纯函数）
-* referential transparency（透明引用）
-* Side Effects(副作用）
+Wings refers to methods without the following characteristics as leak or side effect
 
-变成中，尽量避免方法泄露，规避隐式变量
+* Pure functions
+* referential transparency
+* Side Effects
+
+Avoid using leaking methods and implicit variables as much as possible in programming.

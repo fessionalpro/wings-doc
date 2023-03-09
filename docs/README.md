@@ -90,6 +90,7 @@ features:
 ![slardar](/slardar_minimap_icon.png)
 ![warlock](/warlock_minimap_icon.png)
 ![batrider](/batrider_minimap_icon.png)
+![tiny](/tiny_minimap_icon.png)
 
 适合成长型团队在成长型业务中平稳的实现，技术过渡，团队拉扯和业务升级。
 其核心价值是：①快速实现业务目标；②及时偿还技术债务；③安全重构程序和业务。
@@ -110,6 +111,7 @@ features:
 * [![H2Database-2.1](https://img.shields.io/badge/h2db-2.1-blue)](https://h2database.com/html/main.html) 单机数据库，以离线及断线业务 [MPL2]或[EPL1]
 * [![Hazelcast-5.1](https://img.shields.io/badge/hazelcast-5.1-violet)](https://hazelcast.org/imdg/) IMDG，分布式缓存，消息，流等 [Apache2]
 * [![ServiceComb-2.8](https://img.shields.io/badge/servicecomb-2.8-violet)](https://servicecomb.apache.org) 更工程化和紧凑的Cloud方案 [Apache2]
+* [![ShardingSphere-5.2](https://img.shields.io/badge/shardingsphere-5.2-violet)](https://shardingsphere.apache.org) 数据库的分表分片弹性伸缩方案 [Apache2]
 
 [Apache2]: https://www.apache.org/licenses/LICENSE-2.0
 [GPLv2+CE]: https://openjdk.org/legal/gplv2+ce.html
