@@ -2,10 +2,10 @@
 isOriginal: true
 icon: actions
 category:
-  - 实战
+  - action
 ---
 
-# 9.实战演示
+# 9.Practice and Sample
 
 运行`wings-init-project.sh`生成一个样板工程。
 

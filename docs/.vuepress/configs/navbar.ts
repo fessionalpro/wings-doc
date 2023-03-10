@@ -25,7 +25,7 @@ export const navbarEn: NavbarOptions = [
   { text: 'Slardar', icon: '/slardar_minimap_icon_16.png', link: '/en/3-slardar/' },
   { text: 'Warlock', icon: '/warlock_minimap_icon_16.png', link: '/en/4-warlock/' },
   { text: 'Batrider', icon: '/batrider_minimap_icon_16.png', link: '/en/5-batrider/' },
-  { text: 'InAction', icon: '/animal_minimap_icon_16.png', link: '/en/9-example/' },
+  { text: 'Practice', icon: '/animal_minimap_icon_16.png', link: '/en/9-example/' },
   {
     text: 'Factions',
     icon: '/blueheart_minimap_icon_16.png',

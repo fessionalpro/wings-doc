@@ -3,21 +3,21 @@ isOriginal: true
 icon: change
 index: false
 category:
-  - 实战
-  - 升迁
+  - practice
+  - upgrade
 ---
 
-# 9A.WingsBoot变迁
+# 9A.WingsBoot Change
 
-小版本变更记录，大版本升迁手册。
+miro change log, majo upgrade guide.
 
-## 升迁手册
+## Changelog
 
-* [升迁2.4.2.201手册](9a1.242-201.md)
-* [升迁2.6.6.210手册](9a2.266-210.md)
-* [升迁2.7.7.220手册](9a3.277-220.md)
-* [升迁3.0.3.300手册](9a4.303-300.md)
+* [Breaking Changlog](9a0.break-log.md)
 
-## 变更记录
+## Upgrade Guide
 
-* [重大变更记录](9a9.break-log.md)
+* [Upgrade 2.4.2.201 Guide](9a1.242-201.md)
+* [Upgrade 2.6.6.210 Guide](9a2.266-210.md)
+* [Upgrade 2.7.7.220 Guide](9a3.277-220.md)
+* [Upgrade 3.0.3.300 Guide](9a4.303-300.md)
