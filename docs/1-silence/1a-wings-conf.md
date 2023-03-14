@@ -24,8 +24,8 @@ wings对配置文件的处理方式，是`层叠`和`过滤`，配置以路径�
 
 实际项目开发中，只有一个大的`application.*`，不利于分工和协作，应该分隔，
 
-* shardingsphere-datasource-79.properties
-* shardingsphere-sharding-79.properties
+* spring-datasource.properties
+* spring-mail-79.properties
 * logger-logback-79.properties
 
 通过`EnvironmentPostProcessor`扫描`各路径`中`/wings-conf/**/*.*`，规则同
@@ -59,8 +59,8 @@ Wings在装载配置时对非ascii进行自动转义，以兼容spring默认的�
 
 * `application.properties`
 * `application-{profile}.properties`
-* `wings-conf/shardingsphere-datasource-79.properties`
-* `wings-conf/shardingsphere-datasource-79@{profile}.properties`
+* `wings-conf/wings-test-module-79.properties`
+* `wings-conf/wings-test-module-79@{profile}.properties`
 
 相同`basename`+`seq`的config视为同一组，并移除非活动的profile配置，
 以`@`区分profile，因为wings的配置文件名中存在`-`，无法兼容spring格式。

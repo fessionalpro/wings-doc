@@ -24,22 +24,22 @@ wings对配置文件的处理方式，是`层叠`和`过滤`，配置以路径�
 
 实际项目开发中，只有一个大的`application.*`，不利于分工和协作，应该分隔，
 
-* shardingsphere-datasource-79.properties
-* shardingsphere-sharding-79.properties
+* spring-datasource.properties
+* spring-mail-79.properties
 * logger-logback-79.properties
 
 通过`EnvironmentPostProcessor`扫描`各路径`中`/wings-conf/**/*.*`，规则同
 [Externalized Configuration](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.external-config)
 ，和配置文件有关的`各路径`如下，其后者优先级高（为与spring文档叙述一致，程序中倒序执行，FIFO优先级）。
 
-0. 路径中，优先加载`application.*`，次之`wings-conf/**/*.*`
-1. 以`/`结尾的当做目录，否则作为文件
-2. 任何非`classpath:`,`classpath*:`的，都以`file:`扫描
-3. `classpath:/`会被以`classpath*:/`扫描
-4. default `classpath:/,classpath:/config/,file:./,file:./config/`
-5. OS environment variables. `SPRING_CONFIG_LOCATION`
-6. Java System properties `spring.config.location`
-7. Command line arguments. `--spring.config.location
+1. 路径中，优先加载`application.*`，次之`wings-conf/**/*.*`
+2. 以`/`结尾的当做目录，否则作为文件
+3. 任何非`classpath:`,`classpath*:`的，都以`file:`扫描
+4. `classpath:/`会被以`classpath*:/`扫描
+5. default `classpath:/,classpath:/config/,file:./,file:./config/`
+6. OS environment variables. `SPRING_CONFIG_LOCATION`
+7. Java System properties `spring.config.location`
+8. Command line arguments. `--spring.config.location
 
 目前只加载 `*.yml`, `*.yaml`,`*.xml`, `*.properties`扩展名的配置文件。
 工程提供的默认配置，文件名字后面都会加上`-79`，方便根据文件名排序设置默认值。
@@ -59,8 +59,8 @@ Wings在装载配置时对非ascii进行自动转义，以兼容spring默认的�
 
 * `application.properties`
 * `application-{profile}.properties`
-* `wings-conf/shardingsphere-datasource-79.properties`
-* `wings-conf/shardingsphere-datasource-79@{profile}.properties`
+* `wings-conf/wings-test-module-79.properties`
+* `wings-conf/wings-test-module-79@{profile}.properties`
 
 相同`basename`+`seq`的config视为同一组，并移除非活动的profile配置，
 以`@`区分profile，因为wings的配置文件名中存在`-`，无法兼容spring格式。

@@ -221,9 +221,5 @@ jdbc:h2:~/wings-init
 ;MODE=MySQL;CASE_INSENSITIVE_IDENTIFIERS=TRUE
 ;AUTO_RECONNECT=TRUE;AUTO_SERVER=TRUE
 ```
-其中，H2对mysql做了部分兼容，分表分库可以，trigger不支持，参考配置，
-
-* wings-conf/shardingsphere-datasource-79.properties
-* wings-conf/shardingsphere-datasource-79@init.properties
-
+其中，H2对mysql做了部分兼容，分表分库可以，trigger不支持。
 [H2官方文档](http://h2database.com/html/features.html)
