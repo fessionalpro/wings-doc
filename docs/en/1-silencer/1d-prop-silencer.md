@@ -2,11 +2,11 @@
 isOriginal: true
 icon: enum
 category:
-  - 沉默
-  - 属性
+  - Silencer
+  - Property
 ---
 
-# 1D.沉默的属性
+# 1D.Silencer Properties
 
 有关自动加载，默认工具和行为的属性。
 

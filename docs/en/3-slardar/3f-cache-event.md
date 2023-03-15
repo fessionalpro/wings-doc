@@ -2,12 +2,12 @@
 isOriginal: true
 icon: emmet
 category:
-  - 鱼人
-  - 缓存
-  - 事件
+  - Slardar
+  - Caching
+  - Event
 ---
 
-# 3F.多级缓存及事件
+# 3F.Multiple Caching and Event
 
 基于Cache2k和Hazelcast，提供了分级缓存，本地及分布式缓存，分布式对象。
 

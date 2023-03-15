@@ -2,11 +2,11 @@
 isOriginal: true
 icon: emmet
 category:
-  - 鱼人
-  - 缓存
-  - 事件
+  - Slardar
+  - Caching
+  - Event
 ---
-# 3B.Hazelcast中间件
+# 3B.Hazelcast Middleware
 
 使用hazelcast作为session，cache和message中间件，包括，
 

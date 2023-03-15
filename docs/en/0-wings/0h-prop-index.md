@@ -39,7 +39,7 @@ category:
 
 ## 0H.3.配置项列表
 
-* [沉默的属性](../1-silence/1d-prop-silencer.md) - 自动加载，默认工具和行为
+* [沉默的属性](../1-silencer/1d-prop-silencer.md) - 自动加载，默认工具和行为
 * [虚空的属性](../2-faceless/2i-prop-faceless.md) - 数据库及操作，I18n的基本配置
 * [飞波的属性](../2-faceless/2j-prop-flywave.md) - Flywave关于schema管理的配置
 * [Jooq的属性](../2-faceless/2k-prop-jooq.md) - Jooq相关的配置

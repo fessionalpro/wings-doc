@@ -2,11 +2,11 @@
 isOriginal: true
 icon: token
 category:
-  - 术士
-  - 授权
+  - Warlock
+  - Authz
 ---
 
-# 4B.组合授权
+# 4B.Combined Authz
 
 授权由权限(Perm)和角色(Role)组合而成。都在db中定义，通过模板自动生成java类
 

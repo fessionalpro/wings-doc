@@ -3,7 +3,7 @@ isOriginal: true
 icon: linter
 category:
   - WingsGod
-  - standards
+  - Standard
 ---
 
 # 0B.RestHalf Spec

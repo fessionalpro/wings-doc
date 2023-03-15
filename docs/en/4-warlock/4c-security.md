@@ -2,11 +2,11 @@
 isOriginal: true
 icon: command
 category:
-  - 术士
-  - 安全
+  - Warlock
+  - Authn
 ---
 
-# 4C.安全定制
+# 4C.Customize Security
 
 在Wings所有工程中，配置`*.properties`和声明`@Bean`都可以定制功能。
 但很多功能间存在复杂依赖，需要使用者自行关照，需要阅读代码。

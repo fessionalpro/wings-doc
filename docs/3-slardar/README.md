@@ -30,7 +30,7 @@ Slardar按以下配置，架构及性能指标，进行了默认配置。
 * Nginx反向代理，提供post+json为主的服务
 * `Undertow`为默认的Servlet容器
 * `Hazelcast`作为`Cache`及`Session`方案
-* 业务层在80%可以`20-30ms`结束，阻塞系数`0.9`
+* 业务层在80%可以`30ms`结束，阻塞系数`0.9`
 * `8核3GHz`云主机，模拟`10k*50`请求，单应用
 * `95th`，response=`2s`，`tps`=`2k-5k`
 

@@ -2,12 +2,12 @@
 isOriginal: true
 icon: token
 category:
-  - 鱼人
-  - 认证
-  - 授权
+  - Slardar
+  - Authn
+  - Permit
 ---
 
-# 3E.Session和认证
+# 3E.Session and Authn
 
 * 同时支持header-token, cookie-session
 * 安全不高的url-string的凭证类ticket

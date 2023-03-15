@@ -2,12 +2,12 @@
 isOriginal: true
 icon: time
 category:
-  - 虚空
-  - 时间
-  - 约定
+  - Faceless
+  - Time
+  - Convension
 ---
 
-# 2H.时间和时区
+# 2H.Datetime and Timezone
 
 数据库有关的时间，时区，零值约定。
 

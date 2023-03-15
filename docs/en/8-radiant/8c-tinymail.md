@@ -2,11 +2,11 @@
 isOriginal: true
 icon: news
 category:
-  - 小小
-  - 邮件
+  - Tiny
+  - Mail
 ---
 
-# 8C.小邮件模块
+# 8C.TinyMail Component
 
 基于Spring Mail提供了以database为中心的邮件发送
 

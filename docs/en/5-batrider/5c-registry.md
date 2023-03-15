@@ -2,11 +2,11 @@
 isOriginal: true
 icon: cache
 category:
-  - 蝙蝠
-  - 注册中心
+  - Batrider
+  - Registry
 ---
 
-# 5C.注册中心
+# 5C.Registry Center
 
 默认使用registry-zero-config，更推荐servicecomb-service-center
 

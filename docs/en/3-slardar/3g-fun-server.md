@@ -2,12 +2,12 @@
 isOriginal: true
 icon: advance
 category:
-  - 鱼人
-  - 防护
-  - 后端
+  - Slardar
+  - Protection
+  - Backend
 ---
 
-# 3G.后端防护功能
+# 3G.Backend Protection
 
 对后端服务，提供一定的保护和控制能力
 

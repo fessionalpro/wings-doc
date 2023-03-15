@@ -19,12 +19,12 @@ features:
   - icon: config
     title: Shard and Cascade Configigruation
     details: Properties can be broken down into separate files that take effect after cascading
-    link: /en/1-silence/1a-wings-conf.html
+    link: /en/1-silencer/1a-wings-conf.html
 
   - icon: language
     title: Multi Language and Timezone
     details: Automatic timezone config and adjustment, static and dynamic i18n config and conversion
-    link: /en/1-silence/1b-wings-i18n.html
+    link: /en/1-silencer/1b-wings-i18n.html
 
   - icon: mysql
     title: Versioning of Data and Schema
@@ -112,7 +112,7 @@ For example, starting from a single app, to sharding, to micro service and to cl
 * [![H2Database-2.1](https://img.shields.io/badge/h2db-2.1-blue)](https://h2database.com/html/main.html) Standalone database for offline and disconnected operations [MPL2] or [EPL1]
 * [![Hazelcast-5.1](https://img.shields.io/badge/hazelcast-5.1-violet)](https://hazelcast.org/imdg/) IMDG，Distributed caching, messaging, streaming, etc. [Apache2]
 * [![ServiceComb-2.8](https://img.shields.io/badge/servicecomb-2.8-violet)](https://servicecomb.apache.org) More engineering and compact Cloud solution [Apache2]
-* [![ShardingSphere-5.2](https://img.shields.io/badge/shardingsphere-5.2-violet)](https://shardingsphere.apache.org) Database RW splitting, data sharding and elastic scaling [Apache2]
+* [![ShardingSphere-5.3](https://img.shields.io/badge/shardingsphere-5.3-violet)](https://shardingsphere.apache.org) Database RW splitting, data sharding and elastic scaling [Apache2]
 
 
 [Apache2]: https://www.apache.org/licenses/LICENSE-2.0

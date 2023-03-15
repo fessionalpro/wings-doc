@@ -2,11 +2,11 @@
 isOriginal: true
 icon: enum
 category:
-  - 大鱼
-  - 属性
+  - Slardar
+  - Property
 ---
 
-# 3K.WebFun的属性
+# 3K.WebFun Properties
 
 有关Slardar中提供的Spring Web加强功能的设置
 

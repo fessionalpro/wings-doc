@@ -2,11 +2,11 @@
 isOriginal: true
 icon: debug
 category:
-  - 术士
-  - 调试
+  - Warlock
+  - Tweaking
 ---
 
-# 4E.动态调试
+# 4E.Dynamic Tweaking
 
 可以在运行时，按全局或线程级别，动态的设置系统时钟，日志级别，异常堆栈。
 

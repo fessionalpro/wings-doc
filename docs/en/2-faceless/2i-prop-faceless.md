@@ -2,11 +2,11 @@
 isOriginal: true
 icon: enum
 category:
-  - 虚空
-  - 属性
+  - Faceless
+  - Porperty
 ---
 
-# 2I.虚空的属性
+# 2I.Faceless Properties
 
 有关数据库，数据操作，Db层面I18n的基本属性。
 

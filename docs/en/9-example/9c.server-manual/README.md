@@ -3,12 +3,12 @@ isOriginal: true
 icon: rank
 index: false
 category:
-  - 实战
-  - 监控
+  - Practice
+  - Home
 ---
 
-# 9C.服务运维手册
+# 9C.DevOps Manual
 
-* [备份及恢复mysql](9c1.mysql-dump-restore.md)
-* [记录和重放请求](9c2.request-record-replay.md)
-* [管理Sonatype OSSRH](9c3.sonatype-maven.md)
+* [Mysql Dump/Resotre](9c1.mysql-dump-restore.md)
+* [Record and Replay Request](9c2.request-record-replay.md)
+* [Manage Sonatype OSSRH](9c3.sonatype-maven.md)

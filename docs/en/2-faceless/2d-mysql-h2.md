@@ -2,11 +2,11 @@
 isOriginal: true
 icon: mysql
 category:
-  - 虚空
-  - 数据
+  - Faceless
+  - Database
 ---
 
-# 2D.Mysql体系的知识
+# 2D.Mysql-Compatible Database
 
 MySql体系指其分支(Percona,MariaDB)或兼容协议的数据库，wings使用mysql8（5.7已充分测试）。
 原则上DB不应该封装（自定义function或procedure）业务逻辑，但可以使用db提供的功能，简化工作实现业务目标。
@@ -221,9 +221,5 @@ jdbc:h2:~/wings-init
 ;MODE=MySQL;CASE_INSENSITIVE_IDENTIFIERS=TRUE
 ;AUTO_RECONNECT=TRUE;AUTO_SERVER=TRUE
 ```
-其中，H2对mysql做了部分兼容，分表分库可以，trigger不支持，参考配置，
-
-* wings-conf/shardingsphere-datasource-79.properties
-* wings-conf/shardingsphere-datasource-79@init.properties
-
+其中，H2对mysql做了部分兼容，分表分库可以，trigger不支持。
 [H2官方文档](http://h2database.com/html/features.html)

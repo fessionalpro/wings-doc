@@ -51,9 +51,10 @@ sql文件都受git管理，如无必须，勿搞复杂分支，单时间线是�
 
 JDBC数据源(DataSource)，分为两种，他们会存在于`DataSourceContext`中，
 
-* 分片数据源(Shard)，具有分表分库功能，如`ShardingSphere`
-* 普通数据源(Plain)，没有sharding功能，只在单个DB上执行
-* 当只有一个数据源，且没有sharding配置时，两者实际为同一个值
+* 当前数据源(current) - 通过Spring注入获得的，plain或shard数据源
+* 后端数据源(backend) - plain数据源，直接操作普通数据库实例
+* plain - 普通数据库，对sql和数据没有逻辑处理
+* shard - 逻辑数据库，通过算法对多个plain数据库进行分片
 
 `flywave`根据后续的场景规则，可自动或手动使用不同的数据源执行DDL和DML等。
 

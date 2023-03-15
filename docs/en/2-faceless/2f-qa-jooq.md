@@ -2,12 +2,12 @@
 isOriginal: true
 icon: ability
 category:
-  - 虚空
+  - Faceless
   - Jooq
-  - 话题
+  - Topic
 ---
 
-# 2F.Jooq使用话题
+# 2F.Jooq Faq Topic
 
 Jooq有关的话题
 
@@ -183,7 +183,7 @@ Map<Integer, List<String>>       group4 = create.selectFrom(BOOK).fetchGroups(BO
 .forcedType(new ForcedType()
         .withUserType("pro.fessional.wings.faceless.enums.autogen.StandardLanguage")
         .withConverter("pro.fessional.wings.faceless.database.jooq.StandardLanguageConverter")
-        .withExpression("tst_中文也分表.language")
+        .withExpression("tst_sharding.language")
 )
 ```
 但对于某些情况，并不能在code generate时做类型转换，全局或局部的ConverterProvider。

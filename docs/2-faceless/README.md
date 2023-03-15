@@ -39,19 +39,7 @@ schema版本2019_0521_01，定义了enum和i18n表，分别定义业务级枚举
 
 i18n可以使用CombinableMessageSource动态添加，处理service内消息的多国语。
 
-## 2.4.事件服务EventService
-
-单进程的异步和解耦，guava的EventBus和Spring的Event都可以胜任。
-为单Jvm，多Jvm提高一个基于数据库的Event服务，主要用来，
-
-* the event should extend ApplicationEvent
-* the publisher should inject an ApplicationEventPublisher object
-* the listener should implement the ApplicationListener interface
-* @EventListener 和 @TransactionalEventListener
-
-对应线程池直接传递上下文，可使用[transmittable-thread-local](https://github.com/alibaba/transmittable-thread-local)
-
-## 2.5.更多章节
+## 2.3.更多章节
 
 * [表和数据的版本](2a-flywave.md) -  以Sql和Git为核心，绑定表结构和代码关系
 * [强类型及DSL能力](2b-jooq.md) - 从数据库生成强类型代码：pojo, dao
@@ -60,4 +48,4 @@ i18n可以使用CombinableMessageSource动态添加，处理service内消息的�
 * [Flywave话题](2e-qa-flywave.md) - Flywave版本及日志表有关
 * [Jooq使用话题](2f-qa-jooq.md) - Jooq有关的话题
 * [分表分库话题](2g-qa-shard.md) - Sharding有关的话题
-* [分表分库话题](2h-time-zone.md) - 和数据库有关的时间和时区
+* [时间和时区](2h-time-zone.md) - 和数据库有关的时间和时区

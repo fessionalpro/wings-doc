@@ -2,11 +2,12 @@
 isOriginal: true
 icon: tree
 category:
-  - 虚空
-  - 分表
+  - Faceless
+  - Sharding
+  - RwSplit
 ---
 
-# 2C.按需分表分库
+# 2C.RwSplit and Sharding
 
 > 对膨胀的数据增加一个状态，时间在此停止，分而治之，合而用之。
 

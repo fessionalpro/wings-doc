@@ -2,12 +2,12 @@
 isOriginal: true
 icon: tree
 category:
-  - 虚空
-  - 数据
-  - 话题
+  - Faceless
+  - Database
+  - Topic
 ---
 
-# 2G.分表分库话题
+# 2G.Sharding Faq Topic
 
 有关数据库和数据操作的话题
 

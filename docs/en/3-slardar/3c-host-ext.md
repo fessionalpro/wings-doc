@@ -2,11 +2,11 @@
 isOriginal: true
 icon: extend
 category:
-  - 鱼人
+  - Slardar
   - 套壳
 ---
 
-# 3C.Host继承和URL重载
+# 3C.Host Extend and URL Override
 
 基于Mvc特性实现了Host的套壳换肤功能。不同于反向代理(nginx)的rewrite，
 

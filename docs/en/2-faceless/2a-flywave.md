@@ -2,15 +2,16 @@
 isOriginal: true
 icon: git
 category:
-  - 虚空
-  - 版本
+  - Faceless
+  - Version
 ---
 
-# 2A.表和数据的版本
+# 2A.Table/Data Versioning
 
-> 时间结界，在时空中创造一个泡状遮罩，将所有位于其中的单位定住。
+> Time Lock, The strike of the Faceless Void lands with dimension shifting force.
 
-以Sql和Git为核心，管理数据和代码关系，可以方便的Diff和Merge
+Sql-based and Git-like schema and data version management.
+commit schema and code to git, easily diff and merge.
 
 ## 2A.1.飞波(Flywave)是一个实践
 
@@ -51,9 +52,10 @@ sql文件都受git管理，如无必须，勿搞复杂分支，单时间线是�
 
 JDBC数据源(DataSource)，分为两种，他们会存在于`DataSourceContext`中，
 
-* 分片数据源(Shard)，具有分表分库功能，如`ShardingSphere`
-* 普通数据源(Plain)，没有sharding功能，只在单个DB上执行
-* 当只有一个数据源，且没有sharding配置时，两者实际为同一个值
+* 当前数据源(current) - 通过Spring注入获得的，plain或shard数据源
+* 后端数据源(backend) - plain数据源，直接操作普通数据库实例
+* plain - 普通数据库，对sql和数据没有逻辑处理
+* shard - 逻辑数据库，通过算法对多个plain数据库进行分片
 
 `flywave`根据后续的场景规则，可自动或手动使用不同的数据源执行DDL和DML等。
 
