@@ -2,11 +2,11 @@
 isOriginal: true
 icon: leaf
 category:
-  - 沉默
-  - 配置
+  - Silencer
+  - Config
 ---
 
-# 1C.自动配置机制
+# 1C.Auto Config Mechanism
 
 利用SpringBoot的特性，完成自动配置。
 

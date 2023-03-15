@@ -2,11 +2,11 @@
 isOriginal: true
 icon: api
 category:
-  - 术士
-  - 安全
+  - Warlock
+  - Authn
 ---
 
-# 4F.对外Api
+# 4F.Open Api
 
 不同于用户登录(BindAuth)，外Api是限定功能的，非SecurityFilter体系。
 

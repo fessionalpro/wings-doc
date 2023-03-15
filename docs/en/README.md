@@ -19,12 +19,12 @@ features:
   - icon: config
     title: Shard and Cascade Configigruation
     details: Properties can be broken down into separate files that take effect after cascading
-    link: /en/1-silence/1a-wings-conf.html
+    link: /en/1-silencer/1a-wings-conf.html
 
   - icon: language
     title: Multi Language and Timezone
     details: Automatic timezone config and adjustment, static and dynamic i18n config and conversion
-    link: /en/1-silence/1b-wings-i18n.html
+    link: /en/1-silencer/1b-wings-i18n.html
 
   - icon: mysql
     title: Versioning of Data and Schema

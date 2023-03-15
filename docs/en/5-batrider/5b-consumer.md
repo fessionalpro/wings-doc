@@ -2,11 +2,11 @@
 isOriginal: true
 icon: cache
 category:
-  - 蝙蝠
-  - 消费者
+  - Batrider
+  - Consumer
 ---
 
-# 5B.服务消费者
+# 5B.Service Consumer
 
 优先使用Rpc消费服务，也可用RestTemplate简化调用
 

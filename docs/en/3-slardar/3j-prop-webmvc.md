@@ -2,11 +2,11 @@
 isOriginal: true
 icon: enum
 category:
-  - 大鱼
-  - 属性
+  - Slardar
+  - Property
 ---
 
-# 3J.WebMvc的属性
+# 3J.WebMvc Properties
 
 有关Slardar中提供的Spring WebMvc的基本设置
 

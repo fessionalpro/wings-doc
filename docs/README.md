@@ -19,12 +19,12 @@ features:
   - icon: config
     title: 分隔和层叠配置
     details: 配置项可按模块分成独立文件，按其优先级层叠后生效
-    link: /1-silence/1a-wings-conf.html
+    link: /1-silencer/1a-wings-conf.html
 
   - icon: language
     title: 多国语和多时区
     details: 自动配置及校对时区，静态及动态的多国语配置及转化
-    link: /1-silence/1b-wings-i18n.html
+    link: /1-silencer/1b-wings-i18n.html
 
   - icon: mysql
     title: 库及数据的版本管理

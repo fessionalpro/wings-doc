@@ -2,12 +2,12 @@
 isOriginal: true
 icon: language
 category:
-  - 鱼人
-  - 时区
-  - 多国语
+  - Slardar
+  - Timezone
+  - I18n
 ---
 
-# 3D.多国语和多时区
+# 3D.Multiple Time and Lang
 
 在Silence配置中，所有位于`wigns-i18n/`的I18n的消息，都会自动加载。
 

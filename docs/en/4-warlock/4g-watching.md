@@ -2,11 +2,11 @@
 isOriginal: true
 icon: debug
 category:
-  - 术士
-  - 调试
+  - Warlock
+  - Tweaking
 ---
 
-# 4G.调用计时
+# 4G.Time Watching
 
 开箱即用的简单的性能分析，慢请求记录，属于调试功能，默认关闭。
 

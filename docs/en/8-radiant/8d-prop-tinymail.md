@@ -2,11 +2,12 @@
 isOriginal: true
 icon: enum
 category:
-  - 邮件
-  - 属性
+  - Tiny
+  - Mail
+  - Property
 ---
 
-# 8D.小邮件属性
+# 8D.TinyMail Properties
 
 ## 8D.1.spring-mail-79.properties
 

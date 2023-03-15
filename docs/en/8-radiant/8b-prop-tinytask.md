@@ -2,11 +2,12 @@
 isOriginal: true
 icon: enum
 category:
-  - 任务
-  - 属性
+  - Tiny
+  - Task
+  - Property
 ---
 
-# 8B.小任务属性
+# 8B.TinyTask Properties
 
 ## 8B.1.spring-wings-enabled-79.properties
 

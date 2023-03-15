@@ -2,42 +2,42 @@
 isOriginal: true
 icon: config
 category:
-  - 蝙蝠
-  - 首页
+  - Batrider
+  - Home
 ---
 
-# 5.蝙蝠骑士
+# 5.Batrider
 
 ![batrider](/batrider_icon.png)
 
-> 只要翱翔于天空，可以从四面八方发动攻势。
+> Once he takes to the skies, Batrider can strike from any direction.
 
-ServiceComb是一种更紧凑和工程化的微服务及云实现。
+ServiceComb, a lightweight but full-stack microservice solution.
 
-## 5.1.模块划分
+## 5.1.Module Project
 
-* batrider - 基于servicecomb的基本设置
-* batrider-zero - 组播的registry-zero-config
-* batrider-test - 测试包，混合rest和rpc
+* batrider - servicecomb basic setting
+* batrider-zero - registry-zero-config
+* batrider-test - testing utility (rest and rpc)
 
-## 5.2.微服务基本约定
+## 5.2.Microservice Convention
 
-* 通讯模型，与SpringMvc共存时为`RestOverServlet`
-* 编程模型，提供者为`SpringMvc`，消费者为`Rpc`
-* 身份验证，为公私钥`handler-publickey-auth`
-* rest.urlPattern为`/servcomber/*`
-* 契约为纯`interface`，后缀为`Contract`（相对于`Service`）
-* 提供者，后缀为`Contractor`（对比`Controller`），包为`contractor`
-* 消费者，后缀为`Contract`的接口及注入字段
-* 默认`registry-zero-config`，推荐`servicecomb-service-center`
-* 默认不对外提供网关，与springMvc共存
-* 异步仅在消费者端实现，提供者默认都是同步服务
+* communication model, `RestOverServlet` when coexisting with SpringMvc
+* Programming model, `SpringMvc` for providers and `Rpc` for consumers
+* Authentication, as public-private key `handler-publickey-auth`
+* rest.urlPattern is `/servcomber/*`
+* Contract as pure `interface` with a `Contract` suffix (opposed to `Service`)
+* Provider with a suffix of `Contractor` (vs. `Controller`) and a package of `contractor`
+* Consumer, with the `Contract` suffix for the interface and injected fields
+* default `registry-zero-config`, recommended `servicecomb-service-center`
+* No external gateway by default, coexists with springMvc
+* Asynchronous is only implemented on the consumer side, providers are synchronous by default
 
-## 5.3.基本工程演示
+## 5.3.Basic Demo Project
 
-可以启动`winx-api`和`batrider-test`工程，然后通过swagger演示
+start the `winx-api` and `batrider-test` projects, and then visit swagger
 
-* <http://localhost:8085/swagger-ui/index.html#/batrider-controller> - swagger页面
-* /batrider/batx-hello-pxy - 通过Invoker调用batrider服务
-* /batrider/winx-hello-cse - 通过Rest的cse调用winx服务
-* /batrider/winx-hello-rpc - 通过Rpc调用winx服务
+* <http://localhost:8085/swagger-ui/index.html#/batrider-controller> - swagger page
+* /batrider/batx-hello-pxy - access batrider service by Invoker
+* /batrider/winx-hello-cse - access winx service by Rest's cse
+* /batrider/winx-hello-rpc - access winx service by Rpc

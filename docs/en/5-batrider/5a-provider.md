@@ -2,11 +2,11 @@
 isOriginal: true
 icon: cache
 category:
-  - 蝙蝠
-  - 提供者
+  - Batrider
+  - Provider
 ---
 
-# 5A.服务提供者
+# 5A.Serivce Provider
 
 使用SpringMvc注解提供服务，并支持同Mvc同时提供服务
 

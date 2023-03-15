@@ -2,11 +2,11 @@
 isOriginal: true
 icon: enum
 category:
-  - 大鱼
-  - 属性
+  - Slardar
+  - Property
 ---
 
-# 3L.Hazelcast的属性
+# 3L.Hazelcast Property
 
 有关Slardar中提供的Hazelcast的设置
 

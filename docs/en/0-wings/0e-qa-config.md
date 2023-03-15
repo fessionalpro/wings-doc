@@ -3,10 +3,10 @@ isOriginal: true
 icon: config
 category:
   - WingsGod
-  - Topics
+  - Config
 ---
 
-# 0E.Config Topics
+# 0E.Config Topic
 
 工程配置，如maven，properties，spring等设置项。
 

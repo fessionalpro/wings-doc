@@ -2,11 +2,11 @@
 isOriginal: true
 icon: setting
 category:
-  - 沉默
-  - 配置
+  - Silencer
+  - Config
 ---
 
-# 1A.Conf自动配置
+# 1A.Auto Cascade Config
 
 支持配置文件的`分割`，`覆盖`，`禁用`和`profile`，更有利于工程化的管理。
 

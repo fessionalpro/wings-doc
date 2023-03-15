@@ -2,15 +2,16 @@
 isOriginal: true
 icon: git
 category:
-  - 虚空
-  - 版本
+  - Faceless
+  - Version
 ---
 
-# 2A.表和数据的版本
+# 2A.Table/Data Versioning
 
-> 时间结界，在时空中创造一个泡状遮罩，将所有位于其中的单位定住。
+> Time Lock, The strike of the Faceless Void lands with dimension shifting force.
 
-以Sql和Git为核心，管理数据和代码关系，可以方便的Diff和Merge
+Sql-based and Git-like schema and data version management.
+commit schema and code to git, easily diff and merge.
 
 ## 2A.1.飞波(Flywave)是一个实践
 

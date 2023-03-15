@@ -3,10 +3,10 @@ isOriginal: true
 icon: question
 category:
   - WingsGod
-  - Topics
+  - Topic
 ---
 
-# 0F.Other Topics
+# 0F.Other Topic
 
 未归类的话题。
 

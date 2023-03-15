@@ -3,8 +3,8 @@ isOriginal: true
 icon: leaf
 index: false
 category:
-  - practice
-  - manual
+  - Practice
+  - Home
 ---
 
 # 9B.SpringBoot Knowledge

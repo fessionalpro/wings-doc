@@ -3,10 +3,10 @@ isOriginal: true
 icon: repair
 category:
   - WingsGod
-  - Topics
+  - Topic
 ---
 
-# 0D.DevOps Topics
+# 0D.DevOps Topic
 
 编码开发，线上运行等话题。
 

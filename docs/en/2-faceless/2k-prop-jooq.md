@@ -2,11 +2,11 @@
 isOriginal: true
 icon: enum
 category:
-  - 虚空
-  - 属性
+  - Faceless
+  - Porperty
 ---
 
-# 2K.Jooq的属性
+# 2K.Jooq Properties
 
 有Flywave关于schema管理的配置。
 

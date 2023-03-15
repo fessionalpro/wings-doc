@@ -2,11 +2,11 @@
 isOriginal: true
 icon: mysql
 category:
-  - 虚空
-  - 数据
+  - Faceless
+  - Database
 ---
 
-# 2D.Mysql体系的知识
+# 2D.Mysql-Compatible Database
 
 MySql体系指其分支(Percona,MariaDB)或兼容协议的数据库，wings使用mysql8（5.7已充分测试）。
 原则上DB不应该封装（自定义function或procedure）业务逻辑，但可以使用db提供的功能，简化工作实现业务目标。

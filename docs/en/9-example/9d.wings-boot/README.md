@@ -3,8 +3,8 @@ isOriginal: true
 icon: alias
 index: false
 category:
-  - practice
-  - manual
+  - Practice
+  - Manual
 ---
 
 # 9D.WingsBoot Practice

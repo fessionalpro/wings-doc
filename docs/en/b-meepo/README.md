@@ -5,6 +5,7 @@ index: false
 category:
   - Meepo
   - Template
+  - Home
 ---
 
 # B.Meepo Template

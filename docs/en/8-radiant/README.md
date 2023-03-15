@@ -3,6 +3,7 @@ isOriginal: true
 icon: ubuntu
 category:
   - Radiant
+  - Home
 ---
 
 # 8.Randiant AllStars

@@ -2,11 +2,11 @@
 isOriginal: true
 icon: safe
 category:
-  - 术士
-  - 验证
+  - Warlock
+  - Authn
 ---
 
-# 4A.集成登录
+# 4A.Integrated Authn
 
 支持多种登录，如用户名密码，Basic扩展，Oauth第三方等，可以安全且方便的控制用户来源。
 

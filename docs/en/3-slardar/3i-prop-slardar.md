@@ -2,11 +2,11 @@
 isOriginal: true
 icon: enum
 category:
-  - 大鱼
-  - 属性
+  - Slardar
+  - Property
 ---
 
-# 3I.大鱼的属性
+# 3I.Slardar Properties
 
 有关Slardar，Spring的基本设置
 

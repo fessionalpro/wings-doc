@@ -2,12 +2,12 @@
 isOriginal: true
 icon: json
 category:
-  - 鱼人
-  - 约定
+  - Slardar
+  - Convention
   - Json
 ---
 
-# 3A.Jackson格式约定
+# 3A.Jackson Convention
 
 在Mvc对外服务时，约定常见数据类型的转换关系。
 

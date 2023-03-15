@@ -3,8 +3,8 @@ isOriginal: true
 icon: change
 index: false
 category:
-  - practice
-  - upgrade
+  - Practice
+  - Home
 ---
 
 # 9A.WingsBoot Change

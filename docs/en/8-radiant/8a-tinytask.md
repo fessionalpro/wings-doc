@@ -2,11 +2,11 @@
 isOriginal: true
 icon: timer
 category:
-  - 小小
-  - 任务
+  - Tiny
+  - Task
 ---
 
-# 8A.小任务模块
+# 8A.TinyTask Component
 
 基于Spring Schedule提供了以database为中心的任务调度
 

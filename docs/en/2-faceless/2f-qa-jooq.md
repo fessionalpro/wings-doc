@@ -2,12 +2,12 @@
 isOriginal: true
 icon: ability
 category:
-  - 虚空
+  - Faceless
   - Jooq
-  - 话题
+  - Topic
 ---
 
-# 2F.Jooq使用话题
+# 2F.Jooq Faq Topic
 
 Jooq有关的话题
 

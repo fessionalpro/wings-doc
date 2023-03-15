@@ -2,12 +2,12 @@
 isOriginal: true
 icon: git
 category:
-  - 虚空
-  - 版本
-  - 话题
+  - Faceless
+  - Version
+  - Topic
 ---
 
-# 2E.Flywave话题
+# 2E.Flywave Faq Topic
 
 Flywave版本及日志表有关的话题
 

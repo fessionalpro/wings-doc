@@ -2,7 +2,7 @@ import { SidebarOptions } from 'vuepress-theme-hope';
 
 export const sidebarZh: SidebarOptions = {
   '/0-wings/0h-prop-index': [
-    '/1-silence/1d-prop-silencer',
+    '/1-silencer/1d-prop-silencer',
     '/2-faceless/2i-prop-faceless',
     '/2-faceless/2j-prop-flywave',
     '/2-faceless/2k-prop-jooq',
@@ -15,7 +15,7 @@ export const sidebarZh: SidebarOptions = {
     '/8-radiant/8d-prop-tinymail',
   ],
   '/0-wings/': 'structure',
-  '/1-silence/': 'structure',
+  '/1-silencer/': 'structure',
   '/2-faceless/': 'structure',
   '/3-slardar/': 'structure',
   '/4-warlock/': 'structure',
@@ -29,7 +29,7 @@ export const sidebarZh: SidebarOptions = {
 
 export const sidebarEn: SidebarOptions = {
   '/en/0-wings/0h-prop-index': [
-    '/en/1-silence/1d-prop-silencer',
+    '/en/1-silencer/1d-prop-silencer',
     '/en/2-faceless/2i-prop-faceless',
     '/en/2-faceless/2j-prop-flywave',
     '/en/2-faceless/2k-prop-jooq',
@@ -42,7 +42,7 @@ export const sidebarEn: SidebarOptions = {
     '/en/8-radiant/8d-prop-tinymail',
   ],
   '/en/0-wings/': 'structure',
-  '/en/1-silence/': 'structure',
+  '/en/1-silencer/': 'structure',
   '/en/2-faceless/': 'structure',
   '/en/3-slardar/': 'structure',
   '/en/4-warlock/': 'structure',

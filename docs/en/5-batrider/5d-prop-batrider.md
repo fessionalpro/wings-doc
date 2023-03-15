@@ -2,11 +2,11 @@
 isOriginal: true
 icon: enum
 category:
-  - 蝙蝠
-  - 属性
+  - Batrider
+  - Property
 ---
 
-# 5D.蝙蝠的属性
+# 5D.Batrider Properties
 
 有关Batrider微服务的设置
 

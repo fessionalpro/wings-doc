@@ -25,3 +25,11 @@ then pnpm commands,
 
 [hope vue]: https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/packages/components/package.json
 [hope pnpm]: https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/package.json
+
+## Markdown Conventions
+
+* `.markdownlint.yml`
+* `category` PascalNaming singular noun.
+* `title` PascalNaming without prep.
+* `link` current dir omit `./`
+* `list` level 1-3 use `*`,`+`,`-`

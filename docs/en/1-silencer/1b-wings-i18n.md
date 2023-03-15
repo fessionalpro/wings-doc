@@ -2,11 +2,11 @@
 isOriginal: true
 icon: language
 category:
-  - 沉默
-  - 多国语
+  - Silencer
+  - I18n
 ---
 
-# 1B.I18n自动配置
+# 1B.Auto I18n Message
 
 多国语（I18n），是wings体系中，比较重要的功能点。
 

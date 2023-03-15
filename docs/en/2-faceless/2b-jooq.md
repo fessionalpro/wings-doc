@@ -2,12 +2,12 @@
 isOriginal: true
 icon: ability
 category:
-  - 虚空
-  - 类型
+  - Faceless
+  - Type
   - Jooq
 ---
 
-# 2B.强类型及DSL能力
+# 2B.Typesafe DSL SqlMapping
 
 > 时间漫游，冲到目标位置，并取消最近2.0秒内受到的任何伤害。
 > 虚空假面在时间漫游过程中为无敌状态。

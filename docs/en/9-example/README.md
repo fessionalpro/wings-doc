@@ -2,35 +2,36 @@
 isOriginal: true
 icon: actions
 category:
-  - action
+  - Practice
+  - Home
 ---
 
 # 9.Practice and Sample
 
-运行`wings-init-project.sh`生成一个样板工程。
+Execute `wings-init-project.sh` to generate a template project.
 
-## 9.1.前置条件
+## 9.1.Pre-Requisite
 
-基本知识及动手能力
+Basic knowledge and hands-on ability,
 
-* 了解 `maven`，缺什么，补什么。
-* 了解 `spring*`，`看官方文档` x 3！
-* 了解 `mysql*`数据库，mysql
+* Understand `maven`, what is missing, what to learn.
+* Understand `spring*`, `see official documentation` x 3!
+* Understand `mysql*` mysql database
 
-目录约定
+Directory conventions
 
-* `WINGS_DIR` - wings_boot的工程根目录
+* `WINGS_DIR` - the project root of wings_boot
 * `WINGS_BIN` - `WINGS_DIR`/observe/scripts
-* `PROJECT_DIR` - 示例工程的目录，例如`good-demo`
-* `PROJECT_PCD` - 示例工程的CodeName，例如`good`
+* `PROJECT_DIR` - the directory of the sample project, e.g. `good-demo`
+* `PROJECT_PCD` - CodeName of the sample project, e.g. `good`
 
-## 9.2.自建环境
+## 9.2.DIY Environment
 
-新建工程及打包的示例脚本
+Sample scripts for new project and command to package,
 
 ```bash
-sdk use java 17.0.6-tem # 切换JDK版本
-mvn -v # 显示maven和java版本
+sdk use java 17.0.6-tem # switch JDK to 17
+mvn -v # show version of maven and java
 #> Apache Maven 3.8.7 (b89d5959fcde851dcb1c8946a785a163f14e1e29)
 #> Java version: 17.0.6, vendor: Eclipse Adoptium
 
@@ -39,17 +40,17 @@ WINGS_BIN=$WINGS_BOOT/observe/scripts
 PROJECT_DIR=~/Workspace/good-demo
 PROJECT_PCD=good
 
-# 使用模板初始化工程
+# create new project by template
 $WINGS_BIN/wings-init-project.sh
 ```
 
-数据库，默认采用H2演示，可自建Docker演示Mysql，示例脚本如下。
+Database, default H2, you can build Mysql Docker, the sample script as follows,
 
 ```bash
-# 设置变量
+# set env
 PASS=S4f3_Password@MoilionCircle
 
-# 创建一个mysql数据库
+# create a mysql docker
 docker run -d \
 --name good-mysql-8.0 \
 -e MYSQL_DATABASE=wings_example \
@@ -58,40 +59,42 @@ docker run -d \
 mysql:8.0
 ```
 
-## 9.3.程序部署
+## 9.3.App Deployment
 
-软连接(`ln -s`)wings-starter.sh到某个执行位置，以good-devops为例。
+Softlink(`ln -s`) wings-starter.sh to some execution location, using `good-devops` as an example.
 
 ```bash
 cd $PROJECT_DIR
-# 建立启动脚本，一个boot.jar对应一组.sh和.env
+# Create a boot script, one boot.jar corresponds to one pair of `.sh` and `.env`
 ln -s $WINGS_BIN/wings-starter.sh ${PROJECT_PCD}-devops-starter.sh
-# 复制 wings-starter.env内容，与启动脚本同名(扩展名不同)
+# Copy the content of wings-starter.env and 
+# save it with the same name as the boot script (different extname)
 cp $WINGS_BIN/wings-starter.env ${PROJECT_PCD}-devops-starter.env
-# good为默认项目代号，若已调整则要修改，否则找不到jar
+# good is the default codename, if it has been changed, it must be modified,
+# otherwise the jar cannot be found
 sed -i '' "s:../../:./:" ${PROJECT_PCD}-devops-starter.env
 sed -i '' "s:winx-:./${PROJECT_PCD}-:g" ${PROJECT_PCD}-devops-starter.env
 ```
 
-在env中，port,jar,log容易理解，按项目需要配置即可。
-BOOT_CNF是用来替换默认配置的运行时配置，结构如下。
+In env, port,jar,log is easy to understand and can be configured according to project needs.
+BOOT_CNF is used to replace the default config at runtime, the structure is as follows.
 
 ```text
-├── application.properties // 程序级设置
-├── wings-conf // 自动配置，按需覆盖内部文件
+├── application.properties // application level config
+├── wings-conf // auto config, override on demand
 │     └── spring-datasource.properties
 ```
 
-## 9.4.反向代理
+## 9.4.Reverse Proxy
 
-通常的配置参考，包括强制https，保护误操作.git，前后端分离。
+The general config, including forced https, .git protection, and frontend and backend separation.
 
 ```nginx
 upstream good_admin {
     ip_hash;
     server good_appser_01:8090;
     server good_appser_02:8090;
-    keepalive 300; # 长连接
+    keepalive 300; # long conn
 }
 
 server {
@@ -109,20 +112,20 @@ server {
     #    return 301 https://$host$request_uri;
     #}
     
-    # 防御性设置，禁止发布git工程
+    # Defensive settings to protect .git
     location .git {
         access_log off;
         log_not_found off;
         deny all;
     }
 
-    # 后端分流，资源类遵循res-id-{base64_urlsafe}.{pdf}格式
+    # backend, resource url in res-id-{base64_urlsafe}.{pdf} format
     location ~* (\.json|/res-id-[\-=_0-9a-z]+\.[0-9a-z]+)$ {
         proxy_pass http://good_admin;
         proxy_http_version  1.1;
         proxy_cache_bypass  $http_upgrade;
     
-        proxy_set_header  Connection   "";            # 长连接
+        proxy_set_header  Connection   "";            # long conn
         #proxy_set_header Connection   "upgrade";     # ws
         #proxy_set_header Upgrade      $http_upgrade; # ws
         proxy_set_header  Host         $host;
@@ -130,9 +133,9 @@ server {
         proxy_redirect    http://      $scheme://;    # https
     }
 
-    # 前端分流
+    # frontend
     location / {
-        #add_header 'Access-Control-Allow-Origin' '*'; #允许跨域
+        #add_header 'Access-Control-Allow-Origin' '*'; #Allow CORS
         root /data/static/good-admin-spa/;
         if ($request_filename ~* \.(html|htm)$){
             add_header Cache-Control no-cache,no-store,max-age=0,must-revalidate;
@@ -141,20 +144,20 @@ server {
 }
 ```
 
-## 9.5.压力测试
+## 9.5.Stress Testing
 
-压力测试，必须`ulimit -n`在10k以上，同一内网以忽略带宽限制。
+Stress test, must be `ulimit -n` above 10k, same intranet to ignore bandwidth limit.
 
 ```bash
 cd $PROJECT_DIR
-# 打包和启动
+# package and start
 mvn -U clean package
 ./${PROJECT_PCD}-devops-starter.sh start
-# Ctrl-C停止日志输出
+# Ctrl-C to stop log output
 ./${PROJECT_PCD}-devops-starter.sh stop
 ```
 
-使用jmeter 模拟10K*50请求
+Using jmeter to simulate 10K*50 requests
 
 ```bash
 ulimit -n 45535
@@ -170,35 +173,37 @@ jmeter -n \
 -e -o ${PROJECT_PCD}-devops/target/load-test/report
 ```
 
-## 9.6.安全选项
+## 9.6.Security Option
 
-wings工程中的默认密码均为`${random.uuid}`或环境变量。实际生产中，有些需要设置为固定密码。
-密码强度，必须在32位以上的随机字符，字母数字大小写混合最好。
+The default password in wings project is `${random.uuid}` or environment variable.
+In actual production, some need to set to fixed password. Password strength,
+must be more than 32-bit random characters, alphanumeric case mix is best.
 
-* `DING_TALK_TOKEN` - 系统变量，boot-admin登录密码
-* `wings.silencer.encrypt.leap-code` - 伪随机数，可不更换
-* `wings.silencer.encrypt.crc8-long` - 数字增加crc校验，可不更换
-* `wings.silencer.encrypt.aes-key.*` - ^建议^更换
-* `wings.slardar.hazelcast.cluster-name` - hazelcast集群名，^必须^更换
+* `DING_TALK_TOKEN` - System variable, boot-admin login password
+* `wings.silencer.encrypt.leap-code` - Pseudo-random number, can keep it
+* `wings.silencer.encrypt.crc8-long` - Add crc checksum to number, can keep it
+* `wings.silencer.encrypt.aes-key.*` - ^SHOULD^ change
+* `wings.slardar.hazelcast.cluster-name` - hazelcast clust name, ^MUST^ change
 
-example中的配置，默认以`DING_TALK_TOKEN`为密码
+In example project, use `DING_TALK_TOKEN` as default password
 
-* `spring.boot.admin.client.username` - boot.admin server端用户，^建议^更换
-* `spring.boot.admin.client.password` - boot.admin server端密码，^必须^更换
-* `spring.boot.admin.client.instance.metadata.user.name` - client端用户，^建议^更换
-* `spring.boot.admin.client.instance.metadata.user.password` - client端密码，^必须^更换
+* `spring.boot.admin.client.username` - boot.admin server-side username, ^SHOULD^ change
+* `spring.boot.admin.client.password` - boot.admin server-side password, ^MUST^ change
+* `spring.boot.admin.client.instance.metadata.user.name` - client-side username, ^SHOULD^ change
+* `spring.boot.admin.client.instance.metadata.user.password` - client-side password, ^MUST^ change
 
-上述全部配置项的默认值，以对应的配置项的手册或源代码为准，避免文档过期影响安全性。
+The default values for all of the above config items should be based on the corresponding manual or source code
+to avoid the security implications of outdated documentation.
 
-## 9.7.启动参数
+## 9.7.Start-up Args
 
-在springboot3，即java17后，必须正确设置`add-opens`，以避免`illegal-access`。
-Wings在pom.xml和starter.sh中已进行了正确的设置，其文件及变量名字如下，
+In springboot3(after java17), `add-opens` must be set correctly to avoid `illegal-access`.
+Wings set correctly in pom.xml and starter.sh, with the following files and variable names.
 
-* `/pom.xml` - `wings.java-opens` 有原因说明
+* `/pom.xml` - `wings.java-opens` with reason
 * `/observe/scripts/wings-starter.sh` - `JDK9_ARG`
 
-`add-opens`的具体内容如下，使用时按需处理换行
+The details of `add-opens` are as follows, handle line breaks when using
 
 ```text
 --add-modules java.se

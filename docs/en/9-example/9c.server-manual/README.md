@@ -3,8 +3,8 @@ isOriginal: true
 icon: rank
 index: false
 category:
-  - practice
-  - monitor
+  - Practice
+  - Home
 ---
 
 # 9C.DevOps Manual

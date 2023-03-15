@@ -2,11 +2,11 @@
 isOriginal: true
 icon: enum
 category:
-  - 术士
-  - 属性
+  - Warlock
+  - Property
 ---
 
-# 4D.术士的属性
+# 4D.Warlock Properties
 
 有关Warlock登录授权的设置
 
