@@ -16,9 +16,9 @@ Minimize deps on SpringBoot to provide auto and cascade configuration.
 
 ## 1.1.Module Project
 
-* silence - auto conf prop/yaml and i18n message
-* silence-curse - code, log, datetime utility
-* silence-test - test utility eg. i18n message
+* silencer - auto conf prop/yaml and i18n message
+* silencer-curse - code, log, datetime utility
+* silencer-test - test utility eg. i18n message
 
 ## 1.2.Cascade Config
 

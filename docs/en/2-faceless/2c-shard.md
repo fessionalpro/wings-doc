@@ -4,10 +4,10 @@ icon: tree
 category:
   - Faceless
   - Sharding
-  - RwSplit
+  - Separation
 ---
 
-# 2C.RwSplit and Sharding
+# 2C.Separation and Sharding
 
 > 对膨胀的数据增加一个状态，时间在此停止，分而治之，合而用之。
 

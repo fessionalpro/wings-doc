@@ -26,7 +26,7 @@ category:
 
 如果你的项目遇到了以上的数据库及数据的问题，flywave的思想（不限于Wings）适合你。
 
-不适用场景及风险提示，**数据十分重要**，重要操作需要专业人士 `DoubleCheck`
+不适用场景及风险提示：**数据十分重要**，重要操作需要专业人士 `DoubleCheck`
 
 * 线上数据很热或非常大，以至于没有一刀切的升级方案，flywave无法胜任
 * 涉及线上表rename等，建议专业人士介入，采用pt-online-schema-change思路

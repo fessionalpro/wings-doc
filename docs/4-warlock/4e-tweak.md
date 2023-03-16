@@ -12,7 +12,7 @@ category:
 
 ## 4E.1.实现原理
 
-在SilenceCurse模块中，存在以下结构类似的类，用于全局控制
+在SilencerCurse模块中，存在以下结构类似的类，用于全局控制
 
 * TweakClock - 调试时钟
 * TweakLogger - 调试日志级别，仅限于Logback

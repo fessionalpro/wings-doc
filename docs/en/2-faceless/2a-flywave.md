@@ -13,24 +13,32 @@ category:
 Sql-based and Git-like schema and data version management.
 commit schema and code to git, easily diff and merge.
 
-## 2A.1.飞波(Flywave)是一个实践
+## 2A.1.Flywave is Practice
 
-工程实际中，我们响应变化，应对变更，都有成熟的工具，源代码由git管理，任务由jira管理，
-那么静态的表结构变更，运行时的数据变更，我们怎么管理和记录，跟踪和调查，分支和回滚呢？
+In real-world software development, we have great tools for adapting to and managing change,
+such as Git for source code and Jira for tasks. But when it comes to changes to static tables
+and runtime data, how do we manage, record, track, investigate, branch, and rollback?
 
-* 项目从零开始，需求逐渐浮现，如何管理每周迭代中的字段新增，废弃和修改
-* local, develop, product的代码应该对应哪个schema和data
-* 线上一个订单数据错误，由哪个事件引起的，他都更新了哪些条数据
-* sql搞错where，发现时已晚，如何确认受影响数据，快速恢复到更新前
-* 项目一点点变大，从单库单表，平滑的过度到，读写分离，分表分库
-* 网络中断，联网续传，一套代码可以跑本地H2和云端MySql
+* When you start a project from scratch, requirements emerge gradually.
+  How do you manage field additions, deprecations, and changes in each weekly iteration?
+* Which schema and data should correspond to the code for local, develop, product?
+* An online order error occurred , what event caused it and what data was updated?
+* When it's to late to stop executing sql with a wrong where clause,
+  How to confirm the affected records and roll them back?
+* The project gets bigger and bigger, how to  smoothly transition from a single app,
+  single database to rw-separation, data-sharding and more?
+* Network break, network resume, same code can run on both local H2 and cloud MySQL.
 
-如果你的项目遇到了以上的数据库及数据的问题，flywave的思想（不限于Wings）适合你。
+If your project has the above database and data problems,
+Flywave's ideas (not limited to Wings) are for you.
 
-不适用场景及风险提示，**数据十分重要**，重要操作需要专业人士 `DoubleCheck`
+Not applicable scenarios and risk WARNING: **Data is Very Important**,
+important operation need professional `DoubleCheck`
 
-* 线上数据很热或非常大，以至于没有一刀切的升级方案，flywave无法胜任
-* 涉及线上表rename等，建议专业人士介入，采用pt-online-schema-change思路
+* Online data is so hot or so large that there is no one-size-fits-all
+  upgrade solution and flywave is not up to the task.
+* Online table renaming, etc. it is recommended to use other professional
+  solution, eg. pt-online-schema-change strategy
 
 实际项目中，schema结构的变更十分频繁，需要控制好local/develop/product的版本和节奏。
 `flyway`是个不错的选择，但用它有点牛刀杀鸡，所以新造个轮子叫`flywave`，可以，

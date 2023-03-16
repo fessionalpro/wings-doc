@@ -44,7 +44,7 @@ use `ConstantEnumGenerate` to autogen java code to keep the Db and java enum con
 
 * [Table/Data Versioning](2a-flywave.md) -  Sql-based and Git-like schema and data version management
 * [Typesafe DSL SqlMapping](2b-jooq.md) - Generate strongly typed codes from database: pojo, dao
-* [RwSplit and Sharding](2c-shard.md) - RwSplit and Sharding to smoothly handle large data
+* [Separation and Sharding](2c-shard.md) - Separation and Sharding to smoothly handle large data
 * [Mysql/H2 Knowledge](2d-mysql-h2.md) - Knowledge of Mysql-compatible database
 * [Flywave Faq Topic](2e-qa-flywave.md) - Flywave schema revision and data journal
 * [Jooq Faq Topic](2f-qa-jooq.md) - Jooq topic

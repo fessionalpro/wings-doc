@@ -12,7 +12,7 @@ category:
 
 ## 1D.1.wings-auto-config.cnf
 
-Silence的入口配置，定义了Silence的自动加载的路径和模式。
+Silencer的入口配置，定义了Silencer的自动加载的路径和模式。
 
 ### wings.boot.more
 
@@ -44,7 +44,7 @@ Silence的入口配置，定义了Silence的自动加载的路径和模式。
 
 ## 1D.3.spring-wings-enabled-79.properties
 
-Silence功能的默认开关，如下
+Silencer功能的默认开关，如下
 
 ### spring.wings.silencer.enabled.autoconf
 
