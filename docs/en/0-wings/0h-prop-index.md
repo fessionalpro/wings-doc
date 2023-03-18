@@ -37,7 +37,7 @@ The config value in the properties is usually a single line, and the multiple li
 * `\` - Backslash (‘\’) escape the new line
 * `\n\` - Generate a line break in the prop to improve readability.
 
-## 0H.3.配置项列表
+## 0H.3.Properties Files
 
 * [Silencer Properties](../1-silencer/1d-prop-silencer.md) - Autoload default utility and feature
 * [Faceless Properties](../2-faceless/2i-prop-faceless.md) - Database Acess, basic I18n configuration
