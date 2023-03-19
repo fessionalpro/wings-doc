@@ -8,60 +8,67 @@ category:
 
 # 0B.RestHalf Spec
 
-场景化业务的URL命名规范，参考了RESTFul和GraphQL，适用于无法资源化的业务，故取名叫`RestHalf`。
+The URL naming specification of the scenario-based business, referring to RESTFul and GraphQL,
+is applicable to the business that cannot be resourced, so it is named `RestHalf`.
 
-## 0B.1.业务场景化
+## 0B.1.Scenarioizing Business
 
-在`RestHalf`实践中，业务的复杂性主要来自于 ①业务自身在演化 ②人员认知在涌现。
+In the `RestHalf` practice, the complexity of the business comes from
+① the business itself is evolving ② people's perceptions are emerging.
 
-* 做着做着，东西就变了，从轮子做到了自行车，这是演化
-* 写着写着，思路清晰了，从摸象到最后摸全了，这是涌现
+* As you keep doing, things change, from making a wheel to a bicycle, this is evolution.
+* As you keep coding, ideas get clearer, from groping in the dark to
+  finally understanding everything, this is emergence.
 
-在技术领域，没有银弹。wings实践注重场景化，任一方案都必须在具体场景中讨论。
+There is no silver bullet in technology. The Wings methodology emphasizes contextualization,
+and each solution must be discussed in the context of a specific scenario.
 
-* RESTFul的不够用在于其简单，而资源仅是业务的参与者之一
-* GraphQL的不好用在于其万能，问题尚未分解，只是多一种QL
+* RESTFul is not enough because it is too standard, and resources are only one of the participants in the business.
+* GraphQL is too enough because it is a jack of all trades, the problem is still there, it is just another QL.
 
-对于复杂的东西，唯有分解，对于变化的东西，唯有适应。
-所谓场景化，就是把变化切片，固定上下文和寻找确定性，通常从以下方面入手。
+For complexity, the only way is to breakdown, and for change, the only way is to adapt.
+By scenarioizing, we mean slicing and dicing change, fixing context and finding certainty,
+usually starting with the following.
 
-* 资源 - 数据流，任何资源都有唯一id，即便是从属关系
-* 事件 - 业务流，事件触发数据的产生，变化和消失
-* 功能 - 场景框，输入了什么，输出了什么，限定了界限
+* Resources - data flow, any resource has a unique id, even if it is affiliation
+* Events - business flow, event drives data to be created, change and disappear
+* Functions - scenario boxes, what is input, what is output, boundaries
 
-场景化应遵循以下原则，以便容易跟上变化，容易分解和理解。
+The scenario should follow the following principles so that it is easy to keep up with
+changes and easy to break down and understand
 
-* 能简单，就不要复杂。不要创造概念，持续奥卡姆"剃头"
-* 能强关联，就不要弱关联。多路径时使用关键/强路径
-* 能明示，就不要暗示。限定边界/输入/输出/异常
+* Don't be complex when it can be simple. Don't create concepts, always use Occam's Razor.
+* Don't use weak connections when there are strong ones. Use critical/strong path when there are multiple paths
+* Don't imply when you can make it explicit. Define boundaries/inputs/outputs/exceptions.
 
-## 0B.2.请求能POST，就别GET
+## 0B.2.No GET if Request Can Post
 
-除了资源类型，及特定场景用GET外，全部使用POST
+All POST except for resource types and GET for special scenarios.
 
-* 无POST环境的，如邮件中的下载 `/label/res-id-{tk}.pdf`
-* 约定重定向的，如SSO/OAuth登录，需要多次302
-* 静态资源，如图片，样式等。
+* No POST, such as download in email `/label/res-id-{tk}.pdf`
+* Contracted redirects, such as SSO/OAuth logins that require 302
+* Static resources, such as images, styles, etc.
 
-此外，因GET请求全部信息都在URL中（cookie外），可被历史及缓存，
-所以，任何敏感的请求，都必须有token防护，如次数，期限，权限等。
+In addition, since the GET request all information is in the URL (except cookie), can be history and cached.
+Therefore, any sensitive requests, must have token protection, such as the number of times, duration, permissions, etc.
 
-抽象化及资源化，容易有歧义，且与场景化原则略有冲突，因此建议全POST。
+Abstraction and resourcing, easy ambiguity, and easy conflict with the principle of scenario,
+so it is recommended that all POST.
 
-## 0B.3.传参能Head/Body，就别path/query
+## 0B.3.No path/query if Params Can Head/Body
 
-考虑到网关/切面处理，排错分析等，保持path及query参数简洁。
+Keep path and query parameters simple considering gateway/aspect processing, error analysis, etc.
 
-* path参数，最好没有或只有1个，超过1个时，需要考虑必要性
-* query string，应仅限功能参数，如分页及简单搜索
-* 业务参数，应封装在Http body中，如Json
-* 会话参数，应封装在Http Header中，如Token
+* path parameters, preferably no or only 1, more than 1, need to consider the necessity
+* query string, should be limited to functional parameters, such as paging and basic search
+* business parameters, should be encapsulated in the http body, such as json
+* session parameters, should be encapsulated in the http header, such as token
 
-## 0B.4.网址要明确身份，有前缀和后缀
+## 0B.4.Prefix and Suffix Identity URLs
 
-场景化中，每个URL都是具体的角色，有其家族和职业。
+In the scenario, each URL is a specific role, with its family and profession.
 
-* 前缀如，业务类别`admin`，版本号`v1`等
-* 后缀如，应答内容扩展名`.pdf`
-* 从后往前做时，建议与项目分包一致
-* 从前往后做时，建议与页面功能一致
+* Prefix such as, business `admin`, version `v1`, etc.
+* Suffix such as, response content extension `.pdf`
+* When from backend to frontend, consistent with the project package
+* When from frontend to backend, consistent with the page feature
