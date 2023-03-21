@@ -6,7 +6,7 @@ category:
   - Property
 ---
 
-# 3L.Hazelcast Property
+# 3L.Hazelcast Properties
 
 有关Slardar中提供的Hazelcast的设置
 

@@ -8,101 +8,104 @@ category:
 
 # 0C.Dev Tool
 
-工欲善其事，必先利其器，推荐的工具及配置。
+The recommended tools and configs for the efficient work.
 
-## 0C.1.Java开发
+## 0C.1.Java Development
 
-使用`IntelliJIdea`作为开发`IDE`，可使用`code style`和`live templates`。
-`wings-idea-style.xml`在`Setting/Editor/Code Style`导入。
+Use `IntelliJIdea` as `IDE` with `code style` and `live templates`,
 
-`wings-idea-live.xml`需要手动放到`$config/templates/`，没有则新建。
+* `wings-idea-style.xml` imports in `Setting/Editor/Code Style`.
+* `wings-idea-live.xml` place manually in `$config/templates/`, or create it if not found.
 
 ```bash
 cd wings
 id_config=~/Library/ApplicationSupport/JetBrains/IntelliJIdea2021.1
-# 通过复制，备份
+# Backup by copying
 cat $id_config/templates/wings.xml > wings-idea-live.xml
 cat $id_config/codestyles/Wings-Idea.xml > wings-idea-style.xml
-# 通过复制，还原
+# Restore by copying
 cat wings-idea-live.xml  > $id_config/templates/wings.xml
 cat wings-idea-style.xml > $id_config/codestyles/Wings-Idea.xml
-# 若重新导入工程，清除idea配置
+# Re-import the project, clear the idea configuration
 find . -name '*.iml' -o -name '.idea' | tr '\n' '\0' | xargs -0 rm -r
 ```
 
-关于live-template的使用，分为Insert和Surround，对应插入和编辑，一般选择文本时，
-`Surround... ⌥⌘J`，无选择文本时，使用 `Insert... ⌘J`
+The use of the live-template has 2 types, Insert and Surround, corresponding to insert and edit,
+and generally when selecting text `Surround... ⌥⌘J`, when no selected text, use `Insert... ⌘J`
 
 * WIN `%HOMEPATH%\.IntelliJIdea2019.2\config`
 * LIN `~/.IntelliJIdea2019.2/config`
 * MAC `~/Library/Preferences/IntelliJIdea2019.2`
 * MAC `~/Library/ApplicationSupport/JetBrains/IntelliJIdea2021.1`
 
-参考资料
+References
 
 * [sharing-live-templates](https://www.jetbrains.com/help/idea/sharing-live-templates.html)
 * [2020.1 and above versions](https://www.jetbrains.com/help/idea/tuning-the-ide.html#default-dirs)
 * [2019.3.x and below versions](https://www.jetbrains.com/help/idea/2019.3/tuning-the-ide.html#default-dirs)
 
-安装以下插件
+Useful plug-ins
 
-* .ignore - 和版本管理中ignore有关的
-* Any2dto - 支持jooq, sql查询直接生成dto，减少复制和赋值
-* CheckStyle - 代码质量
-* Comments Highlighter - 注释中划重点
-* Error Prone Compiler - 设置Java Compiler选择Javac with error-prone
-* GenerateAllSetter - alt-enter 生成全部 po.setXxx("")
-* Git Flow Integration - 集成了git-flow
-* GitToolBox - 自动 fetch
-* Git Commit Guide - gitmoji.dev 辅助
-* Grep Console - 控制台的日志分颜色显示和过滤
-* Indent Rainbow - 使缩进有颜色
-* kotlin - 默认安装了
+* .ignore - ignore file in versioning
+* Any2dto - jooq, sql generate dto, reduce copy and assignment
+* CheckStyle - code quality
+* Comments Highlighter - highlighting in comments
+* GenerateAllSetter - alt-enter generates all po.setXxx("")
+* Git Flow Integration - integrates with git-flow
+* GitToolBox - automatic fetch
+* Git Commit Guide - gitmoji.dev helper
+* Grep Console - Console logs are color-coded and filtered
+* Indent Rainbow - makes indentation colorful
+* kotlin - installed by default
 * lombok - IntelliJ Lombok plugin
-* MapStruct Support - 静态强类型DTO转换，减少复制和赋值
-* Maven Helper - 帮助管理maven
-* Quick File Preview - 单击快速浏览文件
-* Rainbow Brackets - 彩虹括号
-* Request mapper - 快速查找 mapping
-* Statistic - 统计一下自己的代码
-* String Manipulation - 对字符串的各种操作和转换
-* HTTP Client - 官方对`*.http`文件格式的支持
+* MapStruct Support - Static strong typed DTO conversion to reduce copying and assignment
+* Maven Helper - Helps manage maven
+* Quick File Preview - Quick file preview with one click
+* Rainbow Brackets - Colorful brackets
+* Request mapper - Quickly find mapping
+* Statistic - count your code
+* String Manipulation - Various operations and conversions on strings
+* HTTP Client - official support for the `*.http` file format
 
-## 0C.2.Kotlin开发
+## 0C.2.Kotlin Development
 
-wings支持java和kotlin混合开发，但更主张优先写好java，以避免过渡语法糖及过于灵活。
-所以，工程默认为java编译，以下任一条件，均可激活kotlin编译。
+Wings supports mixed java and kotlin development, but prefers to write java in order to avoid
+too much syntax sugar and flexibility. Therefore, the project is compiled for java by default,
+and kotlin compilation can be enabled by one of the following conditions.
 
-* 自动激活 - 存在`src/test/kotlin`或`src/main/kotlin`时，分别激活
-* 手动激活 - 指定`wings-kotlin-1test`或`wings-kotlin-2main`
-* 注意顺序，必须先test后main，如数字所示。因maven不支持多条件激活 MNG-5909
+* Automatic activation - activate respectively when `src/test/kotlin` or `src/main/kotlin` exists
+* Manual activation - specify `wings-kotlin-1test` or `wings-kotlin-2main`
+* Note the order, must be test before main, as shown in the numbers. Since maven does not
+  support multi-conditional activation, see MNG-5909
 
-当profile激活时，会生成`wings-kotlin-scope`属性，配置stdlib的scope为compile/test
-检查当前项目是否激活kotlin，进入工程目录，执行一下mvn命令，
+When profile is activated, `wings-kotlin-scope` property is generated, configure dep's
+scope as compile/test, To check if kotlin is activated in the current project,
+go to the project directory and execute the mvn command.
 
 ```bash
-# 自动激活
+# Auto active
 mvn help:active-profiles
-# 手动激活，逗号分隔，不用有空白
+# Manual active, comma separated, no whitespace
 mvn help:active-profiles -P wings-kotlin-1test,wings-kotlin-2main
-# 查看最终 pom.xml
+# check final pom.xml
 mvn help:effective-pom
 ```
 
-## 0C.3.SQL工具
+## 0C.3.SQL Utility
 
-* [Mysql Workbench](https://www.mysql.com/products/workbench/) - SQL优先的场景，如DDL，Admin，权限等
-* [DBeaver](https://dbeaver.io) - 支持颜色标识，eclipse风格
-* DataGrid - 支持颜色标识，数据优先的场景，如查询，局部导出等
+* [Mysql Workbench](https://www.mysql.com/products/workbench/) - SQL-first scenarios, such as DDL, Admin, permissions, etc.
+* [DBeaver](https://dbeaver.io) - Support for color markup, eclipse style
+* DataGrid - Support for color markup, data-first scenarios such as query, partial export, etc.
 
-## 0C.4.文本工具
+## 0C.4.Text Editor
 
-* VsCode - 前端，markdown等，不适应于大文件
-* Sublime - 文本处理
+* VsCode - frontend, markdown, etc., not suitable for large files
+* Sublime - Text Processing
 
-## 0C.5.http测试
+## 0C.5.Http Testing
 
-推荐在每个工程test下建立idea支持的 `*.http` 接口描述和测试脚本，官方文档如下
+It is recommended to create `*.http` supported by IDEA to descript and test web interface under each project test,
+the official documentation is as follows,
 
 * <https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html>
 * <https://www.jetbrains.com/help/idea/exploring-http-syntax.html>
@@ -110,11 +113,11 @@ mvn help:effective-pom
 * <https://www.jetbrains.com/help/idea/http-client-reference.html>
 * <https://www.jetbrains.com/help/idea/http-response-reference.html>
 
-使用建议如下
+Suggestions for use are as follows,
 
-* 使用`*.http`时，通常先从chrome中抓取 cURL 命令，复制过来即可
-* 变量`{{variable_name}}`，来自`http-client*.env.json`，`client.global.`或系统自带
-* 处理Response. prepend it with `>` and enclose it in `{%` `%}`
-* 很长的请求折多个短行. Indent all query string lines but the first one
-* HTTP Response Handler 的2个对象 client 和 response
+* When using `*.http`, usually grab the cURL command from chrome and copy it
+* Variable `{{variable_name}}`, from `http-client*.env.json`, `client.global.` or the system's builtin
+* Process the Response. prepend it with `>` and enclose it in `{%` and `%}`
+* Fold long requests into multiple short lines. Indent all query string lines but the first one
+* HTTP Response Handler handle 2 objects: client 和 response
 * <https://www.jetbrains.com/help/idea/http-response-handling-examples.html>

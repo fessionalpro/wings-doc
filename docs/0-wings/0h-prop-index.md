@@ -15,9 +15,9 @@ category:
 
 ## 0H.1.属性文件名
 
-在Silence中，默认约定了配置文件的类型和命名规则。
+在Silencer中，默认约定了配置文件的类型和命名规则。
 
-* `wings-auto-config.cnf` - Silence功能配置
+* `wings-auto-config.cnf` - Silencer功能配置
 * `wings-conf-block-list.cnf` - 配置文件黑名单
 * `wings-prop-promotion.cnf` - 配置项提升到系统变量
 * `spring-*.properties` - spring的配置项

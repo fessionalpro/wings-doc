@@ -16,9 +16,9 @@ category:
 
 ## 1.1.模块划分
 
-* silence - 自动处理prop/yaml配置，i18n message
-* silence-curse - code, log, datetime功能及工具
-* silence-test - 测试包，提供i18n message
+* silencer - 自动处理prop/yaml配置，i18n message
+* silencer-curse - code, log, datetime功能及工具
+* silencer-test - 测试包，提供i18n message
 
 ## 1.2.层叠配置
 

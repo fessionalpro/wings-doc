@@ -13,9 +13,9 @@ category:
 ## 0C.1.Java开发
 
 使用`IntelliJIdea`作为开发`IDE`，可使用`code style`和`live templates`。
-`wings-idea-style.xml`在`Setting/Editor/Code Style`导入。
 
-`wings-idea-live.xml`需要手动放到`$config/templates/`，没有则新建。
+* `wings-idea-style.xml`在`Setting/Editor/Code Style`导入。
+* `wings-idea-live.xml`需要手动放到`$config/templates/`，没有则新建。
 
 ```bash
 cd wings
@@ -50,7 +50,6 @@ find . -name '*.iml' -o -name '.idea' | tr '\n' '\0' | xargs -0 rm -r
 * Any2dto - 支持jooq, sql查询直接生成dto，减少复制和赋值
 * CheckStyle - 代码质量
 * Comments Highlighter - 注释中划重点
-* Error Prone Compiler - 设置Java Compiler选择Javac with error-prone
 * GenerateAllSetter - alt-enter 生成全部 po.setXxx("")
 * Git Flow Integration - 集成了git-flow
 * GitToolBox - 自动 fetch
