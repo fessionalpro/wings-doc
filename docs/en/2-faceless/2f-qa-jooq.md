@@ -13,7 +13,7 @@ Jooq有关的话题
 
 ## 2F.01.jooq执行plain sql
 
-在执行plain sql时，可以使用jdbcTemplate或jooq，jooq的好处是，会进行parse（性能），进行兼容性调整（如果需要），
+在执行plain sql时，可以使用jdbcTemplate/SqlQuery/jooq，jooq的好处是，会进行parse（性能），进行兼容性调整（如果需要），
 所以，在运行时，不考虑兼容性，推荐用 jdbcTemplate，在需要语法分析或合并等场景，使用jooq。
 
 * <https://www.jooq.org/doc/3.12/manual/sql-building/plain-sql/>
@@ -23,6 +23,7 @@ Jooq有关的话题
 * <https://www.jooq.org/doc/3.12/manual/sql-building/sql-parser/sql-parser-grammar/>
 * <https://blog.jooq.org/2020/03/05/using-java-13-text-blocks-for-plain-sql-with-jooq/>
 * <https://docs.oracle.com/cd/E13157_01/wlevs/docs30/jdbc_drivers/sqlescape.html>
+* <https://docs.spring.io/spring-framework/docs/6.0.x/reference/html/data-access.html>
 
 ```java
 class SelectPlain {

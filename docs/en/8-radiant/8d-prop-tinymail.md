@@ -185,11 +185,11 @@ spring-boot-starter-mail的配置，分为账号类和属性类
 
 `String[]`，强制替换真实的cc，字符串数组，逗号分隔
 
-wings.tiny.mail.sender.force-bcc
+### wings.tiny.mail.sender.force-bcc
 
 `String[]`，强制替换真实的bcc，字符串数组，逗号分隔
 
-wings.tiny.mail.sender.force-prefix
+### wings.tiny.mail.sender.force-prefix
 
 `String`，强制增加真实的subject前缀
 

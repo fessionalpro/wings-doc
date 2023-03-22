@@ -13,7 +13,7 @@ Jooq有关的话题
 
 ## 2F.01.jooq执行plain sql
 
-在执行plain sql时，可以使用jdbcTemplate或jooq，jooq的好处是，会进行parse（性能），进行兼容性调整（如果需要），
+在执行plain sql时，可以使用jdbcTemplate/SqlQuery/jooq，jooq的好处是，会进行parse（性能），进行兼容性调整（如果需要），
 所以，在运行时，不考虑兼容性，推荐用 jdbcTemplate，在需要语法分析或合并等场景，使用jooq。
 
 * <https://www.jooq.org/doc/3.12/manual/sql-building/plain-sql/>
@@ -23,6 +23,7 @@ Jooq有关的话题
 * <https://www.jooq.org/doc/3.12/manual/sql-building/sql-parser/sql-parser-grammar/>
 * <https://blog.jooq.org/2020/03/05/using-java-13-text-blocks-for-plain-sql-with-jooq/>
 * <https://docs.oracle.com/cd/E13157_01/wlevs/docs30/jdbc_drivers/sqlescape.html>
+* <https://docs.spring.io/spring-framework/docs/6.0.x/reference/html/data-access.html>
 
 ```java
 class SelectPlain {
@@ -266,3 +267,31 @@ springboot 可能在3.0中停止支持jooq，摘要如下，详情看issue链接
 
 * <https://github.com/jOOQ/jOOQ/issues/9641>
 * <https://github.com/spring-projects/spring-boot/issues/28821>
+
+## 2F.12.Jooq group_concat
+
+当使用mysql的group_concat时，若出现以下错误，
+
+> You have an error in your SQL syntax; check the manual that
+> corresponds to yourMySQL server version for the right syntax
+> to use near 'set @@group_concat_max_len = 4294967295;
+
+是因为jooq在render时，会增加session级的变量设置，以避免超长，SQL大概如下，
+
+```sql
+SET @T = @@GROUP_CONCAT_MAX_LEN;
+SET @@GROUP_CONCAT_MAX_LEN = 4294967295;
+SELECT GROUP_CONCAT(TITLE SEPARATOR ', ')
+FROM BOOK;
+SET @@GROUP_CONCAT_MAX_LEN = @T;
+```
+
+wings默认通过spring.wings.faceless.jooq.enabled.render-group-concat=false 关闭了次功能，
+因为在推荐的mysqld配置中，以进行了global的设置。
+
+千万不可使用 jdbc:mysql://localhost/test?allowMultiQueries=true，会有sql注入风险。
+若不能设置mysql服务器变量，可使用 DataSourceInitializer 在获取Connection时设置。
+
+* <https://github.com/jOOQ/jOOQ/issues/12092>
+* <https://www.jooq.org/doc/3.17/manual/sql-building/dsl-context/custom-settings/settings-group-concat/>
+* <https://blog.jooq.org/mysqls-allowmultiqueries-flag-with-jdbc-and-jooq/>

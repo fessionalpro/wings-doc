@@ -38,6 +38,33 @@ Flywave功能的默认开关，如下
 
 `Boolean`=`true`，是否监听table的create, update, delete
 
+### spring.wings.faceless.jooq.enabled.render-group-concat
+
+`Boolean`=`false`, Whether the jOOQ `GROUP_CONCAT` function should be overflow-protected by setting
+the `@@group_concat_max_len` session variable in MySQL style database
+
+MySQL truncates <`GROUP_CONCAT` results after a certain length, which may be way
+too small for jOOQ's usage, especially when using the `MULTISET` emulation. By
+default, jOOQ sets a session variable to the highest possible value prior to executing a
+query containing `GROUP_CONCAT`. This flag can be used to opt out of this.
+
+* <https://github.com/jOOQ/jOOQ/issues/12092>
+* <https://blog.jooq.org/mysqls-allowmultiqueries-flag-with-jdbc-and-jooq/>
+* <https://www.jooq.org/doc/3.17/manual/sql-building/dsl-context/custom-settings/settings-group-concat/>
+
+### spring.wings.faceless.jooq.enabled.render-catalog
+
+`Boolean`=`false`, Whether any catalog name should be rendered at all.
+Use this for single-catalog environments, or when all objects are made
+available using synonyms
+
+### spring.wings.faceless.jooq.enabled.render-schema
+
+`Boolean`=`false`, Whether any schema name should be rendered at all.
+Setting this to false also implicitly sets "renderCatalog" to false.
+Use this for single-schema environments, or when all objects are made
+available using synonyms
+
 ## 2K.2.wings-jooq-cud-79.properties
 
 jooq的CUD监听设置
