@@ -167,7 +167,7 @@ or scanned via @ConfigurationPropertiesScan
 
 ## 0D.10.Jooq隐秘的NullPointerException
 
-在jooq映射enum类型是，如果converter错误，可能会出现以下NPE，不能通过stack定位问题，需要分析SQL
+在jooq映射enum类型时，如果converter错误，可能会出现以下NPE，不能通过stack定位问题，需要分析SQL
 
 ```text
 java.lang.NullPointerException
@@ -229,7 +229,7 @@ wings中可以通过暴露AlternateTypeRule bean，自动注入所以Docket中�
 
 涉及的反序列化lib包括，hazelcast, kryo, cache
 
-* 完全一样的class，但是在序列化时却抛出 ClassCastException
+* 完全一样的class，但是在反序列化时却抛出 ClassCastException
 * 同一个Enum的hash和equals不同，导致比较或map失败
 
 大概率是，开发时项目使用了spring-boot-devtools，导致IDE和jar处在不同的classloader。
@@ -237,11 +237,11 @@ IDE使用了devtools的`restart`, 而非IDE内的jar则是`base`。
 
 * 方案一，wings中始终使用`spring.hazelcast.config`配置hazelcast
 * 方案二，自己暴露Config或ClientConfig，并设置好classloader
-* 方案三，配置spring-devtools.properties（不推荐，wings采用）
+* 方案三，配置spring-devtools.properties（不推荐）
 
 不推荐在product环境使用devtool，参考springboot官方文档的[Known Limitations](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#using.devtools.restart.limitations)
 
-## 0D.16.Hazelcast的`OutOfMemoryError`及`CallerNotMemberException`
+## 0D.16.Hazelcast的OutOfMemoryError及CallerNotMemberException
 
 当内存紧张时，hazelcast会出现OutOfMemoryError，然后集群以CallerNotMemberException拒绝此实例。
 
@@ -316,6 +316,7 @@ find . -name '.pom.xml' | xargs rm -f
 ## 0D.22.json的泛型和泛型类的反序列化
 
 spring中，使用ResolvableType和TypeDescriptor描述类型。
+
 ```java
 TypeDescriptor.map(Map.class, strTd, strTd)
 TypeDescriptor.collection(List.class, strTd)
@@ -342,8 +343,8 @@ Type tp2 = ResolvableType.forClassWithGenerics(R.class, Dto.class).getType();
 
 Silencer的ApplicationContextHelper提供了静态的Ioc能力，有空指针情况
 
-* 在SpringBoot生命周期的PreparedEvent之前使用
-* 在不同的classloader中使用，比如devtool的restart
+* 在SpringBoot生命周期的`PreparedEvent`之前使用
+* 在不同的classloader中使用，比如devtool的`restart`
 
 ## 0D.25.IDEA无法打开工程，错误ClassFormatError
 
