@@ -178,13 +178,13 @@ wings原则上，所以配置项都必有默认配置，而有时候需要忽略
 
 * `String`无效值 - `空`或`-`是默认的无效值
 * `Map<String, String>`  - 无效值key的value
-* `Map<String, Set<String>>` - 全覆盖key的value
+* `Map<String, Set<String>>` - 被覆盖的key的value
 
 ## 0E.12.Spring中的执行顺序
 
 在Spring生命周期中，以@Configuration为例，存在以下顺序执行
 
-* Constructor - 够函数优先执行
+* Constructor - 构造函数优先执行
 * @Autowired - 依赖注入
 * @PostConstruct - 依赖注入后执行，无参数
 * afterPropertiesSet - InitializingBean接口

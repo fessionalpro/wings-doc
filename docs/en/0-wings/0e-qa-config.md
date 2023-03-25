@@ -8,12 +8,12 @@ category:
 
 # 0E.Config Topic
 
-工程配置，如maven，properties，spring等设置项。
+Project configuration, such as maven, properties, spring and other settings.
 
-## 0E.01.哪些参数是必须打开的
+## 0E.01.Which Config Must Be Enabled
 
 ```bash
-# 找到所有开关文件
+# find all enabled properties files
 find . -name 'spring-wings-enabled.properties' \
 | egrep -v -E 'target/|example/' 
 
@@ -21,25 +21,27 @@ find . -name 'spring-wings-enabled.properties' \
 ./faceless/src/main/resources/wings-conf/spring-wings-enabled.properties
 ./silencer/src/main/resources/wings-conf/spring-wings-enabled.properties
 
-# 找到所有false的开关
+# find all disabled flag
 find . -name 'spring-wings-enabled.properties' \
 | egrep -v -E 'target/|example/' \
 | xargs grep 'false'
 
-# 以下2个需要在flywave和enum时开启
+# enalbe the following 2 if need flywave and enum features
 spring.wings.faceless.flywave.enabled.module=false
 spring.wings.faceless.enabled.enumi18n=false
 ```
 
-## 0E.02.调整springboot版本和依赖
+## 0E.02.Customize Springboot version and dependency
 
-wings仅在SpringBoot标准生命周期中，对配置文件的加载，进行了处理，不依赖于任何特定版本。
-对于不想跟随wings一同升级spring及其依赖的，只把wings做dependency，而不parent和import即可。
+Wings only handles the loading of configuration files, in the SpringBoot standard lifecycle,
+without relying on a specific version. For those who do not want to follow along with wings to
+upgrade spring and its dependencies, just make wings as a dependency, not a parent and import.
 
-wings随时跟进升级SpringBoot的次一级稳定版，目的是为了测试sharding-jdbc和jooq的兼容性。
-而在二进制兼容方面，wings210版本的编译的目标是java=11，kotlin=1.6
+Wings always follows the upgrade to the next level stable version of SpringBoot for the purpose of
+testing sharding-jdbc and jooq compatibility. And for binary compatibility, wings version 210 is
+compiled with a target of java=11, kotlin=1.6
 
-对于maven继承依赖有parent和import两种，其重要区别在于property覆盖。
+For maven inheritance dependencies there are parent and import two, the important difference is the property override.
 
 * parent - you can also override individual dependencies by overriding a property in your own project
 * import - does not let you override individual dependencies by using properties,
@@ -48,11 +50,11 @@ wings随时跟进升级SpringBoot的次一级稳定版，目的是为了测试sh
 * <https://docs.spring.io/spring-boot/docs/3.0.3/maven-plugin/reference/htmlsingle/#using.parent-pom>
 * <https://docs.spring.io/spring-boot/docs/3.0.3/maven-plugin/reference/htmlsingle/#using-import>
 
-对于低于wings的spring-boot版本，一般来讲指定一下jooq版本就可以完全正常。
+For spring-boot versions lower than wings, generally, specify the jooq version to completely work.
 
-## 0E.03.lib工程和boot工程的区别
+## 0E.03.The Difference Between Lib and Boot projects
 
-SpringBoot打包的executable是boot.jar 不是普通的lib.jar
+The SpringBoot package executable boot.jar, not the normal lib.jar
 
 ```xml
 <plugin>
@@ -64,7 +66,7 @@ SpringBoot打包的executable是boot.jar 不是普通的lib.jar
 </plugin>
 ```
 
-lib工程的配置，跳过`repackage`，参考example之外的工程
+For the lib project configuration, skip the `repackage` and refer to the example project.
 
 ```xml
 <plugin>
@@ -84,20 +86,21 @@ lib工程的配置，跳过`repackage`，参考example之外的工程
 </plugin>
 ```
 
-wings推荐的工程结构是，parent的pom.xml的`project/build/plugins`项，
-对以下`plugin`的`configuration`进行默认设置，
+Wings recommended project structure is the `project/build/plugins` entry in the parent's pom.xml.
+Default settings for `configuration` of the following `plugin`.
 
 * spring-boot-maven-plugin - executable=true
 * maven-deploy-plugin - skip=true
 * maven-install-plugin - skip=true
 
-这样，所有子模块，以boot工程提供默认的build（boot打包，不deploy，不install）。
-在lib子模块中跳过boot打包，即repackage中skip=true
+In this way, all submodules, with boot project provide default build (boot packing, no deploy, no install).
+Skip boot packaging in the lib submodule, ie. skip=true in repackage.
 
-## 0E.04.缺少mirana和meepo依赖lib
+## 0E.04.Missing Mirana and Meepo dependency
 
-因是非吃货的大翅项目（曾用名），一些`SNAPSHOT`依赖，需要自行编译并本地安装。
-偶尔可以在`sonatype`上找到，需要自行添加`repository`，如`~/.m2/settings.xml`
+Due to The Big Wing Project for Non-Foodies (once named), some `SNAPSHOT` dependencies need to be
+compiled and installed locally by yourself. Occasionally can be found on `sonatype`, you need to
+add your own `repository`, such as `~/.m2/settings.xml`
 
 ```xml
 <repository>
@@ -108,30 +111,31 @@ wings推荐的工程结构是，parent的pom.xml的`project/build/plugins`项，
 </repository>
 ```
 
-## 0E.05.配置和注入时的占位符
+## 0E.05.Placeholder for Config and Inject
 
-* 硬编码中，@Autowired
-  - PropertyResolver - 以key获取或解析value字符串
-  - StringValueResolver - 解析value字符串
-* properties配置中`${VAR}`
-* @Value和@RequestMapping中`${VAR}`
+* In Hard code, @Autowired
+  - PropertyResolver - Get or parse a string value  by key
+  - StringValueResolver - parse a value string
+* In properties, use `${VAR}`
+* In @Value and @RequestMapping, use `${VAR}`
 
-## 0E.06.移除Tomcat或hazelcast
+## 0E.06.Removing Tomcat or Hazelcast
 
-使用wings为parent时通过dependencyManagement，继承wings默认不需要修改。
-但若是没有继承wings依赖，以下2项视情况需要自行调整。
+When using wings as a parent through dependencyManagement, the default inheritance of wings does not need to be changed.
+However, if you donot inherit the wings, the following two items may be changed by yourself depending on the situation.
 
-* spring-boot-starter-web/spring-boot-starter-tomcat，因默认使用undertow
-* spring-session-hazelcast/hazelcast，使用最新版本
+* spring-boot-starter-web/spring-boot-starter-tomcat, because the default use of undertow
+* spring-session-hazelcast/hazelcast, use the latest version
 
-## 0E.07.Java和Kotlin版本
+## 0E.07.Java and Kotlin Version
 
-通过pom设置java和kotlin的编译版本，若IDE中出现编译失败，很可能是编译版本不对。
-从210起，wings全面适配java 11，kotlin自动更新为1.6，但未做java8证兼性测试。
+Set the compilation version of java and kotlin by pom, if there is compilation failure in IDE,
+it is likely that the compilation version is not correct. Since 210, wings is fully adapted to java 11,
+kotlin is automatically updated to 1.6, but no java8 certificate compatibility test is done.
 
-## 0E.08.如何配置logger和log groups
+## 0E.08.Config logger and log groups
 
-SpringBoot内置以下[Log Groups](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.logging.log-groups)
+SpringBoot built-in [Log Groups](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.logging.log-groups)
 
 * org.springframework.core.codec
 * org.springframework.http
@@ -144,27 +148,28 @@ SpringBoot内置以下[Log Groups](https://docs.spring.io/spring-boot/docs/3.0.3
 > Spring Boot uses Commons Logging for all internal logging
 > but leaves the underlying log implementation open
 
-Wings遵循这一实践，`@Configuration`等spring功能为CommonsLogging，
-而业务代码中使用lombok的`@Slf4j`配置为`static` `log`
+Wings follows this practice, `@Configuration` and other spring feature use CommonsLogging,
+And the business code using lombok `@Slf4j` configured as `static` `log`
 
-## 0E.09.mvn resources filtering
+## 0E.09.Mvn Resources Filtering
 
-注：在210版后，以spring变量取代了mvn变量，不再需要filter。
+Note: After version 210, the mvn variable is replaced by the spring variable and the filter is no longer needed.
 
-因为在swagger的配置中使用了变量`@project.version@`，所以会配置
-build/resources/resource/filtering=true，以便mvn自动替换。
+Because the variable `@project.version@` is used in the swagger configuration, it will be configured
+build/resources/resource/filtering=true so that mvn replaces it automatically.
 
-但是开启filter会引起错误替换，比如二进制文件等，wings默认忽略一些二进制文件
+However, enabling filter can cause replacement to fail, such as binary files, and wings ignores some binaries by default.
 
-## 0E.10.SPA及反向代理的缓存设置
+## 0E.10.SPA and Reverse Proxy Cache Cettings
 
-默认情况下springboot自动增加以下Response Header，使得反向代理无需设置
-`Cache-Control`=`no-cache,no-store,max-age=0,must-revalidate`
+By default, Springboot automatically adds the following Response Header,
+`Cache-Control`=`no-cache,no-store,max-age=0,must-revalidate` so that the reverse proxy
+does not need to be set. However, for SPA pages, manual settings are required,
+such as nginx configuration.
 
-但对于SPA页面，需要进行手动设置，如nginx配置。
 ```nginx
 location / {
-    #add_header 'Access-Control-Allow-Origin' '*'; #允许跨域
+    #add_header 'Access-Control-Allow-Origin' '*'; #CORS
     root /data/static/demo-admin-spa/;
     if ($request_filename ~* \.(html|htm)$){
         add_header Cache-Control no-cache,no-store,max-age=0,must-revalidate;
@@ -172,50 +177,50 @@ location / {
 }
 ```
 
-## 0E.11.如何忽略一个配置项
+## 0E.11.How to Ignore a Config Entry
 
-wings原则上，所以配置项都必有默认配置，而有时候需要忽略一些默认key或value。
+In wings principle, the config entry must have default value, and sometimes the default key or value need to be ignored.
 
-* `String`无效值 - `空`或`-`是默认的无效值
-* `Map<String, String>`  - 无效值key的value
-* `Map<String, Set<String>>` - 全覆盖key的value
+* `String` invalid value - `empty` or `-` is the default invalid value
+* `Map<String, String>` - the value of the invalid key
+* `Map<String, Set<String>>` - the value of overrided key
 
-## 0E.12.Spring中的执行顺序
+## 0E.12.Execution Order in Spring
 
-在Spring生命周期中，以@Configuration为例，存在以下顺序执行
+In the Spring lifecycle, using @Configuration as an example, the following order of execution is as follows
 
-* Constructor - 够函数优先执行
-* @Autowired - 依赖注入
-* @PostConstruct - 依赖注入后执行，无参数
-* afterPropertiesSet - InitializingBean接口
-* @Bean - 按需或按顺序执行
-* ApplicationStartedEvent - Started，事件参数
-* CommandLineRunner - Runner，注入依赖
-* ApplicationReadyEvent -  Ready，事件参数
+* Constructor - constructor are executed first
+* @Autowired - dependency injection
+* @PostConstruct - executed after dependency injection, no parameters
+* afterPropertiesSet - InitializingBean interface
+* @Bean - On-demand or sequential execution
+* ApplicationStartedEvent - Started, event parameter
+* CommandLineRunner - Runner, injected dependencies
+* ApplicationReadyEvent - Ready, event parameter
 
-Wings中常用的配置方式及顺序如下，
+The common configuration methods and order in Wings are as follows.
 
-* Constructor - 全局的，必须的依赖，以final构造注入
-* @Autowired - 局部的，选用的依赖，以setter注入
-* @PostConstruct - 执行当前配置的收尾，无参数的
-* ApplicationStartedEventRunner - before app/cmd runners 初始化Helper
-* ApplicationRunnerOrdered - 自定义ordered的ApplicationRunner
-* CommandLineRunnerOrdered - 自定义ordered的CommandLineRunner
+* Constructor - global, required dependency, injected as a final by constructor
+* @Autowired - local, optional dependency, injected as a setter
+* @PostConstruct - Executes the end of the current configuration, without parameters.
+* ApplicationStartedEventRunner - before app/cmd runners initialize Helper
+* ApplicationRunnerOrdered - custom ordered ApplicationRunner
+* CommandLineRunnerOrdered - custom ordered CommandLineRunner
 * ApplicationInspectRunner - LOWEST_PRECEDENCE ApplicationRunner
 * ApplicationReadyEventRunner - after app/cmd runners called
 
-Helper会在ApplicationStartedEvent时初始化。Configuration和常用Bean由常量定义
+Helper will be initialized when ApplicationStartedEvent. configuration and common beans are defined by constants
 
-* WingsBeanNaming - 重要bean的name
-* WingsBeanOrdered - Order及层叠
+* WingsBeanNaming - name of important bean
+* WingsBeanOrdered - Order and cascading
 
-## 0E.13.Spring配置中的日志格式
+## 0E.13.Log Format in Spring Config
 
-在Configuration的CommonsLogging中，日志遵循以下通用的log.info格式
+In Configuration's CommonsLogging, the log follows the following common log.info format
 
 * `@Bean` - {ModuleName} spring-bean {BeanName}
 * `@Autowired` - {ModuleName} spring-auto {MethodName}
 * `@PostConstruct` - {ModuleName} spring-auto {MethodName}
 * `CommandLineRunner` - {ModuleName} spring-runs {BeanName}
 * `Bean*PostProcessor` - {ModuleName} spring-proc {BeanName}
-* 过程日志 - {ModuleName} conf
+* Process log - {ModuleName} conf
