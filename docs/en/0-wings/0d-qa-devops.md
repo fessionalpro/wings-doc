@@ -8,97 +8,98 @@ category:
 
 # 0D.DevOps Topic
 
-编码开发，线上运行等话题。
+Coding, developing, operating online, and more.
 
-## 0D.01.getHostName()很长时间
+## 0D.01.getHostName() takes a long time
 
 >InetAddress.getLocalHost().getHostName() took 5004 milliseconds to respond.
 >Please verify your network configuration (macOS machines may need to add entries to /etc/hosts)
 
 ```bash
 hostname
-# 输出 trydofors-Hackintosh.local
+# output trydofors-Hackintosh.local
 
 cat /etc/hosts
-# 在localhost后面，填上 trydofors-Hackintosh.local
+# insert trydofors-Hackintosh.local after localhost
 127.0.0.1     localhost trydofors-Hackintosh.local
 ```
 
-## 0D.02.如何创建一个工程
+## 0D.02.How to Create a Project
 
 ```bash
 git clone https://github.com/trydofor/pro.fessional.wings.git
 cd pro.fessional.wings
 observe/scripts/wings-init-project.sh
 
-# 如果不能执行bash，那么自行编译和执行
+# compile and run it yourself without bash script
 cd cd example/winx-devops/src/test/java
 com/moilioncircle/wings/devops/init/WingsInitProjectSwing.java
 ```
 
-## 0D.03.jackson和fastjson
+## 0D.03.Jackson and Fastjson
 
-wings中和springboot一样，默认采用了jackson进行json和xml绑定。
-不过wings的中对json的格式有特殊约定，比如日期格式，数字以字符串传递。
-再与外部api交换数据时可能格式不匹配，这时需要用有备选方案。
+In wings, as in springboot, jackson is used by default for json and xml binding.
+However, wings has special conventions for json format, such as date and number are passed as string.
+When exchanging data with external APIs, the format may not match, so you need to use an alternative solution.
 
-* 使用2套jackson配置
-* 使用jackson注解 @JsonRawValue
-* 使用fastjson2
+* Use 2 sets of jackson configuration
+* Use jackson annotation @JsonRawValue
+* Use fastjson2
 
-在Jackson和Fastjson的使用上，考虑到安全及兼容性，遵循以下约定
+When using Jackson and FastJson, the following conventions are followed for security and compatibility reasons,
 
-* FastJson用于①安全环境的读写，②对不安全的写，不读入外部json
-* FastJson用于静态环境，即不能优雅注入jackson的情况
-* 此外，都应该使用Jackson
+* FastJson is used for ① reading and writing in a secure environment, ② insecure writing, not reading the external json.
+* FastJson is used in static environments, i.e. where Jackson cannot be gracefully injected.
+* In addition, everyone should use Jackson.
 
-在wings中，以Fastjson2替代了fastjson。注意以下lib依赖
+Fastjson has been replaced by Fastjson2 in wings. note the following lib dependencies
 
-* JustAuth-1.16.5 - fastjson-1.2.83 无AutoType，默认features的parse
+* JustAuth-1.16.5 - fastjson-1.2.83 no AutoType, parse with default features
 
-考虑到当前Fastjson-2.0.18的兼容性和稳定性仍存在很大问题，必须避免使用。
+Given the current Fastjson-2.0.18 compatibility and stability is still very problematic and should be avoided.
 
-* FastJsonHelper - 对FastJson的兼容性全局配置，所有JSON都应该使用该类。
-* JacksonHelper - 对Jackson的全局配置，推荐静态使用。
+* FastJsonHelper - Global configuration for FastJson compatibility, all JSON should use this class.
+* JacksonHelper - Global configuration for Jackson, recommended for static use.
 
-## 0D.04.类型间Mapping比较
+## 0D.04.Comparison of Bean Mapping
 
-根据以下文章，推荐使用静态性的`MapStruct`。
+According to the following article, it is recommended to use the static type-safe of `MapStruct`.
 
 * [Quick Guide to MapStruct](https://www.baeldung.com/mapstruct)
 * [Mapping Collections with MapStruct](https://www.baeldung.com/java-mapstruct-mapping-collections)
 * [MapStruct ide&mvn支持](https://mapstruct.org/documentation/installation/)
 
-在编码过程中，我们经常要处理各种O的转换，赋值，比如DTO，PO，VO，POJO。
-同时我们又希望强类型，以便可以通过IDE提示提供效率，并把错误暴露在编译时。
-这样就一定要避免弱类型(map,json)和反射（bean copy）,势必需要代码生成工具。
+While coding, we often have to deal with various O-data mapping and assignment like DTO, PO, VO, POJO.
+At the same time we want strongly typed data so that IDE hints  are efficient and errors are detected at compile time.
+This must avoid weak typing (map, json) and reflection (bean copy), which inevitably require code generation tools.
 
-对于比较复杂的mapping，使用expression，qualifiedByName，spring注入。
-自动生成的代码位于`target/generated-sources/annotations/`
+For more complex mapping, use expression, qualifiedByName, spring injection.
+The automatically generated code is located in `target/generated-sources/annotations/`
 
-在wings中，推荐使用列编辑和正则（分享视频有讲），对于使用MapStruct的时候，
-可以使用wings提供的`wgmp`(live template)做`A2B`的into生成器。
+In wings, it is recommended to use the column editor or RegExp (talked in video share), for using MapStruct
+You can use the `wgmp`(live template) provided by wings to do the `A2B` generator.
 
-* 在业务层代码，推荐MapStruct或列编辑和正则（分享视频有讲）手工制品。
-* 在jdbc中推荐手工RowMapper，避免使用`BeanPropertyRowMapper`。
-* 在jooq中推荐jooq自动生成的record，目前不需要其他mapper。
+* In the business layer code, we recommend MapStruct or column editing or RegExp replacement to do data mapping.
+* In jdbc recommended manual RowMapper, avoid using `BeanPropertyRowMapper`.
+* In jooq recommended jooqgen generated record, currently do not need other mapper.
 
-纯wings中的converter以`-or`结尾(convertor)，以和其他框架的converter区分。  
-包名以converter为准，类名以目的区分，通常纯wings的使用`-or`，其他用`-er`。
+The converters in pure wings end with `-or` (convertor) to distinguish from other framework converters.  
+Package names are based on the converter, and class names are distinguished by purpose,
+usually using `-or` for pure wings and `-er` for others.
 
-根据以下JMH的benchmark评测，对应动态Mapper也可以考虑。
+According to the following benchmark review of JMH, corresponding to dynamic Mapper can also be considered.
 
-* [MapStruct 性能比较](https://www.baeldung.com/java-performance-mapping-frameworks)
+* [MapStruct Performance](https://www.baeldung.com/java-performance-mapping-frameworks)
 * [java-object-mapper-benchmark](https://github.com/arey/java-object-mapper-benchmark)
 
-主要比较项目的活跃程度，使用方式，依赖复杂度，issues解决量等。
+The main comparison includes project activity, usage type, dependency complexity and resolved issues count.
 
-* `SimpleFlatMapper` 不在活跃
-* `ModelMapper` 体积过大，暂时不推荐使用
-* `JMapper` 性能及使用都非常优秀，但项目不在活跃
-* `bull` 支持bean和map的映射，比较活跃，使用简单，但性能一般
+* `SimpleFlatMapper` is not active
+* `ModelMapper` is too large, not recommended for now
+* `JMapper` performance and use are very good, but the project is not active
+* `bull` support bean and map mapping, more active, easy to use, but the performance is general
 
-升级了java-object-mapper-benchmark的依赖，以java在笔记本上简单执行
+upgraded java-object-mapper-benchmark dependency to java on the laptop simple execution.
 
 ```text
 Benchmark          (type)   Mode  Cnt         Score         Error  Units
@@ -114,60 +115,65 @@ Mapper        Dozer-6.5.2  thrpt   25     83840.654 ±    3225.088  ops/s
 Mapper        ReMap-4.2.6  thrpt   25    505843.993 ±   25950.082  ops/s
 ```
 
-## 0D.05.文件系统和对象存储
+## 0D.05.File System and Object Storage
 
-需要权限才能访问的文件资源，不可以放到CDN，需要自建对象存储或使用物理文件系统，
-当使用本地FS时，需要注意子文件或子目录的数量限制，一般控制在30k以下，理由如下，
+File resources that require access permissions should not be placed on the CDN,
+and should be stored in your own object storage or physical file system.
+When using local FS, you need to be aware of the limit of the number of subfiles,
+which is usually controlled below 30k, for the following reasons.
 
 * The ext2/ext3 filesystems have a hard limit of 31998 links.
-* 数量过多时，ls读取巨慢，索引也会慢。
+* When the number is too large, reads and indexes are too slow.
 
-如果自建对象存储，推荐以下方案
+If you build your own object storage, the following solution is recommended
 
-* <https://docs.min.io/cn/> 推荐使用
+* <https://docs.min.io/cn/> Recommended
 * <https://github.com/happyfish100/fastdfs>
 
-## 0D.06.客户端和服务器信息
+## 0D.06.Client and Server Info
 
-收集用户画像，需要获得UA信息，可使用以下工具包
+To collect user profiles, parse UA information, use the following,
 
-* <https://www.bitwalker.eu/software/user-agent-utils> 浏览器（停止维护）
-* <https://github.com/browscap/browscap/wiki/Using-Browscap> 浏览器工具家族
-* <https://github.com/blueconic/browscap-java> 浏览器（推荐）
+* <https://www.bitwalker.eu/software/user-agent-utils> Browser (discontinued)
+* <https://github.com/browscap/browscap/wiki/Using-Browscap> Browser Tool Family
+* <https://github.com/blueconic/browscap-java> Browser (recommended)
 
-获取服务器运行信息，使用以下工具包
+To get information about server, use the following,
 
-* <https://github.com/oshi/oshi> 系统信息
+* <https://github.com/oshi/oshi>
 
-## 0D.07.用户密码的安全性
+## 0D.07.Security of Password
 
-* 密码长度不可设置上限，一般要求8位以上
-* 支持中文密码，标点，全角半角，建议中文密码
-* 不发送明文密码，密码初级散列策略为md5(pass+':'+pass).toUpperCase(Hex大写)
-* js侧md5需要支持UTF8，如 <https://github.com/emn178/js-md5>
-* 有敏感数据的请求，必须是https或其他安全通道
+* Do NOT limit the max length of password, generally more than 8 chars
+* Support Unicode chars, punctuation, full/half chars, eg. Chinese password
+* Do not send in plaintext, simple password hash strategy is md5(pass+':'+pass).toUpperCase(Hex capitalization)
+* js side md5 must support UTF8, eg. <https://github.com/emn178/js-md5>
+* Secure data request must be https or other secure channel
 
-## 0D.08.关于内网穿透和Oauth调试
+## 0D.08.NAT and Oauth Debug
 
-在Oauth，支付等第三方集成调试时，需要有公网ip或域名，然后把公网请求转发到开发机调试。
+When debugging third-party integrations such as Oauth, payments, etc., you need to have a public ip or domain
+to forward public requests to the development machine for debugging.
 
-* 临时用 ssh - `ssh -R 9988:127.0.0.1:8080 user@remote`
-* 持久用 frp - <https://gofrp.org/docs/>
-* 简单用 netapp - <https://natapp.cn/>
+* Temporarily with ssh - `ssh -R 9988:127.0.0.1:8080 user@remote`
+* persistent with frp - <https://gofrp.org/docs/>
+* Simple with netapp - <https://natapp.cn/>
 
-## 0D.09.IDEA提示component/scanned
+## 0D.09.IDEA Hits Component/Scanned
 
-导入wings工程，Idea会无法处理spring.factories中的WingsAutoConfiguration，会报类似以下信息
+When importing the Wings project, IDEA cannot be able to handle the WingsAutoConfiguration in spring.factsories,
+and will report a message similar to the following,
 
 Not registered via @EnableConfigurationProperties, marked as Spring component,
 or scanned via @ConfigurationPropertiesScan
 
-此时在，Project Structure中的Facets中的spring，对每个主工程，
-导入`Code based configuration`，选择WingsAutoConfiguration，即可。
+At this point, in the Project Structure/Facets/spring, for each main project import `Code based configuration`,
+select WingsAutoConfiguration.
 
-## 0D.10.Jooq隐秘的NullPointerException
+## 0D.10.Hidden NullPointerException in Jooq
 
-在jooq映射enum类型是，如果converter错误，可能会出现以下NPE，不能通过stack定位问题，需要分析SQL
+When mapping enum types in jooq, if the converter is wrong, the following NPE may occur,
+and the problem cannot be located by stack, and need to analyze the SQL
 
 ```text
 java.lang.NullPointerException
@@ -178,74 +184,81 @@ at org.jooq.impl.ExecuteListeners.exception(ExecuteListeners.java:274)
 at org.jooq.impl.AbstractQuery.execute(AbstractQuery.java:390)
 ```
 
-## 0D.11.错误`Input length = 1`
+## 0D.11.`Input length = 1` Error
 
 ```text
  Failed to execute goal org.apache.maven.plugins:maven-resources-plugin:3.2.0:resources
   (default-resources) on project xxx-common: Input length = 1
 ```
 
-原因是maven-resources-plugin的filter目录中存在非文本文件(不可按字符串读取)，
-不要降级到3.1.0，在nonFilteredFileExtension添加扩展名即可。
+The reason is that there are non-text files (not readable by string) in the filter directory of the maven-resources-plugin.
+Do not downgrade to 3.1.0, just add the extension name in nonFilteredFileExtension.
 
 [Automatic Property Expansion Using Maven](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#howto-properties-and-configuration)
 
-## 0D.12.通过mysql客户端能找到，wings查询不到数据
+## 0D.12.Data Can Be Selected, But Wings Cannot
 
-wings本身是时区敏感的，一般要求jvm和mysql在同一时区，主要体现在，
-flywave版本管理和journal的delete_dt时，都采用了时间，可以快速发现问题。
+Wings is timezone sensitive and generally requires jvm and mysql to be in the same timezone,
+mainly because, flywave's version management and journal's delete_dt time use datetime,
+which can quickly find the time difference problem.
 
-Warlock启动时自动检查jvm，jdbc和mysql的时区，不一致时，在控制台以Error形式输出。
+Warlock automatically checks the timezone between jvm, jdbc and mysql at startup,
+and prints an error to console if they do not match.
 
-更多信息，参考[时间和时区](../2-faceless/2h-time-zone.md)
+For more information, see [Time and Time Zone](../2-faceless/2h-time-zone.md)
 
-## 0D.13.无外网mysql如何执行flywave版本管理
+## 0D.13.How To Flywave The Internal Mysql
 
-建议在double check的情况下，手动执行和监控脚本。所以使用ssh Tunnel做端口转发。
+It is recommended to run and monitor the script manually with double check.
+So use ssh Tunnel to do the port forwarding.
 
 `ssh -N -L 3336:127.0.0.1:3306 [USER]@[SERVER_IP]`
 
 * `-N` Tells SSH not to execute a remote command.
-* `-L` 3336:127.0.0.1:3306 本地端口，远端ip，远端端口
+* `-L` 3336:127.0.0.1:3306 local-port, remote-ip, remote-port
 
-## 0D.14.swagger的问题
+## 0D.14.Swagger's Problem
 
-**从210版本，以SpringDoc取代SpringFox后**，使用swagger3.0，部分问题已不存在
+**After version 210, replacing SpringFox with SpringDoc**, using swagger 3.0, some problems no longer exist.
 
 `😱 Could not render n, see the console.`
-是swagger前端js错误，可能是response对象层级过深，导致swagger扫描时间太长。
+It is swagger front-end js error, may be the response object level is too deep,
+resulting in swagger scan time is too long.
 
-`Unable to find a model that matches key ...` 如，
+`Unable to find a model that matches key ...`
 
 * ModelKey{qualifiedModelName=ModelName{namespace='java.time', name='Instant'}
 * ModelKey{qualifiedModelName=ModelName{namespace='java.time', name='LocalDateTime'}
 
-springfox的swagger3.0.0有bug，会在3.0.1修复，
+springfox swagger 3.0.0 has bugs that will be fixed in 3.0.1.
 <https://github.com/springfox/springfox/issues/3452>
 
-wings中可以通过暴露AlternateTypeRule bean，自动注入所以Docket中。
+Wings can automatically inject the exposed AlternateTypeRule bean into the docket.
 
-## 0D.15.反序列化时ClassCastException或Enum比较失败
+## 0D.15.ClassCastException or Enum Comparison Failure During Deserialization
 
-涉及的反序列化lib包括，hazelcast, kryo, cache
+The deserialization libs involved include, hazelcast, kryo, cache
 
-* 完全一样的class，但是在序列化时却抛出 ClassCastException
-* 同一个Enum的hash和equals不同，导致比较或map失败
+* Exactly the same class, but throwing ClassCastException on deserialization
+* The hash and equals of the same Enum are different, causing the compare or map to fail
 
-大概率是，开发时项目使用了spring-boot-devtools，导致IDE和jar处在不同的classloader。
-IDE使用了devtools的`restart`, 而非IDE内的jar则是`base`。
+Most likely, the project uses spring-boot-devtools during development, which causes the IDE and jar to be in different classloaders.
+The IDE uses `restart` of devtools, while the non-IDE jar is `base`.
 
-* 方案一，wings中始终使用`spring.hazelcast.config`配置hazelcast
-* 方案二，自己暴露Config或ClientConfig，并设置好classloader
-* 方案三，配置spring-devtools.properties（不推荐，wings采用）
+* Option 1, always use `spring.hazelcast.config` in wings to configure hazelcast
+* Option 2, expose your own Config or ClientConfig, and set up a classloader
+* Option 3, configure spring-devtools.properties (not recommended)
 
-不推荐在product环境使用devtool，参考springboot官方文档的[Known Limitations](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#using.devtools.restart.limitations)
+not recommended in the product environment using devtool, refer to the springboot official documentation
+[Known Limitations](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#) using.devtools.restart.limitations)
 
-## 0D.16.Hazelcast的`OutOfMemoryError`及`CallerNotMemberException`
+## 0D.16.OutOfMemoryError/CallerNotMemberException in Hazelcast
 
-当内存紧张时，hazelcast会出现OutOfMemoryError，然后集群以CallerNotMemberException拒绝此实例。
+If memory is low, hazelcast will throw OutOfMemoryError and then the cluster will
+reject the instance with CallerNotMemberException.
 
-通常并发量级不过万，为实例jvm分配2-4G，主机预留一个1个实例的物理内存空闲可适用大部分场景。
+Usually the concurrency level is not more than 10,000, allocating 2-4G for instance jvm and reserving
+a physical memory free for 1 instance in the host can be suitable for most scenarios.
 
 > For this reason, we recommend that you plan to use only 60% of available memory,
 > with 40% headroom to handle member failure or shutdown.
@@ -253,27 +266,27 @@ IDE使用了devtools的`restart`, 而非IDE内的jar则是`base`。
 * <https://hazelcast.com/blog/how-much-memory-do-i-need-for-my-data/>
 * <https://docs.hazelcast.com/hazelcast/5.1/configuration/understanding-configuration>
 
-## 0D.17.建表时的`Table doesn't exist`
+## 0D.17.`Table doesn't exist` When Creating Table
 
-错误信息`Error Code: 1146. Table xxx doesn't exist`
-这是个矛盾的现象，创建table，就是因为不存在啊，怎么不让我create呢。
+Error message `Error Code: 1146. table xxx doesn't exist`.
+This is a contradiction, creating a table just because it does not exist, why won't it allow me to create it.
 
-这和文件系统的大小写有关，根据wings的Sql风格，建议全小写，snake_case。
-此外，也建议在 mysqld 的配置上，增加 `lower_case_table_names=1`
+This is related to the case-sensitive file system, wings Sql style recommends all lowercase, snake_case.
+In addition, it is also recommended to add `lower_case_table_names=1` to the mysqld configuration
 
 <https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_lower_case_table_names>
 
-## 0D.18.如何解压springboot生成的jar
+## 0D.18.How to Unpack the Springboot Jar
 
-通过executable=true生成的boot.jar，不能使用`jar -xzf`解压，需要`unzip`。
-任何时候都推荐使用unzip解压，兼容性好，命令行简洁。
+The boot.jar generated by executable=true cannot be extracted using `jar -xzf`, it needs `unzip`.
+It is always recommended to use unzip for compatibility and command line simplicity.
 
-不能使用jar解压，是因为spring按executable zip的格式重新打包。
+You can't use jar to unzip because spring repacks in the executable zip format.
 
 ```bash
-# 显示文件列表
+# show the file list
 unzip -l demo-exmaple-1.0.0-SNAPSHOT.jar
-# 查看文件内容
+# show the content
 head demo-exmaple-1.0.0-SNAPSHOT.jar
 #!/bin/bash
 #
@@ -287,68 +300,71 @@ head demo-exmaple-1.0.0-SNAPSHOT.jar
 #
 ```
 
-## 0D.19.not eligible for auto-proxying
+## 0D.19.Not Eligible for Auto-proxying
 
 is not eligible for getting processed by all BeanPostProcessors
 (for example: not eligible for auto-proxying)
 
-Bean在spring中有载入顺序，`Processor`，`framework`和业务Bean应该分开。
-若某些Bean因为依赖关系在Processor前加载，则不会被正确处理，可能影响业务。
+There is a loading order for beans in spring, `Processor`, `framework` and business beans should be separated.
+If some beans are loaded before the Processor because of dependencies,
+they will not be processed correctly and may affect the business.
 
-若是经过排查后，对业务没有影响，那么可忽略该INFO级别的Warning。
+If there is no impact on the business after troubleshooting, then the INFO level Warning can be ignored.
 
-## 0D.20.时区检查失败，无法启动应用
+## 0D.20.Timezone check failed on application startup
 
-* 根据异常的提醒，设置正确的时区
-* 确认jdbc驱动 mysql-connector版本不小于8.0.23
-* 若不希望检查，设置`wings.warlock.check.tz-fail=false`
-* 按提示，统一jdbc，wings的时区即可
+* Set the correct timezone according to the alert of the exception
+* Make sure the jdbc driver mysql-connector version is not lower than 8.0.23
+* Set `wings.warlock.check.tz-fail=false` if you don't want the check
+* Just follow the prompts and unify the time zones of jdbc and wings
 
-## 0D.21.如何清理运行工程日志和临时文件
+## 0D.21.Clean the Log/Tmp Files
 
 ```bash
-# 清理log和tmp文件
+# clean log and tmp
 find . -name '*.log' -o -name '*.tmp'  | xargs rm -f 
-# 重新flatten
+# clean flattened pom
 find . -name '.pom.xml' | xargs rm -f
 ```
 
-## 0D.22.json的泛型和泛型类的反序列化
+## 0D.22.Generics in Json and Deserialization
 
-spring中，使用ResolvableType和TypeDescriptor描述类型。
+In spring, the type is described using ResolvableType and TypeDescriptor.
+
 ```java
 TypeDescriptor.map(Map.class, strTd, strTd)
 TypeDescriptor.collection(List.class, strTd)
 ResolvableType.forClassWithGenerics(R.class, Dto.class)
 ```
 
-FastJson中，使用com.alibaba.fastjson.TypeReference，
-注意，TypeReference一定要单行声明，避免自动推导，而丢失类型。
+In FastJson, use com.alibaba.fastjson.TypeReference,
+Note: TypeReference must be declared on a single line to avoid auto derivation to lose the type.
+
 ```java
-// 以下类型等价，
+// these are same
 Type tp1 = new TypeReference<R<Dto>>(){}.getType();
 Type tp2 = ResolvableType.forClassWithGenerics(R.class, Dto.class).getType();
 ```
 
-## 0D.23.kotlin可能编译失败
+## 0D.23.Kotlin May Fail to Compile
 
-* kotlin-maven-plugin 插件，要同时编译java和kotlin
-* kotlin-stdlib-jdk8 这是最新的stdlib
-* mvn profile中的maven.compiler.target 优先与pom.xml
-* JAVA_HOME是否指定正确的jdk版本
-* `wings-kotlin-*`的profile，在有`src/*/kotlin/`时自动生效
+* kotlin-maven-plugin, to compile both java and kotlin
+* kotlin-stdlib-jdk8 This is the latest stdlib
+* maven.compiler.target in the mvn profile takes precedence over pom.xml
+* whether JAVA_HOME specifies the correct jdk version
+* `wings-kotlin-*` profile is auto active if `src/*/kotlin/` is available
 
-## 0D.24.ApplicationContextHelper空指针
+## 0D.24.ApplicationContextHelper's NullPointerException
 
-Silencer的ApplicationContextHelper提供了静态的Ioc能力，有空指针情况
+Silencer's ApplicationContextHelper provides a static Ioc capability with a NPE case,
 
-* 在SpringBoot生命周期的PreparedEvent之前使用
-* 在不同的classloader中使用，比如devtool的restart
+* Use before `PreparedEvent` in SpringBoot lifecycle
+* Used in different classloaders, such as devtool's `restart`
 
-## 0D.25.IDEA无法打开工程，错误ClassFormatError
+## 0D.25.ClassFormatError, IDEA cannot open the project
 
-IDEA无法正常显示项目，关闭后也无法打开，但命令行下mvn正常。
-Errors中有以下信息，升级IDEA或避免其Maven插件升级。
+IDEA does not display the project properly and cannot be opened after closing it, but mvn works fine in the command line.
+Errors has the following message, upgrade IDEA or avoid its Maven plugin upgrade.
 
 ```text
 java.lang.ClassFormatError: 
@@ -356,65 +372,68 @@ Illegal exception table range in class file
 kotlin/reflect/jvm/internal/impl/builtins/KotlinBuiltIns
 ```
 
-## 0D.26.IDEA下properties文件乱码
+## 0D.26.Garbled Chars in properties under IDEA
 
-在`Preferences` | `Editor` | `File Encodings` 下，
-Default encoding for properties files 选择`UTF8`
+in `Preferences` | `Editor` | `File Encodings` set
+Default encoding for properties files to `UTF8`
 
-若已经是UTF8，但仍有部分文件乱码，可以先切到iso8859在切回utf8
+If it is already UTF8, but some files are still garbled,
+you can switch to iso8859 and then back to utf8.
 
-## 0D.27.编译正常，但IDEA说找不到类
+## 0D.27.Compile Fine, but IDEA says: Class not found
 
-可以在IDEA中清空当前工程的缓存和索引，File菜单下
+You can clear the cache and index of the current project in IDEA, under the File menu
 
-* Cache Recovery / Rescan或Refresh试一下，若不好用，则
-* Invalidate Caches and Restart，若仍不好用，则
-* 删除工程，清理`.idea`等文件，重新import
+* try Cache Recovery / Rescan or Refresh, if it doesn't work well, then
+* Invalidate Caches and Restart, if it still doesn't work, then
+* Delete the project, clean up the `.idea` and other files, re-import
 
 ## 0D.28.Jooq try-with-resources Warn
 
-Jooq的DSL代码是try-with-resources安全的，若IDE代码审查出现以下警告，可以安全关闭。
+Jooq's DSL code is try-with-resources safe. it can safely close the following warning appears in the IDE code check.
 
-选择`ignore AutoCloseable returned by this method`即可按类别关闭。
+Select `ignore AutoCloseable returned by this method` to close it by category.
 
 > Warning:(62, 18) 'SelectSelectStep<Record2<Long, String>>'
 > used without 'try'-with-resources statement
 
 ## 0D.29.Statement with empty body
 
-若IDE代码审查出现以下警告，可编辑器规则，挑选`Comments count as content`
+If the following warning appears in the IDE code review,
+you can edit the rule and pick `Comments count as content`
 
-## 0D.30.IDEA inspect code
+## 0D.30.IDEA Inspect Code
 
-排除 observer下的submodlue内容，尤其docs中的node内容。
+Exclude the submodlue content under observer, especially the node content in docs.
 
-Custom Scope `WingsCode`，Pattern设置如下，
+Custom Scope `WingsCode`, Pattern is set as follows.
 
 `!file:*/docs//*&&!file:*/meepo//*&&!file:*/mirana//*`
 
-## 0D.31.lombok错误 cannot find symbol
+## 0D.31.Lombok Error: cannot find symbol
 
 > cannot find symbol
 > symbol:   method onMethod_()
 > location: @interface lombok.Setter
 
-当发生莫奇名秒的lombok编译错误时，需要按以下步骤排查，
+When a lombok compilation error occurs, you need to follow these steps to troubleshoot it.
 
-* 首先排除IDE影响，确认纯控制台下的mvn是否正常
-* 优先解决非lombok的编译错误
-* 优先解决静态编写的代码的错误
+* First exclude the IDE influence, and confirm that mvn works well under the console
+* Prioritize fixing non-lombok compilation errors
+* Prioritize fixing errors in statically written code
 
-## 0D.32.maven错误 Non-resolvable parent POM
+## 0D.32.maven Error: Non-resolvable parent POM
 
 > FATAL Non-resolvable parent POM for com.x.xx:xxx:${revision}:
 > Could not find artifact pro.fessional:wings:pom:2.6.6.210-SNAPSHOT
 > and 'parent.relativePath' points at wrong local POM
 
-以上错误一般在首次安装中，原因是repository中找不到wings的pom，尝试以下方法，
+The above error is usually in the first installation, the reason is the repository
+can't find the wings pom, try the following,
 
-* 若存在历史repo，设定$MVN_HOME/conf/settings.xml的localRepository指向
-* 在当前pom中设置wings的ossrh-snapshots。非最新wings
-* 自行 `maven install` wings工程到本地，最新wings
+* If the repo exists, set the localRepository in $MVN_HOME/conf/settings.xml to it
+* set ossrh-snapshots for wings in the current pom. non-latest wings
+* DIY `maven install` wings project to local, use latest wings
 
 ```xml
 <repository>

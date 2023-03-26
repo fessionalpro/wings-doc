@@ -313,7 +313,7 @@ enum Jane {
 * LocalDateTime 代替 Calendar
 * DateTimeFormatter 代替 SimpleDateFormat
 
-## 0A.G.不是科学家就别用浮点型
+## 0A.G.非科学家别用浮点型
 
 wings中不应该有浮点类型float/double，而只有整数(int/long)，小数用BigDecimal，
 他们对应的数据库类型分别为 INT/BIGINT/DECIMAL。
@@ -327,7 +327,23 @@ wings中不应该有浮点类型float/double，而只有整数(int/long)，小�
 `Effective Java`是java从业人员必备知识，在此不做赘述，参考以下章节：
 "Avoid Float and Double If Exact Answers Are Required"
 
-## 0A.H.实际中如何优雅的消除null
+## 0A.H.业务数据类型
+
+Wings中推荐使用以下类型，主要考虑了sql和json的兼容性，sql主要是mysql和h2database
+
+| JAVA | MYSQL/H2 | JS/JSON |
+| ---- | --- | ------- |
+| Boolean/boolean | TINYINT(1)/BOOLEAN | boolean |
+| Integer/int | INT/INT(11) | number |
+| Long/long | BIGINT/BIGINT(20) | BigInt/bigint |
+| BigDecimal | DECIMAL(M,D) | string |
+| String | CHAR(N)/VARCHAR(N)/TEXT | string |
+| LocalDateTime | DATETIME(3) | string |
+| LocalDate | DATE | string |
+| LocalTime | TIME(3) | string |
+| byte[] | BLOB | string(base64_urlsafe) |
+
+## 0A.I.实际中如何优雅的消除null
 
 如同【攻城狮朋友圈】代码的坏味道所讲，wings工程实际，基本上以empty取代了null。
 
@@ -362,7 +378,7 @@ wings中不应该有浮点类型float/double，而只有整数(int/long)，小�
 * 方法签名尽量使用`@NotNull`注解，是IDE辅助检查，编译时解决
 * `ArgsAssert`和`StateAssert`进行业务assert，支持多国语
 
-## 0A.I.类型系统的逆变/协变/PECS
+## 0A.J.类型系统的逆变/协变/PECS
 
 ```java
 // ① 字段使用具体类型，还是抽象类型
@@ -394,7 +410,7 @@ Wings在编码中鼓励，在保证兼容性（主要是行为特性）的情况
 * LinkedHashMap是插入序
 * HashMap是乱序等
 
-## 0A.J.类和方法的泄露（副作用）
+## 0A.K.类和方法的泄露（副作用）
 
 Wings把非以下特征的方法，统称为泄露或者副作用
 

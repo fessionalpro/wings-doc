@@ -38,6 +38,18 @@ Flywave功能的默认开关，如下
 
 `Boolean`=`true`，是否监听table的create, update, delete
 
+### spring.wings.faceless.jooq.enabled.render-group-concat
+
+`Boolean`=`false`，是否render group_concat_max_len 变量
+
+### spring.wings.faceless.jooq.enabled.render-catalog
+
+`Boolean`=`false`，是否render catalog
+
+### spring.wings.faceless.jooq.enabled.render-schema
+
+`Boolean`=`false`，是否render schema
+
 ## 2K.2.wings-jooq-cud-79.properties
 
 jooq的CUD监听设置

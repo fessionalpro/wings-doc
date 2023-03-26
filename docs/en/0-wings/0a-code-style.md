@@ -326,7 +326,7 @@ For players coming from java7, see the following alternative relationships.
 * LocalDateTime instead of Calendar
 * DateTimeFormatter instead of SimpleDateFormat
 
-## 0A.G.Don't Use float unless ur Scientist
+## 0A.G.Non-Scientist Dont Use Float
 
 In Wings there is no float/double, only integer (int/long) and BigDecimal. Their database types are INT/BIGINT/DECIMAL.
 
@@ -343,7 +343,24 @@ our normal developer should avoid using it.
 
 "Avoid Float and Double If Exact Answers Are Required"
 
-## 0A.H.Graceful null-safety in Practice
+## 0A.H.Business Data Type
+
+The following types are recommended in Wings, mainly considering the compatibility of sql and json,
+sql is mainly mysql and h2database.
+
+| JAVA | MYSQL/H2 | JS/JSON |
+| ---- | --- | ------- |
+| Boolean/boolean | TINYINT(1)/BOOLEAN | boolean |
+| Integer/int | INT/INT(11) | number |
+| Long/long | BIGINT/BIGINT(20) | BigInt/bigint |
+| BigDecimal | DECIMAL(M,D) | string |
+| String | CHAR(N)/VARCHAR(N)/TEXT | string |
+| LocalDateTime | DATETIME(3) | string |
+| LocalDate | DATE | string |
+| LocalTime | TIME(3) | string |
+| byte[] | BLOB | string(base64_urlsafe) |
+
+## 0A.I.Graceful null-safety in Practice
 
 As "MoilionCircle" "bad code smell" said, wings practically use `empty` instead of `null`.
 
@@ -381,7 +398,7 @@ we should respect history and team conventions. In wings,
 * Use `@NotNull` on method signatures, IDE and compile time checking.
 * `ArgsAssert` and `StateAssert` for business assert with i18n support.
 
-## 0A.I.Contravariance/Covariance/PECS in TypeSystem
+## 0A.J.Contravariance/Covariance/PECS in TypeSystem
 
 ```java
 // ① field should use a concrete type or an abstract type
@@ -413,7 +430,7 @@ For output, keep the details like SortedMap or RandomAccess.
 * LinkedHashMap is insertion order
 * HashMap is chaotic order.
 
-## 0A.J.Leak of Class/Method (SideEffects)
+## 0A.K.Leak of Class/Method (SideEffects)
 
 Wings refers to methods without the following characteristics as leak or side effect
 
