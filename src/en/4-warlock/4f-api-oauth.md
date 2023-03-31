@@ -3,7 +3,7 @@ isOriginal: true
 icon: api
 category:
   - Warlock
-  - Authn
+  - Security
 ---
 
 # 4F.Open Api
