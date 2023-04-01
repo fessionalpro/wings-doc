@@ -1,4 +1,4 @@
-import type { ThemeOptions } from 'vuepress-theme-hope';
+import { hopeTheme } from 'vuepress-theme-hope';
 import { navbarZh, navbarEn } from './navbar';
 import { sidebarZh, sidebarEn } from './sidebar';
 
@@ -23,7 +23,7 @@ function stylizeIt(key: string | RegExp, txt: string, type: string, ...tags: str
   };
 }
 
-export const themeOption: ThemeOptions = {
+export default hopeTheme({
   locales: {
     '/': {
       navbar: navbarZh,
@@ -51,7 +51,9 @@ export const themeOption: ThemeOptions = {
   repo: 'trydofor/pro.fessional.wings',
   docsRepo: 'fessionalpro/wings-doc',
   docsDir: 'docs',
-  footer: '<a href="https://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">Apache2</a> licensed, <a href="https://theme-hope.vuejs.press" target="_blank">Mr.Hope</a> powered',
+  footer:
+    '<a href="https://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">Apache2</a> licensed, ' +
+    '<a href="https://theme-hope.vuejs.press" target="_blank">Mr.Hope</a> powered',
   copyright: 'Copyright© <a href="https://www.trydofor.com" target="_blank">trydofor</a>',
   displayFooter: true,
   pageInfo: ['Author', 'Original', 'Date', 'Category', 'Tag', 'ReadingTime'],
@@ -80,6 +82,7 @@ export const themeOption: ThemeOptions = {
       mark: true,
       imgMark: true,
       tasklist: true,
+      mermaid: true,
       stylize: [
         stylizeIt(/^(?:MUST|必须)$/u, '', 'info', 'strong', 'sup'),
         stylizeIt(/^(?:SHOULD|TIP|推荐|建议)$/u, '', 'tip', 'strong', 'sup'),
@@ -88,4 +91,4 @@ export const themeOption: ThemeOptions = {
       ],
     },
   },
-};
+});

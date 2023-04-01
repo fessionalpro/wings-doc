@@ -3,7 +3,7 @@ isOriginal: true
 icon: command
 category:
   - Warlock
-  - Authn
+  - Security
 ---
 
 # 4C.Customize Security

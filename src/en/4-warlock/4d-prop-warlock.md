@@ -515,7 +515,7 @@ Controller中RequestMapping的URL常量
 
 ### wings.warlock.urlmap.auth-nonce-check
 
-`String`=`/auth/nonce/check.json`，验证一次性token是否有效，oauth2使用state作为token
+`String`=`/auth/nonce-check.json`，验证一次性token是否有效，oauth2使用state作为token
 
 ### wings.warlock.urlmap.oauth-authorize
 

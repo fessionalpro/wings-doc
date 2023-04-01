@@ -83,3 +83,4 @@ In short, WebSecurity has special beans and its chain calls has sequential requi
 * [Dynamic Tweaking](4e-tweak.md) - Global and thread-level teak time, logging and exceptions
 * [Open Api](4f-api-oauth.md) - External Api with limited functions
 * [Time Watching](4g-watching.md) - Timing and logging of slow requests
+* [Union Login](4h-uni-auth.md) - Association login in wings app union

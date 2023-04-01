@@ -1,7 +1,6 @@
 import { defineUserConfig } from 'vuepress';
 import { docsearchPlugin } from '@vuepress/plugin-docsearch';
-import { hopeTheme } from 'vuepress-theme-hope';
-import { themeOption } from './configs/theme';
+import hopeTheme from './configs/theme';
 import { execa } from 'execa';
 
 // 2022-10-22 e660ee1a6acf4f32a1d7ec7bbe548bba6b3fe051
@@ -30,7 +29,7 @@ export default defineUserConfig({
     },
   },
   base: '/',
-  theme: hopeTheme(themeOption),
+  theme: hopeTheme,
   plugins: [
     docsearchPlugin({
       appId: '2OIWW9DS0Z',
