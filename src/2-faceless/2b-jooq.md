@@ -63,12 +63,12 @@ val rd = dao.fetch(da, da.Id.eq(id))
 * `couple/`包， 表示多表，一般为join查询或子查询，包名以主表命名
 * 耦合操作，建议标记`@CouplingSelect`, `@CouplingModify`
 * `select|modify`分别对应数据库操作
-* 也可以`select|insert|update|delete`分类，只是autowired时比较多
+* 也可以`select|insert|update|delete`分类，只是@Autowired时比较多
 * 数据传递以Dto结尾，放到最临近使用的位子
 * Dto以静态内类形似存在，用lombok做@Value或@Data
 * `forUpdate`这种带锁操作，方法名以`Lock`结尾
 * 类名以`表名`+`Insert|Modify`
-* `Record`等同于`Dao`不应该在外部使用，应该用`Pojo`或`Dto`
+* jooq `Record`等同于`Dao`不应该在外部使用，应该用`Pojo`或`Dto`
 * 主要使用Dao，完成dsl等相关操作即可
 
 命名上，接口直接命名，不需要前后缀，Dto放在接口之内。
@@ -86,6 +86,7 @@ JdbcTemplate用于功能性的或复杂的数据库操作。若工程中有大�
 ## 2B.2.Sharding的兼容问题
 
 `flywave`包装了jooq的`Dao`，可按类型分为了`reader`和`writer`表，跟踪表。
+
 强烈建议，使用`Dao`完成基础的CRUD操作，参见`JooqShardingTest.kt`。
 使用dsl构造复杂的sql时，要考虑读写分离。更复杂的sql建议使用jdbcTemplate。
 

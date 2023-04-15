@@ -29,7 +29,7 @@ then pnpm commands,
 
 ## Markdown Conventions
 
-* `.markdownlint.yml`
+* `.markdownlint.yml` install [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
 * `category` PascalNaming singular noun.
 * `title` PascalNaming without prep.
 * `link` current dir omit `./`

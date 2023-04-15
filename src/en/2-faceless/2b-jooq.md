@@ -3,84 +3,105 @@ isOriginal: true
 icon: ability
 category:
   - Faceless
-  - Type
+  - TypeSafe
   - Jooq
 ---
 # 2B.Typesafe DSL SqlMapping
-> Time Walk, teleport to the target location, and cancel any damage received in the last 2.0 seconds.  
-> The Void Mask is invulnerable during the time walk.
-* Automatically generate the JOOQ code, POJO, TABLE, DAO.
-* The strongly type of JOOQ ensures the stability of the data changes and reconstruction.
 
-## 2B.1.Strongly-typed Database Operations
-It is recommended to use SqlMapping while the ORM is not that light. Using Jooq and JDBCTemplate in projects.  
-Mybatis is the first choice for most domestic projects. Although it has excellent features, the constraints of their code are not rigorous enough.  
-The laziness of the developer makes it difficult for the string-based SQL to be safely reconstructed. so the follwing problems will comes easily，
+> Time Walk, Rushes to a target location while backtracking any damage taken in the last 2 seconds.
+> Faceless Void is invulnerable during Time Walk.
 
-* The frequent use of `select *` makes the query with a lot of useless information
-* Writing complex SQL makes it difficult for services to be splited.
-* Strings and weak types, when restructuring, IDE's support is limited
+* Auto generate the Jooq code, eg. pojo, table, dao.
+* Typesafe Jooq ensures the stability of the data changes and refactorings.
 
-Using stongly-typed Jooq makes programming better than configuration, grammar is better than string.
-And its SQL expression is friendly and has the right ability about limitation.  
-Using`WingsCodeGenerator`to generate Jooq code programmatically instead of maven;
-According to the configuration, the destination of the generated code is `database/autogen/`, while the manual code is under the `database/manual/`.
+## 2B.1.Typesafe Database Operation
 
-While you encounter the compilation error caused by Wings or Jooq and you cannot generate code in the current project,you need to create a new temporary project which relies only on the new version of Wings to run the code generation tools.
+SqlMapping is recommended because the ORM is too heavy, and Jooq and JdbcTemplate are welcome in the project.
 
-The automatically generated `*Dao` has a large number of database operation methods that can be used directly,
+MyBatis is the first choice for most projects in China, inherent in its excellence,
+but its lack of constraint power and the laziness of developers makes string-based
+sql difficult to refactory safely, and the following problems will come easily.
 
-* `getAlias` To get the alias of a table used for selection，`Table as az`
-  - When running, the table, using an Excel format AZ in advance indicator, is unique
-  - When naming it youself, use numbers to end to avoid conflicting with the system.
-* `getTable` Obtaining a table that does not use aliases used for modification `Table`
-* Use the batch of PreparedStatement for batch insertion or updates to large amounts of data
-* Use mysql special tools: `Insert Ignore` and` Replace Into` to deal with duplicate data
-* Use the `On Duplicate Key Update` or` Select+Insert+Update` to update the unique record.
+* Often `select *` queries with lots of useless fields
+* Easy to write large complex SQL to difficult to split the service
+* String-based and weak type limit the intelligent refactoring of the IDE
 
-It is worth noting that whether using an alias or not in DAO, the same source must be maintained, otherwise the grammatical error will be reported.
+Jooq and its strong types make programming better than configuration, syntax better than
+strings, SQL expression friendly and just the right amount of ability to limit the ability
+to do the right things.
+
+Use `WingsCodeGenerator` to auto generate jooq code programmatically (without maven).
+By convention, the generated code is under `database/autogen/` and the manual code
+is under `database/manual/`.
+
+If you encounter a compilation error caused by wings or jooq and cannot generate code in
+the current project, you need to create a new small project, only rely on the new version
+of wings, and run the code generation tool.
+
+Automatically generated `*Dao` have a lot of usable methods. They can be used to manipulate
+the database directly.
+
+* `getAlias` get the alias used for select, `Table as az`
+  - At runtime, the Table is unique, named by the excel index format
+  - When self-naming, use numeric endings to avoid conflicts with the system.
+* `getTable` get the table for modification without alias, `Table`
+* Bulk insert and update large amounts of data, using batch of PreparedStatement
+* Use mysql special syntax, `insert ignore` or `replace into` to handle duplicate data
+* Partially update of unique records using `on duplicate key update` or `select+insert+update`.
+
+Important note, when using alias table and plain table together, you must guarantee that
+they are come from the same Dao instance, otherwise a syntax error will be thrown.
 
 ```kotlin
 val da = dao.alias
-// val rd = dao.fetch(da.Id.eq(id)) Alias and its origin table are different sources。 The grammar is wrong
+// val rd = dao.fetch(da.Id.eq(id))
+// alias and table are different ref, syntax error thrown.
 // select * from win_user where `y8`.`id` = ?
 
 val rd = dao.fetch(da, da.Id.eq(id))
 ```
 
-When there are complex data operations and you have to deal with the SQL manually, follow the following agreement,
+When there are complex data operations and the code must be written by hand, the following conventions are used.
 
-* Any operation about the database should be performed in the `database` package
-* DSLContext and DataSource should not leave the DataBase layer
-* `single/` package, which indicates single-table operations, can contain simple condition subquery,the package is named after each table.
-* `Couple/` package, which indicates multi-table operations, generally in query or subquery, the package name is named after the main table.
-* `@couplingselect`,`@couplingmodify` is commanded in coupling operation.
-* `select | modify` corresponding to the database operation respectively
-* You can also use `select | Insert | update | delete` for classification, but there will be a lot when autowired
-* Transform data with DTO,and place it near where it is used
-* DTO exists as a static inner class, and uses lombok (@Value or @data)
-* Operations with locks like `forupdate`, the method name ended with`Lock`
-* Class name's should be end with `{table name}`+`Insert | Modify`
-* `Record` is equivalent to` dao`, and should not be used outside data access layer。but should be `pojo` or` dto`
-* Mainly use DAO to complete operations about DSL
+* Any database operations should be done inside the `database` package
+* DSLContext and DataSource should not leave the database layer
+* `single/` package, means single table, can contain simple conditional subqueries, one package name for one table
+* `couple/` package, means multiple tables, usually join queries or subqueries, package name is named using the main table
+* Coupled operations, suggest tagging `@CouplingSelect`, `@CouplingModify`
+* `select|modify` correspond to database operations respectively
+* Also `select|insert|update|delete` can be classified, but with lots of @Autowired
+* Data transfer ends with Dto and  is placed closest to the use
+* Dto exists as a static inner class, use lombok @Value or @Data
+* `forUpdate` with lock operation, method name ends with `Lock`
+* Class name should be in `TableName`+`Insert|Modify`
+* jooq `Record` is equivalent to `Dao` should not be used externally, it should be `Pojo` or `Dto` to transfer data
+* Mainly use Dao, just do the DSL and other related operations
 
-The interface naming does not require the front suffonon. DTO is placed in the interface.
-The implementation class is placed in the `impl/` package. Use the suffix to represent the different implementation method.
+In naming, the interface should be named directly , without prefix and suffix, Dto are placed
+inside the interface as a part of the contract. Implementation classes, placed inside the
+`impl/` package, with a suffix to indicate a different way of implementation.
 
 * `Jooq` - Jooq implementation
-* `Jdbc` - JDBCTEMPlate Realization
+* `Jdbc` - JdbcTemplate implementation
 * `Impl` - Mixed implementation
 
-Such as `Lightid`. When reading and writing is separated and you need to force the master, you can use`@MasterRouteOnly`.
+When forcing the use of the master in read/write separation, you can use `@MasterRouteOnly`, eg. `LightId`
 
-JdbcTemplate is used for functional or complex database operations. If there are a large number of JDBC operations in the project, and feel that jdbcTemplate is at the bottom of the bottom, you can consider[JDBI](http://jdbi.org)
+JdbcTemplate is used for functional or complex database operations. If you have a lot of
+jdbc operations in your project and jdbcTemplate is less powerful, you can consider [JDBI](http://jdbi.org)
 
-## 2B.2.Sharding's compatibility issues
+## 2B.2.Sharding Compatibility
 
-`flywave` wraps Jooq's `Dao`，which can be divided into `reader` table、`writer` table and `tracking` table. It is strongly recommended to use `Dao` for basic CRUD operations, see `JooqShardingTest.kt`. When constructing complex SQL using DSL, consider read/write splitting. For more complex SQL, jdbcTemplate is recommended.
+`flywave` extends and enhances jooq's `Dao` and splits by type into `reader` and `writer` tables, and tracking tables.
 
-Jooq generates code that uses `table.column` qualified column names by default, which ShardingJdbc does not support in the current version.
-The best solution is to make ShardingJdbc support, and the easiest way is to modify the Jooq generation policy, refer to the following issue.
+It is highly recommended to use `Dao` for basic CRUD operations, see `JooqShardingTest.kt`.
+When constructing complex sql with DSL, read/write separation should be considered.
+For more complex sql it is recommended to use jdbcTemplate.
+
+Jooq generates code that uses `table.column` to qualify filed by default, but ShardingJdbc
+does not currently support this . The best solution is to wait until ShardingJdbc
+support it, and the easiest way at the moment is to change the Jooq generation policy, see
+the following Issue.
 
 * [JOOQ#8893 Add Settings.renderTable](https://github.com/jOOQ/jOOQ/issues/8893)
 * [JOOQ#9055 should NO table qualify if NO table alias](https://github.com/jOOQ/jOOQ/pull/9055)
@@ -88,38 +109,40 @@ The best solution is to make ShardingJdbc support, and the easiest way is to mod
 * [ShardingSphere#5330 replace into](https://github.com/apache/shardingsphere/issues/5330)
 * [ShardingSphere#5210 on duplicate key update](https://github.com/apache/shardingsphere/issues/5210)
 
-Prior to jooq`3.18`, using `spring.wings.faceless.jooq.enabled.auto-qualify=true` so that the automatic processing of qualified names is completed, and the rule is, 'If there is no alias, do not add the qualified name'.
+Prior to jooq `3.18`, use `spring.wings.faceless.jooq.enabled.auto-qualify=true` to enable
+the automatic processing of qualified names, with the rule that `no qualified name if no alias`.
 
-The main reason for using Jooq is that it has the 'art of limitation' and avoids writing SQL that is difficult to split,
+The main reason for using Jooq is `The Art of Restraint`, which avoids writing hard SQL that is too hard to maintain.
 
-* Encourage single-table operations, put in the `single` package, and use `real name` (e.g., WinUserLoginTable)
-* In multi-table operations, `aliases` (e.g., WinUserLoginTable.asA2) are preferred over `real names`
-* INSERT use `real name`, not `alias`
-* DELETE use `real name`, not `alias`
-* UPDATE use `alias` better than `real name`
-* SELECT use `real name` when selecting a single table; But 'alias' takes precedence over 'real name' when selecting multiple tables
-* **Don't** Use Chinese table names, the example code is just an extreme test
+* Encourage single table operations in the `single` package, using `plain` (eg. WinUserLoginTable)
+* When operating on multiple tables, `alias` (eg. WinUserLoginTable.asA2) is preferred
+* INSERT uses `plain`, not `alias`.
+* DELETE uses `plain`, not `alias`.
+* UPDATE uses `alias` over `plain`.
+* SELECT use `plain` for single table; `alias` over `plain` for multiple tables
+* **Don't** use Chinese table names, the example code is just an extreme test.
 
 ## 2B.3.Record Mapper
 
-Jooq has 2 Mappers by default, both case-sensitive, and the corresponding functions are as follows
+Jooq has Mappers by default, both case sensitive, as follows
 
-* DefaultRecordMapper for Record#into(Class), Result#into(Class)
-* DefaultRecordUnmapper for DSL.newRecord(Table, Object), Record#from(Object)
+* DefaultRecordMapper is for Record#into(Class), Result#into(Class)
+* DefaultRecordUnmapper is for DSL.newRecord(Table, Object), Record#from(Object)
 
-SimpleFlatMapper's mapper is more permissive and case-insensitive, but has the following drawbacks.
+SimpleFlatMapper is more lenient and case-insensitive, but has the following shortcomings.
 
-* [bug about intoArray](https://github.com/arnaudroger/SimpleFlatMapper/issues/764)
-* Primitive types, such as int.class, are not supported, only Integer.class
+* [bug with intoArray](https://github.com/arnaudroger/SimpleFlatMapper/issues/764)
+* No support for primitive type, such as int.class, only Integer.class
 
-After the official submission on 2020-05-11, it has not been active for more than 2 years, and Wings has removed it in October 2022.
+Officially inactive for more than 2 years after the last commit on 2020-05-11, wings has removed it in October 2022.
 
-The Model Mapper is also excellent, but its size is too large (4.5M) to be used and it is also undertested.
+ModelMapper is also better, but its size is too large (4.5M), currently, there is no need
+to use it, and it is not fully tested in wings.
 
 ## 2B.4.References
 
 * [Jooq patch](https://github.com/trydofor/jOOQ/commit/0be23d2e90a1196def8916b9625fbe2ebffd4753)
 * [Batch Execution record](https://www.jooq.org/doc/3.12/manual/sql-execution/crud-with-updatablerecords/batch-execution-for-crud/)
 * [Batch Execution jdbc](https://www.jooq.org/doc/3.12/manual/sql-execution/batch-execution/)
-* [Use aliases to support table spacing](https://www.jooq.org/doc/3.12/manual/sql-building/table-expressions/aliased-tables/)
+* [Aliases in table splitting](https://www.jooq.org/doc/3.12/manual/sql-building/table-expressions/aliased-tables/)
 * [Sql Execution](https://www.jooq.org/doc/3.12/manual/sql-execution/)
