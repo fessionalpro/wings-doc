@@ -138,7 +138,7 @@ category:
 
 ### spring.wings.slardar.enabled.tweaking
 
-`Boolean`=`true`，是否支持动态调试
+`Boolean`=`true`，是否支持动态调节
 
 ## 3I.2.wings-prop-promotion.cnf
 
