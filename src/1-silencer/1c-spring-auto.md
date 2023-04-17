@@ -28,7 +28,7 @@ category:
 * 提示Application context not configured for this file，
   在`Project Structure`/`Facets`/`Spring`手动添加`boot/WingsAutoConfiguration`一个即可。
 * 提示 annotation processing的设置，在`Settings`/`Annotation Processors`/`Enable annotation processing`
-  注意：在`@Configuration`中的内部类，`static class`是按独立类处理的，不受外层约束。
+* 注意：在`@Configuration`中的内部类，`static class`是按独立类处理的，不受外层约束。
 
 在wings工程中，会存在`spring-wings-enabled.properties`配置，作为功能开关。
 可以设置`spring.wings.silencer.enabled.verbose=true` 通过日志的INFO查看。

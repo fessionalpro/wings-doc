@@ -8,71 +8,73 @@ category:
 
 # 1D.Silencer Properties
 
-有关自动加载，默认工具和行为的属性。
+Properties about autoloading, default tools and behavior.
 
 ## 1D.1.wings-auto-config.cnf
 
-Silencer的入口配置，定义了Silencer的自动加载的路径和模式。
+Silencer's entry configuration, which defines the path and mode of Silencer's autoload.
 
 ### wings.boot.more
 
 `List<String>`=`application*.*, wings-conf/**/*.*`
 
-多协议路径下查找，不支持协议头，同名可多次加载，按优先级覆盖。
+Scan path under multi-protocol, so no protocol header,
+same name can be loaded multiple times, override by priority.
 
 ### wings.boot.once
 
 `List<String>`=`git.properties, META-INF/build-info.properties`
 
-多协议路径下查找，不支持协议头，同名仅按优先级加载一次，后续不会覆盖。
+Scan path under multi-protocol, so no protocol header,
+same name loaded only once by priority, no subsequent override.
 
 ### wings.boot.block
 
 `String`=`wings-conf-block-list.cnf`
 
-黑名单文件名
+Filename of the block-list config
 
 ### wings.boot.promo
 
 `String`=`wings-prop-promotion.cnf`
 
-变量提示文件名
+Filename of the promotion config
 
 ## 1D.2.logback-fileonly.xml
 
-`logback`仅file-appender的默认配置。
+`logback` default configuration for file-appender only.
 
 ## 1D.3.spring-wings-enabled-79.properties
 
-Silencer功能的默认开关，如下
+The default switch for toggling the Silencer feature, as follows
 
 ### spring.wings.silencer.enabled.autoconf
 
-`Boolean`=`true`，是否启动自动配置
+`Boolean`=`true`, Whether to automatically configure
 
 ### spring.wings.silencer.enabled.verbose
 
-`Boolean`=`false`，是否显示wings的conditional信息
+`Boolean`=`false`, Whether to display the conditional information of wings
 
 ### spring.wings.silencer.enabled.message
 
-`Boolean`=`true`，是否自动加载`/wings-i18n/`
+`Boolean`=`true`, Whether to automatically load /wings-i18n/ messages
 
 ### spring.wings.silencer.enabled.scanner
 
-`Boolean`=`true`，是否自动载所有classpath下的`**/spring/bean/**`
+`Boolean`=`true`, Whether to automatically load all classpaths `**/spring/bean/**`
 
 ### spring.wings.silencer.enabled.auto-log
 
-`Boolean`=`true`，是否在有log-file时，console自动ERROR
+`Boolean`=`true`, Whether to automatically switch the console log level when a log file is available
 
-### spring.wings.silencer.enabled.mirana
+### spring.wings.silencer.enabled.encrypt
 
-`Boolean`=`true`，是否在自动配置mirana
+`Boolean`=`true`, Whether to automatically config mirana
 
 ## 1D.4.spring-logging-79.properties
 
-为spring的logging提供了以下配置项。
+Default configuration for spring logging
 
 * `logging.logback.rollingpolicy.max-file-size`=`500MB`
 * `logging.logback.rollingpolicy.max-history`=`30`
@@ -81,7 +83,7 @@ Silencer功能的默认开关，如下
 
 ## 1D.5.spring-message-79.properties
 
-为spring.messages提供以下默认项。
+Default configuration for spring message
 
 * `spring.messages.always-use-message-format`=`false`
 * `spring.messages.basename`=`∅`
@@ -92,47 +94,51 @@ Silencer功能的默认开关，如下
 
 ## 1D.6.wings-i18n-79.properties
 
-对默认语言和默认时区，已经语言资源的设置。
+Set default language and timezone for the app, as well as i18n messages.
 
 ### wings.silencer.i18n.locale
 
-`String`=`∅`，格式为`en_US`, `zh_CN`。默认系统语言。
+`String`=`∅`, in the format `en_US`, `zh_CN`. Default system language.
 
-对应系统变量的`user.language`, `user.country`
+Corresponds to `user.language`, `user.country` of the system variable
 
 ### wings.silencer.i18n.zoneid=
 
-`String`=`∅`，默认系统时区，如`UTC`, `GMT+8,` `Asia/Shanghai`
+`String`=`∅`, such as `UTC`, `GMT+8,` `Asia/Shanghai`. Default system timezone.
 
-对应系统变量的`user.timezone`
+corresponding to `user.timezone` of the system variable
 
 ### wings.silencer.i18n.bundle
 
 `List<String>`=`classpath*:/wings-i18n/**/*.properties`
 
-默认的resource配置，逗号分隔的AntPath格式。
+The default resource configuration, in comma-separated AntPath format.
 
 ## 1D.7.wings-autolog-79.properties
 
+Automatically switch log levels for appender
+
 ### wings.silencer.autolog.level
 
-`String`=`WARN`，Slf4j格式
+`String`=`WARN`, Slf4j format
 
-自动设置日志的级别，如 ALL, TRACE, DEBUG, INFO, WARN, ERROR, OFF
+Automatically set the log level, such as ALL, TRACE, DEBUG, INFO, WARN, ERROR, OFF
 
 ### wings.silencer.autolog.target
 
 `Set<String>`=`CONSOLE,STDOUT`
 
-可被mirana自动被调整的appender名字，逗号分隔
+The names of the appender to adjust, commas separated
 
 ### wings.silencer.autolog.exists
 
 `Set<String>`=`FILE`
 
-当存在以上appender出现的时候，进行自动日志调整。
+If the following appenders exist, the above log level is automatically adjusted.
 
 ## 1D.8.wings-encrypt-79.properties
+
+Automatic configuration of encryption features.
 
 ### wings.silencer.encrypt.leap-code
 
