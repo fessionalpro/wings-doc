@@ -144,49 +144,55 @@ Automatic configuration of encryption features.
 
 `String`=`BY2AH0IC9SX4UTV7GP5LNR6FK1WOE8ZQD3JM`
 
-LeapCode的默认seed，强安全需求时建议修改。^建议^
+Default seed of LeapCode, should change for security requirements. ^RECOMMENDED^
 
 ### wings.silencer.encrypt.crc8-long
 
 `String`=`15,13,11,9,7,5,3,1`
 
-Crc8Long的默认seed，强安全需求时建议修改。^建议^
+Default seed of Crc8Long, should change for security requirements. ^RECOMMENDED^
 
 ### wings.silencer.encrypt.aes-key
 
-`Map<String,String>`，默认的Aes256加密名字和密码，默认`${random.uuid}${random.uuid}`。
+`Map<String,String>`, the default Aes256 encryption name and password `${random.uuid}${random.uuid}`。
 
-* `system` - 系统默认，每次系统启动时随机生成，停机后消失
-* `ticket` - 用于Api Ticket，建议集群内统一
-* `cookie` - 用于 Http Cookie，建议集群内统一
-* `config` - 用于 配置文件中敏感数据，建议固定
+* `system` - system default, randomly generated at each startup
+* `ticket` - used for Api Ticket, recommended to be unified within the cluster
+* `cookie` - used for Http Cookies, recommended to be unified within the cluster
+* `config` - used for sensitive data in configuration files, recommended to be fixed
 
 ## 1D.9.wings-tweak-79.properties
 
+Tweaking of the Application
+
 ### wings.silencer.tweak.code-stack
 
-`Boolean`=`false`，初始CodeException的Global有栈或无栈
+`Boolean`=`false`, Whether the Global of CodeException has a stack. default false
 
 ### wings.silencer.tweak.clock-offset
 
-`Long`=`0`，初始系统时钟 offset ms
+`Long`=`0`, Initial system clock with offset ms
 
 ### wings.silencer.tweak.mdc-threshold
 
-`Boolean`=`true`，是否配置WingsMdcThresholdFilter
+`Boolean`=`true`, Whether to configure WingsMdcThresholdFilter
 
 ## 1D.A.wings-runtime-77.properties
 
+Runtime Mode of the Application.
+
 ### wings.silencer.runtime.run-mode
 
-`RunMode`=`Local`，默认的运行模式
+`RunMode`=`Local`, RunMode of the application
 
 ### wings.silencer.runtime.api-mode
 
-`ApiMode`=`Nothing`，默认的Api模式
+`ApiMode`=`Nothing`, ApiMode of the application
 
 ## 1D.B.wings-inspect-79.properties
 
+Inspect and audit the Application
+
 ### wings.silencer.inspect.properties
 
-`Boolean`=`false`，是否审视properties的key,value,所在文件及层叠关系
+`Boolean`=`false`, Whether to audit the file and cascading relationship of properties key/value

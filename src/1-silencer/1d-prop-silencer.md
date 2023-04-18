@@ -161,9 +161,11 @@ Crc8Long的默认seed，强安全需求时建议修改。^建议^
 
 ## 1D.9.wings-tweak-79.properties
 
+应用调节
+
 ### wings.silencer.tweak.code-stack
 
-`Boolean`=`false`，初始CodeException的Global有栈或无栈
+`Boolean`=`false`，CodeException的Global有栈或无栈
 
 ### wings.silencer.tweak.clock-offset
 
@@ -175,6 +177,8 @@ Crc8Long的默认seed，强安全需求时建议修改。^建议^
 
 ## 1D.A.wings-runtime-77.properties
 
+运行时的应用模式
+
 ### wings.silencer.runtime.run-mode
 
 `RunMode`=`Local`，默认的运行模式
@@ -184,6 +188,8 @@ Crc8Long的默认seed，强安全需求时建议修改。^建议^
 `ApiMode`=`Nothing`，默认的Api模式
 
 ## 1D.B.wings-inspect-79.properties
+
+应用审查功能
 
 ### wings.silencer.inspect.properties
 
