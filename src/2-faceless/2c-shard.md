@@ -11,6 +11,7 @@ category:
 > 对膨胀的数据增加一个状态，时间在此停止，分而治之，合而用之。
 
 使用ShardingJdbc完成数据的分表分库功能，平稳处理大数据量。
+Wings使用shard广泛表示DataSharding，ReadWrite Splitting/Separation。
 
 ## 2C.1.分表分库的不足
 
