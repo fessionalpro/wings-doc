@@ -32,7 +32,7 @@ Flywave版本及日志表有关的话题
 * SchemaRevisionMangerTest - 基本的版本管理测试
 * SchemaShardingManagerTest - shard和数据迁移测试
 
-* WingsFlywaveInitDatabaseSample 管理数据库版本例子
+* WingsFlywaveInitDatabaseSample - 管理数据库版本例子
 * ConstantEnumGenSample - enum类生成例子
 * JooqJavaCodeGenSample - jooq类生成例子
 * WingsSchemaDumper - schema和数据dump例子
@@ -48,9 +48,9 @@ Flywave版本及日志表有关的话题
 如果UnitTest中控制台中无响应，需要在IDE中打开`console`，如在Idea中
 `-Deditable.java.test.console=true` (Help/Edit Custom VM Options...)
 
-## 2E.06.影子表不需要增加index
+## 2E.06.跟踪表不需要增加index
 
-如果已有索引更新到了影子库，并影响了写入性能，或唯一索引，通过以下sql查看。
+如果已有索引更新到了跟踪表，并影响了写入性能，或唯一索引，通过以下sql查看。
 
 ```sql
 SELECT
@@ -60,10 +60,11 @@ FROM
 WHERE
   TABLE_SCHEMA = DATABASE()
   AND INDEX_NAME NOT IN ('PRIMARY','RAW_TABLE_PK')
-  AND TABLE_NAME RLIKE '%$%';
+  AND (TABLE_NAME LIKE '%$%' OR TABLE_NAME LIKE '%__%');
 ```
 
-对于通过，`apply@` 语句指定更新表。比如，以下更新本表和分表，不更新跟踪表
+通过 `apply@` 语句指定被更新的表。比如，以下更新本表和分表，不更新跟踪表
+
 ```sql
 -- @plain apply@nut error@skip
 ALTER TABLE `win_user`
@@ -71,10 +72,10 @@ ALTER TABLE `win_user`
   DROP INDEX `ft_role_set`;
 ```
 
-## 2E.07.列出所有本表，分表，影子表
+## 2E.07.列出所有本表，分表，跟踪表
 
 ```sql
--- 仅影子表
+-- 仅跟踪表
 SELECT 
   reverse(substring(reverse(table_name),length(substring_index(table_name,'__',-1))+1)) as tbl,
   group_concat(SUBSTRING_INDEX(table_name,'__',-1)) as log
@@ -164,7 +165,7 @@ WHERE
   AND TRIGGER_NAME RLIKE '^(bi|ai|bu|au|bd|ad)__';
 ```
 
-## 2E.10.获取log表的数据量
+## 2E.10.获取trace表的数据量
 
 ```sql
 SELECT
@@ -182,7 +183,7 @@ WHERE
 ORDER BY table_schema , all_mb DESC;
 ```
 
-## 2E.11.手动修复历史log模板
+## 2E.11.手动修复历史trace模板
 
 ```sql
 ALTER TABLE `{{TABLE_NAME}}__`
@@ -217,9 +218,9 @@ END;;
 DELIMITER ;
 ```
 
-## 2E.12.根据log表，局部恢复数据
+## 2E.12.根据trace表，局部恢复数据
 
-使用动态SQL，从log表获得最新数据，并REPLACE INTO的主表，
+使用动态SQL，从trace表获得最新数据，并REPLACE INTO的主表，
 期间需要关闭 Trigger @DISABLE_FLYWAVE = 1;
 
 为了避免业务干扰，可把log的max_id写入临时表，或固化的sql
@@ -255,7 +256,7 @@ SET @DISABLE_FLYWAVE = NULL;
 使用flywave，可以有更好的提示，记录。但也可以通过手工sql来完成.
 
 ```sql
--- 生成log表
+-- 生成trace表
 SET @tabl = 'owt_lading_main';
 SET @cols = (
 SELECT

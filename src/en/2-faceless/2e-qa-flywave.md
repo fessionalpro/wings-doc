@@ -9,48 +9,49 @@ category:
 
 # 2E.Flywave Faq Topic
 
-Flywave版本及日志表有关的话题
+Topic about flywave, schema/data versioning, journal data.
 
-## 2E.01.如何自定义journalService
+## 2E.01.Customize journalService
 
-使用高优先级注入`journalService`，参考 example工程的 `SecurityJournalService`
+Inject high priority `journalService`, see `SecurityJournalService` of example project
 
-## 2E.02.找不到SchemaRevisionManager
+## 2E.02.No chemaRevisionManager
 
-在2.2.6以后，默认关闭了`spring.wings.faceless.flywave.enabled.module=false`
-初始化的时候需要打开，例如在test中增加临时打开
+After 2.2.6, `spring.wings.faceless.flywave.enabled.module=false` is disabled by default.
+needs to enable during initialization, for example by adding a temporary turn on in test
 `@SpringBootTest(properties = "spring.wings.faceless.flywave.enabled.module=true")`
 
-## 2E.03.缺少branches的异常
+## 2E.03.Missing Branches Error
 
-在2.2.7版后，对sys_schema_version增加了分支支持，之前的版本需要手动维护。
-执行`branch/somefix/v227-fix`的`2019_0512_02`即可。
+After 2.2.7, sys_schema_version supports branch, in previous versions, it needed to be maintained manually.
+Just execute `2019_0512_02` in `branch/somefix/v227-fix`.
 
-## 2E.04.哪些测试或例子适合了解flywave
+## 2E.04.Testcase or Examples for Flywave
 
-* SchemaJournalManagerTest - 包含了shard和track的例子测试
-* SchemaRevisionMangerTest - 基本的版本管理测试
-* SchemaShardingManagerTest - shard和数据迁移测试
+* SchemaJournalManagerTest - shard and track test
+* SchemaRevisionMangerTest - basic versioning test
+* SchemaShardingManagerTest - shard and data migration test
 
-* WingsFlywaveInitDatabaseSample 管理数据库版本例子
-* ConstantEnumGenSample - enum类生成例子
-* JooqJavaCodeGenSample - jooq类生成例子
-* WingsSchemaDumper - schema和数据dump例子
-* WingsSchemaJournal - track表控制例子
+* WingsFlywaveInitDatabaseSample - database versioning example
+* ConstantEnumGenSample - enum code generation example
+* JooqJavaCodeGenSample - jooq code generation example
+* WingsSchemaDumper - schema and data dump example
+* WingsSchemaJournal - track table control example
 
-## 2E.05.flywave中确认危险语句
+## 2E.05.Confirm Dangerous Sql in Flywave
 
-* 带有`ask@*`注解的sql，强制确认
-* undo 语句确认 `wings.faceless.flywave.ver.ask-undo=true`
-* drop 类语句确认 `wings.faceless.flywave.ver.ask-drop=true`
-* drop 类语句定义 `wings.faceless.flywave.ver.drop-reg[drop-table]`
+* sql with `ask@*` annotation to force confirmation
+* undo statement confirms `wings.faceless.flywave.ver.ask-undo=true`
+* drop statement validation `wings.faceless.flywave.ver.ask-drop=true`
+* drop statement definition `wings.faceless.flywave.ver.drop-reg[drop-table]`
 
-如果UnitTest中控制台中无响应，需要在IDE中打开`console`，如在Idea中
-`-Deditable.java.test.console=true` (Help/Edit Custom VM Options...)
+If console has no output in UnitTest, you need to open `console` in the IDE, e.g.
+in Idea `-Deditable.java.test.console=true` (Help/Edit Custom VM Options...)
 
-## 2E.06.影子表不需要增加index
+## 2E.06.No Index Required for Trace Tables
 
-如果已有索引更新到了影子库，并影响了写入性能，或唯一索引，通过以下sql查看。
+If an existing index is updated to trace tables and it affects write performance,
+or a unique constraint, check it out with the following sql.
 
 ```sql
 SELECT
@@ -60,10 +61,12 @@ FROM
 WHERE
   TABLE_SCHEMA = DATABASE()
   AND INDEX_NAME NOT IN ('PRIMARY','RAW_TABLE_PK')
-  AND TABLE_NAME RLIKE '%$%';
+  AND (TABLE_NAME LIKE '%$%' OR TABLE_NAME LIKE '%__%');
 ```
 
-对于通过，`apply@` 语句指定更新表。比如，以下更新本表和分表，不更新跟踪表
+Specify the table to be updated with the `apply@` statement. For example,
+the following updates plain tables and shard tables without trace tables
+
 ```sql
 -- @plain apply@nut error@skip
 ALTER TABLE `win_user`
@@ -71,10 +74,10 @@ ALTER TABLE `win_user`
   DROP INDEX `ft_role_set`;
 ```
 
-## 2E.07.列出所有本表，分表，影子表
+## 2E.07.List All Plain/Shard/Trace Tables
 
 ```sql
--- 仅影子表
+-- only trace
 SELECT 
   reverse(substring(reverse(table_name),length(substring_index(table_name,'__',-1))+1)) as tbl,
   group_concat(SUBSTRING_INDEX(table_name,'__',-1)) as log
@@ -90,7 +93,7 @@ FROM INFORMATION_SCHEMA.TABLES
 WHERE table_schema = DATABASE()
   AND table_name RLIKE '\\$|__';
 
--- 仅分表
+-- only shard
 SELECT 
   reverse(substring(reverse(table_name),length(substring_index(table_name,'_',-1))+1)) as tbl,
   group_concat(SUBSTRING_INDEX(table_name,'_',-1)) as num
@@ -106,7 +109,7 @@ FROM INFORMATION_SCHEMA.TABLES
 WHERE table_schema = DATABASE()
   AND table_name RLIKE '_[0-9]+$';
 
--- 仅主表
+-- only plain
 SELECT table_name
 FROM INFORMATION_SCHEMA.TABLES
 WHERE table_schema = DATABASE()
@@ -114,19 +117,22 @@ WHERE table_schema = DATABASE()
   AND table_name NOT RLIKE '\\$|__';
 ```
 
-## 2E.08.如果使用flywave管理老工程
+## 2E.08.Flywave for Legacy Project
 
-对于老工程，需要保留原来的表结构和数据，可能无法使用wings的命名，分作以下情况。
+For legacy projects, to keep the original schema and data, you may not be able to use the naming of wings,
+divided into the following cases.
 
-* 不能用`sys_schema_*`表，可以通过wings-flywave-79.properties配置设置对于表，并手工创建同结构表
-* 希望用`sys_schema_*`表，也希望版本连续，可通过replace方法把1ST_SCHEMA改名为新名字
-* 不希望rename的，可以使用branch分支管理初始化脚本，使用forceExecuteSql方法执行
+* Without `sys_schema_*` table, you can set your own table in wings-flywave-79.properties,
+  and create the same structure table manually.
+* With the `sys_schema_*` table, you can replace 1ST_SCHEMA with a new name.
+* Without `rename` the table, you can use the initialization script in the `branch` and `forceExecuteSql` to execute it.
 
-以上方法，推荐使用最后一种，做好手工初始化后，后续通过flywave管理数据库版本。
+Of the above methods, we recommend using the last one, after doing the manual initialization,
+then managing the database version through flywave.
 
-除了初始版本，会在checkAndInit时执行外，其他版本必须显示的publish或execute
+Except for the initial version, which is executed during checkAndInit, other versions need to be published or executed
 
-## 2E.09.如果获得或删除所有trigger
+## 2E.09.List or Delete All Triggers
 
 ```sql
 SELECT
@@ -140,7 +146,7 @@ FROM
 WHERE
   EVENT_OBJECT_SCHEMA = database();
 
--- 获取创建trigger的SQL;
+-- get create sql of trigger;
 -- DELIMITER ;;
 SELECT
   TRIGGER_NAME,
@@ -153,7 +159,7 @@ FROM
 WHERE
   EVENT_OBJECT_SCHEMA = database();
 
--- 符合flywave命名规则的
+-- as flywave naming rules
 SELECT
   TRIGGER_NAME,
   concat('DROP TRIGGER IF EXISTS ',TRIGGER_NAME,';')
@@ -164,7 +170,7 @@ WHERE
   AND TRIGGER_NAME RLIKE '^(bi|ai|bu|au|bd|ad)__';
 ```
 
-## 2E.10.获取log表的数据量
+## 2E.10.Record Count of Trace Table
 
 ```sql
 SELECT
@@ -182,7 +188,7 @@ WHERE
 ORDER BY table_schema , all_mb DESC;
 ```
 
-## 2E.11.手动修复历史log模板
+## 2E.11.Manually Repair Trace Template
 
 ```sql
 ALTER TABLE `{{TABLE_NAME}}__`
@@ -217,12 +223,12 @@ END;;
 DELIMITER ;
 ```
 
-## 2E.12.根据log表，局部恢复数据
+## 2E.12.Partial Recovery Data by Trace Table
 
-使用动态SQL，从log表获得最新数据，并REPLACE INTO的主表，
-期间需要关闭 Trigger @DISABLE_FLYWAVE = 1;
+Using dynamic SQL, get the latest data from the log table and REPLACE INTO the main table.
+During this time, you must disable the Trigger with `@DISABLE_FLYWAVE = 1`.
 
-为了避免业务干扰，可把log的max_id写入临时表，或固化的sql
+To avoid business interruption, write the max_id of log to a temporary table, or a static sql.
 
 ```sql
 -- SET @group_concat_max_len = @@global.max_allowed_packet;
@@ -250,12 +256,12 @@ EXECUTE stmt;
 SET @DISABLE_FLYWAVE = NULL;
 ```
 
-## 2E.13.如何手工生成日志表和trigger
+## 2E.13.Manually Create Trace Tables and Triggers
 
-使用flywave，可以有更好的提示，记录。但也可以通过手工sql来完成.
+With flywave you can have better hints, logging. But it can also be done by manual sql.
 
 ```sql
--- 生成log表
+-- generate trace table
 SET @tabl = 'owt_lading_main';
 SET @cols = (
 SELECT
@@ -294,7 +300,7 @@ SELECT @tracerSql;
 PREPARE stmt FROM @tracerSql;
 EXECUTE stmt;
 
--- 生成trigger sql
+-- generate trigger sql
 SET @tabl = 'win_user_basis';
 SET @triggerSql = CONCAT(
    'DELIMITER ;;\n',
@@ -318,28 +324,33 @@ SET @triggerSql = CONCAT(
 select @triggerSql;
 ```
 
-## 2E.14.工具或DB不支持`$`命名怎么办
+## 2E.14.What if Not Support `$` Naming
 
-从210版本开始，wings以双下划线`__`命名，取代Dollar`$`命名。
+After version 210, wings are named with a double underscore `__`,
+which replaces the dollar`$` naming convention.
 
-英数美刀下划线(`[0-9,a-z,A-Z$_]`)都是mysql官方允许的合法的[命名字符](https://dev.mysql.com/doc/refman/5.7/en/identifiers.html)
-但某些不完备的云DB或工具，未做好处理，但wings需要避开外来的功能缺陷。
+The alphanum, dollar and underscore (`[0-9,a-z,A-Z$_]`) are all officially legal
+[naming characters](https://dev.mysql.com/doc/refman/5.7/en/identifiers.html).
 
-若无法更换DB或工具，可以修改wings的默认约定及实现。
-此选项，为隐藏功能，通过基本测试，通常情况下不建议使用。
+However, some incompatible cloud DB or tools are not well handled, but wings must avoid the 3rd functional defects.
 
-* 变更后缀的分隔符，如`__`，两个下划线。
-* 使用前缀，如`_`，以下划线开头。
+If the DB or tool cannot be replaced, the default convention and implementation of wings can be modified.
+This option is a hidden feature, passes basic testing, and is generally not recommended.
 
-每个方案，都会影响flywave的配表及脚本，需要逐一修改。
-使用前缀时，还会影响表名排序，视觉上无法直观的看到主表是否有跟踪表。
+* Change the suffix separator, e.g. `__`, two underscores.
+* Use prefixes, like `_`, starting with an underscore.
 
-简单的方式是修改`wings.faceless.flywave.ver.format-`配置。
+Each option that affects flywave's matching tables and scripts, must be changed on a case-by-case basis.
+When using prefixes, it also affects the sorting of the table name, and it is not easy to visually see
+if the plain table has a trace table.
 
-原理是修改 SqlSegmentProcessor.setXXXFormat方法，设置表达式，
-要求表达式必须精准，避免误判主表，分表，跟踪表的关系。
-以`XXX`表示主表，`#`表示字母，SqlSegmentProcessor 默认提供了3种表达式
+The simple way is to change the `wings.faceless.flywave.ver.format-` configuration.
 
-* TRACE_DOLLAR - 以dollar`$`后缀分隔，如`XXX$#`
-* TRACE_SU2_LINE - 以双下划线`__`后缀分隔，如`XXX__#`
-* TRACE_PRE_LINE - 以单下划线`_`前缀分隔，如`_XXX`或`_#_XXX`
+The principle is to modify the SqlSegmentProcessor.setXXXFormat method to set the expression.
+The expression must be precise to avoid mismatching the relationship between plain, shard and trace tables.
+
+With `XXX` for the plain table and `#` for the letter, SqlSegmentProcessor provides 3 types of expressions by default
+
+* TRACE_DOLLAR - separated by a dollar`$` suffix, such as `XXX$#`
+* TRACE_SU2_LINE - separated by a double underscore `__` suffix, e.g. `XXX__#`
+* TRACE_PRE_LINE - separated by a single underscore `_` prefix, e.g. `_XXX` or `_#_XXX`
