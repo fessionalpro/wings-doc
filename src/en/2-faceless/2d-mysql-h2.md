@@ -228,6 +228,26 @@ SELECT 'Michael!' NOT REGEXP '.*';
 * MySQL has hard limit of 4096 columns
 * Maximum row size limit of 65535 bytes
 
+### 15.ONLY_FULL_GROUP_BY 和 nonaggregated
+
+> is not in GROUP BY clause and contains nonaggregated column
+> which is not functionally dependent on columns in GROUP BY clause;
+> this is incompatible with sql_mode=only_full_group_by
+
+As of MySQL 5.7.5, the default SQL mode includes ONLY_FULL_GROUP_BY.
+
+```sql
+-- ① disable ONLY_FULL_GROUP_BY in current session
+SET @@sql_mode = sys.list_drop(@@sql_mode, 'ONLY_FULL_GROUP_BY');
+-- 
+SELECT name, address, MAX(age) FROM t GROUP BY name;
+-- enable 
+SET @@sql_mode = sys.list_add(@@sql_mode, 'ONLY_FULL_GROUP_BY');
+
+-- ②，use ANY_VALUE
+SELECT name, ANY_VALUE(address), MAX(age) FROM t GROUP BY name;
+```
+
 ## 2D.3.Local/Memory H2
 
 If it is not convenient to get a mysql database, such as a demo or local application,

@@ -69,6 +69,8 @@ Recommand `properties`, as the indentation of `yml` is difficult to edit, copy, 
   - Use the codename of project/module, e.g. `wings.slardar.*`
   - Provide the default configuration with `-79` serial number
 * Recommend `kebab-caseae` naming, i.e. `key` is all lowercase, `-` splitted
+* document-type comments, using double one-line comments, such as `##` in Properties
+* function-type comments, using a single one-line comment, such as `#` in Properties
 
 ## 0A.4.Spring Injection Notes
 
