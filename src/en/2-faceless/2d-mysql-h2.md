@@ -8,14 +8,19 @@ category:
 
 # 2D.Mysql-Compatible Database
 
-MySql体系指其分支(Percona,MariaDB)或兼容协议的数据库，wings使用mysql8（5.7已充分测试）。
-原则上DB不应该封装（自定义function或procedure）业务逻辑，但可以使用db提供的功能，简化工作实现业务目标。
-[mysql 8.0 官方文档](https://dev.mysql.com/doc/refman/8.0/en/)
+MySql serial refers to mysql and its branches (Percona, MariaDB) or a  protocol compatible database,
+wings use mysql8 (5.7 has been fully tested).
 
-## 2D.1.创建Mysql Docker
+In principle, DB should not encapsulate business logic (custom function or procedure), but can use the
+functions provided by db to simplify the work to achieve business goals.
+[Mysql 8.0 Official Documentation](https://dev.mysql.com/doc/refman/8.0/en/)
 
-wings需要mysqld中以下的重点设置项，包括命名小写，语音时区，用户权限，[全文检索的分词](https://dev.mysql.com/doc/refman/8.0/en/fulltext-boolean.html)
-以下配置适应于mysql5.7, mysql8, native, cloud
+## 2D.1.Mysql in Docker
+
+Wings requires the following key settings in mysqld, including lowercase names, language, timezone, user privilege,
+[wordseg for full-text search](https://dev.mysql.com/doc/refman/8.0/en/fulltext-boolean.html)
+
+The following configuration is suitable for mysql5.7, mysql8, native, cloud,
 
 ```bash
 sudo tee /data/docker/mysql/conf/moilioncircle.cnf << EOF
@@ -23,24 +28,24 @@ sudo tee /data/docker/mysql/conf/moilioncircle.cnf << EOF
 max_allowed_packet          = 16777216
 max_connections             = 1024
 group_concat_max_len        = 16777216
-# table store lowercase compare case-sensitive
+## table store lowercase compare case-sensitive
 lower_case_table_names      = 1
-# FULLTEXT indexes by MeCab parser and ngram parser
+## FULLTEXT indexes by MeCab parser and ngram parser
 innodb_ft_min_token_size    = 2
 ft_min_word_len             = 2
 ngram_token_size            = 2
-# default charset and timezone
+## default charset and timezone
 character_set_server        = utf8mb4
 default-time-zone           = +00:00
-# binary log
+## binary log
 log_bin_trust_function_creators = 1
 binlog-format               = MIXED
-# local
+## local
 innodb_file_per_table       = 1
 #skip_grant_tables
 EOF
 
-# 启动docker
+# start docker
 sudo docker run -d \
  --name mysql \
  --restart=unless-stopped \
@@ -51,18 +56,19 @@ sudo docker run -d \
 mysql:8.0
 ```
 
-通过以下sql创建高权限用户，建议使用wings-mysql-user.sh管理不同权限的用户
+Create high privilege users with the following sql. It is recommended to use
+wings-mysql-user.sh to manage users with different privileges
 
 ```sql
 CREATE USER 'trydofor'@'%' IDENTIFIED BY 'moilioncircle';
-GRANT ALL ON *.*  TO 'trydofor'@'%'; -- 通常写法
--- GRANT ALL  ON `%`.*  TO 'trydofor'@'%'; -- 上述有语法错误时
+GRANT ALL ON *.*  TO 'trydofor'@'%'; -- usually syntax
+-- GRANT ALL  ON `%`.*  TO 'trydofor'@'%'; -- when above error
 SHOW GRANTS FOR 'trydofor'@'%';
 -- DROP USER 'trydofor'@'%';
 FLUSH PRIVILEGES;
 ```
 
-Wings工程区分数据库，需要以下命名的数据库
+The Wings isolates databases for project and requires the following named databases,
 
 ```sql
 -- DROP DATABASE IF EXISTS wings;
@@ -77,26 +83,28 @@ CREATE DATABASE wings DEFAULT CHARACTER SET utf8mb4;
 -- wings_warlock /* warlock */
 ```
 
-## 2D.2.写高质量的SQL
+## 2D.2.High Quality SQL
 
-wings中，数据库仅用持久化功能，估应避免SQL含有运算和业务逻辑。
+In wings, the database is only used to persist data, and should avoid using function and business logic in DB/SQL.
 
-* 必须知道where条件的索引情况
-* 把字段运算比较，做等式变换后，变为定值比较
-* 避免复杂SQL，鼓励单表查询
-* 分页时，先定分页数据，再定向补充关联数据
-* 避免循环查询和N+1查询
+* Must know the indexing of where condition
+* Change field comparison to fixed value comparison after equation transformation
+* Avoid complex SQL and encourage single table query.
+* When paging, set the paged data first, then select the related data directly.
+* Avoid circular and N+1 queries
 
-## 2D.2.MySql非通常用法
+## 2D.2.MySql Unusual Usage
+
+Not recommended, but sometimes works great.
 
 ### 01.FIND_IN_SET
 
-FIND_IN_SET(str,strlist)，比like和match更精准的查找，strlist以逗号分隔，str中不能有逗号。
-返回strlist中1-base的坐标。0表示没找到活strlist为空。NULL如果str或strlist为NULL。
+FIND_IN_SET(str,strlist), more precise find than like and match, strlist is comma separated, no comma in str.
+Returns the coordinates of 1-base in strlist. 0 means not found or strlist is empty. NULL if str or strlist is NULL.
 
 ```sql
 SELECT FIND_IN_SET('b','a,b,c,d')
--- 2，多数场景还是作为where条件，如下
+-- 2, most scenarios as where condition, as follows
 WHERE FIND_IN_SET(role, role_set);
 ```
 
@@ -115,64 +123,67 @@ SELECT
 FROM customers;
 ```
 
-### 03.全文检索，MATCH AGAINST
+### 03.MATCH AGAINST
 
-需要建立full text index，注意汉字分词或用插件或在java中分好
+Need to build full text index. Note: for the Chinese chars, it better  to use plug-ins or  seg word  in java.
 
-### 04.替换和忽略 REPLACE IGNORE
+### 04.REPLACE IGNORE
 
-`replace into`和`insert ignore`
+`replace into` and `insert ignore`
 
-### 05.慎用Json数据类型
+### 05.Caution with Json Type
 
-As of MySQL 5.7.8, MySQL supports a native JSON data type defined by RFC 7159  
-新的操作符`->`和`->>`，需要注意词法分析框架的兼容性，所以在java中处理更为妥当。
+Starting with 5.7.8, MySQL supports a native JSON data type defined by RFC 7159
 
-### 06.性能分析explain和BENCHMARK
+The new operators `->` and `->>` may be incompatible with the lexical analysis framework,
+so they are more appropriately handled in java.
+
+### 06.Explain and BENCHMARK
 
 ```sql
--- 单个express重复执行，注意，select只能返回唯一值
+-- Repeated execution of a single express, note that select can only return unique values
 SELECT BENCHMARK(1000000,(
     SELECT count(author_name) FROM git_log_jetplus
 ));
--- 查看索引使用情况
+-- Show Index Usage
 explain 
     SELECT author_name FROM git_log_jetplus;
 ```
 
-### 07.分页limit和FOUND_ROWS()记录总数
+### 07.Limit and FOUND_ROWS()
 
-```mysql
--- 先增加SQL_CALC_FOUND_ROWS选项，
+```sql
+-- add SQL_CALC_FOUND_ROWS option first
 SELECT SQL_CALC_FOUND_ROWS * FROM tbl_name WHERE id > 100 LIMIT 10;
--- 然后获取
+-- then fetch
 SELECT FOUND_ROWS();
 ```
 
-### 08.自增主键AUTO_INCREMENT和LAST_INSERT_ID()
+### 08.AUTO_INCREMENT and LAST_INSERT_ID()
 
-项目中避免使用自增主键，特事特办的时候，可以采用标题的写法。  
-注意value多值插入时，只返回第一个。
+Avoid using auto-incrementing primary keys in projects. and use the method in title for special cases.
+Note that when multiple values are inserted, only the first one is returned.
 
-### 09.字符串/字段链接 CONCAT和CONCAT_WS
+### 09.CONCAT and CONCAT_WS
 
 ```sql
--- 注意对null的处理
+-- Note the handling of null
 SELECT CONCAT('My', NULL, 'QL');
 -- NULL, returns NULL if any argument is NULL.
 SELECT CONCAT_WS(',','First name',NULL,'Last Name');
 -- 'First name,Last Name', skip any NULL values
 ```
 
-### 10.时区转换CONVERT_TZ
+### 10.CONVERT_TZ
 
-转换类操作，应该在write时，此方法应在临时性读取时使用。  
-注意闰秒(leap second) `:59:60`或`:59:61`都以`:59:59`返回
+A conversion operation should be performed on writes, and this method should be used on
+temporary reads. Note that leap seconds `:59:60` or `:59:61` are returned as `:59:59`.
+
 ```sql
 SELECT  CONVERT_TZ('2007-03-11 2:00:00','America/New_york','Asia/Shanghai') AS time_cn
 ```
 
-### 11.格式化输出FORMAT,DATE_FORMAT
+### 11.FORMAT and DATE_FORMAT
 
 ```sql
 -- '#,###,###.##'
@@ -182,39 +193,65 @@ SELECT FORMAT(12332.1,4);
 -- '12,332.1000'
 ```
 
-### 12.全局悲观锁GET_LOCK
+### 12.Global GET_LOCK
 
-此功能在做跨jvm全局悲观锁时可用。
+This function can do global pessimistic locking across jvm.
+
 ```sql
--- 一条语句，无阻塞获得锁
+-- A statement that gets a lock without blocking
 SELECT IF(IS_FREE_LOCK('10')=1, GET_LOCK('10',10), -1);
--- 检测锁，1 if the lock is free
+-- detect lock, 1 if the lock is free
 SELECT IS_FREE_LOCK('lock1');
--- 阻塞10秒，1 if successfully, 0 timed out
+-- block 10 seconds, 1 if successfully, 0 timed out
 SELECT GET_LOCK('lock1',10);
--- 释放锁，或session中断
+-- release lock, or session break
 SELECT RELEASE_LOCK('lock1');
 -- RELEASE_ALL_LOCKS()
 ```
 
-### 13.正则匹配REGEXP和RLIKE
+### 13.REGEXP and RLIKE
 
-注意，mysql是基于byte-wise的，不是char，所以多字节字符有可能不正常。
+Note that mysql is byte-based, not char-based, so it is possible that
+multi-byte characters may not work properly.
+
 ```sql
--- 1为匹配，0为不匹配
+-- 1 for matching, 0 for not matching
 SELECT 'Michael!' NOT REGEXP '.*';
 ```
 
-### 14.VarChar和Text类型
+### 14.VarChar and Text
 
-* VarChar 有长度限制，能够设置默认值，这符合wings的NotNull约定
-* TEXT可认为无限制，不能设置默认值，不符合wings约定
+* VarChar has a limit length and with default value,
+  consistent with the Wings NotNull convention
+* TEXT can be considered unlimited and without default value,
+  inconsistent with the Wings convention
 * MySQL has hard limit of 4096 columns
-* maximum row size limit of 65535 bytes
+* Maximum row size limit of 65535 bytes
 
-## 2D.3.本地/内存H2
+### 15.ONLY_FULL_GROUP_BY 和 nonaggregated
 
-在不方便提供mysql数据库的时候，如演示或本地数据库应用，可以使用H2，配置如下。
+> is not in GROUP BY clause and contains nonaggregated column
+> which is not functionally dependent on columns in GROUP BY clause;
+> this is incompatible with sql_mode=only_full_group_by
+
+As of MySQL 5.7.5, the default SQL mode includes ONLY_FULL_GROUP_BY.
+
+```sql
+-- ① disable ONLY_FULL_GROUP_BY in current session
+SET @@sql_mode = sys.list_drop(@@sql_mode, 'ONLY_FULL_GROUP_BY');
+-- 
+SELECT name, address, MAX(age) FROM t GROUP BY name;
+-- enable 
+SET @@sql_mode = sys.list_add(@@sql_mode, 'ONLY_FULL_GROUP_BY');
+
+-- ②，use ANY_VALUE
+SELECT name, ANY_VALUE(address), MAX(age) FROM t GROUP BY name;
+```
+
+## 2D.3.Local/Memory H2
+
+If it is not convenient to get a mysql database, such as a demo or local application,
+you can use H2 with the following configuration.
 
 ```text
 jdbc:h2:~/wings-init
@@ -222,5 +259,4 @@ jdbc:h2:~/wings-init
 ;MODE=MySQL;CASE_INSENSITIVE_IDENTIFIERS=TRUE
 ;AUTO_RECONNECT=TRUE;AUTO_SERVER=TRUE
 ```
-其中，H2对mysql做了部分兼容，分表分库可以，trigger不支持。
-[H2官方文档](http://h2database.com/html/features.html)
+H2 is most compatible with mysql, eg. splitting and sharding work well, but trigger is not supported. [H2 Official Documentation](http://h2database.com/html/features.html)

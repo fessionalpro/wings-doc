@@ -13,7 +13,7 @@ Jooq有关的话题
 
 ## 2F.01.jooq执行plain sql
 
-在执行plain sql时，可以使用jdbcTemplate/SqlQuery/jooq，jooq的好处是，会进行parse（性能），进行兼容性调整（如果需要），
+在执行plain sql时，可以使用jdbcTemplate/SqlQuery/jooq，jooq的好处是，会进行parse（性能），进行兼容性调整（如果需要）。
 所以，在运行时，不考虑兼容性，推荐用 jdbcTemplate，在需要语法分析或合并等场景，使用jooq。
 
 * <https://www.jooq.org/doc/3.12/manual/sql-building/plain-sql/>
@@ -109,8 +109,8 @@ The jOOQ template parser behaves according to the following rules:
 
 ## 2F.03.常见的jooq查询操作
 
-更多信息，参考`官方文档`和sample代码`pro.fessional.wings.faceless.sample`
-<https://www.jooq.org/doc/latest/manual/sql-execution/fetching/>
+更多信息，参考[官方文档](https://www.jooq.org/doc/latest/manual/sql-execution/fetching/)
+和sample代码`pro.fessional.wings.faceless.sample`
 
 在wings中，^推荐^使用Dao做各种查询，避免使用静态表或注入DSL。
 
@@ -176,7 +176,7 @@ Map<Integer, List<String>>       group4 = create.selectFrom(BOOK).fetchGroups(BO
 
 ## 2F.07.枚举类的映射
 
-在wings实践中，以强类型为基础，因此数据库中的类别类型，通常在service层使用enum类。
+在wings实践中，以强类型为基础，因此数据库中的类别类型，通常在service层使用`enum`类。
 在jooq中，可以通过forcedType，使用converter自动映射类型，在MapStruct中也可。
 
 ```java
@@ -187,6 +187,7 @@ Map<Integer, List<String>>       group4 = create.selectFrom(BOOK).fetchGroups(BO
         .withExpression("tst_sharding.language")
 )
 ```
+
 但对于某些情况，并不能在code generate时做类型转换，全局或局部的ConverterProvider。
 可以使用wings的配置约定，声明ConverterProvider或Converter的bean，即可完成全局注入。
 
@@ -206,6 +207,7 @@ public interface Record22EnumDto {
     }
 }
 ```
+
 <https://blog.jooq.org/tag/converter/>
 
 ## 2F.08.H2Database的兼容性
@@ -242,9 +244,8 @@ Jooq有[开源版和商业版](https://www.jooq.org/download/)，两者的区别
 jOOQ's overhead compared to plain JDBC is typically less than 1ms per query.
 以上与纯JDBC对比，而任何SqlMapping都具有动态性，离不开字符串解析和拼接，反射构造等损耗，估相差不大。
 
-Configuration 初始化后就不要动了。
-DSLContext 在spring中Autowired和Dao中获取都可安全使用。
-
+* Configuration 初始化后就不要动了。
+* DSLContext 在spring中Autowired和Dao中获取都可安全使用。
 * <https://www.jooq.org/doc/3.14/manual/sql-execution/performance-considerations/>
 * <https://www.jooq.org/doc/3.14/manual/sql-building/dsl-context/thread-safety/>
 

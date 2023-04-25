@@ -64,11 +64,11 @@ Silencer功能的默认开关，如下
 
 ### spring.wings.silencer.enabled.auto-log
 
-`Boolean`=`true`，是否在有log-file时，console自动ERROR
+`Boolean`=`true`，是否在有log-file时，自动切换console的日志级别
 
-### spring.wings.silencer.enabled.mirana
+### spring.wings.silencer.enabled.encrypt
 
-`Boolean`=`true`，是否在自动配置mirana
+`Boolean`=`true`，是否在自动配置加密
 
 ## 1D.4.spring-logging-79.properties
 
@@ -92,7 +92,7 @@ Silencer功能的默认开关，如下
 
 ## 1D.6.wings-i18n-79.properties
 
-对默认语言和默认时区，已经语言资源的设置。
+为应用设置默认语言和时区，以及多国语资源。
 
 ### wings.silencer.i18n.locale
 
@@ -114,6 +114,8 @@ Silencer功能的默认开关，如下
 
 ## 1D.7.wings-autolog-79.properties
 
+自动切换appender的日志级别
+
 ### wings.silencer.autolog.level
 
 `String`=`WARN`，Slf4j格式
@@ -133,6 +135,8 @@ Silencer功能的默认开关，如下
 当存在以上appender出现的时候，进行自动日志调整。
 
 ## 1D.8.wings-encrypt-79.properties
+
+自动配置加密功能
 
 ### wings.silencer.encrypt.leap-code
 
@@ -157,9 +161,11 @@ Crc8Long的默认seed，强安全需求时建议修改。^建议^
 
 ## 1D.9.wings-tweak-79.properties
 
+应用调节
+
 ### wings.silencer.tweak.code-stack
 
-`Boolean`=`false`，初始CodeException的Global有栈或无栈
+`Boolean`=`false`，CodeException的Global有栈或无栈
 
 ### wings.silencer.tweak.clock-offset
 
@@ -171,6 +177,8 @@ Crc8Long的默认seed，强安全需求时建议修改。^建议^
 
 ## 1D.A.wings-runtime-77.properties
 
+运行时的应用模式
+
 ### wings.silencer.runtime.run-mode
 
 `RunMode`=`Local`，默认的运行模式
@@ -180,6 +188,8 @@ Crc8Long的默认seed，强安全需求时建议修改。^建议^
 `ApiMode`=`Nothing`，默认的Api模式
 
 ## 1D.B.wings-inspect-79.properties
+
+应用审查功能
 
 ### wings.silencer.inspect.properties
 

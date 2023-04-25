@@ -41,14 +41,14 @@ wings对配置文件的处理方式，是`层叠`和`过滤`，配置以路径�
 6. Java System properties `spring.config.location`
 7. Command line arguments. `--spring.config.location
 
+每个配置文件都由以下部分构成:`dirname` + `basename` + `seq` + `profile` + `extname`.
+例如, `classpath:/wings-conf/` + `wings-mirana` + `-79` + `@dev` + `.properties`.
+
 目前只加载 `*.yml`, `*.yaml`,`*.xml`, `*.properties`扩展名的配置文件。
 工程提供的默认配置，文件名字后面都会加上`-79`，方便根据文件名排序设置默认值。
 
-每个配置文件都由以下部分构成:`dirname`+`basename`+`seq`+`profile`+`extname`，
-例如，`classpath:/wings-conf`+`/`+`wings-mirana`+`-`+`79`+`.`+`properties`
 相同`basename`为同一配置，无序号的视序号为`70`，比默认的`79`要高，会覆盖默认配置。
-
-配置文件，以Resource首先按扫码顺序排序，然后按base归类，按seq升序调整（值覆盖有关）。
+配置文件，以Resource首先按扫描顺序排序，然后按base归类，按seq升序调整（值覆盖有关）。
 
 所有配置文件必须为UTF8编码，可以更好的支持unicode，可以直接写中文注释或内容。
 Wings在装载配置时对非ascii进行自动转义，以兼容spring默认的按byte读取行为。
@@ -62,7 +62,7 @@ Wings在装载配置时对非ascii进行自动转义，以兼容spring默认的�
 * `wings-conf/wings-test-module-79.properties`
 * `wings-conf/wings-test-module-79@{profile}.properties`
 
-相同`basename`+`seq`的config视为同一组，并移除非活动的profile配置，
+相同`basename`的config视为同一组，并移除非活动的profile配置，
 以`@`区分profile，因为wings的配置文件名中存在`-`，无法兼容spring格式。
 在使用`spring.profiles.active`时，要确保配置文件按spring约定加载。
 
@@ -115,7 +115,7 @@ Wings支持多配置，多profile，其路径优先级和profile优先级与spri
 
 推荐使用`wings-starter.sh`启动，用`wings-starter.env`设置基础参数。
 
-## 1A.6.动态调试
+## 1A.6.动态调节
 
 根据业务需求，按特定条件，触发线程级的日志输出。
 

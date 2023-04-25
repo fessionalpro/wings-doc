@@ -77,7 +77,7 @@ According to the use and scenarios, semantically, there are 3 types of data tabl
 
 * `plain` table, i.e. ordinary table, the normal naming, alphanumeric, underscores, or even unicode chars
 * `shard` table, `plain` table + `_#` suffix, `#` for the modulo N (0..N-1) (no 0 padding on the left)
-* `trace` table, i.e. log table, shadow table. `plain`/`shard` + `\$\w+`, `$` is separator
+* `trace` table, i.e. log table, shadow table. `plain`/`shard` + `__\w+`, `__` is separator
 * `nut` means `plain` and `shard` table; `log` means `trace` table
 
 These three table types follow the following rules and keep up with `plain` table.

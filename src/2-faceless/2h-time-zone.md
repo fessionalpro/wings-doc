@@ -30,8 +30,6 @@ Wings在配置和数据层，全做一词处理，即`timezone`和`Zoneid`。
 * mysql的jdbc的url参数 `connectionTimeZone=%2B08:00&forceConnectionTimeZoneToSession=true`
 * java的代码参数 `TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));`
 
-在数据库和java配置上，需要统一时区和dev状态下的用户名和密码，一般团队一致。
-
 ```properties
 wings.silencer.i18n.zoneid=Asia/Shanghai
 # 常用jdbc参数
@@ -61,7 +59,7 @@ select `id` from `win_user` where `delete_dt` <= '0999-12-31 16:00:00.0';
 -- jooq 绑定日志(GMT+8)
 select `id` from `win_user` where `delete_dt` <= '1000-01-01 00:00:00.0';
 
--- 打开，日志，blob要
+-- 打开，日志，argument是blob类型
 SET GLOBAL log_output = 'TABLE';SET GLOBAL general_log = 'ON';
 SELECT * from mysql.general_log ORDER BY event_time DESC;
 -- 关闭，清除
@@ -126,8 +124,8 @@ connectionTimeZone参数（8.0之前是serverTimezone）可以协调好jvm和mys
 单独使用connectionTimeZone，不会改变session级的time_zone，
 需要配合forceConnectionTimeZoneToSession，才能达到session和jdbc一致的效果。
 
-尽管以上设置可以满足项目要求，但因作用范围不如统一时区更稳定可靠，仍应避免使用。
-此外在mysql配额中，建议使用offset格式时区，而业务侧使用ZoneId格式。
+尽管以上设置可以满足项目要求，但因作用范围不如统一时区更稳定可靠，应该优先考虑统一时区。
+此外在mysql配置中，建议使用offset格式时区，而业务侧使用ZoneId格式。
 
 在配置JdbcUrl时，若使用`+`时（如下所示），会发生DateTimeException，因为在URL中`+`标识空格。
 需要转义为`%2B`，即正确的格式为connectionTimeZone=%2B08:00

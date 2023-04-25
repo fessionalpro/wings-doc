@@ -31,5 +31,5 @@ wings中主张按功能或项目，把单个application的大配置，分隔成�
 ## 1.3.更多章节
 
 * [Conf自动配置](1a-wings-conf.md) - 配置文件的分割，覆盖，禁用和profile
-* [I18n自动配置](1b-wings-i18n.md) - 同Conf一样，自动配置I18n，或动态调整
+* [I18n自动配置](1b-wings-i18n.md) - 同Conf一样，自动配置I18n，或动态调节
 * [自动配置机制](1c-spring-auto.md) - 利用SpringBoot的特性，完成自动配置

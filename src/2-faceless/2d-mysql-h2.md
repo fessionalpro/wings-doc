@@ -8,13 +8,14 @@ category:
 
 # 2D.Mysql体系的知识
 
-MySql体系指其分支(Percona,MariaDB)或兼容协议的数据库，wings使用mysql8（5.7已充分测试）。
+MySql体系指其分支(Percona,MariaDB)或兼容协议的数据库，wings使用mysql8（5.7已充分测试）
+
 原则上DB不应该封装（自定义function或procedure）业务逻辑，但可以使用db提供的功能，简化工作实现业务目标。
 [mysql 8.0 官方文档](https://dev.mysql.com/doc/refman/8.0/en/)
 
 ## 2D.1.创建Mysql Docker
 
-wings需要mysqld中以下的重点设置项，包括命名小写，语音时区，用户权限，[全文检索的分词](https://dev.mysql.com/doc/refman/8.0/en/fulltext-boolean.html)
+wings需要mysqld中以下的重点设置项，包括命名小写，语言时区，用户权限，[全文检索的分词](https://dev.mysql.com/doc/refman/8.0/en/fulltext-boolean.html)
 以下配置适应于mysql5.7, mysql8, native, cloud
 
 ```bash
@@ -23,19 +24,19 @@ sudo tee /data/docker/mysql/conf/moilioncircle.cnf << EOF
 max_allowed_packet          = 16777216
 max_connections             = 1024
 group_concat_max_len        = 16777216
-# table store lowercase compare case-sensitive
+## table store lowercase compare case-sensitive
 lower_case_table_names      = 1
-# FULLTEXT indexes by MeCab parser and ngram parser
+## FULLTEXT indexes by MeCab parser and ngram parser
 innodb_ft_min_token_size    = 2
 ft_min_word_len             = 2
 ngram_token_size            = 2
-# default charset and timezone
+## default charset and timezone
 character_set_server        = utf8mb4
 default-time-zone           = +00:00
-# binary log
+## binary log
 log_bin_trust_function_creators = 1
 binlog-format               = MIXED
-# local
+## local
 innodb_file_per_table       = 1
 #skip_grant_tables
 EOF
@@ -89,10 +90,12 @@ wings中，数据库仅用持久化功能，估应避免SQL含有运算和业务
 
 ## 2D.2.MySql非通常用法
 
+不推荐使用，但有时非常好用。
+
 ### 01.FIND_IN_SET
 
 FIND_IN_SET(str,strlist)，比like和match更精准的查找，strlist以逗号分隔，str中不能有逗号。
-返回strlist中1-base的坐标。0表示没找到活strlist为空。NULL如果str或strlist为NULL。
+返回strlist中1-base的坐标。0表示没找到或strlist为空。NULL如果str或strlist为NULL。
 
 ```sql
 SELECT FIND_IN_SET('b','a,b,c,d')
@@ -117,7 +120,7 @@ FROM customers;
 
 ### 03.全文检索，MATCH AGAINST
 
-需要建立full text index，注意汉字分词或用插件或在java中分好
+需要建立full text index，注意汉字分词，用插件或在java中分比较好
 
 ### 04.替换和忽略 REPLACE IGNORE
 
@@ -142,7 +145,7 @@ explain
 
 ### 07.分页limit和FOUND_ROWS()记录总数
 
-```mysql
+```sql
 -- 先增加SQL_CALC_FOUND_ROWS选项，
 SELECT SQL_CALC_FOUND_ROWS * FROM tbl_name WHERE id > 100 LIMIT 10;
 -- 然后获取
@@ -151,7 +154,7 @@ SELECT FOUND_ROWS();
 
 ### 08.自增主键AUTO_INCREMENT和LAST_INSERT_ID()
 
-项目中避免使用自增主键，特事特办的时候，可以采用标题的写法。  
+项目中避免使用自增主键，特事特办的时候，可以采用标题的写法。
 注意value多值插入时，只返回第一个。
 
 ### 09.字符串/字段链接 CONCAT和CONCAT_WS
@@ -166,8 +169,9 @@ SELECT CONCAT_WS(',','First name',NULL,'Last Name');
 
 ### 10.时区转换CONVERT_TZ
 
-转换类操作，应该在write时，此方法应在临时性读取时使用。  
+应该在write时执行转换类操作，此方法应在临时性读取时使用。
 注意闰秒(leap second) `:59:60`或`:59:61`都以`:59:59`返回
+
 ```sql
 SELECT  CONVERT_TZ('2007-03-11 2:00:00','America/New_york','Asia/Shanghai') AS time_cn
 ```
@@ -185,6 +189,7 @@ SELECT FORMAT(12332.1,4);
 ### 12.全局悲观锁GET_LOCK
 
 此功能在做跨jvm全局悲观锁时可用。
+
 ```sql
 -- 一条语句，无阻塞获得锁
 SELECT IF(IS_FREE_LOCK('10')=1, GET_LOCK('10',10), -1);
@@ -200,6 +205,7 @@ SELECT RELEASE_LOCK('lock1');
 ### 13.正则匹配REGEXP和RLIKE
 
 注意，mysql是基于byte-wise的，不是char，所以多字节字符有可能不正常。
+
 ```sql
 -- 1为匹配，0为不匹配
 SELECT 'Michael!' NOT REGEXP '.*';
@@ -211,6 +217,27 @@ SELECT 'Michael!' NOT REGEXP '.*';
 * TEXT可认为无限制，不能设置默认值，不符合wings约定
 * MySQL has hard limit of 4096 columns
 * maximum row size limit of 65535 bytes
+
+### 15.ONLY_FULL_GROUP_BY 和 nonaggregated
+
+> is not in GROUP BY clause and contains nonaggregated column
+> which is not functionally dependent on columns in GROUP BY clause;
+> this is incompatible with sql_mode=only_full_group_by
+
+从MySQL 5.7.5起 ONLY_FULL_GROUP_BY 默认开启，可避免获取无用字段。
+
+```sql
+-- 方案①，临时关闭
+-- disable ONLY_FULL_GROUP_BY in current session
+SET @@sql_mode = sys.list_drop(@@sql_mode, 'ONLY_FULL_GROUP_BY');
+-- 
+SELECT name, address, MAX(age) FROM t GROUP BY name;
+-- enable ONLY_FULL_GROUP_BY
+SET @@sql_mode = sys.list_add(@@sql_mode, 'ONLY_FULL_GROUP_BY');
+
+-- 方案②，使用ANY_VALUE
+SELECT name, ANY_VALUE(address), MAX(age) FROM t GROUP BY name;
+```
 
 ## 2D.3.本地/内存H2
 
