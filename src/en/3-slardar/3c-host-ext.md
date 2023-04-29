@@ -66,7 +66,7 @@ public class UserController {
 }
 ```
 
-## 3C.2.Backend Principle
+## 3C.2.Underlying Principle
 
 In SpringMvc system, a request enters the servlet container in the worker thread,
 
