@@ -11,7 +11,7 @@ category:
 
 基于Cache2k和Hazelcast，提供了分级缓存，本地及分布式缓存，分布式对象。
 
-## 3F.1.分级缓存
+## 3F.1.多级缓存
 
 默认提供JCache约定下的Memory和Server两个CacheManager，名字和实现如下，
 
@@ -59,9 +59,9 @@ Resolve扩展，指在`@Cache*`注解指定`cacheResolver`，忽略`cacheManager
 @CacheConfig(cacheNames = CacheName, cacheResolver = CacheResolver)
 public class WarlockPermServiceImpl implements WarlockPermService 
 ```
+
 若上示代码中，CacheName=`WarlockPermService!`，全类名为`a.b.c.WarlockPermServiceImpl`，
 则最终的缓存名为`WarlockPermService!a.b.c.WarlockPermServiceImpl`
-
 
 ## 3F.2.多级事件
 

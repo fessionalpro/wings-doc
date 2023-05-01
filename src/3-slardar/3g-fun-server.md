@@ -121,7 +121,7 @@ ReuseStream的流仅提供了复用功能，默认不开启，不使用时无空
 
 ## 3G.7.请求及应答日志
 
-通过WingsReuseStreamFilter注入RequestResponseLogging可实现请求应答日志。
+通过为WingsReuseStreamFilter注入RequestResponseLogging可实现请求应答日志。
 相比于CommonsRequestLoggingFilter，此功能按需复用，同时支持request和response。
 
 实现AbstractRequestResponseLogging Bean即可，参考代码如下。
@@ -170,14 +170,14 @@ public RequestResponseLogging requestResponseLogging() {
 
 ## 3G.8.Rest和Client
 
-默认使用OkHttp作为restTemplate的实现。准数SpringBoot官方文档和源码约定。
+默认使用OkHttp作为restTemplate的实现。遵循SpringBoot官方文档和源码约定，
 可以Autowired OkHttpClient直接使用，默认**信任所有ssl证书**，如安全高，需要关闭。
 如果需要按scope定制，使用RestTemplateBuilder，全局应用使用RestTemplateCustomizer。
 
 [RestTemplate 定制](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#io.rest-client.resttemplate.customization)
 org.springframework.boot.autoconfigure.web.client.RestTemplateAutoConfiguration
 
-在springboot默认是3.x，而just-auth需要4.x，所以需要手动okhttp3.version属性
+在springboot2.x中okhttp默认是3.x，而just-auth需要4.x，所以需要手动okhttp3.version属性
 
 ## 3G.9.负载过滤器
 
@@ -201,7 +201,7 @@ Wings中使用PageQuery和PageDefault取代了SpringData中的Pagable。
 
 * PageQuery只能使用QueryString方式传递，不属于RequesBody部分。
 * `@ParameterObject` PageQuery pq
-* `@ParameterObject`` @PageDefault(size=30)` PageQuery pq
+* `@ParameterObject` `@PageDefault(size=30)` PageQuery pq
 
 使用@ParameterObject注解，是为了Swagger能自动识别为Param类型
 

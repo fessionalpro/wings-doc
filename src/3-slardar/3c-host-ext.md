@@ -8,7 +8,7 @@ category:
 
 # 3C.Host继承和URL重载
 
-基于Mvc特性实现了Host的套壳换肤功能。不同于反向代理(nginx)的rewrite，
+基于Mvc特性实现了同一个后端app多个不同前端的host租户功能。不同于反向代理(nginx)的rewrite，
 
 * extend - 子domain拥有父domain的全部URL
 * override - 子domain可以override父domain的URL

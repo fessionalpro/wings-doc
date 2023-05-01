@@ -14,39 +14,41 @@ category:
 > Error creating bean with name 'hazelcastInstance'
 > Invalid content was found starting with element 'cluster-name'，
 
-若是有以上信息，是hazelcast 3和4配置的兼容问题，boot-2.2.x为hazelcast 3.12.x
+The above message means a compatibility issue between hazelcast 3 and 4 configuration,
+boot-2.2.x uses hazelcast 3.12.x.
 
-## 3H.02.修改默认配置
+## 3H.02.Modify Servlet Container
 
-slardar，使用undertow，并提供了一下默认配置
+slardar uses undertow by default and provides spring-servlet-server-79.properties configuration
 
-## 3H.03.Session方案的选择
+## 3H.03.Session Solution
 
-其实 hazelcast 是个不错的选择，若选用redis，切记redis必须`requirepass`。
-最后，从redis+redisson的方案，切换成了hazelcast的方案。其理由如下。
+In fact, hazelcast is a good choice, if you use redis, remember to set `requirepass`.
+Finally, I switched from redis+redisson to hazelcast. The reasons are as follows.
 
-* 单应用进化的简单性，hazelcast是零依赖
-* 性能，可用性，运维角度，两者五五开
+* simplicity of single application evolution, hazelcast is zero dependency
+* performance, availability, operations and maintenance perspective, the two 50-50
 
-关于hazelcast和spring，主要的管理场景是cache,session,security
+About hazelcast and spring, the main management scenarios are cache, session, security
 
-* spring-boot优先尝试创建client，不成则创建embedded server
-* spring session 使用@Enable*HttpSession手动配置
+* springboot first tries to as client, then an embedded server
+* spring session using @Enable*HttpSession manual configuration
 
-文档中是hazelcast3的配置，实际支持4。
-文档中的例子都是通过编码方式配置的，实际可以通过xml配置，交由boot处理。
-系统默认提供了server和client的组播配置。
+The documentation is hazelcast3 configuration, the actual support 4.
+The examples in the documentation are configured by coding, but can actually be configured by xml.
+The system provides the multicast configuration for server and client by default.
 
-## 3H.04.异常处理或handler
+## 3H.04.Exception Handling
 
-需要根据spring约定和实际需要，自定义一套机制。
-但是不要使用`spring.mvc.throw-exception-if-no-handler-found=true`，
-因为，异常之所以叫异常，就不能当做正常，避免用来处理正常事情。
+You need to customize a mechanism according to spring conventions and actual needs.
+But don't use `spring.mvc.throw-exception-if-no-handler-found=true`.
+This is why exceptions are called exceptions, they can't be handled as normal and
+avoid being used to handle normal things.
 
-* controller层异常用`@ControllerAdvice`或`@ExceptionHandler`
-* service层异常，自行做业务处理，或AOP日志
-* 静态，src/main/resources/public/error/404.html
-* 模板，src/main/resources/templates/error/5xx.ftl
+* controller layer exceptions with `@ControllerAdvice` or `@ExceptionHandler`
+* service layer exceptions, do your own business processing, or AOP logging
+* Static, src/main/resources/public/error/404.html
+* Template, src/main/resources/templates/error/5xx.ftl
 * `class MyErrorPageRegistrar implements ErrorPageRegistrar`
 
 ```java
@@ -56,62 +58,65 @@ public class AcmeControllerAdvice extends ResponseEntityExceptionHandler
 public ModelAndView resolveErrorView(HttpServletRequest request,
 ```
 
-文档位于[Error Handling](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#web.servlet.spring-mvc.error-handling)
+[Error Handling](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#web.servlet.spring-mvc.error-handling)
 
-## 3H.05.启动时Warn UT026010
+## 3H.05.Warn UT026010 at startup
 
-在未配置websocket时，undertow使用默认buffer，出现以下警告。
-需要定制`websocketServletWebServerCustomizer`，或设置
-`spring.wings.slardar.enabled.undertow-ws=true`即可
+Undertow uses the default buffer when websocket is not configured, the warning will appears.
+You need to customize `websocketServletWebServerCustomizer`, or set
+`spring.wings.slardar.enabled.undertow-ws=true`
 
-在`io.undertow.websockets.jsr.Bootstrap` 68行，`buffers == null` 时
+in line 68 `io.undertow.websockets.jsr.Bootstrap`, if `buffers == null`
 `UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used`
-默认 DefaultByteBufferPool(directBuffers, 1024, 100, 12);
+DefaultByteBufferPool(directBuffers, 1024, 100, 12);
 
-## 3H.06.OAuth2的参考资料
+## 3H.06.OAuth2 References
 
 * [OAuth 2 Developers Guide](https://projects.spring.io/spring-security-oauth/docs/oauth2.html)
 * [OAuth2 boot](https://docs.spring.io/spring-security-oauth2-boot/docs/current/reference/htmlsingle/)
 * [Spring Security](https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/)
 
-## 3H.07.如何配置security
+## 3H.07.Configure Security
 
-security一定是系统中最为重要的部分，也是所有渗透入侵的重点，所以slardar无默认配置。
+Security must be the most important part of the system, and also the focus
+of penetration and attack, so slardar no default configuration.
 
-配置中可以使用Order，提供多个HttpSecurity。
+Order can be used in the configuration to provide multiple HttpSecurity.
 
-## 3H.08.多线程下的SecurityContext
+## 3H.08.SecurityContext in Multi-Thread
 
 * DelegatingSecurityContext
 * transmittable-thread-local
 
-## 3H.09.成功登陆后跳转
+## 3H.09.Redirect After Login
 
-SavedRequestAwareAuthenticationSuccessHandler和RequestCache 进行搭配即可。
-在前后端分离的情况下，不需要后端控制，所以应该关闭RequestCache。
+SavedRequestAwareAuthenticationSuccessHandler and RequestCache can be combined.
+In the case of frontend and backend separation, no backend control is needed,
+so RequestCache should be disabled.
 
-* HTTP Referer header - 有些浏览器不给refer
-* saving the original request in the session - 要session支持
-* base64 original URL to the redirected login URL - 通常的SSO实现
+* HTTP Referer header - some browsers don't give refer
+* saving the original request in the session - need session support
+* base64 original URL to the redirected login URL - the usual SSO impl
 
-不过，spring security默认不支持第三种。如果要定制的话，需要看ExceptionTranslationFilter，
-在sendStartAuthentication方法中，对requestCache或authenticationEntryPoint上进行定制。
-也可以通过interceptor对loginPage进行定制。
+However, spring security does not support the third one by default. If you want to customize it,
+you need to look at ExceptionTranslationFilter, in sendStartAuthentication method, customize the
+requestCache or authenticationEntryPoint. You can also customize the loginPage through the interceptor.
 
 * <https://www.baeldung.com/spring-security-redirect-login>
 * <https://www.baeldung.com/spring-security-redirect-logged-in>
 
-## 3H.10.以KV传递数组及对象
+## 3H.10.Pass Array/Object by KV
 
-在http协议中，没有明确的规定数组及对象的传递方法，因此实践中，spring及js体系下有不同的默认规则。
+In the http protocol, there is no explicitly specified method for passing arrays and objects,
+so in practice, there are different default rules under spring and js systems.
 
-* `a=1&a=2&a=3`，servlet支持，spring支持，js的qs需要`{ indices: false }` (推荐)
-* `a[]=1&a[]=2&a[]=3`，spring支持，js的qs需要`{ arrayFormat: 'brackets' }`
-* `a[0]=1&a[1]=2&a[2]=3`，spring支持，js的qs默认格式
+* `a=1&a=2&a=3`, servlet support, spring support, js/qs need `{ indices: false }` (recommended)
+* `a[]=1&a[]=2&a[]=3`, spring support, js/qs need `{ arrayFormat: 'brackets' }`
+* `a[0]=1&a[1]=2&a[2]=3`, spring support, js/qs default format
 
-其中，servlet支持时，@RequestParam也生效；spring支持，指默认的DataBinding
+servlet support mean @RequestParam also takes effect; spring support means the DataBinding
 
-参考资料
+Reference,
 
 * [qs#stringifying](https://github.com/ljharb/qs#stringifying)
 * [Basic and Nested Properties](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-beans-conventions)
