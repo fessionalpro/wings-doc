@@ -16,9 +16,9 @@ category:
 
 若是有以上信息，是hazelcast 3和4配置的兼容问题，boot-2.2.x为hazelcast 3.12.x
 
-## 3H.02.修改默认配置
+## 3H.02.修改Servlet容器
 
-slardar，使用undertow，并提供了一下默认配置
+slardar 默认使用undertow，并提供 spring-servlet-server-79.properties 配置
 
 ## 3H.03.Session方案的选择
 
