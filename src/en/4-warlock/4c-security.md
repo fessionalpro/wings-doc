@@ -8,95 +8,105 @@ category:
 
 # 4C.Customize Security
 
-在Wings所有工程中，配置`*.properties`和声明`@Bean`都可以定制功能。
-但很多功能间存在复杂依赖，需要使用者自行关照，需要阅读代码。
+All Wings projects, features can be customized by configuring `*.properties` and declaring `@Bean`.
+However, there may be complex dependencies between features that require users to take care of, even to read the code.
 
-## 4C.1.定制登录
+## 4C.1.Customize Login
 
-登录页面`login-page*`（带`page`的）和处理接口`*login*`，区别如下，
+The difference between the login page `login-page*` (with `page`) and the processing interface `*login*`, is as follows
 
-* login-page - 展示给用户的登录页面，一般是401时自动302重定向
-* login - 为提交凭证后的处理或回调接口，由filter执行
+* login-page - the login page displayed to the user, typically an automatic 302 redirect at 401
+* login - for the processing or callback interface after submitting credentials, executed by filter
 
-可以通过以下4种方式，不同程度的改变Warlock提供的默认登录页面和返回结果。
+The default login page and returned results provided by Warlock can be modified in the following 4 ways
 
-* expose ComboWingsAuthPageHandler.Combo，增加处理细节
-* expose WingsAuthPageHandler，替换处理细节
-* 指定 wings.warlock.security.login-page，定向到自定义页面
-* expose AuthenticationSuccessHandler，AuthenticationFailureHandler处理登录事件
-* expose LogoutSuccessHandler 处理登出的事件
+* expose ComboWingsAuthPageHandler.Combo to add processing details
+* expose WingsAuthPageHandler to replace the processing details
+* expose wings.warlock.security.login-page to redirect to a custom page
+* expose AuthenticationSuccessHandler, AuthenticationFailureHandler to handle login events
+* expose LogoutSuccessHandler to handle logout events
 
-默认实现中，login时在cookie和header中放置sessionId，logout时清空session。
+In the default implementation, the sessionId is placed in the cookie and header when login,
+and the session is deleted when logout.
 
-需要注意的，http协议的header和cookie的大小写问题，因此建议全小写。
+Note that the http protocol has case issues with header and cookies, so all lowercase is recommended.
 
-* header RFC2616 *不*区分大小写，有些代理或工具会自动转为全小写
-* cookie RFC2019 区分大小写，一般保存原样
-* 已知header默认自动转小写有swagger-ui和webpack-dev-server(node http)
+* header RFC2616 *not* case-sensitive, some agents or tools will automatically convert to all-lowercase
+* cookie RFC2019 case sensitive, generally preserved as it is
+* Known header is automatically lowercase by default swagger-ui and webpack-dev-server (node http)
 
-NonceLoginSuccessHandler配合NonceTokenSessionHelper实现了oauth一次性token换取session的功能。
-所以如果需要此功能，需要自行实现AuthenticationSuccessHandler继承NonceLoginSuccessHandler。
+NonceLoginSuccessHandler with NonceTokenSessionHelper implements the function of oauth one-time token for session.
+So if you need this feature, you must implement your own AuthenticationSuccessHandler to inherit NonceLoginSuccessHandler.
 
-Oauth通过定制host和state参数，构造指令，完成重定向定制，参考 AuthStateBuilder 类。
+Oauth can redirect customization by host and state parameters, see AuthStateBuilder for details.
 
-* 重定向 - `http`或`/`开头的302跳转
-* 回写 - 非空的内容，直接写回到response
-* 考虑到安全性，以上必须预设在配置文件中，参考`wings.warlock.just-auth.safe-*`
+* Redirects - 302, starting with `http` or `/`
+* Write-back - non-empty content, write back directly to response
+* For security reasons, the above must be preset in the configuration, see `wings.warlock.just-auth.safe-*`
 
-注意，`safe-host`对以下功能有约束。
+Note that `safe-host` has restrictions on the following features.
 
-* 用request有host参数时，检查redirect-uri的`{host}`，通过则使用host参数构造uri
-* state中重定向是以http开头时，检查host，不通过时，直接回写，而非重定向。
+* check the `{host}` of redirect-uri if request with host parameter, and construct uri if it passes
+* When redirect in state starts with http, check for host, and if it not pass, write back directly instead of redirecting.
 
-## 4C.2.定制验证
+## 4C.2.Customize Authz
 
-* expose ComboWingsAuthDetailsSource.Combo，增加details
-* expose WingsAuthDetailsSource 替换处理细节
-* expose ComboWingsUserDetailsService.Combo，增加加载细节
-* expose WingsUserDetailsService，替换用户加载
+* expose ComboWingsAuthDetailsSource.Combo to add processing details
+* expose WingsAuthDetailsSource to replace the processing details
+* expose ComboWingsUserDetailsService.Combo to add loading details
+* expose WingsUserDetailsService to replace the user loading
 
-## 4C.3.定制授权
+## 4C.3.Customize Authn
 
-除了默认实现的User，Role，Perm体系外，Warlock支持以下用户和权限的细粒度定制，
+In addition to the default implementation of the User, Role, and Perm system,
+Warlock supports the following fine-grained customization of users and permissions
 
-* NonceUserDetailsCombo - 一次性登录
-* MemoryUserDetailsCombo - 按uid，登录名，登录方式，挂载用户和权限
-* NonceTokenSessionHelper - oauth2流程外，通过一次性state换取SessionId
+* NonceUserDetailsCombo - one-time login
+* MemoryUserDetailsCombo - Mount users and perm by uid, login name, login method
+* NonceTokenSessionHelper - out of oauth2 process, get SessionId by one-time state
 
-## 4C.4.登录时验证权限
+## 4C.4.Verify Perm at Login
 
-因为wings的用户及权限，在一个数据库中统一管理，不同的app可能需要不同的权限。
-比如admin中，必须具有ROLE_ADMIN才可以访问，否则登录成功后，所有功能都是403，并不友好。
+Wings users and permissions are managed in a single database. If different apps need different permissions,
+For example, in admin page, you must have ROLE_ADMIN to access, otherwise after successful login,
+all features are 403, which is not friendly.
 
-所以在登录时，使用authType前缀，可以直接验证基本权限，如果不具备，则登录失败。
+So when logging in, use authType prefix, you can directly check ROLE_ADMIN permissions, if not, the login will fail.
 
 ```properties
 wings.warlock.security.zone-perm.admin=ROLE_ADMIN
-# 支持变量`authType`和`authZone`，可以通过param或path获得（PathPattern）
+## Support `authType` and `authZone`, via param or path (PathPattern)
 wings.warlock.security.login-proc-url=/auth/{authType}-{authZone}/login.json
-# 兼容性更好，通过路径参数同时支持authType和authZone
+## Better compatibility, supports both authType and authZone via path
 #/auth/{authType:[^-]+}{splitter:-?}{authZone:[^-]*}/login.json
 ```
 
-以下URL都能传递authZone，推荐QueryString，不支持时使用PathVariable，
+The following URLs can all pass authZone, QueryString is recommended,
+and PathVariable is used when QueryString NOT supported.
 
 * QueryString - /auth/username/login.json?authZone=admin
 * PathVariable - /auth/username-admin/login.json
 
-此外，也可以在登录成功后，使用authedPerm验证权限，也具备自动登出功能，其区别是，
+In addition, it is also possible to use authedPerm to authenticate permissions after a successful login,
+which also has automatic logout functionality, with the difference that
 
-* authZone以登录失败返回，没有写入session，是一般的登录动作，即加载信息并验证
-* authedPerm则先登录成功，写入session，无权限时再登出session，是登录+登出2个动作
+* authZone returns as login failure, no session is written, it is a general login action,
+  i.e. loading information and verification.
+* authedPerm first login successfully, writes session, and then logout if there is no permission,
+  which is two actions of login + logout.
 
-## 4C.5.按appName设定
+## 4C.5.Authn by AppName
 
-此功能，默认未实现，开启时，需要遵守以下基本原则，以避免误用。
+This feature is not implemented by default, and the following basic principles must be
+followed when enabling it to prevent misuse.
 
-* 从安全角度，不可扩大授权，应该最小化权限。
-* 从使用角度，精简权限的数据结构，每app应独立，混用容易复杂化。
+* Security viewpoint, the authorization should not be expanded, and should be minimized.
+* Usage viewpoint, the data structure of the permission should be simple,
+  each app should be independent, mixed use leads to complex.
 
-需要定制 ComboWarlockAuthzService.Combo，来根据spring.application.name调整权限。
+ComboWarlockAuthzService.Combo should be customized to adjust permissions according to spring.application.name.
 
-## 4C.6.按登录ip设定
+## 4C.6.Authn by Ip
 
-可以通过remote ip控制登录或权限集大小。不过要考虑代理和移动网络等动态ip的情况。
+Login or perms can be controlled via remote ip. However, dynamic ip,
+such as proxies and mobile networks should be considered.
