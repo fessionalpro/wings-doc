@@ -12,7 +12,7 @@ category:
 ## 3H.01.Error creating 'hazelcastInstance'
 
 > Error creating bean with name 'hazelcastInstance'
-> Invalid content was found starting with element 'cluster-name'，
+> Invalid content was found starting with element 'cluster-name'
 
 The above message means a compatibility issue between hazelcast 3 and 4 configuration,
 boot-2.2.x uses hazelcast 3.12.x.

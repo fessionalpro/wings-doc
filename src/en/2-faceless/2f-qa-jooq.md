@@ -240,9 +240,6 @@ See the following issues for details,
 * <https://github.com/jOOQ/jOOQ/issues/7421>
 * <https://github.com/jOOQ/jOOQ/issues/11827>
 
-因此，若开发中存在兼容问题，或需要更多功能或便利，推荐使用商业授权，从[FAQ: Commercial Licensing](https://www.jooq.org/legal/licensing)
-中可见（本人仅做FAQ的部分节选，不对其正确性负任何责任）
-
 Therefore, if there are compatibility issues in development, or if you need more features or convenience,
 it is recommended to use the commercial license, as seen in [FAQ: Commercial Licensing](https://www.jooq.org/legal/licensing)
 (I only make partial excerpts from the FAQ and take no responsibility for its correctness)

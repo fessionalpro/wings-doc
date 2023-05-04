@@ -13,7 +13,7 @@ The codename has bean called CruiseModel, later in the Dota series, changed to G
 
 ## 0G.1.Aboard to the sea (GoSea)
 
-Chinglish says, `Go And Sea`，`Let's Me See Sea`
+Chinglish says, `Go And Sea`, `Let's Me See Sea`
 
 In my experience with startups, almost everything is lacking and nothing is certain.
 The entire team is in the same boat, trying to survive and explore at sea, while trying not to get lost or sink.

@@ -104,42 +104,40 @@ wings.slardar.number.decimal.separator=_
 
 ## 3A.7.常用Jackson注解
 
-* @JsonRawValue - number is not to string, string is not escaped
-* @JsonFormat - specify the format
-* @JsonIgnore/JsonProperty - ignore the field
-* @JsonProperty - rename the field
-* @JsonNaming - naming rules
-* @JsonRootName(value = "user") - add a root key
-* @JsonUnwrapped - no wrapper class
-* @JsonSerialize(as=BasicType.class) - output as something else
-* @JsonView - filter properties with different views (works on RequestMapping)
+* @JsonRawValue - number不变字符串，字符串不转义
+* @JsonFormat - 指定格式
+* @JsonIgnore/JsonProperty - 忽略该字段
+* @JsonProperty - 重命名
+* @JsonNaming - 命名规则
+* @JsonRootName(value = "user") - 增加一个头key
+* @JsonUnwrapped - 干掉包装类
+* @JsonSerialize(as=BasicType.class) - 以别人的样子输出
+* @JsonView - 以不同视图过滤属性（可作用在RequestMapping）
 
-Avoid global type filters and mixins in general, session-level annotations are recommended.
+通常要避免全局类型的Filter和MixIn，推荐Session级的注解。
 
-* Same pojo, different property names for different scenarios, eg. password and secret
-* Same pojo with different values for different scenarios, eg. yyyy-MM-dd and MMM-dd,yyyy
+* 同一pojo，不同场景的属性名不同，比如password和secret
+* 同一pojo，不同场景的属性值不同，比如yyyy-MM-dd和MMM-dd,yyyy
 
-For the above scenarios, it is still important to follow the principles of static and strong typing,
-and the following suggestions can usually be used
+对于以上场景，仍然要遵循静态性和强类型原则，通常可以采用以下建议，
 
-* Own classes, use @JsonView + different getter to distinguish different scenarios
-* 3rd classes, using Override subclasses + MapStruct to copy properties
-* Custom JsonSerialize or Converter, not recommended
-* Custom ResponseBodyAdvice, not recommended
+* 自己的类，使用@JsonView + 不同的getter区分不同场景
+* 第三方类，使用Override子类 + MapStruct复制属性
+* 自定义JsonSerialize或Converter，不推荐
+* 自定义 ResponseBodyAdvice，不推荐
 
-By default configuration, only @JsonView can act on RequestMapping, other annotations should be noted on Pojo.
-see,
+默认配置下，仅有@JsonView可作用于RequestMapping，其他注解要注到Pojo上。参考资料，
 
-* [baeldung example](https://www.baeldung.com/jackson-annotations)
-* [jackson annotation](https://github.com/FasterXML/jackson-annotations/wiki/Jackson-Annotations)
-* [spring customize jackson](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#howto.spring-mvc.customize-jackson-objectmapper)
+* [baeldung 示例](https://www.baeldung.com/jackson-annotations)
+* [jackson注解](https://github.com/FasterXML/jackson-annotations/wiki/Jackson-Annotations)
+* [spring定制jackson](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#howto.spring-mvc.customize-jackson-objectmapper)
 
-## 3A.8.Generic in Deserialization
+## 3A.8.反序列化泛型
 
-Jackson includes generic types, and parameter types are a necessary skill.
+Jackson中涉及到泛型，参数类型，必备技能
 
 ```java
 TypeReference ref = new TypeReference<List<Integer>>() { };
-// TypeFactory has a rich set of type constructs
+// TypeFactory 中有很丰富的类型构造
 JavaType type = mapper.getTypeFactory().constructCollectionType(List.class, Foo.class)
 ```

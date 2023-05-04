@@ -33,7 +33,7 @@ Slardar is configured by default according to the following architecture and per
 * `Hazelcast` as `Cache` and `Session`
 * 80% service can `30ms` end, blocking factor `0.9`
 * `8-core 3GHz` cloud hosting, simulating `10k*50` requests, single application
-* `95th`，response=`2s`，`tps`=`2k-5k`
+* `95th`, response=`2s`, `tps`=`2k-5k`
 
 ## 3.3.SpringMvc Enhancement
 
@@ -58,7 +58,7 @@ SlardarAsyncConfiguration provides 4 pre-config Ttl threadpools, prefix and purp
 
 * [Jackson Convention](3a-jackson.md) - Json convertion and i18n message
 * [Hazelcast Middleware](3b-hazelcast.md) - distributed session, chaching, messaging
-* [Host Extend and URL Override](3c-host-ext.md) - Override URL，Multiple Hosts and skinning
+* [Host Extend and URL Override](3c-host-ext.md) - Override URL, Multiple Hosts and skinning
 * [Multiple Time and Lang](3d-i18n-zone.md) - DateTime, Validation, Locale
 * [Session and Authn](3e-auth-session.md) - Multiple logins, credentials, hierarchical permissions
 * [Multiple Caching and Event](3f-cache-event.md) - Multi-level cache, lock, message

@@ -119,5 +119,5 @@ Suggestions for use are as follows,
 * Variable `{{variable_name}}`, from `http-client*.env.json`, `client.global.` or the system's builtin
 * Process the Response. prepend it with `>` and enclose it in `{%` and `%}`
 * Fold long requests into multiple short lines. Indent all query string lines but the first one
-* HTTP Response Handler handle 2 objects: client 和 response
+* HTTP Response Handler handle 2 objects: client and response
 * <https://www.jetbrains.com/help/idea/http-response-handling-examples.html>
