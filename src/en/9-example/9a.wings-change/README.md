@@ -9,7 +9,7 @@ category:
 
 # 9A.WingsBoot Change
 
-miro change log, majo upgrade guide.
+miro version change log, majo version upgrade guide.
 
 ## Changelog
 
