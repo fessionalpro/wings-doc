@@ -106,7 +106,7 @@ So you need to put the required config items from Spring into System.properties.
 
 ## 1A.5.logging/logback
 
-推荐使用`wings-starter.sh`启动，用`wings-starter.env`设置基础参数。
+Recommend to start with `wings-starter.sh` and pass arguments with `wings-starter.env`.
 
 See `wings-logging-79.properties`, use springboot configuration by default.
 

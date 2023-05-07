@@ -67,7 +67,7 @@ According to the following article, it is recommended to use the static type-saf
 
 * [Quick Guide to MapStruct](https://www.baeldung.com/mapstruct)
 * [Mapping Collections with MapStruct](https://www.baeldung.com/java-mapstruct-mapping-collections)
-* [MapStruct ide&mvn支持](https://mapstruct.org/documentation/installation/)
+* [MapStruct ide&mvn Support](https://mapstruct.org/documentation/installation/)
 
 While coding, we often have to deal with various O-data mapping and assignment like DTO, PO, VO, POJO.
 At the same time we want strongly typed data so that IDE hints  are efficient and errors are detected at compile time.

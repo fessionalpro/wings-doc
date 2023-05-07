@@ -9,11 +9,11 @@ category:
 
 # 9A.WingsBoot Change
 
-miro change log, majo upgrade guide.
+miro version change log, majo version upgrade guide.
 
 ## Changelog
 
-* [Breaking Changlog](9a0.break-log.md)
+* [Notable Changlog](9a0.notable.md)
 
 ## Upgrade Guide
 

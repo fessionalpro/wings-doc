@@ -29,7 +29,7 @@ and its own domain. Later on, `b.com` has its own requirements, and some of func
 different from `a.com`. The different functions are implemented independently and put under the
 convention prefix, at this time the URLs are distributed as follows.
 
-* GET /login.html - `a.com`(parent)，`b.com`(child)
+* GET /login.html - `a.com`(parent), `b.com`(child)
 * GET /user-list.json - `a.com`(parent)
 * GET /css/main.css - `a.com`(parent)
 * GET /domain/b/user-list.json - `b.com`(child)

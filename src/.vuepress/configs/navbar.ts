@@ -13,7 +13,17 @@ export const navbarZh: NavbarOptions = [
   { text: '鱼人', icon: '/slardar_minimap_icon_16.png', link: '/3-slardar/' },
   { text: '术士', icon: '/warlock_minimap_icon_16.png', link: '/4-warlock/' },
   { text: '蝙蝠', icon: '/batrider_minimap_icon_16.png', link: '/5-batrider/' },
-  { text: '实战', icon: '/animal_minimap_icon_16.png', link: '/9-example/' },
+  {
+    text: '实战',
+    icon: '/animal_minimap_icon_16.png',
+    children: [
+      '/9-example/',
+      '/9-example/9a.wings-change/',
+      '/9-example/9b.spring-boot/',
+      '/9-example/9c.server-manual/',
+      '/9-example/9d.wings-boot/',
+    ],
+  },
   {
     text: '阵营',
     icon: '/blueheart_minimap_icon_16.png',
@@ -24,6 +34,7 @@ export const navbarZh: NavbarOptions = [
     ],
   },
 ];
+
 export const navbarEn: NavbarOptions = [
   { text: 'WingsGod', icon: '/mango_minimap_icon_16.png', link: '/en/0-wings/' },
   { text: 'Silencer', icon: '/silencer_minimap_icon_16.png', link: '/en/1-silencer/' },
@@ -31,7 +42,17 @@ export const navbarEn: NavbarOptions = [
   { text: 'Slardar', icon: '/slardar_minimap_icon_16.png', link: '/en/3-slardar/' },
   { text: 'Warlock', icon: '/warlock_minimap_icon_16.png', link: '/en/4-warlock/' },
   { text: 'Batrider', icon: '/batrider_minimap_icon_16.png', link: '/en/5-batrider/' },
-  { text: 'Practice', icon: '/animal_minimap_icon_16.png', link: '/en/9-example/' },
+  {
+    text: 'Practice',
+    icon: '/animal_minimap_icon_16.png',
+    children: [
+      '/en/9-example/',
+      '/en/9-example/9a.wings-change/',
+      '/en/9-example/9b.spring-boot/',
+      '/en/9-example/9c.server-manual/',
+      '/en/9-example/9d.wings-boot/',
+    ],
+  },
   {
     text: 'Factions',
     icon: '/blueheart_minimap_icon_16.png',

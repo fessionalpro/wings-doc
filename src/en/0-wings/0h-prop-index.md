@@ -34,7 +34,7 @@ To improve recognition and readability, the following annotations are included i
 
 The config value in the properties is usually a single line, and the multiple lines syntax as follows
 
-* `\` - Backslash (‘\’) escape the new line
+* `\` - Backslash escape the new line
 * `\n\` - Generate a line break in the prop to improve readability.
 
 ## 0H.3.Properties Files

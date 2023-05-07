@@ -13,7 +13,7 @@ category:
 
 ## 变更记录
 
-* [重大变更记录](9a0.break-log.md)
+* [重大变更记录](9a0.notable.md)
 
 ## 升迁手册
 

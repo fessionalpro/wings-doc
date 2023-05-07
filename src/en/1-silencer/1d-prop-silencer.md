@@ -154,7 +154,7 @@ Default seed of Crc8Long, should change for security requirements. ^RECOMMENDED^
 
 ### wings.silencer.encrypt.aes-key
 
-`Map<String,String>`, the default Aes256 encryption name and password `${random.uuid}${random.uuid}`。
+`Map<String,String>`, the default Aes256 encryption name and password `${random.uuid}${random.uuid}`.
 
 * `system` - system default, randomly generated at each startup
 * `ticket` - used for Api Ticket, recommended to be unified within the cluster

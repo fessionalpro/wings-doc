@@ -65,16 +65,16 @@ Oauth通过定制host和state参数，构造指令，完成重定向定制，参
 
 ## 4C.4.登录时验证权限
 
-因为wings的用户及权限，在一个数据库中统一管理，不同的app可能需要不同的权限。
+Wings的用户及权限，在一个数据库中统一管理。当不同的app可能需要不同的权限时，
 比如admin中，必须具有ROLE_ADMIN才可以访问，否则登录成功后，所有功能都是403，并不友好。
 
 所以在登录时，使用authType前缀，可以直接验证基本权限，如果不具备，则登录失败。
 
 ```properties
 wings.warlock.security.zone-perm.admin=ROLE_ADMIN
-# 支持变量`authType`和`authZone`，可以通过param或path获得（PathPattern）
+## 支持变量`authType`和`authZone`，可以通过param或path获得（PathPattern）
 wings.warlock.security.login-proc-url=/auth/{authType}-{authZone}/login.json
-# 兼容性更好，通过路径参数同时支持authType和authZone
+## 兼容性更好，通过路径参数同时支持authType和authZone
 #/auth/{authType:[^-]+}{splitter:-?}{authZone:[^-]*}/login.json
 ```
 
@@ -88,7 +88,7 @@ wings.warlock.security.login-proc-url=/auth/{authType}-{authZone}/login.json
 * authZone以登录失败返回，没有写入session，是一般的登录动作，即加载信息并验证
 * authedPerm则先登录成功，写入session，无权限时再登出session，是登录+登出2个动作
 
-## 4C.5.按appName设定
+## 4C.5.按appName授权
 
 此功能，默认未实现，开启时，需要遵守以下基本原则，以避免误用。
 
@@ -97,6 +97,6 @@ wings.warlock.security.login-proc-url=/auth/{authType}-{authZone}/login.json
 
 需要定制 ComboWarlockAuthzService.Combo，来根据spring.application.name调整权限。
 
-## 4C.6.按登录ip设定
+## 4C.6.按登录ip授权
 
 可以通过remote ip控制登录或权限集大小。不过要考虑代理和移动网络等动态ip的情况。

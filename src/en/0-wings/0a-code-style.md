@@ -181,8 +181,8 @@ the description supports Markdown, use jsdoc can make the docs more clear,
 * see param <https://jsdoc.app/tags-param.html>
 * see returns <https://jsdoc.app/tags-returns.html>
 * `@param [name=trydofor] - Somebody's name.`  -
-* `@return {200|Result(Dto)} success response，status=200` - Parentheses indicate generic (to avoid escaping)
-* `@return {200|Result(false)} failure response，status=200`- Parentheses indicate simple convention parameters
+* `@return {200|Result(Dto)} success response, status=200` - Parentheses indicate generic (to avoid escaping)
+* `@return {200|Result(false)} failure response, status=200`- Parentheses indicate simple convention parameters
 
 Do not use weak passwords in swagger, and should disable swagger in the live product with the following properties
 
@@ -375,7 +375,7 @@ As "MoilionCircle" "bad code smell" said, wings practically use `empty` instead 
 Speaking from different situations, although we all advocate avoiding making `null` a valid business value,
 sometimes factors outside the system are uncontrollable. Common databases, APIs, and JNI can all cause `null`
 to enter the data flow. At this time, it should be intercepted before entering the business flow,
-or `null` should be explicitly checked, such as using `Objects.equals`，`foo == null`, etc.
+or `null` should be explicitly checked, such as using `Objects.equals`, `foo == null`, etc.
 
 It should be noted that there is a "advanced" trick in the industry,
 which has become popular and is considered a standard for advanced programmers.

@@ -66,9 +66,7 @@ the following MapConf according to the level.
 <eviction size="5000"/>
 ```
 
-## 3B.4.消息订阅
-
-Message Subscription
+## 3B.4.Message Subscription
 
 Hazelcast's topic (#HazelcastTopic) is wrapped in the SpringEvent pattern for easy navigation between code in the IDE, and
 
