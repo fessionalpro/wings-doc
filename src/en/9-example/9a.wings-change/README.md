@@ -13,7 +13,7 @@ miro change log, majo upgrade guide.
 
 ## Changelog
 
-* [Breaking Changlog](9a0.break-log.md)
+* [Notable Changlog](9a0.notable.md)
 
 ## Upgrade Guide
 
