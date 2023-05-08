@@ -8,137 +8,137 @@ category:
 
 # 3I.Slardar Properties
 
-有关Slardar，Spring的基本设置
+Basic properties of Slardar and Spring
 
 ## 3I.1.spring-wings-enabled-79.properties
 
 ### spring.wings.slardar.enabled.autoconf
 
-`Boolean`=`true`，是否启动自动配置
+`Boolean`=`true`, whether to enable auto-config
 
 ### spring.wings.slardar.enabled.jackson
 
-`Boolean`=`true`，是否默认配置jackson
+`Boolean`=`true`, whether to enable jackson default config
 
 ### spring.wings.slardar.enabled.okhttp
 
-`Boolean`=`true`，是否默认配置okhttp3
+`Boolean`=`true`, whether to enable okhttp3 default config
 
 ### spring.wings.slardar.enabled.caching
 
-`Boolean`=`true`，是否开启cache配置
+`Boolean`=`true`, whether to enable cache config
 
 ### spring.wings.slardar.enabled.caching-aop
 
-`Boolean`=`true`，是否开启cache配置的替换
+`Boolean`=`true`, whether to enable cache enhancement of aop
 
 ### spring.wings.slardar.enabled.cookie
 
-`Boolean`=`false`，是否实现cookie定制
+`Boolean`=`false`, whether to enable cookie customization
 
 ### spring.wings.slardar.enabled.session
 
-`Boolean`=`true`，是否默认配置session
+`Boolean`=`true`, whether to enable session default config
 
 ### spring.wings.slardar.enabled.session-hazelcast
 
-`Boolean`=`true`，是否默认配置session hazelcast
+`Boolean`=`true`, whether to enable session hazelcast config
 
 ### spring.wings.slardar.enabled.async
 
-`Boolean`=`true`，是否spring Async和线程池配置
+`Boolean`=`true`, whether to enable spring Async and thread pool
 
 ### spring.wings.slardar.enabled.righter
 
-`Boolean`=`true`，是否防范编辑权限提升
+`Boolean`=`true`, whether to prevent forgery editing
 
 ### spring.wings.slardar.enabled.debounce
 
-`Boolean`=`true`，是否开启Debounce默认的Interceptor
+`Boolean`=`true`, whether to enable Interceptor of debounce
 
 ### spring.wings.slardar.enabled.restream
 
-`Boolean`=`true`，是否开启reuse stream filter
+`Boolean`=`true`, whether to enable reuse stream filter
 
 ### spring.wings.slardar.enabled.first-blood
 
-`Boolean`=`true`，是否开启FirstBlood默认的Interceptor
+`Boolean`=`true`, whether to enable Interceptor of FirstBlood
 
 ### spring.wings.slardar.enabled.first-blood-image
 
-`Boolean`=`true`，是否开启FirstBlood的Interceptor图形验证码
+`Boolean`=`true`, whether to enable image captcha Interceptor of FirstBlood
 
 ### spring.wings.slardar.enabled.double-kill
 
-`Boolean`=`true`，是否开启DoubleKill默认的AOP
+`Boolean`=`true`, whether to enable DoubleKill default AOP
 
 ### spring.wings.slardar.enabled.pagequery
 
-`Boolean`=`true`，是否开启wings的PageQuery webmvc resolver
+`Boolean`=`true`, whether to enable PageQuery webmvc resolver of Wings
 
 ### spring.wings.slardar.enabled.datetime
 
-`Boolean`=`true`，是否开启wings的 webmvc local datetime converter
+`Boolean`=`true`, whether to enable webmvc localdatetime converter of Wings
 
 ### spring.wings.slardar.enabled.number
 
-`Boolean`=`true`，是否开启wings的jackson对Double，Float，BigDecimal的精度限定
+`Boolean`=`true`, whether to enable the Jackson precision limit of wings for Double, Float, BigDecimal
 
 ### spring.wings.slardar.enabled.resource
 
-`Boolean`=`true`，是否开启wings的jackson对Resource序列化成可读性好的URL
+`Boolean`=`true`, whether to enable serialization of the resource into a readable URL with Wings' Jackson config
 
 ### spring.wings.slardar.enabled.undertow-ws
 
-`Boolean`=`true`，是否配置undertow ws for UT026010: Buffer pool
+`Boolean`=`true`, whether to disable "undertow ws for UT026010: Buffer pool"
 
 ### spring.wings.slardar.enabled.remote
 
-`Boolean`=`true`，是否开启terminal Resolver
+`Boolean`=`true`, whether to enable terminal Resolver
 
 ### spring.wings.slardar.enabled.locale
 
-`Boolean`=`true`，是否开启i18n Resolver
+`Boolean`=`true`, whether to enable i18n Resolver
 
 ### spring.wings.slardar.enabled.terminal
 
-`Boolean`=`true`，是否解析 WingsTerminalContext
+`Boolean`=`true`, whether to enable WingsTerminalContext
 
 ### spring.wings.slardar.enabled.captcha
 
-`Boolean`=`false`，是否开启captcha配置
+`Boolean`=`false`, whether to enable captcha config
 
 ### spring.wings.slardar.enabled.overload
 
-`Boolean`=`false`，是否开启熔断设置
+`Boolean`=`false`, whether to enable overload filter
 
 ### spring.wings.slardar.enabled.domain-extend
 
-`Boolean`=`false`，是否支持 domain-extend
+`Boolean`=`false`, whether to enable domain-extend
 
 ### spring.wings.slardar.enabled.swagger
 
-`Boolean`=`true`，是否开启swagger配置
+`Boolean`=`true`, whether to enable swagger config
 
 ### spring.wings.slardar.enabled.monitor
 
-`Boolean`=`true`，是否开开启监控
+`Boolean`=`true`, whether to enable monitor
 
 ### spring.wings.slardar.enabled.monitor-jvm
 
-`Boolean`=`true`，是否开启Jvm监控
+`Boolean`=`true`, whether to enable Jvm monitor
 
 ### spring.wings.slardar.enabled.monitor-log
 
-`Boolean`=`true`，是否开启Log监控
+`Boolean`=`true`, whether to enable Log monitor
 
 ### spring.wings.slardar.enabled.boot-admin
 
-`Boolean`=`true`，是否开启SpringBootAdmin配置
+`Boolean`=`true`, whether to enable SpringBootAdmin config
 
 ### spring.wings.slardar.enabled.tweaking
 
-`Boolean`=`true`，是否支持动态调节
+`Boolean`=`true`, whether to enable dynamic tweaking
 
 ## 3I.2.wings-prop-promotion.cnf
 
@@ -152,7 +152,7 @@ category:
 
 [Actuator Endpoints](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#actuator.endpoints)
 
-* `spring.jmx.enabled=true` 默认开启本地JMX，远程用ssh tunnel
+* `spring.jmx.enabled=true` enable local JMX by default, ssh tunnel for remote
 * `management.endpoints.jmx.exposure.include=*`
 * `management.endpoints.web.exposure.include=*`
 
@@ -163,14 +163,14 @@ category:
 * `management.info.java.enabled`=`true`
 * `management.metrics.tags.application`=`${spring.application.name:wings-default}`
 
-wings有关的endpoint
+Wings related endpoint
 
 * `management.endpoint.flyway.enabled`=`false`
 * `management.endpoint.wingscache.enabled`=`true`
 
 ## 3I.4.spring-jackson-79.properties
 
-[SpringBoot自定义jackson](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#howto.spring-mvc.customize-jackson-objectmapper)
+[SpringBoot Customize Jackson](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#howto.spring-mvc.customize-jackson-objectmapper)
 
 com.fasterxml.jackson.databind.DeserializationFeature
 
@@ -204,7 +204,7 @@ com.fasterxml.jackson.core.JsonParser.Feature
 
 com.fasterxml.jackson.databind.SerializationFeature
 
-* `spring.jackson.serialization.WRITE_DATES_AS_TIMESTAMPS`=`false`默认true
+* `spring.jackson.serialization.WRITE_DATES_AS_TIMESTAMPS`=`false` default true
 * `spring.jackson.serialization.CLOSE_CLOSEABLE`=`true`
 
 com.fasterxml.jackson.annotation.JsonInclude.Include
@@ -220,26 +220,26 @@ graceful shutdown
 * `server.shutdown`=`graceful`
 * `spring.lifecycle.timeout-per-shutdown-phase`=`30s`
 
-servlet 上传文件，大小没有限制
+Servlet upload files, no size limit
 
 * `spring.servlet.multipart.max-file-size`=`-1`
 * `spring.servlet.multipart.max-request-size`=`-1`
 
-默认tomcat设置，按8核3Ghz，30ms应答实测，undertow较优。
+Default tomcat settings, but undertow is better measured by 8 cores 3Ghz, 30ms response.
 
 * `server.tomcat.max-connections`=`10000`
 * `server.tomcat.threads.max`=`1000`
 
-Undertow设置，参考io.undertow.Undertow.java#L429
+Undertow setting, see io.undertow.Undertow.java#L429
 
 * `server.undertow.threads.io=` - Processor count
 * `server.undertow.threads.worker=` - io-threads * 8
 * `server.undertow.direct-buffers`=`true`
 
-缓存区设置，4k, 8k for most request
+buffer setting, 4k, 8k for most request
 
 ```text
-tcp_mem：low, pressure, high
+tcp_mem:low, pressure, high
 net.ipv4.tcp_wmem = 4096 87380 4161536
 net.ipv4.tcp_rmem = 4096 87380 4161536
 net.ipv4.tcp_mem = 786432 2097152 3145728
@@ -255,11 +255,11 @@ net.ipv4.tcp_mem = 786432 2097152 3145728
 
 ### spring.session.timeout
 
-`Long`=2592000，单位默认秒，默认30天
+`Long`=2592000, default unit is second, with 30 days by default
 
-**必须**使用单位秒(S)且数字，以供hazelcast session引用
+**MUST** use unit seconds (S) and numbers, for hazelcast session references.
 
-### 其他默认配置
+### Other Default Config
 
 * `spring.session.store-type`=`none`
 * `server.servlet.session.timeout`=`${spring.session.timeout}`
@@ -267,18 +267,18 @@ net.ipv4.tcp_mem = 786432 2097152 3145728
 * `spring.session.hazelcast.map-name`=`spring:session:sessions`
 * `spring.session.hazelcast.save-mode`=`on-set-attribute`
 
-### Header和Cookie设置
+### Header and Cookie
 
 > SessionAutoConfiguration, header is case-insensitive, but cookie is not
 
-name（建议全小写）在cookie和header中都会使用，为WingsSessionIdResolver提供key。
+name (all lowercase recommended) is used in both cookies and header, providing the key for WingsSessionIdResolver.
 
 * `server.servlet.session.cookie.name`=`session`
 * `server.servlet.session.cookie.max-age`=`${spring.session.timeout}`
 
 ## 3I.7.spring-springdoc-79.properties
 
-### [SpringDoc设置](https://springdoc.org/#properties)
+### [SpringDoc Config](https://springdoc.org/#properties)
 
 * `springdoc.api-docs.enabled`=`true`
 * `springdoc.swagger-ui.enabled`=`true`
@@ -286,7 +286,7 @@ name（建议全小写）在cookie和header中都会使用，为WingsSessionIdRe
 * `springdoc.writer-with-default-pretty-printer`=`true`
 * `springdoc.use-fqn`=`true`
 
-### Swagger设置
+### Swagger Config
 
 * `springdoc.swagger-ui.path`=`/swagger-ui.html`
 * `springdoc.swagger-ui.filter`=`true`
@@ -297,9 +297,9 @@ name（建议全小写）在cookie和header中都会使用，为WingsSessionIdRe
 
 [Task Execution and Scheduling](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.task-execution-and-scheduling)
 
-### execution的线程池设置
+### Execution Threadpool Config
 
-与 @EnableAsync @Async 有关
+Related to @EnableAsync and @Async
 
 * `spring.task.execution.pool.core-size`=`8`
 * `spring.task.execution.pool.keep-alive`=`60s`
@@ -309,10 +309,10 @@ name（建议全小写）在cookie和header中都会使用，为WingsSessionIdRe
 * `spring.task.execution.shutdown.await-termination-period`=`30s`
 * `spring.task.execution.thread-name-prefix`=`win-async-`
 
-### scheduling的线程池设置
+### Scheduling Threadpool Config
 
-与 @EnableScheduling @Scheduled threadPoolTaskScheduler 有关。
-不可以设置@Primary，否则@Async线程池被覆盖。
+Related to @EnableScheduling @Scheduled threadPoolTaskScheduler.
+Cannot set @Primary, otherwise @Async thread pool will be overridden.
 
 * `spring.task.scheduling.pool.size`=`8`
 * `spring.task.scheduling.shutdown.await-termination`=`true`
@@ -321,7 +321,7 @@ name（建议全小写）在cookie和header中都会使用，为WingsSessionIdRe
 
 ## 3I.9.wings-async-79.properties
 
-### event 事件总线线程池
+### Event Threadpool Config
 
 * wings.slardar.async.event.pool.core-size=8
 * wings.slardar.async.event.pool.keep-alive=60s
@@ -331,7 +331,7 @@ name（建议全小写）在cookie和header中都会使用，为WingsSessionIdRe
 * wings.slardar.async.event.shutdown.await-termination-period=60s
 * wings.slardar.async.event.thread-name-prefix=win-event-
 
-### heavy 重任务线程池
+### Heavy Threadpool Config
 
 * wings.slardar.async.heavy.pool.size=8
 * wings.slardar.async.heavy.shutdown.await-termination=true
