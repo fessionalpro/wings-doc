@@ -8,7 +8,7 @@ category:
 
 # 3L.Hazelcast Properties
 
-有关Slardar中提供的Hazelcast的设置
+Properties of  Hazelcast in Slardar.
 
 * <https://docs.hazelcast.com/imdg/4.2/system-properties>
 * <https://docs.hazelcast.com/imdg/4.2/management/diagnostics>
@@ -52,17 +52,18 @@ category:
 
 ## 3L.2.spring-hazelcast-77.properties
 
-若xml中使用spring变量，需要wings-prop-promotion.cnf提升到system
+If you use spring variables in xml, you need to use wings-prop-promotion.cnf to put them into system.
 Resource, `file:/data/xxx`, `http://www`, `classpath:/xxx`
 
 ### spring.hazelcast.config
 
-* `classpath:/extra-conf/hazelcast-client.xml` - 客户端配置
-* `classpath:/extra-conf/hazelcast-server.xml` - 服务端配置
+* `classpath:/extra-conf/hazelcast-client.xml` - client config
+* `classpath:/extra-conf/hazelcast-server.xml` - server config
 
 ## 3L.3.spring-session-77.properties
 
-引入hazelcast后，则默认使用Hazelcast管理session，编号77优先级高于默认。
+When hazelcast is imported, the session is managed by Hazelcast, and the
+number 77 has a higher priority than the default.
 
 ### spring.session.store-type
 
@@ -70,20 +71,21 @@ Resource, `file:/data/xxx`, `http://www`, `classpath:/xxx`
 
 ## 3L.4.wings-hazelcast-77.properties
 
-Hazelcast默认值，监控及诊断设置，
+Hazelcast default value for monitoring and diagnostics.
 
 * <https://docs.hazelcast.com/imdg/4.2/management/diagnostics>
 * <https://codecentric.github.io/spring-boot-admin/current/#clustering-support>
 
 ### wings.slardar.hazelcast.cluster-name
 
-`String`=`wings-${git.commit.id.full}`，自行修改集群名字。
+`String`=`wings-${git.commit.id.full}`, Change the cluster name by yourself.
 
-因社区版无安全设置，仅通过集群名便可加入，因此建议使用密码强度的名字，如32字符随机数，避开扫描。
+Since there is no security setting in the community version, anyone can join by cluster name, so it
+is recommended to use a password-like name, such as a 32-character random number, to avoid scanning.
 
 ### wings.slardar.hazelcast.diagnostics.period-seconds
 
-`Integer`=`600`，diagnostics周期
+`Integer`=`600`, diagnostics period.
 
 ### spring.boot.admin.hazelcast.event-store
 
@@ -99,15 +101,15 @@ Name of the Hazelcast-map used to deduplicate the notifications.
 
 ### hazelcast.jmx
 
-`Boolean`=`${spring.jmx.enabled:false}`，是否开启jmx
+`Boolean`=`${spring.jmx.enabled:false}`, whether to enable jmx
 
 ### hazelcast.diagnostics.enabled
 
-`Boolean`=`false`，默认关闭，因CPU消耗过高
+`Boolean`=`false`, disable by default, due to high CPU usage.
 
-### hazelcast.diagnostics 其他设置
+### hazelcast.diagnostics others
 
-通过属性提示，为Hazelcast设置spring设置的属性值。
+Set spring property to Hazelcast through property promoting.
 
 * `hazelcast.diagnostics.metric.level`=`info`
 * `hazelcast.diagnostics.filename.prefix`=`${spring.application.name:wings-default}`
