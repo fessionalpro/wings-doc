@@ -114,7 +114,7 @@ category:
 
 ### spring.wings.warlock.enabled.swagger-jsr310
 
-`Boolean`=`true`，是否支持为Docket全局注入java.time.Local*
+`Boolean`=`true`，是否支持为Docket全局注入"java.time.Local*"
 
 ### spring.wings.warlock.enabled.table-change
 
@@ -248,7 +248,7 @@ Jooq对用户和授权相关表的CUD监听
 
 ## 4D.6.wings-warlock-error-77.properties
 
-全局异常控制，`CodeException`类型，支持变量`{message}`，
+全局异常控制。`CodeException`类型，支持变量`{message}`，
 default为默认配置，兜底处理所以异常并为其他同类型提供默认值。
 
 ### wings.warlock.error.default-exception
@@ -282,7 +282,7 @@ default为默认配置，兜底处理所以异常并为其他同类型提供默�
 
 ### wings.warlock.lock.hazelcast-cp
 
-`Boolean`=`true`，在GlobalLock中，是否使用 useCpIfSafe
+`Boolean`=`true`，在hazelcast的GlobalLock中，是否使用 useCpIfSafe
 
 ## 4D.9.wings-warlock-security-77.properties
 
@@ -317,7 +317,7 @@ loginProcessingUrl，处理登录的Ant格式URL，由filter处理，不需要co
 
 ### wings.warlock.security.login-proc-method
 
-`Set<String>`=`POST,GET`，spring默认仅POST，以更好的RestFull，但Oauth有Get
+`Set<String>`=`POST,GET`，spring默认仅POST，以更好的RESTful，但Oauth有Get
 
 ### wings.warlock.security.logout-url
 
@@ -382,7 +382,7 @@ loginProcessingUrl，处理登录的Ant格式URL，由filter处理，不需要co
 
 ### wings.warlock.security.permit-all
 
-②都允许，`Map<String, String>`，antMatcher，反斜杠换行。
+②都允许，`Map<String, String>`，antMatcher。
 
 * `error`=`/error`
 * `auth`=`/auth/**`
@@ -390,30 +390,30 @@ loginProcessingUrl，处理登录的Ant格式URL，由filter处理，不需要co
 
 ### wings.warlock.security.authenticated
 
-③仅登录，`Map<String, String>`，antMatcher，反斜杠换行。
+③仅登录，`Map<String, String>`，antMatcher。
 
 * `user`=`/user/**`
 
 ### wings.warlock.security.authority
 
-④有权限，`Map<String, String>`，antMatcher，反斜杠换行。
+④有权限，`Map<String, String>`，antMatcher。
 按URL分组合并权限，最后以URL的ascii倒序设置，即英数先于`*`，宽松规则在后。
 
 * `ROLE_ACTUATOR`=`/actuator/**`
 
 ### wings.warlock.security.any-request
 
-⑤默认项，`String`，支持。
+⑤默认项，`String`，支持以下。
 
 * `permitAll`|`authenticated`|`anonymous`|`fullyAuthenticated`
-* 任意非空，非以上字符串，认为是`Authority`，`逗号`或`空白`分割。
+* 任意非空，非以上字符串，认为是`Authority`，`逗号`或`空白`分割多个。
 
 ### wings.warlock.security.auth-type-default
 
 `String`=`pro.fessional.wings.warlock.service.auth.WarlockAuthType#USERNAME`
 
-支持的验证类型，enum全路径，一对一，否则反向解析有问题；不含`-`
-`default`是特殊值，表示没有匹配时使用
+支持的验证类型，enum全路径，一对一，否则反向解析有问题；
+不含`-`，`default`是特殊值，表示没有匹配时使用。
 
 ### wings.warlock.security.auth-type
 
@@ -435,7 +435,7 @@ loginProcessingUrl，处理登录的Ant格式URL，由filter处理，不需要co
 
 `Map<String, Set<String>>`=`wings-warlock=ROLE_ADMIN`
 
-设置spring.application.name对应的权限，若有任一权限则可登录，否则，以用户名密码错误返回
+设置spring.application.name对应的权限，若有任一权限则可登录，否则，以用户名密码错误返回。
 支持AntPath，如`wings-*`，合并所有匹配的权限设置项，wings默认程序为`wings-default`
 
 ### wings.warlock.security.nonce-auth-type
@@ -450,7 +450,7 @@ cache-manager的bean name，同`wings.slardar.cache.primary`
 
 ### wings.warlock.security.nonce-cache-level
 
-`String`=`service`，缓存leve，参考`wings.slardar.cache.level.`
+`String`=`service`，缓存level，参考`wings.slardar.cache.level.`
 
 ### wings.warlock.security.autoreg-auth-type
 
@@ -503,11 +503,11 @@ Controller中RequestMapping的URL常量
 
 ### wings.warlock.urlmap.auth-login-list
 
-`String`=`/auth/login-list.{extName}`，集成登录默认页，默认返回支持的type类表，需要PathVar {extName}
+`String`=`/auth/login-list.{extName}`，集成登录默认页，默认返回支持的type列表，需要PathVar `{extName}`
 
 ### wings.warlock.urlmap.auth-login-page
 
-`String`=`/auth/{authType}/login-page.{extName}`，具体验证登录默认页，根据content-type自动返回，需要PathVar {extName} {authType}
+`String`=`/auth/{authType}/login-page.{extName}`，具体验证登录默认页，根据content-type自动返回，需要PathVar `{extName}` `{authType}`
 
 ### wings.warlock.urlmap.auth-login-page2
 
@@ -614,7 +614,7 @@ Controller中RequestMapping的URL常量
 * 测试 `wings-trydofor.user-id`=`79`
 * 测试 `wings-trydofor.secret`=`wings-trydofor-secret`
 * 测试 `wings-trydofor.hosts`=`localhost` 302的主机名，不要使用ipv6
-* 测试 `wings-trydofor.scopes`=`api`  区分大小写，逗号分隔
+* 测试 `wings-trydofor.scopes`=`api` 区分大小写，逗号分隔
 
 ## 4D.C.wings-warlock-apiauth-77.properties
 
