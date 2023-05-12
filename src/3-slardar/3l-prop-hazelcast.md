@@ -107,7 +107,7 @@ Name of the Hazelcast-map used to deduplicate the notifications.
 
 ### hazelcast.diagnostics 其他设置
 
-通过属性提示，为Hazelcast设置spring设置的属性值。
+通过属性提升，为Hazelcast设置spring设置的属性值。
 
 * `hazelcast.diagnostics.metric.level`=`info`
 * `hazelcast.diagnostics.filename.prefix`=`${spring.application.name:wings-default}`

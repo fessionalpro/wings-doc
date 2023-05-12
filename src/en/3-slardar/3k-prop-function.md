@@ -8,47 +8,47 @@ category:
 
 # 3K.WebFun Properties
 
-有关Slardar中提供的Spring Web加强功能的设置
+Properties of Spring Web enhancements in Slardar.
 
 ## 3K.1.wings-cache-79.properties
 
-默认 LRU (Least Recently Used)，单位seconds, 0=infinitely
+LRU (Least Recently Used) default, unit is second, 0=infinitely
 
 ### wings.slardar.cache.primary
 
-`String`=`MemoryCacheManager`，哪个CacheManager为primary
+`String`=`MemoryCacheManager`, which CacheManager is primary
 
-* `MemoryCacheManager` - Cache2k的Jvm缓存
-* `ServerCacheManager` - Hazelcast的分布式缓存
+* `MemoryCacheManager` - Cache2k Jvm cache
+* `ServerCacheManager` - Hazelcast distributed cache
 
 ### wings.slardar.cache.expand
 
-`Boolean`=`true`，是否对cache name的进行Resolve扩展，即追加所在类
+`Boolean`=`true`, whether to Resolve the cache name, that is, to append the concrete class name
 
 ### wings.slardar.cache.null-size
 
-`Integer`=`1000`，原则上不缓存null，但可对null统一处理。
+`Integer`=`1000`, in principle, null is not cached. However, it can be handled uniformly.
 
-* `正数` - 缓存大小
-* `0` - 不缓存null
-* `负数` - 不统一处理
+* `positive` - cache size
+* `0` - do not cache null
+* `negative` - no uniform processing
 
 ### wings.slardar.cache.null-live=300
 
-`Integer`=`300`，默认300s
+`Integer`=`300`, default 300s
 
 ### wings.slardar.cache.common
 
-level之外的默认配置
+default configuration other than level
 
-* `max-live`=`3600`，expireAfterWrite(Time To Live)
-* `max-idle`=`0`，expireAfterAccess(Time To Idle)
-* `max-size`=`50000`，缓存大小
+* `max-live`=`3600`, expireAfterWrite(Time To Live)
+* `max-idle`=`0`, expireAfterAccess(Time To Idle)
+* `max-size`=`50000`, cache size
 
 ### wings.slardar.cache.level
 
-注意，Server使用hazelcast时，忽略common设置，避免非缓存IMap错误
-level设置，需要使用通配符，如`program~*`，参考WingsCache命名及分隔符
+Note, Server using hazelcast will ignore the common setting to avoid non-cache IMap errors.
+level setting, you need to use wildcard like `program~*`, see WingsCache naming and separator
 
 * `wings.slardar.cache.level.program.max-live`=`0`
 * `wings.slardar.cache.level.program.max-idle`=`0`
@@ -65,218 +65,216 @@ level设置，需要使用通配符，如`program~*`，参考WingsCache命名及
 
 ## 3K.2.wings-debounce-79.properties
 
-后端防抖设置
+backend debounce
 
 ### wings.slardar.debounce.capacity
 
-`Integer`=`10000`，等待区大小
+`Integer`=`10000`, waiting capacity.
 
 ### wings.slardar.debounce.max-wait
 
-`Integer`=`300`，最大等待秒
+`Integer`=`300`, max waiting seconds.
 
 ### wings.slardar.debounce.http-status
 
-`Integer`=`208`，告知发生防抖的http-status
+`Integer`=`208`, http-status of response.
 
 ### wings.slardar.debounce.content-type
 
-`String`=`application/json;charset=UTF-8`
-
-告知发生防抖的content-type
+`String`=`application/json;charset=UTF-8`, content-type of response.
 
 ### wings.slardar.debounce.response-body
 
-`String`=`{"success":false,"message":"debounced"}`
-
-告知发生防抖的回复文本内容
+`String`=`{"success":false,"message":"debounced"}`, body of response.
 
 ## 3K.3.wings-domain-extend-79.properties
 
-Host继承和Url重载
+Host Extend and URL Override.
 
 ### wings.slardar.domain-extend.cache-size
 
-`Integer`=`4096`，匹配和未匹配的url缓存size，restfull慎用
+`Integer`=`4096`, cache size of matched and unmatched url, caution when RESTful
 
 ### wings.slardar.domain-extend.prefix
 
-`String`=`/domain/`，mapping和resource的URL统一的domain的前缀
+`String`=`/domain/`, the uniform domain prefix of  the mapping and resource Url.
 
 ### wings.slardar.domain-extend.host
 
-`Map<String, Set<String>>`，host映射关系。
+`Map<String, Set<String>>`, host mapping
 
-FilenameUtils.wildcardMatch，如`trydofor`=`*.trydofor.com, trydofor.com`
+FilenameUtils.wildcardMatch, eg. `trydofor`=`*.trydofor.com, trydofor.com`
 
 ### wings.slardar.domain-extend.other-url
 
-`List<String>`，不自动探测的指定domain url。
+`List<String>`, specified domain url that is not automatically detected.
 
-支持ant风格，如，`other-url`=`/trydofor/b/c.html`
+ant match style, eg. `other-url`=`/trydofor/b/c.html`
 
 ## 3K.4.wings-doublekill-79.properties
 
-double-kill, DoubleKillExceptionResolver的设置，支持变量 {key} 和 {ttl}
+config for double-kill, DoubleKillExceptionResolver, support `{key}` and `{ttl}`
 
 ### wings.slardar.double-kill.http-status
 
-`Integer`=`202`，回复的http-status
+`Integer`=`202`, http-status of response
 
 ### wings.slardar.double-kill.content-type
 
-`String`=`application/json;charset=UTF-8`，回复的content-type
+`String`=`application/json;charset=UTF-8`, content-type of response
 
 ### wings.slardar.double-kill.response-body
 
-`String`=`{"success":false,"message":"Request Too Busy, Take A Coffee", "data":{"key":"{key}","ttl":{ttl}}}`，回复的文本内容
+`String`=`{"success":false,"message":"Request Too Busy, Take A Coffee", "data":{"key":"{key}","ttl":{ttl}}}`,
+body of response.
 
 ## 3K.5.wings-firstblood-79.properties
 
-资源保护功能，如验证码
+Resource protection features, such as CAPTCHA
 
 ### wings.slardar.first-blood.client-ticket-key
 
-`String`=`Client-Ticket`，识别用户时使用的header和session的key
+`String`=`Client-Ticket`, key of the header and session used to identify the user.
 
 ### wings.slardar.first-blood.quest-captcha-key
 
-`String`=`quest-captcha-image`，生成图形验证码的参数，时间戳或特定前缀
+`String`=`quest-captcha-image`, key to generate image CAPTCHA, timestamp or specific prefix.
 
 ### wings.slardar.first-blood.check-captcha-key
 
-`String`=`check-captcha-image`，图形验证验证码的参数，客户输入的验证码
+`String`=`check-captcha-image`, key to verify image CAPTCHA, client input the code.
 
 ### wings.slardar.first-blood.base64-captcha-key
 
-`String`=`base64`，图片以base64返回的key，用在fresh-captcha-image=base64+时间戳
+`String`=`base64`, key to return image in base64, used in fresh-captcha-image=base64+timestamp
 
 ### wings.slardar.first-blood.base64-captcha-body
 
 `String`=`data:image/jpeg;base64,{base64}`
 
-图片以base64返回的格式，{base64} 占位符，
-默认配置，会输出 `data:image/jpeg;base64,/9j/4AAQSkZ.....`
+format of returned base64 image, with `{base64}` placeholder.
+The default configuration will output `data:image/jpeg;base64,/9j/4AAQSkZ.....`
 
 ### wings.slardar.first-blood.chinese-captcha
 
-`Boolean`=`true`，是否使用中文验证码
+`Boolean`=`true`, whether to use Chinese char.
 
 ### wings.slardar.first-blood.case-ignore
 
-`Boolean`=`true`，是否忽略大小写
+`Boolean`=`true`, whether to ignore case.
 
 ### wings.slardar.first-blood.captcha-prefix
 
-`String`=`image`，默认图形验证码的scene前缀
+`String`=`image`, scene prefix for image graphic captcha.
 
 ### wings.slardar.first-blood.http-status
 
-`Integer`=`406`，告知需要验证的http-status
+`Integer`=`406`, http-status of response.
 
 ### wings.slardar.first-blood.content-type
 
-`String`=`application/json;charset=UTF-8`，告知需要验证的content-type
+`String`=`application/json;charset=UTF-8`, content-type of response.
 
 ### wings.slardar.first-blood.response-body
 
-`String`=`{"success":false,"message":"need a verify code"}`，告知验证码的回复文本内容
+`String`=`{"success":false,"message":"need a verify code"}`, body  of response.
 
 ## 3K.6.wings-monitor-79.properties
 
-程序自身的简单监控设置，阈值中，`-1`表示忽略此项。
+Setting of app builtin simple monitoring, `-1` in the threshold value means ignore.
 
 ### wings.slardar.monitor.cron
 
 `String`=`0 */10 * * * ?`
 
-monitor自身的cron，`-`表示停止此cron，默认频率10分钟
+Monitor its own cron, `-` means stop this cron, default 10 minutes.
 
 ### wings.slardar.monitor.hook
 
-`Boolean`=`true`，对自身的是否对jvm的启动和停止增加hook通知
+`Boolean`=`true`, whether to send notice for the start and stop of its own jvm hook
 
 ### wings.slardar.monitor.jvm.system-cent
 
-`Integer`=`90`，警报阈值，系统Cpu Load按核数折算成整个系统的百分比，范围`[0，100]`。
+`Integer`=`90`, alarm threshold, system Cpu Load with percentage to
+the entire system with all cores, range `[0, 100]`
 
 ### wings.slardar.monitor.jvm.system-load
 
-`Integer`=`-1`，系统Cpu Load未折算，范围`[0，100*核数]`
+`Integer`=`-1`, System Cpu Load without percentage, range `[0, 100*cores]`
 
 ### wings.slardar.monitor.jvm.process-cent
 
-`Integer`=`-1`，进程Cpu Load，按核数折算成整个系统的百分比，范围`[0，100]`
+`Integer`=`-1`, process system Cpu Load with percentage to
+the entire system with all cores, range `[0, 100]`
 
 ### wings.slardar.monitor.jvm.process-load
 
-`Integer`=`150`，进程Cpu load 未折算，范围`[0，100*核数]`
+`Integer`=`150`, process Cpu Load without percentage, range `[0, 100*cores]`
 
 ### wings.slardar.monitor.jvm.memory-load
 
-`Integer`=`85`，进程Mem Load，范围`[0,100]`
+`Integer`=`85`, process Mem Load, range `[0,100]`
 
 ### wings.slardar.monitor.jvm.thread-count
 
-`Integer`=`-1`，jvm内线程总数
+`Integer`=`-1`, total threads in jvm.
 
-推算公式 threads = `Available Cores` / (1 - `Blocking Coefficient`)，
-`Blocking Coefficient`(阻塞系数) = 阻塞时间／（阻塞时间 + 使用CPU的时间）
+formula: threads = `Available Cores` / (1 - `Blocking Coefficient`),
+`Blocking Coefficient` = Blocking time / (blocking time + calculation time)
 
 ### wings.slardar.monitor.jvm.thread-load
 
-`Integer`=`50`，jvm内线程总数除以核数
+`Integer`=`50`, total jvm threads divided by total cores
 
 ### wings.slardar.monitor.log.default.enable
 
-`Boolean`=`true`，是否开启，日志文件的监控
-
-修改defualt的值，会影响size有关默认值，方便其他rule简化配置
+`Boolean`=`true`, whether to turn on, log file monitoring.
+`default` provides default value for other rules.
 
 ### wings.slardar.monitor.log.default.file
 
 `String`=`${logging.file.name}`
 
-监控的日志文件，默认wings方式，文件不存在表示不监控
+Monitored log file, no monitoring if file not found.
 
 ### wings.slardar.monitor.log.default.min-grow
 
-`DataSize`=`-1`，每扫描周期最小增长量，继承default
+`DataSize`=`-1`, min growth per scan cycle, can be inherited
 
 ### wings.slardar.monitor.log.default.max-grow
 
-`DataSize`=`10MB`，每扫描周期最大增长量，继承default
+`DataSize`=`10MB`, max growth per scan cycle, can be inherited
 
 ### wings.slardar.monitor.log.default.max-size
 
-`DataSize`=`=1GB`，日志最大文件体量（每天归档），继承default
+`DataSize`=`=1GB`, max file size of log (archived daily), can be inherited
 
 ### wings.slardar.monitor.log.default.bound
 
-`Integer`=`40`，日志基本和内容的大概分隔线，分隔byte数（ascii等于char数）
+`Integer`=`40`, approximate separator of log header and content, separating byte numbers (char numbers if ASCII)
 
 ### wings.slardar.monitor.log.default.level
 
-`Set<String>`=`' WARN ',' ERROR '`，日志级别的关键词。
+`Set<String>`=`' WARN ',' ERROR '`, log level keyword.
 
-关键词，执行时会自动trim掉一组成对的头尾双引号。
-如`' ERROR '`等于` ERROR `，`'' WARN ''`等于`' WARN '`
+keywords will automatically trim a pair of leading and trailing quotes when executed.
+For example, `' ERROR '` becomes ` ERROR `, `'' WARN ''` becomes `' WARN '`.
 
 ### wings.slardar.monitor.log.default.keyword
 
-`Set<String>`=`∅`，日志内容（级别后面）关键词
+`Set<String>`=`∅`, log content (after level) keywords
 
 ### wings.slardar.monitor.log.default.charset
 
-`String`=`UTF8`，日志字符集
+`String`=`UTF8`, log charset
 
 ### wings.slardar.monitor.log.default.clean
 
-`Integer`=`30`，清除N天以上的扫描文件，-1 表示不清理
+`Integer`=`30`, delete scanned files older than N days, `-1` means no cleaning
 
 ### wings.slardar.monitor.log.console
 
-`Map<String, LogMetric.Rule>`，对console输出监控
+`Map<String, LogMetric.Rule>`, monitor console output.
 
 * `file`=`${wings.console.out}`
 * `level`=`'WARNING'`
@@ -284,27 +282,27 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ### wings.slardar.monitor.view.enable
 
-`Boolean`=`true`，是否开启警报文件查看器
+`Boolean`=`true`, whether to enable the alert file viewer
 
 ### wings.slardar.monitor.view.mapping
 
-`String`=`/api/log/warn-view.htm`，UrlMapping，GET请求，仅一个id参数
+`String`=`/api/log/warn-view.htm`, UrlMapping, GET request, one `id` parameter only.
 
 ### wings.slardar.monitor.view.alive
 
-`Duration`=`36H`，默认存活时间
+`Duration`=`36H`, default alive time.
 
 ### wings.slardar.monitor.view.length
 
-`DataSize`=`1MB`，默认输出日志前多少byte，日志中不要记录敏感信息
+`DataSize`=`1MB`, how many bytes before current log is output by default, do not record sensitive data in the log.
 
 ### wings.slardar.monitor.view.domain
 
-`String`=`http://${server.address:localhost}:${server.port:80}`，外部访问的主机,ip等
+`String`=`http://${server.address:localhost}:${server.port:80}`, host or ip for external access.
 
 ### wings.slardar.monitor.view.ignore
 
-`Map<String, String>`，日志中可以忽略警报的字符串
+`Map<String, String>`, ignored alert string in logs.
 
 * `JacksonKotlin`=`com.fasterxml.jackson.module:jackson-module-kotlin`
 * `CP-Subsystem`=`CP Subsystem is not enabled`
@@ -316,8 +314,8 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ### wings.slardar.monitor.ding-notice
 
-`String`=`monitor`，默认使用钉钉机器人通知，使用的key为`monitor`，
-详见wings-dingnotice-79.properties熟悉
+`String`=`monitor`, use DingTalk bot by default with the key `monitor`.
+See wings-dingnotice-79.properties for details
 
 ## 3K.7.wings-okhttp-79.properties
 
@@ -325,130 +323,133 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ### wings.slardar.okhttp.timeout-conn
 
-`Integer`=`60`，链接超时秒数
+`Integer`=`60`, connect timeout in seconds.
 
 ### wings.slardar.okhttp.timeout-read
 
-`Integer`=`180`，读取超时秒数
+`Integer`=`180`, read timeout in seconds.
 
 ### wings.slardar.okhttp.timeout-write
 
-`Integer`=`300`，写入超时秒数
+`Integer`=`300`, write timeout in seconds.
 
 ### wings.slardar.okhttp.ping-interval
 
-`Integer`=`0`，ping的间隔秒数，`0`为关闭
+`Integer`=`0`, ping interval in seconds, `0` means disable
 
 ### wings.slardar.okhttp.cache-megabyte
 
-`Integer`=`0`，缓存大小`Mb`，`0`表示不缓存
+`Integer`=`0`, cache size in `Mb`, `0` means disable
 
 ### wings.slardar.okhttp.cache-directory
 
-`File`，缓存目录，默认在temp下创建 `wings-okhttp-cache`
+`File`, Cache directory, created under temp by default, `wings-okhttp-cache`
 
 ### wings.slardar.okhttp.follow-redirect-ssl
 
-`Boolean`=`true`，是否跟着跳转
+`Boolean`=`true`, whether to follow the https redirect.
 
 ### wings.slardar.okhttp.follow-redirect
 
-`Boolean`=`true`，是否跟着跳转
+`Boolean`=`true`, whether to follow the http redirect.
 
 ### wings.slardar.okhttp.retry-failure
 
-`Boolean`=`true`，conn失败是否重试
+`Boolean`=`true`, whether to retry if connect faile.
 
 ### wings.slardar.okhttp.max-idle
 
-`Integer`=`5`，最大空闲conn数量
+`Integer`=`5`, max count of idle connection.
 
 ### wings.slardar.okhttp.keep-alive
 
-`Integer`=`300`，keep-alive秒数
+`Integer`=`300`, keep-alive in seconds.
 
 ### wings.slardar.okhttp.ssl-trust-all
 
-`Boolean`=`true`，是否信任所有证书
+`Boolean`=`true`, whether to trust all ssl certs.
 
 ### wings.slardar.okhttp.host-cookie
 
-`Boolean`=`true`，是否以host为单位保留cookie
+`Boolean`=`true`, whether to keep cookies by host.
 
 ### wings.slardar.okhttp.redirect-nop
 
-`Boolean`=`false`，是否在follow-redirect时，暂时不follow
+`Boolean`=`false`, whether to temporarily do nothing when follow-redirect.
 
 ## 3K.8.wings-overload-79.properties
 
-过载保护过滤器，如何处理快请求和慢响应。默认关闭。
+Overload protection filter, how to handle fast requests and slow responses. disable by
+default, not recommended as it requires more detailed config to avoid false positives.
 
 ### wings.slardar.overload.logger-interval
 
-`Long`=`5000`，日志的记录间隔（毫秒）
+`Long`=`5000`, Logging interval in millis.
 
 ### wings.slardar.overload.fallback-code
 
-`Integer`=`200`，过载熔断时，返回的status code
+`Integer`=`200`, http status of response when overload
 
 ### wings.slardar.overload.fallback-body
 
-`String`=`{"success":false,"message":"Request Too Busy, Take A Coffee"}`，过载熔断时，默认返回的http body
+`String`=`{"success":false,"message":"Request Too Busy, Take A Coffee"}`, body of response when overload
 
 ### wings.slardar.overload.request-capacity
 
-`Integer`=`9000`，快请求容量，注意，共享ip的容易误判。
+`Integer`=`9000`, fast request capacity, note that shared IP's can be easily misjudged.
 
-* `<0` - 无限制，处理中的的最大请求数量
-* `>0` - 用户根据压力测试结果推算的值
-* `0` - 自动调整，初始值为 cpu核心数 x 300
+* `<0` - unlimited, max number of requests to process
+* `>0` - user defined value based on stress test results
+* `0` - auto-tuning, initial value is cpu cores x 300
 
 ### wings.slardar.overload.request-interval
 
-`Long`=`1000`，在`interval`毫秒内，同ip的处理中的请求不能超过`calmdown`个。`<=0`表示无限制
+`Long`=`1000`, within `interval` milliseconds, no more than `calmdown` requests
+can be processed for the same ip. `<=0` means no limit.
 
 ### wings.slardar.overload.request-calmdown
 
-`Integer`=`50`，在`interval`毫秒内，同ip的处理中的请求不能超过`calmdown`个。`<=0`表示无限制
+`Integer`=`50`, within `interval` milliseconds, no more than `calmdown` requests
+can be processed for the same ip. `<=0` means no limit.
 
 ### wings.slardar.overload.request-permit
 
-`Map<String, String>`，请求ip白名单，分号分割，前部匹配
+`Map<String, String>`, request ip whitelist, match by start-with
 
 * `local-127`=`127.`
 * `local-192`=`192.`
 
 ### wings.slardar.overload.response-warn-slow
 
-`Long`=`5000`，慢响应（毫秒数），超过时，记录WARN日志，`<0`表示关闭
+`Long`=`5000`, slow response in millis, if exceeded, log WARN, `<0` means disable
 
 ### wings.slardar.overload.response-info-stat
 
-`Long`=`1000`，每多少个请求记录一次INFO日志，`<0`表示关闭
+`Long`=`1000`, log INFO once for each number of requests, `<0` means disable
 
 ## 3K.9.wings-righter-79.properties
 
-防篡改，编辑越权，设置
+Anti forgery editing, prevent editor privilege upgrade.
 
 ### wings.slardar.righter.header
 
-`String`=`Right-Editor`，埋点header中的key
+`String`=`Right-Editor`, key in header.
 
 ### wings.slardar.righter.http-status
 
-`Integer`=`409`，告知编辑越权的http-status
+`Integer`=`409`, http-status of response.
 
 ### wings.slardar.righter.content-type
 
-`String`=`application/json;charset=UTF-8`，告知编辑越权的content-type
+`String`=`application/json;charset=UTF-8`, content-type of response.
 
 ### wings.slardar.righter.response-body
 
-`String`=`{"success":false,"message":"forgery of editor"}`，告知编辑越权的回复文本内容
+`String`=`{"success":false,"message":"forgery of editor"}`, body  of response.
 
 ## 3K.A.wings-swagger-79.properties
 
-Swagger文档设置
+Swagger document.
 
 ### wings.slardar.swagger.title
 
@@ -464,52 +465,54 @@ Swagger文档设置
 
 ### wings.slardar.swagger.param
 
-`Map<String, EnabledParameter>`，key采用java命名,作为`$ref`使用，in支持`cookie`|`header`|`query`|`path`
+`Map<String, EnabledParameter>`, key in java naming rule, used as `$ref`,
+`in` support `cookie`|`header`|`query`|`path`.
 
 * `headLanguage.enable`=`false`
 * `headLanguage.name`=`Accept-Language`
 * `headLanguage.in`=`header`
-* `headLanguage.description`=`用户语言`
+* `headLanguage.description`=`user language`
 * `headLanguage.example`=`zh-CN`
 * `headZoneId.enable`=`true`
 * `headZoneId.name`=`Zone-Id`
 * `headZoneId.in`=`header`
-* `headZoneId.description`=`用户时区`
+* `headZoneId.description`=`user timezone`
 * `headZoneId.example`=`Asia/Shanghai`
 
 ### wings.slardar.swagger.accept
 
-`Map<String, String>`，对Accept/MediaType复制，以出现多个请求方式
+`Map<String, String>`, copy Accept/MediaType to make multiple requests.
 
 * `text/plain`=`*/*`
 * `application/json`=`*/*`
 
 ### wings.slardar.swagger.flat-pagequery
 
-`Boolean`=`true`，是否把PageQuery扁平化，作为querystring参数
+`Boolean`=`true`, whether to flatten the PageQuery, as querystring parameter.
 
 ## 3K.B.wings-dingnotice-79.properties
 
 ### wings.slardar.ding-notice.default.access-token
 
-`String`=`∅`，警报时，使用钉钉通知的access_token，`空`表示不使用
+`String`=`∅`, the DingTalk access_token used to send the alert, `empty` means disable.
 
 ### wings.slardar.ding-notice.default.digest-secret
 
-`String`=`∅`，消息签名，`空`表示不使用
+`String`=`∅`, secret of message digest, `empty` means disable.
 
 ### wings.slardar.ding-notice.default.notice-keyword
 
-`String`=`WARNING`，自定义关键词，消息中至少包含1个关键词才可以发送成功。
+`String`=`WARNING`, custom keywords, to successfully send  message must contain at least 1 keyword.
 
 ### wings.slardar.ding-notice.default.notice-mobiles
 
-`Map<String, String>`，被通知人及手机号，非群内成员手机号会被脱敏。会自动添加到正文@155xxxx
+`Map<String, String>`, notified person and his phone number, non-member's phone number will be desensitized.
+It is automatically added to the text eg. @155xxxx
 
 ### wings.slardar.ding-notice.default.webhook-url
 
-`String`=`https://oapi.dingtalk.com/robot/send?access_token=`，钉钉通知的URL模板
+`String`=`https://oapi.dingtalk.com/robot/send?access_token=`, template of DingTalk webhool URL.
 
 ### wings.slardar.ding-notice.default.msg-type
 
-`String`=`markdown`，消息类型，支持 text, markdown
+`String`=`markdown`, message type, support `text`|`markdown`

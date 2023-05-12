@@ -97,7 +97,7 @@ Host继承和Url重载
 
 ### wings.slardar.domain-extend.cache-size
 
-`Integer`=`4096`，匹配和未匹配的url缓存size，restfull慎用
+`Integer`=`4096`，匹配和未匹配的url缓存size，RESTful慎用
 
 ### wings.slardar.domain-extend.prefix
 
@@ -117,7 +117,7 @@ FilenameUtils.wildcardMatch，如`trydofor`=`*.trydofor.com, trydofor.com`
 
 ## 3K.4.wings-doublekill-79.properties
 
-double-kill, DoubleKillExceptionResolver的设置，支持变量 {key} 和 {ttl}
+double-kill, DoubleKillExceptionResolver的设置，支持变量 `{key}` 和 `{ttl}`
 
 ### wings.slardar.double-kill.http-status
 
@@ -141,11 +141,11 @@ double-kill, DoubleKillExceptionResolver的设置，支持变量 {key} 和 {ttl}
 
 ### wings.slardar.first-blood.quest-captcha-key
 
-`String`=`quest-captcha-image`，生成图形验证码的参数，时间戳或特定前缀
+`String`=`quest-captcha-image`，生成图形验证码的key，时间戳或特定前缀
 
 ### wings.slardar.first-blood.check-captcha-key
 
-`String`=`check-captcha-image`，图形验证验证码的参数，客户输入的验证码
+`String`=`check-captcha-image`，验证图形验证码的key，客户输入的验证码
 
 ### wings.slardar.first-blood.base64-captcha-key
 
@@ -155,7 +155,7 @@ double-kill, DoubleKillExceptionResolver的设置，支持变量 {key} 和 {ttl}
 
 `String`=`data:image/jpeg;base64,{base64}`
 
-图片以base64返回的格式，{base64} 占位符，
+图片以base64返回的格式，`{base64}`占位符，
 默认配置，会输出 `data:image/jpeg;base64,/9j/4AAQSkZ.....`
 
 ### wings.slardar.first-blood.chinese-captcha
@@ -194,7 +194,7 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ### wings.slardar.monitor.hook
 
-`Boolean`=`true`，对自身的是否对jvm的启动和停止增加hook通知
+`Boolean`=`true`，是否对自身的jvm的启动和停止发送hook通知
 
 ### wings.slardar.monitor.jvm.system-cent
 
@@ -229,37 +229,35 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ### wings.slardar.monitor.log.default.enable
 
-`Boolean`=`true`，是否开启，日志文件的监控
-
-修改defualt的值，会影响size有关默认值，方便其他rule简化配置
+`Boolean`=`true`，是否开启，日志文件的监控。`default`为其他规则提供默认项。
 
 ### wings.slardar.monitor.log.default.file
 
 `String`=`${logging.file.name}`
 
-监控的日志文件，默认wings方式，文件不存在表示不监控
+监控的日志文件，文件不存在表示不监控
 
 ### wings.slardar.monitor.log.default.min-grow
 
-`DataSize`=`-1`，每扫描周期最小增长量，继承default
+`DataSize`=`-1`，每扫描周期最小增长量，可被沿用
 
 ### wings.slardar.monitor.log.default.max-grow
 
-`DataSize`=`10MB`，每扫描周期最大增长量，继承default
+`DataSize`=`10MB`，每扫描周期最大增长量，可被沿用
 
 ### wings.slardar.monitor.log.default.max-size
 
-`DataSize`=`=1GB`，日志最大文件体量（每天归档），继承default
+`DataSize`=`=1GB`，日志最大文件体量（每天归档），可被沿用
 
 ### wings.slardar.monitor.log.default.bound
 
-`Integer`=`40`，日志基本和内容的大概分隔线，分隔byte数（ascii等于char数）
+`Integer`=`40`，日志头和内容的大概分隔线，分隔byte数（ascii时等于char数）
 
 ### wings.slardar.monitor.log.default.level
 
 `Set<String>`=`' WARN ',' ERROR '`，日志级别的关键词。
 
-关键词，执行时会自动trim掉一组成对的头尾双引号。
+关键词，执行时会自动trim掉一组成对的头尾引号。
 如`' ERROR '`等于` ERROR `，`'' WARN ''`等于`' WARN '`
 
 ### wings.slardar.monitor.log.default.keyword
@@ -272,7 +270,7 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ### wings.slardar.monitor.log.default.clean
 
-`Integer`=`30`，清除N天以上的扫描文件，-1 表示不清理
+`Integer`=`30`，清除N天以上的扫描文件，`-1`表示不清理
 
 ### wings.slardar.monitor.log.console
 
@@ -296,7 +294,7 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ### wings.slardar.monitor.view.length
 
-`DataSize`=`1MB`，默认输出日志前多少byte，日志中不要记录敏感信息
+`DataSize`=`1MB`，默认输出当前日志的前多少byte，日志中不要记录敏感信息
 
 ### wings.slardar.monitor.view.domain
 
@@ -349,11 +347,11 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ### wings.slardar.okhttp.follow-redirect-ssl
 
-`Boolean`=`true`，是否跟着跳转
+`Boolean`=`true`，是否跟着https跳转
 
 ### wings.slardar.okhttp.follow-redirect
 
-`Boolean`=`true`，是否跟着跳转
+`Boolean`=`true`，是否跟着http跳转
 
 ### wings.slardar.okhttp.retry-failure
 
@@ -381,7 +379,7 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ## 3K.8.wings-overload-79.properties
 
-过载保护过滤器，如何处理快请求和慢响应。默认关闭。
+过载保护过滤器，如何处理快请求和慢响应。默认关闭，因容易误杀，不推荐使用。
 
 ### wings.slardar.overload.logger-interval
 
@@ -413,7 +411,7 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ### wings.slardar.overload.request-permit
 
-`Map<String, String>`，请求ip白名单，分号分割，前部匹配
+`Map<String, String>`，请求ip白名单，前部匹配
 
 * `local-127`=`127.`
 * `local-192`=`192.`
@@ -428,7 +426,7 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ## 3K.9.wings-righter-79.properties
 
-防篡改，编辑越权，设置
+防篡改，编辑越权
 
 ### wings.slardar.righter.header
 
@@ -464,7 +462,7 @@ Swagger文档设置
 
 ### wings.slardar.swagger.param
 
-`Map<String, EnabledParameter>`，key采用java命名,作为`$ref`使用，in支持`cookie`|`header`|`query`|`path`
+`Map<String, EnabledParameter>`，key采用java命名,作为`$ref`使用，`in`支持`cookie`|`header`|`query`|`path`
 
 * `headLanguage.enable`=`false`
 * `headLanguage.name`=`Accept-Language`
@@ -504,7 +502,7 @@ Swagger文档设置
 
 ### wings.slardar.ding-notice.default.notice-mobiles
 
-`Map<String, String>`，被通知人及手机号，非群内成员手机号会被脱敏。会自动添加到正文@155xxxx
+`Map<String, String>`，被通知人及手机号，非群内成员手机号会被脱敏。会自动添加到正文，如@155xxxx
 
 ### wings.slardar.ding-notice.default.webhook-url
 
@@ -512,4 +510,4 @@ Swagger文档设置
 
 ### wings.slardar.ding-notice.default.msg-type
 
-`String`=`markdown`，消息类型，支持 text, markdown
+`String`=`markdown`，消息类型，支持 `text`|`markdown`

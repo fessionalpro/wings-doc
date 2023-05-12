@@ -22,13 +22,13 @@ category:
 
 `Map<String, String>`，cookie别名，受前缀影响，如
 
-如，`session`=`o_0`，最后把`session`变为`${prefix}o_0`
+`session`=`o_0`，最后把`session`变为`${prefix}o_0`
 
 ### wings.slardar.cookie.coder
 
 `String`=`aes`, cookie编码，默认
 
-* `aes` - aes256，
+* `aes` - aes256
 * `b64` - base64
 * `nop` - 不加密
 
@@ -63,7 +63,7 @@ https 下发送，不设置时不处理
 `Map<String, Set<String>>`=`∅`，为cookie设置指定domain
 
 如 `wings.slardar.cookie.domain[a.com]`=`b,c`，
-表示`name`为`b`或`c`的cookie，设置`domain`为`a.com`
+表示`name`为`b`或`c`的cookie，设置其`domain`为`a.com`
 
 ### wings.slardar.cookie.path
 
@@ -82,7 +82,7 @@ json和bind中，支持更宽松的日期，时间和时区格式。
 
 ### wings.slardar.datetime.date.parser
 
-`List<String>`，LocalDate输入的解析格式，
+`List<String>`，LocalDate输入的解析格式
 
 ```text
 ,yyyy[-][/][.][M][-][/][.][d]\
@@ -95,7 +95,7 @@ json和bind中，支持更宽松的日期，时间和时区格式。
 
 ### wings.slardar.datetime.time.parser
 
-`List<String>`，LocalTime输入的解析格式，
+`List<String>`，LocalTime输入的解析格式
 
 ```text
 H[:m][:s][.SSS]
@@ -111,7 +111,7 @@ H[:m][:s][.SSS]
 
 ### wings.slardar.datetime.datetime.parser
 
-`List<String>`，LocalDate输入的解析格式，
+`List<String>`，LocalDate输入的解析格式
 
 ```text
 ,yyyy[-][/][.][M][-][/][.][d][ ]['T'][H][:m][:s][.SSS]\
@@ -128,7 +128,7 @@ H[:m][:s][.SSS]
 
 ### wings.slardar.datetime.zoned.parser
 
-`List<String>`，ZonedDateTime输入的解析格式，
+`List<String>`，ZonedDateTime输入的解析格式
 
 ```text
 ,yyyy[-][/][.][M][-][/][.][d][ ]['T'][H][:m][:s][.SSS][XXXXX][XXXX][XXX][XX][X]['['][ ][VV][']']\
@@ -145,7 +145,7 @@ H[:m][:s][.SSS]
 
 ### wings.slardar.datetime.offset.parser
 
-`List<String>`，OffsetDateTime输入的解析格式，
+`List<String>`，OffsetDateTime输入的解析格式
 
 ```text
 ,yyyy[-][/][.][M][-][/][.][d][ ]['T'][H][:m][:s][.SSS][XXXXX][XXXX][XXX][XX][X]['['][ ][VV][']']\
@@ -187,7 +187,7 @@ H[:m][:s][.SSS]
 
 ## 3J.4.wings-locale-resolver-79.properties
 
-### locale或language
+### Locale或Language
 
 分别通过param，cookie和header的key获得语言
 
@@ -195,7 +195,7 @@ H[:m][:s][.SSS]
 * `wings.slardar.locale.locale-cookie`=`Wings-Locale`
 * `wings.slardar.locale.locale-header`=`Accept-Language`
 
-### timezone或zoneid
+### Timezone或Zoneid
 
 分别通过param，cookie和header的key获得时区
 
@@ -230,8 +230,8 @@ H[:m][:s][.SSS]
 * `true` - 强制number，忽略WRITE_NUMBERS_AS_STRINGS
 * `false` - 强制string
 
-是否忽略WRITE_NUMBERS_AS_STRINGS，强制写number，需要注意format是否兼容
-如js中bigint时，设置成auto，临界（含）时会自动切换number和string
+是否忽略WRITE_NUMBERS_AS_STRINGS，强制写number，需要注意format是否兼容。
+例如，在js中用bigint，设置为auto时，边界（含）时会自动切换number和string
 
 ### wings.slardar.number.floats.format
 
@@ -305,7 +305,9 @@ H[:m][:s][.SSS]
 
 ### wings.slardar.passcoder.pass-decoder
 
-`String`=`never`，默认解密算法，支持never|noop|bcrypt|pbkdf2|scrypt|argon2
+`String`=`never`，默认解密算法。
+
+支持never|noop|bcrypt|pbkdf2|scrypt|argon2
 
 setDefaultPasswordEncoderForMatches，id不匹配时，默认解码算法。
 

@@ -8,31 +8,31 @@ category:
 
 # 3J.WebMvc Properties
 
-有关Slardar中提供的Spring WebMvc的基本设置
+Properties of Spring WebMvc in Slardar
 
 ## 3J.1.wings-cookie-79.properties
 
-以下所有name设置，均为原始名字，即没有prefix和alias之前
+All the following name settings are the original, that is, without prefix and alias.
 
 ### wings.slardar.cookie.prefix
 
-`String`=`∅`，Cookie前缀，默认空
+`String`=`∅`, Cookie prefix, empty by default.
 
 ### wings.slardar.cookie.alias
 
-`Map<String, String>`，cookie别名，受前缀影响，如
+`Map<String, String>`, cookie alias, affected by the prefix, eg.
 
-如，`session`=`o_0`，最后把`session`变为`${prefix}o_0`
+`session`=`o_0`, `session` eventually is `${prefix}o_0`
 
 ### wings.slardar.cookie.coder
 
-`String`=`aes`, cookie编码，默认
+`String`=`aes`, cookie encoding, default
 
-* `aes` - aes256，
+* `aes` - aes256
 * `b64` - base64
-* `nop` - 不加密
+* `nop` - no encoding
 
-相同配置name时，编码优先级 `aes` > `b64` > `nop`
+For the same config name, the encoding priority `aes` > `b64` > `nop`
 
 ### wings.slardar.cookie.nop
 
@@ -50,39 +50,39 @@ category:
 
 `Map<Boolean, Set<String>>`=`∅`
 
-HttpOnly，js无法读取，不设置时不处理
+HttpOnly, js cannot be read, do not process if not set
 
 ### wings.slardar.cookie.secure
 
 `Map<Boolean, Set<String>>`=`∅`
 
-https 下发送，不设置时不处理
+transfer by https, do not process if not set
 
 ### wings.slardar.cookie.domain
 
-`Map<String, Set<String>>`=`∅`，为cookie设置指定domain
+`Map<String, Set<String>>`=`∅`, bind domain to cookie,
 
-如 `wings.slardar.cookie.domain[a.com]`=`b,c`，
-表示`name`为`b`或`c`的cookie，设置`domain`为`a.com`
+eg. `wings.slardar.cookie.domain[a.com]`=`b,c`,
+means cookie with `name` of `b` or `c`, its `domain` is `a.com`
 
 ### wings.slardar.cookie.path
 
-`Map<String, Set<String>>`=`∅`，为cookie设置指定path
+`Map<String, Set<String>>`=`∅`, bind cookie to path
 
-如 `wings.slardar.cookie.path[/admin]`=`b,c`，
-表示`name`为`b`或`c`的cookie，设置`path`为`/admin`
+ge. `wings.slardar.cookie.path[/admin]`=`b,c`,
+means cookie with `name` of `b` or `c`, its `path` is `/admin`
 
 ## 3J.2.wings-datetime-79.properties
 
-json和bind中，支持更宽松的日期，时间和时区格式。
+In json and bind, more relaxed date, time and timezone formats are supported.
 
 ### wings.slardar.datetime.date.format
 
-`String`=`yyyy[-MM][-dd]`，LocalDate的输出格式
+`String`=`yyyy[-MM][-dd]`, LocalDate output format
 
 ### wings.slardar.datetime.date.parser
 
-`List<String>`，LocalDate输入的解析格式，
+`List<String>`, LocalDate input format of parsing
 
 ```text
 ,yyyy[-][/][.][M][-][/][.][d]\
@@ -91,11 +91,11 @@ json和bind中，支持更宽松的日期，时间和时区格式。
 
 ### wings.slardar.datetime.time.format
 
-`String`=`HH[:mm][:ss]`，LocalTime的输出格式
+`String`=`HH[:mm][:ss]`, LocalTime output format
 
 ### wings.slardar.datetime.time.parser
 
-`List<String>`，LocalTime输入的解析格式，
+`List<String>`, LocalTime input format of parsing
 
 ```text
 H[:m][:s][.SSS]
@@ -103,15 +103,15 @@ H[:m][:s][.SSS]
 
 ### wings.slardar.datetime.datetime.auto
 
-`Boolean`=`false`，LocalDateTime是否自动转换时区
+`Boolean`=`false`, LocalDateTime whether to auto switch timezones
 
 ### wings.slardar.datetime.datetime.format
 
-`String`=`yyyy[-MM][-dd][ ][HH][:mm][:ss]`，LocalDateTime的输出格式
+`String`=`yyyy[-MM][-dd][ ][HH][:mm][:ss]`, LocalDateTime output format
 
 ### wings.slardar.datetime.datetime.parser
 
-`List<String>`，LocalDate输入的解析格式，
+`List<String>`, LocalDate input format of parsing
 
 ```text
 ,yyyy[-][/][.][M][-][/][.][d][ ]['T'][H][:m][:s][.SSS]\
@@ -120,15 +120,15 @@ H[:m][:s][.SSS]
 
 ### wings.slardar.datetime.zoned.auto
 
-`Boolean`=`false`，ZonedDateTime是否自动转换时区
+`Boolean`=`false`, ZonedDateTime whether to auto switch timezones
 
 ### wings.slardar.datetime.zoned.format
 
-`String`=`yyyy[-MM][-dd][ ][HH][:mm][:ss][ ][VV]`，ZonedDateTime的输出格式
+`String`=`yyyy[-MM][-dd][ ][HH][:mm][:ss][ ][VV]`, ZonedDateTime output format
 
 ### wings.slardar.datetime.zoned.parser
 
-`List<String>`，ZonedDateTime输入的解析格式，
+`List<String>`, ZonedDateTime input format of parsing
 
 ```text
 ,yyyy[-][/][.][M][-][/][.][d][ ]['T'][H][:m][:s][.SSS][XXXXX][XXXX][XXX][XX][X]['['][ ][VV][']']\
@@ -137,15 +137,15 @@ H[:m][:s][.SSS]
 
 ### wings.slardar.datetime.offset.auto
 
-`Boolean`=`false`，OffsetDateTime是否自动转换时区
+`Boolean`=`false`, OffsetDateTime whether to auto switch timezones
 
 ### wings.slardar.datetime.offset.format
 
-`String`=`yyyy[-MM][-dd][ ][HH][:mm][:ss][ ][xxx]`，OffsetDateTime的输出格式
+`String`=`yyyy[-MM][-dd][ ][HH][:mm][:ss][ ][xxx]`, OffsetDateTime output format
 
 ### wings.slardar.datetime.offset.parser
 
-`List<String>`，OffsetDateTime输入的解析格式，
+`List<String>`, OffsetDateTime input format of parsing
 
 ```text
 ,yyyy[-][/][.][M][-][/][.][d][ ]['T'][H][:m][:s][.SSS][XXXXX][XXXX][XXX][XX][X]['['][ ][VV][']']\
@@ -154,50 +154,51 @@ H[:m][:s][.SSS]
 
 ### wings.slardar.datetime.clock-offset
 
-`long`=`0`，设置系统时钟偏移的offset毫秒数。
+`long`=`0`, set the offset to the system clock in milliseconds.
 
 ## 3J.3.wings-jackson-79.properties
 
-以下会造成序列化和反序列化不一致。
+The following will cause serialization and deserialization inconsistencies.
 
 ### wings.slardar.jackson.empty-date
 
-`String`=`1000-01-01`，`空`日期不输出，空表示忽略此功能。
+`String`=`1000-01-01`, `empty` date is not output, empty means ignore this.
 
-支持LocalDate，LocalDateTime，ZonedDateTime，OffsetDateTime，util.Date
+support LocalDate, LocalDateTime, ZonedDateTime, OffsetDateTime, util.Date
 
 ### wings.slardar.jackson.empty-date-offset
 
-`Integer`=12，考虑时区影响，和系统时间相差正负[12]小时内，认为`空`
+`Integer`=12, considering the time zone offset, and the system time difference
+within plus or minus [12] hours, it is treated as `empty'.
 
 ### wings.slardar.jackson.empty-list
 
-`Boolean`=`false`，当`空`时，是否不输出。
+`Boolean`=`false`, whether to ouptut `empty` list.
 
-包括Array和java.util.Collection的`空`。第三方不友好，默认关闭，
-如spring-boot-admin在js中以`.length`和`key`检查而无前置判断。
+Includes `empty` of Array and java.util.Collection. disabled by default for 3rd  unfriendly.
+eg. spring-boot-admin's js use `.length` and `key` to check value existence.
 
 ### wings.slardar.jackson.empty-map
 
-`Boolean`=`false`，当`空`时，是否不输出，包括java.util.Map。
+`Boolean`=`false`, whether to ouptut `empty` map, includes java.util.Map
 
 ### wings.slardar.jackson.i18n-result
 
-`Boolean`=`true`，是否处理I18nResult的message
+`Boolean`=`true`, whether to handle message of I18nResult
 
 ## 3J.4.wings-locale-resolver-79.properties
 
-### locale或language
+### Locale or Language
 
-分别通过param，cookie和header的key获得语言
+Get the language by key from param, cookie and header respectively
 
 * `wings.slardar.locale.locale-param`=`locale`
 * `wings.slardar.locale.locale-cookie`=`Wings-Locale`
 * `wings.slardar.locale.locale-header`=`Accept-Language`
 
-### timezone或zoneid
+### Timezone or Zoneid
 
-分别通过param，cookie和header的key获得时区
+Get the timezone by key from param, cookie and header respectively
 
 * `wings.slardar.locale.zoneid-param`=`zoneid`
 * `wings.slardar.locale.zoneid-cookie`=`Wings-Zoneid`
@@ -205,123 +206,129 @@ H[:m][:s][.SSS]
 
 ## 3J.5.wings-number-79.properties
 
-可定制Number的精度和格式，支持JsonFormat的pattern，
-需使用BigDecimal替换Float和Double，避免精度丢失
+Customizable precision and format of Number, support JsonFormat pattern.
+Must use BigDecimal instead of Float and Double to avoid precision loss.
 
 ### wings.slardar.number.integer.format
 
-`String`=`#`，Integer,Long的格式，`空`表示关闭。
+`String`=`#`, format of Integer, Long. `empty` means disable.
 
-千分位用`,`占位，在separator设置中会被正确替换。
+The thousandth separator uses `,`, which can be replaced to other
+at runtime according to the separator setting.
 
 ### wings.slardar.number.integer.round=FLOOR
 
-`RoundingMode`=`FLOOR`，舍入模式。
+`RoundingMode`=`FLOOR`, rounding mode.
 
 ### wings.slardar.number.integer.separator
 
-`String`=`,`，当Shape==ANY时，整数位分隔符，如千分位。
+`String`=`,`, When Shape==ANY, integer separator, eg. thousandths.
 
 ### wings.slardar.number.integer.digital
 
-`String`=`auto`，数值以js的string还是number输出
+`String`=`auto`, whether the value is output as a string or a number in js
 
-* `auto` - 自动适配，52bit以下number，以上string
-* `true` - 强制number，忽略WRITE_NUMBERS_AS_STRINGS
-* `false` - 强制string
+* `auto` - auto-match, number below 52bit, string above
+* `true` - force number, ignore WRITE_NUMBERS_AS_STRINGS
+* `false` - force string
 
-是否忽略WRITE_NUMBERS_AS_STRINGS，强制写number，需要注意format是否兼容
-如js中bigint时，设置成auto，临界（含）时会自动切换number和string
+Whether to ignore WRITE_NUMBERS_AS_STRINGS, force to write number, need to pay attention to the
+format compatibility. For example, using bigint in js and setting is auto, the boundary (inclusive)
+will automatically switch between number and string.
 
 ### wings.slardar.number.floats.format
 
-`String`=`∅`，如`#.00`，Float,Double的格式，`空`表示关闭。
+`String`=`∅`, eg. `#.00`, format of Float, Double. `empty` means disable.
 
-千分位用`,`占位，在separator设置中会被正确替换。
+The thousandth separator uses `,`, which can be replaced to other
+at runtime according to the separator setting.
 
 ### wings.slardar.number.floats.round
 
-`RoundingMode`=`FLOOR`，舍入模式。
+`RoundingMode`=`FLOOR`, rounding mode.
 
 ### wings.slardar.number.floats.separator
 
-`String`=`,`，当Shape==ANY时，整数位分隔符，如千分位。
+`String`=`,`, When Shape==ANY, integer separator, eg. thousandths.
 
 ### wings.slardar.number.floats.digital
 
-`String`=`false`，默认强制string，避免精度丢失。
+`String`=`false`, force string by default, to avoid precision loss.
 
 ### wings.slardar.number.decimal.format
 
-`String`=`∅`，如`#.00`，BigDecimal的格式，`空`表示关闭。
+`String`=`∅`, eg. `#.00`, format of BigDecimal. `empty` means disable.
 
-千分位用`,`占位，在separator设置中会被正确替换。
+The thousandth separator uses `,`, which can be replaced to other
+at runtime according to the separator setting.
 
 ### wings.slardar.number.decimal.round
 
-`RoundingMode`=`FLOOR`，舍入模式。
+`RoundingMode`=`FLOOR`, rounding mode.
 
 ### wings.slardar.number.decimal.separator
 
-`String`=`,`，当Shape==ANY时，整数位分隔符，如千分位。
+`String`=`,`, When Shape==ANY, integer separator, eg. thousandths.
 
 ### wings.slardar.number.decimal.digital
 
-`String`=`false`，默认强制string，避免精度丢失。
+`String`=`false`, force string by default, to avoid precision loss.
 
 ## 3J.6.wings-pagequery-79.properties
 
-取代 spring data中的分页。
+Replace pagination in spring data.
 
 ### wings.slardar.pagequery.page
 
-`Integer`=`1`，默认页数，第一页
+`Integer`=`1`, page number, default 1st page.
 
 ### wings.slardar.pagequery.size
 
-`Integer`=`20`，默认每页大小
+`Integer`=`20`, page size
 
 ### wings.slardar.pagequery.page-alias
 
-`List<String>`=`page,pageNumber`，别名
+`List<String>`=`page,pageNumber`, alias of page number
 
 ### wings.slardar.pagequery.size-alias
 
-`List<String>`=`size,pageSize`，别名
+`List<String>`=`size,pageSize`, alias of page size
 
 ### wings.slardar.pagequery.sort-alias
 
-`List<String>`=`sort,sortBy`，别名
+`List<String>`=`sort,sortBy`, alias of sort
 
 ## 3J.7.wings-passcoder-79.properties
 
-密码的加密和加盐配置
+Password encryption and salting.
 
 ### wings.slardar.passcoder.pass-encoder
 
-`String`=`argon2`，默认加密算法。
+`String`=`argon2`, default password encoder id.
 
-支持never|noop|bcrypt|pbkdf2|scrypt|argon2
+support never|noop|bcrypt|pbkdf2|scrypt|argon2
 
 ### wings.slardar.passcoder.pass-decoder
 
-`String`=`never`，默认解密算法，支持never|noop|bcrypt|pbkdf2|scrypt|argon2
+`String`=`never`, default password decoder id.
 
-setDefaultPasswordEncoderForMatches，id不匹配时，默认解码算法。
+support never|noop|bcrypt|pbkdf2|scrypt|argon2
+
+setDefaultPasswordEncoderForMatches, If id does not match, use the default decoder.
 
 ### wings.slardar.passcoder.salt-encoder
 
-`String`=`sha256`，默认加盐算法 sha256|sha1|md5
+`String`=`sha256`, default salting algorithm sha256|sha1|md5
 
 ### wings.slardar.passcoder.time-deviation=30
 
-`Integer`=`30`，BasicPasswordEncoder 时间戳偏差秒数。
+`Integer`=`30`, The max seconds of timestamp deviation of BasicPasswordEncoder.
 
 ## 3J.8.wings-remote-resolver-79.properties
 
 ### wings.slardar.remote.inner-ip
 
-`Map<String, String>`，不作为remote ip考虑的内网网段
+`Map<String, String>`, intranet segments not considered as remote ip
 
 * `local-127`=`127.`
 * `local-192`=`192.`
@@ -330,7 +337,7 @@ setDefaultPasswordEncoderForMatches，id不匹配时，默认解码算法。
 
 ### wings.slardar.remote.ip-header
 
-`Map<String, String>`，使用代理时，通过哪些header获得真实ip
+`Map<String, String>`, which header to get the real ip when behind proxy.
 
 * `Real-IP`=`X-Real-IP`
 * `Forwarded-For`=`X-Forwarded-For`
@@ -338,7 +345,7 @@ setDefaultPasswordEncoderForMatches，id不匹配时，默认解码算法。
 
 ### wings.slardar.remote.agent-header
 
-`Map<String, String>`，用户设备信息头，选择所有信息
+`Map<String, String>`, which headers (use all) to get device info.
 
 * `User-Agent`=`User-Agent`
 
@@ -348,27 +355,27 @@ setDefaultPasswordEncoderForMatches，id不匹配时，默认解码算法。
 
 `String`=`${server.servlet.session.cookie.name}`
 
-使用header解析session的name，空表示不解析
+Use which name of header to resolve the session, empty means disable.
 
 ### wings.slardar.session.cookie-name
 
 `String`=`${server.servlet.session.cookie.name}`
 
-使用cookie解析的session的name，空表示不解析
+Use which name of cookie to resolve the session, empty means disable.
 
 ### wings.slardar.session.cookie-base64
 
-`Boolean`=`false`，是否对session进行base64编码
+`Boolean`=`false`, whether to base64 encode the session.
 
 ### wings.slardar.session.cookie-route
 
-`String`=`∅`，增加session的jvm route，空表示忽略。
+`String`=`∅`, add jvm route to session, empty means disable.
 
 ## 3J.A.wings-terminal-79.properties
 
 ### wings.slardar.terminal.exclude-patterns
 
-`Map<String, String>`，不需要TerminalInterceptor处理的URL
+`Map<String, String>`, URLs not processed by TerminalInterceptor.
 
 * `error`=`/error`
 * `api`=`/api/**`
@@ -376,4 +383,4 @@ setDefaultPasswordEncoderForMatches，id不匹配时，默认解码算法。
 
 ### wings.slardar.terminal.include-patterns
 
-`Map<String, String>`，exclude优先于include
+`Map<String, String>`, exclude takes precedence over include

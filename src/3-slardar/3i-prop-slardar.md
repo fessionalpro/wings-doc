@@ -50,7 +50,7 @@ category:
 
 ### spring.wings.slardar.enabled.righter
 
-`Boolean`=`true`，是否防范编辑权限提升
+`Boolean`=`true`，是否防范编辑篡改
 
 ### spring.wings.slardar.enabled.debounce
 
@@ -78,7 +78,7 @@ category:
 
 ### spring.wings.slardar.enabled.datetime
 
-`Boolean`=`true`，是否开启wings的 webmvc local datetime converter
+`Boolean`=`true`，是否开启wings的 webmvc localdatetime converter
 
 ### spring.wings.slardar.enabled.number
 
@@ -122,7 +122,7 @@ category:
 
 ### spring.wings.slardar.enabled.monitor
 
-`Boolean`=`true`，是否开开启监控
+`Boolean`=`true`，是否开启监控
 
 ### spring.wings.slardar.enabled.monitor-jvm
 
@@ -239,7 +239,7 @@ Undertow设置，参考io.undertow.Undertow.java#L429
 缓存区设置，4k, 8k for most request
 
 ```text
-tcp_mem：low, pressure, high
+tcp_mem: low, pressure, high
 net.ipv4.tcp_wmem = 4096 87380 4161536
 net.ipv4.tcp_rmem = 4096 87380 4161536
 net.ipv4.tcp_mem = 786432 2097152 3145728
