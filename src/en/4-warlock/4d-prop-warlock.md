@@ -12,13 +12,14 @@ Properties of loing and authn/authz in Warlock.
 
 ## 4D.1.spring-wings-enabled-77.properties
 
-### spring.wings.faceless.enabled.enumi18n
+override the following properties,
 
-`Boolean`=`true`, whether to enable enumi18n.
+* spring.wings.faceless.enabled.enumi18n=true
+* spring.wings.faceless.flywave.enabled.module=true
 
-### spring.wings.faceless.flywave.enabled.module
+### spring.wings.warlock.enabled.autoconf
 
-`Boolean`=`true`, whether to enable flywave module.
+`Boolean`=`true`, whether to enable auto config.
 
 ### spring.wings.warlock.enabled.security-auto
 
@@ -92,9 +93,9 @@ Properties of loing and authn/authz in Warlock.
 
 `Boolean`=`true`, whether to support AuthAppPermChecker.
 
-### spring.wings.warlock.enabled.all-exception-handler
+### spring.wings.warlock.enabled.default-exception-handler
 
-`Boolean`=`true`, whether to inject AllExceptionResolver.
+`Boolean`=`true`, whether to inject DefaultExceptionResolver.
 
 ### spring.wings.warlock.enabled.code-exception-handler
 
@@ -151,6 +152,10 @@ Properties of loing and authn/authz in Warlock.
 ### spring.wings.warlock.enabled.watching
 
 `Boolean`=`false`, whether to enable timing watching and analysis.
+
+### spring.wings.warlock.enabled.uniauth
+
+`Boolean`=`false`, whether to support wings union login.
 
 ## 4D.2.wings-flywave-fit-79.properties
 
@@ -674,16 +679,16 @@ code tracking , default `-1` means disable; `0` means fully enable.
 
 * Controller layer is implemented by Interceptor
 * Service dependency annotation @Watching
-* Jooq layer, depends on lisenter
+* Jooq layer, depends on listener
 
 ### wings.warlock.watching.jooq-threshold
 
-`Long`=`-1`, Threshold millis for jooq execution.
+`Long`=`-1`, threshold millis for jooq execution.
 
 ### wings.warlock.watching.service-threshold
 
-`Long`=`-1`, Threshold millis for Watching annotation.
+`Long`=`-1`, threshold millis for Watching annotation.
 
 ### wings.warlock.watching.controller-threshold
 
-`Long`=`-1`, Threshold millis for Controller.
+`Long`=`-1`, threshold millis for Controller.
