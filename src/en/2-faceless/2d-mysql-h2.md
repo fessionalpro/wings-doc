@@ -77,10 +77,10 @@ CREATE DATABASE wings DEFAULT CHARACTER SET utf8mb4;
 -- wings /* auto codegen */
 -- wings_shard_0 /* sharding test */
 -- wings_shard_1 /* sharding test */
--- wings_example /* winx example */
--- wings_tiny /* winx example */
 -- wings_faceless /* faceless */
 -- wings_warlock /* warlock */
+-- wings_example /* winx example */
+-- wings_tiny /* winx tiny component */
 ```
 
 ## 2D.2.High Quality SQL

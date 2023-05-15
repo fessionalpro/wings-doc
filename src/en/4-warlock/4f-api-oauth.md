@@ -8,79 +8,86 @@ category:
 
 # 4F.Open Api
 
-不同于用户登录(BindAuth)，外Api是限定功能的，非SecurityFilter体系。
+Unlike user login (BindAuth), open Api is limited function, non-SecurityFilter system.
 
-* BindAuth - 以Filter和Cookie为基础，是传统的Broswer-Server模式，简称BS
-* ApiAuth - 以Token和Signature为基础，是外部的Server-Server模式，简称SS
-* ServiceComb - 内部的ServerServer微服务及云模式
+* BindAuth - Based on Filter and Cookie, it is the traditional Broswer-Server model, or BS for short
+* ApiAuth - Based on Token and Signature, it is the external Server-Server model, or SS for short
+* ServiceComb - internal ServerServer microservices and cloud model
 
-验证(authn)成功后，不进行全面授权(authz)，不写入Session，不记录登录日志。
-BindAuth有完整的SecurityContext，而ApiAuth仅有TerminalContext。
+After successful authentication (authn), full authorization (authz) is not performed,
+Session is not written, and login logs are not recorded. BindAuth has full SecurityContext,
+while ApiAuth has only TerminalContext.
 
-ApiAuth的模式约定是双向的，response采用request相同的约定回复，包括，
+ApiAuth model is bidirection, the response uses the same convention as the request reply, including,
 
-* client - 相当于登录名，也称为clientId, appId, accessKey
-* secret - 相当于密码，也称为clientSecret, appKey, accessSecret
-* timestamp - 应答使用请求的时间戳，若请求中没有，应答使用当前时间戳
-* signature - 应答使用请求的签名算法，根据长度判定
-* digest - 文件摘要，交换文件时使用
-* secret - 用户设定，明文存在，用于签名
+* client - like the usename, also known as clientId, appId, accessKey
+* secret - like the password, also known as clientSecret, appKey, accessSecret
+* timestamp - the response uses the timestamp of the request, if not in the request, the response uses the current timestamp
+* signature - the response uses the same algorithm as the request, based on the length
+* digest - file digest, used when exchanging files
+* secret - user set, exists in clear text, used for signing
 
-一个Request用以下3个部分用来发送信息，而Response没有QuereyString，
+A Request uses the following 3 parts to send a message, while a Response does not have a QuereyString
 
-* 验签参数 - `key:value`格式，getHeader获取
-* 业务参数 - `k=v(&k1=v1)*`格式，getParameterMap获取
-* 业务主体 - getInputStream()获取Json，getParts获取File
+* Signature parameter - `key:value` format, getHeader to get it
+* Business parameters - `k=v(&k1=v1)*` format, getParameterMap to get
+* Business Body - getInputStream() to get Json, getParts to get File
 
-关于应答的StatusCode，除了验签阶段，都应该返回200，并以业务code定义错误，
+As for the StatusCode of the response, it should return 200, except for the signature verification phase,
+and define the error with the business code
 
-* 400 - 参数解析错误，例如QueryString中有未编码的json
-* 401 - client错误时
-* 403 - 验签失败时，可以使用body返回错误细节
-* 200 - 仅表示response成功，而业务成功与否由body中的业务code定义
+* 400 - parameter parsing error, such as QueryString has unencoded json
+* 401 - in case of client error
+* 403 - If the signature verification fails, you can use the body to return the error details
+* 200 - only indicates the success of the response, and the business result is defined by the business code in the body
 
-## 4F.1.PostJson模式
+## 4F.1.PostJson Model
 
-设计上，BS和SS在服务对象，请求频次，安全等级，功能粒度都是不同的，不应该混用。
-Api采用HTTP的POST发送JSON数据，并签名防伪，简称`PostJson`，
-此种方式以成为国内API的事实标准，参考微信付款的[安全规范-签名算法](https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=4_3)，重点如下，
+By design, BS and SS are different in terms of service objects, request frequency, security level,
+and functional granularity, and should not be mixed.
+API uses HTTP POST to send JSON data with a tamper-proof signature, called `PostJson`.
+This approach is actually standard in domestic APIs, see the [security specification - signature algorithm](https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=4_3) of WeChat payments,
+with the following key point.
 
-* key - 以ASCII码从小到大排序（字典序），TreeMap即可
-* value - 使用原值，不需要UrlEncode，避免编码差异
-* null - 不参与签名，字符串空可参与
-* utf8 - 数据都为UTF8编码，以UTF8获取bytes签名
+* key - sorted from small to large by ASCII code (dictionary order), ie. TreeMap
+* value - use the original value, no UrlEncode, to avoid encoding differences
+* null - not involved in the signature, but empty string does
+* utf8 - data are encoded in UTF8, get bytes signature in UTF8
 
-签名数据为，`param`+`body`+`secret`+`timestamp`
+The signature data is, `param` + `body` + `secret` + `timestamp`
 
-* param - 业务参数`k=v(&k1=v1)*`格式
-* body - 业务主体，json格式的body
-* secret - 客户的密码，不要外泄！
-* timestamp - 有则也参与签名
+* param - business parameter `k=v(&k1=v1)*` format
+* body - business body, json format
+* secret - the client's password, don't leak it!
+* timestamp - involved in the signature if available
 
-注意，param参与签名时，使用的是原值，不需要UrlEncode，
-但作为QueryString请求时，需要UrlEncode，否则会有400错误。
+Note that if param is involved in the signature, use its original value, not its  UrlEncode.
+But as a QueryString request, UrlEncode is required, otherwise there will be 400 errors.
 
-验签参数，都通过header传递，包括4个，
+The signature verification parameters, all passed through the header, include four
 
-* client - 客户身份，不参与签名。可自定义，如`Auth-Client`
-* signature - 消息签名，不参与签名，不区分大小写。可自定义，如`Auth-Signature`
-* timestamp - 有则也参与签名。可自定义，如`Auth-Timestamp`
-* digest - body摘要，仅用在文件下载。可自定义，如`Auth-Digest`
+* client - client identity, not involved in the signature. Customizable, eg. `Auth-Client`.
+* signature - message signature, not involved in signing, case-insensitive. Customizable, e.g. `Auth-Signature`.
+* timestamp - If available, also involved in signing. Customizable, e.g. `Auth-Timestamp`.
+* digest - The body digest, used only for file downloads. Customizable, e.g. `Auth-Digest`
 
-关于签名算法，支持以下3种，并根据签名长度自动适配
+Regarding signature algorithms, the following 3 are supported, and are automatically adapted
+according to the signature length,
 
-* MD5 - 摘要（指纹）算法，历史兼容，128bit，Hex长度32
-* SHA1 - 摘要（指纹）算法，历史兼容，160bit，Hex长度40
-* HMAC-SHA256 - 安全的签名算法，256bit，Hex长度64
+* MD5 - digest (fingerprint) algorithm, historically compatible, 128bit, Hex length 32
+* SHA1 - digest (fingerprint) algorithm, history-compatible, 160bit, Hex length 40
+* HMAC-SHA256 - secure signature algorithm, 256bit, Hex length 64
 
-response为Json时，采用和request相同的算法和方式，若为文件下载，则使用PostFile模式。
+When the response is Json, it uses the same algorithm and method as request, or if it is a file download,
+it uses PostFile mode.
 
-以下是java伪代码，仅表达意图，并非最优代码，注释内shell命令可以辅助验证。
+The following is java pseudo code, only to express the intent, not the optimal code,
+shell commands in the comments can help with verification.
 
 ```java
 final TreeMap<String, Object> queryString = new TreeMap<>();
-queryString.put("query", "string"); // 普通参数
-queryString.put("null", null); // 忽略null
+queryString.put("query", "string"); // normal para
+queryString.put("null", null); // ignore null
 
 final String para = queryString
         .entrySet().stream()
@@ -88,14 +95,14 @@ final String para = queryString
         .map(e -> e.getKey() + '=' + e.getValue())
         .reduce((s1, s2) -> s1 + '&' + s2)
         .orElse("");
-// 字典序，忽略null
+// Dictionary order, ignore null
 assertEquals("query=string", para);
 
 final String secret = "高密级";
 final String body = "{\"try\":\"dofor\"}";
-final long timestamp = 1668167709172L; // 时间戳，有则签名
+final long timestamp = 1668167709172L; // Timestamp, signed if available
 
-// 直接拼接字符串
+// concat string
 final String signData = para + body + secret + timestamp;
 assertEquals("query=string{\"try\":\"dofor\"}高密级1668167709172", signData);
 // echo -n 'query=string{"try":"dofor"}高密级1668167709172' > trydofor.txt
@@ -117,61 +124,66 @@ assertEquals("6A5CC747FCEE6999094A331F88D723BA682C5163BBB08D73B97C55E1A45DC372",
 // hmac256 高密级 trydofor.txt
 ```
 
-## 4F.2.PostFile模式
+## 4F.2.PostFile Model
 
-上传文件使用`multipart/form-data`，用表单的`字段`提交文件。
-除了没有Json的Body，增加Digest头外，参数的签名和PostJson相同，
+Upload the file using `multipart/form-data` and submit the file using the `field` of the form.
+The signature of the parameters is the same as PostJson, except that there is no Json Body and
+the Digest header.
 
-* 不含文件 - 仅对文件之外的参数，排序，拼接，签名
-* 包含文件 - 以`字段.sum`=`文件指纹`为参数提交，参与签名
-* 应答签名 - 以文件回复时，文件指纹（digest），参与签名
+* without file - just sort, concat and sign the parameters except the file
+* with file - submit with `field.sum`=`file fingerprint` as parameter, involved in signature
+* Response signature - file fingerprint (digest) when replying with a file, involved in signature
 
-因文件内容的指纹仅为了其完整性，所以仅需Digest算法，不需要Hmac算法，
-同时为了避免混淆HMAC-SHA256，内容指纹也没有支持Sha256算法。
+Since the fingerprint of the file is only for its content completeness, only the Digest algorithm
+is needed, not the Hmac algorithm. Also to avoid confusion with HMAC-SHA256, the content fingerprint
+does not support the Sha256 algorithm.
 
-可以看出，在ApiAuth中，文件是作为消息的附件存在的，是一种可选项，
-Hmac为了验证身份，而Digest仅为了完成性。同时考虑文件体积一般较大，
-所以Digest也自动对超过指定大小的文件，放弃指纹和验证。
+It can be seen that in ApiAuth, the file is optional as an attachment to the message.
+Hmac in order to verify the identity, while Digest is only for completeness.
+Also considering that files are generally large in size, so Digest also automatically skip
+fingerprint and verification for files that exceed the specified size.
 
-以下是java伪代码，及演示的shell命令，文件的指纹是以二进制读取的
+Here is the java pseudo-code, and the demo shell command, where the fingerprint of the file is read in binary
 
 ```java
 final TreeMap<String, Object> queryString = new TreeMap<>();
-queryString.put("query", "string"); // 普通参数
-// md5sum trydofor.txt # 假设第1个文件，form的字段为file1
+queryString.put("query", "string"); // normal para
+// md5sum trydofor.txt # suppose the 1st file, the field of form is file1
 queryString.put("file1.sum", "EE048AF1B8AB675654DDB522F6575909");
-// sha1sum trydofor.txt # 假设第2个文件，form的字段为file2
+// sha1sum trydofor.txt # suppose the 2nd file, the field of form is file2
 queryString.put("file2.sum", "62FC6660706728022C6B5FF4AAA03D9E8C30F830");
 ```
 
-当下载文件时，以`application/octet-stream`输出，内容签名为header的signature
+When downloading files, response as `application/octet-stream`, content signed in header signature
 
-* 无签名 - 历史兼容，不需要验证
-* MD5签名 - request的签名算法为MD5
-* SHA1签名 - request的签名算法为SHA1
+* No signature - history compatible, no verification required
+* MD5 signature - the request is MD5 signature
+* SHA1 signature - the request is SHA1 signature
 
-一般规则为，存在signature的header时，就进行验签，算法根据长度判断。
+The general rule is that the signature is verified when the header of the signature exists,
+and the algorithm is chosen according to the length.
 
 ## 4F.3.Signature Api
 
-同时支持PostJson和PostFile模式，便是ApiAuth，其参与者和大概流程如下，
+ApiAuth supports both PostJson and PostFile models, has the following participants and approximate process
 
-* 服务商 - ApiAuth的提供者，server
-* 客户端 - ApiAuth的使用者，client
-* client - 服务商生成固定不变的clientId
-* secret - 服务商生成或客户端写入clientSecret
+* service provider - the provider of ApiAuth
+* client side - the user of ApiAuth
+* client - a fixed clientId generated by the service provider
+* secret - service provider generates or client writes clientSecret
 
-现假设，服务商和客户端的配置如下，
+Now assume that the service provider and client side are configured as follows.
 
 ```java
-// 服务地址为 https://wings.fessional.pro/api/test.json
+// server https://wings.fessional.pro/api/test.json
 String client = "wings-trydofor";
 String secret = "高密级";
 ```
 
-### 发送Json
+### Post Json
 
-根据`PostJson模式`中的java伪代码假设，则客户端准备的数据为
+According to the java pseudo-code assumptions in the `PostJson` model,
+then the data prepared by the client side is,
 
 ```java
 final String para = "query=string";
@@ -180,7 +192,7 @@ final String signData = para + body + secret + timestamp;
 final HmacHelp hmac256 = HmacHelp.sha256(secret.getBytes(StandardCharsets.UTF_8));
 final String signature = hmac256.sum(signData);
 ```
-发送http post请求数据如下，
+http post data as follows,
 
 ```bash
 curl -i -X POST \
@@ -192,12 +204,12 @@ curl -i -X POST \
  'https://wings.fessional.pro/api/test.json?query=string'
 ```
 
-### 接收Json
+### Receive Json
 
-服务端，大概实现以下方法，收到客户端请求，
+The server side, presumably have the following method to receive the client request,
 
 ```java
-// 举例说明，非最优写法
+// example only, non-optimal
 @PostMapping(value = "/api/test.json", consumes = MediaType.APPLICATION_JSON_VALUE)
 public ResponseEntity<String> testJsonApi(
     @RequestHeader("Auth-Client") String client,
@@ -208,33 +220,33 @@ public ResponseEntity<String> testJsonApi(
 )
 ```
 
-再进行身份验证，指纹，签名验证等，步骤大概如下，
+Then perform authentication, fingerprinting, signature verification, etc., the steps are roughly as follows
 
-* 获取client身份及secret信息
-* 构造signData，timestamp=null时不参与
-* 根据signature长度，对signData自动签名
-* 验证signature是否正确
-* 进行body反序列化，构造业务数据
+* Get client identity and secret information
+* Construct the signatureData, timestamp=null is not involved
+* Automatically sign the signatureData according to the length of the signature.
+* Verify that the signature is correct.
+* Perform body deserialization and construct business data
 
-正常业务结束时，response的步骤如下，
+At the end of normal business, the steps of response are as follows.
 
-* 业务处理结果，进行json序列化，作为body1
-* 用request的方法签名，sign1=sign(body1 + secret + timestamp)
-* 设置头 `Content-Type: application/json`
-* 设置头 `Auth-Client: ${client}`
-* 设置头 `Auth-Signature: ${sign1}`
-* 设置头 `Auth-Timestamp: ${timestamp}`，如果有
+* business processing result, json serialization, as body1
+* Sign with the method of request, sign1 = sign(body1 + secret + timestamp)
+* Set the header `Content-Type: application/json`
+* Set header `Auth-Client: ${client}`
+* Set header `Auth-Signature: ${sign1}`
+* Set the header `Auth-Timestamp: ${timestamp}`, if any
 * response body1
-* 客户端收到response，进行验签，及后续业务
+* The client receives the response, verifies the signature, and subsequent operations
 
-### 发送File
+### Post File
 
 ```java
-// 放入文件名及其内容的指纹
-queryString.put("file1.sum", "EE048AF1B8AB675654DDB522F6575909"); // 文件指纹
+// put the file name and its contents fingerprint
+queryString.put("file1.sum", "EE048AF1B8AB675654DDB522F6575909"); // fingerprint
 assertEquals("file1.sum=EE048AF1B8AB675654DDB522F6575909&query=string", para);
 
-// 没有Body，使用了文件指纹代替
+// no Body, use file fingerprint instead
 final String signData = para + secret + timestamp;
 assertEquals("file1.sum=EE048AF1B8AB675654DDB522F6575909&query=string高密级1668167709172", signData);
 // echo -n 'file1.sum=EE048AF1B8AB675654DDB522F6575909&query=string高密级1668167709172' > goodman.txt
@@ -246,7 +258,7 @@ assertEquals("98FC3ADF6CE1DAC02C9C377FF6625B10B98546667A1A8905799CDC2B8EF9B0C2",
 // hmac256 高密级 goodman.txt
 ```
 
-发送文件
+post file
 
 ```bash
 curl -i -X POST \
@@ -258,77 +270,81 @@ curl -i -X POST \
  'https://wings.fessional.pro/api/test.json?query=string&file1.sum=EE048AF1B8AB675654DDB522F6575909'
 ```
 
-* Kv业务参数，扁平化为Form的字段提交，并参与签名
-* 多个文件对应多个的File字段，一对一且唯一，比如`file1..n`
-* Json业务主体，以名为`FILE_JSON_BODY`提交，可对内容做指纹
-* 同时提交多个文件，也发送Json的情况，即结合以上2条
+* Kv business parameters, flattened to Form fields submitted and involved in the signature
+* Multiple files have multiple File fields, one-to-one and unique, such as `file1..n`
+* Json business body, submitted as `FILE_JSON_BODY`, can do fingerprinting of the content
+* Simultaneous submission of multiple files, also send Json case, that is, combined with the above 2
 
-### 接受File
+### Receive File
 
-服务器端接受`multipart/form-data`，并通过file接收文件，para接收指纹。
+The server side accepts `multipart/form-data` and receives the file via `file` and the fingerprint via `param`.
 
 ```java
-// 举例说明，非最优写法
+// example only, non-optimal
 @PostMapping(value = "/api/test.json", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 public ResponseEntity<String> testFileApi(
     @RequestHeader("Auth-Client") String client,
     @RequestHeader("Auth-Signature") String signature,
     @RequestHeader(value = "Auth-Timestamp", required = false) Long timestamp,
     @RequestParam Map<String, String> para,
-    @RequestParam Map<String, MultipartFile> file //注意此处
+    @RequestParam Map<String, MultipartFile> file // Notice here
 )
 ```
 
-构造签名验证时，除了增加以下文件验签部分，和Json部分一样，
+When constructing the signature verification, it is the same as the Json part,
+except that the following file verification part is added
 
-* 以file中的key，构造`${key}.sum`到param中查找指纹
-* 若存在指纹，验证file中的MultipartFile内容，错误则403
+* Take the key in `file`, construct `${key}.sum` to find the fingerprint in `param`
+* If the fingerprint exists, verify the content of the MultipartFile in the `file`, and 403 for errors.
 
-response文件时，不对body直接签名，增加以下步骤外，和Json部分一样。
+Response file, do not sign the body directly, except adding the following steps, the Json part are the same.
 
-* 业务侧返回文件，记作bytes，对其做指纹，记作digest，
-* 若是File请求且有文件指纹，则采用相同指纹算法
-* 若是Json请求且有json的`Auth-Digest`，则以相同指纹算法
-* 超大size不做digest，请求中无指纹时，也不做指纹
-* 用request的方法签名，sign1=sign(digest + secret + timestamp)
-* 设置头 `Content-Type: application/octet-stream`
-* 设置头 `Content-Disposition: attachment; filename="filename.jpg"`
-* 设置头 `Auth-Digest: ${digest}`
-* 客户端收到文件是，先验签digest，再验签Signature，及后续业务
+* The business side returns the file, noted as bytes, and fingerprints it, noted as digest.
+* If it is a File request and has a file fingerprint, the same fingerprinting algorithm is used
+* If it is a Json request and has json `Auth-Digest`, then the same fingerprint algorithm is used
+* no digest for oversize, and no fingerprint when there is no fingerprint in the request
+* sign with method from request, sign1 = sign(digest + secret + timestamp)
+* Set the header `Content-Type: application/octet-stream`
+* Set header `Content-Disposition: attachment; filename="filename.jpg"`
+* Set header `Auth-Digest: ${digest}`
+* The client receives the file and checks the digest first, then the Signature, and subsequent operations
 
-`Auth-Digest`一定是业务主体（请求的Json或应答的文件）的指纹，有时可以省略，
+`Auth-Digest` must be the fingerprint of the business body (requested Json or response file), sometimes it can be omitted
 
-* JsonJson - 可以省略，因签名中已包括Json验证
-* JsonFile - 若应答时需求指纹，则请求要对Json设置指纹
-* FileFile - 请求的指纹在`*.sum`的Param中，应答时按需设置
-* FileJson - 请求的指纹在`*.sum`的Param中，应答时不需要
+* JsonJson - can be omitted, as the signature already includes Json verification
+* JsonFile - if the fingerprint is required for the response, the request has to set the fingerprint on the Json
+* FileFile - the fingerprint of the request is in the Param of `*.sum`, set on demand when response
+* FileJson - the fingerprint of the request is in the Param of `*.sum`, not required on response
 
 ## 4F.4.OAuth Api
 
-若不希望以client作为身份标识的时候，可以使用OAuth的AccessToken代替，
+If you don't want to use client as the identity, you can use OAuth's AccessToken instead.
 
-假设client的id为`wings-trydofor`，AccesssToken为`win-access-token`，
-原`Auth-Client:wings-trydofor`变为`Auth-Client:win-access-token`
+Suppose the client's id is `wings-trydofor` and the AccessToken is `win-access-token`.
+the original `Auth-Client:wings-trydofor` becomes `Auth-Client:win-access-token`
 
-### OAuth功能
+### OAuth functionality
 
-在WarlockShadow中，以Ticket模拟了OAuth的授权码模式，默认开启，但不能使用。
+In WarlockShadow, the authorization code mode of OAuth is simulated with Ticket,
+which is enabled by default but not available.
 
-* SimpleOauthController - 发行及回收ticket
-* wings.warlock.urlmap.oauth-# - url配置
-* wings-warlock-ticket-77.properties - ticket属性设置
-* spring.wings.warlock.enabled.controller-oauth - 模块开关
+* SimpleOauthController - issue and revoke tickets
+* wings.warlock.urlmap.oauth-# - url configuration
+* wings-warlock-ticket-77.properties - ticket property settings
+* spring.wings.warlock.enabled.controller-oauth - module switch
 
-使用此功能，需要手动自定client配置，或自行实现其他加载机制，如数据库。
+To use this feature, you need to manually customize the client configuration or
+implement your own loader, such as a database.
 
-### 获取Token
+### Get Token
 
-支持OAuth的authorization_code和client_credentials模式，根据code参数的有无自动切换。
+Support OAuth authorization_code and client_credentials type, automatically switching according to
+the presence or absence of the `code` parameter.
 
-* authorization_code - client使用其他user的资源
-* client_credentials - client使用自己的资源，Api推荐
+* authorization_code - client uses other user's resources
+* client_credentials - client uses its own resources, Api recommended
 
-#### authorization_code模式
+#### authorization_code
 
 ```bash
 curl -X 'GET' \
@@ -338,7 +354,8 @@ curl -X 'GET' \
 -H 'accept: application/json'
 ```
 
-取得code，并在有效期内，换取token。此处仅测试功能，默认得到授权，正常业务，需要用户通过授权的确认页面。
+Get the code, and within the validity period, exchange for token. here only test function,
+get default authorization, normal business, need user to confirm on  authorization page.
 
 ```json
 {
@@ -348,9 +365,9 @@ curl -X 'GET' \
 }
 ```
 
-#### client_credentials模式或code的后续步骤
+#### Subsequent of client_credentials or code
 
-使用上一步的code，如没有code（没有或空值）等于client_credentials模式
+Use the code from the previous step, if no code (no or empty value) equals client_credentials type.
 
 ```bash
 curl -X 'POST' \
@@ -361,7 +378,7 @@ curl -X 'POST' \
 -H 'accept: application/json'
 ```
 
-得到access_token，可以在有效期内获取新token，注意没有refresh_token
+Get access_token, you can get a new token within the validity period, note that there is no refresh_token
 
 ```json
 {
@@ -371,9 +388,9 @@ curl -X 'POST' \
 }
 ```
 
-### 吊销Token
+### Revoke Token
 
-revoke任意token，会使改账号下所有小于当前序号的token失效。
+Revoke any token will invalidate all tokens that are smaller than the current serial number under that account.
 
 ```bash
 curl -X 'POST' \
@@ -387,10 +404,11 @@ curl -X 'POST' \
 
 ## 4F.5.OkHttpClient
 
-若第三方Api没有SDK，需要走Http调用，推荐使用OkHttp，Wings也做了以下的封装，
+If the 3rd Api does not have SDK and needs Http calls, it is recommended to use OkHttp,
+and Wings also made the following utility.
 
-* OkHttpClientHelper - 可获得Wings配置好的HttpClient及辅助方法
-* OkHttpTokenClient - 自动完成基于Header的Token验证功能
-* OkHttpTokenizeLogin - 传统Form登录的Token验证
-* OkHttpTokenizeOauth - OAuth2的Token验证
-* OkHttpRedirectNopInterceptor - 在follow重定向时，是否可暂时不follow
+* OkHttpClientHelper - can get the Wings configured HttpClient and helper methods
+* OkHttpTokenClient - automatically complete the Header-based Token authentication
+* OkHttpTokenizeLogin - Token validation for traditional Form login
+* OkHttpTokenizeOauth - Token authentication for OAuth2
+* OkHttpRedirectNopInterceptor - Whether to temporarily not follow when follow redirects
