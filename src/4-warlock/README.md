@@ -70,10 +70,10 @@ WebSecurity在SpringBoot(3.0以前)需要继承Adapter实现配置，其约束�
 
 ## 4.5.更多章节
 
-* [集成登录](4a-authn.md) - 多种登录方式，身份验证和令牌策略
-* [组合授权](4b-authz.md) - 权限(Perm)和角色(Role)的令牌体系
-* [安全定制](4c-security.md) - 定制登录，验证，授权
-* [动态调节](4e-tweak.md) - 全局及线程级调试时间，日志和异常
-* [对外Api](4f-api-oauth.md) - 限定功能的对外Api
-* [调用计时](4g-watching.md) - 对慢请求做计时及日志
-* [联合登录](4h-uni-auth.md) - 在wings应用能实现联合登录
+* [集成登录](./4a-authn.md) - 多种登录方式，身份验证和令牌策略
+* [组合授权](./4b-authz.md) - 权限(Perm)和角色(Role)的令牌体系
+* [安全定制](./4c-security.md) - 定制登录，验证，授权
+* [动态调节](./4e-tweak.md) - 全局及线程级调试时间，日志和异常
+* [对外Api](./4f-api-oauth.md) - 限定功能的对外Api
+* [调用计时](./4g-watching.md) - 对慢请求做计时及日志
+* [联合登录](./4h-uni-auth.md) - 在wings应用能实现联合登录

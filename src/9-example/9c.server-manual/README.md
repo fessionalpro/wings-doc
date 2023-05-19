@@ -9,6 +9,6 @@ category:
 
 # 9C.服务运维手册
 
-* [备份及恢复mysql](9c1.mysql-dump-restore.md)
-* [记录和重放请求](9c2.request-record-replay.md)
-* [管理Sonatype OSSRH](9c3.sonatype-maven.md)
+* [备份及恢复mysql](./9c1.mysql-dump-restore.md)
+* [记录和重放请求](./9c2.request-record-replay.md)
+* [管理Sonatype OSSRH](./9c3.sonatype-maven.md)

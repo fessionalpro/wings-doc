@@ -93,11 +93,11 @@ Wings由多个子项目构成，都采用了Dota有关的命名，主要包括�
 
 ## 0.5.更多章节
 
-* [编码风格](0a-code-style.md) -  价值观，编码哲学，编码风格
-* [RestHalf规范](0b-rest-half.md) - 场景化业务的URL规范
-* [开发工具](0c-dev-tool.md) - 工欲善其事，必先利其器
-* [开发运维](0d-qa-devops.md) - 编码开发，线上运行等话题
-* [配置话题](0e-qa-config.md) - maven，properties，spring的配置话题
-* [其他话题](0f-qa-others.md) - 未归类的话题
-* [幽灵船模型](0g-ghost-ship.md) - wings功能的基本构建模型
-* [属性配置](0h-prop-index.md) - wings所有的属性配置
+* [编码风格](./0a-code-style.md) -  价值观，编码哲学，编码风格
+* [RestHalf规范](./0b-rest-half.md) - 场景化业务的URL规范
+* [开发工具](./0c-dev-tool.md) - 工欲善其事，必先利其器
+* [开发运维](./0d-qa-devops.md) - 编码开发，线上运行等话题
+* [配置话题](./0e-qa-config.md) - maven，properties，spring的配置话题
+* [其他话题](./0f-qa-others.md) - 未归类的话题
+* [幽灵船模型](./0g-ghost-ship.md) - wings功能的基本构建模型
+* [属性配置](./0h-prop-index.md) - wings所有的属性配置

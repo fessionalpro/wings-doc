@@ -23,7 +23,7 @@ Creating tables are dangerous operations and disabled by default, depending on t
 
 ## 8.2.Related Projects
 
-* [Tiny Task](8a-tinytask.md) - Tasks based on database that can be started and stopped
-* [Tiny Task Properties](8b-prop-tinytask.md) - Properties of the Tiny Task
-* [Tiny Mail](8c-tinymail.md) - Mails based on database with some transactional features
-* [Tiny Mail Properties](8d-prop-tinymail.md) - Properties of the Tiny Mail
+* [Tiny Task](./8a-tinytask.md) - Tasks based on database that can be started and stopped
+* [Tiny Task Properties](./8b-prop-tinytask.md) - Properties of the Tiny Task
+* [Tiny Mail](./8c-tinymail.md) - Mails based on database with some transactional features
+* [Tiny Mail Properties](./8d-prop-tinymail.md) - Properties of the Tiny Mail

@@ -98,11 +98,11 @@ and is abbreviated if no ambiguity, such as curse, flywave, etc.
 
 ## 0.5.More Sections
 
-* [Coding Style](0a-code-style.md) - values, philosophy, style
-* [RestHalf Spec](0b-rest-half.md) - URL spec for scenario-based biz
-* [Dev Tool](0c-dev-tool.md) - To do a good job, sharpen the tools first
-* [DevOps Topics](0d-qa-devops.md) - Coding, operation and other topics
-* [Config Topics](0e-qa-config.md) - maven, properties, spring topics
-* [Other Topics](0f-qa-others.md) - Uncategorized topics
-* [GhostShip Model](0g-ghost-ship.md) - The basic building model for Wings
-* [Properties Index](0h-prop-index.md) - All properties of wings configuration
+* [Coding Style](./0a-code-style.md) - values, philosophy, style
+* [RestHalf Spec](./0b-rest-half.md) - URL spec for scenario-based biz
+* [Dev Tool](./0c-dev-tool.md) - To do a good job, sharpen the tools first
+* [DevOps Topics](./0d-qa-devops.md) - Coding, operation and other topics
+* [Config Topics](./0e-qa-config.md) - maven, properties, spring topics
+* [Other Topics](./0f-qa-others.md) - Uncategorized topics
+* [GhostShip Model](./0g-ghost-ship.md) - The basic building model for Wings
+* [Properties Index](./0h-prop-index.md) - All properties of wings configuration

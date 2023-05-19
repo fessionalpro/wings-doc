@@ -77,10 +77,10 @@ In short, WebSecurity has special beans and its chain calls has sequential requi
 
 ## 4.5.More Sections
 
-* [Integrated Authn](4a-authn.md) - Multiple login, authn and token policies
-* [Combined Authz](4b-authz.md) - Permission(Perm) and Role token system
-* [Customize Security](4c-security.md) - Customize login, authn and authz
-* [Dynamic Tweaking](4e-tweak.md) - Global and thread-level teak time, logging and exceptions
-* [Open Api](4f-api-oauth.md) - External Api with limited functions
-* [Time Watching](4g-watching.md) - Timing and logging of slow requests
-* [Union Login](4h-uni-auth.md) - Association login in wings app union
+* [Integrated Authn](./4a-authn.md) - Multiple login, authn and token policies
+* [Combined Authz](./4b-authz.md) - Permission(Perm) and Role token system
+* [Customize Security](./4c-security.md) - Customize login, authn and authz
+* [Dynamic Tweaking](./4e-tweak.md) - Global and thread-level teak time, logging and exceptions
+* [Open Api](./4f-api-oauth.md) - External Api with limited functions
+* [Time Watching](./4g-watching.md) - Timing and logging of slow requests
+* [Union Login](./4h-uni-auth.md) - Association login in wings app union

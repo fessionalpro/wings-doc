@@ -13,12 +13,12 @@ category:
 
 ## B.1.功能文档
 
-* [米波分则能成](b1.meepo.md)
-* [应用举例](b2.example.md)
-* [语法概要](b3.syntax.md)
-* [执行引擎](b4.engine.md)
-* [函数列表](b5.function.md)
-* [常见问题](b6.question.md)
+* [米波分则能成](./b1.meepo.md)
+* [应用举例](./b2.example.md)
+* [语法概要](./b3.syntax.md)
+* [执行引擎](./b4.engine.md)
+* [函数列表](./b5.function.md)
+* [常见问题](./b6.question.md)
 
 ## B.2.项目链接
 
