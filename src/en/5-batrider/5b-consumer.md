@@ -8,27 +8,27 @@ category:
 
 # 5B.Service Consumer
 
-优先使用Rpc消费服务，也可用RestTemplate简化调用
+Prefer to use the Rpc to consum service, also use RestTemplate to simplify the call.
 
-## 5B.1.消费者约定
+## 5B.1.Consumer Convention
 
-* 令`microserviceName`为`${servicecomb.service.name}`
-* 令`path`为Mapping的全路径，如`/full/path/`
-* Rpc以`SchemaId`和接口定位服务
-* Mvc以rest风格的url定位 `cse://microserviceName/path?querystring`
-* 接口可打包成lib共享，也可自己定义，只要方法签名一致即可
-* `@RpcReference`推荐setter注入(2.8.0)，可用`Invoker.createProxy`
+* Let `microserviceName` be `${servicecomb.service.name}`
+* Let `path` be the full path to the Mapping, e.g. `/full/path/`
+* Rpc locates the service with `SchemaId` and interface
+* Mvc locates the service with a rest-style url `cse://microserviceName/path?querystring`
+* Interfaces can be packaged as lib shares or defined by yourself, just make sure the same method signatures
+* `@RpcReference` recommends setter injection (2.8.0), also use `Invoker.createProxy`
 
-## 5B.2.消费方式转换
+## 5B.2.Consume Style Conversion
 
-以调用winx-api的sayHello为例，其配置如下，
+Take the call to winx-api's sayHello as an example, its configuration is as follows.
 
 * `servicecomb.service.name`=`winx-api`
-* `schemaId`为`@RestSchema(schemaId = "winx-hello")`
-* base path为`@RequestMapping(path = "/")`
-* path为`@RequestMapping(path = "/winx-hello/say-hello")`
+* `schemaId` is `@RestSchema(schemaId = "winx-hello")`
+* base path is `@RequestMapping(path = "/")`
+* path is `@RequestMapping(path = "/winx-hello/say-hello")`
 
-其自动生成的swagger摘要信息如下
+The summary of the auto-generation swagger information is as follows,
 
 ```yml
 basePath: "/"
@@ -47,16 +47,16 @@ paths:
         type: "string"
 ```
 
-以下的调用方式都可以访问此服务，
+This service can be accessed by the following call style.
 
 * `@RpcReference(microserviceName = "winx-api", schemaId = "winx-hello")`
 * restTemplate `cse://winx-api/winx-hello/say-hello?name=bbb`
-* 有验证 `http://localhost:8095/servcomber/winx-hello/say-hello?name=null`
-* 无验证 `http://localhost:8085/servcomber/batrider-hello/say-hello?name=undefined`
+* with auth `http://localhost:8095/servcomber/winx-hello/say-hello?name=null`
+* witout auth `http://localhost:8085/servcomber/batrider-hello/say-hello?name=undefined`
 
-通过观察`OperationLocator`可以确认，他们的区别如下，
+Tracing the `OperationLocator`, we find the difference as follows.
 
-* Rpc根据microserviceName和schemaId以及方法operationId定位
-* restTemplate通过microserviceName和path定位
-* broswer http 通过endpoint的ip端口，rest前缀和path定位
-* path为`basePath`+`paths`，basePath默认为`/`
+* Rpc locates by microserviceName, schemaId and method operationId
+* restTemplate is located by microserviceName and path
+* broswer http is located by endpoint ip and port, rest prefix and path
+* path is `basePath` + `paths`, basePath is `/` by default

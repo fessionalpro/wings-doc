@@ -42,6 +42,7 @@ log_bin_trust_function_creators = 1
 binlog-format               = MIXED
 ## local
 innodb_file_per_table       = 1
+innodb_strict_mode          = 0
 #skip_grant_tables
 EOF
 

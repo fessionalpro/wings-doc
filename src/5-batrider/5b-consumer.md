@@ -17,7 +17,7 @@ category:
 * Rpc以`SchemaId`和接口定位服务
 * Mvc以rest风格的url定位 `cse://microserviceName/path?querystring`
 * 接口可打包成lib共享，也可自己定义，只要方法签名一致即可
-* `@RpcReference`推荐setter注入(2.8.0)，可用`Invoker.createProxy`
+* `@RpcReference`推荐setter注入(2.8.0)，也可用`Invoker.createProxy`
 
 ## 5B.2.消费方式转换
 
