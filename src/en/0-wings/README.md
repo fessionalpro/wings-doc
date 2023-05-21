@@ -61,7 +61,7 @@ Follows the Unix philosophy and partially answers `why` and `why not`?
   strong type empowered by the IDE, hard to write complex SQL, good for RW split and microservice.
 * Kotlin - Assisted language, as a better java than `scala`, use only in the flywave subproject.
   we still advocate "eat less sugar, write good java"
-* WebMvc - Although `webflux` has better design and performance than serverlet,
+* WebMvc - Although `webflux` has better design and performance than servlet,
   the TX scenario is currently more of blocking IO, multi-threaded.
 * Lombok - Make java code simple, aslo with the experimental feature, need to add them to pom manually.
 * Git-flow - Best practices for git management.
@@ -98,11 +98,11 @@ and is abbreviated if no ambiguity, such as curse, flywave, etc.
 
 ## 0.5.More Sections
 
-* [Coding Style](0a-code-style.md) - values, philosophy, style
-* [RestHalf Spec](0b-rest-half.md) - URL spec for scenario-based biz
-* [Dev Tool](0c-dev-tool.md) - To do a good job, sharpen the tools first
-* [DevOps Topics](0d-qa-devops.md) - Coding, operation and other topics
-* [Config Topics](0e-qa-config.md) - maven, properties, spring topics
-* [Other Topics](0f-qa-others.md) - Uncategorized topics
-* [GhostShip Model](0g-ghost-ship.md) - The basic building model for Wings
-* [Properties Index](0h-prop-index.md) - All properties of wings configuration
+* [Coding Style](./0a-code-style.md) - values, philosophy, style
+* [RestHalf Spec](./0b-rest-half.md) - URL spec for scenario-based biz
+* [Dev Tool](./0c-dev-tool.md) - To do a good job, sharpen the tools first
+* [DevOps Topics](./0d-qa-devops.md) - Coding, operation and other topics
+* [Config Topics](./0e-qa-config.md) - maven, properties, spring topics
+* [Other Topics](./0f-qa-others.md) - Uncategorized topics
+* [GhostShip Model](./0g-ghost-ship.md) - The basic building model for Wings
+* [Properties Index](./0h-prop-index.md) - All properties of wings configuration

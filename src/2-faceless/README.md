@@ -41,11 +41,11 @@ i18n可以使用CombinableMessageSource动态添加，处理service内消息的�
 
 ## 2.3.更多章节
 
-* [表和数据的版本](2a-flywave.md) -  以Sql和Git为核心，绑定表结构和代码关系
-* [强类型及DSL能力](2b-jooq.md) - 从数据库生成强类型代码：pojo, dao
-* [按需分表分库](2c-shard.md) - 完成数据的分表分库功能，平稳处理大数据量
-* [Mysql体系的知识](2d-mysql-h2.md) - Mysql系数据库有关知识
-* [Flywave话题](2e-qa-flywave.md) - Flywave版本及日志表有关
-* [Jooq使用话题](2f-qa-jooq.md) - Jooq有关的话题
-* [分表分库话题](2g-qa-shard.md) - Sharding有关的话题
-* [时间和时区](2h-time-zone.md) - 和数据库有关的时间和时区
+* [表和数据的版本](./2a-flywave.md) -  以Sql和Git为核心，绑定表结构和代码关系
+* [强类型及DSL能力](./2b-jooq.md) - 从数据库生成强类型代码：pojo, dao
+* [按需分表分库](./2c-shard.md) - 完成数据的分表分库功能，平稳处理大数据量
+* [Mysql体系的知识](./2d-mysql-h2.md) - Mysql系数据库有关知识
+* [Flywave话题](./2e-qa-flywave.md) - Flywave版本及日志表有关
+* [Jooq使用话题](./2f-qa-jooq.md) - Jooq有关的话题
+* [分表分库话题](./2g-qa-shard.md) - Sharding有关的话题
+* [时间和时区](./2h-time-zone.md) - 和数据库有关的时间和时区

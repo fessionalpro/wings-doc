@@ -101,7 +101,7 @@ Injection rules when extending a parent class (the class cannot know its subclas
 
 ## 0A.5.RequestMapping Style
 
-Url naming is mainly scenario-based prefixes, see [RestHalf](0b-rest-half.md).
+Url naming is mainly scenario-based prefixes, see [RestHalf](./0b-rest-half.md).
 
 * Full path on method `@RequestMapping("/a/b/c.html")`
 * Version on the controller `@RequestMapping("/v1")`

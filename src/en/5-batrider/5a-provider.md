@@ -8,33 +8,33 @@ category:
 
 # 5A.Serivce Provider
 
-使用SpringMvc注解提供服务，并支持同Mvc同时提供服务
+Use SpringMvc annotations to provide services and cowork with WebMvc.
 
-## 5A.1.提供者约定
+## 5A.1.Provider Convention
 
-* 纯接口和pojo定义契约，避免多态，如`HelloContract`
-* `SchemaId`和`path`均为烤串命名法，即小写连字符
-* 包工头`@RestSchema`实现契约，如`HelloContractor`
-* 若有多态方法，以不同的path后缀区分，path全局唯一
-* 仅使用`@RestSchema`，禁止扫描`@RestController`
+* Pure interface and pojo definition the `contract` to avoid Overloading, e.g. `HelloContract`
+* `SchemaId` and `path` are kebab-case, i.e. lowercase hyphens
+* Contractor `@RestSchema` implements the `contract`, such as `HelloContractor`
+* Overloading methods are identified by different suffixes, path is globally unique
+* Use only `@RestSchema`, disable scanning of `@RestController`
 
-## 5A.2.数据类型约定
+## 5A.2.DataType Convention
 
-数据类型，以Wings的Json约定为准，避免使用复杂类型及结构。
+Data type follow the Json convention of Wings to avoid using complex types and structures.
 
-纯String作为body时，Request的consumes和Response的produces
-都需要使用`MediaType.TEXT_PLAIN_VALUE`，这一点和Spring不同。
+When pure String is used as body, both Request's `consumes` and Response's `produces` must use
+`MediaType.TEXT_PLAIN_VALUE`, which is different from Spring.
 
-## 5A.3.契约风格约定
+## 5A.3.Contract Style
 
-契约有Mvc和Rpc两种风格，都可以方便定位和理解。
+The contract is available in both Mvc and Rpc styles, both of which can be easily located and understood.
 
-### Mvc风格，basePath为根路径
+### Mvc Style, Root is BasePath
 
-同wings中Controller及RequestMapping约定一致。
+Consistent with the Controller and RequestMapping conventions in wings.
 
-* 类上的basePath为`/`或`/v1`，即根路径或版本号
-* 方法的`@RequestMapping`为全路径，以`SchemaId`开头
+* The basePath on the class is `/` or `/v1`, i.e. root path or version
+* `@RequestMapping` of the method is the full path, starting with `SchemaId`.
 
 ```java
 @RestSchema(schemaId = "batrider-hello")
@@ -51,9 +51,9 @@ public class BatriderContractor implements HelloContract {
 }
 ```
 
-### Rpc风格，basePath指定SchemaId
+### Rpc Style, SchemaId is basePath
 
-通过IDE类型更容易定位，把SchemaId置于契约接口上，
+Easier to locate by IDE association, placing the SchemaId in the contract interface
 
 ```java
 public interface HelloContract {
@@ -62,7 +62,7 @@ public interface HelloContract {
 }
 ```
 
-在实现类，提供者直接使用契约上的SchemaId
+In the implementation, the provider uses the contract's SchemaId directly
 
 ```java
 @RestSchema(schemaId = HelloContract.SchemaId)

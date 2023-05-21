@@ -12,13 +12,14 @@ category:
 
 ## 4D.1.spring-wings-enabled-77.properties
 
-### spring.wings.faceless.enabled.enumi18n
+设置以下属性，
 
-`Boolean`=`true`，打开enumi18n
+* spring.wings.faceless.enabled.enumi18n=true
+* spring.wings.faceless.flywave.enabled.module=true
 
-### spring.wings.faceless.flywave.enabled.module
+### spring.wings.warlock.enabled.autoconf
 
-`Boolean`=`true`，打开flywave module
+`Boolean`=`true`，是否启动自动配置。
 
 ### spring.wings.warlock.enabled.security-auto
 
@@ -92,9 +93,9 @@ category:
 
 `Boolean`=`true`，是否支持 AuthAppPermChecker
 
-### spring.wings.warlock.enabled.all-exception-handler
+### spring.wings.warlock.enabled.default-exception-handler
 
-`Boolean`=`true`，是否注入 AllExceptionResolver
+`Boolean`=`true`，是否注入 DefaultExceptionResolver
 
 ### spring.wings.warlock.enabled.code-exception-handler
 
@@ -151,6 +152,10 @@ category:
 ### spring.wings.warlock.enabled.watching
 
 `Boolean`=`false`，是否支持计时分析
+
+### spring.wings.warlock.enabled.uniauth
+
+`Boolean`=`false`，是否支持联合登录
 
 ## 4D.2.wings-flywave-fit-79.properties
 
@@ -667,7 +672,7 @@ Controller中RequestMapping的URL常量
 
 * controller层由Interceptor实现
 * service依赖注解 @Watching
-* jooq层，依赖于lisenter
+* jooq层，依赖于listener
 
 ### wings.warlock.watching.jooq-threshold
 

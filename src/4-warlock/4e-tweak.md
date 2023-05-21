@@ -31,7 +31,7 @@ category:
 * 任何需要调试的日期，都应该从Now取值
 
 在Slardar中，通过TerminalIterceptor设置TerminalContext，
-此时，通过TweakEventListener及对应的事件，可完成但应用或集群的调试控制。
+此时，通过TweakEventListener及对应的事件，可完成单应用或集群的调试控制。
 
 OkHttpTweakLogInterceptor可以使okhttp日志与TweakLogger联动
 
@@ -41,8 +41,8 @@ OkHttpTweakLogInterceptor可以使okhttp日志与TweakLogger联动
 
 ## 4E.3.注意事项
 
-线程级调试，主要基于TransmittableThreadLocal自动完成，使用时要准寻其约定，
-尤其在Wings配置的线程池外，自行启动线程，需要主要Context复制，避免丢失。
+线程级调试，主要基于TransmittableThreadLocal自动完成，使用时要遵守其约定，
+尤其在Wings配置的线程池外，自行启动的线程，需要注意Context复制，避免丢失。
 
 业务中的日期时间，尽量使用Now，其性能损失非常小，却可以为业务代理穿越时间线的能力。
 不用轻易调制系统时钟，避免造成事件混乱，甚至启动时检查失败。

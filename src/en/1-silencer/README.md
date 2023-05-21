@@ -31,6 +31,6 @@ and the highest priority value is provided to the application as the configurati
 
 ## 1.3.More Sections
 
-* [Auto Cascade Config](1a-wings-conf.md) - splitting, overriding, disabling and profiling
-* [Auto I18n Message](1b-wings-i18n.md) - like Config, auto and dynamic config I18n
-* [Auto Config Mechanism](1c-spring-auto.md) - how to auto config with SpringBoot's principle
+* [Auto Cascade Config](./1a-wings-conf.md) - splitting, overriding, disabling and profiling
+* [Auto I18n Message](./1b-wings-i18n.md) - like Config, auto and dynamic config I18n
+* [Auto Config Mechanism](./1c-spring-auto.md) - how to auto config with SpringBoot's principle

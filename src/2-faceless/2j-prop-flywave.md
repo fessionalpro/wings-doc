@@ -71,15 +71,13 @@ Flywave的Sql解析设置
 
 `String`=`/* */`，多行注释，开头和结束以空格分开表示
 
-修改表模式，参考 SqlSegmentProcessor.setShardFormat
-
 ### wings.faceless.flywave.sql.format-shard
 
-`String`=`XXX_[0-9]+`，设置分表格式
+`String`=`XXX_[0-9]+`，设置分表格式，参考 SqlSegmentProcessor.setShardFormat
 
 ### wings.faceless.flywave.sql.format-trace
 
-`String`=`XXX(_[0-9]+)?__+[a-z]+`，设置跟踪表格式
+`String`=`XXX(_[0-9]+)?__+[a-z]+`，设置跟踪表格式，参考 SqlSegmentProcessor.setTraceFormat
 
 ## 2j.4.wings-flywave-ver-79.properties
 

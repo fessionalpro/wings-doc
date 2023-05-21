@@ -355,7 +355,7 @@ See wings-dingnotice-79.properties for details
 
 ### wings.slardar.okhttp.retry-failure
 
-`Boolean`=`true`, whether to retry if connect faile.
+`Boolean`=`true`, whether to retry if connect failed.
 
 ### wings.slardar.okhttp.max-idle
 
@@ -382,7 +382,7 @@ See wings-dingnotice-79.properties for details
 Overload protection filter, how to handle fast requests and slow responses. disable by
 default, not recommended as it requires more detailed config to avoid false positives.
 
-### wings.slardar.overload.logger-interval
+### wings.slardar.overload.log-interval
 
 `Long`=`5000`, Logging interval in millis.
 
@@ -461,7 +461,7 @@ Swagger document.
 
 ### wings.slardar.swagger.version
 
-`String`=`${build.version} ${build.time}`
+`String`=`${build.version} ${build.time}`, need enable build info.
 
 ### wings.slardar.swagger.param
 
@@ -511,7 +511,7 @@ It is automatically added to the text eg. @155xxxx
 
 ### wings.slardar.ding-notice.default.webhook-url
 
-`String`=`https://oapi.dingtalk.com/robot/send?access_token=`, template of DingTalk webhool URL.
+`String`=`https://oapi.dingtalk.com/robot/send?access_token=`, template of DingTalk webhook URL.
 
 ### wings.slardar.ding-notice.default.msg-type
 

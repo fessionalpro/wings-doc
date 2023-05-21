@@ -93,6 +93,6 @@ CUD listens to tables and fields, both tables and fields are case-sensitive, def
 
 `Map<String, Set<String>>`, default fields to be ignored by JournalDiff.
 
-Tables are case sensitive, fields are case insensitive, `default` means all tables, otherwise specific tables.
+Tables are case-sensitive, fields are case-insensitive, `default` means all tables, otherwise specific tables.
 
 * `default`=`create_dt,modify_dt,delete_dt,commit_id`

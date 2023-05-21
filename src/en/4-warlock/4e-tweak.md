@@ -8,41 +8,43 @@ category:
 
 # 4E.Dynamic Tweaking
 
-可以在运行时，按全局或线程级别，动态的设置系统时钟，日志级别，异常堆栈。
+The system clock, logging level, and exception stack can be set
+dynamically at runtime, at global or thread level.
 
-## 4E.1.实现原理
+## 4E.1.Underlying Principle
 
-在SilencerCurse模块中，存在以下结构类似的类，用于全局控制
+In the SilencerCurse module, the following structurally similar classes for global control,
 
-* TweakClock - 调试时钟
-* TweakLogger - 调试日志级别，仅限于Logback
-* TweakStack - 调试CodeException的异常堆栈
+* TweakClock - tweak clock
+* TweakLogger - tweak logging level, limited to Logback
+* TweakStack - tweak stack of CodeException
 
-其原理是，static或ThreadLocal设置参数，按需取得有效值。
+The principle is to set param to static or ThreadLocal to get valid values on demand.
 
-## 4E.2.使用方法
+## 4E.2.Usage
 
-设置好AdminTweakController的URL及其权限，避免滥用，造成不良后果。
+Set up the URL of AdminTweakController and its permissions to avoid misuse and unwanted results.
 
-对于时钟的调试，需要在编码时，需要进行以下替换，
+To tweak the clock, the following substitution is required in the code
 
 * System.currentTimeMillis - Now.millis()
 * java.time.Xxxx.now - Now.xxx()
-* 任何需要调试的日期，都应该从Now取值
+* Any date that needs to be debugged should be taken from Now
 
-在Slardar中，通过TerminalIterceptor设置TerminalContext，
-此时，通过TweakEventListener及对应的事件，可完成但应用或集群的调试控制。
+In Slardar, set the TerminalContext using TerminalIterceptor.
+At this point, through the TweakEventListener and its Event, you can tweak of single application or cluster.
 
-OkHttpTweakLogInterceptor可以使okhttp日志与TweakLogger联动
+OkHttpTweakLogInterceptor can make okhttp log and TweakLogger work together.
 
-而在WarlockShow中，提供了AdminTweakController，可供管理员按用户简单调试。
+And in WarlockShow, AdminTweakController is provided for administrators to easily debug by user.
 
-因系统级全局设置影响较大，Wings中没有提供默认实现。
+Due to the large impact of system-level global settings, no default implementation is provided in Wings.
 
-## 4E.3.注意事项
+## 4E.3.Caution
 
-线程级调试，主要基于TransmittableThreadLocal自动完成，使用时要准寻其约定，
-尤其在Wings配置的线程池外，自行启动线程，需要主要Context复制，避免丢失。
+Thread-level tweaking is mainly based on TransmittableThreadLocal, so its conventions should be
+followed when using it. Especially for threads not from the wings preconfiged thread pool, you need to
+pay attention to Context replication to avoid losing them.
 
-业务中的日期时间，尽量使用Now，其性能损失非常小，却可以为业务代理穿越时间线的能力。
-不用轻易调制系统时钟，避免造成事件混乱，甚至启动时检查失败。
+Date and time in the business, try to use Now, use a very few performance cost can get the ability to cross timeline.
+Try not to tweak the system clock to avoid causing confusion of events or even failure of checks at startup.

@@ -94,7 +94,7 @@ Basic properties of Slardar and Spring
 
 ### spring.wings.slardar.enabled.remote
 
-`Boolean`=`true`, whether to enable terminal Resolver
+`Boolean`=`true`, whether to enable remote Resolver
 
 ### spring.wings.slardar.enabled.locale
 
@@ -119,6 +119,11 @@ Basic properties of Slardar and Spring
 ### spring.wings.slardar.enabled.swagger
 
 `Boolean`=`true`, whether to enable swagger config
+
+## spring.wings.slardar.enabled.mock-hazelcast
+
+`Boolean`=`false`, start as standalone at devtool to reduce cluster impact.
+see <https://github.com/hazelcast/hazelcast-simulator/blob/master/README.md>
 
 ### spring.wings.slardar.enabled.monitor
 

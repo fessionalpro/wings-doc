@@ -32,5 +32,5 @@ then pnpm commands,
 * `.markdownlint.yml` install [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
 * `category` PascalNaming singular noun.
 * `title` PascalNaming without prep.
-* `link` current dir omit `./`
+* `link` should start with `./`, `../`, `/`, `http`
 * `list` level 1-3 use `*`,`+`,`-`

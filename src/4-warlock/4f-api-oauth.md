@@ -8,7 +8,7 @@ category:
 
 # 4F.对外Api
 
-不同于用户登录(BindAuth)，外Api是限定功能的，非SecurityFilter体系。
+不同于用户登录(BindAuth)，对外Api是限定功能的，非SecurityFilter体系。
 
 * BindAuth - 以Filter和Cookie为基础，是传统的Broswer-Server模式，简称BS
 * ApiAuth - 以Token和Signature为基础，是外部的Server-Server模式，简称SS
@@ -265,7 +265,7 @@ curl -i -X POST \
 
 ### 接受File
 
-服务器端接受`multipart/form-data`，并通过file接收文件，para接收指纹。
+服务器端接受`multipart/form-data`，并通过`file`接收文件，`param`接收指纹。
 
 ```java
 // 举例说明，非最优写法
@@ -281,8 +281,8 @@ public ResponseEntity<String> testFileApi(
 
 构造签名验证时，除了增加以下文件验签部分，和Json部分一样，
 
-* 以file中的key，构造`${key}.sum`到param中查找指纹
-* 若存在指纹，验证file中的MultipartFile内容，错误则403
+* 以`file`中的key，构造`${key}.sum`到`param`中查找指纹
+* 若存在指纹，验证`file`中的MultipartFile内容，错误则403
 
 response文件时，不对body直接签名，增加以下步骤外，和Json部分一样。
 
@@ -323,7 +323,7 @@ response文件时，不对body直接签名，增加以下步骤外，和Json部�
 
 ### 获取Token
 
-支持OAuth的authorization_code和client_credentials模式，根据code参数的有无自动切换。
+支持OAuth的authorization_code和client_credentials模式，根据`code`参数的有无自动切换。
 
 * authorization_code - client使用其他user的资源
 * client_credentials - client使用自己的资源，Api推荐
@@ -373,7 +373,7 @@ curl -X 'POST' \
 
 ### 吊销Token
 
-revoke任意token，会使改账号下所有小于当前序号的token失效。
+revoke任意token，会使该账号下所有小于当前序号的token失效。
 
 ```bash
 curl -X 'POST' \

@@ -69,7 +69,7 @@ means cookie with `name` of `b` or `c`, its `domain` is `a.com`
 
 `Map<String, Set<String>>`=`∅`, bind cookie to path
 
-ge. `wings.slardar.cookie.path[/admin]`=`b,c`,
+eg. `wings.slardar.cookie.path[/admin]`=`b,c`,
 means cookie with `name` of `b` or `c`, its `path` is `/admin`
 
 ## 3J.2.wings-datetime-79.properties
@@ -169,18 +169,18 @@ support LocalDate, LocalDateTime, ZonedDateTime, OffsetDateTime, util.Date
 ### wings.slardar.jackson.empty-date-offset
 
 `Integer`=12, considering the time zone offset, and the system time difference
-within plus or minus [12] hours, it is treated as `empty'.
+within plus or minus 12 hours, it is treated as `empty`.
 
 ### wings.slardar.jackson.empty-list
 
-`Boolean`=`false`, whether to ouptut `empty` list.
+`Boolean`=`false`, whether to output `empty` list.
 
-Includes `empty` of Array and java.util.Collection. disabled by default for 3rd  unfriendly.
+Includes `empty` of Array and java.util.Collection. disabled by default for 3rd unfriendly.
 eg. spring-boot-admin's js use `.length` and `key` to check value existence.
 
 ### wings.slardar.jackson.empty-map
 
-`Boolean`=`false`, whether to ouptut `empty` map, includes java.util.Map
+`Boolean`=`false`, whether to output `empty` map, includes java.util.Map
 
 ### wings.slardar.jackson.i18n-result
 
@@ -230,7 +230,7 @@ at runtime according to the separator setting.
 
 * `auto` - auto-match, number below 52bit, string above
 * `true` - force number, ignore WRITE_NUMBERS_AS_STRINGS
-* `false` - force string
+* `false` - force string, avoid loss of precision.
 
 Whether to ignore WRITE_NUMBERS_AS_STRINGS, force to write number, need to pay attention to the
 format compatibility. For example, using bigint in js and setting is auto, the boundary (inclusive)
@@ -318,7 +318,7 @@ setDefaultPasswordEncoderForMatches, If id does not match, use the default decod
 
 ### wings.slardar.passcoder.salt-encoder
 
-`String`=`sha256`, default salting algorithm sha256|sha1|md5
+`String`=`sha256`, default salting algorithm. support sha256|sha1|md5
 
 ### wings.slardar.passcoder.time-deviation=30
 
