@@ -94,7 +94,7 @@ category:
 
 ### spring.wings.slardar.enabled.remote
 
-`Boolean`=`true`，是否开启terminal Resolver
+`Boolean`=`true`，是否开启remote Resolver
 
 ### spring.wings.slardar.enabled.locale
 
@@ -123,6 +123,11 @@ category:
 ### spring.wings.slardar.enabled.monitor
 
 `Boolean`=`true`，是否开启监控
+
+## spring.wings.slardar.enabled.mock-hazelcast
+
+`Boolean`=`false`, 在devtool时，以standalone方式启动，可减少集群影响。
+高级测试，参考 <https://github.com/hazelcast/hazelcast-simulator/blob/master/README.md>
 
 ### spring.wings.slardar.enabled.monitor-jvm
 

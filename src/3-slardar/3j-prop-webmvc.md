@@ -228,7 +228,7 @@ H[:m][:s][.SSS]
 
 * `auto` - 自动适配，52bit以下number，以上string
 * `true` - 强制number，忽略WRITE_NUMBERS_AS_STRINGS
-* `false` - 强制string
+* `false` - 强制string，避免丢失精度
 
 是否忽略WRITE_NUMBERS_AS_STRINGS，强制写number，需要注意format是否兼容。
 例如，在js中用bigint，设置为auto时，边界（含）时会自动切换number和string

@@ -12,7 +12,7 @@ category:
 
 ## 5D.1.spring-servicecomb-79.properties
 
-servicecomb [官方文档](https://servicecomb.apache.org/references/java-chassis/zh_CN/)中的配置
+Apache ServiceComb [官方文档](https://servicecomb.apache.org/references/java-chassis/zh_CN/)中的配置
 
 ### servicecomb.service.application
 
@@ -28,7 +28,7 @@ servicecomb [官方文档](https://servicecomb.apache.org/references/java-chassi
 
 ### servicecomb.service.zero-config.enabled
 
-`Boolean`=`true` 是否使用zero-config服务中心功能
+`Boolean`=`true` 是否使用zero-config作为服务中心
 
 ### servicecomb.service.zero-config.multicast.address
 
@@ -56,7 +56,7 @@ servicecomb [官方文档](https://servicecomb.apache.org/references/java-chassi
 
 ### servicecomb.provider.rest.scanRestController
 
-`Boolean`=`false` 明确区分RestController和@RestSchma
+`Boolean`=`false` 是否扫描RestController，即不和@RestSchma区分
 
 ### servicecomb.handler.chain.Consumer.default
 
@@ -82,4 +82,4 @@ servicecomb [官方文档](https://servicecomb.apache.org/references/java-chassi
 
 ### wings.warlock.security.web-ignore
 
-`Map<String, String>`类型，`servicecomb`=`/servcomber/**` RestSchema的URL不需要serverlet处理
+`Map<String, String>`类型，`servicecomb`=`/servcomber/**` RestSchema的URL不需要servlet处理

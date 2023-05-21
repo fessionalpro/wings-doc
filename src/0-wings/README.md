@@ -58,7 +58,7 @@ Wings由多个子项目构成，都采用了Dota有关的命名，主要包括�
   jooq强类型，可以受到IDE加持；不能写成过于复杂的SQL，有利于分库，分服务。
 * Kotlin - 比`scala`更胜任`更好的java`，目前仅在flywave支撑性项目中用了kotlin，
   而在主要业务场景，仍然主张【少吃糖，写好java】
-* WebMvc - 尽管`webflux`在模型和性能好于serverlet体系，但当前更多的是阻塞IO，多线程场景。
+* WebMvc - 尽管`webflux`在模型和性能好于servlet体系，但当前更多的是阻塞IO，多线程场景。
 * Lombok - 简化代码，使用了Experimental功能，开发时，需要自己在pom中引入。
 * Git-flow - git管理的最佳实践。
 * Guava, commons-lang3, commons-io - 进阶必备的工具包.

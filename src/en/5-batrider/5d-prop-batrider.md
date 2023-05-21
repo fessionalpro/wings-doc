@@ -8,78 +8,80 @@ category:
 
 # 5D.Batrider Properties
 
-有关Batrider微服务的设置
+Properties of servicecomb as microservices.
 
 ## 5D.1.spring-servicecomb-79.properties
 
-servicecomb [官方文档](https://servicecomb.apache.org/references/java-chassis/zh_CN/)中的配置
+Apache ServiceComb [Offical Document](https://servicecomb.apache.org/references/java-chassis/en_US/) Configuration.
 
 ### servicecomb.service.application
 
-`String`=`${spring.application.name:batrider}` 微服务所属的应用名
+`String`=`${spring.application.name:batrider}` the name of the application that microservices belongs to.
 
 ### servicecomb.service.name
 
-`String`=`${spring.application.name:batrider}` 微服务名, 应确保应用内部唯一
+`String`=`${spring.application.name:batrider}` microservice names, which should be unique within the application.
 
 ### servicecomb.service.version
 
-`String`=`0.0.1` 微服务版本号
+`String`=`0.0.1`, microservice version.
 
 ### servicecomb.service.zero-config.enabled
 
-`Boolean`=`true` 是否使用zero-config服务中心功能
+`Boolean`=`true`, whether to use zero-config as the service-center.
 
 ### servicecomb.service.zero-config.multicast.address
 
-`String`=`0.0.0.0:6666` UDP的本地bind地址
+`String`=`0.0.0.0:6666`, address for UDP.
 
 ### servicecomb.service.zero-config.multicast.group
 
-`String`=`225.6.7.8` UDP multicast多播group地址
+`String`=`225.6.7.8`, multicast group address of UDP.
 
 ### servicecomb.service.registry.address
 
-`List<String>`=`http://localhost:30100` 服务中心的地址信息，可以配置多个，用逗号分隔
+`List<String>`=`http://localhost:30100`, service center address,
+multiple addresses separated by commas.
 
 ### servicecomb.rest.address
 
-`String`=`${server.address:localhost}:${server.port}` 服务监听地址，必须配置为与web容器监听相同
+`String`=`${server.address:localhost}:${server.port}`, service listen address,
+must be configured as the same as the web container.
 
 ### servicecomb.rest.servlet.urlPattern
 
-`String`=`/servcomber/*` 与springMvc同时存在路径
+`String`=`/servcomber/*`, coexisting paths with springMvc.
 
 ### server.servlet.path
 
-`String`=`/` SpringMvc默认的路径，冲突时设置，推荐`/mvc/`
+`String`=`/`, default path of SpringMvc, in case of conflict `/mvc/` is recommended.
 
 ### servicecomb.provider.rest.scanRestController
 
-`Boolean`=`false` 明确区分RestController和@RestSchma
+`Boolean`=`false`, whether to scan the RestController, i.e. not distinguish from @RestSchma.
 
 ### servicecomb.handler.chain.Consumer.default
 
-`List<String>`=`loadbalance, auth-consumer` 消费者默认处理链
+`List<String>`=`loadbalance, auth-consumer`, default handler chain of Consumer.
 
 ### servicecomb.handler.chain.Provider.default
 
-`List<String>`=`auth9-provider` 提供者默认处理链
+`List<String>`=`auth9-provider`, default handler chain of Provider.
 
 ## 5D.2.spring-wings-enabled-79.properties
 
 ### spring.wings.batrider.enabled.autoconf
 
-`Boolean`=`true`，是否启动自动配置
+`Boolean`=`true`, whether to enable auto config.
 
 ## 5D.3.wings-servicecomb-79.properties
 
 ### wings.batrider.handler.auth-skip-schema
 
-`Set<String>`=`scb-discovery` 不需要验证的schemaId
+`Set<String>`=`scb-discovery`, which schemaId skip to auth.
 
 ## 5D.4.wings-warlock-security-79.properties
 
 ### wings.warlock.security.web-ignore
 
-`Map<String, String>`类型，`servicecomb`=`/servcomber/**` RestSchema的URL不需要serverlet处理
+`Map<String, String>`, `servicecomb`=`/servcomber/**`, RestSchema URLs without servlet processing.

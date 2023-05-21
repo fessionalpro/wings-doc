@@ -70,15 +70,13 @@ Sql parsing settings for Flywave.
 
 `String`=`/* */`, multi-line comments, start and end with a space
 
-To change the table schema, see SqlSegmentProcessor.setShardFormat.
-
 ### wings.faceless.flywave.sql.format-shard
 
-`String`=`XXX_[0-9]+`, set the shard table format.
+`String`=`XXX_[0-9]+`, set the shard table format. see SqlSegmentProcessor.setShardFormat.
 
 ### wings.faceless.flywave.sql.format-trace
 
-`String`=`XXX(_[0-9]+)?__+[a-z]+`, set the trace table format.
+`String`=`XXX(_[0-9]+)?__+[a-z]+`, set the trace table format. see SqlSegmentProcessor.setTraceFormat
 
 ## 2j.4.wings-flywave-ver-79.properties
 

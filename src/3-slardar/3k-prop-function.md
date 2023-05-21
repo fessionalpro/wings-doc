@@ -381,7 +381,7 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 过载保护过滤器，如何处理快请求和慢响应。默认关闭，因容易误杀，不推荐使用。
 
-### wings.slardar.overload.logger-interval
+### wings.slardar.overload.log-interval
 
 `Long`=`5000`，日志的记录间隔（毫秒）
 
