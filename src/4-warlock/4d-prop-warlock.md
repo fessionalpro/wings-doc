@@ -653,15 +653,21 @@ Controller中RequestMapping的URL常量
 
 ### wings.warlock.apiauth.error-client
 
+Client错误时的应答，
+
 * `http-status`=`401`
 * `message-body`=`{"success":false,"message":"{message}"}`
 
 ### wings.warlock.apiauth.error-signature
 
+签名错误时的应答，
+
 * `http-status`=`403`
 * `message-body`=`{"success":false,"message":"{message}"}`
 
 ### wings.warlock.apiauth.error-unhandled
+
+未知错误时的应答，
 
 * `http-status`=`200`
 * `message-body`=`{"success":false,"message":"{message}"}`

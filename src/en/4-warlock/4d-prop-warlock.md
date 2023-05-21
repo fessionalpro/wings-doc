@@ -318,7 +318,7 @@ Spring Security setting.
 `String`=`/auth/{authType}/login.json`
 
 loginProcessingUrl, the Ant style URL for processing login, handled by filter, no controller required.
-Support  `authType` and `authZone` variables, which can be obtained via param or path (PathPattern)
+Support `authType` and `authZone` variables, which can be obtained via param or path (PathPattern)
 
 ### wings.warlock.security.login-proc-method
 
@@ -450,7 +450,7 @@ merge all matching permissions, wings default app is `wings-default`.
 
 ### wings.warlock.security.nonce-auth-type
 
-`Set<String>`=`username,mobile,email`, which auth-type support Nonce anth.
+`Set<String>`=`username,mobile,email`, which auth-type support Nonce auth.
 
 ### wings.warlock.security.nonce-cache-manager
 
@@ -558,7 +558,7 @@ automatically response based on content-type, requires PathVar `{extName}` `{aut
 
 ### wings.warlock.urlmap.mock-captcha
 
-`String`=`/mock/captcha.json`, mock reposne captcha.
+`String`=`/mock/captcha.json`, mock response captcha.
 
 ### wings.warlock.urlmap.mock-doubler
 
@@ -566,7 +566,7 @@ automatically response based on content-type, requires PathVar `{extName}` `{aut
 
 ### wings.warlock.urlmap.mock-righter
 
-`String`=`/mock/righter.json`, mock anti fogery editing.
+`String`=`/mock/righter.json`, mock anti forgery editing.
 
 ### wings.warlock.urlmap.mock-echo0o0
 
@@ -660,15 +660,21 @@ use this name for the json body and submit it as a File.
 
 ### wings.warlock.apiauth.error-client
 
+response of client error.
+
 * `http-status`=`401`
 * `message-body`=`{"success":false,"message":"{message}"}`
 
 ### wings.warlock.apiauth.error-signature
 
+response of signature error.
+
 * `http-status`=`403`
 * `message-body`=`{"success":false,"message":"{message}"}`
 
 ### wings.warlock.apiauth.error-unhandled
+
+response of unhandled error.
 
 * `http-status`=`200`
 * `message-body`=`{"success":false,"message":"{message}"}`
