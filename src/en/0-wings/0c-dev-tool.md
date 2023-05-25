@@ -60,6 +60,7 @@ Useful plug-ins
 * lombok - IntelliJ Lombok plugin
 * MapStruct Support - Static strong typed DTO conversion to reduce copying and assignment
 * Maven Helper - Helps manage maven
+* Maven Dependency Checker - check latest version of deps
 * Quick File Preview - Quick file preview with one click
 * Rainbow Brackets - Colorful brackets
 * Request mapper - Quickly find mapping

@@ -60,6 +60,7 @@ find . -name '*.iml' -o -name '.idea' | tr '\n' '\0' | xargs -0 rm -r
 * lombok - IntelliJ Lombok plugin
 * MapStruct Support - 静态强类型DTO转换，减少复制和赋值
 * Maven Helper - 帮助管理maven
+* Maven Dependency Checker - 检查依赖的最新版本
 * Quick File Preview - 单击快速浏览文件
 * Rainbow Brackets - 彩虹括号
 * Request mapper - 快速查找 mapping
