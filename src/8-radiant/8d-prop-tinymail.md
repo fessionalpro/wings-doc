@@ -42,7 +42,7 @@ spring-boot-starter-mail的配置，分为账号类和属性类
 
 ### spring.mail.properties.mail.smtp.ssl.enable
 
-`String`=`true|false`，是否使用ssl，试邮件服务商是否支持。
+`String`=`true|false`，是否使用ssl，视邮件服务商是否支持。
 
 ### spring.mail.properties.mail.smtp.connectiontimeout
 
@@ -150,14 +150,14 @@ spring-boot-starter-mail的配置，分为账号类和属性类
 
 ### wings.tiny.mail.sender.err-host
 
-`Map<BigDecimal, String>`，包括以下异常信息时，对此host进行多少秒的等待。
+`Map<BigDecimal, String>`，包含以下异常信息时，对此host进行多少秒的等待。
 秒为key，以小数部分仅用来区分key，负数为建议停止重发。
 
 * `3600.001`=`frequency limited`
 
 ### wings.tiny.mail.sender.err-mail
 
-`Map<BigDecimal, String>`，包括以下异常信息时，对此邮件的重发进行多少秒的等待。
+`Map<BigDecimal, String>`，包含以下异常信息时，对此邮件的重发进行多少秒的等待。
 秒为key，以小数部分仅用来区分key，负数为建议停止重发。
 
 * `-501001.001`=`from address must be same as authorization user`
@@ -220,7 +220,7 @@ wings.tiny.mail.service.max-done
 
 ### wings.tiny.mail.service.boot-scan
 
-`Duration`=`60s`，启动后多少秒，扫描未发送的邮件，`0`为不扫描
+`Duration`=`60s`，启动后多久，扫描未发送的邮件，`0`为不扫描
 
 ### wings.tiny.mail.service.only-app
 

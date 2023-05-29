@@ -38,7 +38,7 @@ category:
 
 ### wings.faceless.flywave.fit.tiny-task
 
-数据库依赖，引入此lib后，自动执行次脚本
+数据库依赖，引入此lib后，自动执行此脚本
 
 * `path`=`classpath*:/wings-flywave/master/06-task/*.sql`
 * `revi`=`2020_1026_01L`
@@ -61,7 +61,7 @@ TinyTask自身任务，清理日志和心跳健康
 
 ## 8B.4.wings-tinytask-define-79.properties
 
-任务的默认配置 `wings.tiny.task.define[default]`
+任务的Default配置 `wings.tiny.task.define[default]`
 
 ### wings.tiny.task.define[default].enabled
 
@@ -85,7 +85,7 @@ TinyTask自身任务，清理日志和心跳健康
 
 ### wings.tiny.task.define[default].tasker-name
 
-`String`，任务名字，用于通知和日志，可读性好一些，默认为'[短类名#方法名]'，不会使用Default配置
+`String`，任务名字，用于通知和日志，可读性好一些，默认为`[短类名#方法名]`，不会使用Default配置
 
 ### wings.tiny.task.define[default].task-fast
 
@@ -142,7 +142,7 @@ TinyTask自身任务，清理日志和心跳健康
 
 ### wings.tiny.task.define[default].timing-beat
 
-`Integer`=`0`，心跳间隔秒数，last_exec距今超过2个心态任务task异常，默认自动。取rate或idle最大值，cron需要自行指定，不会使用Default配置
+`Integer`=`0`，心跳间隔秒数，若任务的last_exec距今超过2个心跳，则视其为异常。默认自动，取rate或idle最大值，cron需要自行指定，不会使用Default配置
 
 ### wings.tiny.task.define[default].during-from
 
@@ -170,7 +170,7 @@ TinyTask自身任务，清理日志和心跳健康
 
 ### wings.tiny.task.define[default].result-keep
 
-`Integer`=`60`，执行结果保存的天数，0为不保存，默认60天，0为不保存，null时使用Default配置
+`Integer`=`60`，执行结果保存的天数，默认60天，0为不保存，null时使用Default配置
 
 ## 8B.5.wings-tinytask-urlmap-79.properties
 

@@ -17,7 +17,7 @@ category:
 
 ## 8A.1.设计要求
 
-TinyTask设计为强类型，静态的，因为默认限制了动态添加任务。
+TinyTask设计为强类型，静态的，因此默认限制了动态添加任务。
 
 * 任务对象必须是SpringBean
 * 使用@TinyTask.Auto注解的类可自动发现
@@ -32,13 +32,13 @@ TinyTask设计为强类型，静态的，因为默认限制了动态添加任务
 任务可自动或手动添加，以@TinyTask.Auto注解的Bean会自动开始，
 此外，通过TinyTaskService.schedule方法手动开始。
 
-任务的配置会首先进行合并，优先级为从高到底依次位。
+任务的配置会首先进行合并，优先级为从高到低依次为。
 
 * 任务自身key的属性值
 * 任务的default值
 * annotation注解值
 
-以上合并后的配置文件，成为property配置，会和database中当前值比较version
+以上合并后的配置文件，成为taks的property，会和database中当前值比较version
 以version大者优先，相等时，以database（win_task_define表）优先。
 
 ## 8A.3.任务调度
@@ -47,23 +47,23 @@ TinyTask设计为强类型，静态的，因为默认限制了动态添加任务
 一般任务秒级完成的为轻任务，在fast线程池中执行，否则则heavy中执行。
 
 一个任务必须设置cron/idle/rate中任意一个值，以进行任务调度，
-如果同时设置，则cron高于idle，高于rate覆盖。
+如果同时设置，则cron高于idle，idle高于rate覆盖。
 
 ## 8A.4.任务控制
 
 TinyTask默认提供了控制的Controller
 
-* 运行中的任务列表 task-running
-* 定义的任务列表 task-defined
-* 任务历史列表 task-result
-* 取消一个任务 task-cancel
-* 启动任务 task-launch
-* 强制执行任务 task-force
-* 启动或禁用任务 task-enable
-* 更新任务配置 task-prop-save
-* 任务载入属性 task-prop-load
-* 任务配置属性 task-prop-conf
-* 任务属性差异 task-prop-diff
+* task-running - 运行中的任务列表
+* task-defined - 定义的任务列表
+* task-result - 任务历史列表
+* task-cancel - 取消一个任务
+* task-launch - 启动任务
+* task-force - 强制执行任务
+* task-enable - 启动或禁用任务
+* task-prop-save - 更新任务配置
+* task-prop-load - 任务载入属性
+* task-prop-conf - 任务配置属性
+* task-prop-diff - 任务属性差异
 
 推荐在编码中进行任务控制，比较安全和强类型
 

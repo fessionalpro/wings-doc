@@ -40,12 +40,7 @@ export default hopeTheme({
     name: 'trydofor',
     url: 'https://www.trydofor.com',
   },
-  themeColor: {
-    blue: '#2196f3',
-    red: '#f26d6d',
-    green: '#3eaf7c',
-    orange: '#fb9b5f',
-  },
+  themeColor: true,
   iconAssets: 'iconfont',
   logo: '/logo.png',
   repo: 'trydofor/pro.fessional.wings',
@@ -71,7 +66,6 @@ export default hopeTheme({
     mdEnhance: {
       gfm: true,
       container: true,
-      linkCheck: true,
       vPre: true,
       tabs: true,
       codetabs: true,

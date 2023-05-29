@@ -7,15 +7,6 @@ import { execa } from 'execa';
 const { stdout } = await execa('git', ['--no-pager', 'log', '-1', '--format=%as %H'], { stdin: 'inherit' });
 
 export default defineUserConfig({
-  head: [
-    [
-      'link',
-      {
-        rel: 'stylesheet',
-        href: '//at.alicdn.com/t/font_2410206_mfj6e1vbwo.css',
-      },
-    ],
-  ],
   locales: {
     '/': {
       lang: 'zh-CN',
