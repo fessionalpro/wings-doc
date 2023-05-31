@@ -205,4 +205,4 @@ Wings中使用PageQuery和PageDefault取代了SpringData中的Pagable。
 
 使用@ParameterObject注解，是为了Swagger能自动识别为Param类型
 
-同PageQuery一样，返回分页使用PageResult作为容器，Wings中有响应的工具类。
+同PageQuery一样，返回分页使用PageResult作为容器，Wings中有相应的工具类。
