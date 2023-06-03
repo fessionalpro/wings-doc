@@ -206,3 +206,15 @@ Wings中使用PageQuery和PageDefault取代了SpringData中的Pagable。
 使用@ParameterObject注解，是为了Swagger能自动识别为Param类型
 
 同PageQuery一样，返回分页使用PageResult作为容器，Wings中有相应的工具类。
+
+当PageQuery作为@RequesBody使用时，一般如下形式，
+
+* 继承 Ins extends PageQuery
+* 组合 private PageQuery pagable
+
+不能享有PageDefault及别名，和普通的json对象一样，由以下类处理。
+
+* RequestResponseBodyMethodProcessor
+* HttpMessageConverter
+
+因别名需求，一般用于兼容老系统，所以未定制jackson的Deserializer及HandlerMethodArgumentResolver
