@@ -215,4 +215,17 @@ PageQuery and PageDefault are used in Wings instead of Pagable in SpringData.
 
 The @ParameterObject annotation is used so that Swagger can automatically recognize it as a Param type
 
-As with PageQuery, the pagination return uses PageResult as the container and Wings has the responsive tool class.
+As with PageQuery, the pagination return uses PageResult as the container and Wings has tool to handle it.
+
+When PageQuery is used as @RequesBody, it usually looks like this
+
+* as super `Ins extends PageQuery`
+* as field `private PageQuery pagable`
+
+cannot use PageDefault and aliases, and is handled by the following classes, just like a normal json pojo.
+
+* RequestResponseBodyMethodProcessor
+* HttpMessageConverter
+
+Due to aliasing requirements, generally used for compatibility with older systems, so not customized 
+Jackson Deserializer and HandlerMethodArgumentResolver
