@@ -64,6 +64,21 @@ Keep path and query parameters simple considering gateway/aspect processing, err
 * business parameters, should be encapsulated in the http body, such as json
 * session parameters, should be encapsulated in the http header, such as token
 
+POST with single parameter is recommended to post data directly, eg. common types in server,
+
+* Boolean:boolean - `true`
+* BigDecimal/Long/Integer:number/string - `123` / `"123"`
+* String:string - `"string"`
+* LocalDateTime:string - `"2021-06-06 06:06:06"`
+* LogLevel.TRACE:string - `"TRACE"`
+
+eg. common types in client,
+
+* JSON.stringify("string") - `"string"`
+* JSON.stringify(123) - `123`
+* JSON.stringify(true) - `true`
+* JSON.stringify({str:"string",dec:123,bol:true}) - `{"str":"string","dec":123,"bol":true}`
+
 ## 0B.4.Prefix and Suffix Identity URLs
 
 In the scenario, each URL is a specific role, with its family and profession.
