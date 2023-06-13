@@ -57,6 +57,21 @@ category:
 * 业务参数，应封装在Http body中，如Json
 * 会话参数，应封装在Http Header中，如Token
 
+一个参数的Post请求，推荐直接传递。server端常见类型举例，
+
+* Boolean:boolean - `true`
+* BigDecimal/Long/Integer:number/string - `123` / `"123"`
+* String:string - `"string"`
+* LocalDateTime:string - `"2021-06-06 06:06:06"`
+* LogLevel.TRACE:string - `"TRACE"`
+
+client端的常见类型举例，
+
+* JSON.stringify("string") - `"string"`
+* JSON.stringify(123) - `123`
+* JSON.stringify(true) - `true`
+* JSON.stringify({str:"string",dec:123,bol:true}) - `{"str":"string","dec":123,"bol":true}`
+
 ## 0B.4.网址要明确身份，有前缀和后缀
 
 场景化中，每个URL都是具体的角色，有其家族和职业。
