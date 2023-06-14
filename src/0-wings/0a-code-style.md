@@ -33,6 +33,7 @@ Wings项目实践中，主张防御式编程，秉承以下价值观和哲学，
 * 以Empty消除null，Set/List/Array/Map用empty
 * 显示标注@NotNull，@Nullable，@Contract，声明null约束
 * 正向的业务语义，使用正向的词汇，参数等，如true
+* 使用`@Param.InOut/Out`及相应的后缀注解可被修改参数
 
 提高编码质量，升级编程技能，请左转至[攻城狮的Java代码审查](https://java-code-review.moilioncircle.com)
 

@@ -33,6 +33,7 @@ Follow the standard Java coding spec (idea hints are fine), but readability take
 * Null-safe, use empty instead of null, Set/List/Array/Map
 * Declare nullability using @NotNull, @Nullable, @Contract
 * Positive business meaning, positive words, parameters. such as true
+* using `@Param.InOut/Out` and suffix annotation modified param
 
 To improve coding quality and enhance your programming skills, go to [NotBad Review](https://java-code-review.moilioncircle.com)
 
