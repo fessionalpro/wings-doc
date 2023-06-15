@@ -121,14 +121,16 @@ spring-boot-starter-mail的配置，分为账号类和属性类
 `properties.*`仅为空时，使用默认值，不存在的key不使用默认值。
 如`properties.mail.debug`被注释掉，不会使用default的值。
 
-> wings.tiny.mail.config.gmail.host=smtp.gmail.com
-> wings.tiny.mail.config.gmail.username=${GMAIL_USER:}
-> wings.tiny.mail.config.gmail.password=${GMAIL_PASS:}
-> wings.tiny.mail.config.gmail.protocol=
-> wings.tiny.mail.config.gmail.port=587
-> wings.tiny.mail.config.gmail.properties.mail.smtp.auth=
-> wings.tiny.mail.config.gmail.properties.mail.smtp.starttls.enable=
-> #wings.tiny.mail.config.gmail.properties.mail.debug=
+```properties
+wings.tiny.mail.config.gmail.host=smtp.gmail.com
+wings.tiny.mail.config.gmail.username=${GMAIL_USER:}
+wings.tiny.mail.config.gmail.password=${GMAIL_PASS:}
+wings.tiny.mail.config.gmail.protocol=
+wings.tiny.mail.config.gmail.port=587
+wings.tiny.mail.config.gmail.properties.mail.smtp.auth=
+wings.tiny.mail.config.gmail.properties.mail.smtp.starttls.enable=
+#wings.tiny.mail.config.gmail.properties.mail.debug=
+```
 
 ## 8D.5.wings-tinymail-sender-79.properties
 

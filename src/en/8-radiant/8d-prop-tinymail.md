@@ -123,14 +123,16 @@ Recommend to use app-specific password, not login password.
 Use Default values only If `properties.*` is empty, and the default value is not used if the key
 does not exist. If `properties.mail.debug` is commented out, the default value is not used.
 
-> wings.tiny.mail.config.gmail.host=smtp.gmail.com
-> wings.tiny.mail.config.gmail.username=${GMAIL_USER:}
-> wings.tiny.mail.config.gmail.password=${GMAIL_PASS:}
-> wings.tiny.mail.config.gmail.protocol=
-> wings.tiny.mail.config.gmail.port=587
-> wings.tiny.mail.config.gmail.properties.mail.smtp.auth=
-> wings.tiny.mail.config.gmail.properties.mail.smtp.starttls.enable=
-> #wings.tiny.mail.config.gmail.properties.mail.debug=
+```properties
+wings.tiny.mail.config.gmail.host=smtp.gmail.com
+wings.tiny.mail.config.gmail.username=${GMAIL_USER:}
+wings.tiny.mail.config.gmail.password=${GMAIL_PASS:}
+wings.tiny.mail.config.gmail.protocol=
+wings.tiny.mail.config.gmail.port=587
+wings.tiny.mail.config.gmail.properties.mail.smtp.auth=
+wings.tiny.mail.config.gmail.properties.mail.smtp.starttls.enable=
+#wings.tiny.mail.config.gmail.properties.mail.debug=
+```
 
 ## 8D.5.wings-tinymail-sender-79.properties
 
