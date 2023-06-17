@@ -97,10 +97,6 @@ category:
 
 `Boolean`=`true`，是否注入 DefaultExceptionResolver
 
-### spring.wings.warlock.enabled.code-exception-handler
-
-`Boolean`=`true`，是否注入 CodeExceptionResolver
-
 ### spring.wings.warlock.enabled.bind-exception-advice
 
 `Boolean`=`true`，是否注入 BindExceptionAdvice
@@ -260,12 +256,7 @@ default为默认配置，兜底处理所以异常并为其他同类型提供默�
 
 * `http-status`=`200`
 * `content-type`=`application/json;charset=UTF-8`
-* `message-body`=`{"success":false,"message":"{message}"}`
 * `response-body`=`{"success":false,"message":"unknown error"}`
-
-### wings.warlock.error.code-exception
-
-同 default-exception
 
 ## 4D.7.wings-warlock-i18n-77.properties
 
@@ -656,21 +647,21 @@ Controller中RequestMapping的URL常量
 Client错误时的应答，
 
 * `http-status`=`401`
-* `message-body`=`{"success":false,"message":"{message}"}`
+* `response-body`=`{"success":false,"code":"Client","message":"client error"}`
 
 ### wings.warlock.apiauth.error-signature
 
-签名错误时的应答，
+签名错误时的应答，支持`{code}`占位符。
 
 * `http-status`=`403`
-* `message-body`=`{"success":false,"message":"{message}"}`
+* `response-body`=`{"success":false,"code":"{code}","message":"{code} error"}`
 
 ### wings.warlock.apiauth.error-unhandled
 
 未知错误时的应答，
 
 * `http-status`=`200`
-* `message-body`=`{"success":false,"message":"{message}"}`
+* `response-body`=`{"success":false,"code":"Unknown","message":"unknown error"}`
 
 ## 4D.D.wings-warlock-watching-77.properties
 

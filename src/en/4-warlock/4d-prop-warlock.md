@@ -97,10 +97,6 @@ override the following properties,
 
 `Boolean`=`true`, whether to inject DefaultExceptionResolver.
 
-### spring.wings.warlock.enabled.code-exception-handler
-
-`Boolean`=`true`, whether to inject CodeExceptionResolver.
-
 ### spring.wings.warlock.enabled.bind-exception-advice
 
 `Boolean`=`true`, whether to inject BindExceptionAdvice.
@@ -260,12 +256,7 @@ Global Exception handling. `CodeException` supports variable `{message}`.
 
 * `http-status`=`200`
 * `content-type`=`application/json;charset=UTF-8`
-* `message-body`=`{"success":false,"message":"{message}"}`
 * `response-body`=`{"success":false,"message":"unknown error"}`
-
-### wings.warlock.error.code-exception
-
-Same as default-exception.
 
 ## 4D.7.wings-warlock-i18n-77.properties
 
@@ -663,21 +654,21 @@ use this name for the json body and submit it as a File.
 response of client error.
 
 * `http-status`=`401`
-* `message-body`=`{"success":false,"message":"{message}"}`
+* `response-body`=`{"success":false,"code":"Client","message":"client error"}`
 
 ### wings.warlock.apiauth.error-signature
 
-response of signature error.
+response of signature error, support `{code}` placeholder.
 
 * `http-status`=`403`
-* `message-body`=`{"success":false,"message":"{message}"}`
+* `response-body`=`{"success":false,"code":"{code}","message":"{code} error"}`
 
 ### wings.warlock.apiauth.error-unhandled
 
 response of unhandled error.
 
 * `http-status`=`200`
-* `message-body`=`{"success":false,"message":"{message}"}`
+* `response-body`=`{"success":false,"code":"Unknown","message":"unknown error"}`
 
 ## 4D.D.wings-warlock-watching-77.properties
 
