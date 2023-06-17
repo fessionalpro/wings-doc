@@ -2,8 +2,8 @@
 home: true
 icon: home
 heroImage: /logo.png
-heroText: BKB+BoT+SpringBoot
-tagline: 🎉Fast delivery 🧩Safe refactor 🍵Low tech-debt
+heroText: BKB + BoT + SpringBoot
+tagline: 🎉Fast Delivery 🧩Safe Refactor 🍵Low Tech-debt
 actions:
   - text: Project Style 🔖
     link: /en/0-wings/0a-code-style.html

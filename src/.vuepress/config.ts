@@ -15,7 +15,7 @@ export default defineUserConfig({
     },
     '/en/': {
       lang: 'en-US',
-      title: 'WingsBoot wins bigger',
+      title: 'WingsBoot Win Sprint',
       description: 'Fast biz delivery; Timely tech-debt repayment; Safe code & biz refactoring',
     },
   },

@@ -64,7 +64,6 @@ export default hopeTheme({
     },
     //components: ['Badge', 'FontIcon'],
     mdEnhance: {
-      gfm: true,
       container: true,
       vPre: true,
       tabs: true,
