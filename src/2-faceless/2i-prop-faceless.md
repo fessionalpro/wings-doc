@@ -2,37 +2,37 @@
 isOriginal: true
 icon: enum
 category:
-  - 虚空
-  - 属性
+  - Faceless
+  - Porperty
 ---
 
-# 2I.虚空的属性
+# 2I.Faceless Properties
 
-有关数据库，数据操作，Db层面I18n的基本属性。
+Basic properties about database, data manipulation, Db level I18n.
 
 ## 2I.1.spring-wings-enabled-79.properties
 
-Faceless功能的默认开关，如下
+The default switch for Faceless is,
 
 ### spring.wings.faceless.enabled.autoconf
 
-`Boolean`=`true`，是否启动自动配置
+`Boolean`=`true`, Whether to start auto-configuration
 
 ### spring.wings.faceless.enabled.lightid
 
-`Boolean`=`true`，是否注入lingthid
+`Boolean`=`true`, Whether to inject lingthid
 
 ### spring.wings.faceless.enabled.journal
 
-`Boolean`=`true`，是否注入journal
+`Boolean`=`true`, Whether to inject journal
 
 ### spring.wings.faceless.enabled.enumi18n
 
-`Boolean`=`false`，是否注入StandardI18nService
+`Boolean`=`false`, Whether to inject StandardI18nService
 
 ## 2I.2.spring-hikari-79.properties
 
-为spring.datasource.hikari提供以下配置
+Properties of spring.datasource.hikari as follows,
 
 * `spring.datasource.hikari.pool-name`=`wings-hikari-cp`
 * `spring.datasource.hikari.maximum-pool-size`=`20`
@@ -44,67 +44,67 @@ Faceless功能的默认开关，如下
 
 ## 2I.3.wings-flywave-fit-79.properties
 
-通过flywave对faceless-id-log依赖的做数据库版本检查。
+Do database version checking for faceless-id-log dependencies via flywave.
 
 ### wings.faceless.flywave.fit.faceless-id-log.path
 
 `Set<String>`=`classpath*:/wings-flywave/master/01-light/*.sql`
 
-sql扫描pattern，逗号分隔。PathMatchingResourcePatternResolver格式
+sql scan pattern, comma separated. PathMatchingResourcePatternResolver format
 
 ### wings.faceless.flywave.fit.faceless-id-log.revi
 
-`Set<String>`=`2019_0520_01L`。revision，逗号分隔。
+`Set<String>`=`2019_0520_01L`. revision, comma separated.
 
 ### wings.faceless.flywave.fit.faceless-id-log.lost
 
-`String`=`WARN`。`SKIP`-跳过|`WARN`-警告|`FAIL`-异常|`EXEC`-强制执行
+`String`=`WARN`. `SKIP`-skip|`WARN`-warn|`FAIL`-exception|`EXEC`-force to exec
 
-补漏行为，任一指定revi未应用时，只升级不能降级，避免危险的删除动作
+Post check, if the specified revi is not applied, only upgrade can be performed, not downgrade to avoid dangerous delete.
 
 ## 2I.4.wings-lightid-79.properties
 
-对分布式主键lightid的设置。默认事务级别，Propagation.REQUIRES_NEW
+The setting for the distributed PK- lightid. default transaction is Propagation.REQUIRES_NEW
 
 ### wings.faceless.lightid.insert.auto
 
-`Boolean`=`true`，当前name和block的id不存在时，插入还是异常。
+`Boolean`=`true`, If the current ID of name and block does not exist, insert new one or throw an exception.
 
 ### wings.faceless.lightid.insert.next
 
-`Long`=1000,自动insert时的首值，建议1000起，之下为手动生成。
+`Long`=1000, The first value when auto-insert, recommended to start with 1000, as the  value below is used manually.
 
 ### wings.faceless.lightid.insert.step
 
-`Long`=100，自动insert时的步长。
+`Long`=100, The step value when auto-insert.
 
 ### wings.faceless.lightid.loader.timeout
 
-`Long`=5000，加载时视为超时的毫秒数
+`Long`=5000, timeout millis of loading.
 
 ### wings.faceless.lightid.loader.max-error
 
-`Integer`=5，加载错误时最大尝试次数
+`Integer`=5, max error count of loading.
 
 ### wings.faceless.lightid.loader.max-count
 
-`Integer`=10000，加载成功加载的最大数量
+`Integer`=10000, max id count of per loading.
 
 ### wings.faceless.lightid.loader.err-alive
 
-`Long`=120000，错误存在毫秒数，期间不尝试。
+`Long`=120000, no attempt in number of millis if error exists.
 
 ### wings.faceless.lightid.provider.block-type
 
-`String`=`sql`，blockId提供方法
+`String`=`sql`, method to provide blockId
 
-* `sql` - 查询数据库，唯一返回值为id
-* `fix` - 固定数字，int
-* `biz` - 使用自定义的业务Bean
+* `sql` - query database, return the id
+* `fix` - fixed number, int
+* `biz` - use a custom business bean
 
 ### wings.faceless.lightid.provider.block-para
 
-`String`，提供方式的参数，sql时为select，fix为数字。
+`String`, parameters of the provide method, select for sql, and number for fix.
 
 ```sql
 SELECT block_id
@@ -114,7 +114,7 @@ WHERE seq_name = 'singleton_lightid_blockid'
 
 ### wings.faceless.lightid.provider.sequence-insert
 
-`String`，插入语句。JdbcTemplate的sql，
+`String`, insert statement for JdbcTemplate.
 
 ```sql
 INSERT INTO sys_light_sequence
@@ -122,17 +122,17 @@ INSERT INTO sys_light_sequence
 VALUES (?,?,?,?,?)
 ```
 
-详见`LightSequenceModifyJdbc`，参数分别是，
+See `LightSequenceModifyJdbc` for details, the parameters are,
 
-* `String` seq_name - 序列名
-* `int` block_id - 数据块id
-* `long` next_val - 下一个seq
-* `int` step_val - 步长
-* `String` comments - 说明
+* `String` seq_name - sequence name
+* `int` block_id - data block id
+* `long` next_val - next seq
+* `int` step_val - step value
+* `String` comments - description
 
 ### wings.faceless.lightid.provider.sequence-update
 
-`String`，更新语句。JdbcTemplate的sql，
+`String`, update statement for JdbcTemplate.
 
 ```sql
 UPDATE sys_light_sequence 
@@ -140,16 +140,16 @@ SET next_val=?
 WHERE block_id=? AND seq_name=? AND next_val=?
 ```
 
-详见`LightSequenceModifyJdbc`，参数分别是，
+See `LightSequenceModifyJdbc` for details, the parameters are,
 
-* `long` next_val_new - 新的seq值
-* `int` block_id - 数据块id
-* `String` seq_name - 序列名
-* `long` next_val_old - 旧的seq值
+* `long` next_val_new - new seq value
+* `int` block_id - data block id
+* `String` seq_name - sequence name
+* `long` next_val_old - old seq value
 
 ### wings.faceless.lightid.provider.sequence-get-one
 
-`String`，单次获取。JdbcTemplate的sql，
+`String`, fetch one sql for JdbcTemplate.
 
 ```sql
 SELECT next_val, step_val 
@@ -157,14 +157,14 @@ FROM sys_light_sequence
 WHERE block_id=? AND seq_name=? FOR UPDATE
 ```
 
-详见`LightSequenceSelectJdbc`，参数分别是，
+See `LightSequenceSelectJdbc` for details, the parameters are,
 
-* `int` block_id - 数据块id
-* `String` seq_name - 序列名
+* `int` block_id - data block id
+* `String` seq_name - sequence name
 
 ### wings.faceless.lightid.provider.sequence-get-all
 
-`String`，全部获取。JdbcTemplate的sql，
+`String`, fetch all sql for JdbcTemplate.
 
 ```sql
 SELECT seq_name, next_val, step_val 
@@ -172,13 +172,13 @@ FROM sys_light_sequence
 WHERE block_id=? FOR UPDATE
 ```
 
-详见`LightSequenceSelectJdbc`，参数分别是，
+See `LightSequenceSelectJdbc` for details, the parameters are,
 
-* `int` block_id - 数据块id
+* `int` block_id - data block id
 
 ### wings.faceless.lightid.provider.sequence-adjust
 
-`String`，尝试校验并调整数据库中id，使其正确。设置为`∅`，表示忽略此功能。
+`String`, try to verify and adjust the id in the database to make it correct. Set to `∅` to ignore this feature.
 
 ```sql
 SELECT table_name, column_name 
@@ -189,12 +189,14 @@ AND UPPER(column_type) like '%INT%'
 AND table_name = ?
 ```
 
-输入`表名`（作为序列名），返回数据库中的`表名`和`列名`。
+Enter `table name` (as sequence name), return `table name` and `column name` in the database.
 
 ### wings.faceless.lightid.layout.block-bits
 
-`Integer`=`∅`，设置block字节数，范围[3,23]，配置项默认空。LightId默认为9，2^9=512个区
+`Integer`=`∅`, the number of block bytes, in the range [3,23], empty by default.
+LightId is 9 by default, so 2^9=512 zones.
 
 ### wings.faceless.lightid.layout.block-first
 
-`Boolean`=`∅`，序列布局，是否Block先于Sequence，配置项默认空。LightId默认为true
+`Boolean`=`∅`, sequence layout, whether Block precedes Sequence, empty by default.
+LightId is true by default

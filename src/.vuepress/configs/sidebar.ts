@@ -1,6 +1,33 @@
 import { SidebarOptions } from 'vuepress-theme-hope';
 
 export const sidebarZh: SidebarOptions = {
+  '/zh/0-wings/0h-prop-index': [
+    '/zh/1-silencer/1d-prop-silencer',
+    '/zh/2-faceless/2i-prop-faceless',
+    '/zh/2-faceless/2j-prop-flywave',
+    '/zh/2-faceless/2k-prop-jooq',
+    '/zh/3-slardar/3i-prop-slardar',
+    '/zh/3-slardar/3j-prop-webmvc',
+    '/zh/3-slardar/3k-prop-function',
+    '/zh/3-slardar/3l-prop-hazelcast',
+    '/zh/4-warlock/4d-prop-warlock',
+    '/zh/8-radiant/8b-prop-tinytask',
+    '/zh/8-radiant/8d-prop-tinymail',
+  ],
+  '/zh/0-wings/': 'structure',
+  '/zh/1-silencer/': 'structure',
+  '/zh/2-faceless/': 'structure',
+  '/zh/3-slardar/': 'structure',
+  '/zh/4-warlock/': 'structure',
+  '/zh/5-batrider/': 'structure',
+  '/zh/8-radiant/': 'structure',
+  '/zh/9-example/': 'structure',
+  '/zh/a-mirana/': 'structure',
+  '/zh/b-meepo/': 'structure',
+  '/zh/': 'structure',
+};
+
+export const sidebarEn: SidebarOptions = {
   '/0-wings/0h-prop-index': [
     '/1-silencer/1d-prop-silencer',
     '/2-faceless/2i-prop-faceless',
@@ -25,31 +52,4 @@ export const sidebarZh: SidebarOptions = {
   '/a-mirana/': 'structure',
   '/b-meepo/': 'structure',
   '/': 'structure',
-};
-
-export const sidebarEn: SidebarOptions = {
-  '/en/0-wings/0h-prop-index': [
-    '/en/1-silencer/1d-prop-silencer',
-    '/en/2-faceless/2i-prop-faceless',
-    '/en/2-faceless/2j-prop-flywave',
-    '/en/2-faceless/2k-prop-jooq',
-    '/en/3-slardar/3i-prop-slardar',
-    '/en/3-slardar/3j-prop-webmvc',
-    '/en/3-slardar/3k-prop-function',
-    '/en/3-slardar/3l-prop-hazelcast',
-    '/en/4-warlock/4d-prop-warlock',
-    '/en/8-radiant/8b-prop-tinytask',
-    '/en/8-radiant/8d-prop-tinymail',
-  ],
-  '/en/0-wings/': 'structure',
-  '/en/1-silencer/': 'structure',
-  '/en/2-faceless/': 'structure',
-  '/en/3-slardar/': 'structure',
-  '/en/4-warlock/': 'structure',
-  '/en/5-batrider/': 'structure',
-  '/en/8-radiant/': 'structure',
-  '/en/9-example/': 'structure',
-  '/en/a-mirana/': 'structure',
-  '/en/b-meepo/': 'structure',
-  '/en/': 'structure',
 };

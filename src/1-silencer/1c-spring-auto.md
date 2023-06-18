@@ -2,57 +2,59 @@
 isOriginal: true
 icon: leaf
 category:
-  - 沉默
-  - 配置
+  - Silencer
+  - Config
 ---
 
-# 1C.自动配置机制
+# 1C.Auto Config Mechanism
 
-利用SpringBoot的特性，完成自动配置。
+Take advantage of SpringBoot to complete the auto config.
 
-## 1C.1.自动规则和命名
+## 1C.1.Naming and Rule
 
-有特殊功能的spring命名，主要集中在以下（后续目录结构有详解）
+There are special features of Spring naming, mainly focused on the following
+(the directory structure will be explained in detail later)
 
-* `/wings-conf/` 自动加载，分割的配置文件
-* `/wings-i18n/` 自动加载，分割的多国语的信息文件
-* `**/spring/boot/` 手动加载，Boot有关的配置，如`spring.factories`
-* `**/spring/bean/` 自动加载，比如@ComponentScan指定
-* `**/spring/conf/` Configurer或配置类
-* `**/spring/prop/` properties的映射
-* `**/spring/help/` 配置助手
-* `*Configuration.java` 条件加载，配置项以`spring.wings.`为前缀
+* `/wings-conf/` autoload, splitted config files
+* `/wings-i18n/` autoload, splitted I18n files
+* `**/spring/boot/` manual load, Boot-related config, like `spring.facts`
+* `**/spring/bean/` autoload, as specified by @ComponentScan
+* `**/spring/conf/` Configurer or configuration class
+* `**/spring/prop/` Property mapping
+* `**/spring/help/` Configuration helper
+* `*Configuration.java` conditional load, with config items prefixed by `spring.wings.`
 
-使用`idea`开发时，会有黄色警告或提示，不影响运行，但看着碍眼
+When developing with `idea`, there will be yellow warnings or prompts,
+that do not affect the operation, but look like an eyesore.
 
-* 提示Application context not configured for this file，
-  在`Project Structure`/`Facets`/`Spring`手动添加`boot/WingsAutoConfiguration`一个即可。
-* 提示 annotation processing的设置，在`Settings`/`Annotation Processors`/`Enable annotation processing`
-* 注意：在`@Configuration`中的内部类，`static class`是按独立类处理的，不受外层约束。
+* Prompting "Application context not configured for this file"
+  Just add `boot/WingsAutoConfiguration` manually in `Project Structure`/`Facets`/`Spring`.
+* Prompting "annotation processing", check in `Settings`/`Annotation Processors`/`Enable annotation processing`
+* Note: The inner classes in `@Configuration`, `static class` are treated as independent and not bound by the outer.
 
-在wings工程中，会存在`spring-wings-enabled.properties`配置，作为功能开关。
-可以设置`spring.wings.silencer.enabled.verbose=true` 通过日志的INFO查看。
+In Wings project, there will be a `spring-wings-enabled.properties` to toggle the feature.
+Set `spring.wings.silencer.enabled.verbose=true` to view the INFO of the log message.
 
-## 1C.2.属性bind和meta提示
+## 1C.2.Property Bind and Prompt
 
-属性类统一用`*Prop.java`和`@Data`，经过配置后，可以自动提示。
+Properties classes are unified with `*Prop.java` and `@Data`, which can be auto prompted after configuration.
 
-* 手动添加 additional-spring-configuration-metadata.json
-* 自动生成 spring-configuration-metadata.json
+* manually add additional-spring-configuration-metadata.json
+* auto-generated spring-configuration-metadata.json
 
-参考资料
+References,
 
 * <https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#appendix.configuration-metadata>
 * <https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-Configuration-Binding>
 * <https://github.com/spring-projects/spring-boot/wiki/IDE-binding-features#simple-pojo>
 
-## 1C.3.按条件配置事项
+## 1C.3.Configuring by Condition
 
-* 配置类为`*Configuration.java`在`/spring/bean/`中
-* 属性类为`*Prop.java`在`/spring/prop/`中
-* 嵌套配置不继承`@Conditional`
-  - 要合并为`@ConditionalOnExpression`
-  - 或自定义一个`@Conditional`
+* Configuration is `*Configuration.java` in `/spring/bean/`
+* Property is `*Prop.java` in `/spring/prop/`
+* Nested configurations do not inherit from `@Conditional`
+  - merged into `@ConditionalOnExpression`
+  - or customize a `@Conditional`
 
 The `@Conditional` annotation may be used in any of the following ways:
 
@@ -70,9 +72,10 @@ associated with that class will be subject to the conditions.
 NOTE: Inheritance of `@Conditional` annotations is not supported;
 any conditions from superclasses or from overridden methods will not be considered.
 
-## 1C.4.ConditionalOnClass无效
+## 1C.4.ConditionalOnClass No Effect
 
-如下代码，ConditionalOnClass置于同类型的Bean声明上，会报错 NoClassDefFoundError
+The following code, ConditionalOnClass placed on the same type of bean declaration,
+will report a NoClassDefFoundError
 
 ```java
 @Bean
@@ -82,7 +85,7 @@ public SomeService someService() {
 }
 ```
 
-需要改为如下这种，内类控制的Configuration
+Need to change to something like the following, inner class-driven configuration,
 
 ```java
 @Configuration(proxyBeanMethods = false)
@@ -95,4 +98,4 @@ public static class SomeServiceConfiguration {
 }
 ```
 
-参考[Creating Your Own Auto-configuration](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.developing-auto-configuration)
+See [Creating Your Own Auto-configuration](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.developing-auto-configuration)

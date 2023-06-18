@@ -2,26 +2,28 @@
 isOriginal: true
 icon: ubuntu
 category:
-  - 天辉
+  - Radiant
+  - Home
 ---
 
-# 8.天辉全明星
+# 8.Randiant AllStars
 
-基于邮轮模型，提供了可插拔的业务场景和组合功能，简称组件。
+Based on the `GhostShip` model, it provides pluggable business scenarios and combined functions.
 
-## 8.1.基本使用
+## 8.1.Basic Usage
 
-工程把组件作为dependency时，组件功能会被自动激活，比如spring配置，数据表。
+When a project uses a component as dependency, the component features are automatically activated,
+such as spring config, database tables.
 
-创建数据表属于危险操作，默认关闭，依赖于faceless-flywave的RevisionFitness，
+Creating tables are dangerous operations and disabled by default, depending on the RevisionFitness of faceless-flywave.
 
-* 引入faceless-flywave依赖，建议scope=test
-* 设置spring.wings.faceless.flywave.enabled.module=true
-* 在当前工程启动springboot app，建议scope=test
+* Use faceless-flywave as dependency, suggest scope=test
+* Set spring.wings.faceless.flywave.enabled.module=true
+* Start the springboot app in the current project, suggest scope=test
 
-## 8.2.相关项目
+## 8.2.Related Projects
 
-* [小小任务](./8a-tinytask.md) - 以Database为核心可启停的任务
-* [任务的属性](./8b-prop-tinytask.md) - TinyTask的配置
-* [小小邮件](./8c-tinymail.md) - 以Database为核心有事务的邮件
-* [邮件的属性](./8d-prop-tinymail.md) - TinyMail的配置
+* [Tiny Task](./8a-tinytask.md) - Tasks based on database that can be started and stopped
+* [Tiny Task Properties](./8b-prop-tinytask.md) - Properties of the Tiny Task
+* [Tiny Mail](./8c-tinymail.md) - Mails based on database with some transactional features
+* [Tiny Mail Properties](./8d-prop-tinymail.md) - Properties of the Tiny Mail

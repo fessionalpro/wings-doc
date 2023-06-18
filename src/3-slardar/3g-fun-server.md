@@ -2,26 +2,27 @@
 isOriginal: true
 icon: advance
 category:
-  - 鱼人
-  - 防护
-  - 后端
+  - Slardar
+  - Protection
+  - Backend
 ---
 
-# 3G.后端防护功能
+# 3G.Backend Protection
 
-对后端服务，提供一定的保护和控制能力
+Provide some protection and control for backsend services.
 
-## 3G.1.后端防抖
+## 3G.1.Backend Debounce
 
-与前端的Lodash相似，不同的是后端业务优先，只支持先调用后等待的leading防抖。
-即在第一个请求时处理业务，有后续请求出现时，支持以下处理方式，
+Similar to the frontend Lodash, but the backend business takes precedence and only supports
+the leading style debounce of call first and wait later. That is, the business is processing
+on the first request, and the subsequent request arrives, the following processing is supported,
 
-* 不复用leading结果时，直接返回预设的response(默认208 Already Reported)。否则，
-* 等待waiting毫秒数，或超时或被leading唤醒。然后，
-* 若有leading有response，则复用；否则，返回预设response。
+* Directly return the preset response (default 208 Already Reported) if no reuse of the leading result. otherwise,
+* Wait for specified milliseconds, and timeout or wake up by leading process. then,
+* Reuse if there is a leading result; otherwise, return the preset response.
 
-`@Debounce`基于HandlerInterceptor，request流复用和response流缓存。
-作用于Controller层，是Session级，以URL特征及参数为判断重复的依据。
+`@Debounce` is based on HandlerInterceptor, request stream reuse and response stream caching.
+Acts on Controller layer, Session level, with URL and parameters as the basis for judging duplication.
 
 ```java
 @PostMapping("/test/debounce-body.json")
@@ -31,20 +32,21 @@ public R<Object> debounceBody(@RequestParam String p, @RequestBody Q<String> q) 
 }
 ```
 
-更多示例参考Debounce代码文档或测试代码`TestDebounceController.java`
+For more examples, see the Debounce doc or the testcase `TestDebounceController.java`
 
-## 3G.2.防止连击
+## 3G.2.Double Kill
 
-`@DoubleKill`与Debounce不同，是类似Cacheable的AOP，用于Service层防止同时计算。
-底层基于业务锁，而非时间间隔，开始时获取锁，结束时释放锁，得不到锁的请求会被kill。
+`@DoubleKill` is different from Debounce, which is a Cacheable-like AOP for Service layer to
+prevent concurrent processes. The underlying layer is based on business locks, not time intervals,
+acquiring locks at the beginning and releasing them at the end, and requests that do not get locks are killed.
 
-命名是Dota的，但意思不同，是杀死第二个，由Jvm全局锁和DoubleKillException实现。
+The name is from Dota, but the meaning is different, it is kill the second, implemented by Jvm global lock and DoubleKillException.
 
-能够但不建议用于Controller层，此时需要显式的通过Spel指定参数，如@RequestParam。
-默认是session级别的控制，可使用@Bean进行处理。默认返回202 Accepted
+Can be used but not recommended for Controller layer, you should explicitly specify parameters by Spel, such as @RequestParam.
+This is session level control, can be handled with @Bean and returns 202 Accepted by default.
 
-DoubleKillException默认返回固定的json，注入DoubleKillExceptionResolver可替换，
-需要注意ExceptionResolver或ExceptionHandler的Order，避免异常捕获的层级错误。
+DoubleKillException returns a fixed json by default, which can be replaced by injecting DoubleKillExceptionResolver.
+Must pay attention to the Order of ExceptionResolver or ExceptionHandler to avoid exception catching hierarchy errors.
 
 ```java
 @DoubleKill(expression = "#type + '-' + #p1 * 1000")
@@ -58,73 +60,78 @@ public R<String> doubleKill(HttpServletRequest request) throws InterruptedExcept
 }
 ```
 
-详细用法，参考DoubleKill源码文档，或参考测试代码
+For detailed usage, see the source code or the test code,
 
 * [TestDoubleKillController.java](https://github.com/trydofor/pro.fessional.wings/blob/master/wings/slardar/src/test/java/pro/fessional/wings/slardar/controller/TestDoubleKillController.java)
 * [DoubleKillService.java](https://github.com/trydofor/pro.fessional.wings/blob/master/wings/slardar/src/test/java/pro/fessional/wings/slardar/service/DoubleKillService.java)
 
-## 3G.3.验证码
+## 3G.3.CAPTCHA
 
-对于受保护的资源，使用验证码防扒，有时是为了延缓时间，有时是为了区分行为。
-验证码的加载和验证，可以通过header或param进行（默认param）。
+For protected resources, captcha is used to sometimes to delay time and sometimes to distinguish behavior.
+Captcha loading and validation can be done via header or param (default param).
 
-在SpringSecurity中，对401和403有以下约定，所以验证码使用406(Not Acceptable)
+In SpringSecurity, the conventions for 401 and 403 are as follows, so CAPTCHA uses 406 (Not Acceptable)
 
-* 401 - Unauthorized 身份未鉴别
-* 403 - Forbidden/Access Denied 鉴权通过，授权不够
+* 401 - Unauthorized identity not identified
+* 403 - Forbidden/Access Denied Authentication passed, insufficient authorization
 
-slardar的验证码是基于图片的，现今的AI算法识别率可达90%以上，因此并不安全，
-仅限于初防君子的初级资源保护上。默认支持中文，一个汉字+3个英数，可以在配置中关闭。
-若是敏感信息或高级防护，建议采购第三方验证码服务。
+Slardar's CAPTCHA is image based and today's AI can recognize up to 90% or more, so it is not secure and
+is a low level protection for gentlemen only. The default support for Chinese, is 1 Chinese + 3 Alphanum,
+can be turned off in the configuration. For sensitive information or advanced protection, it is recommended
+to purchase a 3rd CAPTCHA service.
 
-使用方法如下，在MappingMethod上，放置`@FirstBlood` 即可，工作流程如下。
+Put `@FirstBlood` on the MappingMethod, usage and workflow is as follows.
 
-* 客户端正常访问此URL，如/test/captcha.json（需要支持GET方法，以便返回图片）
-* 服务器需要验证码时，以406(Not Acceptable)返回提示json
-* 客户端在header和cookie中获得Client-Ticket的token，并每次都发送
-* 客户端在URL后增加quest-captcha-image=${vcode}获取验证码图片（可直接使用）
-  - 以`accept`区分图片的返回形式，`base64`为base64格式的图，其他均为二进制流
-  - 当`vcode`为验证码，通过时，返回空body，否则返回新的验证图片
-* 客户端在URL后增加check-captcha-image=${vcode}提交验证码
-* 服务器端自动校验Client-Ticket和check-captcha-image，完成验证或放行
+* Client normally accesses the URL, such as /test/captcha.json (support GET in order to get the image)
+* If the server requires a captcha, it returns a json with 406 (Not Acceptable)
+* Client gets Client-Ticket token from header or cookie, and sends it each time
+* Client appends quest-captcha-image=${vcode} to the URL to get the CAPTCHA image (can be used directly)
+  - Distinguish the image form by `accept`, `base64` is in base64, all others are binary streams
+  - When `vcode` is the captcha and passed, return the empty body, otherwise return the new verification image
+* Client appends check-captcha-image=${vcode} to the URL, submit the captcha
+* Server auto checks Client-Ticket and check-captcha-image to complete validation
 
-若需集成其他验证码，如第三方服务或消息验证码，实现并注入FirstBloodHandler即可
+If you need to integrate other CAPTCHAs, such as 3rd services or message CAPTCHAs,
+just implement and inject FirstBloodHandler.
 
-## 3G.4.防止篡改
+## 3G.4.Anti Forgery
 
-通过http header中为要编辑的信息设置签名，防止客户端篡改。默认返回409(Conflict)。
-详见 wings-righter-79.properties 和 RighterContext。实现原理和使用方法是，
+Set a signature for the message to be edited in the http header to prevent tampering by the client.
+Default returns 409(Conflict). See wings-righter-79.properties and RighterContext for details.
+the Underlying principle and usage are,
 
-* 使用Righter注解编辑数据(false)和提交数据(true)的方法
-* 获得编辑数据时，在RighterContext中设置签名的数据header
-* 提交时需要提交此签名，并被校验，签名错误时直接409
-* 签名通过后，通过RighterContext获取数据，程序自行检验数据项是否一致
+* Use the Righter annotation to edit data (false) and commit data (true)
+* Set the signature header in the RighterContext when getting the edited data
+* When committing, this signature must be submitted and verified, return 409 if wrong signature
+* After the signature is passed, the data is obtained through the RighterContext and
+  the program itself checks the data items for consistency.
 
-## 3G.5.终端信息
+## 3G.5.Terminal Information
 
-通过HandlerInterceptor，在当前线程和request中设置Terminal信息，
+Through HandlerInterceptor, Terminal information is set in the current thread and request.
 
-TerminalContext主要包括ip，agent，locale和timezone等
+TerminalContext mainly includes ip, agent, locale and timezone etc.
 
-## 3G.6.请求复用和应答缓存
+## 3G.6.Request Reuse and Response Caching
 
-WingsReuseStreamFilter 实行了request流的循环读，和response的缓存。
-在使用以下filter时，会出现bytes重复复制而浪费空间，建议自行Override。
+WingsReuseStreamFilter implements circular reading of request stream, and caching of response.
+When using the following filter, bytes are duplicated and space is wasted,
+so it is recommended to Override it by yourself.
 
 * CommonsRequestLoggingFilter
 * ShallowEtagHeaderFilter
 
-ReuseStream的流仅提供了复用功能，默认不开启，不使用时无空间和性能损失。
-仅在需要时，由filter，interceptor，advice等机制在使用其开启复用功能。
+ReuseStream provides circular reading and is disabled by default, without space or performance loss if not used.
+It is only used by the filter, interceptor, advice and other mechanisms to enable circular reading when needed.
 
-需要注意filter的order，以保证该filter在使用之前完成wrapper。
+You must be aware of the filter order to ensure the wrapper is complete before using it.
 
-## 3G.7.请求及应答日志
+## 3G.7.Request and Response Loging
 
-通过为WingsReuseStreamFilter注入RequestResponseLogging可实现请求应答日志。
-相比于CommonsRequestLoggingFilter，此功能按需复用，同时支持request和response。
+Request and response logging can be implemented by injecting RequestResponseLogging into WingsReuseStreamFilter.
+Unlike CommonsRequestLoggingFilter, this feature is used on demand and supports both request and response.
 
-实现AbstractRequestResponseLogging Bean即可，参考代码如下。
+Just implement the AbstractRequestResponseLogging bean, the reference code is as follows.
 
 ```java
 @Bean
@@ -152,69 +159,73 @@ public RequestResponseLogging requestResponseLogging() {
 }
 ```
 
-其原理是，WingsReuseStreamFilter配置时，自动实现了以下步骤。
+The principle is that the following steps are auto implemented when WingsReuseStreamFilter is configured.
 
 * @AutoConfigureBefore(SlardarRestreamConfiguration.class)
-* 获取 WingsReuseStreamFilter，然后setRequestResponseLogging
+* Get WingsReuseStreamFilter, then setRequestResponseLogging
 
-注意`POST`提交传统表单提交，以下2中类型，包括参数和文件，
+Note that `POST` commits a traditional form data, of the following 2 types, including parameters and files
 
 * `application/x-www-form-urlencoded`
 * `multipart/form-data`
 
-因底层的参数解析和获取流是二选一关系，即先解析则流读尽，获取流则参数为空。
-所以，对应此两种请求需要记录Payload时，会存在以下差异
+Because the underlying parameter parsing and get stream is a choose one of two, that is,
+first parsing then stream exhausted, read stream then parameters are empty.
+So, if you need to record Payload for these two requests, there are the following differences
 
-* form-urlencoded，因后置构造body，所以其中会包括query参数
-* form-data，body同上，文件需要实现buildRequestPayload获取parts记录
+* form-urlencoded, which contains query parameters because of the post-constructed body
+* form-data, the body is the same as above, the file needs to implement buildRequestPayload to get the pars record
 
-## 3G.8.Rest和Client
+## 3G.8.Rest and Client
 
-默认使用OkHttp作为restTemplate的实现。遵循SpringBoot官方文档和源码约定，
-可以Autowired OkHttpClient直接使用，默认**信任所有ssl证书**，如安全高，需要关闭。
-如果需要按scope定制，使用RestTemplateBuilder，全局应用使用RestTemplateCustomizer。
+The restTemplate use OkHttp as underlying in wings. Follow SpringBoot official docs and code conventions,
+OkHttpClient Can Autowired and use directly, the default **trust all ssl certificates**, but in high security,
+you need to disable it.
 
-[RestTemplate 定制](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#io.rest-client.resttemplate.customization)
+For scope customization use RestTemplateBuilder, for global customization use RestTemplateCustomizer.
+
+[RestTemplate Customization](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#io.rest-client.resttemplate.customization)
 org.springframework.boot.autoconfigure.web.client.RestTemplateAutoConfiguration
 
-在springboot2.x中okhttp默认是3.x，而just-auth需要4.x，所以需要手动okhttp3.version属性
+In springboot 2.x, use http  3.x by default, and just-auth needs 4.x, so you need to manually set okhttp3.version property
 
-## 3G.9.负载过滤器
+## 3G.9.OverloadFilter
 
-OverloadFilter可限定请求并发，默认`spring.wings.slardar.enabled.overload=false`
+OverloadFilter can limit request concurrency, default `spring.wings.slardar.enabled.overload=false`
 
-* 自动或手动设置`最大同时进行请求数`，超过时，执行`fallback`。
-* 不影响性能的情况下，记录慢响应URI和运行状态。
-* 优雅停止服务器，阻断所有新请求。
-* 相同IP请求过于频繁，执行fallback。
+* Set `max concurrent requests` automatically or manually, and perform `fallback` when exceeded.
+* Log slow response URIs and running status without affecting performance.
+* Elegantly stop the server and block all new requests.
+* Perform fallback if same IP requests are too frequent.
 
-`最大同时进行请求数`，指已经由Controller处理，但未完成的请求。
+`max concurrent requests`, which refers to requests that have been processed by the Controller but not completed.
 
-其中，关闭`快请求`或`慢请求`功能，可以通过以下设置关闭，
+Among them, the `fast requests` or `slow requests` can be disabled with the following settings.
 
-* `快请求` - `wings.slardar.overload.request-capacity=-1`
-* `慢请求` - `wings.slardar.overload.response-warn-slow=0`
+* `fast requests` - `wings.slardar.overload.request-capacity=-1`
+* `slow request` - `wings.slardar.overload.response-warn-slow=0`
 
-## 3G.10.分页查询
+## 3G.10.Pagination Query
 
-Wings中使用PageQuery和PageDefault取代了SpringData中的Pagable。
+PageQuery and PageDefault are used in Wings instead of Pagable in SpringData.
 
-* PageQuery只能使用QueryString方式传递，不属于RequesBody部分。
+* PageQuery can only be passed using the QueryString method and is not part of the RequesBody section.
 * `@ParameterObject` PageQuery pq
 * `@ParameterObject` `@PageDefault(size=30)` PageQuery pq
 
-使用@ParameterObject注解，是为了Swagger能自动识别为Param类型
+The @ParameterObject annotation is used so that Swagger can automatically recognize it as a Param type
 
-同PageQuery一样，返回分页使用PageResult作为容器，Wings中有相应的工具类。
+As with PageQuery, the pagination return uses PageResult as the container and Wings has tool to handle it.
 
-当PageQuery作为@RequesBody使用时，一般如下形式，
+When PageQuery is used as @RequesBody, it usually looks like this
 
-* 继承 Ins extends PageQuery
-* 组合 private PageQuery pagable
+* as super `Ins extends PageQuery`
+* as field `private PageQuery pagable`
 
-不能享有PageDefault及别名，和普通的json对象一样，由以下类处理。
+cannot use PageDefault and aliases, and is handled by the following classes, just like a normal json pojo.
 
 * RequestResponseBodyMethodProcessor
 * HttpMessageConverter
 
-因别名需求，一般用于兼容老系统，所以未定制jackson的Deserializer及HandlerMethodArgumentResolver
+Due to aliasing requirements, generally used for compatibility with older systems, so not customized 
+Jackson Deserializer and HandlerMethodArgumentResolver

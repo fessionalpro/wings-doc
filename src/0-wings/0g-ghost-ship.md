@@ -2,41 +2,44 @@
 isOriginal: true
 icon: geometry
 category:
-  - 神翼
-  - 模型
+  - WingsGod
+  - Model
 ---
 
-# 0G.幽灵船模型
+# 0G.GhostShip Model
 
-WingsBoot体系的基本架构思路是，纵向做模型，横向贴功能。
-曾用代号【邮轮模型】，后在Dota系，改为GhostShip，更wings一点。
+WingsBoot basic architectural idea is to do the model vertically and overlay the function horizontally.
+The codename has bean called CruiseModel, later in the Dota series, changed to GhostShip, more wings a little
 
-## 0G.1.上船下海 GoSea
+## 0G.1.Aboard to the sea (GoSea)
 
-俗话说，`Go And Sea`，`Let's Me See Sea`
+Chinglish says, `Go And Sea`, `Let's Me See Sea`
 
-在我所知的创业实践中，几乎什么都是短缺的，一切都是不确定的。
-整个团队都在一条船上，要在海上生存和探寻，防止迷失和沉船。
+In my experience with startups, almost everything is lacking and nothing is certain.
+The entire team is in the same boat, trying to survive and explore at sea, while trying not to get lost or sink.
 
-## 0G.2.纵向模型 Floor
+## 0G.2.Vertical Model (Floor)
 
-业务架构，业务模型，程序架构，数据模型，有严格的边界和依赖要求。
-通常，从下至上像楼层一样，分别称之为Floor-N（N为自然数）
+The business architecture and model, program architecture and model, have strict boundaries and dependency requirements.
+Usually, from the bottom to the top like a building floor, they are called Floor-N (N is a natural number)
 
-### 单向调用，避免跨层
+### Unidirectional Call, Avoid Crossing
 
-通常，上层可以调用同层及下层，反之不可。如 Dao/Ser/Mvc的结构中，
+Usually, the upper layer can invoke the same layer or the lower layer, but not vice versa. For example,
+in the structure of Dao/Ser/Mvc:
 
-* Service中可以调用Dao和Service，反之则应避免。^推荐^
-* Controller可以调用Service，反之则禁止。^必须^
-* Controller不可调用Dao。^推荐^
+* Service can call Dao and Service, but should avoid calling back. ^SHOULD^
+* Controller can call Service, but must not be called back. ^MUST^
+* Controller should not call Dao. ^SHOULD^
 
-### 单向流动，事件溯源
+### Unidirectional Flow, Event Sourcing
 
-数据流，业务流，要求单向流动。乱流时，以明确的Event传播和溯源。
-如数据的从下向上构建，业务的从上到下传播。
+Data flow and business flow require unidirectional flow. In the case of turbulent flow,
+unambiguous events should be propagated and tracked.
 
-## 0G.3.横向功能 Layer
+For example, data flows from the bottom up, while business flows from the top down.
 
-功能或模块可以通过组合，继承，叠加或过滤后对外提供合适的服务。
-通常，从内到外，分别称为Layer-N（N为自然数）
+## 0G.3.Horizontal Functions (Layer)
+
+Functions or modules can combine, inherit, overlay or filter to provide appropriate services to the outside world.
+Usually, from the inside to the outside, they are called Layer-N (N is a natural number)

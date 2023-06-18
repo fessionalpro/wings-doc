@@ -2,43 +2,44 @@
 isOriginal: true
 icon: enum
 category:
-  - 任务
-  - 属性
+  - Tiny
+  - Task
+  - Property
 ---
 
-# 8B.小任务属性
+# 8B.TinyTask Properties
 
 ## 8B.1.spring-wings-enabled-79.properties
 
 ### spring.wings.tiny.task.enabled.autoconf
 
-`Boolean`=`true`，是否启动自动配置
+`Boolean`=`true`, whether to enable auto config.
 
 ### spring.wings.tiny.task.enabled.autorun
 
-`Boolean`=`true`，是否允许自动注册TinyTask.Auto
+`Boolean`=`true`, whether to auto register TinyTask.Auto.
 
 ### spring.wings.tiny.task.enabled.dryrun
 
-`Boolean`=`false`，是否干跑，仅记录日志不真正执行任务
+`Boolean`=`false`, whether to dry run, log only without realy exec the task.
 
 ### spring.wings.tiny.task.enabled.controller-conf
 
-`Boolean`=`true`，是否开启 TaskConfController
+`Boolean`=`true`, whether to enable TaskConfController.
 
 ### spring.wings.tiny.task.enabled.controller-exec
 
-`Boolean`=`true`，是否开启 TaskExecController
+`Boolean`=`true`, whether to enable TaskExecController.
 
 ### spring.wings.tiny.task.enabled.controller-list
 
-`Boolean`=`true`，是否开启 TaskListController
+`Boolean`=`true`, whether to enable TaskListController.
 
 ## 8B.2.wings-flywave-fit-79.properties
 
 ### wings.faceless.flywave.fit.tiny-task
 
-数据库依赖，引入此lib后，自动执行此脚本
+Database dependency, after import this lib, the script will be auto executed.
 
 * `path`=`classpath*:/wings-flywave/master/06-task/*.sql`
 * `revi`=`2020_1026_01L`
@@ -46,7 +47,7 @@ category:
 
 ## 8B.3.wings-tinytask-beat-79.properties
 
-TinyTask自身任务，清理日志和心跳健康
+TinyTask's own tasks, clearing logs and healthy heartbeat.
 
 ### wings.tiny.task.define[TinyTaskCleanResult]
 
@@ -54,168 +55,186 @@ TinyTask自身任务，清理日志和心跳健康
 
 ### wings.tiny.task.define[TinyTaskCheckHealth]
 
-每空闲300秒，检查一下健康状态
+Check health status every 300 seconds of idle time.
 
 * `timing-idle`=`300`
 * `notice-when`=`tail,done`
 
 ## 8B.4.wings-tinytask-define-79.properties
 
-任务的Default配置 `wings.tiny.task.define[default]`
+`Default` config of task `wings.tiny.task.define[default]`
 
 ### wings.tiny.task.define[default].enabled
 
-`Boolean`=`true`，是否可以注册及执行，不会使用Default配置
+`Boolean`=`true`, whether to register and execute, not use Default config.
 
 ### wings.tiny.task.define[default].autorun
 
-`Boolean`=`true`，是否可以自动注册并启动，不会使用Default配置
+`Boolean`=`true`, whether to auto register and start, not use Default config.
 
 ### wings.tiny.task.define[default].version
 
-`Integer`=`0`，版本号，版本高的配置覆盖版本低的，不会使用Default配置
+`Integer`=`0`, version number, higher version config overrides lower one, not use Default config.
 
 ### wings.tiny.task.define[default].tasker-bean
 
-`String`，由TinyTasker注解的Bean，格式为Class#method，默认自动识别，不会使用Default配置
+`String`, Beans annotated by TinyTasker, formatted as Class#method,
+automatically recognized by default, not use Default config.
 
 ### wings.tiny.task.define[default].tasker-para
 
-`String`=`null`，任务的参数，对象数组的json格式，默认null或空无参数，不会使用Default配置
+`String`=`null`, Parameters of the task, object array in json format,
+default null or no parameters, not use Default config.
 
 ### wings.tiny.task.define[default].tasker-name
 
-`String`，任务名字，用于通知和日志，可读性好一些，默认为`[短类名#方法名]`，不会使用Default配置
+`String`, Task name, used for notifice and log, better readability,
+default is `[shortClassName#method]`, not use Default config.
 
 ### wings.tiny.task.define[default].task-fast
 
-`Boolean`=`true`，是否为轻任务，执行快，秒级完成，不会使用Default配置
+`Boolean`=`true`, Whether it is a light task, fast execution, completed in seconds, not use Default config.
 
 ### wings.tiny.task.define[default].tasker-apps
 
-`String`=`${spring.application.name}`，所属程序，逗号分隔，null及空时使用Default配置
+`String`=`${spring.application.name}`, The app it belongs to, comma separated,
+use Default config if null or empty.
 
 ### wings.tiny.task.define[default].tasker-runs
 
-`String`，执行模式，RunMode(product|test|develop|local)，逗号分隔忽略大小写，默认所有，null及空时使用Default配置
+`String`, RunMode(product|test|develop|local), Comma separated, ignore case, default all,
+use Default config if null or empty.
 
 ### wings.tiny.task.define[default].notice-bean
 
 `String`=`pro.fessional.wings.slardar.notice.DingTalkNotice`
 
-通知Bean，SmallNotice类型，格式为Class，默认无通知。null及空时使用Default配置
+Notice bean, SmallNotice type, fullpath of Class, no notice by default.
+use Default config if null or empty.
 
 ### wings.tiny.task.define[default].notice-when
 
-`String`=`fail`，通知的时机，exec|fail|done|feed，逗号分隔忽略大小写，默认fail。null及空时使用Default配置
+`String`=`fail`, Timing of notice, exec|fail|done|feed, comma separated ignoring case, default fail.
+use Default config if null or empty.
 
-* 时机大概表述为：exec;try{run...;done}catch{fail}
-* exec - 初始任务；done - 执行成功；fail - 执行失败；feed - 方法返回非空
+* timing is roughly expressed: exec;try{run...;done}catch{fail}
+* exec - init task; done - success; fail - failed; feed - non-empty return.
 
 ### wings.tiny.task.define[default].notice-conf
 
-`String`，通知Bean的配置文件名字，默认自动，空时使用Default配置
+`String`, The config name of the notice bean, automatic by default. use Default config if empty.
 
 ### wings.tiny.task.define[default].timing-zone
 
-`String`，调度时区的ZoneId格式，默认系统时区，null及空时使用Default配置
+`String`, timezone of scheduling , default system timezone, use Default config if null or empty.
 
 ### wings.tiny.task.define[default].timing-type
 
-`String`=`cron`，调度表达式类型，影响timingCron的解析方式，默认为spring cron格式，null及空时使用Default配置
+`String`=`cron`, scheduling expression type, affects how timingCron is parsed,
+defaults to spring cron format, use Default config if null or empty.
 
 ### wings.tiny.task.define[default].timing-cron
 
-`String`，调度表达式内容，最高优先级，受timingType影响，默认spring cron格式（秒分时日月周），不会使用Default配置
+`String`, Scheduling expression content, highest priority, affected by timingType,
+default spring cron format (second minute hour day month week), not use Default config.
 
 ### wings.tiny.task.define[default].timing-idle
 
-`Integer`=`0`，固定空闲相连（秒），优先级次于timingCron，相当于fixedDelay，结束到开始，0为无效，不会使用Default配置
+`Integer`=`0`, Fixed idle interval (seconds), lower priority than timingCron,
+equal to fixedDelay, end to start, 0 means disable, not use Default config.
 
 ### wings.tiny.task.define[default].timing-rate
 
-`Integer`=`0`，固定频率开始（秒），优先级次于timingIdle，相当于fixedRate，开始到开始，0为无效，不会使用Default配置
+`Integer`=`0`, Fixed frequency interval (seconds), lower priority than timingIdle,
+equal to fixedRate, start to start, 0 means disable, not use Default config.
 
 ### wings.tiny.task.define[default].timing-miss
 
-`Integer`=`0`，错过调度（misfire）多少秒内，需要补救执行，0表示不补救，不会使用Default配置
+`Integer`=`0`, Within how many seconds of a misfire, execution is required,
+0 means no execution. not use Default config.
 
 ### wings.tiny.task.define[default].timing-beat
 
-`Integer`=`0`，心跳间隔秒数，若任务的last_exec距今超过2个心跳，则视其为异常。默认自动，取rate或idle最大值，cron需要自行指定，不会使用Default配置
+`Integer`=`0`, the interval seconds of heartbeat, if the task's last_exec is more
+than 2 heartbeats away from now, it is considered as an exception. default auto to
+take rate or idle maximum, cron needs to specify it by itself, not use Default config.
 
 ### wings.tiny.task.define[default].during-from
 
-`String`，调度开始的日期时间，timingZone时区，yyyy-MM-dd HH:mm:ss，0表示无效，不会使用Default配置
+`String`, schedule start datetime at timingZone, in yyyy-MM-dd HH:mm:ss format,
+0 means disable, not use Default config.
 
 ### wings.tiny.task.define[default].during-stop
 
-`String`，调度结束的日期时间，timingZone时区，yyyy-MM-dd HH:mm:ss，0表示无效，不会使用Default配置
+`String`, schedule stop datetime at timingZone, in yyyy-MM-dd HH:mm:ss format,
+0 means disable, not use Default config.
 
 ### wings.tiny.task.define[default].during-exec
 
-`Integer`=`0`，总计初始执行多少次后，结束调度，不会使用Default配置
+`Integer`=`0`, stop schedule after how many total executions, not use Default config.
 
 ### wings.tiny.task.define[default].during-fail
 
-`Integer`=`0`，连续失败多少次后，结束调度，不会使用Default配置
+`Integer`=`0`, stop schedule after how many consecutive failures, not use Default config.
 
 ### wings.tiny.task.define[default].during-done
 
-`Integer`=`0`，总计成功执行多少次后，结束调度，不会使用Default配置
+`Integer`=`0`, stop schedule after how many successful executions, not use Default config.
 
 ### wings.tiny.task.define[default].during-boot=0
 
-`Integer`=`0`，每应用每启动时重新计数，总计成功执行多少次后，结束调度，默认无效，不会使用Default配置
+`Integer`=`0`, recount each time the app is started, and stop schedule after how many
+successful executions, disable by default, not use Default config.
 
 ### wings.tiny.task.define[default].result-keep
 
-`Integer`=`60`，执行结果保存的天数，默认60天，0为不保存，null时使用Default配置
+`Integer`=`60`, how many days to save the execution results, default 60 days,
+0 means not save, use Default configuration if null.
 
 ## 8B.5.wings-tinytask-urlmap-79.properties
 
-内置功能的URL
+URL of builtin features.
 
 ### wings.tiny.task.urlmap.task-running
 
-`String`=`/admin/task/task-running.json`，运行中的任务列表
+`String`=`/admin/task/task-running.json`, list of running tasks.
 
 ### wings.tiny.task.urlmap.task-defined
 
-`String`=`/admin/task/task-defined.json`，定义的任务列表
+`String`=`/admin/task/task-defined.json`, list of defined tasks.
 
 ### wings.tiny.task.urlmap.task-result
 
-`String`=`/admin/task/task-result.json`，任务历史列表
+`String`=`/admin/task/task-result.json`, list of task results.
 
 ### wings.tiny.task.urlmap.task-cancel
 
-`String`=`/admin/task/task-cancel.json`，取消一个任务
+`String`=`/admin/task/task-cancel.json`, cancle a task.
 
 ### wings.tiny.task.urlmap.task-launch
 
-`String`=`=/admin/task/task-launch.json`，启动任务
+`String`=`=/admin/task/task-launch.json`, start a task.
 
 ### wings.tiny.task.urlmap.task-force
 
-`String`=`/admin/task/task-force.json`，强制执行任务
+`String`=`/admin/task/task-force.json`, force to start a task.
 
 ### wings.tiny.task.urlmap.task-enable
 
-`String`=`/admin/task/task-enable.json`，启动或禁用任务
+`String`=`/admin/task/task-enable.json`, enable or disable a task.
 
 ### wings.tiny.task.urlmap.task-prop-save
 
-`String`=`/admin/task/task-prop-save.json`，更新任务配置
+`String`=`/admin/task/task-prop-save.json`, update the task config.
 
 ### wings.tiny.task.urlmap.task-prop-load
 
-`String`=`/admin/task/task-prop-load.json`，任务载入属性
+`String`=`/admin/task/task-prop-load.json`, load the task config.
 
 ### wings.tiny.task.urlmap.task-prop-conf
 
-`String`=`/admin/task/task-prop-conf.json`，任务配置属性
+`String`=`/admin/task/task-prop-conf.json`, show the prop of task conf.
 
 ### wings.tiny.task.urlmap.task-prop-diff
 
-`String`=`/admin/task/task-prop-diff.json`，任务属性差异
+`String`=`/admin/task/task-prop-diff.json`, show the diff of task conf.

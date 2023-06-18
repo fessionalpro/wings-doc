@@ -2,77 +2,79 @@
 isOriginal: true
 icon: enum
 category:
-  - 沉默
-  - 属性
+  - Silencer
+  - Property
 ---
 
-# 1D.沉默的属性
+# 1D.Silencer Properties
 
-有关自动加载，默认工具和行为的属性。
+Properties about autoloading, default tools and behavior.
 
 ## 1D.1.wings-auto-config.cnf
 
-Silencer的入口配置，定义了Silencer的自动加载的路径和模式。
+Silencer's entry configuration, which defines the path and mode of Silencer's autoload.
 
 ### wings.boot.more
 
 `List<String>`=`application*.*, wings-conf/**/*.*`
 
-多协议路径下查找，不支持协议头，同名可多次加载，按优先级覆盖。
+Scan path under multi-protocol, so no protocol header,
+same name can be loaded multiple times, override by priority.
 
 ### wings.boot.once
 
 `List<String>`=`git.properties, META-INF/build-info.properties`
 
-多协议路径下查找，不支持协议头，同名仅按优先级加载一次，后续不会覆盖。
+Scan path under multi-protocol, so no protocol header,
+same name loaded only once by priority, no subsequent override.
 
 ### wings.boot.block
 
 `String`=`wings-conf-block-list.cnf`
 
-黑名单文件名
+Filename of the block-list config
 
 ### wings.boot.promo
 
 `String`=`wings-prop-promotion.cnf`
 
-变量提示文件名
+Filename of the promotion config
 
 ## 1D.2.logback-fileonly.xml
 
-`logback`仅file-appender的默认配置。
+`logback` default configuration for file-appender only.
 
 ## 1D.3.spring-wings-enabled-79.properties
 
-Silencer功能的默认开关，如下
+The default switch for toggling the Silencer feature, as follows
 
 ### spring.wings.silencer.enabled.autoconf
 
-`Boolean`=`true`，是否启动自动配置
+`Boolean`=`true`, Whether to automatically configure
 
 ### spring.wings.silencer.enabled.verbose
 
-`Boolean`=`false`，是否显示wings的conditional信息
+`Boolean`=`false`, Whether to display the conditional information of wings
 
 ### spring.wings.silencer.enabled.message
 
-`Boolean`=`true`，是否自动加载`/wings-i18n/`
+`Boolean`=`true`, Whether to automatically load /wings-i18n/ messages
 
 ### spring.wings.silencer.enabled.scanner
 
-`Boolean`=`true`，是否自动载所有classpath下的`**/spring/bean/**`
+`Boolean`=`true`, Whether to automatically load all classpaths `**/spring/bean/**`
 
 ### spring.wings.silencer.enabled.auto-log
 
-`Boolean`=`true`，是否在有log-file时，自动切换console的日志级别
+`Boolean`=`true`, Whether to automatically switch the console log level when a log file is available
 
 ### spring.wings.silencer.enabled.encrypt
 
-`Boolean`=`true`，是否在自动配置加密
+`Boolean`=`true`, Whether to automatically config mirana
 
 ## 1D.4.spring-logging-79.properties
 
-为spring的logging提供了以下配置项。
+Default configuration for spring logging
 
 * `logging.logback.rollingpolicy.max-file-size`=`500MB`
 * `logging.logback.rollingpolicy.max-history`=`30`
@@ -81,7 +83,7 @@ Silencer功能的默认开关，如下
 
 ## 1D.5.spring-message-79.properties
 
-为spring.messages提供以下默认项。
+Default configuration for spring message
 
 * `spring.messages.always-use-message-format`=`false`
 * `spring.messages.basename`=`∅`
@@ -92,105 +94,105 @@ Silencer功能的默认开关，如下
 
 ## 1D.6.wings-i18n-79.properties
 
-为应用设置默认语言和时区，以及多国语资源。
+Set default language and timezone for the app, as well as i18n messages.
 
 ### wings.silencer.i18n.locale
 
-`String`=`∅`，格式为`en_US`, `zh_CN`。默认系统语言。
+`String`=`∅`, in the format `en_US`, `zh_CN`. Default system language.
 
-对应系统变量的`user.language`, `user.country`
+Corresponds to `user.language`, `user.country` of the system variable
 
 ### wings.silencer.i18n.zoneid=
 
-`String`=`∅`，默认系统时区，如`UTC`, `GMT+8,` `Asia/Shanghai`
+`String`=`∅`, such as `UTC`, `GMT+8,` `Asia/Shanghai`. Default system timezone.
 
-对应系统变量的`user.timezone`
+corresponding to `user.timezone` of the system variable
 
 ### wings.silencer.i18n.bundle
 
 `List<String>`=`classpath*:/wings-i18n/**/*.properties`
 
-默认的resource配置，逗号分隔的AntPath格式。
+The default resource configuration, in comma-separated AntPath format.
 
 ## 1D.7.wings-autolog-79.properties
 
-自动切换appender的日志级别
+Automatically switch log levels for appender
 
 ### wings.silencer.autolog.level
 
-`String`=`WARN`，Slf4j格式
+`String`=`WARN`, Slf4j format
 
-自动设置日志的级别，如 ALL, TRACE, DEBUG, INFO, WARN, ERROR, OFF
+Automatically set the log level, such as ALL, TRACE, DEBUG, INFO, WARN, ERROR, OFF
 
 ### wings.silencer.autolog.target
 
 `Set<String>`=`CONSOLE,STDOUT`
 
-可被mirana自动被调整的appender名字，逗号分隔
+The names of the appender to adjust, commas separated
 
 ### wings.silencer.autolog.exists
 
 `Set<String>`=`FILE`
 
-当存在以上appender出现的时候，进行自动日志调整。
+If the following appenders exist, the above log level is automatically adjusted.
 
 ## 1D.8.wings-encrypt-79.properties
 
-自动配置加密功能
+Automatic configuration of encryption features.
 
 ### wings.silencer.encrypt.leap-code
 
 `String`=`BY2AH0IC9SX4UTV7GP5LNR6FK1WOE8ZQD3JM`
 
-LeapCode的默认seed，强安全需求时建议修改。^建议^
+Default seed of LeapCode, should change for security requirements. ^RECOMMENDED^
 
 ### wings.silencer.encrypt.crc8-long
 
 `String`=`15,13,11,9,7,5,3,1`
 
-Crc8Long的默认seed，强安全需求时建议修改。^建议^
+Default seed of Crc8Long, should change for security requirements. ^RECOMMENDED^
 
 ### wings.silencer.encrypt.aes-key
 
-`Map<String,String>`，默认的Aes256加密名字和密码，默认`${random.uuid}${random.uuid}`。
+`Map<String,String>`, the default Aes256 encryption name and password `${random.uuid}${random.uuid}`.
 
-* `system` - 系统默认，每次系统启动时随机生成，停机后消失
-* `ticket` - 用于Api Ticket，建议集群内统一
-* `cookie` - 用于 Http Cookie，建议集群内统一
-* `config` - 用于 配置文件中敏感数据，建议固定
+* `system` - system default, randomly generated at each startup
+* `ticket` - used for Api Ticket, recommended to be unified within the cluster
+* `cookie` - used for Http Cookies, recommended to be unified within the cluster
+* `config` - used for sensitive data in configuration files, recommended to be fixed
 
 ## 1D.9.wings-tweak-79.properties
 
-应用调节
+Tweaking of the Application
 
 ### wings.silencer.tweak.code-stack
 
-`Boolean`=`false`，CodeException的Global有栈或无栈
+`Boolean`=`false`, Whether the Global of CodeException has a stack. default false
 
 ### wings.silencer.tweak.clock-offset
 
-`Long`=`0`，初始系统时钟 offset ms
+`Long`=`0`, Initial system clock with offset ms
 
 ### wings.silencer.tweak.mdc-threshold
 
-`Boolean`=`true`，是否配置WingsMdcThresholdFilter
+`Boolean`=`true`, Whether to configure WingsMdcThresholdFilter
 
 ## 1D.A.wings-runtime-77.properties
 
-运行时的应用模式
+Runtime Mode of the Application.
 
 ### wings.silencer.runtime.run-mode
 
-`RunMode`=`Local`，默认的运行模式
+`RunMode`=`Local`, RunMode of the application
 
 ### wings.silencer.runtime.api-mode
 
-`ApiMode`=`Nothing`，默认的Api模式
+`ApiMode`=`Nothing`, ApiMode of the application
 
 ## 1D.B.wings-inspect-79.properties
 
-应用审查功能
+Inspect and audit the Application
 
 ### wings.silencer.inspect.properties
 
-`Boolean`=`false`，是否审视properties的key,value,所在文件及层叠关系
+`Boolean`=`false`, Whether to audit the file and cascading relationship of properties key/value

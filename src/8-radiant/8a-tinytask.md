@@ -2,71 +2,73 @@
 isOriginal: true
 icon: timer
 category:
-  - 小小
-  - 任务
+  - Tiny
+  - Task
 ---
 
-# 8A.小任务模块
+# 8A.TinyTask Component
 
-基于Spring Schedule提供了以database为中心的任务调度
+Based on Spring Schedule, provides database-centric task scheduling.
 
-* 自动发现和执行
-* 中途取消，启动，修改配置
-* 设置任务通知
-* 查询任务执行历史
+* Auto discovery and execution
+* Can cancel, start, change config at runtime
+* Enable task notification
+* Query task execution history
 
-## 8A.1.设计要求
+## 8A.1.Design Requirement
 
-TinyTask设计为强类型，静态的，因此默认限制了动态添加任务。
+TinyTask is designed to be strongly typed and static, so by default it is limited to dynamically adding tasks.
 
-* 任务对象必须是SpringBean
-* 使用@TinyTask.Auto注解的类可自动发现
-* 入口方法必须使用@TinyTask注解标注
-* 通过配置文件设置任务属性
-* 最终配置以database为准，除非version覆盖
-* 任务仅在限定的app和run mode中启动
-* 任务自身可进行并发控制(Jvm及Database)
+* The task object must be a SpringBean
+* Use @TinyTask.Auto to auto discover
+* Entry methods must be annotated with @TinyTask
+* Set task properties via configuration file
+* Final configuration is based on database unless version overrides
+* Tasks can only be started in restricted app and run modes
+* Task itself can be concurrency controlled (Jvm and Database)
 
-## 8A.2.配置覆盖
+## 8A.2.Config Override
 
-任务可自动或手动添加，以@TinyTask.Auto注解的Bean会自动开始，
-此外，通过TinyTaskService.schedule方法手动开始。
+Tasks can be added automatically or manually. Beans with @TinyTask.Auto are started automatically.
+They can also be started manually using the TinyTaskService.schedule method.
 
-任务的配置会首先进行合并，优先级为从高到低依次为。
+The task configuration is merged first, with priority from highest to lowest.
 
-* 任务自身key的属性值
-* 任务的default值
-* annotation注解值
+* property value of the task's own key
+* default value of the task
+* value from the annotation
 
-以上合并后的配置文件，成为taks的property，会和database中当前值比较version
-以version大者优先，相等时，以database（win_task_define表）优先。
+The above merged config becomes the taks properties and will be compared with the current value
+in the database. The larger version takes precedence, and if equal,
+the database (win_task_define table) takes precedence.
 
-## 8A.3.任务调度
+## 8A.3.Task Schedule
 
-任务按执行时间，分为light和heavy任务，对应2个不同的线程池。
-一般任务秒级完成的为轻任务，在fast线程池中执行，否则则heavy中执行。
+Tasks are divided into light and heavy by execution time, corresponding to 2 different thread pools.
+Tasks that generally finish in seconds are light tasks and run in the fast thread pool,
+otherwise they run in heavy.
 
-一个任务必须设置cron/idle/rate中任意一个值，以进行任务调度，
-如果同时设置，则cron高于idle，idle高于rate覆盖。
+A task must set one of cron/idle/rate for task scheduling.
+If both are set, cron overrides idle, idle overrides rate.
 
-## 8A.4.任务控制
+## 8A.4.Task Control
 
-TinyTask默认提供了控制的Controller
+TinyTask provides a Controller to control task by default
 
-* task-running - 运行中的任务列表
-* task-defined - 定义的任务列表
-* task-result - 任务历史列表
-* task-cancel - 取消一个任务
-* task-launch - 启动任务
-* task-force - 强制执行任务
-* task-enable - 启动或禁用任务
-* task-prop-save - 更新任务配置
-* task-prop-load - 任务载入属性
-* task-prop-conf - 任务配置属性
-* task-prop-diff - 任务属性差异
+* task-running - list of running tasks
+* task-defined - list of defined tasks
+* task-result - list of task history
+* task-cancel - cancels a task
+* task-launch - starts a task
+* task-force - forces a task to start
+* task-enable - enable or disable a task
+* task-prop-save - update a task's properties
+* task-prop-load - load properties of a task
+* task-prop-conf - task configuration properties
+* task-prop-diff - task property differences
 
-推荐在编码中进行任务控制，比较安全和强类型
+Recommended to control task in hardcoding, for more secure and strongly typed,
 
-* TinyTaskConfService - 配置相关服务
-* TinyTaskExecService - 执行相关服务
-* TinyTaskService - 调度任务入口
+* TinyTaskConfService - configuration related service
+* TinyTaskExecService - execute related services
+* TinyTaskService - scheduling task entry

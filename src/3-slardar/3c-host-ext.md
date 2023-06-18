@@ -2,53 +2,56 @@
 isOriginal: true
 icon: extend
 category:
-  - 鱼人
-  - 套壳
+  - Slardar
+  - Tenant
 ---
 
-# 3C.Host继承和URL重载
+# 3C.Host Extend and URL Override
 
-基于Mvc特性实现了同一个后端app多个不同前端的host租户功能。不同于反向代理(nginx)的rewrite，
+Based on Mvc features to achieve the same backend app multiple different frontend host tenant function.
+Unlike reverse proxy (nginx) rewrite,
 
-* extend - 子domain拥有父domain的全部URL
-* override - 子domain可以override父domain的URL
-* 子domain有自己独立的URL
-* domain的继承基于host
+* extend - the child domain has all the URLs of the parent domain
+* override - the child domain can override the URL of the parent domain
+* child domains have their own separate URLs
+* domain inheritance is based on host
 
-## 3C.1.场景举例
+## 3C.1.Scenario Example
 
-假设`a.com`是一个有完整的功能domain，举例包括以下3个URL
+Assuming that `a.com` is a fully functional website, an example would include the following 3 URLs,
 
-* GET /user-list.json - 基于Controller
-* GET /css/main.css - 静态资源
-* GET /login.html - 基于Controller
+* GET /user-list.json - controller based
+* GET /css/main.css - static resource
+* GET /login.html - controller based
 
-此时，来个加盟商`b.com`，除了皮肤，顶级域名外，都和`a.com`一样。
-再后来，`b.com`有了自己的需求，部分界面和url和`a.com`的需求分叉了。
-不同的功能自己实现，放在约定的prefix下，此时URL分布如下，
+At this point, we have a franchisee `b.com`, which is all the same as `a.com` except for the skin,
+and its own domain. Later on, `b.com` has its own requirements, and some of function and Url are
+different from `a.com`. The different functions are implemented independently and put under the
+convention prefix, at this time the URLs are distributed as follows.
 
-* GET /login.html - `a.com`(父)，`b.com`(子)
-* GET /user-list.json - `a.com`(父)
-* GET /css/main.css - `a.com`(父)
-* GET /domain/b/user-list.json - `b.com`(子)
-* GET /domain/b/css/main.css - `b.com`(子)
+* GET /login.html - `a.com`(parent), `b.com`(child)
+* GET /user-list.json - `a.com`(parent)
+* GET /css/main.css - `a.com`(parent)
+* GET /domain/b/user-list.json - `b.com`(child)
+* GET /domain/b/css/main.css - `b.com`(child)
 
-当用户访问以下URL时，按照java的父子类override规则，调用如下，
+When the user visits the following URL, according to the parent-child override rules of Java,
+the following is called,
 
-* `a.com/login.html` - /login.html(父)
-* `a.com/user-list.json` - /user-info.list(父)
-* `a.com/css/main.css` - /css/main.css(父)
-* `b.com/login.html` - /login.html(父)
-* `b.com/user-list.json` - /domain/b/user-list.json(子)
-* `b.com/css/main.css` - /domain/b/css/main.css(子)
+* `a.com/login.html` - /login.html(parent)
+* `a.com/user-list.json` - /user-info.list(parent)
+* `a.com/css/main.css` - /css/main.css(parent)
+* `b.com/login.html` - /login.html(parent)
+* `b.com/user-list.json` - /domain/b/user-list.json(child)
+* `b.com/css/main.css` - /domain/b/css/main.css(child)
 
-实际项目中，以上场景多发生在resource和controller的Mapping中。
+In the actual project, the above scenario mostly happens in the Mapping of resource and controller.
 
-* resource通常有`**`匹配，用反射ResourceHttpRequestHandler.getResource检查
-* 若非ResourceHttpRequestHandler且match`**`，需要自己设法检查资源是否存在
-* 暂时不支持viewTemplate，同时也约定模板必须使用全路径
+* Resource usually has a `**` match, use reflection in ResourceHttpRequestHandler.getResource to check
+* If not ResourceHttpRequestHandler and match `**`, you need to try the resource exists by yourself
+* temporarily do not support viewTemplate, but also suggest that templates must use the full path
 
-根据wings mapping约定，避免使用相对路径，所以，b.com要在在class级做前缀
+According to Wings mapping convention, avoid using relative paths, so b.com be prefixed at the class level
 
 ```java
 @Controller
@@ -57,27 +60,29 @@ public class UserController {
  
     @GetMapping("/user-info.json")
     public String fetchUserInfo() {
-        // 不支持view，需要手动指定
+        // View has no support and must be set manually
         return "/domain/b/user-info";
     }
 }
 ```
 
-## 3C.2.实现原理
+## 3C.2.Underlying Principle
 
-在SpringMvc体系中，一个请求进入servlet容器后，在worker线程中
+In SpringMvc system, a request enters the servlet container in the worker thread,
 
 * Filter#doFilter `before` chain.doFilter
 * DispatcherServlet#doService `call` doDispatch
 * Filter#doFilter `after` chain.doFilter
 
-wings通过WingsDomainFilter，先检查host，如果是继承域，则构造子域全路径url，  
-通过检查缓存和DispatchServlet中的HandlerMapping再构造RequestWrapper。
+Wings use WingsDomainFilter, first check the host, if it is an inherited domain, then construct
+the subdomain full path url. By checking the cache and the HandlerMapping in DispatchServlet,
+construct a RequestWrapper.
 
-比如用户访问的URL为 /user/login.json，假设满足domain继承，host为trydofor，
-在服务器端实际访问的资源是/prefix/trydofor/user/login.json
+For example, the user visits the URL /user/login.json, assuming that the domain is inheritance
+and the host is trydofor. The actual resource accessed on the server side is /prefix/trydofor/user/login.json
 
-即增加了`/${prefix}/${host}`的路径在客户访问URI前。知识点扩展，
+That is, the path `/${prefix}/${host}` is added before the client request the URI. Knowledge extension.
 
-* 在FilterChain.doFilter调用之前Request可用，而其后Response可用的，注意线程安全和性能
-* 默认静态资源在classpath中的 `/static`, `/public`, `/resources`, `/META-INF/resources`
+* Request is available before the FilterChain.doFilter call, and Response is available afterwards,
+  with thread safety and performance in mind.
+* Default static resources in the classpath `/static`, `/public`, `/resources`, `/META-INF/resources`

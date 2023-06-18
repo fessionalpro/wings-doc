@@ -26,12 +26,12 @@ function stylizeIt(key: string | RegExp, txt: string, type: string, ...tags: str
 export default hopeTheme({
   locales: {
     '/': {
-      navbar: navbarZh,
-      sidebar: sidebarZh,
-    },
-    '/en/': {
       navbar: navbarEn,
       sidebar: sidebarEn,
+    },
+    '/zh/': {
+      navbar: navbarZh,
+      sidebar: sidebarZh,
     },
   },
 

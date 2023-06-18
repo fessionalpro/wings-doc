@@ -2,162 +2,162 @@
 isOriginal: true
 icon: enum
 category:
-  - 术士
-  - 属性
+  - Warlock
+  - Property
 ---
 
-# 4D.术士的属性
+# 4D.Warlock Properties
 
-有关Warlock登录授权的设置
+Properties of loing and authn/authz in Warlock.
 
 ## 4D.1.spring-wings-enabled-77.properties
 
-设置以下属性，
+override the following properties,
 
 * spring.wings.faceless.enabled.enumi18n=true
 * spring.wings.faceless.flywave.enabled.module=true
 
 ### spring.wings.warlock.enabled.autoconf
 
-`Boolean`=`true`，是否启动自动配置。
+`Boolean`=`true`, whether to enable auto config.
 
 ### spring.wings.warlock.enabled.security-auto
 
-`Boolean`=`true`，是否支持 warlock security web and http配置
+`Boolean`=`true`, whether to support "warlock security web and http".
 
 ### spring.wings.warlock.enabled.security-web-autos
 
-`Boolean`=`true`，是否支持 Web 自动配置，firewall，debug等
+`Boolean`=`true`, whether to enable Web auto config, eg. firewall, debug, etc.
 
 ### spring.wings.warlock.enabled.security-http-bind
 
-`Boolean`=`true`，是否支持 warlock security http wing bind
+`Boolean`=`true`, whether to support "warlock security http wing bind".
 
 ### spring.wings.warlock.enabled.security-http-auth
 
-`Boolean`=`true`，是否支持 warlock security http wing auth
+`Boolean`=`true`, whether to support "warlock security http wing auth".
 
 ### spring.wings.warlock.enabled.security-http-base
 
-`Boolean`=`true`，是否支持 warlock security http base 验证
+`Boolean`=`true`, whether to support "warlock security http base auth".
 
 ### spring.wings.warlock.enabled.security-http-auto
 
-`Boolean`=`true`，是否支持 warlock security http auto
+`Boolean`=`true`, whether to support "warlock security http auto".
 
 ### spring.wings.warlock.enabled.security-http-chain
 
-`Boolean`=`true`，是否配置默认的 SecurityFilterChain
+`Boolean`=`true`, whether to support SecurityFilterChain.
 
 ### spring.wings.warlock.enabled.security-bean
 
-`Boolean`=`true`，是否支持 warlock security Bean配置
+`Boolean`=`true`, whether to support warlock security Bean.
 
 ### spring.wings.warlock.enabled.global-lock
 
-`Boolean`=`true`，是否注入 wings的全局锁
+`Boolean`=`true`, whether to inject wings global lock.
 
 ### spring.wings.warlock.enabled.jooq-autogen
 
-`Boolean`=`true`，是否注入 jooq dao
+`Boolean`=`true`, whether to inject jooq dao.
 
 ### spring.wings.warlock.enabled.combo-list-all-login-page
 
-`Boolean`=`true`，是否注入 ListAllLoginPageCombo
+`Boolean`=`true`, whether to inject ListAllLoginPageCombo.
 
 ### spring.wings.warlock.enabled.combo-nonce-user-details
 
-`Boolean`=`true`，是否注入 NonceUserDetailsCombo
+`Boolean`=`true`, whether to inject NonceUserDetailsCombo.
 
 ### spring.wings.warlock.enabled.just-auth
 
-`Boolean`=`true`，是否支持 just auth
+`Boolean`=`true`, whether to support just auth.
 
 ### spring.wings.warlock.enabled.combo-just-auth-login-page
 
-`Boolean`=`true`，是否注入 JustAuthLoginPageCombo
+`Boolean`=`true`, whether to inject JustAuthLoginPageCombo.
 
 ### spring.wings.warlock.enabled.combo-just-auth-user-details
 
-`Boolean`=`true`，是否注入 JustAuthUserDetailsCombo
+`Boolean`=`true`, whether to inject JustAuthUserDetailsCombo.
 
 ### spring.wings.warlock.enabled.combo-just-auth-autoreg
 
-`Boolean`=`true`，是否注入 JustAuthUserAuthnAutoReg
+`Boolean`=`true`, whether to inject JustAuthUserAuthnAutoReg.
 
 ### spring.wings.warlock.enabled.zone-perm-check
 
-`Boolean`=`false`，是否支持 AuthZonePermChecker
+`Boolean`=`false`, whether to support AuthZonePermChecker.
 
 ### spring.wings.warlock.enabled.app-perm-check
 
-`Boolean`=`true`，是否支持 AuthAppPermChecker
+`Boolean`=`true`, whether to support AuthAppPermChecker.
 
 ### spring.wings.warlock.enabled.default-exception-handler
 
-`Boolean`=`true`，是否注入 DefaultExceptionResolver
+`Boolean`=`true`, whether to inject DefaultExceptionResolver.
 
 ### spring.wings.warlock.enabled.bind-exception-advice
 
-`Boolean`=`true`，是否注入 BindExceptionAdvice
+`Boolean`=`true`, whether to inject BindExceptionAdvice.
 
 ### spring.wings.warlock.enabled.check-database
 
-`Boolean`=`true`，是否检查mysql和本机timezone兼容性
+`Boolean`=`true`, whether to check mysql and local timezone compatibility.
 
 ### spring.wings.warlock.enabled.swagger-rule
 
-`Boolean`=`true`，是否支持为Docket全局注入AlternateTypeRule
+`Boolean`=`true`, whether to support global inject AlternateTypeRule into Docket.
 
 ### spring.wings.warlock.enabled.swagger-jsr310
 
-`Boolean`=`true`，是否支持为Docket全局注入"java.time.Local*"
+`Boolean`=`true`, whether to support global inject "java.time.Local*" into Docket.
 
 ### spring.wings.warlock.enabled.table-change
 
-`Boolean`=`true`，是否开启table CUD 监听
+`Boolean`=`true`, whether to enable table CUD listener.
 
 ### spring.wings.warlock.enabled.controller-auth
 
-`Boolean`=`true`，是否开启默认的auth Controller
+`Boolean`=`true`, whether to enable the default auth Controller.
 
 ### spring.wings.warlock.enabled.controller-proc
 
-`Boolean`=`true`，是否开启由filter处理仅做文档的login/out proc
+`Boolean`=`true`, whether to enable document-only login/out proc that processed by filter.
 
 ### spring.wings.warlock.enabled.controller-user
 
-`Boolean`=`true`，是否开启默认的user Controller
+`Boolean`=`true`, whether to enable the default user Controller.
 
 ### spring.wings.warlock.enabled.controller-mock
 
-`Boolean`=`true`，是否开启默认的mock Controller
+`Boolean`=`true`, whether to enable the default mock Controller.
 
 ### spring.wings.warlock.enabled.controller-test
 
-`Boolean`=`true`，是否开启默认的test Controller
+`Boolean`=`true`, whether to enable the default test Controller.
 
 ### spring.wings.warlock.enabled.controller-tweak
 
-`Boolean`=`false`，是否开启默认的TweakController
+`Boolean`=`false`, whether to enable the default TweakController.
 
 ### spring.wings.warlock.enabled.controller-oauth
 
-`Boolean`=`true`，是否开启默认的OauthController
+`Boolean`=`true`, whether to enable the default OauthController.
 
 ### spring.wings.warlock.enabled.watching
 
-`Boolean`=`false`，是否支持计时分析
+`Boolean`=`false`, whether to enable timing watching and analysis.
 
 ### spring.wings.warlock.enabled.uniauth
 
-`Boolean`=`false`，是否支持联合登录
+`Boolean`=`false`, whether to support wings union login.
 
 ## 4D.2.wings-flywave-fit-79.properties
 
 ### wings.faceless.flywave.fit.warlock-enum-i18n
 
-检查并自动安装，warlock-enum-i18n的数据库依赖
+Check and automatically install the database dependencies for warlock-enum-i18n.
 
 * `path`=`classpath*:/wings-flywave/branch/feature/01-enum-i18n/*.sql`
 * `revi`=`2019_0521_01L`
@@ -165,7 +165,7 @@ category:
 
 ### wings.faceless.flywave.fit.warlock-user-auth
 
-检查并自动安装，warlock-user-auth的数据库依赖
+Check and automatically install the database dependencies for warlock-user-auth.
 
 * `path`=`classpath*:/wings-flywave/master/04-auth/*.sql`
 * `revi`=`2020_1024_01L, 2020_1024_02L`
@@ -173,7 +173,7 @@ category:
 
 ### wings.faceless.flywave.fit.warlock-conf-mode
 
-检查并自动安装，warlock-conf-mode的数据库依赖
+Check and automatically install the database dependencies for warlock-conf-mode.
 
 * `path`=`classpath*:/wings-flywave/master/05-conf/*.sql`
 * `revi`=`2020_1025_01L`
@@ -181,34 +181,34 @@ category:
 
 ## 4D.3.wings-warlock-justauth-77.properties
 
-Oauth登录支持，使用just-auth
+Oauth login support, use just-auth.
 
 ### wings.warlock.just-auth.cache-size
 
-`Integer`=`5000`，缓存capacity数量
+`Integer`=`5000`, cache capacity
 
 ### wings.warlock.just-auth.cache-live
 
-`Integer`=`300`，ttl秒数，expireAfterWrite
+`Integer`=`300`, ttl seconds, expireAfterWrite
 
 ### wings.warlock.just-auth.safe-state
 
-`Map<String, String>`，默认，`/login`=`{1}/#{0}{2}`
+`Map<String, String>`, default `/login`=`{1}/#{0}{2}`
 
-设定安全的state，通过key获取内容，执行重定向(`http`或`/`开头)或回写。
-内容支持`MessageFormat`格式的占位符模板，`{0}`为key，
-若是http开头，则检测是否为safe-host
+Set secure state, get content by key, perform redirects (starting with `http` or `/`) or write-back.
+The content supports a placeholder template in `MessageFormat` format, with `{0}` as the key.
+If it starts with `http`, then it detects if it is safe-host.
 
 ### wings.warlock.just-auth.safe-host
 
 `Set<String>`=`localhost:8080,localhost:8081`
 
-设定安全的host，减少dev时的跨域，可引发`redirect_uri_mismatch`错误
+Set secure host, reduce cross-domain when dev, can raise `redirect_uri_mismatch` error.
 
 ### wings.warlock.just-auth.auth-type
 
-`Map<String, AuthConfig>`，key同`wings.warlock.security.auth-type.*`，
-支持`{host}`,`{scheme}`,`{authType}`,`{authZone}`变量，根据request的参数。
+`Map<String, AuthConfig>`, key use `wings.warlock.security.auth-type.*`,
+support `{host}`,`{scheme}`,`{authType}`,`{authZone}` variables, according to request.
 
 * `github.client-id`=`Iv1.561a1b1940c77d3a`
 * `github.client-secret`=`${GITHUB_OAUTH_SECRET}`
@@ -216,28 +216,28 @@ Oauth登录支持，使用just-auth
 
 ### wings.warlock.just-auth.http-conf
 
-`Map<String, Http>`，如果不需要代理，设置proxy-type=DIRECT或host=空即可
+`Map<String, Http>`, if you don't need a proxy, just set proxy-type=DIRECT or host=null.
 
-* `github.timeout`=`10`，此处为秒，与just-auth的毫秒不同。
+* `github.timeout`=`10`, in seconds, NOT just-auth's millis.
 * `github.proxy-type`=`SOCKS`
 * `github.proxy-host`=`127.0.0.1`
 * `github.proxy-port`=`1081`
 
 ## 4D.4.wings-warlock-check-77.properties
 
-是否做时区的检查
+whether to check timezone.
 
 ### wings.warlock.check.tz-offset
 
-`Integer`=`5`，秒，数据库和jvm时间差，绝对值的最大值
+`Integer`=`5`, seconds, database and JVM time offset, absolute maximum.
 
 ### wings.warlock.check.tz-fail
 
-`Boolean`=`true`，时间差异过大时，是终止还是log
+`Boolean`=`true`, whether to terminate or to log only when the time offset is exceeded.
 
 ## 4D.5.wings-warlock-cud-77.properties
 
-Jooq对用户和授权相关表的CUD监听
+Jooq's CUD listening on user and auth related tables.
 
 * `wings.faceless.jooq.cud.table[win_perm_entry]`=`id`
 * `wings.faceless.jooq.cud.table[win_role_entry]`=`id`
@@ -249,8 +249,8 @@ Jooq对用户和授权相关表的CUD监听
 
 ## 4D.6.wings-warlock-error-77.properties
 
-全局异常控制。`CodeException`类型，支持变量`{message}`，
-default为默认配置，兜底处理所以异常并为其他同类型提供默认值。
+Global Exception handling. `CodeException` supports variable `{message}`.
+`default` handles all exceptions and provides defaults for other similar types.
 
 ### wings.warlock.error.default-exception
 
@@ -264,112 +264,114 @@ default为默认配置，兜底处理所以异常并为其他同类型提供默�
 
 `Set<String>`=`pro.fessional.wings.faceless.enums.autogen.StandardTimezone`
 
-初始化的ZoneId的StandardTimezoneEnum类
+init ZoneId by StandardTimezoneEnum.
 
 ### wings.warlock.i18n.locale-enum
 
 `Set<String>`=`pro.fessional.wings.faceless.enums.autogen.StandardLanguage`
 
-初始化的Locale的StandardLanguageEnum类
+init Locale by StandardLanguageEnum.
 
 ## 4D.8.wings-warlock-lock-77.properties
 
-全局锁设置
+Global lock.
 
 ### wings.warlock.lock.hazelcast-cp
 
-`Boolean`=`true`，在hazelcast的GlobalLock中，是否使用 useCpIfSafe
+`Boolean`=`true`, whether to use useCpIfSafe in hazelcast GlobalLock.
 
 ## 4D.9.wings-warlock-security-77.properties
 
-Spring Security设置
+Spring Security setting.
 
 ### wings.warlock.security.web-debug
 
-`Boolean`=`false`，WebSecurity.debug
+`Boolean`=`false`, whether to enable WebSecurity.debug
 
 ### wings.warlock.security.authority-role
 
-`Boolean`=`true`，权限是否使用Role
+`Boolean`=`true`, whether to use Role in AuthX.
 
 ### wings.warlock.security.authority-perm
 
-`Boolean`=`true`，权限是否使用Perm
+`Boolean`=`true`, whether to use Perm in AuthX.
 
 ### wings.warlock.security.login-forward
 
-`Boolean`=`true`，true以servlet的forward进行，否则redirect(302)跳转
+`Boolean`=`true`, true to forward in servlet, otherwise redirect(302)
 
 ### wings.warlock.security.login-page
 
-`String`=`/auth/login-page.json`，未登录时跳转的页面，需要有controller处理
+`String`=`/auth/login-page.json`, the redirect page when not login, need to have controller to handle.
 
 ### wings.warlock.security.login-proc-url
 
 `String`=`/auth/{authType}/login.json`
 
-loginProcessingUrl，处理登录的Ant格式URL，由filter处理，不需要controller。
-支持变量`authType`和`authZone`，可以通过param或path获得（PathPattern）
+loginProcessingUrl, the Ant style URL for processing login, handled by filter, no controller required.
+Support `authType` and `authZone` variables, which can be obtained via param or path (PathPattern)
 
 ### wings.warlock.security.login-proc-method
 
-`Set<String>`=`POST,GET`，spring默认仅POST，以更好的RESTful，但Oauth有Get
+`Set<String>`=`POST,GET`, Spring is POST only to better follow RESTful, but Oauth has Get.
 
 ### wings.warlock.security.logout-url
 
-`String`=`/auth/logout.json`
-
-登出地址，由filter处理，不需要controller
+`String`=`/auth/logout.json`, logout url, handled by filter, no controller required.
 
 ### wings.warlock.security.login-success-redirect
 
-`Boolean`=`false`，登录成功后是否重定向
+`Boolean`=`false`, whether to redirect after successful login.
 
 ### wings.warlock.security.login-success-redirect-param
 
-`String`=`redirectTo`，登录成功的重定向参数
+`String`=`redirectTo`, redirect parameters if redirect after successful login.
 
 ### wings.warlock.security.login-success-redirect-default
 
-`String`=`/`，登录成功的重定向默认地址
+`String`=`/`, default address if redirect after successful login.
 
 ### wings.warlock.security.login-success-body
 
-`String`=`{"success":true,"message":"login success"}`，登录成功返回的body，非重定向时
+`String`=`{"success":true,"message":"login success"}`, the response body if no redirect after successful login.
 
 ### wings.warlock.security.login-failure-body
 
-`String`=`{"success":false,"message":"{message}"}`，登录失败返回的body
+`String`=`{"success":false,"message":"{message}"}`, the response body if login fail.
 
 ### wings.warlock.security.logout-success-body
 
-`String`=`{"success":true,"message":"logout success"}`，登出成功返回的body，空时不注入handler
+`String`=`{"success":true,"message":"logout success"}`,
+the response body after successful logout, no handler is injected when empty.
 
 ### wings.warlock.security.session-maximum
 
-`Integer`=`-1`，同时登陆的maximumSessions。`-1`为不限制
+`Integer`=`-1`, maximum sessions for concurrent logins. `-1` means no limit.
 
 ### wings.warlock.security.session-expired-body
 
-`String`=`{"success":false,"message":"session has been expired, possibly due to multiple logins"}`，过期时返回的内容
+`String`=`{"success":false,"message":"session has been expired, possibly due to multiple logins"}`,
+the response body when session expired.
 
 ### wings.warlock.security.username-para
 
-`String`=`username`，Username Parameter，用户名参数
+`String`=`username`, Username Parameter.
 
 ### wings.warlock.security.password-para
 
-`String`=`password`，Password Parameter，密码参数
+`String`=`password`, Password Parameter.
 
 ### wings.warlock.security.role-prefix
 
-`String`=`ROLE_`，GrantedAuthorityDefaults建议和spring一致，不用动
+`String`=`ROLE_`, GrantedAuthorityDefaults, suggest keeping the same with spring, do not edit.
 
 ### wings.warlock.security.web-ignore
 
-配置顺序由宽松到严格的顺序，`webIgnore` > `PermitAll` > `Authenticated` > `Authority` > `AnyRequest`收尾。value是`-`或`空`，表示忽略此key。
+The order of config is from loose to strict.
+`webIgnore` > `PermitAll` > `Authenticated` > `Authority` > `AnyRequest` at the end.
+if value is `-` or `empty`, means ignore this key.
 
-①忽略项，`Map<String, String>`，antMatcher，无SecurityFilter流程及功能，如静态资源。
+①ignored items, `Map<String, String>`, antMatcher, no need of SecurityFilter, such as static resources.
 
 * `assets`=`/assets/**`
 * `webjars`=`/webjars/**`
@@ -378,7 +380,7 @@ loginProcessingUrl，处理登录的Ant格式URL，由filter处理，不需要co
 
 ### wings.warlock.security.permit-all
 
-②都允许，`Map<String, String>`，antMatcher。
+②allow all, `Map<String, String>`, antMatcher.
 
 * `error`=`/error`
 * `auth`=`/auth/**`
@@ -386,34 +388,35 @@ loginProcessingUrl，处理登录的Ant格式URL，由filter处理，不需要co
 
 ### wings.warlock.security.authenticated
 
-③仅登录，`Map<String, String>`，antMatcher。
+③authed only, `Map<String, String>`, antMatcher.
 
 * `user`=`/user/**`
 
 ### wings.warlock.security.authority
 
-④有权限，`Map<String, String>`，antMatcher。
-按URL分组合并权限，最后以URL的ascii倒序设置，即英数先于`*`，宽松规则在后。
+④has authority, `Map<String, String>`, antMatcher.
+merge authority by URL grouping, and finally set the URL in reverse ASCII order,
+i.e., the English number comes before the `*`, and the loose rule comes after.
 
 * `ROLE_ACTUATOR`=`/actuator/**`
 
 ### wings.warlock.security.any-request
 
-⑤默认项，`String`，支持以下。
+⑤defaults, `String`, support the followings.
 
 * `permitAll`|`authenticated`|`anonymous`|`fullyAuthenticated`
-* 任意非空，非以上字符串，认为是`Authority`，`逗号`或`空白`分割多个。
+* any non-empty, non-above string, considered as `Authority`, use `comma` or `blank` to separate multiple ones.
 
 ### wings.warlock.security.auth-type-default
 
 `String`=`pro.fessional.wings.warlock.service.auth.WarlockAuthType#USERNAME`
 
-支持的验证类型，enum全路径，一对一，否则反向解析有问题；
-不含`-`，`default`是特殊值，表示没有匹配时使用。
+Supported validation types, enum full path, one-to-one, otherwise reverse parsing problem;
+no `-`, `default` is a special value used when there is no match.
 
 ### wings.warlock.security.auth-type
 
-`Map<String, String>`，登录方式枚举映射，必须一对一映射。
+`Map<String, String>`, login auth-type and enum mapping, must be one-to-one.
 
 * `username`=`pro.fessional.wings.warlock.service.auth.WarlockAuthType#USERNAME`
 * `mobile`=`pro.fessional.wings.warlock.service.auth.WarlockAuthType#MOBILE`
@@ -425,67 +428,68 @@ loginProcessingUrl，处理登录的Ant格式URL，由filter处理，不需要co
 
 `Map<String, Set<String>>`=`admin=ROLE_ADMIN`
 
-设置authZone对应的权限，若有任一权限则可登录，否则，以用户名密码错误返回
+Map permissions to authZone, if you have one of them, you can login,
+otherwise, it will fail with wrong username and password.
 
 ### wings.warlock.security.app-perm
 
 `Map<String, Set<String>>`=`wings-warlock=ROLE_ADMIN`
 
-设置spring.application.name对应的权限，若有任一权限则可登录，否则，以用户名密码错误返回。
-支持AntPath，如`wings-*`，合并所有匹配的权限设置项，wings默认程序为`wings-default`
+Map permissions to spring.application.name, if you have one of them, you can login,
+otherwise, it will fail with wrong username and password. Support AntPath, eg. `wings-*`,
+merge all matching permissions, wings default app is `wings-default`.
 
 ### wings.warlock.security.nonce-auth-type
 
-`Set<String>`=`username,mobile,email`，支持Nonce的验证类型
+`Set<String>`=`username,mobile,email`, which auth-type support Nonce auth.
 
 ### wings.warlock.security.nonce-cache-manager
 
-`String`=`MemoryCacheManager`
-
-cache-manager的bean name，同`wings.slardar.cache.primary`
+`String`=`MemoryCacheManager`, bean name of cache-manager, same as `wings.slardar.cache.primary`.
 
 ### wings.warlock.security.nonce-cache-level
 
-`String`=`service`，缓存level，参考`wings.slardar.cache.level.`
+`String`=`service`, cache level, see `wings.slardar.cache.level.`
 
 ### wings.warlock.security.autoreg-auth-type
 
-`Set<String>`=`∅`，支持自动注册用户的验证类型，如`github,weibo`
+`Set<String>`=`∅`, which auth-type support to auto register new user. eg. `github,weibo`
 
 ### wings.warlock.security.autoreg-max-failed
 
-`Integer`=`5`，自动注册用户时，最大连续失败次数，到达后锁账户
+`Integer`=`5`, max mumber of consecutive failures for auto-registering users, and locking the account when reached.
 
 ### wings.warlock.security.autoreg-expired
 
-`Duration`=`3652D`，自动注册用户时，凭证过期时间，默认3652天（10年）
+`Duration`=`3652D`, credential expiration time for auto-registering users, default 3652 days (10 years)
 
 ### wings.warlock.security.mem-user
 
-`Map<String, Mu>`，配置内存用户，一般用于特殊用户登录。
+`Map<String, Mu>`, Configure memory user, usually used for special user login.
 
-* key为用户说明，重复时覆盖，建议为`username`+(`/`+`auth-type`)?
-* auth-type=`∅`时，为匹配全部auth-type。
-* 其他设置，参考WarlockAuthnService.Details 的类型及默认值。
+* key is the description, override if duplicate, suggest `username`+(`/`+`auth-type`)?
+* auth-type=`∅`, to match all auth-type.
+* For other settings, see WarlockAuthnService.Details and its defaults.
 
-以root举例，注意，仅是举例，并非真实默认值。
+Take root as an example, note that it is just an example, not the real default.
 
 * `root.auth-type`=`∅`
 * `root.username`=`∅`
 * `root.password`=`∅`
 * `root.user-id`=`∅`
-* `root.status`=`∅` 默认ACTIVE
-* `root.nickname`=`∅` 默认使用username
-* `root.locale`=`∅` 默认使用Locale.getDefault()
-* `root.zone-id`=`∅` 默认使用ZoneId.systemDefault()
-* `root.passsalt`=`∅` 默认空
-* `root.expired`=`∅` 默认使用LocalDateTime.MAX
+* `root.status`=`∅` ACTIVE by default.
+* `root.nickname`=`∅` use username by default.
+* `root.locale`=`∅` use Locale.getDefault() by default.
+* `root.zone-id`=`∅` use ZoneId.systemDefault() by default.
+* `root.passsalt`=`∅` empty by default.
+* `root.expired`=`∅` use LocalDateTime.MAX by default.
 
 ### wings.warlock.security.mem-auth
 
-`Map<String, Ma>`，内存用户权限，key授权说明，重复时覆盖，建议以类型和用途命名。
+`Map<String, Ma>`, Memory user permissions, key is the description,
+override if duplicate, suggest naming by type and usage.
 
-以boot-admin举例，注意，仅是举例，并非真实默认值。
+Take boot-admin as an example, note that it is just an example, not the real default.
 
 * `boot-admin.user-id`=`∅`
 * `boot-admin.username`=`∅`
@@ -495,190 +499,193 @@ cache-manager的bean name，同`wings.slardar.cache.primary`
 
 ## 4D.A.wings-warlock-urlmap-77.properties
 
-Controller中RequestMapping的URL常量
+URL Constants of RequestMapping in Controller.
 
 ### wings.warlock.urlmap.auth-login-list
 
-`String`=`/auth/login-list.{extName}`，集成登录默认页，默认返回支持的type列表，需要PathVar `{extName}`
+`String`=`/auth/login-list.{extName}`, integrated login default page,
+list supported auth-type by default, requires PathVar `{extName}`
 
 ### wings.warlock.urlmap.auth-login-page
 
-`String`=`/auth/{authType}/login-page.{extName}`，具体验证登录默认页，根据content-type自动返回，需要PathVar `{extName}` `{authType}`
+`String`=`/auth/{authType}/login-page.{extName}`, specific auth-type login default page,
+automatically response based on content-type, requires PathVar `{extName}` `{authType}`
 
 ### wings.warlock.urlmap.auth-login-page2
 
-`String`=`/auth/login-page.{extName}`，具体验证登录默认页，把authType变成RequestParam
+`String`=`/auth/login-page.{extName}`, specific auth-type login default page, get authType by RequestParam
 
 ### wings.warlock.urlmap.auth-nonce-check
 
-`String`=`/auth/nonce-check.json`，验证一次性token是否有效，oauth2使用state作为token
+`String`=`/auth/nonce-check.json`, to verify the one-time token is valid, oauth2 uses state as token
 
 ### wings.warlock.urlmap.oauth-authorize
 
-`String`=`/oauth/authorize`，简单的authorization code授权类型
+`String`=`/oauth/authorize`, simple authorization code.
 
 ### wings.warlock.urlmap.oauth-access-token
 
-`String`=`/oauth/access-token`，简单的获取access-token
+`String`=`/oauth/access-token`, simple get access-token.
 
 ### wings.warlock.urlmap.oauth-revoke-token
 
-`String`=`/oauth/revoke-token`，吊销authorize或access-token
+`String`=`/oauth/revoke-token`, revoke authorize or access-token.
 
 ### wings.warlock.urlmap.user-authed-user
 
-`String`=`/user/authed-user.json`，获得登录用户的自身基本信息
+`String`=`/user/authed-user.json`, get basic information of the current login user itself.
 
 ### wings.warlock.urlmap.user-authed-perm
 
-`String`=`/user/authed-perm.json`，检查登录用户的权限，不区分大小写比较
+`String`=`/user/authed-perm.json`, Check login user permissions, case-insensitive comparison.
 
 ### wings.warlock.urlmap.user-list-session
 
-`String`=`/user/list-session.json`，列出用户所有登录session
+`String`=`/user/list-session.json`, list all session of login user.
 
 ### wings.warlock.urlmap.user-drop-session
 
-`String`=`/user/drop-session.json`，踢出用户登录session
+`String`=`/user/drop-session.json`, dop the session of login user.
 
 ### wings.warlock.urlmap.mock-captcha
 
-`String`=`/mock/captcha.json`，直接返回验证码
+`String`=`/mock/captcha.json`, mock response captcha.
 
 ### wings.warlock.urlmap.mock-doubler
 
-`String`=`/mock/doubler.json`，30秒内防连击
+`String`=`/mock/doubler.json`, mock double kill in 30 seconds.
 
 ### wings.warlock.urlmap.mock-righter
 
-`String`=`/mock/righter.json`，防篡改
+`String`=`/mock/righter.json`, mock anti forgery editing.
 
 ### wings.warlock.urlmap.mock-echo0o0
 
-`String`=`/mock/echo0o0.json`，按输入返回
+`String`=`/mock/echo0o0.json`, mock echo to response what input.
 
 ### wings.warlock.urlmap.test-run-mode
 
-`String`=`/test/envs/run-mode.json`，查询运行模式，返回 Product, Test, Develop, Local
+`String`=`/test/envs/run-mode.json`, query run mode, return Product, Test, Develop, Local.
 
 ### wings.warlock.urlmap.test-system-mills
 
-`String`=`/test/envs/test-system-mills.json`，查询服务器系统时间，1970毫秒
+`String`=`/test/envs/test-system-mills.json`, query system timestamp, mills from 1970.
 
 ### wings.warlock.urlmap.test-thread-mills
 
-`String`=`/test/envs/test-thread-mills.json`，查询服务器线程时间，1970毫秒
+`String`=`/test/envs/test-thread-mills.json`, query current thread timestamp, mills from 1970.
 
 ### wings.warlock.urlmap.admin-tweak-logger
 
-`String`=`/admin/tweak/logger.json`，线程级设置用户的日志级别
+`String`=`/admin/tweak/logger.json`, tweak log level of user in thread-level.
 
 ### wings.warlock.urlmap.admin-tweak-stack
 
-`String`=`/admin/tweak/stack.json`，线程级设置用户的异常栈有无
+`String`=`/admin/tweak/stack.json`, tweak stacktrace of user in thread-level.
 
 ### wings.warlock.urlmap.admin-tweak-clock
 
-`String`=`/admin/tweak/clock.json`，线程级设置用户的时钟
+`String`=`/admin/tweak/clock.json`, tweak clock of user in thread-level.
 
 ## 4D.B.wings-warlock-ticket-77.properties
 
 ### wings.warlock.ticket.pub-mod
 
-`String`=`win`，ticket的PubMod
+`String`=`win`, PubMod of ticket.
 
 ### wings.warlock.ticket.code-ttl
 
-`Duration`=`60s`，authorization code 过期时间，默认60秒
+`Duration`=`60s`, authorization code expired time, default 60 seconds.
 
 ### wings.warlock.ticket.code-max
 
-`Integer`=`3`，有效authorization code的最大数量，默认3
+`Integer`=`3`, max number of valid authorization codes, default 3.
 
 ### wings.warlock.ticket.token-ttl
 
-`Duration`=`1H`，access token的过期时间，默认1小时
+`Duration`=`1H`, access token expired time, default 1 hour.
 
 ### wings.warlock.ticket.token-max
 
-`Integer`=`5`，有效access token的最大数量，默认5
+`Integer`=`5`, max number of valid access token, default 5.
 
 ### wings.warlock.ticket.client
 
-`Map<String, Pass>`，静态配置 client 登录信息。
+`Map<String, Pass>`, static config of client login.
 
-* 测试 `wings-trydofor.user-id`=`79`
-* 测试 `wings-trydofor.secret`=`wings-trydofor-secret`
-* 测试 `wings-trydofor.hosts`=`localhost` 302的主机名，不要使用ipv6
-* 测试 `wings-trydofor.scopes`=`api` 区分大小写，逗号分隔
+* test `wings-trydofor.user-id`=`79`
+* test `wings-trydofor.secret`=`wings-trydofor-secret`
+* test `wings-trydofor.hosts`=`localhost` host for 302 , do not use ipv6.
+* test `wings-trydofor.scopes`=`api` case-sensitive, comma-separated.
 
 ## 4D.C.wings-warlock-apiauth-77.properties
 
 ### wings.warlock.apiauth.client-header
 
-`String`=`Auth-Client`，Header name of Client Id
+`String`=`Auth-Client`, Header name of Client Id.
 
 ### wings.warlock.apiauth.signature-header
 
-`String`=`Auth-Signature`，Header name of Message Signature
+`String`=`Auth-Signature`, Header name of Message Signature.
 
 ### wings.warlock.apiauth.timestamp-header
 
-`String`=`Auth-Timestamp`，Header name of Request Timestamp
+`String`=`Auth-Timestamp`, Header name of Request Timestamp.
 
 ### wings.warlock.apiauth.digest-header
 
-`String`=`Auth-Digest`，Header name of Response Body Digest
+`String`=`Auth-Digest`, Header name of Response Body Digest.
 
 ### wings.warlock.apiauth.digest-max
 
-`DataSize`=`5MB`，超过此size不做digest，默认5M
+`DataSize`=`5MB`, no digest over this size, default 5M.
 
 ### wings.warlock.apiauth.must-signature
 
-`Boolean`=`true`，是否一定要签名，可兼容旧api
+`Boolean`=`true`, whether it must be signed, compatible with the old api.
 
 ### wings.warlock.apiauth.file-json-body
 
-`String`=`FILE_JSON_BODY`，既又文件又有json的时候，以此命名json body作为File提交
+`String`=`FILE_JSON_BODY`, if there is both a file and a json,
+use this name for the json body and submit it as a File.
 
 ### wings.warlock.apiauth.error-client
 
-Client错误时的应答，
+response of client error.
 
 * `http-status`=`401`
 * `response-body`=`{"success":false,"code":"Client","message":"client error"}`
 
 ### wings.warlock.apiauth.error-signature
 
-签名错误时的应答，支持`{code}`占位符。
+response of signature error, support `{code}` placeholder.
 
 * `http-status`=`403`
 * `response-body`=`{"success":false,"code":"{code}","message":"{code} error"}`
 
 ### wings.warlock.apiauth.error-unhandled
 
-未知错误时的应答，
+response of unhandled error.
 
 * `http-status`=`200`
 * `response-body`=`{"success":false,"code":"Unknown","message":"unknown error"}`
 
 ## 4D.D.wings-warlock-watching-77.properties
 
-对代码进行跟踪，默认`-1`，表示关闭；`0`为全开启
+code tracking , default `-1` means disable; `0` means fully enable.
 
-* controller层由Interceptor实现
-* service依赖注解 @Watching
-* jooq层，依赖于listener
+* Controller layer is implemented by Interceptor
+* Service dependency annotation @Watching
+* Jooq layer, depends on listener
 
 ### wings.warlock.watching.jooq-threshold
 
-`Long`=`-1`，jooq执行的阈值毫秒
+`Long`=`-1`, threshold millis for jooq execution.
 
 ### wings.warlock.watching.service-threshold
 
-`Long`=`-1`，Watching注解的阈值毫秒
+`Long`=`-1`, threshold millis for Watching annotation.
 
 ### wings.warlock.watching.controller-threshold
 
-`Long`=`-1`，Controller的阈值毫秒
+`Long`=`-1`, threshold millis for Controller.
