@@ -2,64 +2,69 @@
 isOriginal: true
 icon: token
 category:
-  - 术士
-  - 授权
+  - Warlock
+  - Authz
 ---
 
-# 4B.组合授权
+# 4B.Combined Authz
 
-授权由权限(Perm)和角色(Role)组合而成。都在db中定义，通过模板自动生成java类
+Authorization is a combination of permissions (Perm) and roles (Role). Both are defined in db and
+auto generated into java classes through templates.
 
-* 功能权限 - role继承和扩展，身份马甲，临时增减，超级用户
-* 数据隔离 - 管辖隔离，职能继承，助理扩展，临时授权
+* Function permission - role inheritance and extension, id sudo, temp add/drop, superuser
+* Data isolation - scope isolation, function inheritance, assistant extension, temp authz
 
-## 4B.1 权限Perm
+## 4B.1 Perm(ission)
 
-`Perm`由scope和action构成，都采用`英句号`分隔`全小写`命名法，参考java变量命名。
+`Perm` consists of scope and action, both are `.` separated and `all lowercase` naming rule, see java variable naming.
 
-格式为`scope + ('.' + scope )* + '.' + action`，即多个级联scope，最后一个action
+The format is `scope + ('.' + scope )* + '.' + action`, i.e. multiple level scopes, and the last is action
 
-* scope是一个名词，支持所属关系，使用`.`分隔，`system.menu`属于`system`
-* 第一个scope不可以是ROLE前缀（spring默认是ROLE_）
-* action是一个动词，支持scope的所属关系，如`system.menu.read`属于`system.read`
-* `*`表示包含所有动作，仅用来配置所属关系，不能用在具体方法上
+* scope is a noun that supports affiliation, using `.` separates, `system.menu` belongs to `system`
+* the first scope cannot be ROLE prefix (spring default is ROLE_)
+* action is a verb that supports scope affiliation, e.g. `system.menu.read` belongs to `system.read`
+* `*` means that it contains all actions, and is only used to configure the affiliation relationship,
+  and cannot be used on specific methods
 
-`Perm`主要用在方法级的鉴权上，即在方法上增加的注解，如`@Secured`，`@Pre*`。
+`Perm` is mainly used for method-level authentication, i.e. annotations added to methods, such as `@Secured`, `@Pre*`.
 
 ```java
-// 推荐
+// recommended
 @Secured(PermConstant.System.User.read)
-// 不推荐，因为比较长，且SpEL很强大
+// Not recommended because it's longer, and SpEL is very powerful
 @PreAuthorize("hasAnyAuthority(T(pro.fessional.wings.warlock.security.autogen.PermConstant$System$User).read)")
 ```
 
-## 4B.2.角色Role
+## 4B.2.Role
 
-`Role`不支持继承，是`全大写`无分隔的命名法（区分权限），参考java变量命名。
+`Role` does not support inheritance, it is `all-caps` unseparated naming rule
+(to distinguish permissions), see java variable naming.
 
-* 在自动生成的java类中，采用和spring相同的`ROLE_`前缀。
-* Role是扁平的，但可配置隶属关系，如LEADER包括MEMBER
-* 无分隔符，指以`_`连接的词，当做同一个词看待。
-* db中不建议使用前缀，加载时是自动增加默认前缀的（Spring默认是ROLE_）
+* The `ROLE_` prefix as spring is used in the auto generated java code.
+* Role is flat, but can be configured for affiliation, e.g. LEADER includes MEMBER
+* No separator, meaning words separated by `_` are treated as one word.
+* Prefix is not recommended in db, the default prefix is added automatically on load (Spring default is ROLE_)
 
-`Role`主要用在filter级的配置上，如在配置url权限时。当然也可用在方法级。
-在配置文件中使用时，需要带上spring的前缀，建议使用前缀，以区分Perm。
+`Role` is mainly used in filter-level configuration, such as url permissions.
+Of course, it can also be used at method level. When used in configuration,
+you need to add the prefix, and it is recommended to use the prefix to distinguish Perm.
 
-## 4B.3.运行机制
+## 4B.3.Working Mechanism
 
-Warlock在用户通过身份鉴别（renew）后，会分别加载同用户关联的Perm和Role，
-并扁平化其各自的所属和继承关系，全部加载到SecurityContext中。
+Warlock loads the Perm and Role associated with the user after the user has passed the authn (renew),
+and flattens their affiliation and inheritance relationships, and loads them all into the SecurityContext.
 
-当`Perm`和`Role`(含前缀)的字符串以`-`开头时，表示排除此权限，其优先级最高。
+When the string of `Perm` and `Role` (with prefix) starts with `-`,
+it means that this permission is excluded and has the highest priority.
 
-可以通过配置`mem-auth`，进而修改用户不同登录方式的权限。
-例如，实现ComboWarlockAuthzService.Combo 也可以按条件调整权限。
+You can configure `mem-auth` and then change the user's permissions for different login methods.
+For example, implementing ComboWarlockAuthzService.Combo also allows you to change permissions by condition.
 
-## 4B.4.数据权限
+## 4B.4.Data Permission
 
-数据权限，包括了用户，部门，公司，三个层级的可见性。
+Data permissions, including user, department, and company, are visible at three levels.
 
-* 用户(User)，以user_id为主，同时包括子账号
-* 部门(Dept)，以dept_id为主，包括了部门间所属关系
-* 公司(Corp)，以corp_id为主，通常和domain有关
-* 租户(Saas)，以saas_id为主，通常在tenant的SaaS系统
+* User (User), based on user_id, also includes sub-accounts
+* Department (Dept), based on dept_id, including departments relationship
+* Corp (Corp), based on corp_id, usually related to domain
+* Tenant (Saas), based on saas_id, usually in SaaS system

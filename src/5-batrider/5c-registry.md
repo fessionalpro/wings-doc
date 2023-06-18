@@ -2,15 +2,15 @@
 isOriginal: true
 icon: cache
 category:
-  - 蝙蝠
-  - 注册中心
+  - Batrider
+  - Registry
 ---
 
-# 5C.注册中心
+# 5C.Registry Center
 
-默认使用registry-zero-config，更推荐servicecomb-service-center
+Use registry-zero-config by default, but servicecomb-service-center is recommended.
 
-## 5C.1.zero-config事项
+## 5C.1.Zero-config Note
 
-* registry-zero-config最简单，但默认不支持handler-publickey-auth
-* auth9-provider可根据schemaId做白名单，以支持zero-config
+* registry-zero-config is the simplest, but not support handler-publickey-auth by default
+* auth9-provider can support zero-config via schemaId whitelist

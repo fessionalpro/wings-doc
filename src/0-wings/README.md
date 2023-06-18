@@ -2,102 +2,107 @@
 isOriginal: true
 icon: discover
 category:
-  - 神翼
-  - 首页
+  - WingsGod
+  - Home
 ---
 
-# 0.纹丝不忒
+# 0.WingsBoot
 
 ![wings ti6](/wings-ti6-champion.png)
 
-WingsBoot(代号神翼)是SpringBoot的一个脚手架，没有魔法和定制，主要有以下特点：
+WingsBoot(code WingsGod) is a bootstrap for SpringBoot, no magic and no customization,
+with the following main features:
 
-* 提供了多语言多时区真实的解决方案（动态语言包，时区，夏令时，闰秒）
-* 提供了数据库版本和数据的版本管理（安全的表变更，安全的数据维护）
-* 安排了一套保守约定和稳健工程实践（枚举类，配置文件，模板等约定）
-* 解决了软件开发中最难的命名问题（允许使用中文命名，解决行业黑话）
-* 英雄池很深，对技能有独到的理解（读3遍官方文档，debug部分源码）
-* 不懂代码的看文档，都不看的，别用（这是你的homework，及格线）
+* Real multi lang & timezone solution (dynamic i18n, timezone, DST, leap seconds)
+* Versioning of data and database (safe table changes, safe data maintenance)
+* Conservative conventions and robust engineering practices (enum, config, template)
+* Solved the most difficult things: naming (can be non-english, industry jargon)
+* Deep hero pool and unique skill understanding (read official docs 3 times, debug the source code)
+* read the docs then read the code, no read, no use (your homework, the passing grade)
 
-其目标是使小创业团队，平稳的实现从单应用，到分表分库，到服务化的演变。
-在任何项目阶段和业务规模下，能够，
+The goal is to enable small startup teams to smoothly evolve from single app, to data sharding and RW splitting,
+to microservices. At any project stage and business size, it can:
 
-* 安全快速的重构业务，变更数据模型
-* 对业务和数据有版本管理，保证兼容性
-* 运行时的数据变化亦可追溯，复盘，恢复
-* 对抗业务变化快，设计不足的技术债务
+* Safe and rapid business refactoring and data model changes
+* Versioning of business and data to ensure compatibility
+* Runtime data changes can be traced, reviewed, and recovered
+* Technical debt against rapid business change and poor design
 
-## 0.1.版本号说明
+## 0.1.Version Number
 
-Wings版本号为`4段`，前3段为SpringBoot版本，第4段是build号。
-build号为3位数字，首位是大版本，表示不兼容性；后2位是小版本，表示基本兼容或容易适配。
+Wings version number is `4 segments`, the first 3 segments are SpringBoot version,
+the 4th segment is wings build number. The build number is 3 digits, the first one is the major version,
+which means incompatible, the second 2 digits are the minor version,
+which means basically compatible or easy to adapt.
 
-例如，`2.4.2.100-SNAPSHOT`，表示基于boot2.4.2，是wings的`1##`的系列。
+For example, `2.4.2.100-SNAPSHOT`, which means based on springboot 2.4.2, is wings `1##` series.
 
-wings使用了`revision`和`changelist`的CI占位属性，Maven需要3.5.0以上。
+Wings uses the `revision` and `changelist` CI placeholders, so  Maven 3.5.0 or higher is required.
 
-## 0.2.项目结构
+## 0.2.Project Structure
 
-Wings由多个子项目构成，都采用了Dota有关的命名，主要包括以下，
+Wings consists of several subprojects, all with Dota-related naming, mainly including the following,
 
-* 沉默术士 wings/silencer - springboot的工程化装配，I18n等
-* 虚空假面 wings/faceless - 数据层，分表分库，数据及库的版本管理
-* 鱼人守卫 wings/slardar - Servlet体系的WebMvc基础约定和封装
-* 术士大叔 wings/warlock - 综合以上的基础业务模块和功能脚手架
-* 蝙蝠骑士 wings/batrider - RPC和微服化
-* 演示例子 example - 集成以上的样板工程和例子
-* 旁观阵线 observe - 生态内关联项目
-* 天辉阵线 radiant - 开箱即用的插拔功能模块
+* wings/silencer - Engineering auto-config, auto-I18n of springboot
+* wings/faceless - Data access layer, RW-split, sharding, versioning
+* wings/slardar - Conventions and encapsulation of Servlet WebMvc
+* wings/warlock - Bootstrap integration with above modules and features
+* wings/batrider - RPC and Microservice
+* example - Sample and template project
+* observe - Related projects of dota ecology
+* radiant - Out-of-the-box and plug-and-play biz component
 
-## 0.3.技术选型
+## 0.3.Technology Selection
 
-遵循Unix哲学，部分回答了`为什么`和`为什么不`？
+Follows the Unix philosophy and partially answers `why` and `why not`?
 
-* SpringBoot - 事实标准，从业人员基数大，容易拉扯队伍和技术衔接。
-* Jooq/QueryDsl - 基于`限制的艺术`，看重其强类型而放弃流行的mybatis体系。
-  jooq强类型，可以受到IDE加持；不能写成过于复杂的SQL，有利于分库，分服务。
-* Kotlin - 比`scala`更胜任`更好的java`，目前仅在flywave支撑性项目中用了kotlin，
-  而在主要业务场景，仍然主张【少吃糖，写好java】
-* WebMvc - 尽管`webflux`在模型和性能好于servlet体系，但当前更多的是阻塞IO，多线程场景。
-* Lombok - 简化代码，使用了Experimental功能，开发时，需要自己在pom中引入。
-* Git-flow - git管理的最佳实践。
-* Guava, commons-lang3, commons-io - 进阶必备的工具包.
-* ShardingSphere - 分表分库，足以解决90%的`数据大`的问题。
-* Hazelcast - 相比于Redis，Hazelcast更简单，集成度更高。
-* ServiceComb - 更工程化和更紧凑的
+* SpringBoot - Factual standards, a large practice, easy team pulling and knowledge transfer
+* Jooq/QueryDsl - Based on the `Art of Constraint`, type-safe over the popular mybatis.
+  strong type empowered by the IDE, hard to write complex SQL, good for RW split and microservice.
+* Kotlin - Assisted language, as a better java than `scala`, use only in the flywave subproject.
+  we still advocate "eat less sugar, write good java"
+* WebMvc - Although `webflux` has better design and performance than servlet,
+  the TX scenario is currently more of blocking IO, multi-threaded.
+* Lombok - Make java code simple, aslo with the experimental feature, need to add them to pom manually.
+* Git-flow - Best practices for git management.
+* Guava, commons-lang3, commons-io - Must-have toolkits for engineers.
+* ShardingSphere - RW split and data sharding is enough to solve 90% of the `data big` problems.
+* Hazelcast - Compared to Redis, Hazelcast is simpler and more integrated.
+* ServiceComb - more engineering and compact microservice/cloud solution
 
-## 0.4.模块依赖
+## 0.4.Module Dependencies
 
-`lib`格式为依赖lib，否则为Wings模块或功能，无歧义时会简写，如curse, flywave等
+`lib` means dependent on lib, otherwise it is a Wings module or component,
+and is abbreviated if no ambiguity, such as curse, flywave, etc.
 
-* silencer ← mirana | `boot-starter` | Spring自动配置
-* silencer-curse ← silencer | `aop` | Wings基本功能
-* faceless ← curse | meepo | `jdbc` | 类型主键
-* faceless-autogen ← faceless | 自动生成的代码
-* faceless-awesome ← faceless-autogen | 依赖自动生成代码的功能
-* faceless-codegen ← faceless-jooq | `jooq-codegen` | 代码生成
-* faceless-flywave ← faceless | `kotlin` | 版本管理
-* faceless-jooq ← faceless-awesome | `jooq` | Jooq定制
-* faceless-shard ← faceless-awesome | `shardingsphere` | 分表分库
-* slardar ← curse | `jackson` | `fastjson` | `okhttp` | `cache` | `sentry` | 业务基础
-* slardar-hazel-caching ← slardar | `hazelcast` | 多级缓存
-* slardar-hazel-session ← hazel-caching | slardar-webmvc | 分布式会话
-* slardar-webmvc ← slardar | `starter-json` | `starter-web` | `undertow` | `security-web` | `springdoc` | Web增强
-* slardar-sprint ← hazel-caching | hazel-session | slardar-webmvc | `starter-security` | `starter-actuator` | `boot-admin` | Web集成
-* warlock ← slardar | faceless-jooq | Db基础
-* warlock-autogen ← slardar | 自动生成的代码
-* warlock-awesome ← slardar-autogen | 依赖自动生成代码的功能
+* silencer ← mirana | `boot-starter` | spring auto config
+* silencer-curse ← silencer | `aop` | Wings basic feature
+* faceless ← curse | meepo | `jdbc` | type and Id
+* faceless-autogen ← faceless | auto-gen code
+* faceless-awesome ← faceless-autogen | features dependent on autogen
+* faceless-codegen ← faceless-jooq | `jooq-codegen` | Code generation utility
+* faceless-flywave ← faceless | `kotlin` | data/schema versioning
+* faceless-jooq ← faceless-awesome | `jooq` | Jooq customizing
+* faceless-shard ← faceless-awesome | `shardingsphere` | RW split and sharding
+* slardar ← curse | `jackson` | `fastjson` | `okhttp` | `cache` | `sentry` | biz basement
+* slardar-hazel-caching ← slardar | `hazelcast` | multi-level caching
+* slardar-hazel-session ← hazel-caching | slardar-webmvc | distributed session
+* slardar-webmvc ← slardar | `starter-json` | `starter-web` | `undertow` | `security-web` | `springdoc` | WebMvc enhancement
+* slardar-sprint ← hazel-caching | hazel-session | slardar-webmvc | `starter-security` | `starter-actuator` | `boot-admin` | WebMvc integration
+* warlock ← slardar | faceless-jooq | db-based features
+* warlock-autogen ← slardar | auto-gen code
+* warlock-awesome ← slardar-autogen | features dependent on autogen
 * warlock-codegen ← warlock-awesome | faceless-codegen | flywave
-* warlock-shadow ← slardar-sprint | warlock-awesome | `JustAuth` | Db|Web|权限
-* warlock-bond ← warlock-shadow | auth-perm体系
+* warlock-shadow ← slardar-sprint | warlock-awesome | `JustAuth` | Db|Web|Permission
+* warlock-bond ← warlock-shadow | auth-perm system
 
-## 0.5.更多章节
+## 0.5.More Sections
 
-* [编码风格](./0a-code-style.md) -  价值观，编码哲学，编码风格
-* [RestHalf规范](./0b-rest-half.md) - 场景化业务的URL规范
-* [开发工具](./0c-dev-tool.md) - 工欲善其事，必先利其器
-* [开发运维](./0d-qa-devops.md) - 编码开发，线上运行等话题
-* [配置话题](./0e-qa-config.md) - maven，properties，spring的配置话题
-* [其他话题](./0f-qa-others.md) - 未归类的话题
-* [幽灵船模型](./0g-ghost-ship.md) - wings功能的基本构建模型
-* [属性配置](./0h-prop-index.md) - wings所有的属性配置
+* [Coding Style](./0a-code-style.md) - values, philosophy, style
+* [RestHalf Spec](./0b-rest-half.md) - URL spec for scenario-based biz
+* [Dev Tool](./0c-dev-tool.md) - To do a good job, sharpen the tools first
+* [DevOps Topics](./0d-qa-devops.md) - Coding, operation and other topics
+* [Config Topics](./0e-qa-config.md) - maven, properties, spring topics
+* [Other Topics](./0f-qa-others.md) - Uncategorized topics
+* [GhostShip Model](./0g-ghost-ship.md) - The basic building model for Wings
+* [Properties Index](./0h-prop-index.md) - All properties of wings configuration

@@ -2,130 +2,139 @@
 isOriginal: true
 icon: setting
 category:
-  - 沉默
-  - 配置
+  - Silencer
+  - Config
 ---
 
-# 1A.Conf自动配置
+# 1A.Auto Cascade Config
 
-支持配置文件的`分割`，`覆盖`，`禁用`和`profile`，更有利于工程化的管理。
+Supports `split`, `override`, `disable` and `profile` of config files, which is more conducive to engineering management.
 
-* 分割 - 指配置项可以按模块，功能，自由组成独立的配置文件
-* 覆盖 - 配置项按一定的优先级（加载顺序）可以覆盖
-* 禁用 - 可以通过block-list，禁止某配置文件加载
-* profile，同spring规则。
+* Split - config items can be freely separated in the file by module, function, or profile.
+* Override - config file can be overridden with a certain priority (loading order)
+* Disable - disable config  loading by  block-list
+* Profile,  just like Spring rules.
 
-wings对配置文件的处理方式，是`层叠`和`过滤`，配置以路径顺序和编号大小排序。
+The way Wings handles profiles is `cascading` and `filtering`, with configurations ordered by path order and file number.
 
-* 层叠 - 按优先级（前面的高）排序，高的叠住低的
-* 过滤 - 通过profile进行排他过滤
+* Cascading - sorting by priority (higher in front), higher overrides lower
+* Filtering - filtering by profile
 
-## 1A.1.分割Config
+## 1A.1.Split Config
 
-实际项目开发中，只有一个大的`application.*`，不利于分工和协作，应该分隔，
+In actual project development, there is only one big `application.*`, which is not conducive to teamwork of division
+and collaboration. Any big things should be broken down.
 
 * spring-datasource.properties
 * spring-mail-79.properties
 * logger-logback-79.properties
 
-通过`EnvironmentPostProcessor`扫描`各路径`中`/wings-conf/**/*.*`，规则同
-[Externalized Configuration](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.external-config)
-，和配置文件有关的`各路径`如下，其后者优先级高（为与spring文档叙述一致，程序中倒序执行，FIFO优先级）。
+Using `EnvironmentPostProcessor` to scan `/wings-conf/**/*. *` in the application `paths` , same rules as
+[Externalized Configuration](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.external-config),
+and the `paths` related to the config file are as follows, the latter with high priority
+(for consistency with the Spring docs, the program is executed in reverse order, FIFO priority).
 
-0. 路径中，优先加载`application.*`，次之`wings-conf/**/*.*`
-1. 以`/`结尾的当做目录，否则作为文件
-2. 任何非`classpath:`,`classpath*:`的，都以`file:`扫描
-3. `classpath:/`会被以`classpath*:/`扫描
-4. default `classpath:/,classpath:/config/,file:./,file:./config/`
-5. OS environment variables. `SPRING_CONFIG_LOCATION`
-6. Java System properties `spring.config.location`
-7. Command line arguments. `--spring.config.location
+1. in the path, load all `application.*` first, then `wings-conf/**/*. *`.
+2. path ending with `/` is a directory, otherwise a file
+3. not `classpath:` or `classpath*:` is scanned with `file:`
+4. `classpath:/` will be scanned with `classpath*:/`
+5. default `classpath:/,classpath:/config/,file:. /,file:. /config/`
+6. OS environment variables. `SPRING_CONFIG_LOCATION`.
+7. Java System properties `spring.config.location`
+8. command line arguments. `--spring.config.location
 
-每个配置文件都由以下部分构成:`dirname` + `basename` + `seq` + `profile` + `extname`.
-例如, `classpath:/wings-conf/` + `wings-mirana` + `-79` + `@dev` + `.properties`.
+Each config filename is made up of `dirname` + `basename` + `seq` + `profile` + `extname`.
+For example, `classpath:/wings-conf/` + `wings-mirana` + `-79` + `@dev` + `.properties`.
 
-目前只加载 `*.yml`, `*.yaml`,`*.xml`, `*.properties`扩展名的配置文件。
-工程提供的默认配置，文件名字后面都会加上`-79`，方便根据文件名排序设置默认值。
+Currently, only `*.yml`, `*.yaml`, `*.xml`, `*.properties` configs are loaded.
+The default config `seq` is set to `-79` to easily override according to the filename sorting.
 
-相同`basename`为同一配置，无序号的视序号为`70`，比默认的`79`要高，会覆盖默认配置。
-配置文件，以Resource首先按扫描顺序排序，然后按base归类，按seq升序调整（值覆盖有关）。
+The same `basename` means the same configuration. no `seq` means its `seq` is `70`,
+higher than the default `79`,will override the default configuration.
+Config file as Resource, first sorted by scan order, then grouped by basename,
+adjusted by `seq` in ascending order (item override related).
 
-所有配置文件必须为UTF8编码，可以更好的支持unicode，可以直接写中文注释或内容。
-Wings在装载配置时对非ascii进行自动转义，以兼容spring默认的按byte读取行为。
+Config files are UTF8 encoded, can better support unicode, can write unicode comments or content directly.
+Wings automatically escapes non-ascii when loading config to be compatible with Spring's default read-by-byte behavior.
 
-## 1A.2.配置Profile
+## 1A.2.Config Profile
 
-文件名不含`@`，`profile`名不包括`.`，以避免解析错误。和spring对比如下，
+The `basename` must not contain `@` and the `profile` name must not contain `.`
+to avoid parsing errors. Compare with spring as follows.
 
 * `application.properties`
 * `application-{profile}.properties`
 * `wings-conf/wings-test-module-79.properties`
 * `wings-conf/wings-test-module-79@{profile}.properties`
 
-相同`basename`的config视为同一组，并移除非活动的profile配置，
-以`@`区分profile，因为wings的配置文件名中存在`-`，无法兼容spring格式。
-在使用`spring.profiles.active`时，要确保配置文件按spring约定加载。
+The configs with the same `basename` are treated as the same group and the inactive profile is removed from the configs.
+Distinguish profiles by `@`, because the presence of `-` in wings config is incompatible with the spring format.
+When using `spring.profiles.active`, make sure that the configuration files are loaded according to Spring conventions.
 
-wings和spring的profile在处理上也有区别，默认wings优先于spring处理。
+There is also a difference in the processing of wings and spring. By default wings takes precedence over spring.
 
-* application-{profile}，wings扫描排序，spring处理
-* wings-conf/layered-config@{profile}，wings扫描及处理
-* 有profile叠住无profile的配置，多个激活profile层叠覆盖
-* 避免在wings-conf/中存在application命名的配置，导致spring和wings双重处理
+* application-{profile}, wings scan and sort, then spring process
+* wings-conf/layered-config@{profile}, wings scan and process
+* with-profile overlay without-profile, multiple active profiles cascading overlay
+* Dont put `application.*` in wings-conf/, double processing by spring and wings
 
-SpringBoot仅支持单application配置，多profile形式，所以配置文件上仅有路径优先级。
-多profile时，处理顺序为①排除非激活 ②激活的排字符序（后者优先）③无profile的垫底。
+SpringBoot supports only one application in multi-profile form, so the config file has only path priority.
+In the case of multiple profiles, the processing order is ① exclude inactive ② active charset ordered
+(the latter takes precedence) ③ no profile at the end.
 
-Wings支持多配置，多profile，其路径优先级和profile优先级与spring一致。
-在多配置优先级，处理顺序为 ①profile ②路径 ③文件序号 ④字符顺序（前者优先）
+Wings supports multiple configs and multiple profiles, and its path priority and profile priority are
+consistent with Spring. In the multi-config priority, the processing order is ①profile ②path ③file seq
+④charset order (the former takes precedence)
 
-## 1A.3.加载黑名单
+## 1A.3.Loading BlockList
 
-存在于`/wings-conf/wings-conf-block-list.cnf`的文件名，不会自动加载。
+Filenames that exist in `/wings-conf/wings-conf-block-list.cnf` will not be loaded.
 
-* 一行一个文件名，区分大小写
-* `#`开头标识注释，自动忽略首尾空白
-* 以`String.endWith`判断，全路径精确匹配
-* 排除单个`@profile`的配置文件，需要单独指定
+* One filename per line, case sensitive
+* Line starting with `#` is comment, auto ignore first and last whitespace
+* Use `String.endWith` to determine, full path exact match
+* Block single `@profile`, need to specify separately
 
-## 1A.4.配置项提升
+## 1A.4.Config Item Promotion
 
-有些非Spring体系的功能，通过System.getProperties获得属性。
-因此需要把需要的配置项，从spring写入System.properties。
+Some non-Spring features are configured through System.getProperties.
+So you need to put the required config items from Spring into System.properties.
 
-* System若不存在，则写入，即 `-Dkey=value`优先级最高
-* 变量名保存在`/wings-conf/wings-prop-promotion.cnf`中
-* 一行一个属性名，区分大小写，`#`表注释
+* Put if System does not exist, i.e. `-Dkey=value` has the highest priority
+* Variable names are stored in `/wings-conf/wings-prop-promotion.cnf`.
+* One property name per line, case sensitive, `#` for comments
 
 ## 1A.5.logging/logback
 
-参考`wings-logging-79.properties`配置，默认使用springboot配置。
+Recommend to start with `wings-starter.sh` and pass arguments with `wings-starter.env`.
 
-* 只需要console输出（如果docker内）不需要额外设置
-* 同时需要console和file时，增加以下配置`logging.file.name=/tmp/wings-example.log`
-* 只需要file时，再增加`logging.config=classpath:logback-fileonly.xml`
-* 可按名字配置appender日志级别，若存在FILE时，CONSOLE自动切到WARN以上(仅logback)
+See `wings-logging-79.properties`, use springboot configuration by default.
 
-推荐的logging配置，默认INFO，指定包名的DEBUG
+* Only console output (eg. inside docker) no additional settings needed
+* Need both console and file, add `logging.file.name=/tmp/wings-example.log`.
+* Need only file, add `logging.config=classpath:logback-fileonly.xml`.
+* Configure appender level by name, if FILE exists, CONSOLE will auto switch to WARN (logback only)
+
+Recommended logging config, INFO default, DEBUG for specified package name
 
 * logging.level.root=INFO
 * logging.level.org.springframework.web=DEBUG
 * logging.level.org.jooq=DEBUG
-* logging.level.忽略的包路径=OFF
+* logging.level.{package.path}=OFF
 
-推荐使用`wings-starter.sh`启动，用`wings-starter.env`设置基础参数。
+It is recommended to use `wings-starter.sh` to start, use `wings-starter.env` to pass args.
 
-## 1A.6.动态调节
+## 1A.6.Dynamic Tweaking
 
-根据业务需求，按特定条件，触发线程级的日志输出。
+Triggers thread-level logging output based on business requirements and under certain conditions.
 
-* TweakLogger - 仅支持logback，通过LogbackFilter完成
-* TweakClock - 全局或线程级调整时间
-* TweakStack - 全局或线程级是否输出Stack
+* TweakLogger - supports logback only, done through LogbackFilter
+* TweakClock - global or thread level  time adjustment
+* TweakStack - global or thread level whether to output Stack
 
-## 1A.7.参考资料
+## 1A.7.References
 
-[参考资料 docs.spring.io](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/)
+[docs.spring.io](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/)
 
 * "4.1.6. Application Events and Listeners"
 * "4.2. Externalized Configuration"

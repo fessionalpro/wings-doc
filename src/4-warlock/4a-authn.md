@@ -2,58 +2,61 @@
 isOriginal: true
 icon: safe
 category:
-  - 术士
-  - 验证
+  - Warlock
+  - Authn
 ---
 
-# 4A.集成登录
+# 4A.Integrated Authn
 
-支持多种登录，如用户名密码，Basic扩展，Oauth第三方等，可以安全且方便的控制用户来源。
+Support multiple logins, such as username password, Basic extension, Oauth 3rd, etc.,
+safe and easy to control the source of users.
 
-## 4A.1.集成Github
+## 4A.1.Integrate Github
 
-因为Github最广泛也最简单，以其作为Oauth登录的演示。
+Since Github is the most common and easiest, use it as a demo for Oauth login.
 
-在Github上设置并记下`App ID`，`Client ID`和`Client secret`，注意不要外泄。
-设置入口为 `Settings` | `Developer settings` | `GitHub Apps`
+Set up and write down `App ID`, `Client ID` and `Client secret` on Github
+`Settings` | `Developer settings` | `GitHub Apps`, and be careful not to leak them.
 
 * Homepage URL - <http://localhost:8084>
 * Callback URL - <http://localhost:8084/auth/github/login.json>
 
-## 4A.2.是401还是302
+## 4A.2.Return 401 or 302
 
-当发生禁止访问`UNAUTHORIZED`时，spring会抛出AccessDeniedException，
-再由ExceptionTranslationFilter选择合适的AuthenticationEntryPoint。
+If access failed with `UNAUTHORIZED`, spring throws an AccessDeniedException.
+The ExceptionTranslationFilter then selects the appropriate AuthenticationEntryPoint.
 
-wings中，默认存在2个AuthenticationEntryPoint，
+In Wings, there are 2 AuthenticationEntryPoint by default.
 
-* LoginUrlAuthenticationEntryPoint - 用户侧的通常登录
-* BasicAuthenticationEntryPoint - 监控侧的basic验证
+* LoginUrlAuthenticationEntryPoint - the user/pass login for common user
+* BasicAuthenticationEntryPoint - basic authentication for monitoring
 
-LoginUrl可以通过设置login-forward，选择以何种形式提供给用户端登录。
+LoginUrl can select which form of login to provide to the user by login-forward setting.
 
-在EntryPoint的选择上，可以设置`http header`来满足特定的匹配规则。
-以下设置可跳过basic验证规则，详见 HttpBasicConfigurer.registerDefaults
+On the EntryPoint selection, `http header` can be set to satisfy specific matching rules.
+The following settings can skip basic authentication rules, see HttpBasicConfigurer.registerDefaults for details
 
-* 不含`X-Requested-With: XMLHttpRequest` header
-* `Accept`中包括以下任意值
+* Without the `X-Requested-With: XMLHttpRequest` header
+* Include any of the following values in `Accept`
   - application/xhtml+xml
   - image/*
   - text/html
   - text/plain
 
-## 4A.3.OpenAPI3特点
+## 4A.3.OpenAPI3 Features
 
-在OpenAPI3的规范中 不允许修改`Accept`，`Content-Type`和`Authorization`
+In the OpenAPI3 specification, `Accept`, `Content-Type` and `Authorization` are not allowed to be modified.
 
 <https://swagger.io/docs/specification/describing-parameters/#header-parameters>
 
 > Note: Header parameters named Accept, Content-Type and Authorization
 > are not allowed. To describe these headers, use the corresponding OpenAPI keywords:
 
-wings默认配置swagger，提供了text和json类型，分别对应LoginUrl和Basic的EntryPoint。
+Wings default configuration of swagger provides text and json types,
+corresponding to LoginUrl and Basic's EntryPoint respectively.
 
-swagger在302时会自动导向目标页面，最终以200显示。此过程可以debug或curl看到。
+302 in swagger is automatically redirected to the target page,
+and finally displayed in 200. This process can be seen in debug or curl.
 
 ```bash
 curl -vX 'POST' \

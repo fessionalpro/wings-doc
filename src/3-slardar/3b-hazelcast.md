@@ -2,13 +2,13 @@
 isOriginal: true
 icon: emmet
 category:
-  - 鱼人
-  - 缓存
-  - 事件
+  - Slardar
+  - Caching
+  - Event
 ---
-# 3B.Hazelcast中间件
+# 3B.Hazelcast Middleware
 
-使用hazelcast作为session，cache和message中间件，包括，
+Using hazelcast as session, cache and messaging middleware, including,
 
 * spring session - Hazelcast4IndexedSessionRepository
 * server cache - WingsHazelcast
@@ -16,47 +16,49 @@ category:
 * global event - HazelcastSyncPublisher
 * snowflake id - FlakeIdHazelcastImpl
 
-## 3B.1.默认配置
+## 3B.1.Default Configuration
 
-* ClassNotFound - 需要设置user-code-deployment
-* 重连机制，在client端，需要设置重连时间
-* 数据持久化，社区版需要自行MapStore和MapLoader
-* 默认开启multicast，组播地址224.0.0.1
+* ClassNotFound - user-code-deployment must be set
+* Reconnection mechanism, set the reconnection time on the client side
+* Data persistence, the community version requires DIY MapStore and MapLoader
+* Multicast is enabled by default, address is 224.0.0.1
 
-在实际部署时，建议独立配置好hazelcast集群，使用client端链接。
-集群配置，可以是`app+1`的形式，这样可保证至少一个独立存活。
+In the actual, it is recommended to deploy hazelcast cluster independently and use the client to connect.
+Cluster configuration should be `app+1`, so that at least one survives.
 
-一般在同一网段，内网间可以使用组播，但建议使用tcp-ip方式组网。
-通过 spring.hazelcast.config 选择不同的配置文件，建议xml。
+Generally in the same network, you can use multicast between intranets, but it is recommended to use the tcp-ip method of networking.
+Choose a different configuration file via spring.hazelcast.config, xml is recommended.
 
-hazelcast的3和4差异很大，在SpringBoot 2.2和2.4是不兼容的。
+hazelcast 3 and 4 are very different and are not compatible in SpringBoot 2.2 and 2.4.
 
-## 3B.2.分布式锁
+## 3B.2.Distributed Lock
 
-hazelcast提供了3类锁，推荐使用CP系统，但集群要求至少3台，默认0为单机unsafe模式。
+Hazelcast provides 3 types of locks, CP system is recommended, but the cluster needs at least 3 units,
+the default 0 is single unsafe mode.
 
-* FencedLock - Raft的分布式锁，在CP系统(4.x)
-* IMap.lock - 自动GC，干净简洁
-* ILock.lock - 遵循j.u.c.Lock约定（3.12移除）
+* FencedLock - Raft's distributed lock, in CP system (4.x)
+* IMap.lock - automatic GC, clean and simple
+* ILock.lock - follow j.u.c.Lock convention (removed in 3.12)
 
-不同的工程中，需要分开设置cluster-name，避免不同项目的同名缓存出现干扰。
-slardar采用了springboot默认的配置方式，client和server的配置文件如下。
+Different projects need to set cluster-name separately to avoid interference from caches with the same name
+in different projects. slardar uses the default springboot configuration, the client and server configuration
+files are as follows.
 
 * extra-conf/hazelcast-client.xml
 * extra-conf/hazelcast-server.xml
 
-若是需要独立定制，可以编程的形式暴露ClientConfig或Config Bean
-
-参考资料如下，
+If independent customization is required, the ClientConfig or Config bean can be exposed programmatically,
+See the following.
 
 * <https://hazelcast.com/blog/hazelcast-imdg-3-12-introduces-cp-subsystem/>
 * <https://hazelcast.com/blog/long-live-distributed-locks/>
 
-## 3B.3.分布式缓存
+## 3B.3.Distributed Cache
 
-通过hazelcastCacheManager用hazelcast实现ServerCacheManager
+Implement ServerCacheManager with hazelcast through hazelcastCacheManager
 
-对于hazelcast的MapConfig若无配置，则wings会根据level自动配置以下MapConf。
+For hazelcast's MapConfig, if there is no configuration, wings will automatically configure
+the following MapConf according to the level.
 
 ```xml
 <time-to-live-seconds>3600</time-to-live-seconds>
@@ -64,9 +66,9 @@ slardar采用了springboot默认的配置方式，client和server的配置文件
 <eviction size="5000"/>
 ```
 
-## 3B.4.消息订阅
+## 3B.4.Message Subscription
 
-hazelcast的topic(#HazelcastTopic)按SpringEvent模式进行了包装，方便在IDE中在代码间导航，
+Hazelcast's topic (#HazelcastTopic) is wrapped in the SpringEvent pattern for easy navigation between code in the IDE, and
 
-* Event 有哪些生产者/发布
-* Event 有哪些消费者/订阅
+* What producers/publishers does the Event has
+* What consumers/subscribers the Event has

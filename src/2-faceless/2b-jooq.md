@@ -2,96 +2,106 @@
 isOriginal: true
 icon: ability
 category:
-  - 虚空
-  - 类型
+  - Faceless
+  - TypeSafe
   - Jooq
 ---
+# 2B.Typesafe DSL SqlMapping
 
-# 2B.强类型及DSL能力
+> Time Walk, Rushes to a target location while backtracking any damage taken in the last 2 seconds.
+> Faceless Void is invulnerable during Time Walk.
 
-> 时间漫游，冲到目标位置，并取消最近2.0秒内受到的任何伤害。
-> 虚空假面在时间漫游过程中为无敌状态。
+* Auto generate the Jooq code, eg. pojo, table, dao.
+* Typesafe Jooq ensures the stability of the data changes and refactorings.
 
-* 从数据库自动生成jooq代码，pojo, table, dao
-* 通过jooq的强类型，保证数据层面的变更和重构稳定
+## 2B.1.Typesafe Database Operation
 
-## 2B.1.强类型的数据库操作
+SqlMapping is recommended because the ORM is too heavy, and Jooq and JdbcTemplate are welcome in the project.
 
-推荐使用SqlMapping，因为ORM太重了，工程内使用Jooq和JdbcTemplate
+MyBatis is the first choice for most projects in China, inherent in its excellence,
+but its lack of constraint power and the laziness of developers makes string-based
+sql difficult to refactory safely, and the following problems will come easily.
 
-MyBatis是国内大部分项目的首选，固有其优秀之处，但其约束力量的不够，
-开发者的懒惰，使得基于字符串的sql难于安全重构，项目中容易蔓生以下问题，
+* Often `select *` queries with lots of useless fields
+* Easy to write large complex SQL to difficult to split the service
+* String-based and weak type limit the intelligent refactoring of the IDE
 
-* 经常被`select *`，查询带有大量无用信息
-* 很容易写出复杂的大SQL，使得服务难以拆分
-* 字符串及弱类型，重构时，IDE的支持有限
+Jooq and its strong types make programming better than configuration, syntax better than
+strings, SQL expression friendly and just the right amount of ability to limit the ability
+to do the right things.
 
-使用Jooq，有了强类型，使得编程优于配置，语法优于字符串，
-并且其SQL表达友好，有恰到好处的限制能力的能力。
+Use `WingsCodeGenerator` to auto generate jooq code programmatically (without maven).
+By convention, the generated code is under `database/autogen/` and the manual code
+is under `database/manual/`.
 
-使用`WingsCodeGenerator`以编程的方式进行（不用maven）自动生成jooq代码。
-按约定，生成代码在`database/autogen/`下，手动代码在`database/manual/`下。
+If you encounter a compilation error caused by wings or jooq and cannot generate code in
+the current project, you need to create a new small project, only rely on the new version
+of wings, and run the code generation tool.
 
-若碰到wings或jooq的导致编译错误，无法在当前工程生成代码时，
-需要建立一个新的小工程，仅依赖wings新版，执行代码生成工具即可。
+Automatically generated `*Dao` have a lot of usable methods. They can be used to manipulate
+the database directly.
 
-自动生成的`*Dao`，有大量可直接使用的数据库操作方法，
+* `getAlias` get the alias used for select, `Table as az`
+  - At runtime, the Table is unique, named by the excel index format
+  - When self-naming, use numeric endings to avoid conflicts with the system.
+* `getTable` get the table for modification without alias, `Table`
+* Bulk insert and update large amounts of data, using batch of PreparedStatement
+* Use mysql special syntax, `insert ignore` or `replace into` to handle duplicate data
+* Partially update of unique records using `on duplicate key update` or `select+insert+update`.
 
-* `getAlias` 获得select用的别名表，`Table as az`
-  - 运行时，Table唯一，采用excel格式的az进制表示
-  - 自命名时，采用数字结尾，避免与系统发生冲突。
-* `getTable` 获得modify用的不使用别名的表 `Table`
-* 使用preparedStatement的batch批量插入和更新大量数据
-* 使用mysql特效，`insert ignore`和`replace into`处理重复数据
-* 使用`on duplicate key update`或`select+insert+update`部分更新唯一记录。
-
-值得注意的是，在Dao中使用alias表和本表时，必须保持同源，否则报语法错误。
+Important note, when using alias table and plain table together, you must guarantee that
+they are come from the same Dao instance, otherwise a syntax error will be thrown.
 
 ```kotlin
 val da = dao.alias
-// val rd = dao.fetch(da.Id.eq(id)) 别名和本表不同源，语法错误
+// val rd = dao.fetch(da.Id.eq(id))
+// alias and table are different ref, syntax error thrown.
 // select * from win_user where `y8`.`id` = ?
 
 val rd = dao.fetch(da, da.Id.eq(id))
 ```
 
-当有复杂数据操作，必须手写代码时，遵循以下约定，
+When there are complex data operations and the code must be written by hand, the following conventions are used.
 
-* 任何对数据库的操作，都应该在`database`包内进行
-* DSLContext和DataSource不应该离开database层
-* `single/`包，表示单表，可含简单的条件子查询，一个包名一个表
-* `couple/`包， 表示多表，一般为join查询或子查询，包名以主表命名
-* 耦合操作，建议标记`@CouplingSelect`, `@CouplingModify`
-* `select|modify`分别对应数据库操作
-* 也可以`select|insert|update|delete`分类，只是@Autowired时比较多
-* 数据传递以Dto结尾，放到最临近使用的位子
-* Dto以静态内类形似存在，用lombok做@Value或@Data
-* `forUpdate`这种带锁操作，方法名以`Lock`结尾
-* 类名以`表名`+`Insert|Modify`
-* jooq `Record`等同于`Dao`不应该在外部使用，应该用`Pojo`或`Dto`
-* 主要使用Dao，完成dsl等相关操作即可
+* Any database operations should be done inside the `database` package
+* DSLContext and DataSource should not leave the database layer
+* `single/` package, means single table, can contain simple conditional subqueries, one package name for one table
+* `couple/` package, means multiple tables, usually join queries or subqueries, package name is named using the main table
+* Coupled operations, suggest tagging `@CouplingSelect`, `@CouplingModify`
+* `select|modify` correspond to database operations respectively
+* Also `select|insert|update|delete` can be classified, but with lots of @Autowired
+* Data transfer ends with Dto and  is placed closest to the use
+* Dto exists as a static inner class, use lombok @Value or @Data
+* `forUpdate` with lock operation, method name ends with `Lock`
+* Class name should be in `TableName`+`Insert|Modify`
+* jooq `Record` is equivalent to `Dao` should not be used externally, it should be `Pojo` or `Dto` to transfer data
+* Mainly use Dao, just do the DSL and other related operations
 
-命名上，接口直接命名，不需要前后缀，Dto放在接口之内。
-实现类，放到`impl/`包内，用后缀表示实现方式不同。
+In naming, the interface should be named directly , without prefix and suffix, Dto are placed
+inside the interface as a part of the contract. Implementation classes, placed inside the
+`impl/` package, with a suffix to indicate a different way of implementation.
 
-* `Jooq` - Jooq实现
-* `Jdbc` - JdbcTemplate实现
-* `Impl` - 混合实现
+* `Jooq` - Jooq implementation
+* `Jdbc` - JdbcTemplate implementation
+* `Impl` - Mixed implementation
 
-如`LightId`在读写分离时，需要强制master，可使用`@MasterRouteOnly`。
+When forcing the use of the master in read/write separation, you can use `@MasterRouteOnly`, eg. `LightId`
 
-JdbcTemplate用于功能性的或复杂的数据库操作。若工程中有大量jdbc操作，
-且感觉jdbcTemplate偏底层，可考虑[JDBI](http://jdbi.org)
+JdbcTemplate is used for functional or complex database operations. If you have a lot of
+jdbc operations in your project and jdbcTemplate is less powerful, you can consider [JDBI](http://jdbi.org)
 
-## 2B.2.Sharding的兼容问题
+## 2B.2.Sharding Compatibility
 
-`flywave`包装了jooq的`Dao`，可按类型分为了`reader`和`writer`表，跟踪表。
+`flywave` extends and enhances jooq's `Dao` and splits by type into `reader` and `writer` tables, and tracking tables.
 
-强烈建议，使用`Dao`完成基础的CRUD操作，参见`JooqShardingTest.kt`。
-使用dsl构造复杂的sql时，要考虑读写分离。更复杂的sql建议使用jdbcTemplate。
+It is highly recommended to use `Dao` for basic CRUD operations, see `JooqShardingTest.kt`.
+When constructing complex sql with DSL, read/write separation should be considered.
+For more complex sql it is recommended to use jdbcTemplate.
 
-jooq生成代码，默认使用`table.column`限定列名，而ShardingJdbc做当前版本不支持。
-最优解决办法是使ShardingJdbc支持，当前最简单的办法是修改Jooq生成策略，参考以下Issue。
+Jooq generates code that uses `table.column` to qualify filed by default, but ShardingJdbc
+does not currently support this . The best solution is to wait until ShardingJdbc
+support it, and the easiest way at the moment is to change the Jooq generation policy, see
+the following Issue.
 
 * [JOOQ#8893 Add Settings.renderTable](https://github.com/jOOQ/jOOQ/issues/8893)
 * [JOOQ#9055 should NO table qualify if NO table alias](https://github.com/jOOQ/jOOQ/pull/9055)
@@ -99,39 +109,40 @@ jooq生成代码，默认使用`table.column`限定列名，而ShardingJdbc做�
 * [ShardingSphere#5330 replace into](https://github.com/apache/shardingsphere/issues/5330)
 * [ShardingSphere#5210 on duplicate key update](https://github.com/apache/shardingsphere/issues/5210)
 
-在jooq`3.18`版本之前，使用`spring.wings.faceless.jooq.enabled.auto-qualify=true`，
-完成限定名的自动处理，其规则是，`不存在alias时，不增加限定名`。
+Prior to jooq `3.18`, use `spring.wings.faceless.jooq.enabled.auto-qualify=true` to enable
+the automatic processing of qualified names, with the rule that `no qualified name if no alias`.
 
-使用Jooq的主要原因是其`限制的艺术`，可避免写出难以拆分的SQL，
+The main reason for using Jooq is `The Art of Restraint`, which avoids writing hard SQL that is too hard to maintain.
 
-* 鼓励单表操作，放在`single`包内，使用`本名`(如，WinUserLoginTable)
-* 操作多表时，`别名`(如，WinUserLoginTable.asA2)优于`本名`
-* INSERT 使用`本名`，不可使用`别名`
-* DELETE 使用`本名`，不可使用`别名`
-* UPDATE 使用`别名`优先于`本名`
-* SELECT 单表时，用`本名`；多表时，`别名`优先于`本名`
-* **不要** 使用中文表名，例子代码只是极端测试。
+* Encourage single table operations in the `single` package, using `plain` (eg. WinUserLoginTable)
+* When operating on multiple tables, `alias` (eg. WinUserLoginTable.asA2) is preferred
+* INSERT uses `plain`, not `alias`.
+* DELETE uses `plain`, not `alias`.
+* UPDATE uses `alias` over `plain`.
+* SELECT use `plain` for single table; `alias` over `plain` for multiple tables
+* **Don't** use Chinese table names, the example code is just an extreme test.
 
 ## 2B.3.Record Mapper
 
-jooq 默认有2中Mapper都区分大小写，对应的功能如下
+Jooq has Mappers by default, both case sensitive, as follows
 
-* DefaultRecordMapper 负责Record#into(Class), Result#into(Class)
-* DefaultRecordUnmapper 负责DSL.newRecord(Table, Object), Record#from(Object)
+* DefaultRecordMapper is for Record#into(Class), Result#into(Class)
+* DefaultRecordUnmapper is for DSL.newRecord(Table, Object), Record#from(Object)
 
-SimpleFlatMapper的mapper更为宽松，不区分大小写，但有以下不足。
+SimpleFlatMapper is more lenient and case-insensitive, but has the following shortcomings.
 
-* [intoArray的bug](https://github.com/arnaudroger/SimpleFlatMapper/issues/764)
-* 不支持primitive type，如int.class，仅Integer.class
+* [bug with intoArray](https://github.com/arnaudroger/SimpleFlatMapper/issues/764)
+* No support for primitive type, such as int.class, only Integer.class
 
-官方在2020-05-11最后一次提交后，有2年多没有活跃了，wings于2022年10月已将其移除。
+Officially inactive for more than 2 years after the last commit on 2020-05-11, wings has removed it in October 2022.
 
-ModelMapper也比较优秀，但其体积过大（4.5M），目前没有必要使用，也未做充分测试。
+ModelMapper is also better, but its size is too large (4.5M), currently, there is no need
+to use it, and it is not fully tested in wings.
 
-## 2B.4.参考资料
+## 2B.4.References
 
 * [Jooq patch](https://github.com/trydofor/jOOQ/commit/0be23d2e90a1196def8916b9625fbe2ebffd4753)
-* [批量操作 record](https://www.jooq.org/doc/3.12/manual/sql-execution/crud-with-updatablerecords/batch-execution-for-crud/)
-* [批量操作 jdbc](https://www.jooq.org/doc/3.12/manual/sql-execution/batch-execution/)
-* [使用别名，支持分表](https://www.jooq.org/doc/3.12/manual/sql-building/table-expressions/aliased-tables/)
-* [SQL的执行](https://www.jooq.org/doc/3.12/manual/sql-execution/)
+* [Batch Execution record](https://www.jooq.org/doc/3.12/manual/sql-execution/crud-with-updatablerecords/batch-execution-for-crud/)
+* [Batch Execution jdbc](https://www.jooq.org/doc/3.12/manual/sql-execution/batch-execution/)
+* [Aliases in table splitting](https://www.jooq.org/doc/3.12/manual/sql-building/table-expressions/aliased-tables/)
+* [Sql Execution](https://www.jooq.org/doc/3.12/manual/sql-execution/)

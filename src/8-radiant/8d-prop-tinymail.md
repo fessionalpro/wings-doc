@@ -2,83 +2,84 @@
 isOriginal: true
 icon: enum
 category:
-  - 邮件
-  - 属性
+  - Tiny
+  - Mail
+  - Property
 ---
 
-# 8D.小邮件属性
+# 8D.TinyMail Properties
 
 ## 8D.1.spring-mail-79.properties
 
-spring-boot-starter-mail的配置，分为账号类和属性类
+spring-boot-starter-mail config, divided into account type and property type.
 
 ### spring.mail.host
 
-`String`，邮件主机，如smtp.qq.com
+`String`, mail host, eg. smtp.qq.com
 
 ### spring.mail.username
 
-`String`，登录名，一般与发件人一致，否则会有发送错误
+`String`, mail username, usually the same as the sender, otherwise may get a sending error.
 
 ### spring.mail.password
 
-`String`，登录密码
+`String`, mail password.
 
 ### spring.mail.protocol
 
-`String`=`smtp`，邮件协议，默认smtp
+`String`=`smtp`, mail protocol, default smtp.
 
 ### spring.mail.port
 
-`int`=`465`，端口号
+`int`=`465`, mail port.
 
 ### spring.mail.properties.mail.smtp.auth
 
-`String`=`true|false`，是否进行smtp验证，基本都需要。
+`String`=`true|false`, whether to perform smtp authentication, most of it is true.
 
 ### spring.mail.properties.mail.smtp.starttls.enable
 
-`String`=`true|false`，是否使用tls，一般都需要。
+`String`=`true|false`, whether to use tls, most of it is true.
 
 ### spring.mail.properties.mail.smtp.ssl.enable
 
-`String`=`true|false`，是否使用ssl，视邮件服务商是否支持。
+`String`=`true|false`, whether to use ssl, deps on email provider supports.
 
 ### spring.mail.properties.mail.smtp.connectiontimeout
 
-`String`=`90000`，链接超时毫秒数，默认90秒
+`String`=`90000`, connection timeout in mills, default 90s.
 
 ### spring.mail.properties.mail.smtp.timeout
 
-`String`=`90000`，读超时毫秒数，默认90秒
+`String`=`90000`, read timeout in mills, default 90s.
 
 ### spring.mail.properties.mail.smtp.writetimeout
 
-`String`=`90000`，写超时毫秒数，默认90秒
+`String`=`90000`, write timeout in mills, default 90s.
 
 ## 8D.2.spring-wings-enabled-79.properties
 
 ### spring.wings.tiny.mail.enabled.autoconf
 
-`Boolean`=`true`，是否启动自动配置
+`Boolean`=`true`, whether to enable auto config.
 
 ### spring.wings.tiny.mail.enabled.dryrun
 
-`Boolean`=`false`，是否干跑，仅记录日志不真正执行任务
+`Boolean`=`false`, whether to dry run, log only without actually send.
 
 ### spring.wings.tiny.mail.enabled.controller-list
 
-`Boolean`=`true`，是否开启 MailListController
+`Boolean`=`true`, whether to enable MailListController
 
 ### spring.wings.tiny.mail.enabled.controller-send
 
-`Boolean`=`true`，是否开启 MailSendController
+`Boolean`=`true`, whether to enable MailSendController
 
 ## 8D.3.wings-flywave-fit-79.properties
 
 ### wings.faceless.flywave.fit.tiny-mail
 
-数据库依赖，引入此lib后，自动执行次脚本
+Database dependency, after import this lib, the script will be auto executed.
 
 * `path`=`classpath*:/wings-flywave/master/07-mail/*.sql`
 * `revi`=`2020_1027_01L`
@@ -86,196 +87,204 @@ spring-boot-starter-mail的配置，分为账号类和属性类
 
 ## 8D.4.wings-tinymail-config-79.properties
 
-配置默认账号，及多个发送账号，`TinyMailConfig`类型，继承`spring.mail`，
-默认配置名为`default`，自动复用`spring.mail`的值，为其他账号，提供默认配置。
+Config default account and multiple sending accounts, `TinyMailConfig` extends `spring.mail`.
+The default config name is `default`, which automatically reuses the value of
+`spring.mail` to provide a default config for other accounts.
 
-默认配置项，仅当其他配置项是无效值时才使用，并且对于`properties.*`值，仅key存在时使用。
+The default config item is only used if others are invalid, and for `properties.*` values, only if the key exists.
 
 ### wings.tiny.mail.config.default.from
 
-`String`，默认发件人
+`String`, default from, usually the sender.
 
 ### wings.tiny.mail.config.default.to
 
-`String[]`，默认收件人，字符串数组，逗号分隔
+`String[]`, default to, string arrays, comma separated.
 
 ### wings.tiny.mail.config.default.cc
 
-`String[]`，默认抄送，字符串数组，逗号分隔
+`String[]`, default cc, string arrays, comma separated.
 
 ### wings.tiny.mail.config.default.bcc
 
-`String[]`，默认暗送，字符串数组，逗号分隔
+`String[]`, default bcc, string arrays, comma separated.
 
 ### wings.tiny.mail.config.default.reply
 
-`String`，默认回复，字符串
+`String`, default reply.
 
 ### wings.tiny.mail.config.default.html
 
-`Boolean`=`true`，默认是否发送html邮件(text/html)，否则纯文本(text/plain)
+`Boolean`=`true`, whether to send html email (text/html), otherwise plain text (text/plain).
 
-### gmail参考配置
+### Gmail Config Reference
 
-推荐使用app专用密码，不要使用登录密码。
-`properties.*`仅为空时，使用默认值，不存在的key不使用默认值。
-如`properties.mail.debug`被注释掉，不会使用default的值。
+Recommend to use app-specific password, not login password.
+Use Default values only If `properties.*` is empty, and the default value is not used if the key
+does not exist. If `properties.mail.debug` is commented out, the default value is not used.
 
-> wings.tiny.mail.config.gmail.host=smtp.gmail.com
-> wings.tiny.mail.config.gmail.username=${GMAIL_USER:}
-> wings.tiny.mail.config.gmail.password=${GMAIL_PASS:}
-> wings.tiny.mail.config.gmail.protocol=
-> wings.tiny.mail.config.gmail.port=587
-> wings.tiny.mail.config.gmail.properties.mail.smtp.auth=
-> wings.tiny.mail.config.gmail.properties.mail.smtp.starttls.enable=
-> #wings.tiny.mail.config.gmail.properties.mail.debug=
+```properties
+wings.tiny.mail.config.gmail.host=smtp.gmail.com
+wings.tiny.mail.config.gmail.username=${GMAIL_USER:}
+wings.tiny.mail.config.gmail.password=${GMAIL_PASS:}
+wings.tiny.mail.config.gmail.protocol=
+wings.tiny.mail.config.gmail.port=587
+wings.tiny.mail.config.gmail.properties.mail.smtp.auth=
+wings.tiny.mail.config.gmail.properties.mail.smtp.starttls.enable=
+#wings.tiny.mail.config.gmail.properties.mail.debug=
+```
 
 ## 8D.5.wings-tinymail-sender-79.properties
 
 ### wings.tiny.mail.sender.biz-id
 
-`String`=`X-Biz-Id`，biz-id的Header，业务侧定位邮件，默认为mail的主键
+`String`=`X-Biz-Id`, biz-id Header to locate mail by business, default mail id.
 
 ### wings.tiny.mail.sender.biz-mark
 
-`String`=`X-Biz-Mark`，biz-mark的Header，业务侧定位数据，比如订单号等
+`String`=`X-Biz-Mark`, biz-mark Header to locate data by business, eg. orderNumber.
 
 ### wings.tiny.mail.sender.err-send
 
-`Duration`=`5m`，发送失败 MailSendException 时，默认等待多少时间，默认5分钟
+`Duration`=`5m`, how much time to wait if MailSendException, default 5 minutes.
 
 ### wings.tiny.mail.sender.err-auth
 
-`Duration`=`1h`，认证失败 MailAuthenticationException 时，默认等待多少时间，默认1小时
+`Duration`=`1h`, how much time to wait if MailAuthenticationException, default 1 hour.
 
 ### wings.tiny.mail.sender.err-host
 
-`Map<BigDecimal, String>`，包含以下异常信息时，对此host进行多少秒的等待。
-秒为key，以小数部分仅用来区分key，负数为建议停止重发。
+`Map<BigDecimal, String>`, how many seconds to wait for the host if it contains the
+following exception message. seconds is the key, the fraction is only used to make
+key unique, negative number means stop resending.
 
 * `3600.001`=`frequency limited`
 
 ### wings.tiny.mail.sender.err-mail
 
-`Map<BigDecimal, String>`，包含以下异常信息时，对此邮件的重发进行多少秒的等待。
-秒为key，以小数部分仅用来区分key，负数为建议停止重发。
+`Map<BigDecimal, String>`, how many seconds to wait to resend this email if it contains the
+following exception message. seconds is the key, the fraction is only used to make key unique,
+negative number means stop resending.
 
 * `-501001.001`=`from address must be same as authorization user`
 
-`501`为错误号，`001`为host编号，`.001`为区别位
+`501` is error number, `001` is host number, `.001` is the unique bit.
 
 ### wings.tiny.mail.sender.per-idle
 
-`Map<String, Duration>`，同一邮件host每次登录的间隔，避免限频，0为无视。
+`Map<String, Duration>`, interval of each login of the same mailhost, avoid limit frequency, 0 is ignored.
 
-`smtp.qq.com`=`500ms`，如qq邮箱，间隔500毫秒
+`smtp.qq.com`=`500ms`, eg. qq mail, wait 500ms.
 
 ### wings.tiny.mail.sender.max-idle
 
-`Map<String, Duration>`，同一邮件host最多等待时间，小于时等待，否则抛出MailWaitException，0为无视
+`Map<String, Duration>`, max wait time for the same mailhost, if less then wait,
+otherwise throw MailWaitException, 0 is ignored.
 
-* `smtp.qq.com`=`5s`，如qq邮箱，等待超过5秒时，抛出MailWaitException
+* `smtp.qq.com`=`5s`,  eg. qq mail, MailWaitException is thrown when waiting for more than 5 seconds.
 
 ### wings.tiny.mail.sender.force-to
 
-`String[]`，强制替换真实的to，字符串数组，逗号分隔
+`String[]`, force to replace the real "to", string arrays, comma separated.
 
 ### wings.tiny.mail.sender.force-cc
 
-`String[]`，强制替换真实的cc，字符串数组，逗号分隔
+`String[]`, force to replace the real "cc", string arrays, comma separated.
 
 ### wings.tiny.mail.sender.force-bcc
 
-`String[]`，强制替换真实的bcc，字符串数组，逗号分隔
+`String[]`, force to replace the real "bcc", string arrays, comma separated.
 
 ### wings.tiny.mail.sender.force-prefix
 
-`String`，强制增加真实的subject前缀
+`String`, force to add prefix to the real subject.
 
 ## 8D.6.wings-tinymail-service-79.properties
 
 ### wings.tiny.mail.service.max-fail
 
-`Integer`=`3`，同一邮件最大失败次数
+`Integer`=`3`, max failures for the same email.
 
 wings.tiny.mail.service.max-done
 
-`Integer`=`1`，同一邮件最大成功次数
+`Integer`=`1`, max success for the same email.
 
 ### wings.tiny.mail.service.max-next
 
-`Duration`=`1d`，超过多少时间的邮件不需要发送，默认1天
+`Duration`=`1d`, the email does not need to be sent anymore as it has been a certain amount of time. default 1 day.
 
 ### wings.tiny.mail.service.try-next
 
-`Duration`=`1m`，失败后多久进行重试，默认1分钟
+`Duration`=`1m`, how soon to retry after failure, default 1 minute.
 
 ### wings.tiny.mail.service.batch-size
 
-`Integer`=`10`，批量发送时，一次发的最大件数
+`Integer`=`10`, max number of bulk emails sent at one time.
 
 ### wings.tiny.mail.service.warn-size
 
-`Integer`=`50`，超过此容量时，以Warn记录日志
+`Integer`=`50`, if this capacity is exceeded, log it as Warn.
 
 ### wings.tiny.mail.service.boot-scan
 
-`Duration`=`60s`，启动后多久，扫描未发送的邮件，`0`为不扫描
+`Duration`=`60s`, how long after start, scan for unsent mail, `0` for no scan.
 
 ### wings.tiny.mail.service.only-app
 
-`Boolean`=`false`，是否仅发送本app的邮件
+`Boolean`=`false`, whether to send emails from this app only.
 
 ### wings.tiny.mail.service.only-run
 
-`Boolean`=`true`，是否仅发送本RumMode的邮件
+`Boolean`=`true`, whether to send emails from this RumMode only.
 
 ## 8D.7.wings-tinymail-urlmap-79.properties
 
 ### wings.tiny.mail.urlmap.list-all
 
-`String`=`/admin/mail/list-all.json`，获取全部邮件的简要信息，默认倒序
+`String`=`/admin/mail/list-all.json`, list summary of all messages, in reverse order by default.
 
 ### wings.tiny.mail.urlmap.list-failed
 
-`String`=`/admin/mail/list-failed.json`，获取失败邮件的简要信息，默认倒序
+`String`=`/admin/mail/list-failed.json`, list summary of failed emails, in reverse order by default.
 
 ### wings.tiny.mail.urlmap.list-undone
 
-`String`=`/admin/mail/list-undone.json`，获取未成功邮件的简要信息，默认倒序
+`String`=`/admin/mail/list-undone.json`, list summary of unsuccessful emails, in reverse order by default.
 
 ### wings.tiny.mail.urlmap.by-bizmark
 
-`String`=`/admin/mail/by-bizmark.json`，根据Biz-Mark获取邮件的简要信息，默认倒序
+`String`=`/admin/mail/by-bizmark.json`, find summary of the email by Biz-Mark, in reverse order by default.
 
 ### wings.tiny.mail.urlmap.by-recipient
 
-`String`=`/admin/mail/by-recipient.json`，根据正则比较收件人to/cc/bcc获取邮件的简要信息，默认倒序
+`String`=`/admin/mail/by-recipient.json`, find summary of the email by RegExp of to/cc/bcc, reverse order by default.
 
 ### wings.tiny.mail.urlmap.by-sender
 
-`String`=`/admin/mail/by-sender.json`，根据收件人from获取邮件的简要信息，默认倒序
+`String`=`/admin/mail/by-sender.json`, find summary of the email by from, in reverse order by default.
 
 ### wings.tiny.mail.urlmap.by-subject
 
-`String`=`/admin/mail/by-subject.json`，根据正则比较邮件标题获取邮件的简要信息，默认倒序
+`String`=`/admin/mail/by-subject.json`, find summary of the email by RegExp of subject, reverse order by default.
 
 ### wings.tiny.mail.urlmap.load-detail
 
-`String`=`/admin/mail/load-detail.json`，获取邮件详情
+`String`=`/admin/mail/load-detail.json`, get mail detail.
 
 ### wings.tiny.mail.urlmap.send-mail
 
-`String`=`/admin/mail/send-mail.json`，新建或编辑邮件，并同步立即或异步定时发送，`-1`为失败，`0`为同步，否则为异步
+`String`=`/admin/mail/send-mail.json`, create or edit an email, and send it immediately or asynchronously,
+`-1` is failure, `0` is sync, otherwise it is async.
 
 ### wings.tiny.mail.urlmap.send-save
 
-`String`=`/admin/mail/send-save.json`，仅新建或编辑邮件，但并不发送
+`String`=`/admin/mail/send-save.json`, only create or edit messages, but do not send them.
 
 ### wings.tiny.mail.urlmap.send-retry
 
-`String`=`/admin/mail/send-retry.json`，同步重试失败的邮件，发送成功或失败，或异常
+`String`=`/admin/mail/send-retry.json`, sync retry failed emails, send success or failure, or exceptions
 
 ### wings.tiny.mail.urlmap.send-scan
 
-`String`=`/admin/mail/send-scan.json`，同步扫需要描补发的邮件，并异步发送，返回补发的件数
+`String`=`/admin/mail/send-scan.json`, sync scan the emails that need to resend,
+and send them async, return the number of resend emails.
