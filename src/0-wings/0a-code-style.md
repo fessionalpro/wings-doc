@@ -399,7 +399,7 @@ we should respect history and team conventions. In wings,
 * Collection/Container type like List/Map/Array/Option use Empty instead of null.
 * The `Null` class defines the value and validation to handle null, including enum, etc.
 * Use `@NotNull` on method signatures, IDE and compile time checking.
-* `ArgsAssert` and `StateAssert` for business assert with i18n support.
+* `AssertArgs` and `AssertState` for business assert with i18n support.
 
 ## 0A.J.Contravariance/Covariance/PECS in TypeSystem
 

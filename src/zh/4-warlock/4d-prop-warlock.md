@@ -249,8 +249,7 @@ Jooq对用户和授权相关表的CUD监听
 
 ## 4D.6.wings-warlock-error-77.properties
 
-全局异常控制。`CodeException`类型，支持变量`{message}`，
-default为默认配置，兜底处理所以异常并为其他同类型提供默认值。
+全局异常控制。default为默认配置，兜底处理所以异常并为其他同类型提供默认值。
 
 ### wings.warlock.error.default-exception
 
@@ -580,6 +579,10 @@ Controller中RequestMapping的URL常量
 ### wings.warlock.urlmap.admin-tweak-clock
 
 `String`=`/admin/tweak/clock.json`，线程级设置用户的时钟
+
+### wings.warlock.urlmap.admin-authn-danger
+
+`String`=`/admin/authn/danger.json`, 切换用户danger状态，可重置failed计数
 
 ## 4D.B.wings-warlock-ticket-77.properties
 

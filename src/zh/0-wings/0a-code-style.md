@@ -379,7 +379,7 @@ Wings中推荐使用以下类型，主要考虑了sql和json的兼容性，sql�
 * Collection，Map，Array等集合或容器类型，都需要以Empty返回
 * `Null`类，定义了用来代替null的类型和检查方法，包括enum等
 * 方法签名尽量使用`@NotNull`注解，是IDE辅助检查，编译时解决
-* `ArgsAssert`和`StateAssert`进行业务assert，支持多国语
+* `AssertArgs`和`AssertState`进行业务assert，支持多国语
 
 ## 0A.J.类型系统的逆变/协变/PECS
 

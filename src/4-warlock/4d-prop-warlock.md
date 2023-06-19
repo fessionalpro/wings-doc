@@ -249,8 +249,7 @@ Jooq's CUD listening on user and auth related tables.
 
 ## 4D.6.wings-warlock-error-77.properties
 
-Global Exception handling. `CodeException` supports variable `{message}`.
-`default` handles all exceptions and provides defaults for other similar types.
+Global Exception handling. `default` handles all exceptions and provides defaults for other similar types.
 
 ### wings.warlock.error.default-exception
 
@@ -586,6 +585,10 @@ automatically response based on content-type, requires PathVar `{extName}` `{aut
 ### wings.warlock.urlmap.admin-tweak-clock
 
 `String`=`/admin/tweak/clock.json`, tweak clock of user in thread-level.
+
+### wings.warlock.urlmap.admin-authn-danger
+
+`String`=`/admin/authn/danger.json`, toggle user danger status, and reset failed count
 
 ## 4D.B.wings-warlock-ticket-77.properties
 

@@ -72,7 +72,7 @@ execution state checking, output result confirmation, etc.
 // throw stackless CodeException
 @RequestMapping("/test/code-exception.json")
 public String codeException() {
-    ArgsAssert.isTrue(false, CommonErrorEnum.AssertEmpty1, "args");
+    AssertArgs.isTrue(false, CommonErrorEnum.AssertEmpty1, "args");
     throw new CodeException(false, CommonErrorEnum.AssertEmpty1, "test");
 }
 
@@ -118,7 +118,7 @@ public R<Object> updateOutSku(@RequestBody @Validated(value = {Update.class}) Ou
 
 Predefined CodeEnum, associated Message resource, output I18n message via global exception handling
 
-* `StateAssert` - like ArgsAssert, throws stackless exceptions
+* `AssertState` - like AssertArgs, throws stackless exceptions
 * `MessageException` - throws a stackless exception with code
 * `CodeException` - by default throws a stacked exception
 * `I18nString` - automatically convert to String output via json
