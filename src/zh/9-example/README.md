@@ -197,20 +197,22 @@ Wings在pom.xml和starter.sh中已进行了正确的设置，其文件及变量�
 
 * `/pom.xml` - `wings.java-opens` 有原因说明
 * `/observe/scripts/wings-starter.sh` - `JDK9_ARG`
+* `<arg>` - 参数必须使用`=`指定。在shell解析中支持空格分隔
 
 `add-opens`的具体内容如下，使用时按需处理换行
 
 ```text
---add-modules java.se
---add-exports java.base/jdk.internal.ref=ALL-UNNAMED
---add-opens java.base/java.lang=ALL-UNNAMED
+--add-modules=java.se
+--add-exports=java.base/jdk.internal.ref=ALL-UNNAMED
+--add-opens=java.base/java.io=ALL-UNNAMED
 --add-opens=java.base/java.lang.invoke=ALL-UNNAMED
+--add-opens=java.base/java.lang=ALL-UNNAMED
+--add-opens=java.base/java.net=ALL-UNNAMED
+--add-opens=java.base/java.nio=ALL-UNNAMED
 --add-opens=java.base/java.util=ALL-UNNAMED
---add-opens java.base/java.io=ALL-UNNAMED
---add-opens java.base/java.nio=ALL-UNNAMED
---add-opens java.base/sun.nio.ch=ALL-UNNAMED
---add-opens java.management/sun.management=ALL-UNNAMED
---add-opens jdk.management/com.sun.management.internal=ALL-UNNAMED
+--add-opens=java.base/sun.nio.ch=ALL-UNNAMED
 --add-opens=java.base/sun.security.x509=ALL-UNNAMED
+--add-opens=java.management/sun.management=ALL-UNNAMED
+--add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED
 --add-opens=jdk.unsupported/sun.misc=ALL-UNNAMED
 ```
