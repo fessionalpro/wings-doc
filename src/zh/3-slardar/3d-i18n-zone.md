@@ -120,6 +120,27 @@ public R<Object> updateOutSku(@RequestBody @Validated(value = {Update.class}) Ou
 * `I18nString` - 通过json自动转换为String类型输出
 * `@JsonI18nString` - 注解字段，实现自动json转换
 
+### 多国语信息设置
+
+```bash
+# find wings-i18n path
+find . -type d -name 'wings-i18n'| egrep -v -E 'target/|test/'
+
+./wings/warlock/src/main/resources/wings-i18n
+./wings/slardar-webmvc/src/main/resources/wings-i18n
+```
+
+* slardar-webmvc - AnthnErrorEnum，spring security的验证错误
+* warlock - CommonErrorEnum，通用错误，如assert
+
+多国语匹配时，匹配message的规则为 `lang_region` > `lang` > `default`
+
+| Message \ lang_region   | zh_CN | zh_TW | en_US | zh |
+| ----------------------- | ----- | ----- | ----- | -- |
+|message.properties       | N     | N     | Y     | N  |
+|message_zh.properties    | Y     | N     | N     | Y  |
+|message_zh_TW.properties | N     | Y     | N     | N  |
+
 ## 3D.5.三种DateTime
 
 多时区，要兼顾数据可读性和编码便利性，在slardar中统一约定如下，

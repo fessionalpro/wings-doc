@@ -124,6 +124,27 @@ Predefined CodeEnum, associated Message resource, output I18n message via global
 * `I18nString` - automatically convert to String output via json
 * `@JsonI18nString` - annotate the field for automatic json conversion
 
+### I18n message resources
+
+```bash
+# find wings-i18n path
+find . -type d -name 'wings-i18n'| egrep -v -E 'target/|test/'
+
+./wings/warlock/src/main/resources/wings-i18n
+./wings/slardar-webmvc/src/main/resources/wings-i18n
+```
+
+* slardar-webmvc - AnthnErrorEnum, authn error of spring security.
+* warlock - CommonErrorEnum, common error, eg. assert.
+
+rules of matching i18n language are `lang_region` > `lang` > `default`
+
+| Message \ lang_region   | zh_CN | zh_TW | en_US | zh |
+| ----------------------- | ----- | ----- | ----- | -- |
+|message.properties       | N     | N     | Y     | N  |
+|message_zh.properties    | Y     | N     | N     | Y  |
+|message_zh_TW.properties | N     | Y     | N     | N  |
+
 ## 3D.5.Three Kinds of DateTime
 
 Multiple timezones, for data readability and coding convenience, slardar use the following conventions.
