@@ -87,8 +87,10 @@ and is abbreviated if no ambiguity, such as curse, flywave, etc.
 * slardar ← curse | `jackson` | `fastjson` | `okhttp` | `cache` | `sentry` | biz basement
 * slardar-hazel-caching ← slardar | `hazelcast` | multi-level caching
 * slardar-hazel-session ← hazel-caching | slardar-webmvc | distributed session
-* slardar-webmvc ← slardar | `starter-json` | `starter-web` | `undertow` | `security-web` | `springdoc` | WebMvc enhancement
-* slardar-sprint ← hazel-caching | hazel-session | slardar-webmvc | `starter-security` | `starter-actuator` | `boot-admin` | WebMvc integration
+* slardar-webmvc ← slardar | `starter-json` | `starter-web` | `undertow` | `security-web` |
+  `springdoc` | WebMvc enhancement
+* slardar-sprint ← hazel-caching | hazel-session | slardar-webmvc | `starter-security` |
+  `starter-actuator` | `boot-admin` | WebMvc integration
 * warlock ← slardar | faceless-jooq | db-based features
 * warlock-autogen ← slardar | auto-gen code
 * warlock-awesome ← slardar-autogen | features dependent on autogen

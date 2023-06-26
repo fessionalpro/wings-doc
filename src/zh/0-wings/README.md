@@ -82,8 +82,10 @@ Wings由多个子项目构成，都采用了Dota有关的命名，主要包括�
 * slardar ← curse | `jackson` | `fastjson` | `okhttp` | `cache` | `sentry` | 业务基础
 * slardar-hazel-caching ← slardar | `hazelcast` | 多级缓存
 * slardar-hazel-session ← hazel-caching | slardar-webmvc | 分布式会话
-* slardar-webmvc ← slardar | `starter-json` | `starter-web` | `undertow` | `security-web` | `springdoc` | Web增强
-* slardar-sprint ← hazel-caching | hazel-session | slardar-webmvc | `starter-security` | `starter-actuator` | `boot-admin` | Web集成
+* slardar-webmvc ← slardar | `starter-json` | `starter-web` | `undertow` |
+  `security-web` | `springdoc` | Web增强
+* slardar-sprint ← hazel-caching | hazel-session | slardar-webmvc | `starter-security` |
+  `starter-actuator` | `boot-admin` | Web集成
 * warlock ← slardar | faceless-jooq | Db基础
 * warlock-autogen ← slardar | 自动生成的代码
 * warlock-awesome ← slardar-autogen | 依赖自动生成代码的功能

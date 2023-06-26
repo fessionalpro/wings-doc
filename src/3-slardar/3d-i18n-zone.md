@@ -163,7 +163,7 @@ And in the Controller layer, it is responsible for the two-way conversion of sys
 * Automatic conversion in Jackson and RequestParam if timezone is sensitive
   - When Request, auto converts user time to the system timezone
   - When Response, auto converts system time to the user timezone
-* The following three types of auto-conversion are available, 
+* The following three types of auto-conversion are available,
   - `LocalDateTime` disabled by default, not recommended to convert
   - `ZonedDatetime` disabled by default, historical compatibility
   - `OffsetDateTime` enabled by default

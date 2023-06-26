@@ -26,8 +26,8 @@ Using hazelcast as session, cache and messaging middleware, including,
 In the actual, it is recommended to deploy hazelcast cluster independently and use the client to connect.
 Cluster configuration should be `app+1`, so that at least one survives.
 
-Generally in the same network, you can use multicast between intranets, but it is recommended to use the tcp-ip method of networking.
-Choose a different configuration file via spring.hazelcast.config, xml is recommended.
+Generally in the same network, you can use multicast between intranets, but it is recommended to use the tcp-ip
+method of networking. Choose a different configuration file via spring.hazelcast.config, xml is recommended.
 
 hazelcast 3 and 4 are very different and are not compatible in SpringBoot 2.2 and 2.4.
 

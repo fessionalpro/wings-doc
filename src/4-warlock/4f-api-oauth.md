@@ -44,10 +44,10 @@ and define the error with the business code
 ## 4F.1.PostJson Model
 
 By design, BS and SS are different in terms of service objects, request frequency, security level,
-and functional granularity, and should not be mixed.
-API uses HTTP POST to send JSON data with a tamper-proof signature, called `PostJson`.
-This approach is actually standard in domestic APIs, see the [security specification - signature algorithm](https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=4_3) of WeChat payments,
-with the following key point.
+and functional granularity, and should not be mixed. API uses HTTP POST to send JSON data with a
+tamper-proof signature, called `PostJson`. This approach is actually standard in domestic APIs, see the
+[security specification - signature algorithm](https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=4_3)
+of WeChat payments, with the following key point.
 
 * key - sorted from small to large by ASCII code (dictionary order), ie. TreeMap
 * value - use the original value, no UrlEncode, to avoid encoding differences

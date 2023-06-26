@@ -227,5 +227,5 @@ cannot use PageDefault and aliases, and is handled by the following classes, jus
 * RequestResponseBodyMethodProcessor
 * HttpMessageConverter
 
-Due to aliasing requirements, generally used for compatibility with older systems, so not customized 
+Due to aliasing requirements, generally used for compatibility with older systems, so not customized
 Jackson Deserializer and HandlerMethodArgumentResolver

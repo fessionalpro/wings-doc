@@ -91,7 +91,7 @@ The use of `@Resource`, `@Inject`, and `@Autowired` has some differences,
   The search order is ①BeanType ②Qualifier ③BeanName
 * by-type injection uses Autowired and Inject,
   by-name injection uses Resource (fine-grained, hard to control)
-* recommend `@Autowired` in spring, use `@Inject` for compatibility 
+* recommend `@Autowired` in spring, use `@Inject` for compatibility
 
 Injection rules when extending a parent class (the class cannot know its subclass)
 
