@@ -182,13 +182,17 @@ wings原则上，所以配置项都必有默认配置，而有时候需要忽略
 
 ## 0E.12.Spring中的执行顺序
 
-在Spring生命周期中，以@Configuration为例，存在以下顺序执行
+在Spring生命周期中，以@Configuration为例，存在以下顺序执行，其中`spring.factories`表示spring boot的[生命周期事件](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.spring-application.application-events-and-listeners)
 
+* ApplicationEnvironmentPreparedEvent(spring.factories)
+* ApplicationContextInitializedEvent(spring.factories)
+* ApplicationPreparedEvent(spring.factories)
 * Constructor - 构造函数优先执行
 * @Autowired - 依赖注入
 * @PostConstruct - 依赖注入后执行，无参数
 * afterPropertiesSet - InitializingBean接口
 * @Bean - 按需或按顺序执行
+* ContextRefreshedEvent(spring.factories)
 * ApplicationStartedEvent - Started，事件参数
 * CommandLineRunner - Runner，注入依赖
 * ApplicationReadyEvent -  Ready，事件参数
