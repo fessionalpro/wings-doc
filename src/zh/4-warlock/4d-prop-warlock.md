@@ -244,8 +244,8 @@ Jooq对用户和授权相关表的CUD监听
 * `wings.faceless.jooq.cud.table[win_role_grant]`=`refer_role`
 * `wings.faceless.jooq.cud.table[win_user_grant]`=`refer_user`
 * `wings.faceless.jooq.cud.table[win_conf_runtime]`=`key`
-* `wings.faceless.jooq.cud.table[win_user_authn]`=`user_id,username,auth_type`
-* `wings.faceless.jooq.cud.table[win_user_basis]`=`id`
+* `wings.faceless.jooq.cud.table[win_user_authn]`=`user_id,username,auth_type,password`
+* `wings.faceless.jooq.cud.table[win_user_basis]`=`nickname,passsalt,locale,zoneid,status`
 
 ## 4D.6.wings-warlock-error-77.properties
 
