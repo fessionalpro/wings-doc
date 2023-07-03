@@ -247,7 +247,7 @@ SELECT name, ANY_VALUE(address), MAX(age) FROM t GROUP BY name;
 ```text
 jdbc:h2:~/wings-init
 ;USER=trydofor;PASSWORD=moilioncircle
-;MODE=MySQL;CASE_INSENSITIVE_IDENTIFIERS=TRUE
+;MODE=MySQL;CASE_INSENSITIVE_IDENTIFIERS=TRUE;IGNORECASE=TRUE
 ;AUTO_RECONNECT=TRUE;AUTO_SERVER=TRUE
 ```
 其中，H2对mysql做了部分兼容，分表分库可以，trigger不支持，参考配置，
