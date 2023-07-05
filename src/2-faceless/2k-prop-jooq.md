@@ -69,9 +69,9 @@ available using synonyms
 
 CUD listener settings for jooq.
 
-### wings.faceless.jooq.cud.insert
+### wings.faceless.jooq.cud.create
 
-`Boolean`=`true`, Whether to listen to insert
+`Boolean`=`true`, Whether to listen to create
 
 ### wings.faceless.jooq.cud.update
 

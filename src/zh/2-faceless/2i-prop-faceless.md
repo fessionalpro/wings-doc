@@ -178,7 +178,7 @@ WHERE block_id=? FOR UPDATE
 
 ### wings.faceless.lightid.provider.sequence-adjust
 
-`String`，尝试校验并调整数据库中id，使其正确。设置为`∅`，表示忽略此功能。
+`String`，尝试校验并调整数据库中id，使其正确。设置为`empty`，表示忽略此功能。
 
 ```sql
 SELECT table_name, column_name 
@@ -193,8 +193,8 @@ AND table_name = ?
 
 ### wings.faceless.lightid.layout.block-bits
 
-`Integer`=`∅`，设置block字节数，范围[3,23]，配置项默认空。LightId默认为9，2^9=512个区
+`Integer=`，设置block字节数，范围[3,23]，配置项默认空。LightId默认为9，2^9=512个区
 
 ### wings.faceless.lightid.layout.block-first
 
-`Boolean`=`∅`，序列布局，是否Block先于Sequence，配置项默认空。LightId默认为true
+`Boolean=`，序列布局，是否Block先于Sequence，配置项默认空。LightId默认为true

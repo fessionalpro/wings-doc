@@ -54,9 +54,9 @@ Jooq功能的默认开关，如下
 
 jooq的CUD监听设置
 
-### wings.faceless.jooq.cud.insert
+### wings.faceless.jooq.cud.create
 
-`Boolean`=`true`，是否监听insert
+`Boolean`=`true`，是否监听create
 
 ### wings.faceless.jooq.cud.update
 

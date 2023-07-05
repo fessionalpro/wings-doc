@@ -262,7 +262,7 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ### wings.slardar.monitor.log.default.keyword
 
-`Set<String>`=`∅`，日志内容（级别后面）关键词
+`Set<String>=`，日志内容（级别后面）关键词
 
 ### wings.slardar.monitor.log.default.charset
 
@@ -490,11 +490,11 @@ Swagger文档设置
 
 ### wings.slardar.ding-notice.default.access-token
 
-`String`=`∅`，警报时，使用钉钉通知的access_token，`空`表示不使用
+`String=`，警报时，使用钉钉通知的access_token，`空`表示不使用
 
 ### wings.slardar.ding-notice.default.digest-secret
 
-`String`=`∅`，消息签名，`空`表示不使用
+`String=`，消息签名，`空`表示不使用
 
 ### wings.slardar.ding-notice.default.notice-keyword
 

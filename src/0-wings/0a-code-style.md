@@ -91,7 +91,7 @@ The use of `@Resource`, `@Inject`, and `@Autowired` has some differences,
   The search order is ①BeanType ②Qualifier ③BeanName
 * by-type injection uses Autowired and Inject,
   by-name injection uses Resource (fine-grained, hard to control)
-* recommend `@Autowired` in spring, use `@Inject` for compatibility 
+* recommend `@Autowired` in spring, use `@Inject` for compatibility
 
 Injection rules when extending a parent class (the class cannot know its subclass)
 
@@ -399,7 +399,7 @@ we should respect history and team conventions. In wings,
 * Collection/Container type like List/Map/Array/Option use Empty instead of null.
 * The `Null` class defines the value and validation to handle null, including enum, etc.
 * Use `@NotNull` on method signatures, IDE and compile time checking.
-* `ArgsAssert` and `StateAssert` for business assert with i18n support.
+* `AssertArgs` and `AssertState` for business assert with i18n support.
 
 ## 0A.J.Contravariance/Covariance/PECS in TypeSystem
 

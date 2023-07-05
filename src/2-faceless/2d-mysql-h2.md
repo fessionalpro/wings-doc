@@ -257,7 +257,7 @@ you can use H2 with the following configuration.
 ```text
 jdbc:h2:~/wings-init
 ;USER=trydofor;PASSWORD=moilioncircle
-;MODE=MySQL;CASE_INSENSITIVE_IDENTIFIERS=TRUE
+;MODE=MySQL;CASE_INSENSITIVE_IDENTIFIERS=TRUE;IGNORECASE=TRUE
 ;AUTO_RECONNECT=TRUE;AUTO_SERVER=TRUE
 ```
 H2 is most compatible with mysql, eg. splitting and sharding work well, but trigger is not supported. [H2 Official Documentation](http://h2database.com/html/features.html)

@@ -68,7 +68,7 @@ common.email.size=The author email '${validatedValue}' must be between {min} and
 // 抛出无堆栈的CodeException
 @RequestMapping("/test/code-exception.json")
 public String codeException() {
-    ArgsAssert.isTrue(false, CommonErrorEnum.AssertEmpty1, "args");
+    AssertArgs.isTrue(false, CommonErrorEnum.AssertEmpty1, "args");
     throw new CodeException(false, CommonErrorEnum.AssertEmpty1, "test");
 }
 
@@ -114,11 +114,32 @@ public R<Object> updateOutSku(@RequestBody @Validated(value = {Update.class}) Ou
 
 预定义CodeEnum，关联Message资源，通过全局的异常处理输出I18n信息
 
-* `StateAssert` - 同ArgsAssert，抛出无堆栈异常
+* `AssertState` - 同AssertArgs，抛出无堆栈异常
 * `MessageException` - 抛出带有code的无堆栈异常
 * `CodeException` - 默认为有堆栈异常
 * `I18nString` - 通过json自动转换为String类型输出
 * `@JsonI18nString` - 注解字段，实现自动json转换
+
+### 多国语信息设置
+
+```bash
+# find wings-i18n path
+find . -type d -name 'wings-i18n'| egrep -v -E 'target/|test/'
+
+./wings/warlock/src/main/resources/wings-i18n
+./wings/slardar-webmvc/src/main/resources/wings-i18n
+```
+
+* slardar-webmvc - AnthnErrorEnum，spring security的验证错误
+* warlock - CommonErrorEnum，通用错误，如assert
+
+多国语匹配时，匹配message的规则为 `lang_region` > `lang` > `default`
+
+| Message \ lang_region   | zh_CN | zh_TW | en_US | zh |
+| ----------------------- | ----- | ----- | ----- | -- |
+|message.properties       | N     | N     | Y     | N  |
+|message_zh.properties    | Y     | N     | N     | Y  |
+|message_zh_TW.properties | N     | Y     | N     | N  |
 
 ## 3D.5.三种DateTime
 

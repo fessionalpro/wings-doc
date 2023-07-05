@@ -16,7 +16,7 @@ category:
 
 ### wings.slardar.cookie.prefix
 
-`String`=`∅`，Cookie前缀，默认空
+`String=`，Cookie前缀，默认空
 
 ### wings.slardar.cookie.alias
 
@@ -40,34 +40,34 @@ category:
 
 ### wings.slardar.cookie.b64
 
-`Set<String>`=`∅`
+`Set<String>=`
 
 ### wings.slardar.cookie.aes
 
-`Set<String>`=`∅`
+`Set<String>=`
 
 ### wings.slardar.cookie.http-only
 
-`Map<Boolean, Set<String>>`=`∅`
+`Map<Boolean, Set<String>>=`
 
 HttpOnly，js无法读取，不设置时不处理
 
 ### wings.slardar.cookie.secure
 
-`Map<Boolean, Set<String>>`=`∅`
+`Map<Boolean, Set<String>>=`
 
 https 下发送，不设置时不处理
 
 ### wings.slardar.cookie.domain
 
-`Map<String, Set<String>>`=`∅`，为cookie设置指定domain
+`Map<String, Set<String>>=`，为cookie设置指定domain
 
 如 `wings.slardar.cookie.domain[a.com]`=`b,c`，
 表示`name`为`b`或`c`的cookie，设置其`domain`为`a.com`
 
 ### wings.slardar.cookie.path
 
-`Map<String, Set<String>>`=`∅`，为cookie设置指定path
+`Map<String, Set<String>>=`，为cookie设置指定path
 
 如 `wings.slardar.cookie.path[/admin]`=`b,c`，
 表示`name`为`b`或`c`的cookie，设置`path`为`/admin`
@@ -235,7 +235,7 @@ H[:m][:s][.SSS]
 
 ### wings.slardar.number.floats.format
 
-`String`=`∅`，如`#.00`，Float,Double的格式，`空`表示关闭。
+`String=`，如`#.00`，Float,Double的格式，`空`表示关闭。
 
 千分位用`,`占位，在separator设置中会被正确替换。
 
@@ -253,7 +253,7 @@ H[:m][:s][.SSS]
 
 ### wings.slardar.number.decimal.format
 
-`String`=`∅`，如`#.00`，BigDecimal的格式，`空`表示关闭。
+`String=`，如`#.00`，BigDecimal的格式，`空`表示关闭。
 
 千分位用`,`占位，在separator设置中会被正确替换。
 
@@ -364,7 +364,7 @@ setDefaultPasswordEncoderForMatches，id不匹配时，默认解码算法。
 
 ### wings.slardar.session.cookie-route
 
-`String`=`∅`，增加session的jvm route，空表示忽略。
+`String=`，增加session的jvm route，空表示忽略。
 
 ## 3J.A.wings-terminal-79.properties
 

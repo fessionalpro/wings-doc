@@ -237,20 +237,15 @@ whether to check timezone.
 
 ## 4D.5.wings-warlock-cud-77.properties
 
-Jooq's CUD listening on user and auth related tables.
+Jooq's CUD listening on conf and auth tables. `empty` means no fields are recorded, `-` means this table is ignored.
 
-* `wings.faceless.jooq.cud.table[win_perm_entry]`=`id`
-* `wings.faceless.jooq.cud.table[win_role_entry]`=`id`
-* `wings.faceless.jooq.cud.table[win_role_grant]`=`refer_role`
-* `wings.faceless.jooq.cud.table[win_user_grant]`=`refer_user`
-* `wings.faceless.jooq.cud.table[win_conf_runtime]`=`key`
-* `wings.faceless.jooq.cud.table[win_user_authn]`=`user_id,username,auth_type`
-* `wings.faceless.jooq.cud.table[win_user_basis]`=`id`
+* `wings.faceless.jooq.cud.table[win_perm_entry]`=`*`
+* `wings.faceless.jooq.cud.table[win_role_entry]`=`*`
+* `wings.faceless.jooq.cud.table[win_conf_runtime]`=`key,current,handler`
 
 ## 4D.6.wings-warlock-error-77.properties
 
-Global Exception handling. `CodeException` supports variable `{message}`.
-`default` handles all exceptions and provides defaults for other similar types.
+Global Exception handling. `default` handles all exceptions and provides defaults for other similar types.
 
 ### wings.warlock.error.default-exception
 
@@ -453,7 +448,7 @@ merge all matching permissions, wings default app is `wings-default`.
 
 ### wings.warlock.security.autoreg-auth-type
 
-`Set<String>`=`∅`, which auth-type support to auto register new user. eg. `github,weibo`
+`Set<String>=`, which auth-type support to auto register new user. eg. `github,weibo`
 
 ### wings.warlock.security.autoreg-max-failed
 
@@ -468,21 +463,21 @@ merge all matching permissions, wings default app is `wings-default`.
 `Map<String, Mu>`, Configure memory user, usually used for special user login.
 
 * key is the description, override if duplicate, suggest `username`+(`/`+`auth-type`)?
-* auth-type=`∅`, to match all auth-type.
+* auth-type=`empty`, to match all auth-type.
 * For other settings, see WarlockAuthnService.Details and its defaults.
 
 Take root as an example, note that it is just an example, not the real default.
 
-* `root.auth-type`=`∅`
-* `root.username`=`∅`
-* `root.password`=`∅`
-* `root.user-id`=`∅`
-* `root.status`=`∅` ACTIVE by default.
-* `root.nickname`=`∅` use username by default.
-* `root.locale`=`∅` use Locale.getDefault() by default.
-* `root.zone-id`=`∅` use ZoneId.systemDefault() by default.
-* `root.passsalt`=`∅` empty by default.
-* `root.expired`=`∅` use LocalDateTime.MAX by default.
+* `root.auth-type=`
+* `root.username=`
+* `root.password=`
+* `root.user-id=`
+* `root.status=` ACTIVE by default.
+* `root.nickname=` use username by default.
+* `root.locale=` use Locale.getDefault() by default.
+* `root.zone-id=` use ZoneId.systemDefault() by default.
+* `root.passsalt=` empty by default.
+* `root.expired=` use LocalDateTime.MAX by default.
 
 ### wings.warlock.security.mem-auth
 
@@ -491,11 +486,11 @@ override if duplicate, suggest naming by type and usage.
 
 Take boot-admin as an example, note that it is just an example, not the real default.
 
-* `boot-admin.user-id`=`∅`
-* `boot-admin.username`=`∅`
-* `boot-admin.auth-type`=`∅`
-* `boot-admin.auth-role`=`∅`
-* `boot-admin.auth-perm`=`∅`
+* `boot-admin.user-id=`
+* `boot-admin.username=`
+* `boot-admin.auth-type=`
+* `boot-admin.auth-role=`
+* `boot-admin.auth-perm=`
 
 ## 4D.A.wings-warlock-urlmap-77.properties
 
@@ -586,6 +581,10 @@ automatically response based on content-type, requires PathVar `{extName}` `{aut
 ### wings.warlock.urlmap.admin-tweak-clock
 
 `String`=`/admin/tweak/clock.json`, tweak clock of user in thread-level.
+
+### wings.warlock.urlmap.admin-authn-danger
+
+`String`=`/admin/authn/danger.json`, toggle user danger status, and reset failed count
 
 ## 4D.B.wings-warlock-ticket-77.properties
 

@@ -72,7 +72,7 @@ execution state checking, output result confirmation, etc.
 // throw stackless CodeException
 @RequestMapping("/test/code-exception.json")
 public String codeException() {
-    ArgsAssert.isTrue(false, CommonErrorEnum.AssertEmpty1, "args");
+    AssertArgs.isTrue(false, CommonErrorEnum.AssertEmpty1, "args");
     throw new CodeException(false, CommonErrorEnum.AssertEmpty1, "test");
 }
 
@@ -118,11 +118,32 @@ public R<Object> updateOutSku(@RequestBody @Validated(value = {Update.class}) Ou
 
 Predefined CodeEnum, associated Message resource, output I18n message via global exception handling
 
-* `StateAssert` - like ArgsAssert, throws stackless exceptions
+* `AssertState` - like AssertArgs, throws stackless exceptions
 * `MessageException` - throws a stackless exception with code
 * `CodeException` - by default throws a stacked exception
 * `I18nString` - automatically convert to String output via json
 * `@JsonI18nString` - annotate the field for automatic json conversion
+
+### I18n message resources
+
+```bash
+# find wings-i18n path
+find . -type d -name 'wings-i18n'| egrep -v -E 'target/|test/'
+
+./wings/warlock/src/main/resources/wings-i18n
+./wings/slardar-webmvc/src/main/resources/wings-i18n
+```
+
+* slardar-webmvc - AnthnErrorEnum, authn error of spring security.
+* warlock - CommonErrorEnum, common error, eg. assert.
+
+rules of matching i18n language are `lang_region` > `lang` > `default`
+
+| Message \ lang_region   | zh_CN | zh_TW | en_US | zh |
+| ----------------------- | ----- | ----- | ----- | -- |
+|message.properties       | N     | N     | Y     | N  |
+|message_zh.properties    | Y     | N     | N     | Y  |
+|message_zh_TW.properties | N     | Y     | N     | N  |
 
 ## 3D.5.Three Kinds of DateTime
 
@@ -142,7 +163,7 @@ And in the Controller layer, it is responsible for the two-way conversion of sys
 * Automatic conversion in Jackson and RequestParam if timezone is sensitive
   - When Request, auto converts user time to the system timezone
   - When Response, auto converts system time to the user timezone
-* The following three types of auto-conversion are available, 
+* The following three types of auto-conversion are available,
   - `LocalDateTime` disabled by default, not recommended to convert
   - `ZonedDatetime` disabled by default, historical compatibility
   - `OffsetDateTime` enabled by default

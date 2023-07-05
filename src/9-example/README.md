@@ -202,20 +202,22 @@ Wings set correctly in pom.xml and starter.sh, with the following files and vari
 
 * `/pom.xml` - `wings.java-opens` with reason
 * `/observe/scripts/wings-starter.sh` - `JDK9_ARG`
+* `<arg>` - must be specified with `=`, space is supported in shell
 
 The details of `add-opens` are as follows, handle line breaks when using
 
 ```text
---add-modules java.se
---add-exports java.base/jdk.internal.ref=ALL-UNNAMED
---add-opens java.base/java.lang=ALL-UNNAMED
+--add-modules=java.se
+--add-exports=java.base/jdk.internal.ref=ALL-UNNAMED
+--add-opens=java.base/java.io=ALL-UNNAMED
 --add-opens=java.base/java.lang.invoke=ALL-UNNAMED
+--add-opens=java.base/java.lang=ALL-UNNAMED
+--add-opens=java.base/java.net=ALL-UNNAMED
+--add-opens=java.base/java.nio=ALL-UNNAMED
 --add-opens=java.base/java.util=ALL-UNNAMED
---add-opens java.base/java.io=ALL-UNNAMED
---add-opens java.base/java.nio=ALL-UNNAMED
---add-opens java.base/sun.nio.ch=ALL-UNNAMED
---add-opens java.management/sun.management=ALL-UNNAMED
---add-opens jdk.management/com.sun.management.internal=ALL-UNNAMED
+--add-opens=java.base/sun.nio.ch=ALL-UNNAMED
 --add-opens=java.base/sun.security.x509=ALL-UNNAMED
+--add-opens=java.management/sun.management=ALL-UNNAMED
+--add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED
 --add-opens=jdk.unsupported/sun.misc=ALL-UNNAMED
 ```

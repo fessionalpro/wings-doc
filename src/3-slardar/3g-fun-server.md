@@ -75,7 +75,7 @@ In SpringSecurity, the conventions for 401 and 403 are as follows, so CAPTCHA us
 * 401 - Unauthorized identity not identified
 * 403 - Forbidden/Access Denied Authentication passed, insufficient authorization
 
-Slardar's CAPTCHA is image based and today's AI can recognize up to 90% or more, so it is not secure and
+Slardar's CAPTCHA is image based and today's AI can recognize up to 99.9% or more, so it is not secure and
 is a low level protection for gentlemen only. The default support for Chinese, is 1 Chinese + 3 Alphanum,
 can be turned off in the configuration. For sensitive information or advanced protection, it is recommended
 to purchase a 3rd CAPTCHA service.
@@ -227,5 +227,5 @@ cannot use PageDefault and aliases, and is handled by the following classes, jus
 * RequestResponseBodyMethodProcessor
 * HttpMessageConverter
 
-Due to aliasing requirements, generally used for compatibility with older systems, so not customized 
+Due to aliasing requirements, generally used for compatibility with older systems, so not customized
 Jackson Deserializer and HandlerMethodArgumentResolver

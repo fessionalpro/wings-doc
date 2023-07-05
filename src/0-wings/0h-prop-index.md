@@ -30,7 +30,7 @@ To improve recognition and readability, the following annotations are included i
 * `String` - `NotNull` type of `String`
 * `String?` - `Nullable` type of `String`
 * `Boolean` - The primitive type and its wrapper class, non-null.
-* `∅` - Means `empty`, eg. `key=∅` means `key=`
+* `=` - Means `empty`, eg. `key=` means `key` is empty
 
 The config value in the properties is usually a single line, and the multiple lines syntax as follows
 

@@ -187,13 +187,18 @@ In wings principle, the config entry must have default value, and sometimes the 
 
 ## 0E.12.Execution Order in Spring
 
-In the Spring lifecycle, using @Configuration as an example, the following order of execution is as follows
+In the Spring lifecycle, using @Configuration as an example, the following order of execution is as follows,
+where `spring.facts` means spring boot [lifecirle events](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.spring-application.application-events-and-listeners)
 
+* ApplicationEnvironmentPreparedEvent(spring.factories)
+* ApplicationContextInitializedEvent(spring.factories)
+* ApplicationPreparedEvent(spring.factories)
 * Constructor - constructor are executed first
 * @Autowired - dependency injection
 * @PostConstruct - executed after dependency injection, no parameters
 * afterPropertiesSet - InitializingBean interface
 * @Bean - On-demand or sequential execution
+* ContextRefreshedEvent(spring.factories)
 * ApplicationStartedEvent - Started, event parameter
 * CommandLineRunner - Runner, injected dependencies
 * ApplicationReadyEvent - Ready, event parameter

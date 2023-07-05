@@ -84,8 +84,8 @@ Silencer功能的默认开关，如下
 为spring.messages提供以下默认项。
 
 * `spring.messages.always-use-message-format`=`false`
-* `spring.messages.basename`=`∅`
-* `spring.messages.cache-duration`=`∅`
+* `spring.messages.basename=`
+* `spring.messages.cache-duration=`
 * `spring.messages.encoding`=`UTF-8`
 * `spring.messages.fallback-to-system-locale`=`true`
 * `spring.messages.use-code-as-default-message`=`true`
@@ -96,13 +96,13 @@ Silencer功能的默认开关，如下
 
 ### wings.silencer.i18n.locale
 
-`String`=`∅`，格式为`en_US`, `zh_CN`。默认系统语言。
+`String=`，格式为`en_US`, `zh_CN`。默认系统语言。
 
 对应系统变量的`user.language`, `user.country`
 
 ### wings.silencer.i18n.zoneid=
 
-`String`=`∅`，默认系统时区，如`UTC`, `GMT+8,` `Asia/Shanghai`
+`String=`，默认系统时区，如`UTC`, `GMT+8,` `Asia/Shanghai`
 
 对应系统变量的`user.timezone`
 

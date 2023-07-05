@@ -34,7 +34,7 @@ Core features and components send mail without transaction or database.
 
 * MailNotice - non-transaction sync/async mail notification
 * MailConfigProvider - provides spring.mail compatible configuration by name
-* MailSenderProvider - provide singleton JavaMailSender by the configuration 
+* MailSenderProvider - provide singleton JavaMailSender by the configuration
 * MailSenderManager - unified management of mail sending, handling the host level frequency limit
 * MailWaitException - need to delay the mail sending
 

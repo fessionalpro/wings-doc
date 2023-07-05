@@ -178,7 +178,7 @@ See `LightSequenceSelectJdbc` for details, the parameters are,
 
 ### wings.faceless.lightid.provider.sequence-adjust
 
-`String`, try to verify and adjust the id in the database to make it correct. Set to `∅` to ignore this feature.
+`String`, try to verify and adjust the id in the database to make it correct. Set to `empty` to ignore this feature.
 
 ```sql
 SELECT table_name, column_name 
@@ -193,10 +193,10 @@ Enter `table name` (as sequence name), return `table name` and `column name` in 
 
 ### wings.faceless.lightid.layout.block-bits
 
-`Integer`=`∅`, the number of block bytes, in the range [3,23], empty by default.
+`Integer=`, the number of block bytes, in the range [3,23], empty by default.
 LightId is 9 by default, so 2^9=512 zones.
 
 ### wings.faceless.lightid.layout.block-first
 
-`Boolean`=`∅`, sequence layout, whether Block precedes Sequence, empty by default.
+`Boolean=`, sequence layout, whether Block precedes Sequence, empty by default.
 LightId is true by default

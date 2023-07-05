@@ -30,7 +30,7 @@ category:
 * `String` - `NotNull`的类型`String`
 * `String?` - `Nullable`的类型`String`
 * `Boolean` - 包装类和原始类型等同，均非空。
-* `∅` - 表示为`空`，即`key=∅`，实际为`key=`
+* `empty` - 表示为`空`，即`key=`
 
 在properties的配置值一般为单行，多行的语法如下
 

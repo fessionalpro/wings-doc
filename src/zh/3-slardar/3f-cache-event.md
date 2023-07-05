@@ -84,22 +84,49 @@ SlardarAsyncConfiguration在启动后，检查这个机制，若被破坏，则�
 基于jooq的listener，可获得特定表和字段的CUD事件，
 默认通过AsyncGlobal发布，可供表和字段有关缓存evict
 
-通过`TableCudListener`和`wings.faceless.jooq.cud.table`设置，以Authn为例，
-`[win_user_authn]`=`user_id,username,auth_type`，当对win_user_authn进行
+通过`TableCudListener`和`wings.faceless.jooq.cud.table`设置，以RuntimeConf为例，
+`[win_conf_runtime]`=`key,current,handler`，当对win_conf_runtime进行
 Insert/Update/Delete时，都会在集群内发布携带设定的字段值TableChangeEvent。
 
 通过以下代码，即可监听和处理，以下是根据认证表变更，而清空缓存的代码
 
 ```java
-// ComboWarlockAuthnService.java 72-81
+// RuntimeConfServiceImpl.java 137-147
 @EventListener
 @CacheEvict(allEntries = true, condition = "#result")
-public boolean evictAllAuthnCache(TableChangeEvent event) {
-    final String tb = CacheEventHelper.fire(event, EventTables, DELETE | UPDATE);
+public boolean evictAllConfCache(TableChangeEvent event) {
+    final String tb = CacheEventHelper.receiveTable(event, EventTables, DELETE | UPDATE);
     if (tb != null) {
-        log.info("evictAllAuthnCache by {}, {}", tb, event == null ? -1 : event.getChange());
+        log.info("evictAllConfCache by {}, {}", tb, event.getChange());
         return true;
     }
+
     return false;
+}
+```
+
+TableChangeEvent可通过`wings.faceless.jooq.cud.table`配置表和字段，自动触发。
+也可以通过注入WingsTableCudHandler手动触发。当有自动触发时，手动触发会被忽略。
+
+注意，默认的基于代理的AOP加强的`@Cacheable`系列注解，仅代理对象可用，以下情况无法获得代理对象。
+
+* 内部调用 - 类内的方法在类的内部进行调用。
+* 继承调用 - 接口上`default`方法调用`abstarct`方法。
+* 静态方法 - 无法对静态方法应用增强。
+
+以下编程模式在对象内获取self引用，
+
+* 独立的缓存组件 `WarlockPermServiceImpl`
+* 注入和调用自己 `RuntimeConfServiceImpl`
+
+```java
+// cache self-invoke
+@Setter(onMethod_ = {@Autowired, @Lazy})
+protected RuntimeConfServiceImpl selfLazy;
+// interface method
+@Override
+public <T> T getObject(String key, TypeDescriptor type) {
+    // @Cacheable method with Cache surfix
+    return selfLazy.getObjectCache(key, type);
 }
 ```

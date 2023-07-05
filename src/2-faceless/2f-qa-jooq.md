@@ -172,7 +172,8 @@ Referring to Spring's `Pageable` and SQL's order by, the following parameters ha
 ## 2F.06.TINYINT map Boolean/Byte/Integer
 
 * In mysql TINYINT is 1byte space in the range of -128 to 127, in jooq it is mapped to Byte type by default
-* In [jdbc documentation](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-type-conversions.html) its type is Boolean, Integer
+* In [jdbc documentation](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-type-conversions.html)
+  its type is Boolean, Integer
 * And in jooq-codegen-faceless.xml, TINYINT(1) is Boolean and the others are Integer
 
 To adjust, you can check WingsCodeGenerator.forcedType()

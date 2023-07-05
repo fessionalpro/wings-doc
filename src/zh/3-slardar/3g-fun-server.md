@@ -73,7 +73,7 @@ public R<String> doubleKill(HttpServletRequest request) throws InterruptedExcept
 * 401 - Unauthorized 身份未鉴别
 * 403 - Forbidden/Access Denied 鉴权通过，授权不够
 
-slardar的验证码是基于图片的，现今的AI算法识别率可达90%以上，因此并不安全，
+slardar的验证码是基于图片的，现今的AI算法识别率可达99.9%以上，因此并不安全，
 仅限于初防君子的初级资源保护上。默认支持中文，一个汉字+3个英数，可以在配置中关闭。
 若是敏感信息或高级防护，建议采购第三方验证码服务。
 

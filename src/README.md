@@ -114,7 +114,6 @@ For example, starting from a single app, to sharding, to micro service and to cl
 * [![ServiceComb-2.8](https://img.shields.io/badge/servicecomb-2.8-violet)](https://servicecomb.apache.org) More engineering and compact Cloud solution [Apache2]
 * [![ShardingSphere-5.3](https://img.shields.io/badge/shardingsphere-5.3-violet)](https://shardingsphere.apache.org) Database RW splitting, data sharding and elastic scaling [Apache2]
 
-
 [Apache2]: https://www.apache.org/licenses/LICENSE-2.0
 [GPLv2+CE]: https://openjdk.org/legal/gplv2+ce.html
 [GPLv2]: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html

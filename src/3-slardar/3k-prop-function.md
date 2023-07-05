@@ -262,7 +262,7 @@ For example, `' ERROR '` becomes ` ERROR `, `'' WARN ''` becomes `' WARN '`.
 
 ### wings.slardar.monitor.log.default.keyword
 
-`Set<String>`=`∅`, log content (after level) keywords
+`Set<String>=`, log content (after level) keywords
 
 ### wings.slardar.monitor.log.default.charset
 
@@ -494,11 +494,11 @@ Swagger document.
 
 ### wings.slardar.ding-notice.default.access-token
 
-`String`=`∅`, the DingTalk access_token used to send the alert, `empty` means disable.
+`String=`, the DingTalk access_token used to send the alert, `empty` means disable.
 
 ### wings.slardar.ding-notice.default.digest-secret
 
-`String`=`∅`, secret of message digest, `empty` means disable.
+`String=`, secret of message digest, `empty` means disable.
 
 ### wings.slardar.ding-notice.default.notice-keyword
 
