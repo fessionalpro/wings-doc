@@ -90,23 +90,52 @@ will log a Warn if it is broken.
 jooq-based listener that handles CUD events for specific tables and fields.
 Posted by default via AsyncGlobal, available for table and field related cache evictions
 
-set via `TableCudListener` and `wings.faceless.jooq.cud.table`, using Authn as an example
-`[win_user_authn]`=`user_id,username,auth_type`, when doing
-Insert/Update/Delete, the TableChangeEvent with the set field value is published within the cluster.
+set via `TableCudListener` and `wings.faceless.jooq.cud.table`, using RuntimeConf as an example
+`[win_conf_runtime]`=`key,current,handler`, when doing Insert/Update/Delete,
+the TableChangeEvent with the set field value is published within the cluster.
 
 The following code can be used to listen and process, and the following code is used to clear the cache
 according to the authentication table changes,
 
 ```java
-// ComboWarlockAuthnService.java 72-81
+// RuntimeConfServiceImpl.java 137-147
 @EventListener
 @CacheEvict(allEntries = true, condition = "#result")
-public boolean evictAllAuthnCache(TableChangeEvent event) {
-    final String tb = CacheEventHelper.fire(event, EventTables, DELETE | UPDATE);
+public boolean evictAllConfCache(TableChangeEvent event) {
+    final String tb = CacheEventHelper.receiveTable(event, EventTables, DELETE | UPDATE);
     if (tb != null) {
-        log.info("evictAllAuthnCache by {}, {}", tb, event == null ? -1 : event.getChange());
+        log.info("evictAllConfCache by {}, {}", tb, event.getChange());
         return true;
     }
+
     return false;
+}
+```
+
+TableChangeEvent can be triggered automatically by tables and fields in `wings.faceless.jooq.cud.table`.
+It can be triggered manually by injecting WingsTableCudHandler. But if there is an automatic trigger,
+the manual trigger will be ignored.
+
+Note that the `@Cacheable` series of annotations, default enhanced by proxy-based AOP, is only available for proxy objects,
+the following cases can not access the proxy object.
+
+* Internal calls - methods within a class are called from within the class.
+* Inheritance calls - `default` methods on an interface call `abstarct` methods.
+* Static methods - Enhancements cannot be applied to static methods.
+
+The following programming pattern can get the self reference inside the object,
+
+* independent caching component, see `WarlockPermServiceImpl`
+* inject and invoke itself, see `RuntimeConfServiceImpl`
+
+```java
+// cache self-invoke
+@Setter(onMethod_ = {@Autowired, @Lazy})
+protected RuntimeConfServiceImpl selfLazy;
+// interface method
+@Override
+public <T> T getObject(String key, TypeDescriptor type) {
+    // @Cacheable method with Cache surfix
+    return selfLazy.getObjectCache(key, type);
 }
 ```

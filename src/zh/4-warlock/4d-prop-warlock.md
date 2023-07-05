@@ -237,15 +237,11 @@ Oauth登录支持，使用just-auth
 
 ## 4D.5.wings-warlock-cud-77.properties
 
-Jooq对用户和授权相关表的CUD监听
+Jooq对配置和授权表的CUD监听，`empty`表示不记录字段，`-`表示忽略此表。
 
-* `wings.faceless.jooq.cud.table[win_perm_entry]`=`id`
-* `wings.faceless.jooq.cud.table[win_role_entry]`=`id`
-* `wings.faceless.jooq.cud.table[win_role_grant]`=`refer_role`
-* `wings.faceless.jooq.cud.table[win_user_grant]`=`refer_user`
-* `wings.faceless.jooq.cud.table[win_conf_runtime]`=`key`
-* `wings.faceless.jooq.cud.table[win_user_authn]`=`user_id,username,auth_type,password`
-* `wings.faceless.jooq.cud.table[win_user_basis]`=`nickname,passsalt,locale,zoneid,status`
+* `wings.faceless.jooq.cud.table[win_perm_entry]=`
+* `wings.faceless.jooq.cud.table[win_role_entry]=`
+* `wings.faceless.jooq.cud.table[win_conf_runtime]`=`key,current,handler`
 
 ## 4D.6.wings-warlock-error-77.properties
 
@@ -449,7 +445,7 @@ cache-manager的bean name，同`wings.slardar.cache.primary`
 
 ### wings.warlock.security.autoreg-auth-type
 
-`Set<String>`=`∅`，支持自动注册用户的验证类型，如`github,weibo`
+`Set<String>=`，支持自动注册用户的验证类型，如`github,weibo`
 
 ### wings.warlock.security.autoreg-max-failed
 
@@ -464,21 +460,21 @@ cache-manager的bean name，同`wings.slardar.cache.primary`
 `Map<String, Mu>`，配置内存用户，一般用于特殊用户登录。
 
 * key为用户说明，重复时覆盖，建议为`username`+(`/`+`auth-type`)?
-* auth-type=`∅`时，为匹配全部auth-type。
+* `auth-type=`时，为匹配全部auth-type。
 * 其他设置，参考WarlockAuthnService.Details 的类型及默认值。
 
 以root举例，注意，仅是举例，并非真实默认值。
 
-* `root.auth-type`=`∅`
-* `root.username`=`∅`
-* `root.password`=`∅`
-* `root.user-id`=`∅`
-* `root.status`=`∅` 默认ACTIVE
-* `root.nickname`=`∅` 默认使用username
-* `root.locale`=`∅` 默认使用Locale.getDefault()
-* `root.zone-id`=`∅` 默认使用ZoneId.systemDefault()
-* `root.passsalt`=`∅` 默认空
-* `root.expired`=`∅` 默认使用LocalDateTime.MAX
+* `root.auth-type=`
+* `root.username=`
+* `root.password=`
+* `root.user-id=`
+* `root.status=` 默认ACTIVE
+* `root.nickname=` 默认使用username
+* `root.locale=` 默认使用Locale.getDefault()
+* `root.zone-id=` 默认使用ZoneId.systemDefault()
+* `root.passsalt=` 默认空
+* `root.expired=` 默认使用LocalDateTime.MAX
 
 ### wings.warlock.security.mem-auth
 
@@ -486,11 +482,11 @@ cache-manager的bean name，同`wings.slardar.cache.primary`
 
 以boot-admin举例，注意，仅是举例，并非真实默认值。
 
-* `boot-admin.user-id`=`∅`
-* `boot-admin.username`=`∅`
-* `boot-admin.auth-type`=`∅`
-* `boot-admin.auth-role`=`∅`
-* `boot-admin.auth-perm`=`∅`
+* `boot-admin.user-id=`
+* `boot-admin.username=`
+* `boot-admin.auth-type=`
+* `boot-admin.auth-role=`
+* `boot-admin.auth-perm=`
 
 ## 4D.A.wings-warlock-urlmap-77.properties
 

@@ -16,7 +16,7 @@ All the following name settings are the original, that is, without prefix and al
 
 ### wings.slardar.cookie.prefix
 
-`String`=`∅`, Cookie prefix, empty by default.
+`String=`, Cookie prefix, empty by default.
 
 ### wings.slardar.cookie.alias
 
@@ -40,34 +40,34 @@ For the same config name, the encoding priority `aes` > `b64` > `nop`
 
 ### wings.slardar.cookie.b64
 
-`Set<String>`=`∅`
+`Set<String>=`
 
 ### wings.slardar.cookie.aes
 
-`Set<String>`=`∅`
+`Set<String>=`
 
 ### wings.slardar.cookie.http-only
 
-`Map<Boolean, Set<String>>`=`∅`
+`Map<Boolean, Set<String>>=`
 
 HttpOnly, js cannot be read, do not process if not set
 
 ### wings.slardar.cookie.secure
 
-`Map<Boolean, Set<String>>`=`∅`
+`Map<Boolean, Set<String>>=`
 
 transfer by https, do not process if not set
 
 ### wings.slardar.cookie.domain
 
-`Map<String, Set<String>>`=`∅`, bind domain to cookie,
+`Map<String, Set<String>>=`, bind domain to cookie,
 
 eg. `wings.slardar.cookie.domain[a.com]`=`b,c`,
 means cookie with `name` of `b` or `c`, its `domain` is `a.com`
 
 ### wings.slardar.cookie.path
 
-`Map<String, Set<String>>`=`∅`, bind cookie to path
+`Map<String, Set<String>>=`, bind cookie to path
 
 eg. `wings.slardar.cookie.path[/admin]`=`b,c`,
 means cookie with `name` of `b` or `c`, its `path` is `/admin`
@@ -238,7 +238,7 @@ will automatically switch between number and string.
 
 ### wings.slardar.number.floats.format
 
-`String`=`∅`, eg. `#.00`, format of Float, Double. `empty` means disable.
+`String=`, eg. `#.00`, format of Float, Double. `empty` means disable.
 
 The thousandth separator uses `,`, which can be replaced to other
 at runtime according to the separator setting.
@@ -257,7 +257,7 @@ at runtime according to the separator setting.
 
 ### wings.slardar.number.decimal.format
 
-`String`=`∅`, eg. `#.00`, format of BigDecimal. `empty` means disable.
+`String=`, eg. `#.00`, format of BigDecimal. `empty` means disable.
 
 The thousandth separator uses `,`, which can be replaced to other
 at runtime according to the separator setting.
@@ -369,7 +369,7 @@ Use which name of cookie to resolve the session, empty means disable.
 
 ### wings.slardar.session.cookie-route
 
-`String`=`∅`, add jvm route to session, empty means disable.
+`String=`, add jvm route to session, empty means disable.
 
 ## 3J.A.wings-terminal-79.properties
 

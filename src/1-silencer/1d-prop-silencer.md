@@ -86,8 +86,8 @@ Default configuration for spring logging
 Default configuration for spring message
 
 * `spring.messages.always-use-message-format`=`false`
-* `spring.messages.basename`=`∅`
-* `spring.messages.cache-duration`=`∅`
+* `spring.messages.basename=`
+* `spring.messages.cache-duration=`
 * `spring.messages.encoding`=`UTF-8`
 * `spring.messages.fallback-to-system-locale`=`true`
 * `spring.messages.use-code-as-default-message`=`true`
@@ -98,13 +98,13 @@ Set default language and timezone for the app, as well as i18n messages.
 
 ### wings.silencer.i18n.locale
 
-`String`=`∅`, in the format `en_US`, `zh_CN`. Default system language.
+`String=`, in the format `en_US`, `zh_CN`. Default system language.
 
 Corresponds to `user.language`, `user.country` of the system variable
 
 ### wings.silencer.i18n.zoneid=
 
-`String`=`∅`, such as `UTC`, `GMT+8,` `Asia/Shanghai`. Default system timezone.
+`String=`, such as `UTC`, `GMT+8,` `Asia/Shanghai`. Default system timezone.
 
 corresponding to `user.timezone` of the system variable
 
