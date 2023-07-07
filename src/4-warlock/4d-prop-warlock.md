@@ -239,8 +239,8 @@ whether to check timezone.
 
 Jooq's CUD listening on conf and auth tables. `empty` means no fields are recorded, `-` means this table is ignored.
 
-* `wings.faceless.jooq.cud.table[win_perm_entry]`=`*`
-* `wings.faceless.jooq.cud.table[win_role_entry]`=`*`
+* `wings.faceless.jooq.cud.table[win_perm_entry]=`
+* `wings.faceless.jooq.cud.table[win_role_entry]=`
 * `wings.faceless.jooq.cud.table[win_conf_runtime]`=`key,current,handler`
 
 ## 4D.6.wings-warlock-error-77.properties
