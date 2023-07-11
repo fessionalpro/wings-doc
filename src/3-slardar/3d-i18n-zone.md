@@ -13,7 +13,7 @@ In Silencer configuration, all I18n messages located in `wigns-i18n/` are automa
 
 ## 3D.1.Loading Order
 
-With `LocaleContextResolver`, the current locale are set in the following order of priority.
+With `LocaleResolver`, the current locale are set in the following order of priority.
 
 1. the `WINGS.I18N_CONTEXT` attr in the request
 2. query string `locale`, `zoneid`
@@ -25,6 +25,8 @@ With `LocaleContextResolver`, the current locale are set in the following order 
 Note: `zoneid` is a word in DB and config, while `ZoneId` is a class (I capitalized) in java.
 So, when selecting from Db and geting it by reflection, it is easy to miss the assignment of
 ZoneId due to case sensitive.
+
+The `LocaleResolver` acts in the `doService`, after the `doFilter`, so there is no Context in the `Filter`.
 
 ## 3D.2.Locale Resolver
 
@@ -126,24 +128,7 @@ Predefined CodeEnum, associated Message resource, output I18n message via global
 
 ### I18n message resources
 
-```bash
-# find wings-i18n path
-find . -type d -name 'wings-i18n'| egrep -v -E 'target/|test/'
-
-./wings/warlock/src/main/resources/wings-i18n
-./wings/slardar-webmvc/src/main/resources/wings-i18n
-```
-
-* slardar-webmvc - AnthnErrorEnum, authn error of spring security.
-* warlock - CommonErrorEnum, common error, eg. assert.
-
-rules of matching i18n language are `lang_region` > `lang` > `default`
-
-| Message \ lang_region   | zh_CN | zh_TW | en_US | zh |
-| ----------------------- | ----- | ----- | ----- | -- |
-|message.properties       | N     | N     | Y     | N  |
-|message_zh.properties    | Y     | N     | N     | Y  |
-|message_zh_TW.properties | N     | Y     | N     | N  |
+See [I18n Message](../0-wings/0i-i18n-message.md)
 
 ## 3D.5.Three Kinds of DateTime
 
