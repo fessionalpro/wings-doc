@@ -239,8 +239,8 @@ whether to check timezone.
 
 Jooq's CUD listening on conf and auth tables. `empty` means no fields are recorded, `-` means this table is ignored.
 
-* `wings.faceless.jooq.cud.table[win_perm_entry]`=`*`
-* `wings.faceless.jooq.cud.table[win_role_entry]`=`*`
+* `wings.faceless.jooq.cud.table[win_perm_entry]=`
+* `wings.faceless.jooq.cud.table[win_role_entry]=`
 * `wings.faceless.jooq.cud.table[win_conf_runtime]`=`key,current,handler`
 
 ## 4D.6.wings-warlock-error-77.properties
@@ -688,3 +688,21 @@ code tracking , default `-1` means disable; `0` means fully enable.
 ### wings.warlock.watching.controller-threshold
 
 `Long`=`-1`, threshold millis for Controller.
+
+## 4D.E.wings-warlock-danger-77.properties
+
+### wings.warlock.danger.max-failure=true
+
+`Boolean`=`true`, Whether to switch the account status to danger when the maximum failure is reached.
+
+### wings.warlock.danger.retry-step
+
+`Duration`=`5s`, Retry interval when bad badCredentials.
+
+### wings.warlock.danger.block-size
+
+`Integer`=`10000`, cache size for danger.
+
+### wings.warlock.danger.block-ttl
+
+`Duration`=`300s`, cache ttl for danger.

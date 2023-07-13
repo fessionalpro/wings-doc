@@ -681,3 +681,21 @@ Client错误时的应答，
 ### wings.warlock.watching.controller-threshold
 
 `Long`=`-1`，Controller的阈值毫秒
+
+## 4D.E.wings-warlock-danger-77.properties
+
+### wings.warlock.danger.max-failure=true
+
+`Boolean`=`true`, 在达到最大错误次数时，是否切换账户为危险状态.
+
+### wings.warlock.danger.retry-step
+
+`Duration`=`5s`, 密码错误时的重试间隔.
+
+### wings.warlock.danger.block-size
+
+`Integer`=`10000`, 缓存大小.
+
+### wings.warlock.danger.block-ttl
+
+`Duration`=`300s`, 缓存存活时长.

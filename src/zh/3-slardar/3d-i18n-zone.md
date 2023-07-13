@@ -13,7 +13,7 @@ category:
 
 ## 3D.1.加载顺序
 
-通过`LocaleContextResolver`，按以下优先级，获得当前locale设置。
+通过`LocaleResolver`，按以下优先级，获得当前locale设置。
 
 1. request中被设置的`WINGS.I18N_CONTEXT`
 2. query string `locale`, `zoneid`
@@ -24,6 +24,8 @@ category:
 
 注意：在数据库和配置中`zoneid`视为一个词，而java中`ZoneId`是一个类（I大写），
 所以，当从Db中取值，并通过反射赋值时，容易因区分大小写而错过ZoneId的赋值。
+
+`LocaleResolver`作用在`doService`中，是在`doFilter`之后，因此`Filter`中没有Context.
 
 ## 3D.2.Locale解析
 
@@ -122,24 +124,7 @@ public R<Object> updateOutSku(@RequestBody @Validated(value = {Update.class}) Ou
 
 ### 多国语信息设置
 
-```bash
-# find wings-i18n path
-find . -type d -name 'wings-i18n'| egrep -v -E 'target/|test/'
-
-./wings/warlock/src/main/resources/wings-i18n
-./wings/slardar-webmvc/src/main/resources/wings-i18n
-```
-
-* slardar-webmvc - AnthnErrorEnum，spring security的验证错误
-* warlock - CommonErrorEnum，通用错误，如assert
-
-多国语匹配时，匹配message的规则为 `lang_region` > `lang` > `default`
-
-| Message \ lang_region   | zh_CN | zh_TW | en_US | zh |
-| ----------------------- | ----- | ----- | ----- | -- |
-|message.properties       | N     | N     | Y     | N  |
-|message_zh.properties    | Y     | N     | N     | Y  |
-|message_zh_TW.properties | N     | Y     | N     | N  |
+参考[多国语信息](../0-wings/0i-i18n-message.md)
 
 ## 3D.5.三种DateTime
 
