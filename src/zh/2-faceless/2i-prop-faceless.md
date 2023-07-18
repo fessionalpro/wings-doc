@@ -78,19 +78,19 @@ sql扫描pattern，逗号分隔。PathMatchingResourcePatternResolver格式
 
 `Long`=100，自动insert时的步长。
 
-### wings.faceless.lightid.loader.timeout
+### wings.faceless.lightid.provider.timeout
 
 `Long`=5000，加载时视为超时的毫秒数
 
-### wings.faceless.lightid.loader.max-error
+### wings.faceless.lightid.provider.max-error
 
 `Integer`=5，加载错误时最大尝试次数
 
-### wings.faceless.lightid.loader.max-count
+### wings.faceless.lightid.provider.max-count
 
 `Integer`=10000，加载成功加载的最大数量
 
-### wings.faceless.lightid.loader.err-alive
+### wings.faceless.lightid.provider.err-alive
 
 `Long`=120000，错误存在毫秒数，期间不尝试。
 
@@ -190,6 +190,14 @@ AND table_name = ?
 ```
 
 输入`表名`（作为序列名），返回数据库中的`表名`和`列名`。
+
+### wings.faceless.lightid.provider.monotonic
+
+`String`=`jvm`, lightid 的单调递增类型.
+
+* jvm - 单jvm内单调递增
+* db - 数据库内单调递增
+* hz - hazelcast内单调递增
 
 ### wings.faceless.lightid.layout.block-bits
 
