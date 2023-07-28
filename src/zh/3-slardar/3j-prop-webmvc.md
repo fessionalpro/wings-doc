@@ -210,7 +210,7 @@ H[:m][:s][.SSS]
 
 ### wings.slardar.number.integer.format
 
-`String`=`#`，Integer,Long的格式，`空`表示关闭。
+`String`=`#`，Integer, Long的格式，`空`表示关闭。
 
 千分位用`,`占位，在separator设置中会被正确替换。
 
@@ -235,7 +235,7 @@ H[:m][:s][.SSS]
 
 ### wings.slardar.number.floats.format
 
-`String=`，如`#.00`，Float,Double的格式，`空`表示关闭。
+`String=`，如`#.00`，Float, Double的格式，`空`表示关闭。
 
 千分位用`,`占位，在separator设置中会被正确替换。
 
@@ -253,7 +253,7 @@ H[:m][:s][.SSS]
 
 ### wings.slardar.number.decimal.format
 
-`String=`，如`#.00`，BigDecimal的格式，`空`表示关闭。
+`String=`，如`#.00`，BigDecimal, BigInteger的格式，`空`表示关闭。
 
 千分位用`,`占位，在separator设置中会被正确替换。
 

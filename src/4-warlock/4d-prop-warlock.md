@@ -267,15 +267,7 @@ init ZoneId by StandardTimezoneEnum.
 
 init Locale by StandardLanguageEnum.
 
-## 4D.8.wings-warlock-lock-77.properties
-
-Global lock.
-
-### wings.warlock.lock.hazelcast-cp
-
-`Boolean`=`true`, whether to use useCpIfSafe in hazelcast GlobalLock.
-
-## 4D.9.wings-warlock-security-77.properties
+## 4D.8.wings-warlock-security-77.properties
 
 Spring Security setting.
 
@@ -492,7 +484,7 @@ Take boot-admin as an example, note that it is just an example, not the real def
 * `boot-admin.auth-role=`
 * `boot-admin.auth-perm=`
 
-## 4D.A.wings-warlock-urlmap-77.properties
+## 4D.9.wings-warlock-urlmap-77.properties
 
 URL Constants of RequestMapping in Controller.
 
@@ -586,7 +578,7 @@ automatically response based on content-type, requires PathVar `{extName}` `{aut
 
 `String`=`/admin/authn/danger.json`, toggle user danger status, and reset failed count
 
-## 4D.B.wings-warlock-ticket-77.properties
+## 4D.A.wings-warlock-ticket-77.properties
 
 ### wings.warlock.ticket.pub-mod
 
@@ -617,7 +609,7 @@ automatically response based on content-type, requires PathVar `{extName}` `{aut
 * test `wings-trydofor.hosts`=`localhost` host for 302 , do not use ipv6.
 * test `wings-trydofor.scopes`=`api` case-sensitive, comma-separated.
 
-## 4D.C.wings-warlock-apiauth-77.properties
+## 4D.B.wings-warlock-apiauth-77.properties
 
 ### wings.warlock.apiauth.client-header
 
@@ -669,7 +661,7 @@ response of unhandled error.
 * `http-status`=`200`
 * `response-body`=`{"success":false,"code":"Unknown","message":"unknown error"}`
 
-## 4D.D.wings-warlock-watching-77.properties
+## 4D.C.wings-warlock-watching-77.properties
 
 code tracking , default `-1` means disable; `0` means fully enable.
 
@@ -689,7 +681,7 @@ code tracking , default `-1` means disable; `0` means fully enable.
 
 `Long`=`-1`, threshold millis for Controller.
 
-## 4D.E.wings-warlock-danger-77.properties
+## 4D.D.wings-warlock-danger-77.properties
 
 ### wings.warlock.danger.max-failure=true
 

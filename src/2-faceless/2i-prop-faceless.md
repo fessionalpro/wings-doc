@@ -78,19 +78,19 @@ The setting for the distributed PK- lightid. default transaction is Propagation.
 
 `Long`=100, The step value when auto-insert.
 
-### wings.faceless.lightid.loader.timeout
+### wings.faceless.lightid.provider.timeout
 
 `Long`=5000, timeout millis of loading.
 
-### wings.faceless.lightid.loader.max-error
+### wings.faceless.lightid.provider.max-error
 
 `Integer`=5, max error count of loading.
 
-### wings.faceless.lightid.loader.max-count
+### wings.faceless.lightid.provider.max-count
 
 `Integer`=10000, max id count of per loading.
 
-### wings.faceless.lightid.loader.err-alive
+### wings.faceless.lightid.provider.err-alive
 
 `Long`=120000, no attempt in number of millis if error exists.
 
@@ -190,6 +190,14 @@ AND table_name = ?
 ```
 
 Enter `table name` (as sequence name), return `table name` and `column name` in the database.
+
+### wings.faceless.lightid.provider.monotonic
+
+`String`=`jvm`, the LightId monotonic increasing type,
+
+* jvm - monotonic in the jvm
+* db - monotonic in the database
+* hz - monotonic in the hazelcast
 
 ### wings.faceless.lightid.layout.block-bits
 

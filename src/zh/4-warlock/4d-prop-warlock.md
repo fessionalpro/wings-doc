@@ -267,15 +267,7 @@ Jooq对配置和授权表的CUD监听，`empty`表示不记录字段，`-`表示
 
 初始化的Locale的StandardLanguageEnum类
 
-## 4D.8.wings-warlock-lock-77.properties
-
-全局锁设置
-
-### wings.warlock.lock.hazelcast-cp
-
-`Boolean`=`true`，在hazelcast的GlobalLock中，是否使用 useCpIfSafe
-
-## 4D.9.wings-warlock-security-77.properties
+## 4D.8.wings-warlock-security-77.properties
 
 Spring Security设置
 
@@ -488,7 +480,7 @@ cache-manager的bean name，同`wings.slardar.cache.primary`
 * `boot-admin.auth-role=`
 * `boot-admin.auth-perm=`
 
-## 4D.A.wings-warlock-urlmap-77.properties
+## 4D.9.wings-warlock-urlmap-77.properties
 
 Controller中RequestMapping的URL常量
 
@@ -580,7 +572,7 @@ Controller中RequestMapping的URL常量
 
 `String`=`/admin/authn/danger.json`, 切换用户danger状态，可重置failed计数
 
-## 4D.B.wings-warlock-ticket-77.properties
+## 4D.A.wings-warlock-ticket-77.properties
 
 ### wings.warlock.ticket.pub-mod
 
@@ -611,7 +603,7 @@ Controller中RequestMapping的URL常量
 * 测试 `wings-trydofor.hosts`=`localhost` 302的主机名，不要使用ipv6
 * 测试 `wings-trydofor.scopes`=`api` 区分大小写，逗号分隔
 
-## 4D.C.wings-warlock-apiauth-77.properties
+## 4D.B.wings-warlock-apiauth-77.properties
 
 ### wings.warlock.apiauth.client-header
 
@@ -662,7 +654,7 @@ Client错误时的应答，
 * `http-status`=`200`
 * `response-body`=`{"success":false,"code":"Unknown","message":"unknown error"}`
 
-## 4D.D.wings-warlock-watching-77.properties
+## 4D.C.wings-warlock-watching-77.properties
 
 对代码进行跟踪，默认`-1`，表示关闭；`0`为全开启
 
@@ -682,7 +674,7 @@ Client错误时的应答，
 
 `Long`=`-1`，Controller的阈值毫秒
 
-## 4D.E.wings-warlock-danger-77.properties
+## 4D.D.wings-warlock-danger-77.properties
 
 ### wings.warlock.danger.max-failure=true
 

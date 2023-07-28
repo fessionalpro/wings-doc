@@ -257,7 +257,7 @@ at runtime according to the separator setting.
 
 ### wings.slardar.number.decimal.format
 
-`String=`, eg. `#.00`, format of BigDecimal. `empty` means disable.
+`String=`, eg. `#.00`, format of BigDecimal, BigInteger. `empty` means disable.
 
 The thousandth separator uses `,`, which can be replaced to other
 at runtime according to the separator setting.
