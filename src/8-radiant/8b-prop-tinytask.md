@@ -88,7 +88,7 @@ default null or no parameters, not use Default config.
 
 ### wings.tiny.task.define[default].tasker-name
 
-`String`, Task name, used for notifice and log, better readability,
+`String`, Task name, used for notice and log, better readability,
 default is `[shortClassName#method]`, not use Default config.
 
 ### wings.tiny.task.define[default].task-fast
@@ -209,7 +209,7 @@ URL of builtin features.
 
 ### wings.tiny.task.urlmap.task-cancel
 
-`String`=`/admin/task/task-cancel.json`, cancle a task.
+`String`=`/admin/task/task-cancel.json`, cancel a task.
 
 ### wings.tiny.task.urlmap.task-launch
 
