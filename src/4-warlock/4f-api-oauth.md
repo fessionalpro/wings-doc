@@ -412,3 +412,29 @@ and Wings also made the following utility.
 * OkHttpTokenizeLogin - Token validation for traditional Form login
 * OkHttpTokenizeOauth - Token authentication for OAuth2
 * OkHttpRedirectNopInterceptor - Whether to temporarily not follow when follow redirects
+
+## 4F.6.Wings Impl
+
+Wings simply implements the server side of the API, see the following code and comments.
+
+```java
+@RestController
+@Slf4j
+public class TestToyApiController extends AbstractApiAuthController {
+
+  // add Controller Annotations, eg. `@RequestMapping`
+  @Override
+  @PostMapping(ApiSimple)
+  public void requestMapping(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response) {
+    log.info("ApiRequestMapping...");
+    super.requestMapping(request, response);
+  }
+
+  // handle business logic and return the result
+  @Override
+  public boolean handle(@NotNull HttpServletRequest request, @NotNull ApiEntity entity) throws IOException {
+    // biz logic to handle entity
+    return true;
+  }
+}
+```
