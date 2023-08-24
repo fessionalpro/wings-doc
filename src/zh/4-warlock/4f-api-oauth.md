@@ -394,3 +394,29 @@ curl -X 'POST' \
 * OkHttpTokenizeLogin - 传统Form登录的Token验证
 * OkHttpTokenizeOauth - OAuth2的Token验证
 * OkHttpRedirectNopInterceptor - 在follow重定向时，是否可暂时不follow
+
+## 4F.6.Wings实现
+
+Wings简单实现了Api的Server端，参考如下代码及其中的注释说明。
+
+```java
+@RestController
+@Slf4j
+public class TestToyApiController extends AbstractApiAuthController {
+
+  // 添加`@RequestMapping`等Controller注解
+  @Override
+  @PostMapping(ApiSimple)
+  public void requestMapping(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response) {
+    log.info("ApiRequestMapping...");
+    super.requestMapping(request, response);
+  }
+
+  // 处理业务逻辑并返回结果
+  @Override
+  public boolean handle(@NotNull HttpServletRequest request, @NotNull ApiEntity entity) throws IOException {
+    // biz logic to handle entity
+    return true;
+  }
+}
+```

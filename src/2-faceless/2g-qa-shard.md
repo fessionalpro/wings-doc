@@ -18,7 +18,7 @@ No implementation class load from SPI with type `null`
 Avoid using Chinese in naming, for boundary test, find shardingsphere can directly handle Chinese table name,
 but for other naming will cause some parsing error.
 
-Such as `sharding-algorithms.[中文也分表-inline]`, it will fail and make its `.type=null`, thus reporting an error.
+Such as `sharding-algorithms.[sharding-inline]`, it will fail and make its `.type=null`, thus reporting an error.
 
 No implementation class load from SPI `org.apache.shardingsphere.sharding.spi.ShardingAlgorithm` with type `null`
 

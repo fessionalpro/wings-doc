@@ -112,7 +112,7 @@ public class OutSkuForm {
 @PostMapping("/wh/outsku/update-outsku.json")
 public R<Object> updateOutSku(@RequestBody @Validated(value = {Update.class}) OutSkuForm ins) {
     // ...
-    return R.ok();
+    return R.OK();
 }
 ```
 

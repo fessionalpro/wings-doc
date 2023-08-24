@@ -273,12 +273,12 @@ wings.tiny.mail.service.max-done
 
 ### wings.tiny.mail.urlmap.send-mail
 
-`String`=`/admin/mail/send-mail.json`, create or edit an email, and send it immediately or asynchronously,
+`String`=`/admin/mail/send-mail.json`, create or save an email, and send it immediately or asynchronously,
 `-1` is failure, `0` is sync, otherwise it is async.
 
 ### wings.tiny.mail.urlmap.send-save
 
-`String`=`/admin/mail/send-save.json`, only create or edit messages, but do not send them.
+`String`=`/admin/mail/send-save.json`, only save messages, but do not send them.
 
 ### wings.tiny.mail.urlmap.send-retry
 
