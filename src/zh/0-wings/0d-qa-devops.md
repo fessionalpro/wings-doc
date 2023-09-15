@@ -425,3 +425,20 @@ Custom Scope `WingsCode`，Pattern设置如下，
     <releases><enabled>false</enabled></releases>
 </repository>
 ```
+
+## 0D.33.jackson Unrecognized field
+
+> com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field
+> class ..., not marked as ignorable 2 known properties:
+
+wings中默认配置jackson如下，mapper影响大小写，deserialization决定是否报错。
+
+* mapper.ACCEPT_CASE_INSENSITIVE_PROPERTIES=false ([default false](https://github.com/FasterXML/jackson-databind/wiki/Mapper-Features))
+* deserialization.FAIL_ON_UNKNOWN_PROPERTIES=false ([default true](https://github.com/FasterXML/jackson-databind/wiki/Deserialization-Features#jackson-onoff-features-deserializationfeature))
+
+以上两者为`(false, true)`即默认值时，会出现Unrecognized field，通过以下方法可解决.
+
+* 在类上`@JsonFormat(with = ACCEPT_CASE_INSENSITIVE_PROPERTIES)`
+* 在属性上`@JsonProperty("Amount")`
+* 调整wings配置（不推荐），CASE_INSENSITIVE有性能损耗，推延命名问题的发现
+* 根据jackson2ObjectMapperBuilder，新建并配置Mapper
