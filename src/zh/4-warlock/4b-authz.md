@@ -27,9 +27,17 @@ category:
 `Perm`主要用在方法级的鉴权上，即在方法上增加的注解，如`@Secured`，`@Pre*`。
 
 ```java
-// 推荐
+// https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html
+
+// 推荐，通过SecuredAuthorizationManager调用hasAnyAuthority
 @Secured(PermConstant.System.User.read)
-// 不推荐，因为比较长，且SpEL很强大
+
+// JSR250 仅作用于ROLE
+@RolesAllowed @PermitAll @DenyAll
+
+// 不推荐，因为比较长，且SpEL过于强大
+@PreAuthorize(hasAuthority + PermConstant.System.Perm.create + End)
+@PreAuthorize("hasAuthority('" + PermConstant.System.Perm.create + "')")
 @PreAuthorize("hasAnyAuthority(T(pro.fessional.wings.warlock.security.autogen.PermConstant$System$User).read)")
 ```
 
