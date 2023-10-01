@@ -29,9 +29,17 @@ The format is `scope + ('.' + scope )* + '.' + action`, i.e. multiple level scop
 `Perm` is mainly used for method-level authentication, i.e. annotations added to methods, such as `@Secured`, `@Pre*`.
 
 ```java
-// recommended
+// https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html
+
+// recommended, invoke hasAnyAuthority via SecuredAuthorizationManager
 @Secured(PermConstant.System.User.read)
-// Not recommended because it's longer, and SpEL is very powerful
+
+// JSR250 only work for role
+@RolesAllowed @PermitAll @DenyAll
+
+// Not recommended because it's longer, and SpEL is too powerful
+@PreAuthorize(hasAuthority + PermConstant.System.Perm.create + End)
+@PreAuthorize("hasAuthority('" + PermConstant.System.Perm.create + "')")
 @PreAuthorize("hasAnyAuthority(T(pro.fessional.wings.warlock.security.autogen.PermConstant$System$User).read)")
 ```
 

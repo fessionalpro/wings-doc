@@ -106,11 +106,12 @@ the Underlying principle and usage are,
 * After the signature is passed, the data is obtained through the RighterContext and
   the program itself checks the data items for consistency.
 
-## 3G.5.Terminal Information
+## 3G.5.Terminal Info
 
-Through HandlerInterceptor, Terminal information is set in the current thread and request.
+Terminal info (eg. ip, agent, locale and timezone) is set in the current thread (and request) via,
 
-TerminalContext mainly includes ip, agent, locale and timezone etc.
+* `HandlerInterceptor` -  Controller
+* `AuthenticationEventPublisher` -  Filter (login/logout)
 
 ## 3G.6.Request Reuse and Response Caching
 

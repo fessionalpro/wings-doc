@@ -102,9 +102,10 @@ slardar的验证码是基于图片的，现今的AI算法识别率可达99.9%以
 
 ## 3G.5.终端信息
 
-通过HandlerInterceptor，在当前线程和request中设置Terminal信息，
+通过以下方式，在当前线程（和request）中设置如ip，agent，locale和timezone的Terminal信息，
 
-TerminalContext主要包括ip，agent，locale和timezone等
+* `HandlerInterceptor` -  Controller
+* `AuthenticationEventPublisher` -  Filter (login/logout)
 
 ## 3G.6.请求复用和应答缓存
 

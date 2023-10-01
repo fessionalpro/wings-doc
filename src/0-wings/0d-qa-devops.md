@@ -443,3 +443,20 @@ can't find the wings pom, try the following,
     <releases><enabled>false</enabled></releases>
 </repository>
 ```
+
+## 0D.33.jackson Unrecognized field
+
+> com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field
+> class ..., not marked as ignorable 2 known properties:
+
+The wings jackson config is as follows, mapper affects case, and deserialization affects errors.
+
+* mapper.ACCEPT_CASE_INSENSITIVE_PROPERTIES=false ([default false](https://github.com/FasterXML/jackson-databind/wiki/Mapper-Features))
+* deserialization.FAIL_ON_UNKNOWN_PROPERTIES=false ([default true](https://github.com/FasterXML/jackson-databind/wiki/Deserialization-Features#jackson-onoff-features-deserializationfeature))
+
+When the above is `(false, true)` (by default), the Unrecognized field will appear, resolved by,
+
+* `@JsonFormat(with = ACCEPT_CASE_INSENSITIVE_PROPERTIES)` on Class
+* `@JsonProperty("Amount")` on Field
+* change wings config (not recommended), CASE_INSENSITIVE has additional performance overhead, delays detection of naming problems
+* build and config new Mapper based on Jackson2ObjectMapperBuilder
