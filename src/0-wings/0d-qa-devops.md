@@ -460,3 +460,13 @@ When the above is `(false, true)` (by default), the Unrecognized field will appe
 * `@JsonProperty("Amount")` on Field
 * change wings config (not recommended), CASE_INSENSITIVE has additional performance overhead, delays detection of naming problems
 * build and config new Mapper based on Jackson2ObjectMapperBuilder
+
+## 0D.34.javax.annotation.meta.When.MAYBE
+
+> java: unknown enum constant javax.annotation.meta.When.MAYBE
+> reason: class file for javax.annotation.meta.When not found
+
+`When.MAYBE` is from `com.google.code.findbugs:jsr305:3.0.2`,
+used by `org.springframework.lang.Nullable`, but NOT dependened by wings.
+
+when using `@Nullable` and `NxxNull`, MUST be from `org.jetbrains.annotations`
