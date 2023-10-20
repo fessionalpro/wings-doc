@@ -442,3 +442,13 @@ wings中默认配置jackson如下，mapper影响大小写，deserialization决�
 * 在属性上`@JsonProperty("Amount")`
 * 调整wings配置（不推荐），CASE_INSENSITIVE有性能损耗，推延命名问题的发现
 * 根据jackson2ObjectMapperBuilder，新建并配置Mapper
+
+## 0D.34.javax.annotation.meta.When.MAYBE
+
+> java: unknown enum constant javax.annotation.meta.When.MAYBE
+> reason: class file for javax.annotation.meta.When not found
+
+`When.MAYBE` 位于 `com.google.code.findbugs:jsr305:3.0.2`，
+被`org.springframework.lang.Nullable`使用，但wings不依赖此包。
+
+当使用`@Nullable`和`NxxNull`时，必须是`org.jetbrains.annotations`

@@ -18,8 +18,8 @@ There are special features of Spring naming, mainly focused on the following
 * `/wings-conf/` autoload, splitted config files
 * `/wings-i18n/` autoload, splitted I18n files
 * `**/spring/boot/` manual load, Boot-related config, like `spring.facts`
-* `**/spring/bean/` autoload, as specified by @ComponentScan
-* `**/spring/conf/` Configurer or configuration class
+* `**/spring/bean/` produce bean, as specified by @ComponentScan
+* `**/spring/conf/` Configurer or AutoConfiguration
 * `**/spring/prop/` Property mapping
 * `**/spring/help/` Configuration helper
 * `*Configuration.java` conditional load, with config items prefixed by `spring.wings.`

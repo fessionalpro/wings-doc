@@ -214,7 +214,7 @@ src/**/spring - spring有个配置
 │   └── WingsLightIdConfiguration.java - 内部用项目前缀，对外使用Wings前缀
 ├── boot/ - spring boot 配置用，不产生Bean
 │   └── WingsAutoConfiguration.java - 兼容IDE和starter的配置入口
-├── conf/ - 配置辅助类Configurer
+├── conf/ - 配置辅助类Configurer, AutoConfiguration
 ├── help/ - 工具辅助类
 └── prop/ - 属性类，自动生成spring-configuration-metadata.json
     └── FacelessEnabledProp.java - 开关类
