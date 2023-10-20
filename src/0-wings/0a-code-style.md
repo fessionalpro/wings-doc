@@ -220,7 +220,7 @@ src/**/spring - all spring config
 │   └── WingsLightIdConfiguration.java - prefix codename internally and Wings externally
 ├── boot/ - spring boot config, not produce bean
 │   └── WingsAutoConfiguration.java - IDE and starter compatible entrance
-├── conf/ - Config helper, eg. Configurer
+├── conf/ - Config helper, eg. Configurer, AutoConfiguration
 ├── help/ - Helper
 └── prop/ - property, autogen spring-configuration-metadata.json
     └── FacelessEnabledProp.java - toggle feature

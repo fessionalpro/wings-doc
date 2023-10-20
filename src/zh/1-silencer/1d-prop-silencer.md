@@ -60,7 +60,7 @@ Silencer功能的默认开关，如下
 
 ### spring.wings.silencer.enabled.scanner
 
-`Boolean`=`true`，是否自动载所有classpath下的`**/spring/bean/**`
+`Boolean`=`false`，是否自动载所有classpath下的`**/spring/bean/**`（在其他Bean之前）
 
 ### spring.wings.silencer.enabled.auto-log
 

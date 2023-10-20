@@ -62,7 +62,7 @@ The default switch for toggling the Silencer feature, as follows
 
 ### spring.wings.silencer.enabled.scanner
 
-`Boolean`=`true`, Whether to automatically load all classpaths `**/spring/bean/**`
+`Boolean`=`false`, Whether to automatically load all classpaths `**/spring/bean/**` (before other beans)
 
 ### spring.wings.silencer.enabled.auto-log
 
