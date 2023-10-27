@@ -62,7 +62,7 @@ The default switch for toggling the Silencer feature, as follows
 
 ### spring.wings.silencer.enabled.scanner
 
-`Boolean`=`false`, Whether to automatically load all classpaths `**/spring/bean/**` (before other beans)
+`Boolean`=`false`, Whether to automatically load all classpaths `**/spring/bean/**` (before `@AutoConfiguration`)
 
 ### spring.wings.silencer.enabled.auto-log
 
@@ -196,3 +196,9 @@ Inspect and audit the Application
 ### wings.silencer.inspect.properties
 
 `Boolean`=`false`, Whether to audit the file and cascading relationship of properties key/value
+
+## 1D.C.wings-scanner-79.properties
+
+### wings.silencer.scanner.bean
+
+`List<String>`=`spring/bean`, scan component from `**/spring/bean/**/*.class` on ApplicationPreparedEvent
