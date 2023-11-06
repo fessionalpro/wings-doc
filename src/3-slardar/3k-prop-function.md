@@ -264,6 +264,10 @@ For example, `' ERROR '` becomes ` ERROR `, `'' WARN ''` becomes `' WARN '`.
 
 `Set<String>=`, log content (after level) keywords
 
+### wings.slardar.monitor.log.default.preview
+
+`Integer`=`10`, preview lines after found keyword.
+
 ### wings.slardar.monitor.log.default.charset
 
 `String`=`UTF8`, log charset
