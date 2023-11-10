@@ -128,7 +128,39 @@ SimpleFlatMapper的mapper更为宽松，不区分大小写，但有以下不足�
 
 ModelMapper也比较优秀，但其体积过大（4.5M），目前没有必要使用，也未做充分测试。
 
-## 2B.4.参考资料
+## 2B.4.Mock 测试数据
+
+根据官方文档[Mocking Connection](https://www.jooq.org/doc/latest/manual/sql-execution/mocking-connection)，
+在wings中，可以有以下的Mock方式，
+
+* `@Bean ConnectionProvider` - 全局注入，应用级别
+* `Dao.setDslContext` - 实例级别（默认单例）
+
+参考代码如下，
+
+```java
+@Bean
+@ConditionalOnProperty(name = "wings.faceless.testing.mock-jooq", havingValue = "true")
+public ConnectionProvider mockConnectionProvider() {
+    MockDataProvider provider = new MockTstNormalTableDataProvider();
+    MockConnection connection = new MockConnection(provider);
+    DefaultConnectionProvider delegate = new DefaultConnectionProvider(connection);
+    return new MockConnectionProvider(delegate, provider);//
+}
+
+public void manualInstance() {
+    var provider = new MockTstNormalTableDataProvider();
+    // provider.setRecord(m);
+    MockConnection connection = new MockConnection(provider);
+    DSLContext dsl = DSL.using(connection, SQLDialect.MYSQL);
+    tstNormalTableDao.setDslContext(() -> dsl);
+    List<TstNormalTable> r2 = tstNormalTableDao.fetchById(1L);
+    // clean
+    tstNormalTableDao.setDslContext(null);
+}
+```
+
+## 2B.9.参考资料
 
 * [Jooq patch](https://github.com/trydofor/jOOQ/commit/0be23d2e90a1196def8916b9625fbe2ebffd4753)
 * [批量操作 record](https://www.jooq.org/doc/3.12/manual/sql-execution/crud-with-updatablerecords/batch-execution-for-crud/)

@@ -139,7 +139,39 @@ Officially inactive for more than 2 years after the last commit on 2020-05-11, w
 ModelMapper is also better, but its size is too large (4.5M), currently, there is no need
 to use it, and it is not fully tested in wings.
 
-## 2B.4.References
+## 2B.4.Mock Test Data
+
+According to [Mocking Connection](https://www.jooq.org/doc/latest/manual/sql-execution/mocking-connection),
+there are 2 Mock way in wings,
+
+* `@Bean ConnectionProvider` - global inject, app level
+* `Dao.setDslContext` - instance level (default singleton)
+
+Refering the following source code,
+
+```java
+@Bean
+@ConditionalOnProperty(name = "wings.faceless.testing.mock-jooq", havingValue = "true")
+public ConnectionProvider mockConnectionProvider() {
+    MockDataProvider provider = new MockTstNormalTableDataProvider();
+    MockConnection connection = new MockConnection(provider);
+    DefaultConnectionProvider delegate = new DefaultConnectionProvider(connection);
+    return new MockConnectionProvider(delegate, provider);//
+}
+
+public void manualInstance() {
+    var provider = new MockTstNormalTableDataProvider();
+    // provider.setRecord(m);
+    MockConnection connection = new MockConnection(provider);
+    DSLContext dsl = DSL.using(connection, SQLDialect.MYSQL);
+    tstNormalTableDao.setDslContext(() -> dsl);
+    List<TstNormalTable> r2 = tstNormalTableDao.fetchById(1L);
+    // clean
+    tstNormalTableDao.setDslContext(null);
+}
+```
+
+## 2B.9.References
 
 * [Jooq patch](https://github.com/trydofor/jOOQ/commit/0be23d2e90a1196def8916b9625fbe2ebffd4753)
 * [Batch Execution record](https://www.jooq.org/doc/3.12/manual/sql-execution/crud-with-updatablerecords/batch-execution-for-crud/)
