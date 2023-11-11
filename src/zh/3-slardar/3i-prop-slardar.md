@@ -46,7 +46,11 @@ category:
 
 ### spring.wings.slardar.enabled.async
 
-`Boolean`=`true`，是否spring Async和线程池配置
+`Boolean`=`true`，是否配置spring Async和线程池
+
+### spring.wings.slardar.enabled.event
+
+`Boolean`=`true`，是否配置slardar event工具
 
 ### spring.wings.slardar.enabled.righter
 

@@ -255,7 +255,7 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ### wings.slardar.monitor.log.default.level
 
-`Set<String>`=`' WARN ',' ERROR '`，日志级别的关键词。
+`Set<String>`=`' WARN ',' ERROR '`，日志级别的关键词
 
 关键词，执行时会自动trim掉一组成对的头尾引号。
 如`' ERROR '`等于` ERROR `，`'' WARN ''`等于`' WARN '`
@@ -263,6 +263,10 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 ### wings.slardar.monitor.log.default.keyword
 
 `Set<String>=`，日志内容（级别后面）关键词
+
+### wings.slardar.monitor.log.default.preview
+
+`Integer`=`10`，当找到keyword时，展示其后面的行数
 
 ### wings.slardar.monitor.log.default.charset
 

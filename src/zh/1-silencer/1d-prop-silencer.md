@@ -60,7 +60,7 @@ Silencer功能的默认开关，如下
 
 ### spring.wings.silencer.enabled.scanner
 
-`Boolean`=`false`，是否自动载所有classpath下的`**/spring/bean/**`（在其他Bean之前）
+`Boolean`=`false`，是否自动载所有classpath下的`**/spring/bean/**`（在@AutoConfiguration之前）
 
 ### spring.wings.silencer.enabled.auto-log
 
@@ -194,3 +194,9 @@ Crc8Long的默认seed，强安全需求时建议修改。^建议^
 ### wings.silencer.inspect.properties
 
 `Boolean`=`false`，是否审视properties的key,value,所在文件及层叠关系
+
+## 1D.C.wings-scanner-79.properties
+
+### wings.silencer.scanner.bean
+
+`List<String>`=`spring/bean`，当 ApplicationPreparedEvent 时，从 `**/spring/bean/**/*.class` 扫描 component

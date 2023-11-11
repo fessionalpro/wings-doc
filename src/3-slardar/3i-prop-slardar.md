@@ -48,6 +48,10 @@ Basic properties of Slardar and Spring
 
 `Boolean`=`true`, whether to enable spring Async and thread pool
 
+### spring.wings.slardar.enabled.event
+
+`Boolean`=`true`, whether to enable slardar event utils
+
 ### spring.wings.slardar.enabled.righter
 
 `Boolean`=`true`, whether to prevent forgery editing
