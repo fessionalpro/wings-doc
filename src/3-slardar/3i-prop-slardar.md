@@ -124,7 +124,7 @@ Basic properties of Slardar and Spring
 
 `Boolean`=`true`, whether to enable swagger config
 
-## spring.wings.slardar.enabled.mock-hazelcast
+## spring.wings.slardar.enabled.hazelcast-simulator
 
 `Boolean`=`false`, start as standalone at devtool to reduce cluster impact.
 see <https://github.com/hazelcast/hazelcast-simulator/blob/master/README.md>

@@ -128,7 +128,7 @@ category:
 
 `Boolean`=`true`，是否开启监控
 
-## spring.wings.slardar.enabled.mock-hazelcast
+## spring.wings.slardar.enabled.hazelcast-simulator
 
 `Boolean`=`false`, 在devtool时，以standalone方式启动，可减少集群影响。
 高级测试，参考 <https://github.com/hazelcast/hazelcast-simulator/blob/master/README.md>
