@@ -10,25 +10,17 @@ category:
 
 有Flywave关于schema管理的配置。
 
-## 2J.1.spring-wings-enabled-79.properties
-
-Flywave功能的默认开关，如下
-
-### spring.wings.faceless.flywave.enabled.module
-
-`Boolean`=`false`，是否注入Flywave相关Bean。
-
-### spring.wings.faceless.flywave.enabled.checker
-
-`Boolean`=`true`，flywave是否进行数据库的版本检查。
-
-## 2J.2.wings-flywave-fit-79.properties
+## 2J.1.wings-flywave-fit-79.properties
 
 Flywave对依赖的`flywave-init`版本进行检查。
 
 ### wings.faceless.flywave.auto-init
 
 `Boolean`=`false`，是否允许自动初始化，非空数据库，最好手工初始化
+
+### wings.faceless.flywave.checker
+
+`Boolean`=`true`，flywave是否进行数据库的版本检查。
 
 ### wings.faceless.flywave.fit.flywave-init.path
 
@@ -47,7 +39,7 @@ sql扫描pattern，逗号分隔。PathMatchingResourcePatternResolver格式
 补漏行为，任一指定revi未应用时，只升级不能降级，避免危险的删除动作。
 `SKIP`-跳过|`WARN`-警告|`FAIL`-异常|`EXEC`-强制执行
 
-## 2J.3.wings-flywave-sql-79.properties
+## 2J.2.wings-flywave-sql-79.properties
 
 Flywave的Sql解析设置
 
@@ -79,7 +71,7 @@ Flywave的Sql解析设置
 
 `String`=`XXX(_[0-9]+)?__+[a-z]+`，设置跟踪表格式，参考 SqlSegmentProcessor.setTraceFormat
 
-## 2j.4.wings-flywave-ver-79.properties
+## 2j.3.wings-flywave-ver-79.properties
 
 Flywave对version和journal表的设置。
 

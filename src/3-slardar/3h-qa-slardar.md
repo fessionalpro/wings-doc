@@ -63,8 +63,7 @@ public ModelAndView resolveErrorView(HttpServletRequest request,
 ## 3H.05.Warn UT026010 at startup
 
 Undertow uses the default buffer when websocket is not configured, the warning will appears.
-You need to customize `websocketServletWebServerCustomizer`, or set
-`spring.wings.slardar.enabled.undertow-ws=true`
+You need to customize `websocketServletWebServerCustomizer`
 
 in line 68 `io.undertow.websockets.jsr.Bootstrap`, if `buffers == null`
 `UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used`

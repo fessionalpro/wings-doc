@@ -10,144 +10,88 @@ category:
 
 有关Slardar，Spring的基本设置
 
-## 3I.1.spring-wings-enabled-79.properties
+## 3I.1.wings-enabled-79.properties
 
-### spring.wings.slardar.enabled.autoconf
-
-`Boolean`=`true`，是否启动自动配置
-
-### spring.wings.slardar.enabled.jackson
-
-`Boolean`=`true`，是否默认配置jackson
-
-### spring.wings.slardar.enabled.okhttp
-
-`Boolean`=`true`，是否默认配置okhttp3
-
-### spring.wings.slardar.enabled.caching
-
-`Boolean`=`true`，是否开启cache配置
-
-### spring.wings.slardar.enabled.caching-aop
-
-`Boolean`=`true`，是否开启cache配置的替换
-
-### spring.wings.slardar.enabled.cookie
-
-`Boolean`=`false`，是否实现cookie定制
-
-### spring.wings.slardar.enabled.session
-
-`Boolean`=`true`，是否默认配置session
-
-### spring.wings.slardar.enabled.session-hazelcast
-
-`Boolean`=`true`，是否默认配置session hazelcast
-
-### spring.wings.slardar.enabled.async
-
-`Boolean`=`true`，是否配置spring Async和线程池
-
-### spring.wings.slardar.enabled.event
-
-`Boolean`=`true`，是否配置slardar event工具
-
-### spring.wings.slardar.enabled.righter
-
-`Boolean`=`true`，是否防范编辑篡改
-
-### spring.wings.slardar.enabled.debounce
-
-`Boolean`=`true`，是否开启Debounce默认的Interceptor
-
-### spring.wings.slardar.enabled.restream
-
-`Boolean`=`true`，是否开启reuse stream filter
-
-### spring.wings.slardar.enabled.first-blood
-
-`Boolean`=`true`，是否开启FirstBlood默认的Interceptor
-
-### spring.wings.slardar.enabled.first-blood-image
-
-`Boolean`=`true`，是否开启FirstBlood的Interceptor图形验证码
-
-### spring.wings.slardar.enabled.double-kill
+### wings.enabled.slardar.double-kill
 
 `Boolean`=`true`，是否开启DoubleKill默认的AOP
 
-### spring.wings.slardar.enabled.pagequery
+### wings.enabled.slardar.monitor-jvm
 
-`Boolean`=`true`，是否开启wings的PageQuery webmvc resolver
+`Boolean`=`true`，是否开启Jvm监控
 
-### spring.wings.slardar.enabled.datetime
+### wings.enabled.slardar.monitor-log
 
-`Boolean`=`true`，是否开启wings的 webmvc localdatetime converter
+`Boolean`=`true`，是否开启Log监控
 
-### spring.wings.slardar.enabled.number
-
-`Boolean`=`true`，是否开启wings的jackson对Double，Float，BigDecimal的精度限定
-
-### spring.wings.slardar.enabled.resource
-
-`Boolean`=`true`，是否开启wings的jackson对Resource序列化成可读性好的URL
-
-### spring.wings.slardar.enabled.undertow-ws
-
-`Boolean`=`true`，是否配置undertow ws for UT026010: Buffer pool
-
-### spring.wings.slardar.enabled.remote
-
-`Boolean`=`true`，是否开启remote Resolver
-
-### spring.wings.slardar.enabled.locale
-
-`Boolean`=`true`，是否开启i18n Resolver
-
-### spring.wings.slardar.enabled.terminal
-
-`Boolean`=`true`，是否解析 WingsTerminalContext
-
-### spring.wings.slardar.enabled.captcha
-
-`Boolean`=`false`，是否开启captcha配置
-
-### spring.wings.slardar.enabled.overload
-
-`Boolean`=`false`，是否开启熔断设置
-
-### spring.wings.slardar.enabled.domain-extend
-
-`Boolean`=`false`，是否支持 domain-extend
-
-### spring.wings.slardar.enabled.swagger
-
-`Boolean`=`true`，是否开启swagger配置
-
-### spring.wings.slardar.enabled.monitor
-
-`Boolean`=`true`，是否开启监控
-
-## spring.wings.slardar.enabled.hazelcast-simulator
+### wings.enabled.slardar.hazelcast-standalone
 
 `Boolean`=`false`, 在devtool时，以standalone方式启动，可减少集群影响。
 高级测试，参考 <https://github.com/hazelcast/hazelcast-simulator/blob/master/README.md>
 
-### spring.wings.slardar.enabled.monitor-jvm
+### wings.enabled.slardar.cookie
 
-`Boolean`=`true`，是否开启Jvm监控
+`Boolean`=`false`，是否实现cookie定制
 
-### spring.wings.slardar.enabled.monitor-log
+### wings.enabled.slardar.debounce
 
-`Boolean`=`true`，是否开启Log监控
+`Boolean`=`true`，是否开启Debounce默认的Interceptor
 
-### spring.wings.slardar.enabled.boot-admin
+### wings.enabled.slardar.domainx
 
-`Boolean`=`true`，是否开启SpringBootAdmin配置
+`Boolean`=`false`，是否支持 domain-extend
 
-### spring.wings.slardar.enabled.tweaking
+### wings.enabled.slardar.first-blood
 
-`Boolean`=`true`，是否支持动态调节
+`Boolean`=`false`，是否开启FirstBlood默认的Interceptor
+
+### wings.enabled.slardar.first-blood-image
+
+`Boolean`=`true`，是否开启FirstBlood的Interceptor图形验证码
+
+### wings.enabled.slardar.jackson-datetime
+
+`Boolean`=`true`，是否开启wings的 webmvc date/time 转换
+
+### wings.enabled.slardar.jackson-empty
+
+`Boolean`=`true`，是否开启wings的 webmvc empty 转换
+
+### wings.enabled.slardar.jackson-number
+
+`Boolean`=`true`，是否开启wings的jackson对Double，Float，BigDecimal的精度限定
+
+### wings.enabled.slardar.jackson-resource
+
+`Boolean`=`true`，是否开启wings的jackson对Resource序列化成可读性好的URL
+
+### wings.enabled.slardar.jackson-result
+
+`Boolean`=`true`，是否开启wings的 webmvc result 转换
+
+### wings.enabled.slardar.pagequery
+
+`Boolean`=`true`，是否开启wings的PageQuery webmvc resolver
+
+### wings.enabled.slardar.restream
+
+`Boolean`=`true`，是否开启reuse stream filter
+
+### wings.enabled.slardar.righter
+
+`Boolean`=`true`，是否防范编辑篡改
+
+### wings.enabled.slardar.session
+
+`Boolean`=`true`，是否默认配置session
+
+### wings.enabled.slardar.swagger
+
+`Boolean`=`true`，是否开启swagger配置
+
+### wings.enabled.slardar.terminal
+
+`Boolean`=`true`，是否支持WingsTerminalContext
 
 ## 3I.2.wings-prop-promotion.cnf
 

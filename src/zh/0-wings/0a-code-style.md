@@ -59,9 +59,9 @@ SQL脚本可以很好的编辑，比较，文档化，包括业务表的分层�
 尽量使用`properties`格式，因`yml`的缩进在局部编辑时，容易出现困扰。
 
 * 一组有关联的属性，放在一个`properties`，分成文件便于版本管理
-* `spring-wings-enabled.properties`用于ConditionalOnProperty配置
-  - 统一使用`spring.wings.**.enabled.*=true|false`格式
-  - 多模块时，模块本身为`spring.wings.**.enabled.module=true`
+* `wings-enabled.properties`用于ConditionalOnProperty配置
+  - 统一使用`wings.enabled.xxx=true|false`格式
+  - `xxx` 可以是 Class/Method 命名规则
 * `spring-*`放置spring官方配置key
 * `wings-*`放置wings配置key，
   - 带有工程或模块代号，如`wings.slardar.*`

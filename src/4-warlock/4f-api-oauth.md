@@ -331,7 +331,7 @@ which is enabled by default but not available.
 * SimpleOauthController - issue and revoke tickets
 * wings.warlock.urlmap.oauth-# - url configuration
 * wings-warlock-ticket-77.properties - ticket property settings
-* spring.wings.warlock.enabled.controller-oauth - module switch
+* wings.enabled.warlock.mvc-oauth - module switch
 
 To use this feature, you need to manually customize the client configuration or
 implement your own loader, such as a database.

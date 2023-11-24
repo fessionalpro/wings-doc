@@ -10,7 +10,7 @@ category:
 
 开箱即用的简单的性能分析，慢请求记录，属于调试功能，默认关闭。
 
-* 模块开关 - spring.wings.warlock.enabled.watching=false
+* 模块开关 - wings.enabled.warlock.watching=false
 * 数据层 - wings.warlock.watching.jooq-threshold=60
 * 服务层 - wings.warlock.watching.service-threshold=200
 * Web层 - wings.warlock.watching.controller-threshold=2000

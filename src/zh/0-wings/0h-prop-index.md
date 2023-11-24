@@ -17,7 +17,7 @@ category:
 
 在Silencer中，默认约定了配置文件的类型和命名规则。
 
-* `wings-auto-config.cnf` - Silencer功能配置
+* `wings-auto-config*.cnf` - Silencer功能配置
 * `wings-conf-block-list.cnf` - 配置文件黑名单
 * `wings-prop-promotion.cnf` - 配置项提升到系统变量
 * `spring-*.properties` - spring的配置项
@@ -50,3 +50,13 @@ category:
 * [术士的属性](../4-warlock/4d-prop-warlock.md) - 有关Warlock登录授权的设置
 * [小任务属性](../8-radiant/8b-prop-tinytask.md) - TinyTask的设置
 * [小邮件属性](../8-radiant/8d-prop-tinymail.md) - TinyMail的设置
+
+## 0H.4.开关属性列表
+
+`@ConditionalWingsEnabled` 以模块分组，按字母序排列，
+
+* `empty` 表示默认为true
+* `(false)` 表示默认为false
+* `= key` 表示 `absolute-key`
+
+属性列表，统一记录在[英文版](../../0-wings/0h-prop-index.md)

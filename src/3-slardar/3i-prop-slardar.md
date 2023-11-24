@@ -10,144 +10,88 @@ category:
 
 Basic properties of Slardar and Spring
 
-## 3I.1.spring-wings-enabled-79.properties
+## 3I.1.wings-enabled-79.properties
 
-### spring.wings.slardar.enabled.autoconf
-
-`Boolean`=`true`, whether to enable auto-config
-
-### spring.wings.slardar.enabled.jackson
-
-`Boolean`=`true`, whether to enable jackson default config
-
-### spring.wings.slardar.enabled.okhttp
-
-`Boolean`=`true`, whether to enable okhttp3 default config
-
-### spring.wings.slardar.enabled.caching
-
-`Boolean`=`true`, whether to enable cache config
-
-### spring.wings.slardar.enabled.caching-aop
-
-`Boolean`=`true`, whether to enable cache enhancement of aop
-
-### spring.wings.slardar.enabled.cookie
-
-`Boolean`=`false`, whether to enable cookie customization
-
-### spring.wings.slardar.enabled.session
-
-`Boolean`=`true`, whether to enable session default config
-
-### spring.wings.slardar.enabled.session-hazelcast
-
-`Boolean`=`true`, whether to enable session hazelcast config
-
-### spring.wings.slardar.enabled.async
-
-`Boolean`=`true`, whether to enable spring Async and thread pool
-
-### spring.wings.slardar.enabled.event
-
-`Boolean`=`true`, whether to enable slardar event utils
-
-### spring.wings.slardar.enabled.righter
-
-`Boolean`=`true`, whether to prevent forgery editing
-
-### spring.wings.slardar.enabled.debounce
-
-`Boolean`=`true`, whether to enable Interceptor of debounce
-
-### spring.wings.slardar.enabled.restream
-
-`Boolean`=`true`, whether to enable reuse stream filter
-
-### spring.wings.slardar.enabled.first-blood
-
-`Boolean`=`true`, whether to enable Interceptor of FirstBlood
-
-### spring.wings.slardar.enabled.first-blood-image
-
-`Boolean`=`true`, whether to enable image captcha Interceptor of FirstBlood
-
-### spring.wings.slardar.enabled.double-kill
+### wings.enabled.slardar.double-kill
 
 `Boolean`=`true`, whether to enable DoubleKill default AOP
 
-### spring.wings.slardar.enabled.pagequery
+### wings.enabled.slardar.monitor-jvm
 
-`Boolean`=`true`, whether to enable PageQuery webmvc resolver of Wings
+`Boolean`=`true`, whether to enable Jvm monitor
 
-### spring.wings.slardar.enabled.datetime
+### wings.enabled.slardar.monitor-log
 
-`Boolean`=`true`, whether to enable webmvc localdatetime converter of Wings
+`Boolean`=`true`, whether to enable Log monitor
 
-### spring.wings.slardar.enabled.number
-
-`Boolean`=`true`, whether to enable the Jackson precision limit of wings for Double, Float, BigDecimal
-
-### spring.wings.slardar.enabled.resource
-
-`Boolean`=`true`, whether to enable serialization of the resource into a readable URL with Wings' Jackson config
-
-### spring.wings.slardar.enabled.undertow-ws
-
-`Boolean`=`true`, whether to disable "undertow ws for UT026010: Buffer pool"
-
-### spring.wings.slardar.enabled.remote
-
-`Boolean`=`true`, whether to enable remote Resolver
-
-### spring.wings.slardar.enabled.locale
-
-`Boolean`=`true`, whether to enable i18n Resolver
-
-### spring.wings.slardar.enabled.terminal
-
-`Boolean`=`true`, whether to enable WingsTerminalContext
-
-### spring.wings.slardar.enabled.captcha
-
-`Boolean`=`false`, whether to enable captcha config
-
-### spring.wings.slardar.enabled.overload
-
-`Boolean`=`false`, whether to enable overload filter
-
-### spring.wings.slardar.enabled.domain-extend
-
-`Boolean`=`false`, whether to enable domain-extend
-
-### spring.wings.slardar.enabled.swagger
-
-`Boolean`=`true`, whether to enable swagger config
-
-## spring.wings.slardar.enabled.hazelcast-simulator
+### wings.enabled.slardar.hazelcast-standalone
 
 `Boolean`=`false`, start as standalone at devtool to reduce cluster impact.
 see <https://github.com/hazelcast/hazelcast-simulator/blob/master/README.md>
 
-### spring.wings.slardar.enabled.monitor
+### wings.enabled.slardar.cookie
 
-`Boolean`=`true`, whether to enable monitor
+`Boolean`=`false`, whether to enable cookie customization
 
-### spring.wings.slardar.enabled.monitor-jvm
+### wings.enabled.slardar.debounce
 
-`Boolean`=`true`, whether to enable Jvm monitor
+`Boolean`=`true`, whether to enable Interceptor of debounce
 
-### spring.wings.slardar.enabled.monitor-log
+### wings.enabled.slardar.domainx
 
-`Boolean`=`true`, whether to enable Log monitor
+`Boolean`=`false`, whether to enable domain-extend
 
-### spring.wings.slardar.enabled.boot-admin
+### wings.enabled.slardar.first-blood
 
-`Boolean`=`true`, whether to enable SpringBootAdmin config
+`Boolean`=`false`, whether to enable Interceptor of FirstBlood
 
-### spring.wings.slardar.enabled.tweaking
+### wings.enabled.slardar.first-blood-image
 
-`Boolean`=`true`, whether to enable dynamic tweaking
+`Boolean`=`true`, whether to enable image captcha Interceptor of FirstBlood
+
+### wings.enabled.slardar.jackson-datetime
+
+`Boolean`=`true`, whether to enable webmvc date / time converter of Wings
+
+### wings.enabled.slardar.jackson-empty
+
+`Boolean`=`true`, whether to enable webmvc empty converter of Wings
+
+### wings.enabled.slardar.jackson-number
+
+`Boolean`=`true`, whether to enable the Jackson precision limit of wings for Double, Float, BigDecimal
+
+### wings.enabled.slardar.jackson-resource
+
+`Boolean`=`true`, whether to enable serialization of the resource into a readable URL with Wings' Jackson config
+
+### wings.enabled.slardar.jackson-result
+
+`Boolean`=`true`, whether to enable webmvc result converter of Wings
+
+### wings.enabled.slardar.pagequery
+
+`Boolean`=`true`, whether to enable PageQuery webmvc resolver of Wings
+
+### wings.enabled.slardar.restream
+
+`Boolean`=`true`, whether to enable reuse stream filter
+
+### wings.enabled.slardar.righter
+
+`Boolean`=`true`, whether to prevent forgery editing
+
+### wings.enabled.slardar.session
+
+`Boolean`=`true`, whether to enable session default config
+
+### wings.enabled.slardar.swagger
+
+`Boolean`=`true`, whether to enable swagger config
+
+### wings.enabled.slardar.terminal
+
+`Boolean`=`true`, whether to enable WingsTerminalContext
 
 ## 3I.2.wings-prop-promotion.cnf
 

@@ -18,7 +18,7 @@ such as spring config, database tables.
 Creating tables are dangerous operations and disabled by default, depending on the RevisionFitness of faceless-flywave.
 
 * Use faceless-flywave as dependency, suggest scope=test
-* Set spring.wings.faceless.flywave.enabled.module=true
+* Set wings.enabled.faceless.flywave=true
 * Start the springboot app in the current project, suggest scope=test
 
 ## 8.2.Related Projects

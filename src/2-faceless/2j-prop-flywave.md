@@ -10,25 +10,17 @@ category:
 
 Flywave properties about schema management.
 
-## 2J.1.spring-wings-enabled-79.properties
-
-The default switch for Flywave is,
-
-### spring.wings.faceless.flywave.enabled.module
-
-`Boolean`=`false`, whether to inject Flywave related beans.
-
-### spring.wings.faceless.flywave.enabled.checker
-
-`Boolean`=`true`, whether flywave performs version checking for database.
-
-## 2J.2.wings-flywave-fit-79.properties
+## 2J.1.wings-flywave-fit-79.properties
 
 Flywave checks for dependent `flywave-init` versions.
 
 ### wings.faceless.flywave.auto-init
 
 `Boolean`=`false`, whether to allow auto init, non-empty database, preferably manual init
+
+### wings.faceless.flywave.checker
+
+`Boolean`=`true`, whether flywave performs version checking for database.
 
 ### wings.faceless.flywave.fit.flywave-init.path
 
@@ -46,7 +38,7 @@ sql scan pattern, comma separated. PathMatchingResourcePatternResolver format
 
 Post check, if the specified revi is not applied, only upgrade can be performed, not downgrade to avoid dangerous delete.
 
-## 2J.3.wings-flywave-sql-79.properties
+## 2J.2.wings-flywave-sql-79.properties
 
 Sql parsing settings for Flywave.
 
@@ -78,7 +70,7 @@ Sql parsing settings for Flywave.
 
 `String`=`XXX(_[0-9]+)?__+[a-z]+`, set the trace table format. see SqlSegmentProcessor.setTraceFormat
 
-## 2j.4.wings-flywave-ver-79.properties
+## 2j.3.wings-flywave-ver-79.properties
 
 set version and journal table for Flywave.
 

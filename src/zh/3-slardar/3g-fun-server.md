@@ -182,7 +182,7 @@ org.springframework.boot.autoconfigure.web.client.RestTemplateAutoConfiguration
 
 ## 3G.9.负载过滤器
 
-OverloadFilter可限定请求并发，默认`spring.wings.slardar.enabled.overload=false`
+OverloadFilter可限定请求并发，默认`false`
 
 * 自动或手动设置`最大同时进行请求数`，超过时，执行`fallback`。
 * 不影响性能的情况下，记录慢响应URI和运行状态。

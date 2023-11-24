@@ -103,3 +103,5 @@ Wings由多个子项目构成，都采用了Dota有关的命名，主要包括�
 * [其他话题](./0f-qa-others.md) - 未归类的话题
 * [幽灵船模型](./0g-ghost-ship.md) - wings功能的基本构建模型
 * [属性配置](./0h-prop-index.md) - wings所有的属性配置
+* [多国语信息](./0i-i18n-message.md) - 匹配规则及默认信息
+* [编码模式](./0j-code-pattern.md) - 编码及命名的一些实践

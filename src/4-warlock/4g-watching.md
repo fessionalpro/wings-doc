@@ -10,7 +10,7 @@ category:
 
 Out-of-the-box simple performance analysis, slow request logging, which is a debugging feature, disabled by default.
 
-* Module switch - spring.wings.warlock.enabled.watching=false
+* Module switch - wings.enabled.warlock.watching=false
 * Data layer - wings.warlock.watching.jooq-threshold=60
 * Service layer - wings.warlock.watching.service-threshold=200
 * Web layer - wings.warlock.watching.controller-threshold=2000

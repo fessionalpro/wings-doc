@@ -108,3 +108,5 @@ and is abbreviated if no ambiguity, such as curse, flywave, etc.
 * [Other Topics](./0f-qa-others.md) - Uncategorized topics
 * [GhostShip Model](./0g-ghost-ship.md) - The basic building model for Wings
 * [Properties Index](./0h-prop-index.md) - All properties of wings configuration
+* [I18n Message](./0i-i18n-message.md) - Matching Rule and Builtin Message
+* [Code Pattern](./0j-code-pattern.md) - practice of coding, naming

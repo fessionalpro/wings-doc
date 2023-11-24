@@ -8,31 +8,11 @@ category:
 
 # 8B.小任务属性
 
-## 8B.1.spring-wings-enabled-79.properties
+## 8B.1.wings-tinytask-exec-79.properties
 
-### spring.wings.tiny.task.enabled.autoconf
-
-`Boolean`=`true`，是否启动自动配置
-
-### spring.wings.tiny.task.enabled.autorun
-
-`Boolean`=`true`，是否允许自动注册TinyTask.Auto
-
-### spring.wings.tiny.task.enabled.dryrun
+### wings.tiny.task.exec.dryrun
 
 `Boolean`=`false`，是否干跑，仅记录日志不真正执行任务
-
-### spring.wings.tiny.task.enabled.controller-conf
-
-`Boolean`=`true`，是否开启 TaskConfController
-
-### spring.wings.tiny.task.enabled.controller-exec
-
-`Boolean`=`true`，是否开启 TaskExecController
-
-### spring.wings.tiny.task.enabled.controller-list
-
-`Boolean`=`true`，是否开启 TaskListController
 
 ## 8B.2.wings-flywave-fit-79.properties
 

@@ -99,7 +99,7 @@ The jOOQ template parser behaves according to the following rules:
 
 禁用jooq没有任何影响，不影响flywave，lightid，enum, i18n的使用。
 
-运行时禁用，设置spring.wings 开关，`spring.wings.faceless.jooq.enabled.module=false`
+运行时禁用，设置 `wings.enabled.pro.fessional.wings.faceless.spring.conf.FacelessJooqAutoConfiguration=false`
 但如果有jooq自动生成的代码，是带有`@Repository`，需要禁止spring注入。
 
 ```java

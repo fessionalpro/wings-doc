@@ -66,11 +66,7 @@ Apache ServiceComb [官方文档](https://servicecomb.apache.org/references/java
 
 `List<String>`=`auth9-provider` 提供者默认处理链
 
-## 5D.2.spring-wings-enabled-79.properties
-
-### spring.wings.batrider.enabled.autoconf
-
-`Boolean`=`true`，是否启动自动配置
+## 5D.2.wings-enabled-79.properties
 
 ## 5D.3.wings-servicecomb-79.properties
 

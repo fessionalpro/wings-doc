@@ -10,25 +10,20 @@ category:
 
 工程配置，如maven，properties，spring等设置项。
 
-## 0E.01.哪些参数是必须打开的
+## 0E.01.有哪些开关属性
 
 ```bash
-# 找到所有开关文件
-find . -name 'spring-wings-enabled.properties' \
-| egrep -v -E 'target/|example/' 
+## 找到所有开关配置
+find . -name 'wings-enabled*.properties' \
+| egrep -v -E 'target/|example/|-test/'
 
-./slardar/src/main/resources/wings-conf/spring-wings-enabled.properties
-./faceless/src/main/resources/wings-conf/spring-wings-enabled.properties
-./silencer/src/main/resources/wings-conf/spring-wings-enabled.properties
+## 找到所有开关Java
+find . -name '*EnabledProp.java' \
+| egrep -v -E 'example/'
 
-# 找到所有false的开关
-find . -name 'spring-wings-enabled.properties' \
-| egrep -v -E 'target/|example/' \
-| xargs grep 'false'
-
-# 以下2个需要在flywave和enum时开启
-spring.wings.faceless.flywave.enabled.module=false
-spring.wings.faceless.enabled.enumi18n=false
+## 找到所有限定属性
+find . -name 'additional-spring-configuration-metadata.json' \
+| egrep -v -E 'target/|example/'
 ```
 
 ## 0E.02.调整springboot版本和依赖

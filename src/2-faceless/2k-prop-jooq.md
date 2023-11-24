@@ -10,35 +10,31 @@ category:
 
 Properties about jooq.
 
-## 2K.1.spring-wings-enabled-79.properties
+## 2K.1.wings-jooq-conf-79.properties
 
 The default switch for Jooq is,
 
-### spring.wings.faceless.jooq.enabled.module
-
-`Boolean`=`true`, whether to enable jooq config.
-
-### spring.wings.faceless.jooq.enabled.auto-qualify
+### wings.faceless.jooq.conf.auto-qualify
 
 `Boolean`=`true`, whether to enable jooq auto qualify.
 
-### spring.wings.faceless.jooq.enabled.batch-mysql
+### wings.faceless.jooq.conf.batch-mysql
 
 `Boolean`=`true`, whether to use efficient mysql syntax when performing bulk inserts via Dao.
 
-### spring.wings.faceless.jooq.enabled.converter
+### wings.faceless.jooq.conf.converter
 
 `Boolean`=`false`, whether to inject global converters, recommended in Table.
 
-### spring.wings.faceless.jooq.enabled.journal-delete
+### wings.faceless.jooq.conf.journal-delete
 
 `Boolean`=`false`, when deleting with commit_id, whether to update first and then delete.
 
-### spring.wings.faceless.jooq.enabled.listen-table-cud
+### wings.faceless.jooq.conf.listen-table-cud
 
 `Boolean`=`true`, whether to listen to table's create/update/delete.
 
-### spring.wings.faceless.jooq.enabled.render-group-concat
+### wings.faceless.jooq.conf.render-group-concat
 
 `Boolean`=`false`, whether the jOOQ `GROUP_CONCAT` function should be overflow-protected by setting
 the `@@group_concat_max_len` session variable in MySQL style database
@@ -52,13 +48,13 @@ query containing `GROUP_CONCAT`. This flag can be used to opt out of this.
 * <https://blog.jooq.org/mysqls-allowmultiqueries-flag-with-jdbc-and-jooq/>
 * <https://www.jooq.org/doc/3.17/manual/sql-building/dsl-context/custom-settings/settings-group-concat/>
 
-### spring.wings.faceless.jooq.enabled.render-catalog
+### wings.faceless.jooq.conf.render-catalog
 
 `Boolean`=`false`, whether any catalog name should be rendered at all.
 Use this for single-catalog environments, or when all objects are made
 available using synonyms
 
-### spring.wings.faceless.jooq.enabled.render-schema
+### wings.faceless.jooq.conf.render-schema
 
 `Boolean`=`false`, whether any schema name should be rendered at all.
 Setting this to false also implicitly sets "renderCatalog" to false.

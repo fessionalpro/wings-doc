@@ -57,21 +57,13 @@ spring-boot-starter-mail config, divided into account type and property type.
 
 `String`=`90000`, write timeout in mills, default 90s.
 
-## 8D.2.spring-wings-enabled-79.properties
+## 8D.2.wings-enabled-79.properties
 
-### spring.wings.tiny.mail.enabled.autoconf
-
-`Boolean`=`true`, whether to enable auto config.
-
-### spring.wings.tiny.mail.enabled.dryrun
-
-`Boolean`=`false`, whether to dry run, log only without actually send.
-
-### spring.wings.tiny.mail.enabled.controller-list
+### wings.enabled.tiny.mail.mvc-list
 
 `Boolean`=`true`, whether to enable MailListController
 
-### spring.wings.tiny.mail.enabled.controller-send
+### wings.enabled.tiny.mail.mvc-send
 
 `Boolean`=`true`, whether to enable MailSendController
 
@@ -135,6 +127,10 @@ wings.tiny.mail.config.gmail.properties.mail.smtp.starttls.enable=
 ```
 
 ## 8D.5.wings-tinymail-sender-79.properties
+
+### wings.tiny.mail.sender.dryrun
+
+`Boolean`=`false`, whether to dry run, log only without actually send.
 
 ### wings.tiny.mail.sender.biz-id
 

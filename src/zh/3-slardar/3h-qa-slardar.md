@@ -61,8 +61,7 @@ public ModelAndView resolveErrorView(HttpServletRequest request,
 ## 3H.05.启动时Warn UT026010
 
 在未配置websocket时，undertow使用默认buffer，出现以下警告。
-需要定制`websocketServletWebServerCustomizer`，或设置
-`spring.wings.slardar.enabled.undertow-ws=true`即可
+需要定制`websocketServletWebServerCustomizer`
 
 在`io.undertow.websockets.jsr.Bootstrap` 68行，`buffers == null` 时
 `UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used`

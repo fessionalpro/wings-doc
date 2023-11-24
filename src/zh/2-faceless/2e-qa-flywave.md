@@ -17,9 +17,9 @@ Flywave版本及日志表有关的话题
 
 ## 2E.02.找不到SchemaRevisionManager
 
-在2.2.6以后，默认关闭了`spring.wings.faceless.flywave.enabled.module=false`
+在2.2.6以后，默认关闭了`wings.enabled.faceless.flywave=false`
 初始化的时候需要打开，例如在test中增加临时打开
-`@SpringBootTest(properties = "spring.wings.faceless.flywave.enabled.module=true")`
+`@SpringBootTest(properties = "wings.enabled.faceless.flywave=true")`
 
 ## 2E.03.缺少branches的异常
 

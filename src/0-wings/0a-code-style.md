@@ -62,9 +62,9 @@ Recommand `properties`, as the indentation of `yml` is difficult to edit, copy, 
 
 * Group related properties in a separate `properties` file,
   split the large file  into smaller ones for easy management and versioning
-* `spring-wings-enabled.properties` is used for ConditionalOnProperty
-  - Use `spring.wings.**.enabled.*=true|false` as a standard format.
-  - When multi-module, the module itself is `spring.wings.**.enabled.module=true`
+* `wings-enabled.properties` is used for ConditionalOnProperty
+  - Use `wings.enabled.xxx=true|false` as a standard format.
+  - `xxx` can be java Class/Method naming rule.
 * `spring-*` is used for the spring official configuration
 * `wings-*` is used for the wings configuration,
   - Use the codename of project/module, e.g. `wings.slardar.*`

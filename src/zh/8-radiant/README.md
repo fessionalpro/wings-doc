@@ -16,7 +16,7 @@ category:
 创建数据表属于危险操作，默认关闭，依赖于faceless-flywave的RevisionFitness，
 
 * 引入faceless-flywave依赖，建议scope=test
-* 设置spring.wings.faceless.flywave.enabled.module=true
+* 设置wings.enabled.faceless.flywave=true
 * 在当前工程启动springboot app，建议scope=test
 
 ## 8.2.相关项目
