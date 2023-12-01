@@ -13,6 +13,7 @@ category:
 ## 1D.1.wings-auto-config.cnf
 
 Silencer的入口配置，定义了Silencer的自动加载的路径和模式。
+存在多个`wings-auto-config*.cnf`时，按ascii排序，取最后。
 
 ### wings.boot.more
 
@@ -42,33 +43,41 @@ Silencer的入口配置，定义了Silencer的自动加载的路径和模式。
 
 `logback`仅file-appender的默认配置。
 
-## 1D.3.spring-wings-enabled-79.properties
+## 1D.3.wings-enabled-79.properties
 
-Silencer功能的默认开关，如下
+开关Silencer的功能。
 
-### spring.wings.silencer.enabled.autoconf
+### wings.enabled.silencer.autoconf
 
-`Boolean`=`true`，是否启动自动配置
+`Boolean`=`true`，是否启动自动配置 `wings-conf` 和 `wings-i18n`
 
-### spring.wings.silencer.enabled.verbose
+### wings.enabled.silencer.verbose
 
 `Boolean`=`false`，是否显示wings的conditional信息
 
-### spring.wings.silencer.enabled.message
+### wings.enabled.silencer.scanner
 
-`Boolean`=`true`，是否自动加载`/wings-i18n/`
+`Boolean`=`false`，是否自动扫描`**/spring/bean/**/*.class`，在ApplicationPreparedEvent时触发，在`@AutoConfiguration`之前
 
-### spring.wings.silencer.enabled.scanner
+### wings.enabled.silencer.audit-prop
 
-`Boolean`=`false`，是否自动载所有classpath下的`**/spring/bean/**`（在@AutoConfiguration之前）
+`Boolean`=`false`，是否审计属性文件和级联关系
 
-### spring.wings.silencer.enabled.auto-log
+### wings.enabled.silencer.mute-console
 
-`Boolean`=`true`，是否在有log-file时，自动切换console的日志级别
+`Boolean`=`true`, 是否在有file存在是，静默控制台日志
 
-### spring.wings.silencer.enabled.encrypt
+### wings.enabled.silencer.tweak-clock
 
-`Boolean`=`true`，是否在自动配置加密
+`Boolean`=`true`, 是否支持全局或线程的时钟调整
+
+### wings.enabled.silencer.tweak-logback
+
+`Boolean`=`true`, 是否支持全局或线程的logback调整
+
+### wings.enabled.silencer.tweak-stack
+
+`Boolean`=`true`, 是否支持全局或线程的CodeException栈调整
 
 ## 1D.4.spring-logging-79.properties
 

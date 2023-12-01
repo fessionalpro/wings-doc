@@ -10,148 +10,76 @@ category:
 
 Properties of loing and authn/authz in Warlock.
 
-## 4D.1.spring-wings-enabled-77.properties
+## 4D.1.wings-enabled-77.properties
 
-override the following properties,
+override the simple implementation
 
-* spring.wings.faceless.enabled.enumi18n=true
-* spring.wings.faceless.flywave.enabled.module=true
+* wings.enabled.faceless.simple-journal=false
+* wings.enabled.faceless.simple-flakeid=false
 
-### spring.wings.warlock.enabled.autoconf
-
-`Boolean`=`true`, whether to enable auto config.
-
-### spring.wings.warlock.enabled.security-auto
-
-`Boolean`=`true`, whether to support "warlock security web and http".
-
-### spring.wings.warlock.enabled.security-web-autos
-
-`Boolean`=`true`, whether to enable Web auto config, eg. firewall, debug, etc.
-
-### spring.wings.warlock.enabled.security-http-bind
-
-`Boolean`=`true`, whether to support "warlock security http wing bind".
-
-### spring.wings.warlock.enabled.security-http-auth
-
-`Boolean`=`true`, whether to support "warlock security http wing auth".
-
-### spring.wings.warlock.enabled.security-http-base
-
-`Boolean`=`true`, whether to support "warlock security http base auth".
-
-### spring.wings.warlock.enabled.security-http-auto
-
-`Boolean`=`true`, whether to support "warlock security http auto".
-
-### spring.wings.warlock.enabled.security-http-chain
-
-`Boolean`=`true`, whether to support SecurityFilterChain.
-
-### spring.wings.warlock.enabled.security-bean
-
-`Boolean`=`true`, whether to support warlock security Bean.
-
-### spring.wings.warlock.enabled.global-lock
-
-`Boolean`=`true`, whether to inject wings global lock.
-
-### spring.wings.warlock.enabled.jooq-autogen
-
-`Boolean`=`true`, whether to inject jooq dao.
-
-### spring.wings.warlock.enabled.combo-list-all-login-page
-
-`Boolean`=`true`, whether to inject ListAllLoginPageCombo.
-
-### spring.wings.warlock.enabled.combo-nonce-user-details
-
-`Boolean`=`true`, whether to inject NonceUserDetailsCombo.
-
-### spring.wings.warlock.enabled.just-auth
-
-`Boolean`=`true`, whether to support just auth.
-
-### spring.wings.warlock.enabled.combo-just-auth-login-page
-
-`Boolean`=`true`, whether to inject JustAuthLoginPageCombo.
-
-### spring.wings.warlock.enabled.combo-just-auth-user-details
-
-`Boolean`=`true`, whether to inject JustAuthUserDetailsCombo.
-
-### spring.wings.warlock.enabled.combo-just-auth-autoreg
-
-`Boolean`=`true`, whether to inject JustAuthUserAuthnAutoReg.
-
-### spring.wings.warlock.enabled.zone-perm-check
-
-`Boolean`=`false`, whether to support AuthZonePermChecker.
-
-### spring.wings.warlock.enabled.app-perm-check
-
-`Boolean`=`true`, whether to support AuthAppPermChecker.
-
-### spring.wings.warlock.enabled.default-exception-handler
-
-`Boolean`=`true`, whether to inject DefaultExceptionResolver.
-
-### spring.wings.warlock.enabled.bind-exception-advice
-
-`Boolean`=`true`, whether to inject BindExceptionAdvice.
-
-### spring.wings.warlock.enabled.check-database
-
-`Boolean`=`true`, whether to check mysql and local timezone compatibility.
-
-### spring.wings.warlock.enabled.swagger-rule
-
-`Boolean`=`true`, whether to support global inject AlternateTypeRule into Docket.
-
-### spring.wings.warlock.enabled.swagger-jsr310
-
-`Boolean`=`true`, whether to support global inject "java.time.Local*" into Docket.
-
-### spring.wings.warlock.enabled.table-change
-
-`Boolean`=`true`, whether to enable table CUD listener.
-
-### spring.wings.warlock.enabled.controller-auth
-
-`Boolean`=`true`, whether to enable the default auth Controller.
-
-### spring.wings.warlock.enabled.controller-proc
-
-`Boolean`=`true`, whether to enable document-only login/out proc that processed by filter.
-
-### spring.wings.warlock.enabled.controller-user
-
-`Boolean`=`true`, whether to enable the default user Controller.
-
-### spring.wings.warlock.enabled.controller-mock
-
-`Boolean`=`true`, whether to enable the default mock Controller.
-
-### spring.wings.warlock.enabled.controller-test
-
-`Boolean`=`true`, whether to enable the default test Controller.
-
-### spring.wings.warlock.enabled.controller-tweak
-
-`Boolean`=`false`, whether to enable the default TweakController.
-
-### spring.wings.warlock.enabled.controller-oauth
-
-`Boolean`=`true`, whether to enable the default OauthController.
-
-### spring.wings.warlock.enabled.watching
+### wings.enabled.warlock.watching
 
 `Boolean`=`false`, whether to enable timing watching and analysis.
 
-### spring.wings.warlock.enabled.uniauth
+### wings.enabled.warlock.sec-web-auto
 
-`Boolean`=`false`, whether to support wings union login.
+`Boolean`=`true`, whether to enable Web auto config, eg. firewall, debug, etc.
+
+### wings.enabled.warlock.sec-http-bind
+
+`Boolean`=`true`, whether to support "warlock security http wing bind".
+
+### wings.enabled.warlock.sec-http-auth
+
+`Boolean`=`true`, whether to support "warlock security http wing auth".
+
+### wings.enabled.warlock.sec-http-base
+
+`Boolean`=`true`, whether to support "warlock security http base auth".
+
+### wings.enabled.warlock.sec-http-auto
+
+`Boolean`=`true`, whether to support "warlock security http auto".
+
+### wings.enabled.warlock.sec-http-chain
+
+`Boolean`=`true`, whether to support SecurityFilterChain.
+
+### wings.enabled.warlock.dummy-service
+
+`Boolean`=`false`, whether to enable security dummy service.
+
+### wings.enabled.warlock.mvc-auth
+
+`Boolean`=`true`, whether to enable the default auth Controller.
+
+### wings.enabled.warlock.mvc-login
+
+`Boolean`=`true`, whether to enable the default login page Controller.
+
+### wings.enabled.warlock.mvc-proc
+
+`Boolean`=`true`, whether to enable document-only login/out proc that processed by filter.
+
+### wings.enabled.warlock.mvc-user
+
+`Boolean`=`true`, whether to enable the default user Controller.
+
+### wings.enabled.warlock.mvc-mock
+
+`Boolean`=`true`, whether to enable the default mock Controller.
+
+### wings.enabled.warlock.mvc-test
+
+`Boolean`=`true`, whether to enable the default test Controller.
+
+### wings.enabled.warlock.mvc-tweak
+
+`Boolean`=`false`, whether to enable the default TweakController.
+
+### wings.enabled.warlock.mvc-oauth
+
+`Boolean`=`true`, whether to enable the default OauthController.
 
 ## 4D.2.wings-flywave-fit-79.properties
 

@@ -9,33 +9,31 @@ category:
 
 # 8B.TinyTask Properties
 
-## 8B.1.spring-wings-enabled-79.properties
+## 8B.1.wings-enabled-79.properties
 
-### spring.wings.tiny.task.enabled.autoconf
-
-`Boolean`=`true`, whether to enable auto config.
-
-### spring.wings.tiny.task.enabled.autorun
+### wings.enabled.tiny.task.autorun
 
 `Boolean`=`true`, whether to auto register TinyTask.Auto.
 
-### spring.wings.tiny.task.enabled.dryrun
-
-`Boolean`=`false`, whether to dry run, log only without realy exec the task.
-
-### spring.wings.tiny.task.enabled.controller-conf
+### wings.enabled.tiny.task.mvc-conf
 
 `Boolean`=`true`, whether to enable TaskConfController.
 
-### spring.wings.tiny.task.enabled.controller-exec
+### wings.enabled.tiny.task.mvc-exec
 
 `Boolean`=`true`, whether to enable TaskExecController.
 
-### spring.wings.tiny.task.enabled.controller-list
+### wings.enabled.tiny.task.mvc-list
 
 `Boolean`=`true`, whether to enable TaskListController.
 
-## 8B.2.wings-flywave-fit-79.properties
+## 8B.2.wings-tinytask-exec-79.properties
+
+### wings.tiny.task.exec.dryrun
+
+`Boolean`=`false`, whether to dry run, log only without realy exec the task.
+
+## 8B.3.wings-flywave-fit-79.properties
 
 ### wings.faceless.flywave.fit.tiny-task
 
@@ -45,7 +43,7 @@ Database dependency, after import this lib, the script will be auto executed.
 * `revi`=`2020_1026_01L`
 * `lost`=`EXEC`
 
-## 8B.3.wings-tinytask-beat-79.properties
+## 8B.4.wings-tinytask-beat-79.properties
 
 TinyTask's own tasks, clearing logs and healthy heartbeat.
 
@@ -60,7 +58,7 @@ Check health status every 300 seconds of idle time.
 * `timing-idle`=`300`
 * `notice-when`=`tail,done`
 
-## 8B.4.wings-tinytask-define-79.properties
+## 8B.5.wings-tinytask-define-79.properties
 
 `Default` config of task `wings.tiny.task.define[default]`
 
@@ -191,7 +189,7 @@ successful executions, disable by default, not use Default config.
 `Integer`=`60`, how many days to save the execution results, default 60 days,
 0 means not save, use Default configuration if null.
 
-## 8B.5.wings-tinytask-urlmap-79.properties
+## 8B.6.wings-tinytask-urlmap-79.properties
 
 URL of builtin features.
 

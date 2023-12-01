@@ -10,27 +10,7 @@ category:
 
 有关数据库，数据操作，Db层面I18n的基本属性。
 
-## 2I.1.spring-wings-enabled-79.properties
-
-Faceless功能的默认开关，如下
-
-### spring.wings.faceless.enabled.autoconf
-
-`Boolean`=`true`，是否启动自动配置
-
-### spring.wings.faceless.enabled.lightid
-
-`Boolean`=`true`，是否注入lingthid
-
-### spring.wings.faceless.enabled.journal
-
-`Boolean`=`true`，是否注入journal
-
-### spring.wings.faceless.enabled.enumi18n
-
-`Boolean`=`false`，是否注入StandardI18nService
-
-## 2I.2.spring-hikari-79.properties
+## 2I.1.spring-hikari-79.properties
 
 为spring.datasource.hikari提供以下配置
 
@@ -42,7 +22,7 @@ Faceless功能的默认开关，如下
 * `spring.datasource.hikari.max-lifetime`=`1800000`
 * `spring.datasource.hikari.leak-detection-threshold`=`15000`
 
-## 2I.3.wings-flywave-fit-79.properties
+## 2I.2.wings-flywave-fit-79.properties
 
 通过flywave对faceless-id-log依赖的做数据库版本检查。
 
@@ -62,7 +42,7 @@ sql扫描pattern，逗号分隔。PathMatchingResourcePatternResolver格式
 
 补漏行为，任一指定revi未应用时，只升级不能降级，避免危险的删除动作
 
-## 2I.4.wings-lightid-79.properties
+## 2I.3.wings-lightid-79.properties
 
 对分布式主键lightid的设置。默认事务级别，Propagation.REQUIRES_NEW
 

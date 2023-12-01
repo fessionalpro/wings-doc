@@ -192,7 +192,7 @@ In springboot 2.x, use http  3.x by default, and just-auth needs 4.x, so you nee
 
 ## 3G.9.OverloadFilter
 
-OverloadFilter can limit request concurrency, default `spring.wings.slardar.enabled.overload=false`
+OverloadFilter can limit request concurrency, default `false`
 
 * Set `max concurrent requests` automatically or manually, and perform `fallback` when exceeded.
 * Log slow response URIs and running status without affecting performance.

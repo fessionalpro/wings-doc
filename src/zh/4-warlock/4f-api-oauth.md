@@ -317,7 +317,7 @@ response文件时，不对body直接签名，增加以下步骤外，和Json部�
 * SimpleOauthController - 发行及回收ticket
 * wings.warlock.urlmap.oauth-# - url配置
 * wings-warlock-ticket-77.properties - ticket属性设置
-* spring.wings.warlock.enabled.controller-oauth - 模块开关
+* wings.enabled.warlock.mvc-oauth - 模块开关
 
 使用此功能，需要手动自定client配置，或自行实现其他加载机制，如数据库。
 

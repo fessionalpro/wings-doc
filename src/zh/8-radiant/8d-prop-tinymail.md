@@ -56,24 +56,6 @@ spring-boot-starter-mail的配置，分为账号类和属性类
 
 `String`=`90000`，写超时毫秒数，默认90秒
 
-## 8D.2.spring-wings-enabled-79.properties
-
-### spring.wings.tiny.mail.enabled.autoconf
-
-`Boolean`=`true`，是否启动自动配置
-
-### spring.wings.tiny.mail.enabled.dryrun
-
-`Boolean`=`false`，是否干跑，仅记录日志不真正执行任务
-
-### spring.wings.tiny.mail.enabled.controller-list
-
-`Boolean`=`true`，是否开启 MailListController
-
-### spring.wings.tiny.mail.enabled.controller-send
-
-`Boolean`=`true`，是否开启 MailSendController
-
 ## 8D.3.wings-flywave-fit-79.properties
 
 ### wings.faceless.flywave.fit.tiny-mail
@@ -133,6 +115,10 @@ wings.tiny.mail.config.gmail.properties.mail.smtp.starttls.enable=
 ```
 
 ## 8D.5.wings-tinymail-sender-79.properties
+
+### wings.tiny.mail.sender.dryrun
+
+`Boolean`=`false`，是否干跑，仅记录日志不真正执行任务
 
 ### wings.tiny.mail.sender.biz-id
 

@@ -10,27 +10,7 @@ category:
 
 Basic properties about database, data manipulation, Db level I18n.
 
-## 2I.1.spring-wings-enabled-79.properties
-
-The default switch for Faceless is,
-
-### spring.wings.faceless.enabled.autoconf
-
-`Boolean`=`true`, Whether to start auto-configuration
-
-### spring.wings.faceless.enabled.lightid
-
-`Boolean`=`true`, Whether to inject lingthid
-
-### spring.wings.faceless.enabled.journal
-
-`Boolean`=`true`, Whether to inject journal
-
-### spring.wings.faceless.enabled.enumi18n
-
-`Boolean`=`false`, Whether to inject StandardI18nService
-
-## 2I.2.spring-hikari-79.properties
+## 2I.1.spring-hikari-79.properties
 
 Properties of spring.datasource.hikari as follows,
 
@@ -42,7 +22,7 @@ Properties of spring.datasource.hikari as follows,
 * `spring.datasource.hikari.max-lifetime`=`1800000`
 * `spring.datasource.hikari.leak-detection-threshold`=`15000`
 
-## 2I.3.wings-flywave-fit-79.properties
+## 2I.2.wings-flywave-fit-79.properties
 
 Do database version checking for faceless-id-log dependencies via flywave.
 
@@ -62,7 +42,7 @@ sql scan pattern, comma separated. PathMatchingResourcePatternResolver format
 
 Post check, if the specified revi is not applied, only upgrade can be performed, not downgrade to avoid dangerous delete.
 
-## 2I.4.wings-lightid-79.properties
+## 2I.3.wings-lightid-79.properties
 
 The setting for the distributed PK- lightid. default transaction is Propagation.REQUIRES_NEW
 

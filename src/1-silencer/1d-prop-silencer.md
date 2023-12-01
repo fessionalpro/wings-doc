@@ -13,6 +13,7 @@ Properties about autoloading, default tools and behavior.
 ## 1D.1.wings-auto-config.cnf
 
 Silencer's entry configuration, which defines the path and mode of Silencer's autoload.
+when exists multiple `wings-auto-config*.cnf`, sort by ascii, take the last one.
 
 ### wings.boot.more
 
@@ -44,33 +45,42 @@ Filename of the promotion config
 
 `logback` default configuration for file-appender only.
 
-## 1D.3.spring-wings-enabled-79.properties
+## 1D.3.wings-enabled-79.properties
 
-The default switch for toggling the Silencer feature, as follows
+toggling the Silencer feature.
 
-### spring.wings.silencer.enabled.autoconf
+### wings.enabled.silencer.autoconf
 
-`Boolean`=`true`, Whether to automatically configure
+`Boolean`=`true`, Whether to automatically configure `wings-conf` and `wings-i18n`
 
-### spring.wings.silencer.enabled.verbose
+### wings.enabled.silencer.verbose
 
 `Boolean`=`false`, Whether to display the conditional information of wings
 
-### spring.wings.silencer.enabled.message
+### wings.enabled.silencer.scanner
 
-`Boolean`=`true`, Whether to automatically load /wings-i18n/ messages
+`Boolean`=`false`, Whether to scan component from `**/spring/bean/**/*.class` on
+ApplicationPreparedEvent before `@AutoConfiguration`
 
-### spring.wings.silencer.enabled.scanner
+### wings.enabled.silencer.audit-prop
 
-`Boolean`=`false`, Whether to automatically load all classpaths `**/spring/bean/**` (before `@AutoConfiguration`)
+`Boolean`=`false`, Whether to audit the file and cascading relationship of properties key/value
 
-### spring.wings.silencer.enabled.auto-log
+### wings.enabled.silencer.mute-console
 
 `Boolean`=`true`, Whether to automatically switch the console log level when a log file is available
 
-### spring.wings.silencer.enabled.encrypt
+### wings.enabled.silencer.tweak-clock
 
-`Boolean`=`true`, Whether to automatically config mirana
+`Boolean`=`true`, Whether to tweak the clock in global or thread
+
+### wings.enabled.silencer.tweak-logback
+
+`Boolean`=`true`, Whether to tweak log level of logback in global or thread
+
+### wings.enabled.silencer.tweak-stack
+
+`Boolean`=`true`, Whether to tweak the CodeException stack in global or thread
 
 ## 1D.4.spring-logging-79.properties
 
@@ -167,7 +177,7 @@ Tweaking of the Application
 
 ### wings.silencer.tweak.code-stack
 
-`Boolean`=`false`, Whether the Global of CodeException has a stack. default false
+`Boolean`=`false`, Whether the Global of CodeException has a stack.
 
 ### wings.silencer.tweak.clock-offset
 

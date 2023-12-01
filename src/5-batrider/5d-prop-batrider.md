@@ -68,11 +68,7 @@ must be configured as the same as the web container.
 
 `List<String>`=`auth9-provider`, default handler chain of Provider.
 
-## 5D.2.spring-wings-enabled-79.properties
-
-### spring.wings.batrider.enabled.autoconf
-
-`Boolean`=`true`, whether to enable auto config.
+## 5D.2.wings-enabled-79.properties
 
 ## 5D.3.wings-servicecomb-79.properties
 

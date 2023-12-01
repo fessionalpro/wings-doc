@@ -17,7 +17,7 @@ Each `*.properties` has a strong type key mapping`*Prop.java`.
 
 In Silencer, the default config naming rules are as follows.
 
-* `wings-auto-config.cnf` - Silencer config
+* `wings-auto-config*.cnf` - Silencer config
 * `wings-conf-block-list.cnf` - Block list of config
 * `wings-prop-promotion.cnf` - Promote config items to system variables
 * `spring-*.properties` - Spring config
@@ -50,3 +50,352 @@ The config value in the properties is usually a single line, and the multiple li
 * [Warlock Properties](../4-warlock/4d-prop-warlock.md) - Warlock login autnn config
 * [TinyTask Properties](../8-radiant/8b-prop-tinytask.md) - TinyTask config
 * [TinyMail Properties](../8-radiant/8d-prop-tinymail.md) - TinyMail config
+
+## 0H.4.wings.enabled.pro.fessional.wings
+
+`@ConditionalWingsEnabled` are grouped by module, orderd by ascii.
+
+* `empty` means default true
+* `(false)` means default false
+* `= key` means `absolute-key`
+
+### .silencer.spring
+
+* .conf.SilencerAutoConfiguration
+* .bean.SilencerConfiguration
+  - .applicationInspectRunner
+  - .messageSourceHelper
+* .bean.SilencerRunnerConfiguration
+  - $ReadyEvent - on ApplicationReadyEvent
+  - $StartedEvent - on ApplicationStartedEvent
+* .conf.SilencerCurseAutoConfiguration
+* .bean.SilencerCurseConfiguration
+  - .auditPropRunner (false) = `wings.enabled.silencer.audit-prop`
+  - .muteConsoleRunner = `wings.enabled.silencer.mute-console`
+  - .runtimeMode
+* .bean.SilencerEncryptConfiguration
+  - .aes256
+  - .crc8Long
+  - .leapCode
+  - .secretProvider
+* .bean.SilencerTweakConfiguration
+  - $ClockWired =  `wings.enabled.silencer.tweak-clock`
+  - $LogbackWired = `wings.enabled.silencer.tweak-logback`
+  - $StackWired = `wings.enabled.silencer.tweak-stack`
+
+### .faceless.spring
+
+* .conf.FacelessAutoConfiguration
+* .bean.FacelessConfiguration
+  - .commitJournalModify
+  - .dataSourceContext
+  - .flakeIdService = `wings.enabled.faceless.simple-flakeid`
+  - .journalService = `wings.enabled.faceless.simple-journal`
+  - .standardI18nService
+* .bean.FacelessLightIdConfiguration
+  - $LayoutWired - init LightIdLayout
+  - .blockProvider
+  - .dbLightIdProvider
+  - .jvmLightIdProvider
+  - .lightIdLoader
+  - .lightIdService
+  - .lightSequenceModify
+  - .lightSequenceSelect
+* .conf.FlywaveAutoConfiguration (false)=`wings.enabled.faceless.flywave`
+* .bean.FlywaveConfiguration
+  - .revisionCheckerRunner = `wings.faceless.flywave.checker`
+  - .schemaDefinitionLoader
+  - .schemaFulldumpManager
+  - .schemaJournalManager
+  - .schemaShardingManager
+  - .schemaVersionManger
+  - .sqlSegmentProcessor
+  - .sqlStatementParser
+* .conf.FacelessJooqAutoConfiguration
+* .bean.FacelessJooqConfiguration
+  - .jooqAutoQualifyFieldListener = `wings.faceless.jooq.conf.auto-qualify`
+  - .jooqWingsConfigCustomizer
+* .bean.FacelessJooqCudConfiguration
+  - $CudListenerBean = `wings.faceless.jooq.conf.listen-cud`
+  - $JournalDiffWired
+  - .jooqJournalDeleteListener = `wings.faceless.jooq.conf.journal-delete`
+* .conf.FacelessShardAutoConfiguration
+* .bean.FacelessShardingSphereConfiguration
+  - .shardingDataSourceContext
+  - .writeRouteOnlyAround
+
+### .slardar.spring
+
+* .conf.SlardarAsyncAutoConfiguration
+* .bean.SlardarAsyncConfiguration
+  - .applicationTaskExecutor
+  - .slardarHeavyScheduler
+  - .taskExecutor
+  - .taskScheduler
+  - .taskSchedulerHelper
+* .conf.SlardarCacheAutoConfiguration
+* .bean.SlardarCacheConfiguration
+  - $CacheAop
+  - $CacheMgr
+  - .cache2kCacheManager
+* .conf.SlardarAutoConfiguration
+* .bean.SlardarDateTimeConfiguration
+  - .localDateStringConverter
+  - .localDateTimeStringConverter
+  - .localTimeStringConverter
+  - .offsetDateTimeStringConverter
+  - .stringLocalDateConverter
+  - .stringLocalDateTimeConverter
+  - .stringLocalTimeConverter
+  - .stringOffsetDateTimeConverter
+  - .stringZonedDateTimeConverter
+  - .zonedDateTimeStringConverter
+* .bean.SlardarDingNoticeConfiguration
+  - .dingTalkNotice
+* .bean.SlardarDoubleKillConfiguration = `wings.enabled.slardar.double-kill`
+  - .doubleKillAround
+* .bean.SlardarEventConfiguration
+  - .attributeEventListener
+  - .eventPublishHelperRunner
+  - .slardarEventExecutor
+* .bean.SlardarI18nConfiguration
+  - .autoDtoHelperRunner
+  - .localValidatorFactoryBean
+* .bean.SlardarJacksonConfiguration
+  - .emptyValuePropertyFilter
+  - .i18nResultPropertyFilter
+* .bean.SlardarMonitorConfiguration
+  - $LogMonitor = `wings.enabled.slardar.monitor-log`
+  - .dingTalkReport
+  - .jvmMonitor = `wings.enabled.slardar.monitor-jvm`
+  - .monitorTask
+* .bean.SlardarOkhttpConfiguration
+  - .okhttpClient
+  - .okhttpClientBuilder
+  - .okhttpConnectionPool
+  - .okhttpHelperRunner
+  - .okhttpHostCookieJar
+  - .okhttpRedirectNopInterceptor
+* .bean.SlardarTweakConfiguration
+  - .okhttpTweakLogInterceptor
+  - .tweakEventListener
+* .conf.SlardarHazelAutoConfiguration
+* .bean.HazelcastConfigConfiguration
+  - .wingsHazelcastAloneCustomizer (false) = `wings.enabled.slardar.hazelcast-standalone`
+  - .wingsHazelcastCacheCustomizer
+* .bean.HazelcastServiceConfiguration
+  - $FlakeIdServiceBean
+  - $GlobalPublisherWired
+  - .hazelcastCacheManager
+  - .hazelcastGlobalLock
+  - .hzLightIdProvider
+* .conf.SlardarHazelSessionAutoConfiguration
+* .bean.SlardarHazelSessionConfiguration
+  - .sessionRegistry
+  - .wingsSessionHelper
+* .conf.SlardarBootAdminAutoConfiguration
+* .bean.SlardarBootAdminClientConfiguration
+  - .registrationClient
+* .bean.SlardarBootAdminServerConfiguration
+  - .basicAuthHttpHeadersProvider
+  - .bootAdminMappingOrderPostProcessor
+  - .dingTalkNotifier
+* .conf.SlardarSprintAutoConfiguration
+* .bean.SlardarActuatorConfiguration
+  - .slardarCacheManageEndpoint
+* .bean.SlardarSecurityConfiguration
+  - .httpSessionEventPublisher
+  - .localeContextHolderTerminalContextListener
+  - .passsaltEncoder
+  - .passwordEncoder
+  - .terminalContextListenerRunner
+  - .wingsSecBeanInitConfigurer
+* .conf.SlardarWebCnfAutoConfiguration
+* .bean.SlardarLocaleConfiguration
+  - .localeResolver
+* .bean.SlardarOkhttpWebConfiguration
+  - .okhttpRestTemplate
+  - .restTemplateBuilder
+* .conf.SlardarWebFunAutoConfiguration
+* .bean.SlardarCookieConfiguration (false) = `wings.enabled.slardar.cookie`
+  - .wingsCookieFilter
+  - .wingsCookieInterceptor
+* .bean.SlardarDebounceConfiguration = `wings.enabled.slardar.debounce`
+  - .debounceInterceptor
+* .bean.SlardarDomainExtendConfiguration (false) = `wings.enabled.slardar.domainx`
+  - .wingsDomainExtendFilter
+* .bean.SlardarDoubleKillWebConfiguration = `wings.enabled.slardar.double-kill`
+  - .doubleKillExceptionResolver
+* .bean.SlardarFirstBloodConfiguration (false) = `wings.enabled.slardar.first-blood`
+  - .firstBloodImageHandler = `wings.enabled.slardar.first-blood-image`
+  - .firstBloodInterceptor
+* .bean.SlardarJacksonWebConfiguration
+  - .customizeJacksonDatetime = `wings.enabled.slardar.jackson-datetime`
+  - .customizeJacksonEmpty = `wings.enabled.slardar.jackson-empty`
+  - .customizeJacksonNumber = `wings.enabled.slardar.jackson-number`
+  - .customizeJacksonResource = `wings.enabled.slardar.jackson-resource`
+  - .customizeJacksonResult = `wings.enabled.slardar.jackson-result`
+  - .jacksonCustomizerFilter
+  - .jacksonFilterProvider
+  - .jacksonHelperRunner
+* .bean.SlardarPageQueryConfiguration = `wings.enabled.slardar.pagequery`
+  - .pageQueryArgumentResolver
+* .bean.SlardarRemoteConfiguration
+  - .wingsRemoteResolver
+* .bean.SlardarReuseStreamConfiguration = `wings.enabled.slardar.restream`
+  - .wingsReuseStreamFilter
+* .bean.SlardarRighterConfiguration = `wings.enabled.slardar.righter`
+  - .righterExceptionResolver
+  - .righterInterceptor
+* .bean.SlardarSessionConfiguration = `wings.enabled.slardar.session`
+  - .httpSessionIdResolver
+  - .slardarCookieSerializerCustomizer
+* .bean.SlardarSwaggerConfiguration = `wings.enabled.slardar.swagger`
+  - .slardarOpenApiCustomizer
+* .bean.SlardarTerminalConfiguration = `wings.enabled.slardar.terminal`
+  - .remoteTerminalBuilder
+  - .securityTerminalBuilder
+  - .terminalInterceptor
+* .bean.SlardarUndertowConfiguration
+  - .ut026010Customizer
+* .bean.SlardarWebMvcConfiguration
+  - .mvcRequestMatcherBuilder
+* .monitor.viewer.LogViewer = `wings.slardar.monitor.view.enable`
+
+### .warlock.spring
+
+* .conf.WarlockAutoConfiguration
+* .bean.WarlockAutoRunConfiguration
+  - .databaseCheckerRunner
+  - .registerEnumUtilRunner
+* .bean.WarlockLockBeanConfiguration
+  - .databaseGlobalLock
+  - .jvmStaticGlobalLock
+* .bean.WarlockTableChangeConfiguration
+  - .tableChangePublisher
+  - .wingsTableCudHandler
+* .bean.WarlockWatchingConfiguration (false) = `wings.enabled.warlock.watching`
+  - .slowSqlJooqListener
+  - .watchingAround
+* .conf.WarlockAwesomeAutoConfiguration
+* .bean.WarlockAwesomeConfiguration
+  - $JooqDaoScan
+  - .registerRuntimeModeRunner
+  - .runtimeConfService
+* .conf.WarlockBondAutoConfiguration
+* .bean.WarlockBondBeanConfiguration
+  - autoRegisterCacheConst
+  - defaultDaoAuthnCombo
+  - warlockDangerService
+  - warlockGrantService
+  - warlockPermService
+  - warlockPermServiceCaching
+  - warlockRoleService
+  - warlockRoleServiceCaching
+  - warlockUserAuthnService
+  - warlockUserBasisService
+  - warlockUserLoginService
+* .conf.WarlockShadowAutoConfiguration
+* .bean.WarlockExceptionConfiguration
+  - .defaultExceptionResolver
+* .bean.WarlockJournalConfiguration
+  - .terminalJournalService
+* .bean.WarlockJustAuthConfiguration
+  - .authStateCache
+  - .justAuthRequestBuilder
+  - .justAuthRequestSuccessHandler
+* .bean.WarlockOauthTicketConfiguration
+  - .warlockOauthService
+  - .warlockTicketService
+* .bean.WarlockOtherBeanConfiguration
+  - $BindingErrorScan
+  - $MvcRestScan
+  - .righterSecretProvider
+* .bean.WarlockWatching2Configuration
+  - .slowResponseInterceptor
+* .conf.WarlockSecurityAutoConfiguration
+* .bean.WarlockSecurityBeanConfiguration
+  - accessDeniedHandler
+  - authAppPermChecker
+  - authenticationEventPublisher
+  - authStateBuilder
+  - authZonePermChecker
+  - comboWarlockAuthnService
+  - comboWarlockAuthzService
+  - comboWingsAuthCheckService
+  - defaultPermRoleCombo
+  - defaultUserAuthnAutoReg
+  - defaultUserDetailsCombo
+  - grantedAuthorityDefaults
+  - justAuthLoginPageCombo
+  - justAuthUserAuthnAutoReg
+  - justAuthUserDetailsCombo
+  - listAllLoginPageCombo
+  - loginFailureHandler
+  - loginFailureHandlerDefault
+  - loginSuccessHandler
+  - logoutSuccessHandler
+  - memoryTypedAuthzCombo
+  - memoryUserDetailsCombo
+  - nonceUserDetailsCombo
+  - warlockFailedLoginListener
+  - warlockPermNormalizer
+  - warlockSuccessLoginListener
+  - wingsAuthDetailsSource
+  - wingsAuthPageHandler
+  - wingsAuthTypeParser
+  - wingsUserDetailsService
+* .bean.WarlockSecurityConfConfiguration
+  - .securityFilterChain = `wings.enabled.warlock.sec-http-chain`
+  - .warlockSecurityAuthHttpConfigure = `wings.enabled.warlock.sec-http-auth`
+  - .warlockSecurityAutoHttpConfigure = `wings.enabled.warlock.sec-http-auto`
+  - .warlockSecurityBindHttpConfigure = `wings.enabled.warlock.sec-http-bind`
+  - .warlockSecurityHttpBaseConfigure = `wings.enabled.warlock.sec-http-base`
+  - .warlockWebCustomizer = `wings.enabled.warlock.sec-web-auto`
+* .bean.WarlockSecurityDummyConfiguration (false) = `wings.enabled.warlock.dummy-service`
+  - warlockGrantService
+  - warlockPermService
+  - warlockRoleService
+  - warlockUserAuthnService
+  - warlockUserBasisService
+  - warlockUserLoginService
+* .controller
+  - .admin.AdminTweakController = `wings.enabled.warlock.mvc-tweak`
+  - .auth.LoginPageController = `wings.enabled.warlock.mvc-login`
+  - .auth.LoginProcController = `wings.enabled.warlock.mvc-proc`
+  - .auth.SimpleOauthController = `wings.enabled.warlock.mvc-oauth`
+  - .mock.MockSampleController = `wings.enabled.warlock.mvc-mock`
+  - .test.TestEnvsController = `wings.enabled.warlock.mvc-test`
+  - .user.AuthedUserController = `wings.enabled.warlock.mvc-user`
+  - .admin.AdminAuthnController = `wings.enabled.warlock.mvc-auth`
+
+### .tiny.mail
+
+* .spring.conf.TinyMailAutoConfiguration
+* .spring.bean.TinyMailConfiguration
+  - $DaoServScan - scan `database` and `service`
+  - $MvcRestScan - scan `controller`
+  - .mailConfigProvider
+  - .mailNotice
+  - .mailSenderManager
+  - .mailSenderProvider
+* .controller.MailListController = `wings.enabled.tiny.mail.mvc-list`
+* .controller.MailSendController = `wings.enabled.tiny.mail.mvc-send`
+* .service.impl.TinyMailListServiceImpl
+* .service.impl.TinyMailServiceImpl
+
+### .tiny.task
+
+* .spring.conf.TinyTaskAutoConfiguration
+* .spring.bean.TinyTaskConfiguration
+  - $DaoServScan - scan `database` and `service`
+  - $MvcRestScan - scan `controller`
+  - .tinyTaskerAutoRunner = `wings.enabled.tiny.task.autorun`
+* .controller.TaskConfController = `wings.enabled.tiny.task.mvc-conf`
+* .controller.TaskExecController = `wings.enabled.tiny.task.mvc-exec`
+* .controller.TaskListController = `wings.enabled.tiny.task.mvc-list`
+* .service.impl.TinyTaskBeatServiceImpl
+* .service.impl.TinyTaskConfServiceImpl
+* .service.impl.TinyTaskExecServiceImpl
+* .service.impl.TinyTaskListServiceImpl
+* .service.impl.TinyTaskServiceImpl

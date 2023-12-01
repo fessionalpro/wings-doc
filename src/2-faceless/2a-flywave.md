@@ -149,7 +149,7 @@ without using sql annotation or parsing, and the manual way is recommended over 
 * Manually invoke `delete##` using the `JournalHelp` utility
 * Auto intercept `delete from ## where id=? and commit_id=?` style sql
 
-The auto intercept is disabled  by default in `spring.wings.faceless.jooq.enabled.journal-delete`.
+The auto intercept is disabled by default in `wings.faceless.jooq.conf.journal-delete`.
 This is because it violates the `static over dynamic, compile-time over run-time` team rule,
 and performance and limits are not well controlled.
 

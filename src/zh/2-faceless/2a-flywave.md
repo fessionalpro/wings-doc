@@ -127,7 +127,7 @@ sql的书写规则详见【数据库约定】章节。因云数据库的兼容�
 * 通过工具类`JournalHelp`，手动执行`delete##`
 * 自动对`delete from ## where id=? and commit_id=?`格式进行拦截
 
-自动拦截`spring.wings.faceless.jooq.enabled.journal-delete`默认关闭。
+自动拦截`wings.faceless.jooq.conf.journal-delete`默认关闭。
 因为违反`静态高于动态，编译时高于运行时`团队规则，且性能和限制不好控制。
 
 可设置session级变量`DISABLE_FLYWAVE`使trigger失效，如数据恢复等无trigger情况。

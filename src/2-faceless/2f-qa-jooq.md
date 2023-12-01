@@ -101,7 +101,7 @@ The jOOQ template parser behaves according to the following rules:
 
 Disabling jooq has no effect and does not affect the use of flywave, lightid, enum, i18n.
 
-To disable it at runtime, set `spring.wings.faceless.jooq.enabled.module=false`
+To disable it at runtime, set `wings.enabled.pro.fessional.wings.faceless.spring.conf.FacelessJooqAutoConfiguration=false`
 However, if there is jooq auto-generated code with `@Repository`, you need to disable spring injection.
 
 ```java

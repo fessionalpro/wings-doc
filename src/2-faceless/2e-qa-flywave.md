@@ -17,9 +17,9 @@ Inject high priority `journalService`, see `SecurityJournalService` of example p
 
 ## 2E.02.No chemaRevisionManager
 
-After 2.2.6, `spring.wings.faceless.flywave.enabled.module=false` is disabled by default.
+After 2.2.6, `wings.enabled.faceless.flywave=false` is disabled by default.
 needs to enable during initialization, for example by adding a temporary turn on in test
-`@SpringBootTest(properties = "spring.wings.faceless.flywave.enabled.module=true")`
+`@SpringBootTest(properties = "wings.enabled.faceless.flywave=true")`
 
 ## 2E.03.Missing Branches Error
 

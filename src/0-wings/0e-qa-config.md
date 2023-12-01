@@ -10,25 +10,20 @@ category:
 
 Project configuration, such as maven, properties, spring and other settings.
 
-## 0E.01.Which Config Must Be Enabled
+## 0E.01.Where are Enabled Configs
 
 ```bash
-# find all enabled properties files
-find . -name 'spring-wings-enabled.properties' \
-| egrep -v -E 'target/|example/' 
+## find all enabled properties files
+find . -name 'wings-enabled*.properties' \
+| egrep -v -E 'target/|example/|-test/'
 
-./slardar/src/main/resources/wings-conf/spring-wings-enabled.properties
-./faceless/src/main/resources/wings-conf/spring-wings-enabled.properties
-./silencer/src/main/resources/wings-conf/spring-wings-enabled.properties
+## find all enabled java
+find . -name '*EnabledProp.java' \
+| egrep -v -E 'example/'
 
-# find all disabled flag
-find . -name 'spring-wings-enabled.properties' \
-| egrep -v -E 'target/|example/' \
-| xargs grep 'false'
-
-# enalbe the following 2 if need flywave and enum features
-spring.wings.faceless.flywave.enabled.module=false
-spring.wings.faceless.enabled.enumi18n=false
+## find all qualified properties
+find . -name 'additional-spring-configuration-metadata.json' \
+| egrep -v -E 'target/|example/'
 ```
 
 ## 0E.02.Customize Springboot version and dependency

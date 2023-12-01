@@ -10,148 +10,76 @@ category:
 
 有关Warlock登录授权的设置
 
-## 4D.1.spring-wings-enabled-77.properties
+## 4D.1.wings-enabled-77.properties
 
-设置以下属性，
+覆盖简单实现，
 
-* spring.wings.faceless.enabled.enumi18n=true
-* spring.wings.faceless.flywave.enabled.module=true
+* wings.enabled.faceless.simple-journal=false
+* wings.enabled.faceless.simple-flakeid=false
 
-### spring.wings.warlock.enabled.autoconf
-
-`Boolean`=`true`，是否启动自动配置。
-
-### spring.wings.warlock.enabled.security-auto
-
-`Boolean`=`true`，是否支持 warlock security web and http配置
-
-### spring.wings.warlock.enabled.security-web-autos
-
-`Boolean`=`true`，是否支持 Web 自动配置，firewall，debug等
-
-### spring.wings.warlock.enabled.security-http-bind
-
-`Boolean`=`true`，是否支持 warlock security http wing bind
-
-### spring.wings.warlock.enabled.security-http-auth
-
-`Boolean`=`true`，是否支持 warlock security http wing auth
-
-### spring.wings.warlock.enabled.security-http-base
-
-`Boolean`=`true`，是否支持 warlock security http base 验证
-
-### spring.wings.warlock.enabled.security-http-auto
-
-`Boolean`=`true`，是否支持 warlock security http auto
-
-### spring.wings.warlock.enabled.security-http-chain
-
-`Boolean`=`true`，是否配置默认的 SecurityFilterChain
-
-### spring.wings.warlock.enabled.security-bean
-
-`Boolean`=`true`，是否支持 warlock security Bean配置
-
-### spring.wings.warlock.enabled.global-lock
-
-`Boolean`=`true`，是否注入 wings的全局锁
-
-### spring.wings.warlock.enabled.jooq-autogen
-
-`Boolean`=`true`，是否注入 jooq dao
-
-### spring.wings.warlock.enabled.combo-list-all-login-page
-
-`Boolean`=`true`，是否注入 ListAllLoginPageCombo
-
-### spring.wings.warlock.enabled.combo-nonce-user-details
-
-`Boolean`=`true`，是否注入 NonceUserDetailsCombo
-
-### spring.wings.warlock.enabled.just-auth
-
-`Boolean`=`true`，是否支持 just auth
-
-### spring.wings.warlock.enabled.combo-just-auth-login-page
-
-`Boolean`=`true`，是否注入 JustAuthLoginPageCombo
-
-### spring.wings.warlock.enabled.combo-just-auth-user-details
-
-`Boolean`=`true`，是否注入 JustAuthUserDetailsCombo
-
-### spring.wings.warlock.enabled.combo-just-auth-autoreg
-
-`Boolean`=`true`，是否注入 JustAuthUserAuthnAutoReg
-
-### spring.wings.warlock.enabled.zone-perm-check
-
-`Boolean`=`false`，是否支持 AuthZonePermChecker
-
-### spring.wings.warlock.enabled.app-perm-check
-
-`Boolean`=`true`，是否支持 AuthAppPermChecker
-
-### spring.wings.warlock.enabled.default-exception-handler
-
-`Boolean`=`true`，是否注入 DefaultExceptionResolver
-
-### spring.wings.warlock.enabled.bind-exception-advice
-
-`Boolean`=`true`，是否注入 BindExceptionAdvice
-
-### spring.wings.warlock.enabled.check-database
-
-`Boolean`=`true`，是否检查mysql和本机timezone兼容性
-
-### spring.wings.warlock.enabled.swagger-rule
-
-`Boolean`=`true`，是否支持为Docket全局注入AlternateTypeRule
-
-### spring.wings.warlock.enabled.swagger-jsr310
-
-`Boolean`=`true`，是否支持为Docket全局注入"java.time.Local*"
-
-### spring.wings.warlock.enabled.table-change
-
-`Boolean`=`true`，是否开启table CUD 监听
-
-### spring.wings.warlock.enabled.controller-auth
-
-`Boolean`=`true`，是否开启默认的auth Controller
-
-### spring.wings.warlock.enabled.controller-proc
-
-`Boolean`=`true`，是否开启由filter处理仅做文档的login/out proc
-
-### spring.wings.warlock.enabled.controller-user
-
-`Boolean`=`true`，是否开启默认的user Controller
-
-### spring.wings.warlock.enabled.controller-mock
-
-`Boolean`=`true`，是否开启默认的mock Controller
-
-### spring.wings.warlock.enabled.controller-test
-
-`Boolean`=`true`，是否开启默认的test Controller
-
-### spring.wings.warlock.enabled.controller-tweak
-
-`Boolean`=`false`，是否开启默认的TweakController
-
-### spring.wings.warlock.enabled.controller-oauth
-
-`Boolean`=`true`，是否开启默认的OauthController
-
-### spring.wings.warlock.enabled.watching
+### wings.enabled.warlock.watching
 
 `Boolean`=`false`，是否支持计时分析
 
-### spring.wings.warlock.enabled.uniauth
+### wings.enabled.warlock.sec-web-auto
 
-`Boolean`=`false`，是否支持联合登录
+`Boolean`=`true`，是否支持 Web 自动配置，firewall，debug等
+
+### wings.enabled.warlock.sec-http-bind
+
+`Boolean`=`true`，是否支持 warlock security http wing bind
+
+### wings.enabled.warlock.sec-http-auth
+
+`Boolean`=`true`，是否支持 warlock security http wing auth
+
+### wings.enabled.warlock.sec-http-base
+
+`Boolean`=`true`，是否支持 warlock security http base 验证
+
+### wings.enabled.warlock.sec-http-auto
+
+`Boolean`=`true`，是否支持 warlock security http auto
+
+### wings.enabled.warlock.sec-http-chain
+
+`Boolean`=`true`，是否配置默认的 SecurityFilterChain
+
+### wings.enabled.warlock.dummy-service
+
+`Boolean`=`false`，是否支持security的dummy服务
+
+### wings.enabled.warlock.mvc-auth
+
+`Boolean`=`true`，是否开启默认的auth Controller
+
+### wings.enabled.warlock.mvc-login
+
+`Boolean`=`true`，是否开启默认的login page Controller
+
+### wings.enabled.warlock.mvc-proc
+
+`Boolean`=`true`，是否开启由filter处理仅做文档的login/out proc
+
+### wings.enabled.warlock.mvc-user
+
+`Boolean`=`true`，是否开启默认的user Controller
+
+### wings.enabled.warlock.mvc-mock
+
+`Boolean`=`true`，是否开启默认的mock Controller
+
+### wings.enabled.warlock.mvc-test
+
+`Boolean`=`true`，是否开启默认的test Controller
+
+### wings.enabled.warlock.mvc-tweak
+
+`Boolean`=`false`，是否开启默认的TweakController
+
+### wings.enabled.warlock.mvc-oauth
+
+`Boolean`=`true`，是否开启默认的OauthController
 
 ## 4D.2.wings-flywave-fit-79.properties
 

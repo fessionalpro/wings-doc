@@ -10,43 +10,39 @@ category:
 
 有关Jooq的配置。
 
-## 2K.1.spring-wings-enabled-79.properties
+## 2K.1.wings-jooq-conf-79.properties
 
 Jooq功能的默认开关，如下
 
-### spring.wings.faceless.jooq.enabled.module
-
-`Boolean`=`true`，是否开启jooq配置
-
-### spring.wings.faceless.jooq.enabled.auto-qualify
+### wings.faceless.jooq.conf.auto-qualify
 
 `Boolean`=`true`，是否jooq自动设置qualify
 
-### spring.wings.faceless.jooq.enabled.batch-mysql
+### wings.faceless.jooq.conf.batch-mysql
 
 `Boolean`=`true`，执行dao的批量插入时，是否使用高效的mysql语法
 
-### spring.wings.faceless.jooq.enabled.converter
+### wings.faceless.jooq.conf.converter
 
 `Boolean`=`false`，是否注入全局converter，推荐Table中注入
 
-### spring.wings.faceless.jooq.enabled.journal-delete
+### wings.faceless.jooq.conf.journal-delete
 
 `Boolean`=`false`，delete且有commit_id时，是否先update再delete
 
-### spring.wings.faceless.jooq.enabled.listen-table-cud
+### wings.faceless.jooq.conf.listen-table-cud
 
 `Boolean`=`true`，是否监听table的create, update, delete
 
-### spring.wings.faceless.jooq.enabled.render-group-concat
+### wings.faceless.jooq.conf.render-group-concat
 
 `Boolean`=`false`，是否render group_concat_max_len 变量
 
-### spring.wings.faceless.jooq.enabled.render-catalog
+### wings.faceless.jooq.conf.render-catalog
 
 `Boolean`=`false`，是否render catalog
 
-### spring.wings.faceless.jooq.enabled.render-schema
+### wings.faceless.jooq.conf.render-schema
 
 `Boolean`=`false`，是否render schema
 
