@@ -131,7 +131,6 @@ and the `qualified-key` can disable any Component and Bean,
 
 `@ConditionalWingsEnabled` has the following enhancements
 
-* prefix - `prefix`, can inherit from EnclosingClass
 * abs - `absolute-key`, without prefix, priority lower then `qualified-key`
 * key - `relative-key`, with prefix, priority lower then `absolute-key`
 * value - default value, the lowest priority, if no key found
@@ -141,10 +140,17 @@ where `qualified-key` is equivalent to `id`, globally unique and the highest pri
 `absolute-key` and `relative-key` are equivalent to `alias`, can be shared without uniqueness.
 and the priority of these 3 keys is from highest to lowest.
 
-* qualified-key = `prefix()` + `ClassName` + `methodName`?
+* qualified-key = `prefix` + `ClassName` + `methodName`?
 * absolute-key = `abs()`
-* relative-key = `prefix()` + `key()`
+* relative-key = `prefix` + `key()`
 * default = `value()`
+
+In addition to the precise control of annotations,
+the following props can impl the `ant-matcher` control of `qualified-key`.
+
+* wings.silencer.conditional.error
+* wings.silencer.conditional.prefix
+* wings.silencer.conditional.enable
 
 ```properties
 ## ... is short for the package

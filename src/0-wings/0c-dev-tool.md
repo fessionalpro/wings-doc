@@ -67,6 +67,8 @@ Useful plug-ins
 * Statistic - count your code
 * String Manipulation - Various operations and conversions on strings
 * HTTP Client - official support for the `*.http` file format
+* Test Management - handle `*.t.md`
+
 
 ## 0C.2.Kotlin Development
 

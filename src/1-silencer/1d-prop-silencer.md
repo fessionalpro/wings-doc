@@ -41,9 +41,26 @@ Filename of the block-list config
 
 Filename of the promotion config
 
-## 1D.2.logback-fileonly.xml
+## 1D.2.wings-conditional-79.properties
 
-`logback` default configuration for file-appender only.
+### wings.silencer.conditional.error
+
+`Map<String, Boolean>`=`empty`, the mapping of qualified-key (ant-matcher) and its error handling.
+
+* `*`=`true` error as `match`
+* `pro.*`=`false` error as `notMatch`
+
+### wings.silencer.conditional.prefix
+
+`Map<String, String>`=`empty`, the mapping of qualified-key (ant-matcher) and its prefix.
+
+* `*`=`wings.enabled` redefine prefix for all.
+
+### wings.silencer.conditional.enable
+
+`Map<String, Boolean>`=`empty`, the mapping of qualified-key (ant-matcher) and its enable.
+
+* `pro.fessional.wings.warlock.database.autogen.tables.daos.*`=`false`
 
 ## 1D.3.wings-enabled-79.properties
 

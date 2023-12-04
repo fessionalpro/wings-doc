@@ -111,7 +111,7 @@ public static class SomeServiceConfiguration {
 
 `限定key` = `前缀.` + `全类名` + `.方法名`? = `true|false`
 
-* 前缀 - 默认 spring.wings.enabled
+* 前缀 - 默认 wings.enabled
 * 全类名 - 比如 pro.fessional.wings.silencer.spring.boot.WingsEnabledCondition
 * 方法名 - 比如 crc8Long
 
@@ -126,7 +126,6 @@ public static class SomeServiceConfiguration {
 
 `@ConditionalWingsEnabled` 具有以下增强功能
 
-* prefix - `前缀`，可从EnclosingClass继承
 * abs - `绝对key`，无视前缀，优先级低于`限定key`
 * key - `相对key`，使用前缀，优先级低于`绝对key`
 * value - 默认值，最低优先级，key不存在时使用
@@ -135,10 +134,16 @@ public static class SomeServiceConfiguration {
 其中，`限定key`相当于id，全局唯一，具有最高优先级，`绝对key`和`相对key`相当于别名，
 不需要唯一，可以多处共用。这三种key的优先级从高到低如下，
 
-* 限定key = `prefix()` + `ClassName` + `methodName`?
+* 限定key = `prefix` + `ClassName` + `methodName`?
 * 绝对key = `abs()`
-* 相对key = `prefix()` + `key()`
+* 相对key = `prefix` + `key()`
 * 默认值 = `value()`
+
+除了注解的精确控制，也可以通过以下属性，对`限定key`实现`ant-matcher`规则的控制。
+
+* wings.silencer.conditional.error
+* wings.silencer.conditional.prefix
+* wings.silencer.conditional.enable
 
 ```properties
 ## ... 为包名缩写
