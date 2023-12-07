@@ -259,7 +259,6 @@ The config value in the properties is usually a single line, and the multiple li
 * .bean.SlardarUndertowConfiguration
   - .ut026010Customizer
 * .bean.SlardarWebMvcConfiguration
-  - .mvcRequestMatcherBuilder
 * .monitor.viewer.LogViewer = `wings.slardar.monitor.view.enable`
 
 ### .warlock.spring
@@ -346,6 +345,7 @@ The config value in the properties is usually a single line, and the multiple li
   - wingsAuthTypeParser
   - wingsUserDetailsService
 * .bean.WarlockSecurityConfConfiguration
+  - .securityCheckUrlRunner = `wings.enabled.warlock.sec-check-url`
   - .securityFilterChain = `wings.enabled.warlock.sec-http-chain`
   - .warlockSecurityAuthHttpConfigure = `wings.enabled.warlock.sec-http-auth`
   - .warlockSecurityAutoHttpConfigure = `wings.enabled.warlock.sec-http-auto`

@@ -470,3 +470,13 @@ When the above is `(false, true)` (by default), the Unrecognized field will appe
 used by `org.springframework.lang.Nullable`, but NOT dependened by wings.
 
 when using `@Nullable` and `NxxNull`, MUST be from `org.jetbrains.annotations`
+
+## 0D.35.StackOverflowError endless loop
+
+* [StackOverflowError infinite loop](https://github.com/trydofor/pro.fessional.wings/issues/138)
+* [StackOverflowError endless loop](https://github.com/trydofor/pro.fessional.wings/issues/158)
+
+`401` or `403` forward to the “secured” login page may cause the endless loop. wings by default,
+
+* `wings.warlock.security.anonymous` - disable anonymous
+* `wings.enabled.warlock.sec-check-url` - check url conflict

@@ -21,6 +21,10 @@ category:
 
 `Boolean`=`false`，是否支持计时分析
 
+### wings.enabled.warlock.sec-check-url
+
+`Boolean`=`true`，是否检查URL冲突
+
 ### wings.enabled.warlock.sec-web-auto
 
 `Boolean`=`true`，是否支持 Web 自动配置，firewall，debug等
@@ -210,6 +214,10 @@ Spring Security设置
 ### wings.warlock.security.authority-perm
 
 `Boolean`=`true`，权限是否使用Perm
+
+### wings.warlock.security.anonymous
+
+`Boolean`=`false`，是否支持匿名用户登录
 
 ### wings.warlock.security.login-forward
 
