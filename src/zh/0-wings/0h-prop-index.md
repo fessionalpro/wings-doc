@@ -59,4 +59,4 @@ category:
 * `(false)` 表示默认为false
 * `= key` 表示 `absolute-key`
 
-属性列表，统一记录在[英文版](../../0-wings/0h-prop-index.md)
+属性列表，统一参考[英文版](/0-wings/0h-prop-index.md)
