@@ -19,5 +19,5 @@ java8, 0-dependency, is an addition to guava, `commons-*`.
 
 ## A.2.Project Links
 
-* github - <https://github.com/trydofor/pro.fessional.mirana>
-* gitee - <https://gitee.com/trydofor/pro.fessional.mirana>
+* github - <https://github.com/trydofor/professional-mirana>
+* gitee - <https://gitee.com/trydofor/professional-mirana>

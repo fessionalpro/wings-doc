@@ -43,7 +43,7 @@ export default hopeTheme({
   themeColor: true,
   iconAssets: 'iconfont',
   logo: '/logo.png',
-  repo: 'trydofor/pro.fessional.wings',
+  repo: 'trydofor/professional-wings',
   docsRepo: 'fessionalpro/wings-doc',
   docsDir: 'docs',
   footer:
@@ -57,7 +57,7 @@ export default hopeTheme({
     blog: false,
     comment: {
       provider: 'Giscus',
-      repo: 'trydofor/pro.fessional.wings',
+      repo: 'trydofor/professional-wings',
       repoId: 'MDEwOlJlcG9zaXRvcnkxOTUxNjgwMzE=',
       category: 'General',
       categoryId: 'DIC_kwDOC6IHH84CPy0E',

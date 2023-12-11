@@ -27,8 +27,8 @@ cat /etc/hosts
 ## 0D.02.How to Create a Project
 
 ```bash
-git clone https://github.com/trydofor/pro.fessional.wings.git
-cd pro.fessional.wings
+git clone https://github.com/trydofor/professional-wings.git
+cd professional-wings
 observe/scripts/wings-init-project.sh
 
 # compile and run it yourself without bash script
@@ -473,8 +473,8 @@ when using `@Nullable` and `NxxNull`, MUST be from `org.jetbrains.annotations`
 
 ## 0D.35.StackOverflowError endless loop
 
-* [StackOverflowError infinite loop](https://github.com/trydofor/pro.fessional.wings/issues/138)
-* [StackOverflowError endless loop](https://github.com/trydofor/pro.fessional.wings/issues/158)
+* [StackOverflowError infinite loop](https://github.com/trydofor/professional-wings/issues/138)
+* [StackOverflowError endless loop](https://github.com/trydofor/professional-wings/issues/158)
 
 `401` or `403` forward to the “secured” login page may cause the endless loop. wings by default,
 

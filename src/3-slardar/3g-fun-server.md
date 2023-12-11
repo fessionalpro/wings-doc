@@ -62,8 +62,8 @@ public R<String> doubleKill(HttpServletRequest request) throws InterruptedExcept
 
 For detailed usage, see the source code or the test code,
 
-* [TestDoubleKillController.java](https://github.com/trydofor/pro.fessional.wings/blob/master/wings/slardar/src/test/java/pro/fessional/wings/slardar/controller/TestDoubleKillController.java)
-* [DoubleKillService.java](https://github.com/trydofor/pro.fessional.wings/blob/master/wings/slardar/src/test/java/pro/fessional/wings/slardar/service/DoubleKillService.java)
+* [TestDoubleKillController.java](https://github.com/trydofor/professional-wings/blob/master/wings/slardar/src/test/java/pro/fessional/wings/slardar/controller/TestDoubleKillController.java)
+* [DoubleKillService.java](https://github.com/trydofor/professional-wings/blob/master/wings/slardar/src/test/java/pro/fessional/wings/slardar/service/DoubleKillService.java)
 
 ## 3G.3.CAPTCHA
 

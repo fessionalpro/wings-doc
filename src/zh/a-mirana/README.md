@@ -18,5 +18,5 @@ java8, 0依赖，是guava,commons-*的补充。
 
 ## A.2.项目链接
 
-* github - <https://github.com/trydofor/pro.fessional.mirana>
-* gitee - <https://gitee.com/trydofor/pro.fessional.mirana>
+* github - <https://github.com/trydofor/professional-mirana>
+* gitee - <https://gitee.com/trydofor/professional-mirana>
