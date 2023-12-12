@@ -77,12 +77,11 @@ $0.childNodes.forEach(a=>console.log('![' + a.title +'](' + a.firstChild.src.
 | ![Dawnbreaker](/dawnbreaker_minimap_icon.png) Dawnbreaker | 2022-11-30 | ![Doom](/doom_minimap_icon.png) Doom | 2023-01-18 |
 | ![Dragon Knight](/dragonknight_minimap_icon.png) Dragon Knight | 2023-03-01 | ![Earth Spirit](/earthspirit_minimap_icon.png) Earth Spirit | 2023-04-11 |
 | ![Earthshaker](/earthshaker_minimap_icon.png) Earthshaker | 2023-06-21 | ![Elder Titan](/eldertitan_minimap_icon.png) Elder Titan | 2023-08-24 |
-| ![Ancient Apparition](/ancientapparition_minimap_icon.png) Ancient Apparition | 2023-10-20 | ![Ti12](/team_icon_team_spirit.png) Ti12 Team Spirit | - |
+| ![Ancient Apparition](/ancientapparition_minimap_icon.png) Ancient Apparition | 2023-10-20 | ![Ti12](/team_icon_team_spirit.png) Ti12 Team Spirit | 2023-12-12 |
+| ![Anti-Mage](/antimage_minimap_icon.png) Anti-Mage | - | ![Arc Warden](/arcwarden_minimap_icon.png) Arc Warden | - |
 
 ---
 
-![Anti-Mage](/antimage_minimap_icon.png "Anti-Mage")
-![Arc Warden](/arcwarden_minimap_icon.png "Arc Warden")
 ![Bane](/bane_minimap_icon.png "Bane")
 ![Batrider](/batrider_minimap_icon.png "Batrider")
 ![Bloodseeker](/bloodseeker_minimap_icon.png "Bloodseeker")
