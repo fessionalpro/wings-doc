@@ -22,5 +22,5 @@ category:
 
 ## B.2.项目链接
 
-* github - <https://github.com/trydofor/pro.fessional.meepo>
-* gitee - <https://gitee.com/trydofor/pro.fessional.meepo>
+* github - <https://github.com/trydofor/professional-meepo>
+* gitee - <https://gitee.com/trydofor/professional-meepo>

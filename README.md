@@ -1,6 +1,6 @@
 # WingsBoot Document
 
-this is the [WingsBoot](https://github.com/trydofor/pro.fessional.wings) document.
+this is the [WingsBoot](https://github.com/trydofor/professional-wings) document.
 
 and special thanks to the following projects,
 

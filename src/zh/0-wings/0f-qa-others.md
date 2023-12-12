@@ -47,3 +47,7 @@ category:
 但当我准备写TinyTask文档时，心里有点空荡荡的，那是奔溃爆炸，夷为平地的地方。
 
 TinyTask目前设计的很勉强，仅仅是@Scheduled的加强版。
+
+## 0F.04.里程碑代号命名
+
+统一参考[英文版](/0-wings/0f-qa-others.md)

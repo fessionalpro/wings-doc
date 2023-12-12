@@ -139,7 +139,7 @@ It's recommended that you get your hands on the code to avoid low-level use and 
 ```bash
 # ① get source code
 git clone --depth 1 https://github.com/\
-trydofor/pro.fessional.wings.git
+trydofor/professional-wings.git
 # ② install dependency useing java8
 # sdk use java 8.0.352-tem
 git submodule update --remote --init

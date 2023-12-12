@@ -28,7 +28,7 @@ strong typesafe sql mapping, rw-split and data sharding.
 ## 2.2.Distributed Id (LightId)
 
 Unlike other distributed Id solutions, eg. `snowflake`, `LightId` provides CRC8 pseudo-random encoding.
-See [pro.fessioinal.mirana](https://github.com/trydofor/pro.fessional.mirana) project.
+See [pro.fessioinal.mirana](https://github.com/trydofor/professional-mirana) project.
 
 The default implementation of LightId is JDBC based. the autogen code by jooq implements `LightIdAware`
 and can be used to get LightId. See the implementation of `LightIdService` for details.

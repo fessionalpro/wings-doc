@@ -27,8 +27,8 @@ cat /etc/hosts
 ## 0D.02.如何创建一个工程
 
 ```bash
-git clone https://github.com/trydofor/pro.fessional.wings.git
-cd pro.fessional.wings
+git clone https://github.com/trydofor/professional-wings.git
+cd professional-wings
 observe/scripts/wings-init-project.sh
 
 # 如果不能执行bash，那么自行编译和执行
@@ -452,3 +452,13 @@ wings中默认配置jackson如下，mapper影响大小写，deserialization决�
 被`org.springframework.lang.Nullable`使用，但wings不依赖此包。
 
 当使用`@Nullable`和`NxxNull`时，必须是`org.jetbrains.annotations`
+
+## 0D.35.StackOverflowError 无限循环
+
+* [StackOverflowError infinite loop](https://github.com/trydofor/professional-wings/issues/138)
+* [StackOverflowError endless loop](https://github.com/trydofor/professional-wings/issues/158)
+
+`401` 或 `403`的 forward 到 “secured” 的登录页面会触发无限循环，wings默认，
+
+* `wings.warlock.security.anonymous` - 禁止 anonymous
+* `wings.enabled.warlock.sec-check-url` - 检查URL冲突

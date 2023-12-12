@@ -21,6 +21,10 @@ override the simple implementation
 
 `Boolean`=`false`, whether to enable timing watching and analysis.
 
+### wings.enabled.warlock.sec-check-url
+
+`Boolean`=`true`, whether to check security url conflict
+
 ### wings.enabled.warlock.sec-web-auto
 
 `Boolean`=`true`, whether to enable Web auto config, eg. firewall, debug, etc.
@@ -210,6 +214,10 @@ Spring Security setting.
 ### wings.warlock.security.authority-perm
 
 `Boolean`=`true`, whether to use Perm in AuthX.
+
+### wings.warlock.security.anonymous
+
+`Boolean`=`false`, whether to enable anonymous.
 
 ### wings.warlock.security.login-forward
 

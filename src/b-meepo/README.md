@@ -24,5 +24,5 @@ and is based on the comments and markup of the `native` syntax.
 
 ## B.2.Project Links
 
-* github - <https://github.com/trydofor/pro.fessional.meepo>
-* gitee - <https://gitee.com/trydofor/pro.fessional.meepo>
+* github - <https://github.com/trydofor/professional-meepo>
+* gitee - <https://gitee.com/trydofor/professional-meepo>

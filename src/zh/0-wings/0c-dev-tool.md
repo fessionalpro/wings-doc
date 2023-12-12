@@ -67,6 +67,7 @@ find . -name '*.iml' -o -name '.idea' | tr '\n' '\0' | xargs -0 rm -r
 * Statistic - 统计一下自己的代码
 * String Manipulation - 对字符串的各种操作和转换
 * HTTP Client - 官方对`*.http`文件格式的支持
+* Test Management - 处理 `*.t.md`
 
 ## 0C.2.Kotlin开发
 

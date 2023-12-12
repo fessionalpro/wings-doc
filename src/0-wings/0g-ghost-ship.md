@@ -8,8 +8,9 @@ category:
 
 # 0G.GhostShip Model
 
-WingsBoot basic architectural idea is to do the model vertically and overlay the function horizontally.
-The codename has bean called CruiseModel, later in the Dota series, changed to GhostShip, more wings a little
+WingsBoot basic architectural idea is to do the model vertically and
+overlay the function horizontally. The codename has bean called CruiseModel,
+later in the Dota series, changed to GhostShip, more wings a little
 
 ## 0G.1.Aboard to the sea (GoSea)
 
@@ -43,3 +44,39 @@ For example, data flows from the bottom up, while business flows from the top do
 
 Functions or modules can combine, inherit, overlay or filter to provide appropriate services to the outside world.
 Usually, from the inside to the outside, they are called Layer-N (N is a natural number)
+
+* `messages` and `properties` use overlay
+* `Servlet` and `Filter` use combine and filter
+* `Authn` and `Authz` use combine and inherit
+
+### Clear Boundary, Reduce Coupling
+
+Based on business requirements within the domain, define clear boundaries,
+such as data models, functional modules, etc.
+
+### Single Responsibility, Each to Its Own
+
+For a given event, focus on a single task,
+for a data flow, handle only the current state.
+
+## 0G.4.Basic Model
+
+* Presentation - present and interpret user commands, eg. app, web
+* Application - validate and transform data, eg. controller, api
+* Domain/Biz - handle biz concept and logic, eg. service, dao
+* Infrastructure - biz-independent server, eg. db, cache
+
+```text
+▲ 
+│ Floor of Abstraction
+├──────────────┐
+│ Presentation │
+├──────────────┴──┬────────┐
+│ Application     │ LayerA │
+├─────────────────┴──┬─────┴───┬────────┐
+│ Domain/Biz         │  LayerB │ LayerD │
+├────────────────────┴──┬──────┴─┬──────┴─┬────────┐
+│ Infrastructure        │ Layer1 │ Layer2 │ Layer3 │
+└───────────────────────┴────────┴────────┴────────┴─────▶
+                    Layer of Complexity
+```

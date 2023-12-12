@@ -138,7 +138,7 @@ features:
 ```bash
 # ① 国内镜像，成功后进入项目目录
 git clone --depth 1 https://github.com/\
-trydofor/pro.fessional.wings.git
+trydofor/professional-wings.git
 # ② 安装依赖，可跳过，支持java8编译
 # sdk use java 8.0.352-tem
 git submodule update --remote --init

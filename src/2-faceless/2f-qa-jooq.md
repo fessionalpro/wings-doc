@@ -112,7 +112,7 @@ However, if there is jooq auto-generated code with `@Repository`, you need to di
 ## 2F.03.Common Jooq Query
 
 For more information, refer to the [official documentation](https://www.jooq.org/doc/latest/manual/sql-execution/fetching/)
-and the sample code `pro.professional.wings.faceless.sample`
+and the sample code `pro.fessional.wings.faceless.sample`
 
 Wings ^RECOMMENDED^ to use Dao for various queries and avoid using static tables or injecting DSLs.
 

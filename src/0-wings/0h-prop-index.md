@@ -259,7 +259,6 @@ The config value in the properties is usually a single line, and the multiple li
 * .bean.SlardarUndertowConfiguration
   - .ut026010Customizer
 * .bean.SlardarWebMvcConfiguration
-  - .mvcRequestMatcherBuilder
 * .monitor.viewer.LogViewer = `wings.slardar.monitor.view.enable`
 
 ### .warlock.spring
@@ -346,6 +345,7 @@ The config value in the properties is usually a single line, and the multiple li
   - wingsAuthTypeParser
   - wingsUserDetailsService
 * .bean.WarlockSecurityConfConfiguration
+  - .securityCheckUrlRunner = `wings.enabled.warlock.sec-check-url`
   - .securityFilterChain = `wings.enabled.warlock.sec-http-chain`
   - .warlockSecurityAuthHttpConfigure = `wings.enabled.warlock.sec-http-auth`
   - .warlockSecurityAutoHttpConfigure = `wings.enabled.warlock.sec-http-auto`
@@ -379,10 +379,12 @@ The config value in the properties is usually a single line, and the multiple li
   - .mailNotice
   - .mailSenderManager
   - .mailSenderProvider
-* .controller.MailListController = `wings.enabled.tiny.mail.mvc-list`
-* .controller.MailSendController = `wings.enabled.tiny.mail.mvc-send`
-* .service.impl.TinyMailListServiceImpl
-* .service.impl.TinyMailServiceImpl
+* .controller
+  - .MailListController = `wings.enabled.tiny.mail.mvc-list`
+  - .controller.MailSendController = `wings.enabled.tiny.mail.mvc-send`
+* .service.impl
+  - .TinyMailListServiceImpl
+  - .service.impl.TinyMailServiceImpl
 
 ### .tiny.task
 
@@ -391,11 +393,13 @@ The config value in the properties is usually a single line, and the multiple li
   - $DaoServScan - scan `database` and `service`
   - $MvcRestScan - scan `controller`
   - .tinyTaskerAutoRunner = `wings.enabled.tiny.task.autorun`
-* .controller.TaskConfController = `wings.enabled.tiny.task.mvc-conf`
-* .controller.TaskExecController = `wings.enabled.tiny.task.mvc-exec`
-* .controller.TaskListController = `wings.enabled.tiny.task.mvc-list`
-* .service.impl.TinyTaskBeatServiceImpl
-* .service.impl.TinyTaskConfServiceImpl
-* .service.impl.TinyTaskExecServiceImpl
-* .service.impl.TinyTaskListServiceImpl
-* .service.impl.TinyTaskServiceImpl
+* .controller
+  - .TaskConfController = `wings.enabled.tiny.task.mvc-conf`
+  - .TaskExecController = `wings.enabled.tiny.task.mvc-exec`
+  - .TaskListController = `wings.enabled.tiny.task.mvc-list`
+* .service.impl
+  - .TinyTaskBeatServiceImpl
+  - .TinyTaskConfServiceImpl
+  - .TinyTaskExecServiceImpl
+  - .TinyTaskListServiceImpl
+  - .TinyTaskServiceImpl
