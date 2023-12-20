@@ -19,7 +19,7 @@ category:
 
 ```bash
 cd wings
-id_config=~/Library/ApplicationSupport/JetBrains/IntelliJIdea2021.1
+id_config=~/Library/ApplicationSupport/JetBrains/IntelliJIdea2023.2
 # 通过复制，备份
 cat $id_config/templates/wings.xml > wings-idea-live.xml
 cat $id_config/codestyles/Wings-Idea.xml > wings-idea-style.xml
@@ -33,10 +33,10 @@ find . -name '*.iml' -o -name '.idea' | tr '\n' '\0' | xargs -0 rm -r
 关于live-template的使用，分为Insert和Surround，对应插入和编辑，一般选择文本时，
 `Surround... ⌥⌘J`，无选择文本时，使用 `Insert... ⌘J`
 
-* WIN `%HOMEPATH%\.IntelliJIdea2019.2\config`
-* LIN `~/.IntelliJIdea2019.2/config`
-* MAC `~/Library/Preferences/IntelliJIdea2019.2`
-* MAC `~/Library/ApplicationSupport/JetBrains/IntelliJIdea2021.1`
+* WIN `%HOMEPATH%\.IntelliJIdea2023.2\config`
+* LIN `~/.IntelliJIdea2023.2/config`
+* MAC `~/Library/Preferences/IntelliJIdea2023.2`
+* MAC `~/Library/ApplicationSupport/JetBrains/IntelliJIdea2023.2`
 
 参考资料
 
