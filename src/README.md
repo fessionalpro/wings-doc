@@ -137,16 +137,16 @@ Use directly as a parent, occasional `SNAPSHOT` are available through OSS.
 It's recommended that you get your hands on the code to avoid low-level use and failure to achieve the original purpose, even if you have the potential to get it.
 
 ```bash
-# ① get source code
+## (1) get source code
 git clone --depth 1 https://github.com/\
 trydofor/professional-wings.git
-# ② install dependency useing java8
-# sdk use java 8.0.352-tem
+## (2) install dependency useing java8
+# asdf shell java temurin-8.0.382+5
 git submodule update --remote --init
 (cd observe/meepo && mvn package install)
 (cd observe/mirana && mvn package install)
-# ③ install wings using java-17
-sdk use java 17.0.6-tem
+## (3) install wings using java-17
+# asdf shell java temurin-17.0.9+9
 mvn package install
 ```
 

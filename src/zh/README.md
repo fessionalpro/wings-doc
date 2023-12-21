@@ -136,16 +136,16 @@ features:
 建议动手搞定代码，避免低水平使用，无法发挥潜力实现初衷。
 
 ```bash
-# ① 国内镜像，成功后进入项目目录
+## ① 国内镜像，成功后进入项目目录
 git clone --depth 1 https://github.com/\
 trydofor/professional-wings.git
-# ② 安装依赖，可跳过，支持java8编译
-# sdk use java 8.0.352-tem
+## ② 安装依赖，可跳过，支持java8编译
+# asdf shell java temurin-8.0.382+5
 git submodule update --remote --init
 (cd observe/meepo && mvn package install)
 (cd observe/mirana && mvn package install)
-# ③ 安装wings，java-17
-sdk use java 17.0.6-tem
+## ③ 安装wings，java-17
+# asdf shell java temurin-17.0.9+9
 mvn package install
 ```
 
