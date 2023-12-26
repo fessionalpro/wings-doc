@@ -30,12 +30,8 @@ to microservices. At any project stage and business size, it can:
 
 ## 0.1.Version Number
 
-Wings version number is `4 segments`, the first 3 segments are SpringBoot version,
-the 4th segment is wings build number. The build number is 3 digits, the first one is the major version,
-which means incompatible, the second 2 digits are the minor version,
-which means basically compatible or easy to adapt.
-
-For example, `2.4.2.100-SNAPSHOT`, which means based on springboot 2.4.2, is wings `1##` series.
+Wings version is [3-segment](https://semver.org), the 1st and 2nd are SpringBoot `major` and `minor`,
+the 3rd is wings `build` number. For example, `3.2.300-SNAPSHOT` bases on boot 3.2.x, is wings `3##` series.
 
 Wings uses the `revision` and `changelist` CI placeholders, so  Maven 3.5.0 or higher is required.
 
