@@ -61,6 +61,10 @@ Setting this to false also implicitly sets "renderCatalog" to false.
 Use this for single-schema environments, or when all objects are made
 available using synonyms
 
+### wings.faceless.jooq.conf.render-table
+
+`RenderTable`=`ALWAYS`, should keep default. there are some issues [jOOQ/jOOQ#8893](https://github.com/jOOQ/jOOQ/issues/8893).
+
 ## 2K.2.wings-jooq-cud-79.properties
 
 CUD listener settings for jooq.
