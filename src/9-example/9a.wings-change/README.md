@@ -21,4 +21,5 @@ miro version change log, majo version upgrade guide.
 * [Upgrade 2.6.6.210 Guide](./9a2.266-210.md)
 * [Upgrade 2.7.7.220 Guide](./9a3.277-220.md)
 * [Upgrade 3.0.3.300 Guide](./9a4.303-300.md)
-* [Upgrade 3.0.x.30x Guide](./9a5.30x-30x.md)
+* [Upgrade 3.0.6.300 Guide](./9a5.306-300.md)
+* [Upgrade 3.2.100 Guide](./9a6.3-2-100.md)

@@ -29,10 +29,10 @@ category:
 新建工程及打包的示例脚本
 
 ```bash
-sdk use java 17.0.6-tem # 切换JDK版本
+# asdf shell java temurin-17.0.9+9
 mvn -v # 显示maven和java版本
 #> Apache Maven 3.8.7 (b89d5959fcde851dcb1c8946a785a163f14e1e29)
-#> Java version: 17.0.6, vendor: Eclipse Adoptium
+#> Java version: 17.0.9, vendor: Eclipse Adoptium
 
 WINGS_DIR=~/Workspace/github.com/professional-wings
 WINGS_BIN=$WINGS_BOOT/observe/scripts
