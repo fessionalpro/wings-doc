@@ -341,7 +341,6 @@ setDefaultPasswordEncoderForMatches, If id does not match, use the default decod
 
 * `Real-IP`=`X-Real-IP`
 * `Forwarded-For`=`X-Forwarded-For`
-* `Forwarded-Proto`=`X-Forwarded-Proto`
 
 ### wings.slardar.remote.agent-header
 

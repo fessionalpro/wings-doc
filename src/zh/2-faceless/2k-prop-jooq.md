@@ -46,6 +46,10 @@ Jooq功能的默认开关，如下
 
 `Boolean`=`false`，是否render schema
 
+### wings.faceless.jooq.conf.render-table
+
+`RenderTable`=`ALWAYS`，建议使用默认值，当前存在一些缺陷[jOOQ/jOOQ#8893](https://github.com/jOOQ/jOOQ/issues/8893).
+
 ## 2K.2.wings-jooq-cud-79.properties
 
 jooq的CUD监听设置
