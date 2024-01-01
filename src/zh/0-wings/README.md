@@ -29,16 +29,12 @@ WingsBoot(代号神翼)是SpringBoot的一个脚手架，没有魔法和定制�
 
 ## 0.1.版本号说明
 
-Wings版本号为标准的[3段式](https://semver.org/lang/zh-CN/)，前2段为SpringBoot的版本，
-第3段为Wings的`BUILD`，例如，`3.2.100-SNAPSHOT`的含义如下，
+Wings版本号为`4段`，前3段为SpringBoot版本，第4段是build号。
+build号为3位数字，首位是大版本，表示不兼容性；后2位是小版本，表示基本兼容或容易适配。
 
-* `3.2` - SpringBoot的`MAJOR`和`MINOR`
-* `100` - 3位数字，当`MINOR`变化时，应该重置为`100`
-  - 第1位数字，范围[1-9]，语义化`MINOR`含义
-  - 后2位数字，范围[00-99]，语义化`PATCH`含义
-* `SNAPSHOT` - maven的SNAPSHOT
+例如，`2.4.2.100-SNAPSHOT`，表示基于boot2.4.2，是wings的`1##`的系列。
 
-Wings使用了`revision`和`changelist`的CI占位属性，Maven需要3.5.0以上。
+wings使用了`revision`和`changelist`的CI占位属性，Maven需要3.5.0以上。
 
 ## 0.2.项目结构
 
@@ -65,8 +61,7 @@ Wings由多个子项目构成，都采用了Dota有关的命名，主要包括�
 * WebMvc - 尽管`webflux`在模型和性能好于servlet体系，但当前更多的是阻塞IO，多线程场景。
 * Lombok - 简化代码，使用了Experimental功能，开发时，需要自己在pom中引入。
 * Git-flow - git管理的最佳实践。
-* Trunk-based - CI/CD的最佳实践。
-* Guava, commons-lang3, commons-io - 进阶必备的工具包。
+* Guava, commons-lang3, commons-io - 进阶必备的工具包.
 * ShardingSphere - 分表分库，足以解决90%的`数据大`的问题。
 * Hazelcast - 相比于Redis，Hazelcast更简单，集成度更高。
 * ServiceComb - 更工程化和更紧凑的

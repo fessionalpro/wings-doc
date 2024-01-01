@@ -336,6 +336,7 @@ setDefaultPasswordEncoderForMatches，id不匹配时，默认解码算法。
 
 * `Real-IP`=`X-Real-IP`
 * `Forwarded-For`=`X-Forwarded-For`
+* `Forwarded-Proto`=`X-Forwarded-Proto`
 
 ### wings.slardar.remote.agent-header
 

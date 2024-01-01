@@ -109,7 +109,7 @@ the following Issue.
 * [ShardingSphere#5330 replace into](https://github.com/apache/shardingsphere/issues/5330)
 * [ShardingSphere#5210 on duplicate key update](https://github.com/apache/shardingsphere/issues/5210)
 
-Prior to jooq `3.20`, use `wings.faceless.jooq.conf.auto-qualify=true` to enable
+Prior to jooq `3.18`, use `wings.faceless.jooq.conf.auto-qualify=true` to enable
 the automatic processing of qualified names, with the rule that `no qualified name if no alias`.
 
 The main reason for using Jooq is `The Art of Restraint`, which avoids writing hard SQL that is too hard to maintain.

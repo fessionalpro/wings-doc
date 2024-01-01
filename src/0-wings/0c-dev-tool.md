@@ -19,7 +19,7 @@ Use `IntelliJIdea` as `IDE` with `code style` and `live templates`,
 
 ```bash
 cd wings
-id_config=~/Library/ApplicationSupport/JetBrains/IntelliJIdea2023.2
+id_config=~/Library/ApplicationSupport/JetBrains/IntelliJIdea2021.1
 # Backup by copying
 cat $id_config/templates/wings.xml > wings-idea-live.xml
 cat $id_config/codestyles/Wings-Idea.xml > wings-idea-style.xml
@@ -33,10 +33,10 @@ find . -name '*.iml' -o -name '.idea' | tr '\n' '\0' | xargs -0 rm -r
 The use of the live-template has 2 types, Insert and Surround, corresponding to insert and edit,
 and generally when selecting text `Surround... ⌥⌘J`, when no selected text, use `Insert... ⌘J`
 
-* WIN `%HOMEPATH%\.IntelliJIdea2023.2\config`
-* LIN `~/.IntelliJIdea2023.2/config`
-* MAC `~/Library/Preferences/IntelliJIdea2023.2`
-* MAC `~/Library/ApplicationSupport/JetBrains/IntelliJIdea2023.2`
+* WIN `%HOMEPATH%\.IntelliJIdea2019.2\config`
+* LIN `~/.IntelliJIdea2019.2/config`
+* MAC `~/Library/Preferences/IntelliJIdea2019.2`
+* MAC `~/Library/ApplicationSupport/JetBrains/IntelliJIdea2021.1`
 
 References
 

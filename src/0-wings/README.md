@@ -30,16 +30,14 @@ to microservices. At any project stage and business size, it can:
 
 ## 0.1.Version Number
 
-Wings version is [3-segment](https://semver.org), the first 2 is SpringBoot's,
-the 3rd is Wings `BUILD` number. For example, `3.2.100-SNAPSHOT` are,
+Wings version number is `4 segments`, the first 3 segments are SpringBoot version,
+the 4th segment is wings build number. The build number is 3 digits, the first one is the major version,
+which means incompatible, the second 2 digits are the minor version,
+which means basically compatible or easy to adapt.
 
-* `3.2` - SpringBoot's `MAJOR` and `MINOR`
-* `100` - 3 digits, should reset to `100` when `MAJOR` changed
-  - 1st digit, range [1-9], semver's `MINOR` meaning
-  - last 2, range [00-99], semver's `PATCH` meaning
-* `SNAPSHOT` - maven's SNAPSHOT
+For example, `2.4.2.100-SNAPSHOT`, which means based on springboot 2.4.2, is wings `1##` series.
 
-Wings uses the `revision` and `changelist` CI placeholders, requires Maven 3.5.0+.
+Wings uses the `revision` and `changelist` CI placeholders, so  Maven 3.5.0 or higher is required.
 
 ## 0.2.Project Structure
 
@@ -67,7 +65,6 @@ Follows the Unix philosophy and partially answers `why` and `why not`?
   the TX scenario is currently more of blocking IO, multi-threaded.
 * Lombok - Make java code simple, aslo with the experimental feature, need to add them to pom manually.
 * Git-flow - Best practices for git management.
-* Trunk-based - CI/CD Best practices.
 * Guava, commons-lang3, commons-io - Must-have toolkits for engineers.
 * ShardingSphere - RW split and data sharding is enough to solve 90% of the `data big` problems.
 * Hazelcast - Compared to Redis, Hazelcast is simpler and more integrated.
