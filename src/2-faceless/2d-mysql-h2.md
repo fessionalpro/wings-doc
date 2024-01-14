@@ -9,7 +9,7 @@ category:
 # 2D.Mysql-Compatible Database
 
 MySql serial refers to mysql and its branches (Percona, MariaDB) or a  protocol compatible database,
-wings use mysql8 (5.7 has been fully tested).
+wings use mysql 8/5.7 (has been fully tested).
 
 In principle, DB should not encapsulate business logic (custom function or procedure), but can use the
 functions provided by db to simplify the work to achieve business goals.
@@ -20,7 +20,7 @@ functions provided by db to simplify the work to achieve business goals.
 Wings requires the following key settings in mysqld, including lowercase names, language, timezone, user privilege,
 [wordseg for full-text search](https://dev.mysql.com/doc/refman/8.0/en/fulltext-boolean.html)
 
-The following configuration is suitable for mysql5.7, mysql8, native, cloud,
+The following configuration is suitable for mysql 8/5.7, native/cloud,
 
 ```bash
 sudo tee /data/docker/mysql/conf/moilioncircle.cnf << EOF
