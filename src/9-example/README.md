@@ -200,7 +200,7 @@ to avoid the security implications of outdated documentation.
 In springboot3(after java17), `add-opens` must be set correctly to avoid `illegal-access`.
 Wings set correctly in pom.xml and starter.sh, with the following files and variable names.
 
-* `/pom.xml` - `wings.java-opens` with reason
+* `/pom.xml` - `javaopenArgLine` with reason
 * `/observe/scripts/wings-starter.sh` - `JDK9_ARG`
 * `<arg>` - must be specified with `=`, space is supported in shell
 
