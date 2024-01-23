@@ -101,7 +101,7 @@ mvn help:effective-pom
 * VsCode - 前端，markdown等，不适应于大文件
 * Sublime - 文本处理
 
-## 0C.5.http测试
+## 0C.5.Http测试
 
 推荐在每个工程test下建立idea支持的 `*.http` 接口描述和测试脚本，官方文档如下
 
@@ -119,3 +119,41 @@ mvn help:effective-pom
 * 很长的请求折多个短行. Indent all query string lines but the first one
 * HTTP Response Handler 的2个对象 client 和 response
 * <https://www.jetbrains.com/help/idea/http-response-handling-examples.html>
+
+## 0C.6.Wings测试
+
+Wings的测试依赖于mysql服务，当前通过docker的compose自动启动，若无需docker，
+可通过`spring.docker.compose.enabled=false`禁用。其默认的jdbc配置如下，
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:51487/wings_example\
+?connectionTimeZone=%2B08:00&forceConnectionTimeZoneToSession=true\
+&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true\
+&characterEncoding=UTF-8&useUnicode=true
+
+spring.datasource.username=trydofor
+spring.datasource.password=moilioncircle
+```
+
+新的mysql服务器，需要完成以下准备，才能够使用。
+
+* 设置用户权限，访问wings数据库
+* 创建空数据库，保证各模块数据隔离
+* 初始化表结构，为sharding提供meta缓存
+
+具体执行方式，参考一下脚本及注释，
+
+```bash
+## grant and create schema
+# observe/docker/mysql/init/*.sql
+
+## create table and data
+mvn -pl ':devs-codegen' -am \
+-Ddevs-codegen.test.skip=false \
+-Ddevs-initdb=true \
+-Dwings.test.skip=true \
+clean test
+
+## wings test and coverage
+mvn -P 'coverage,!example' clean test
+```

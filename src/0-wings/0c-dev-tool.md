@@ -124,3 +124,42 @@ Suggestions for use are as follows,
 * Fold long requests into multiple short lines. Indent all query string lines but the first one
 * HTTP Response Handler handle 2 objects: client and response
 * <https://www.jetbrains.com/help/idea/http-response-handling-examples.html>
+
+## 0C.6.Wings Testing
+
+Wings testing deps on the mysql service, which is managed by docker's compose.
+If no docker is available, you can disable it with `spring.docker.compose.enabled=false`.
+The default jdbc configuration is as follows.
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:51487/wings_example\
+?connectionTimeZone=%2B08:00&forceConnectionTimeZoneToSession=true\
+&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true\
+&characterEncoding=UTF-8&useUnicode=true
+
+spring.datasource.username=trydofor
+spring.datasource.password=moilioncircle
+```
+
+To use the new mysql server, the following steps must be taken.
+
+* Create a user to access the wings database
+* Create some empty schemas to isolate modules
+* Create tables, provide meta cache for sharding
+
+For details, see the following script and comments.
+
+```bash
+## grant and create schema
+# observe/docker/mysql/init/*.sql
+
+## create table and data
+mvn -pl ':devs-codegen' -am \
+-Ddevs-codegen.test.skip=false \
+-Ddevs-initdb=true \
+-Dwings.test.skip=true \
+clean test
+
+## wings test and coverage
+mvn -P 'coverage,!example' clean test
+```
