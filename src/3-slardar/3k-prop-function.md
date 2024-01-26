@@ -496,6 +496,10 @@ Swagger document.
 
 ## 3K.B.wings-dingnotice-79.properties
 
+### wings.slardar.ding-notice.default.dryrun
+
+`String`=`[DRYRUN]`, dryrun prefix of subject. merge if null, `empty` means disable.
+
 ### wings.slardar.ding-notice.default.access-token
 
 `String=`, the DingTalk access_token used to send the alert, `empty` means disable.
