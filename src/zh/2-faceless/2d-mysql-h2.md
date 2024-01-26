@@ -16,7 +16,7 @@ MySql体系指其分支(Percona,MariaDB)或兼容协议的数据库，wings使�
 ## 2D.1.创建Mysql Docker
 
 wings需要mysqld中以下的重点设置项，包括命名小写，语言时区，用户权限，[全文检索的分词](https://dev.mysql.com/doc/refman/8.0/en/fulltext-boolean.html)
-以下配置适应于mysql5.7, mysql8, native, cloud
+以下配置适应于 mysql8/5.7, native/cloud
 
 ```bash
 sudo tee /data/docker/mysql/conf/moilioncircle.cnf << EOF

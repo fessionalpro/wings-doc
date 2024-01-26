@@ -492,6 +492,10 @@ Swagger文档设置
 
 ## 3K.B.wings-dingnotice-79.properties
 
+### wings.slardar.ding-notice.default.dryrun
+
+`String`=`[DRYRUN]`，干跑的标题前缀，null时合并，空为禁用。
+
 ### wings.slardar.ding-notice.default.access-token
 
 `String=`，警报时，使用钉钉通知的access_token，`空`表示不使用

@@ -214,6 +214,11 @@ About comments, due to simple requirements, no syntax analysis is used, only at 
 ## 2A.4.Auto Revision Check
 
 With `wings.faceless.flywave.fit.*` you can automatically check for revision dependencies.
+
+* import faceless-flywave dependency
+* wings.enabled.faceless.flywave=true
+* wings.faceless.flywave.auto-init=true
+
 Since it is not possible to check the CREATE permission, wings use WARN by default.
 
 * If you need to disable the check, you can set SKIP as the log message said.

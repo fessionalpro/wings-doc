@@ -183,12 +183,13 @@ The config value in the properties is usually a single line, and the multiple li
 * .bean.HazelcastConfigConfiguration
   - .wingsHazelcastAloneCustomizer (false) = `wings.enabled.slardar.hazelcast-standalone`
   - .wingsHazelcastCacheCustomizer
+* .bean.HazelcastFacelessConfiguration
+  - .flakeIdService
+  - .hzLightIdProvider
 * .bean.HazelcastServiceConfiguration
-  - $FlakeIdServiceBean
   - $GlobalPublisherWired
   - .hazelcastCacheManager
   - .hazelcastGlobalLock
-  - .hzLightIdProvider
 * .conf.SlardarHazelSessionAutoConfiguration
 * .bean.SlardarHazelSessionConfiguration
   - .sessionRegistry

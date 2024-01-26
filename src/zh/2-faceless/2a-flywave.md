@@ -189,6 +189,11 @@ ALTER TABLE `win_admin` DROP INDEX ix_login_name;
 ## 2A.4.自动检查
 
 通过`wings.faceless.flywave.fit.*`可以自动检查revision的依赖。
+
+* 引入 faceless-flywave 依赖
+* wings.enabled.faceless.flywave=true
+* wings.faceless.flywave.auto-init=true
+
 因无法确认程序执行账号是否具有CREATE权限，wings默认是WARN。
 
 * 若需要关闭检查，可以根据log提示设置SKIP

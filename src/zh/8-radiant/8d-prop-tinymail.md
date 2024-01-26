@@ -73,13 +73,17 @@ spring-boot-starter-mail的配置，分为账号类和属性类
 
 默认配置项，仅当其他配置项是无效值时才使用，并且对于`properties.*`值，仅key存在时使用。
 
+### wings.tiny.mail.config.default.dryrun
+
+`String`=`[DRYRUN]`, 干跑邮件的标题前缀，null时合并，空为禁用。
+
 ### wings.tiny.mail.config.default.from
 
-`String`，默认发件人
+`String`=`${MAIL_FROM:}`，默认发件人
 
 ### wings.tiny.mail.config.default.to
 
-`String[]`，默认收件人，字符串数组，逗号分隔
+`String[]`=`${MAIL_TO:}`，默认收件人，字符串数组，逗号分隔
 
 ### wings.tiny.mail.config.default.cc
 

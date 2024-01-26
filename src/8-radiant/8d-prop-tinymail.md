@@ -85,13 +85,17 @@ The default config name is `default`, which automatically reuses the value of
 
 The default config item is only used if others are invalid, and for `properties.*` values, only if the key exists.
 
+### wings.tiny.mail.config.default.dryrun
+
+`String`=`[DRYRUN]`, dryrun prefix of subject. merge if null, `empty` means disable.
+
 ### wings.tiny.mail.config.default.from
 
-`String`, default from, usually the sender.
+`String`=`${MAIL_FROM:}`, default from, usually the sender.
 
 ### wings.tiny.mail.config.default.to
 
-`String[]`, default to, string arrays, comma separated.
+`String[]`=`${MAIL_TO:}`, default to, string arrays, comma separated.
 
 ### wings.tiny.mail.config.default.cc
 

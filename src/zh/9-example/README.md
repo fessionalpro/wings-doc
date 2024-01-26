@@ -195,7 +195,7 @@ example中的配置，默认以`DING_TALK_TOKEN`为密码
 在springboot3，即java17后，必须正确设置`add-opens`，以避免`illegal-access`。
 Wings在pom.xml和starter.sh中已进行了正确的设置，其文件及变量名字如下，
 
-* `/pom.xml` - `wings.java-opens` 有原因说明
+* `/pom.xml` - `javaopenArgLine` 有原因说明
 * `/observe/scripts/wings-starter.sh` - `JDK9_ARG`
 * `<arg>` - 参数必须使用`=`指定。在shell解析中支持空格分隔
 
