@@ -123,6 +123,9 @@ features:
 
 直接作为parent使用，可通过OSS获得不定期发布的`SNAPSHOT`版本。
 
+![Maven Central](https://img.shields.io/maven-central/v/pro.fessional/wings?color=00DD00)&nbsp;
+![Sonatype Snapshots](https://img.shields.io/nexus/s/pro.fessional/wings?server=https%3A%2F%2Foss.sonatype.org)&nbsp;
+
 ```xml
 <parent>
     <groupId>pro.fessional</groupId>
@@ -134,6 +137,10 @@ features:
 ## 🦁 积极动手
 
 建议动手搞定代码，避免低水平使用，无法发挥潜力实现初衷。
+
+![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/trydofor/professional-wings)&nbsp;
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/trydofor/professional-wings)&nbsp;
+![Coverage Status](https://coveralls.io/repos/github/trydofor/professional-wings/badge.svg)&nbsp;
 
 ```bash
 ## ① 国内镜像，成功后进入项目目录
