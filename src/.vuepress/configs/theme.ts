@@ -62,6 +62,11 @@ export default hopeTheme({
       category: 'General',
       categoryId: 'DIC_kwDOC6IHH84CPy0E',
     },
+    docsearch: {
+      appId: '2OIWW9DS0Z',
+      apiKey: 'c70807b7265d204d74d39aeee10b4474',
+      indexName: 'wingsboot',
+    },
     //components: ['Badge', 'FontIcon'],
     mdEnhance: {
       alert: true,

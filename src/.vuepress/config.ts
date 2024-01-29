@@ -21,13 +21,6 @@ export default defineUserConfig({
   },
   base: '/',
   theme: hopeTheme,
-  plugins: [
-    docsearchPlugin({
-      appId: '2OIWW9DS0Z',
-      apiKey: 'c70807b7265d204d74d39aeee10b4474',
-      indexName: 'wingsboot',
-    }),
-  ],
   // use HEAD date and hash
   extendsPage: page => {
     page.frontmatter.GIT_REPO_HEAD = stdout;

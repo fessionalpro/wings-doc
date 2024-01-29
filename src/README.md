@@ -124,6 +124,9 @@ For example, starting from a single app, to sharding, to micro service and to cl
 
 Use directly as a parent, occasional `SNAPSHOT` are available through OSS.
 
+![Maven Central](https://img.shields.io/maven-central/v/pro.fessional/wings?color=00DD00)&nbsp;
+![Sonatype Snapshots](https://img.shields.io/nexus/s/pro.fessional/wings?server=https%3A%2F%2Foss.sonatype.org)&nbsp;
+
 ```xml
 <parent>
     <groupId>pro.fessional</groupId>
@@ -135,6 +138,10 @@ Use directly as a parent, occasional `SNAPSHOT` are available through OSS.
 ## 🦁 Hands-on Use
 
 It's recommended that you get your hands on the code to avoid low-level use and failure to achieve the original purpose, even if you have the potential to get it.
+
+![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/trydofor/professional-wings)&nbsp;
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/trydofor/professional-wings)&nbsp;
+![Coverage Status](https://coveralls.io/repos/github/trydofor/professional-wings/badge.svg)&nbsp;
 
 ```bash
 ## (1) get source code
