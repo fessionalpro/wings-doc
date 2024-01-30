@@ -34,8 +34,8 @@ Wings版本号为标准的[3段式](https://semver.org/lang/zh-CN/)，前2段为
 
 * `3.2` - SpringBoot的`MAJOR`和`MINOR`
 * `100` - 3位数字，当`MINOR`变化时，应该重置为`100`
-  - 第1位数字，范围[1-9]，语义化`MINOR`含义
-  - 后2位数字，范围[00-99]，语义化`PATCH`含义
+  - 前2位数字，范围[10-99]，语义化`MINOR`含义
+  - 后1位数字，范围[0-9]，语义化`PATCH`含义
 * `SNAPSHOT` - maven的SNAPSHOT
 
 Wings使用了`revision`和`changelist`的CI占位属性，Maven需要3.5.0以上。

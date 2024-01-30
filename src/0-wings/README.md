@@ -35,8 +35,8 @@ the 3rd is Wings `BUILD` number. For example, `3.2.100-SNAPSHOT` are,
 
 * `3.2` - SpringBoot's `MAJOR` and `MINOR`
 * `100` - 3 digits, should reset to `100` when `MAJOR` changed
-  - 1st digit, range [1-9], semver's `MINOR` meaning
-  - last 2, range [00-99], semver's `PATCH` meaning
+  - first 2, range [10-99], semver's `MINOR` meaning
+  - last 1, range [0-9], semver's `PATCH` meaning
 * `SNAPSHOT` - maven's SNAPSHOT
 
 Wings uses the `revision` and `changelist` CI placeholders, requires Maven 3.5.0+.
