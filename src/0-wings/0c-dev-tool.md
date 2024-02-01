@@ -163,3 +163,25 @@ clean test
 ## wings test and coverage
 mvn -P 'coverage,!example' clean test
 ```
+
+## 0C.7. Git Flows
+
+Which git flow is better depends on the actual project situation, such as commit frequency,
+number of committers, etc. The main factors are,
+
+* Easy to read - linear history is best for readability
+* Less conflict - in developing, quick find, merge, squash, revert
+* Fix bugs - after release, easy to fix bugs
+
+When committing, squash/rebase is recommended to reduce transition commits and commit coupling.
+
+* One commit, one issue, and pass unit tests
+* One merge, one feature, and pass integration tests
+
+Common practices used flows are,
+
+* [GitFlow](https://nvie.com/posts/a-successful-git-branching-model/)
+* [GitHub Flow](https://guides.github.com/introduction/flow/)
+* [OneFlow](https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow)
+* [Forking Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow)
+* [Trunk-Based Development](https://trunkbaseddevelopment.com/)

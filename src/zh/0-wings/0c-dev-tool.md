@@ -157,3 +157,24 @@ clean test
 ## wings test and coverage
 mvn -P 'coverage,!example' clean test
 ```
+
+## 0C.7.Git流程
+
+Git流程需要根据项目实际情况来选择，如提交频度，提交者数量等，主要因素有，
+
+* 可读性 - 线性历史的可读性最好
+* 冲突少 - 开发中，快速查找，合并，Squash，回退
+* 修复 - 发布后，容易修补bug
+
+提交时，建议Squash或rebase，减少无意义的提交，减少提交耦合度。
+
+* 一个提交，一个Issue，并通过单元测试
+* 一次合并，一个功能，并通过集成测试
+
+业内常用的Git流程有，
+
+* [GitFlow](https://nvie.com/posts/a-successful-git-branching-model/)
+* [GitHub Flow](https://guides.github.com/introduction/flow/)
+* [OneFlow](https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow)
+* [Forking Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow)
+* [Trunk-Based Development](https://trunkbaseddevelopment.com/)
