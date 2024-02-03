@@ -231,21 +231,25 @@ mainly between 2019 and 2021, only indicates the order.
 * `2019` - basic features and services
 * `2020` - business features, general business functions
 * `2021` - branch functions, can be in orderless
+* `2022` - testing or example
 
 The revision numbers currently in use are,
 
-* 2019_0512_01 - master/00-init/2019-05-12v01-version-journal.sql
-* 2019_0512_02 - branch/somefix/01-v227-fix/2019-05-12v02-version-add-column.sql
-* 2019_0520_01 - master/01-light/2019-05-20v01-light-commit.sql
-* 2019_0521_01 - branch/feature/01-enum-i18n/2019-05-21v01-enum-i18n.sql
-* 2020_1023_01 - master/03-enum/2020-10-23v01-auth_enum.sql
-* 2020_1024_01 - master/04-auth/2020-10-24v01-user_login.sql
-* 2020_1024_02 - master/04-auth/2020-10-24v02-role_permit.sql
-* 2020_1025_01 - master/05-conf/2020-10-25v01-conf_runtime.sql
-* 2020_1026_01 - master/06-task/2020-10-26v01-tiny_task.sql
-* 2020_1027_01 - master/07-mail/2020-10-27v01-tiny_mail.sql
-* 2021_0918_01 - branch/somefix/01-authn-fix/2021-09-18v01-rename-authn.sql
-* 2021_1220_01 - branch/somefix/02-v242-201/2021-12-20v01-journal-trg-insert.sql
+* 2019_0512_01 - flywave:master/00-init/2019-05-12v01-version-journal.sql
+* 2019_0512_02 - flywave:branch/somefix/01-v227-fix/2019-05-12v02-version-add-column.sql
+* 2019_0520_01 - faceless:master/01-light/2019-05-20v01-light-commit.sql
+* 2019_0521_01 - faceless:branch/feature/01-enum-i18n/2019-05-21v01-enum-i18n.sql
+* 2020_1023_01 - warlock:master/03-enum/2020-10-23v01-auth_enum.sql
+* 2020_1024_01 - warlock:master/04-auth/2020-10-24v01-user_login.sql
+* 2020_1024_02 - warlock:master/04-auth/2020-10-24v02-role_permit.sql
+* 2020_1025_01 - warlock:master/05-conf/2020-10-25v01-conf_runtime.sql
+* 2020_1026_01 - tiny-task:master/06-task/2020-10-26v01-tiny_task.sql
+* 2020_1027_01 - tiny-mail:master/07-mail/2020-10-27v01-tiny_mail.sql
+* 2021_0918_01 - warlock:branch/somefix/01-authn-fix/2021-09-18v01-rename-authn.sql
+* 2021_1220_01 - flywave:branch/somefix/02-v242-201/2021-12-20v01-journal-trg-insert.sql
+* 2022_0601_01 - testing-faceless:master/2022-0601v01-test.sql
+* 2022_0601_02 - testing-faceless:master/2022-0601v02-test.sql
+* 2022_0222_01 - winx-common:master/00-init/2022-0222v01-demo-init.sql
 
 ## 2A.5.Database Convention
 
