@@ -1,5 +1,4 @@
 import { defineUserConfig } from 'vuepress';
-import { docsearchPlugin } from '@vuepress/plugin-docsearch';
 import hopeTheme from './configs/theme';
 import { execa } from 'execa';
 

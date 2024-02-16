@@ -67,23 +67,22 @@ $0.childNodes.forEach(a=>console.log('![' + a.title +'](' + a.firstChild.src.
 | Hero/Team | Merged | Hero/Team | Merged |
 | --------- | ------ | --------- | ------ |
 | ![Queen of Pain](/queenofpain_minimap_icon.png) Queen of Pain (qop) | 2021-07-26 | ![Luna](/luna_minimap_icon.png) Luna | 2021-09-18 |
-| ![Kunkka](/kunkka_minimap_icon.png) Kunkka (cock) | 2021-10-08 | ![Ti10](/team_icon_team_spirit.png) Ti10 Team Spirit | 2021-11-08 |
+| ![Kunkka](/kunkka_minimap_icon.png) Kunkka (cock) | 2021-10-08 | ![Ti10](/team_spirit.png) Ti10 Team Spirit | 2021-11-08 |
 | ![Magnus](/magnus_minimap_icon.png) Magnus | 2021-12-09 | ![Lycan](/lycan_minimap_icon.png) Lycan | 2022-01-14 |
 | ![Abaddon](/abaddon_minimap_icon.png) Abaddon | 2022-01-26 | ![Alchemist](/alchemist_minimap_icon.png) Alchemist | 2022-03-01 |
 | ![Axe](/axe_minimap_icon.png) Axe | 2022-03-31 | ![Beastmaster](/beastmaster_minimap_icon.png) Beastmaster | 2022-05-05 |
 | ![Brewmaster](/brewmaster_minimap_icon.png) Brewmaster | 2022-06-19 | ![Bristleback](/bristleback_minimap_icon.png) Bristleback | 2022-07-17 |
 | ![Centaur Warrunner](/centaurwarrunner_minimap_icon.png) Centaur Warrunner | 2022-08-20 | ![Chaos Knight](/chaosknight_minimap_icon.png) Chaos Knight | 2022-09-13 |
-| ![Clockwerk](/clockwerk_minimap_icon.png) Clockwerk | 2022-10-14 | ![Ti11](/team_logo_tundra_esports.png) Ti11 Tundra Esports | 2022-10-30 |
+| ![Clockwerk](/clockwerk_minimap_icon.png) Clockwerk | 2022-10-14 | ![Ti11](/team_tundra.png) Ti11 Tundra Esports | 2022-10-30 |
 | ![Dawnbreaker](/dawnbreaker_minimap_icon.png) Dawnbreaker | 2022-11-30 | ![Doom](/doom_minimap_icon.png) Doom | 2023-01-18 |
 | ![Dragon Knight](/dragonknight_minimap_icon.png) Dragon Knight | 2023-03-01 | ![Earth Spirit](/earthspirit_minimap_icon.png) Earth Spirit | 2023-04-11 |
 | ![Earthshaker](/earthshaker_minimap_icon.png) Earthshaker | 2023-06-21 | ![Elder Titan](/eldertitan_minimap_icon.png) Elder Titan | 2023-08-24 |
-| ![Ancient Apparition](/ancientapparition_minimap_icon.png) Ancient Apparition | 2023-10-20 | ![Ti12](/team_icon_team_spirit.png) Ti12 Team Spirit | 2023-12-12 |
-| ![Anti-Mage](/antimage_minimap_icon.png) Anti-Mage | - | ![Arc Warden](/arcwarden_minimap_icon.png) Arc Warden | - |
+| ![Ancient Apparition](/ancientapparition_minimap_icon.png) Ancient Apparition | 2023-10-20 | ![Ti12](/team_spirit.png) Ti12 Team Spirit | 2023-12-12 |
+| ![Anti-Mage](/antimage_minimap_icon.png) Anti-Mage | 2024-01-29 | ![Arc Warden](/arcwarden_minimap_icon.png) Arc Warden | - |
+| ![Bane](/bane_minimap_icon.png "Bane") Bane | - | ![Batrider](/batrider_minimap_icon.png "Batrider") Batrider | - |
 
 ---
 
-![Bane](/bane_minimap_icon.png "Bane")
-![Batrider](/batrider_minimap_icon.png "Batrider")
 ![Bloodseeker](/bloodseeker_minimap_icon.png "Bloodseeker")
 ![Bounty Hunter](/bountyhunter_minimap_icon.png "Bounty Hunter")
 ![Broodmother](/broodmother_minimap_icon.png "Broodmother")
@@ -183,3 +182,10 @@ $0.childNodes.forEach(a=>console.log('![' + a.title +'](' + a.firstChild.src.
 ![Witch Doctor](/witchdoctor_minimap_icon.png "Witch Doctor")
 ![Wraith King](/wraithking_minimap_icon.png "Wraith King")
 ![Zeus](/zeus_minimap_icon.png "Zeus")
+
+![Wings Gaming](/team_wings.png "Wings Gaming")&nbsp;
+![Team Spirit](/team_spirit.png "Team Spirit")&nbsp;
+![Tundra Esports](/team_tundra.png "Tundra Esports")&nbsp;
+![Azure Ray](/team_ar.png "Azure Ray")&nbsp;
+![Xtreme Gaming](/team_xg.png "Xtreme Gaming")&nbsp;
+![LGD Gaming](/team_lgd.png "LGD Gaming")&nbsp;

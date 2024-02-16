@@ -34,8 +34,8 @@ Wings版本号为标准的[3段式](https://semver.org/lang/zh-CN/)，前2段为
 
 * `3.2` - SpringBoot的`MAJOR`和`MINOR`
 * `100` - 3位数字，当`MINOR`变化时，应该重置为`100`
-  - 第1位数字，范围[1-9]，语义化`MINOR`含义
-  - 后2位数字，范围[00-99]，语义化`PATCH`含义
+  - 前2位数字，范围[10-99]，语义化`MINOR`含义
+  - 后1位数字，范围[0-9]，语义化`PATCH`含义
 * `SNAPSHOT` - maven的SNAPSHOT
 
 Wings使用了`revision`和`changelist`的CI占位属性，Maven需要3.5.0以上。
@@ -78,8 +78,6 @@ Wings由多个子项目构成，都采用了Dota有关的命名，主要包括�
 * silencer ← mirana | `boot-starter` | Spring自动配置
 * silencer-curse ← silencer | `aop` | Wings基本功能
 * faceless ← curse | meepo | `jdbc` | 类型主键
-* faceless-autogen ← faceless | 自动生成的代码
-* faceless-awesome ← faceless-autogen | 依赖自动生成代码的功能
 * faceless-codegen ← faceless-jooq | `jooq-codegen` | 代码生成
 * faceless-flywave ← faceless | `kotlin` | 版本管理
 * faceless-jooq ← faceless-awesome | `jooq` | Jooq定制
@@ -92,8 +90,6 @@ Wings由多个子项目构成，都采用了Dota有关的命名，主要包括�
 * slardar-sprint ← hazel-caching | hazel-session | slardar-webmvc | `starter-security` |
   `starter-actuator` | `boot-admin` | Web集成
 * warlock ← slardar | faceless-jooq | Db基础
-* warlock-autogen ← slardar | 自动生成的代码
-* warlock-awesome ← slardar-autogen | 依赖自动生成代码的功能
 * warlock-codegen ← warlock-awesome | faceless-codegen | flywave
 * warlock-shadow ← slardar-sprint | warlock-awesome | `JustAuth` | Db|Web|权限
 * warlock-bond ← warlock-shadow | auth-perm体系
