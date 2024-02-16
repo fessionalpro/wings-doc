@@ -187,4 +187,5 @@ $0.childNodes.forEach(a=>console.log('![' + a.title +'](' + a.firstChild.src.
 ![Team Spirit](/team_spirit.png "Team Spirit")&nbsp;
 ![Tundra Esports](/team_tundra.png "Tundra Esports")&nbsp;
 ![Azure Ray](/team_ar.png "Azure Ray")&nbsp;
+![Xtreme Gaming](/team_xg.png "Xtreme Gaming")&nbsp;
 ![LGD Gaming](/team_lgd.png "LGD Gaming")&nbsp;
