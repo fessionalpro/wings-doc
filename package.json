@@ -12,16 +12,15 @@
     "docs:update-package": "npx vp-update"
   },
   "devDependencies": {
-    "@vuepress/client": "2.0.0-rc.2",
-    "@vuepress/bundler-vite": "2.0.0-rc.2",
-    "@vuepress/plugin-docsearch": "2.0.0-rc.1",
-    "mermaid": "^10.6.1",
-    "prettier": "^2.8.7",
-    "vue": "^3.4.15",
-    "vuepress": "2.0.0-rc.2",
-    "vuepress-theme-hope": "2.0.0-rc.16"
+    "@vuepress/bundler-vite": "2.0.0-rc.7",
+    "@vuepress/plugin-docsearch": "2.0.0-rc.12",
+    "mermaid": "^10.8.0",
+    "prettier": "^3.2.5",
+    "vue": "^3.4.19",
+    "vuepress": "2.0.0-rc.7",
+    "vuepress-theme-hope": "2.0.0-rc.23"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=20"
   }
 }
