@@ -148,9 +148,9 @@ and the priority of these 3 keys is from highest to lowest.
 In addition to the precise control of annotations,
 the following props can impl the `ant-matcher` control of `qualified-key`.
 
-* wings.silencer.conditional.error
-* wings.silencer.conditional.prefix
-* wings.silencer.conditional.enable
+* wings.feature.error
+* wings.feature.prefix
+* wings.feature.enable
 
 ```properties
 ## ... is short for the package

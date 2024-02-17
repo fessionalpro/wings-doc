@@ -141,9 +141,9 @@ public static class SomeServiceConfiguration {
 
 除了注解的精确控制，也可以通过以下属性，对`限定key`实现`ant-matcher`规则的控制。
 
-* wings.silencer.conditional.error
-* wings.silencer.conditional.prefix
-* wings.silencer.conditional.enable
+* wings.feature.error
+* wings.feature.prefix
+* wings.feature.enable
 
 ```properties
 ## ... 为包名缩写

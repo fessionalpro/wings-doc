@@ -39,22 +39,22 @@ Silencer的入口配置，定义了Silencer的自动加载的路径和模式。
 
 变量提示文件名
 
-## 1D.2.wings-conditional-79.properties
+## 1D.2.wings-wings.feature-79.properties
 
-### wings.silencer.conditional.error
+### wings.feature.error
 
 `Map<String, Boolean>`=`empty`，映射限定key(ant-matcher)及其错误处理。
 
 * `*`=`true` 错误以match处理
 * `pro.*`=`false` 以notMatch处理
 
-### wings.silencer.conditional.prefix
+### wings.feature.prefix
 
 `Map<String, String>`=`empty`，映射限定key(ant-matcher)及其前缀。
 
 * `*`=`wings.enabled` 重定义所有前缀。
 
-### wings.silencer.conditional.enable
+### wings.feature.enable
 
 `Map<String, Boolean>`=`empty`，映射限定key(ant-matcher)及其是否匹配。
 

@@ -41,22 +41,22 @@ Filename of the block-list config
 
 Filename of the promotion config
 
-## 1D.2.wings-conditional-79.properties
+## 1D.2.wings-feature-79.properties
 
-### wings.silencer.conditional.error
+### wings.feature.error
 
 `Map<String, Boolean>`=`empty`, the mapping of qualified-key (ant-matcher) and its error handling.
 
 * `*`=`true` error as `match`
 * `pro.*`=`false` error as `notMatch`
 
-### wings.silencer.conditional.prefix
+### wings.feature.prefix
 
 `Map<String, String>`=`empty`, the mapping of qualified-key (ant-matcher) and its prefix.
 
 * `*`=`wings.enabled` redefine prefix for all.
 
-### wings.silencer.conditional.enable
+### wings.feature.enable
 
 `Map<String, Boolean>`=`empty`, the mapping of qualified-key (ant-matcher) and its enable.
 
