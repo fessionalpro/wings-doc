@@ -167,3 +167,17 @@ wings.enabled.pro...WingsEnabledDogConfiguration.dogBean=false
 ## disable InnerDogConfiguration and its Bean
 wings.enabled.pro...WingsEnabledDogConfiguration$InnerDogConfiguration=false
 ```
+
+## 1C.6. Feature Flags
+
+The Wings FeatureFlags implementation has two levels, as follows.
+
+* Config level - `@ConditionalWingsEnabled` acts on the `@Component` and `@Bean`.
+* Thread level - `FeatureFlag` acts on the logical
+
+The principle of both is the same, based on `wings.feature` and `wings.enabled` properties.
+
+In business coding, toggling business logic can be achieved by using the following utility classes.
+
+* `FeatureFlag` - get the feature state using Class as key
+* `TweakFeature` - dynamically toggle feature at global or thread level

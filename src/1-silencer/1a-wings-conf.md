@@ -129,8 +129,9 @@ It is recommended to use `wings-starter.sh` to start, use `wings-starter.env` to
 Triggers thread-level logging output based on business requirements and under certain conditions.
 
 * TweakLogger - supports logback only, done through LogbackFilter
-* TweakClock - global or thread level  time adjustment
+* TweakClock - global or thread level time adjustment
 * TweakStack - global or thread level whether to output Stack
+* TweakFeature - global or thread level toggle feature
 
 ## 1A.7.References
 

@@ -122,6 +122,7 @@ Wings支持多配置，多profile，其路径优先级和profile优先级与spri
 * TweakLogger - 仅支持logback，通过LogbackFilter完成
 * TweakClock - 全局或线程级调整时间
 * TweakStack - 全局或线程级是否输出Stack
+* TweakFeature - 全局或线程级开关功能
 
 ## 1A.7.参考资料
 
