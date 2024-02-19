@@ -18,10 +18,11 @@ Given the differences between java and js, data transfer, and functionality, the
 * float number to java.BigDecimal and js.string to pass each other
 * java.null not to pass each other in Json
 * java.integer, interpass with js.number/string
-* java.datetime, including `util.Date`,`sql.Date`,`time.Local*|Zoned*|Instant`
+* java.datetime, including `util.Date`, `sql.Date`, `time.Local*|Zoned*|Instant`
 * java.datetime, in timestamp format with js.number
 * java.datetime, in `yyyy-MM-dd HH:mm:ss` format with js.string
 * java.timezone, both in ZoneId string format with js.string
+* object key cannot be a variable, `{steve:15}` is `{name:'steve',age:15}`
 
 ## 3A.2.Lost Precision and Trait
 

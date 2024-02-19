@@ -18,10 +18,11 @@ category:
 * 浮点数值，以java.BigDecimal与js.string互传
 * java.null 不在Json中互传
 * java.整数，与js.number/string互传
-* java.日时，包括`util.Date`,`sql.Date`,`time.Local*|Zoned*|Instant`
+* java.日时，包括`util.Date`, `sql.Date`, `time.Local*|Zoned*|Instant`
 * java.日时，以时间戳形式与js.number互传
 * java.日时，都以`yyyy-MM-dd HH:mm:ss`格式与js.string互传
 * java.时区，以ZoneId字符串格式与js.string互传
+* 对象key，不可以是变量，`{steve:15}`为`{name:'steve',age:15}`
 
 ## 3A.2.精度及特性丢失
 
