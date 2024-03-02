@@ -64,7 +64,7 @@ common.email.size=The author email '${validatedValue}' must be between {min} and
 项目支持I18n，除了为静态Message定义Code外，更大的工作量在于处理动态的业务消息。
 比较常见的如输入参数的检查，运行状态的校验，输出结果的确认等。
 
-### 前置条件检查
+### 4a.前置条件检查
 
 ```java
 // 抛出无堆栈的CodeException
@@ -89,7 +89,7 @@ public R<?> bindingErrorFrom(@Valid Ins ins) {
 }
 ```
 
-### 读写分组验证
+### 4b.读写分组验证
 
 在Mvc实践中，推荐的模式是，用groups分组，以区分insert和update的验证
 
@@ -112,7 +112,7 @@ public R<Object> updateOutSku(@RequestBody @Validated(value = {Update.class}) Ou
 }
 ```
 
-### 运行时状态检查
+### 4c.运行时状态检查
 
 预定义CodeEnum，关联Message资源，通过全局的异常处理输出I18n信息
 
@@ -122,7 +122,7 @@ public R<Object> updateOutSku(@RequestBody @Validated(value = {Update.class}) Ou
 * `I18nString` - 通过json自动转换为String类型输出
 * `@JsonI18nString` - 注解字段，实现自动json转换
 
-### 多国语信息设置
+### 4d.多国语信息设置
 
 参考[多国语信息](../0-wings/0i-i18n-message.md)
 

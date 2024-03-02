@@ -24,7 +24,7 @@ The entire team is in the same boat, trying to survive and explore at sea, while
 The business architecture and model, program architecture and model, have strict boundaries and dependency requirements.
 Usually, from the bottom to the top like a building floor, they are called Floor-N (N is a natural number)
 
-### Unidirectional Call, Avoid Crossing
+### 2a.Unidirectional Call, Avoid Crossing
 
 Usually, the upper layer can invoke the same layer or the lower layer, but not vice versa. For example,
 in the structure of Dao/Ser/Mvc:
@@ -33,7 +33,7 @@ in the structure of Dao/Ser/Mvc:
 * Controller can call Service, but must not be called back. ^MUST^
 * Controller should not call Dao. ^SHOULD^
 
-### Unidirectional Flow, Event Sourcing
+### 2b.Unidirectional Flow, Event Sourcing
 
 Data flow and business flow require unidirectional flow. In the case of turbulent flow,
 unambiguous events should be propagated and tracked.
@@ -49,12 +49,12 @@ Usually, from the inside to the outside, they are called Layer-N (N is a natural
 * `Servlet` and `Filter` use combine and filter
 * `Authn` and `Authz` use combine and inherit
 
-### Clear Boundary, Reduce Coupling
+### 3a.Clear Boundary, Reduce Coupling
 
 Based on business requirements within the domain, define clear boundaries,
 such as data models, functional modules, etc.
 
-### Single Responsibility, Each to Its Own
+### 3b.Single Responsibility, Each to Its Own
 
 For a given event, focus on a single task,
 for a data flow, handle only the current state.

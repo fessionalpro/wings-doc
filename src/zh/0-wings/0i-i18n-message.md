@@ -27,7 +27,7 @@ category:
 find . -type d -name 'wings-i18n'| egrep -v -E 'target/|test/'
 ```
 
-### slardar-webmvc - AnthnErrorEnum
+### 2a.AnthnErrorEnum slardar-webmvc
 
 spring security的验证错误
 
@@ -39,7 +39,7 @@ spring security的验证错误
 * error.authn.credentialsExpired
 * error.authn.failureWaiting
 
-### warlock - CommonErrorEnum
+### 2b.CommonErrorEnum warlock
 
 通用错误，如assert
 

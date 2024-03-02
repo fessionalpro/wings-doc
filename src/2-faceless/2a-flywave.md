@@ -259,12 +259,12 @@ In addition, the data versioning and tracing features are strictly dependent on 
 * All structure changes must be done through sql, even for static data.
 * All sql files are executed in the following order (incremental order)
 
-### Revision Number
+### 5a.Revision Number
 
 * `revision` = `version` number + `build` number
 * The first `revision` is `2019051201` and any lower value  is ignored.
 
-### Version Number
+### 5b.Version Number
 
 The `version` is the major number, 8 digits yyyyMMdd style.
 `_` or `-` can separate the digits for human readability, e.g. `yyyyy-MM-dd`.
@@ -274,23 +274,23 @@ The `version` number must be strictly incremental, but not consecutive.
 If there are multiple people, or multiple version in the same day,
 you should communicate well and unify the version.
 
-### Build Number
+### 5c.Build Number
 
 The `build` is the minor number, 2 digits from `01` to `99`.
 
 It is strictly incremental, but not consecutive.
 
-### Flag Part
+### 5d.Flag Part
 
 The `flag` char indicates the behavior, lower case,
 currently `v` means upgrade(version) and `u` means  downgrade(undo).
 
-### Info Part
+### 5e.Info Part
 
 `-` + English message, separated by `_` or `-` between words is recommended.
 This part is optional and used only for the file comment, ignored by the program during processing.
 
-### File Name
+### 5f.File Name
 
 The filename consists of `version` + `flag` + `build` + `info`,
 with `.sql` extension, all lowercase.
@@ -298,13 +298,13 @@ with `.sql` extension, all lowercase.
 * 20190521u01-my_test.sql
 * 20190521v01-enum-i18n.sql
 
-### Upgrade Script
+### 5g.Upgrade Script
 
 Upgrade is denoted by `v`, which stands for version (also called upto), required.
 
 `20190509_v_01.sql` means upgrade version.
 
-### Downgrade Script
+### 5h.Downgrade Script
 
 Downgrade is denoted by `u`, which means undo, optional.
 

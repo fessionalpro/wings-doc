@@ -169,7 +169,7 @@ String client = "wings-trydofor";
 String secret = "高密级";
 ```
 
-### 发送Json
+### 3a.发送Json
 
 根据`PostJson模式`中的java伪代码假设，则客户端准备的数据为
 
@@ -192,7 +192,7 @@ curl -i -X POST \
  'https://wings.fessional.pro/api/test.json?query=string'
 ```
 
-### 接收Json
+### 3b.接收Json
 
 服务端，大概实现以下方法，收到客户端请求，
 
@@ -227,7 +227,7 @@ public ResponseEntity<String> testJsonApi(
 * response body1
 * 客户端收到response，进行验签，及后续业务
 
-### 发送File
+### 3c.发送File
 
 ```java
 // 放入文件名及其内容的指纹
@@ -263,7 +263,7 @@ curl -i -X POST \
 * Json业务主体，以名为`FILE_JSON_BODY`提交，可对内容做指纹
 * 同时提交多个文件，也发送Json的情况，即结合以上2条
 
-### 接受File
+### 3d.接受File
 
 服务器端接受`multipart/form-data`，并通过`file`接收文件，`param`接收指纹。
 
@@ -310,7 +310,7 @@ response文件时，不对body直接签名，增加以下步骤外，和Json部�
 假设client的id为`wings-trydofor`，AccesssToken为`win-access-token`，
 原`Auth-Client:wings-trydofor`变为`Auth-Client:win-access-token`
 
-### OAuth功能
+### 4a.OAuth功能
 
 在WarlockShadow中，以Ticket模拟了OAuth的授权码模式，默认开启，但不能使用。
 
@@ -321,7 +321,7 @@ response文件时，不对body直接签名，增加以下步骤外，和Json部�
 
 使用此功能，需要手动自定client配置，或自行实现其他加载机制，如数据库。
 
-### 获取Token
+### 4b.获取Token
 
 支持OAuth的authorization_code和client_credentials模式，根据`code`参数的有无自动切换。
 
@@ -371,7 +371,7 @@ curl -X 'POST' \
 }
 ```
 
-### 吊销Token
+### 4c.吊销Token
 
 revoke任意token，会使该账号下所有小于当前序号的token失效。
 

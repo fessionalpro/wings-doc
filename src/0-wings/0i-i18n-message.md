@@ -27,7 +27,7 @@ rules of matching i18n language are `lang_region` > `lang` > `default`
 find . -type d -name 'wings-i18n'| egrep -v -E 'target/|test/'
 ```
 
-### slardar-webmvc AnthnErrorEnum
+### 2a.AnthnErrorEnum slardar-webmvc
 
 authn error of spring security.
 
@@ -39,7 +39,7 @@ authn error of spring security.
 * error.authn.credentialsExpired
 * error.authn.failureWaiting
 
-### warlock - CommonErrorEnum
+### 2b.CommonErrorEnum warlock
 
 common error, eg. assert.
 
