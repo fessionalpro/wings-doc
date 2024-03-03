@@ -141,9 +141,9 @@ public static class SomeServiceConfiguration {
 
 除了注解的精确控制，也可以通过以下属性，对`限定key`实现`ant-matcher`规则的控制。
 
-* wings.silencer.conditional.error
-* wings.silencer.conditional.prefix
-* wings.silencer.conditional.enable
+* wings.feature.error
+* wings.feature.prefix
+* wings.feature.enable
 
 ```properties
 ## ... 为包名缩写
@@ -160,3 +160,17 @@ wings.enabled.pro...WingsEnabledDogConfiguration.dogBean=false
 ## 禁用 InnerDogConfiguration 及其 Bean
 wings.enabled.pro...WingsEnabledDogConfiguration$InnerDogConfiguration=false
 ```
+
+## 1C.6.功能开关 FeatureFlags
+
+Wings的FeatureFlags实现，有以下两个层面，
+
+* 配置级 - `@ConditionalWingsEnabled` 作用在 `@Component` 和 `@Bean`
+* 线程级 - `FeatureFlag` 作用在逻辑
+
+此两种方式的原理相同，基于`wings.feature`和`wings.enabled`配置。
+
+在业务编码中，使用以下工具类，可实现切换业务逻辑，
+
+* `FeatureFlag` - 以Class为key获取功能状态
+* `TweakFeature` - 全局或线程级动态开关功能

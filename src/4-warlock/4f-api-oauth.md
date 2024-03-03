@@ -180,7 +180,7 @@ String client = "wings-trydofor";
 String secret = "高密级";
 ```
 
-### Post Json
+### 3a.Post Json
 
 According to the java pseudo-code assumptions in the `PostJson` model,
 then the data prepared by the client side is,
@@ -204,7 +204,7 @@ curl -i -X POST \
  'https://wings.fessional.pro/api/test.json?query=string'
 ```
 
-### Receive Json
+### 3b.Receive Json
 
 The server side, presumably have the following method to receive the client request,
 
@@ -239,7 +239,7 @@ At the end of normal business, the steps of response are as follows.
 * response body1
 * The client receives the response, verifies the signature, and subsequent operations
 
-### Post File
+### 3c.Post File
 
 ```java
 // put the file name and its contents fingerprint
@@ -275,7 +275,7 @@ curl -i -X POST \
 * Json business body, submitted as `FILE_JSON_BODY`, can do fingerprinting of the content
 * Simultaneous submission of multiple files, also send Json case, that is, combined with the above 2
 
-### Receive File
+### 3d.Receive File
 
 The server side accepts `multipart/form-data` and receives the file via `file` and the fingerprint via `param`.
 
@@ -323,7 +323,7 @@ If you don't want to use client as the identity, you can use OAuth's AccessToken
 Suppose the client's id is `wings-trydofor` and the AccessToken is `win-access-token`.
 the original `Auth-Client:wings-trydofor` becomes `Auth-Client:win-access-token`
 
-### OAuth functionality
+### 4a.OAuth functionality
 
 In WarlockShadow, the authorization code mode of OAuth is simulated with Ticket,
 which is enabled by default but not available.
@@ -336,7 +336,7 @@ which is enabled by default but not available.
 To use this feature, you need to manually customize the client configuration or
 implement your own loader, such as a database.
 
-### Get Token
+### 4b.Get Token
 
 Support OAuth authorization_code and client_credentials type, automatically switching according to
 the presence or absence of the `code` parameter.
@@ -388,7 +388,7 @@ Get access_token, you can get a new token within the validity period, note that 
 }
 ```
 
-### Revoke Token
+### 4c.Revoke Token
 
 Revoke any token will invalidate all tokens that are smaller than the current serial number under that account.
 

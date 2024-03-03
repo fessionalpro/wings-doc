@@ -68,7 +68,7 @@ For I18n supported project , in addition to defining Code for static Message, th
 handling dynamic business messages. The more common ones are such as input parameter checking,
 execution state checking, output result confirmation, etc.
 
-### Pre-condition check
+### 4a.Pre-condition check
 
 ```java
 // throw stackless CodeException
@@ -93,7 +93,7 @@ public R<?> bindingErrorFrom(@Valid Ins ins) {
 }
 ```
 
-### R/W Group Verification
+### 4b.R/W Group Verification
 
 In Mvc practice, the recommended pattern is to use groups to distinguish between insert and update validation
 
@@ -116,7 +116,7 @@ public R<Object> updateOutSku(@RequestBody @Validated(value = {Update.class}) Ou
 }
 ```
 
-### Execution State Check
+### 4c.Execution State Check
 
 Predefined CodeEnum, associated Message resource, output I18n message via global exception handling
 
@@ -126,7 +126,7 @@ Predefined CodeEnum, associated Message resource, output I18n message via global
 * `I18nString` - automatically convert to String output via json
 * `@JsonI18nString` - annotate the field for automatic json conversion
 
-### I18n message resources
+### 4d.I18n message resources
 
 See [I18n Message](../0-wings/0i-i18n-message.md)
 

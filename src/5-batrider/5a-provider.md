@@ -29,7 +29,7 @@ When pure String is used as body, both Request's `consumes` and Response's `prod
 
 The contract is available in both Mvc and Rpc styles, both of which can be easily located and understood.
 
-### Mvc Style, Root is BasePath
+### 3a.Mvc Style, Root is BasePath
 
 Consistent with the Controller and RequestMapping conventions in wings.
 
@@ -51,7 +51,7 @@ public class BatriderContractor implements HelloContract {
 }
 ```
 
-### Rpc Style, SchemaId is basePath
+### 3b.Rpc Style, SchemaId is basePath
 
 Easier to locate by IDE association, placing the SchemaId in the contract interface
 

@@ -148,9 +148,9 @@ and the priority of these 3 keys is from highest to lowest.
 In addition to the precise control of annotations,
 the following props can impl the `ant-matcher` control of `qualified-key`.
 
-* wings.silencer.conditional.error
-* wings.silencer.conditional.prefix
-* wings.silencer.conditional.enable
+* wings.feature.error
+* wings.feature.prefix
+* wings.feature.enable
 
 ```properties
 ## ... is short for the package
@@ -167,3 +167,17 @@ wings.enabled.pro...WingsEnabledDogConfiguration.dogBean=false
 ## disable InnerDogConfiguration and its Bean
 wings.enabled.pro...WingsEnabledDogConfiguration$InnerDogConfiguration=false
 ```
+
+## 1C.6. Feature Flags
+
+The Wings FeatureFlags implementation has two levels, as follows.
+
+* Config level - `@ConditionalWingsEnabled` acts on the `@Component` and `@Bean`.
+* Thread level - `FeatureFlag` acts on the logical
+
+The principle of both is the same, based on `wings.feature` and `wings.enabled` properties.
+
+In business coding, toggling business logic can be achieved by using the following utility classes.
+
+* `FeatureFlag` - get the feature state using Class as key
+* `TweakFeature` - dynamically toggle feature at global or thread level

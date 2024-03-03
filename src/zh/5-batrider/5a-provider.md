@@ -29,7 +29,7 @@ category:
 
 契约有Mvc和Rpc两种风格，都可以方便定位和理解。
 
-### Mvc风格，basePath为根路径
+### 3a.Mvc风格，basePath为根路径
 
 同wings中Controller及RequestMapping约定一致。
 
@@ -51,7 +51,7 @@ public class BatriderContractor implements HelloContract {
 }
 ```
 
-### Rpc风格，basePath指定SchemaId
+### 3b.Rpc风格，basePath指定SchemaId
 
 通过IDE联想更容易定位，把SchemaId置于契约接口中，
 
