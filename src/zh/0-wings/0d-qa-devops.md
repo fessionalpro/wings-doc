@@ -462,3 +462,18 @@ wings中默认配置jackson如下，mapper影响大小写，deserialization决�
 
 * `wings.warlock.security.anonymous` - 禁止 anonymous
 * `wings.enabled.warlock.sec-check-url` - 检查URL冲突
+
+## 0D.36.SpringMvc常见拦截的区别
+
+* `Filter` - 作用于servlet (a)
+* `Aop` - 作用于方法 (b)
+* `HandlerInterceptor` - 作用于 `@Controller` (a)
+* `@ControllerAdvice` - 仅定义 `@Component`
+* `RequestBodyAdvice` -  仅作用于 `@RequestBody` (c)
+* `ResponseBodyAdvice` - 仅作用于 `@ResponseBody` (c)
+
+其中，需要注意的地方有，
+
+* (a) 如读取输入流，会引发流读尽(EOF)的问题
+* (b) 可直接获取参数，避免输入流读尽的问题
+* (c) 无输入流读尽问题

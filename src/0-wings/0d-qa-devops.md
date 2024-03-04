@@ -458,7 +458,8 @@ When the above is `(false, true)` (by default), the Unrecognized field will appe
 
 * `@JsonFormat(with = ACCEPT_CASE_INSENSITIVE_PROPERTIES)` on Class
 * `@JsonProperty("Amount")` on Field
-* change wings config (not recommended), CASE_INSENSITIVE has additional performance overhead, delays detection of naming problems
+* change wings config (not recommended), CASE_INSENSITIVE has additional
+  performance overhead, delays detection of naming problems
 * build and config new Mapper based on Jackson2ObjectMapperBuilder
 
 ## 0D.34.javax.annotation.meta.When.MAYBE
@@ -480,3 +481,18 @@ when using `@Nullable` and `NxxNull`, MUST be from `org.jetbrains.annotations`
 
 * `wings.warlock.security.anonymous` - disable anonymous
 * `wings.enabled.warlock.sec-check-url` - check url conflict
+
+## 0D.36.SpringMvc Interception Difference
+
+* `Filter` - on servlet  (a)
+* `Aop` - on methods (b)
+* `HandlerInterceptor` - on `@Controller` (a)
+* `@ControllerAdvice` - defines `@Component` only
+* `RequestBodyAdvice` - only on `@RequestBody` (c)
+* `ResponseBodyAdvice` - only on `@ResponseBody` (c)
+
+things to be care of,
+
+* (a) EOF error if read InputStream
+* (b) directly read the paramete to avoid the EOF error
+* (c) no EOF error
