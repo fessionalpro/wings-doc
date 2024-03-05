@@ -13,18 +13,18 @@ make sure the versions matches,
 
 * `vue` to [hope vue]
 * `vuepress/*` to [hope vue]
-* `execa` to [hope pnpm]
+* `execa` to [hope npm]
 * `deploy-docs.yml` to [git workflow]
 
-then pnpm commands,
+then npm commands,
 
-* `nvm use` - check and install node by nvm
+* `asdf install` - check and install node by nvm
 * `npm install` - install/update packages
 * `npm run docs:dev-clean` - clean and review
 * `npm run docs:update-package` - update deps helper
 
 [hope vue]: https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/packages/components/package.json
-[hope pnpm]: https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/package.json
+[hope npm]: https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/package.json
 [git workflow]: https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/packages/create/src/config/workflow.ts
 
 ## Markdown Conventions
