@@ -496,3 +496,24 @@ things to be care of,
 * (a) EOF error if read InputStream
 * (b) directly read the paramete to avoid the EOF error
 * (c) no EOF error
+
+## 0D.37. Show/Hide the Exception StackTrace
+
+Some exceptions don't require a stack, such as user input errors,
+which only return a hint message. Some exceptions need to be logged for
+investigation or statistics. So how do you fine-tune these cases?
+
+* CodeException - whether to populate the stack (no stack by default)
+  - Global property `wings.silencer.tweak.code-stack=false`
+  - Thread level `TweakStack.tweakXxx()`
+  - business level `TweakStack.tweakCode()`
+* DefaultExceptionResolver - the following defaults dont log the stack
+  - HttpStatusException
+  - TerminalContextException
+  - CodeException
+  - DataResult
+  - AuthenticationException
+  - AccessDeniedException
+
+If you need to fine-tune the above stack configuration,
+you can customize `DefaultExceptionResolver.Handler`.

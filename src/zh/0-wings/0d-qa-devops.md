@@ -477,3 +477,22 @@ wings中默认配置jackson如下，mapper影响大小写，deserialization决�
 * (a) 如读取输入流，会引发流读尽(EOF)的问题
 * (b) 可直接获取参数，避免输入流读尽的问题
 * (c) 无输入流读尽问题
+
+## 0D.37.显示或隐藏异常堆栈
+
+有些异常，不需要堆栈，比如用户输入错误，仅返回提示信息即可。
+有些异常，需要记录日志，以便调查或统计。那么如何微调这些情况呢？
+
+* CodeException - 是否填充堆栈（默认无堆栈）
+  - 全局属性 `wings.silencer.tweak.code-stack=false`
+  - 线程级 `TweakStack.tweakXxx()`
+  - 业务级 `TweakStack.tweakCode()`
+* DefaultExceptionResolver - 以下默认不打印堆栈
+  - HttpStatusException
+  - TerminalContextException
+  - CodeException
+  - DataResult
+  - AuthenticationException
+  - AccessDeniedException
+
+若需要微调以上堆栈配置，可以自定义 `DefaultExceptionResolver.Handler`。
