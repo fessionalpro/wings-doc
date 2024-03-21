@@ -517,3 +517,18 @@ investigation or statistics. So how do you fine-tune these cases?
 
 If you need to fine-tune the above stack configuration,
 you can customize `DefaultExceptionResolver.Handler`.
+
+## 0D.38.Missing DAO, "Skipping DAO generation"
+
+After jooq generates the code, there is no `Dao`, but has `Pojo` and
+`Skipping DAO generation` in the log. Need to check the table structure,
+whether no primary key, the related logs and code as follows,
+
+```java
+// JavaGenerator -- Skipping DAO generation
+UniqueKeyDefinition key = table.getPrimaryKey();
+if (key == null) {
+    log.info("Skipping DAO generation", out.file().getName());
+    return;
+}
+```

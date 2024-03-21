@@ -496,3 +496,17 @@ wings中默认配置jackson如下，mapper影响大小写，deserialization决�
   - AccessDeniedException
 
 若需要微调以上堆栈配置，可以自定义 `DefaultExceptionResolver.Handler`。
+
+## 0D.38.缺少DAO, "Skipping DAO generation"
+
+jooq生成代码后，没有`Dao`，但是有`Pojo`，有 `Skipping DAO generation`日志，
+需要检查数据表，是否没有主键，其相关日志和代码如下，
+
+```java
+// JavaGenerator -- Skipping DAO generation
+UniqueKeyDefinition key = table.getPrimaryKey();
+if (key == null) {
+    log.info("Skipping DAO generation", out.file().getName());
+    return;
+}
+```
