@@ -258,7 +258,7 @@ loginProcessingUrl，处理登录的Ant格式URL，由filter处理，不需要co
 
 ### wings.warlock.security.login-success-body
 
-`String`=`{"success":true,"message":"login success"}`，登录成功返回的body，非重定向时
+`String`=`{"success":true,"message":"login success"}`，非重定向时登录成功返回的body，空时不注入handler
 
 ### wings.warlock.security.login-failure-body
 

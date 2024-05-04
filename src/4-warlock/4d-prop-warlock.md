@@ -256,7 +256,7 @@ Support `authType` and `authZone` variables, which can be obtained via param or 
 
 ### wings.warlock.security.login-success-body
 
-`String`=`{"success":true,"message":"login success"}`, the response body if no redirect after successful login.
+`String`=`{"success":true,"message":"login success"}`, the response body if no redirect after successful login, no handler is injected when empty.
 
 ### wings.warlock.security.login-failure-body
 
