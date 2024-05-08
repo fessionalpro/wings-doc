@@ -48,10 +48,18 @@ Slardar基于SpringMvc做了工具级封装和加强，有些仅提供能力，�
 
 SlardarAsyncConfiguration提供了4个Ttl配置的线程池，前缀和用途分别如下，
 
-* `win-async-` - `spring.task.execution.`配置，用于`@Async`
-* `win-task-` - `spring.task.scheduling.`配置，用于`@Scheduled`
-* `win-event-` - `wings.slardar.async.event.`配置，Spring的Event
-* `win-heavy-` - `wings.slardar.async.heavy.`配置，Wings重任务线程
+* `exec-` - `spring.task.execution.`配置
+  - 用于 `@Async` method
+  - `app-exec-` 用于 `Callable` RequestMapping
+* `task-` - `spring.task.scheduling.`配置，用于`@Scheduled`
+* `event-` - `wings.slardar.async.event.`配置，Spring的Event
+* `heavy-` - `wings.slardar.async.heavy.`配置，Wings重任务线程
+
+参考资料，
+
+* <https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-ann-async.html>
+* <https://docs.spring.io/spring-framework/reference/integration/scheduling.html>
+* <https://docs.spring.io/spring-boot/reference/features/task-execution-and-scheduling.html>
 
 ## 3.5.更多章节
 
