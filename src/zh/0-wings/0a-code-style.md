@@ -180,7 +180,7 @@ wings默认开启swagger，访问路径为`/swagger-ui/index.html`
 * `@return {200|Result(Dto)} 正常返回对象，status=200` - 小括号表示泛型(避免转义)。
 * `@return {200|Result(false)} 错误时返回，status=200` - 小括号表示简单约定参数。
 
-使用swagger时，不可使用弱口令，在正式服上可通过以下属性关闭。  
+使用swagger时，不可使用弱口令，在正式服上可通过以下属性关闭。
 
 * springdoc.api-docs.enabled=true
 * springdoc.swagger-ui.enabled=true
@@ -273,14 +273,21 @@ enum Jane {
 * `时区`，以`VARCHAR(40)`或`INT(11)`存储
 * 特别场景，以`BIGINT(20)`或`VARCHAR(20)`存储
 
+字段命名规则，存在以下后缀约定，
+
+* `_ldt` - `LocalDateTime`，如 `order_ldt`
+* `_odt` - `OffsetDateTime`，如 `order_odt`
+* `_zdt` - `ZonedDateTime`，如 `order_zdt`
+* `_zid` - `ZoneId`，如 `order_zid`为`order_*`的时区
+
 以跨境电商场景为例，服务器群采用`UTC`时区（系统时间），中国用户`Asia/Shanghai`（用户时间）,
 纽约NY商家`America/New_York`（数据时间），洛杉矶LA商家`America/Los_Angeles`（数据时间）。
 
 本地日时，必须有`时区`配合，又分为`用户时间`和`数据时间`，命名后缀如下，
 
 * `时区` - 以`_tz`或`_zid`为后缀，内容为`ZoneId`的字符串名字
-* `日时` -系统/用户/数据，分别以`_dt`/`_udt`/`_ldt`结尾
-* `日期` -系统/用户/数据，分别以`_dd`/`_udd`/`_ldd`结尾
+* `日时` - 系统/用户/数据，分别以`_dt`/`_udt`/`_ldt`结尾
+* `日期` - 系统/用户/数据，分别以`_dd`/`_udd`/`_ldd`结尾
 * `时间` - 系统/用户/数据，分别以`_tm`/`_utm`/`_ltm`结尾
 
 举例，北京时间`2020-08-09 01:00:00`，中国用户C1，分别在NY和LA商家下单。

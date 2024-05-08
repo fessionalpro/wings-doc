@@ -282,6 +282,13 @@ There're 2 types of time `system` and `local` in wings. mapping on database and 
 * `timezone` - `VARCHAR(40)` or `INT(11)` to `ZoneId`
 * Special scenario, stored as `BIGINT(20)` or `VARCHAR(20)`
 
+There are the following suffix conventions for field naming rules,
+
+* `_ldt` - `LocalDateTime`, e.g. `order_ldt`
+* `_odt` - `OffsetDateTime`, e.g. `order_odt`
+* `_zdt` - `ZonedDateTime`, e.g. `order_zdt`
+* `_zid` - `ZoneId`, e.g. `order_zid` for `order_*` time zone
+
 For example, in the cross-border e-commerce scenario, the servers run in the `UTC` time zone (system time),
 the Chinese customer (C1) in`Asia/Shanghai` (user time), New York merchant (NY) in `America/New_York` (data time),
 Los Angeles merchant (LA) in `America/Los_Angeles` (data time).

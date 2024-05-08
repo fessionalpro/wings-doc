@@ -260,7 +260,7 @@ Related to @EnableAsync and @Async
 * `spring.task.execution.pool.queue-capacity`=`4096`
 * `spring.task.execution.shutdown.await-termination`=`true`
 * `spring.task.execution.shutdown.await-termination-period`=`30s`
-* `spring.task.execution.thread-name-prefix`=`win-async-`
+* `spring.task.execution.thread-name-prefix`=`exec-`
 
 ### Scheduling Threadpool Config
 
@@ -270,7 +270,7 @@ Cannot set @Primary, otherwise @Async thread pool will be overridden.
 * `spring.task.scheduling.pool.size`=`8`
 * `spring.task.scheduling.shutdown.await-termination`=`true`
 * `spring.task.scheduling.shutdown.await-termination-period`=`30s`
-* `spring.task.scheduling.thread-name-prefix`=`win-task-`
+* `spring.task.scheduling.thread-name-prefix`=`task-`
 
 ## 3I.9.wings-async-79.properties
 
@@ -282,11 +282,11 @@ Cannot set @Primary, otherwise @Async thread pool will be overridden.
 * wings.slardar.async.event.pool.queue-capacity=2048
 * wings.slardar.async.event.shutdown.await-termination=true
 * wings.slardar.async.event.shutdown.await-termination-period=60s
-* wings.slardar.async.event.thread-name-prefix=win-event-
+* wings.slardar.async.event.thread-name-prefix=event-
 
 ### Heavy Threadpool Config
 
 * wings.slardar.async.heavy.pool.size=8
 * wings.slardar.async.heavy.shutdown.await-termination=true
 * wings.slardar.async.heavy.shutdown.await-termination-period=60s
-* wings.slardar.async.heavy.thread-name-prefix=win-heavy-
+* wings.slardar.async.heavy.thread-name-prefix=heavy-

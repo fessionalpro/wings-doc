@@ -49,10 +49,19 @@ Base on springmvc, Salrdar provides potential capabilities and out-of-the-box fe
 
 SlardarAsyncConfiguration provides 4 pre-config Ttl threadpools, prefix and purpose are,
 
-* `win-async-` - `spring.task.execution.` properties for `@Async`
-* `win-task-` - `spring.task.scheduling.` properties for `@Scheduled`
-* `win-event-` - `wings.slardar.async.event.` properties for Spring's Event
-* `win-heavy-` - `wings.slardar.async.heavy.` properties for Wings heavy task
+* `exec-` - `spring.task.execution.` properties
+  - for `@Async` method
+  - `app-exec-` for `Callable` RequestMapping
+* `task-` - `spring.task.scheduling.` properties for `@Scheduled`
+* `event-` - `wings.slardar.async.event.` properties for Spring's Event
+* `heavy-` - `wings.slardar.async.heavy.` properties for Wings heavy task
+
+reference,
+
+* <https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-ann-async.html>
+* <https://docs.spring.io/spring-framework/reference/integration/scheduling.html>
+* <https://docs.spring.io/spring-boot/reference/features/task-execution-and-scheduling.html>
+
 
 ## 3.5.More Sections
 
