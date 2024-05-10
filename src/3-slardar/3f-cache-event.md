@@ -37,15 +37,15 @@ Three different cache level prefixes with a different ttl,idle,size
 A cache with the same prefix will use the same configuration items (ttl,idle,size).
 
 ```java
-@CacheConfig(cacheManager = Manager.Memory, 
+@CacheConfig(cacheManager = Manager.Memory,
 cacheNames = Level.General + "OperatorService")
 
-@Cacheable(key = "'all'", 
-cacheNames = Level.General + "StandardRegion", 
+@Cacheable(key = "'all'",
+cacheNames = Level.General + "StandardRegion",
 cacheManager = Manager.Server)
 
-@CacheEvict(key = "'all'", 
-cacheNames = Level.General + "StandardRegion", 
+@CacheEvict(key = "'all'",
+cacheNames = Level.General + "StandardRegion",
 cacheManager = Manager.Server)
 ```
 
@@ -61,7 +61,7 @@ Its use is to unify cache names at the code level, and change them at runtime to
 
 ```java
 @CacheConfig(cacheNames = CacheName, cacheResolver = CacheResolver)
-public class WarlockPermServiceImpl implements WarlockPermService 
+public class WarlockPermServiceImpl implements WarlockPermService
 ```
 
 The code shown above has CacheName=`WarlockPermService!` and the full class name is `a.b.c.WarlockPermServiceImpl`,
@@ -131,11 +131,11 @@ The following programming pattern can get the self reference inside the object,
 ```java
 // cache self-invoke
 @Setter(onMethod_ = {@Autowired, @Lazy})
-protected RuntimeConfServiceImpl selfLazy;
+protected RuntimeConfServiceImpl thisLazy = this;
 // interface method
 @Override
 public <T> T getObject(String key, TypeDescriptor type) {
     // @Cacheable method with Cache surfix
-    return selfLazy.getObjectCache(key, type);
+    return thisLazy.getObjectCache(key, type);
 }
 ```
