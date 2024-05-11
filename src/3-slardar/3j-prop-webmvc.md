@@ -383,3 +383,11 @@ Use which name of cookie to resolve the session, empty means disable.
 ### wings.slardar.terminal.include-patterns
 
 `Map<String, String>`, exclude takes precedence over include
+
+### wings.slardar.terminal.locale-request
+
+`boolean`=`true`, whether to set locale from request first than server.
+
+### wings.slardar.terminal.timezone-request
+
+`boolean`=`false`, whether to set timezone from request first than server.
