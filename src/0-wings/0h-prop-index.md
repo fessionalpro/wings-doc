@@ -65,6 +65,8 @@ The config value in the properties is usually a single line, and the multiple li
 * .bean.SilencerConfiguration
   - .applicationInspectRunner
   - .messageSourceHelper
+  - .wingsReorderProcessor = `wings.enabled.silencer.bean-reorder`
+  - .thisLazyAwarePostProcessor
 * .bean.SilencerRunnerConfiguration
   - $ReadyEvent - on ApplicationReadyEvent
   - $StartedEvent - on ApplicationStartedEvent
@@ -201,7 +203,6 @@ The config value in the properties is usually a single line, and the multiple li
   - .registrationClient
 * .bean.SlardarBootAdminServerConfiguration
   - .basicAuthHttpHeadersProvider
-  - .bootAdminMappingOrderPostProcessor
   - .dingTalkNotifier
 * .conf.SlardarSprintAutoConfiguration
 * .bean.SlardarActuatorConfiguration

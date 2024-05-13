@@ -99,6 +99,10 @@ ApplicationPreparedEvent before `@AutoConfiguration`
 
 `Boolean`=`true`, Whether to tweak the CodeException stack in global or thread
 
+### wings.enabled.silencer.bean-reorder
+
+`Boolean`=`true`, Whether to enable bean reorder with `wings.reorder.*`
+
 ## 1D.4.spring-logging-79.properties
 
 Default configuration for spring logging

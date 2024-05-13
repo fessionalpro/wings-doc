@@ -181,3 +181,34 @@ In business coding, toggling business logic can be achieved by using the followi
 
 * `FeatureFlag` - get the feature state using Class as key
 * `TweakFeature` - dynamically toggle feature at global or thread level
+
+## 1C.7.Config Bean Order
+
+Use the `wings.reorder.*` attribute, where `*` is.
+
+* `beanName` - one-to-one by name, high priority
+* `beanClass` - one-to-many by type
+
+The scope of its impact includes.
+
+* `List<Bean>` - injected ordered collection class
+* `.orderedStream()` -ObjectProvider ordered stream
+
+disabled if any of the followings,
+
+* no property or no defined bean found
+* wings.enabled.silencer.bean-reorder=false
+
+also can set Primary by `wings.primary.*`, but only beanName is supported.
+
+```java
+// wings.reorder.getterClass2 = 3
+@Bean
+public GetterClass getterClass2()
+
+// wings.primary.testReorderServiceImpl2=true
+// wings.reorder.testReorderServiceImpl2 = 3 # or
+// wings.reorder.pro.fessional.wings.silencer.app.service.impl.TestReorderServiceImpl2=3
+@Service
+public class TestReorderServiceImpl2
+```
