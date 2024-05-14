@@ -131,10 +131,12 @@ The config value in the properties is usually a single line, and the multiple li
 * .conf.SlardarAsyncAutoConfiguration
 * .bean.SlardarAsyncConfiguration
   - .applicationTaskExecutor
-  - .slardarHeavyScheduler
+  - .asyncHelper
+  - .slardarFastScheduler
   - .taskExecutor
   - .taskScheduler
   - .taskSchedulerHelper
+  - .ttlTaskDecorator
 * .conf.SlardarCacheAutoConfiguration
 * .bean.SlardarCacheConfiguration
   - $CacheAop

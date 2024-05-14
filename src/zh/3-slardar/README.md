@@ -46,14 +46,15 @@ Slardar基于SpringMvc做了工具级封装和加强，有些仅提供能力，�
 
 ## 3.4.线程池
 
-SlardarAsyncConfiguration提供了4个Ttl配置的线程池，前缀和用途分别如下，
+SlardarAsyncConfiguration提供了6个Ttl配置的线程池，前缀和用途分别如下，
 
 * `exec-` - `spring.task.execution.`配置
   - 用于 `@Async` method
-  - `app-exec-` 用于 `Callable` RequestMapping
+  - `app-exec-` `Callable` RequestMapping
+  - `lit-exec-` AsyncHelper手动执行异步
 * `task-` - `spring.task.scheduling.`配置，用于`@Scheduled`
 * `event-` - `wings.slardar.async.event.`配置，Spring的Event
-* `heavy-` - `wings.slardar.async.heavy.`配置，Wings重任务线程
+* `fast-` - `wings.slardar.async.fast.`配置，Wings轻任务线程
 
 参考资料，
 

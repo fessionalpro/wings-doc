@@ -269,7 +269,7 @@ Cannot set @Primary, otherwise @Async thread pool will be overridden.
 
 * `spring.task.scheduling.pool.size`=`8`
 * `spring.task.scheduling.shutdown.await-termination`=`true`
-* `spring.task.scheduling.shutdown.await-termination-period`=`30s`
+* `spring.task.scheduling.shutdown.await-termination-period`=`180s`
 * `spring.task.scheduling.thread-name-prefix`=`task-`
 
 ## 3I.9.wings-async-79.properties
@@ -284,9 +284,16 @@ Cannot set @Primary, otherwise @Async thread pool will be overridden.
 * wings.slardar.async.event.shutdown.await-termination-period=60s
 * wings.slardar.async.event.thread-name-prefix=event-
 
-### Heavy Threadpool Config
+### Fast Threadpool Config
 
-* wings.slardar.async.heavy.pool.size=8
-* wings.slardar.async.heavy.shutdown.await-termination=true
-* wings.slardar.async.heavy.shutdown.await-termination-period=60s
-* wings.slardar.async.heavy.thread-name-prefix=heavy-
+* wings.slardar.async.fast.pool.size=8
+* wings.slardar.async.fast.shutdown.await-termination=true
+* wings.slardar.async.fast.shutdown.await-termination-period=60s
+* wings.slardar.async.fast.thread-name-prefix=fast-
+
+### Execution Prefix
+
+Based on `spring.task.execution.*`, set ThreadPool prefix,
+
+* wings.slardar.async.exec-prefix.lite=`lit-exec-`
+* wings.slardar.async.exec-prefix.application=`app-exec-`
