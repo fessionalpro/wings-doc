@@ -47,14 +47,15 @@ Base on springmvc, Salrdar provides potential capabilities and out-of-the-box fe
 
 ## 3.4.Preconfigured ThreadPool
 
-SlardarAsyncConfiguration provides 4 pre-config Ttl threadpools, prefix and purpose are,
+SlardarAsyncConfiguration provides 6 pre-config Ttl threadpools, prefix and purpose are,
 
 * `exec-` - `spring.task.execution.` properties
   - for `@Async` method
   - `app-exec-` for `Callable` RequestMapping
+  - `lit-exec-` AsyncHelper manually async
 * `task-` - `spring.task.scheduling.` properties for `@Scheduled`
 * `event-` - `wings.slardar.async.event.` properties for Spring's Event
-* `heavy-` - `wings.slardar.async.heavy.` properties for Wings heavy task
+* `fast-` - `wings.slardar.async.fast.` properties for Wings fast task
 
 reference,
 

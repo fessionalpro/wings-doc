@@ -83,7 +83,7 @@ You can use the `wgmp`(live template) provided by wings to do the `A2B` generato
 * In jdbc recommended manual RowMapper, avoid using `BeanPropertyRowMapper`.
 * In jooq recommended jooqgen generated record, currently do not need other mapper.
 
-The converters in pure wings end with `-or` (convertor) to distinguish from other framework converters.  
+The converters in pure wings end with `-or` (convertor) to distinguish from other framework converters.
 Package names are based on the converter, and class names are distinguished by purpose,
 usually using `-or` for pure wings and `-er` for others.
 
@@ -322,7 +322,7 @@ If there is no impact on the business after troubleshooting, then the INFO level
 
 ```bash
 # clean log and tmp
-find . -name '*.log' -o -name '*.tmp'  | xargs rm -f 
+find . -name '*.log' -o -name '*.tmp'  | xargs rm -f
 # clean flattened pom
 find . -name '.pom.xml' | xargs rm -f
 ```
@@ -367,8 +367,8 @@ IDEA does not display the project properly and cannot be opened after closing it
 Errors has the following message, upgrade IDEA or avoid its Maven plugin upgrade.
 
 ```text
-java.lang.ClassFormatError: 
-Illegal exception table range in class file 
+java.lang.ClassFormatError:
+Illegal exception table range in class file
 kotlin/reflect/jvm/internal/impl/builtins/KotlinBuiltIns
 ```
 
@@ -531,4 +531,21 @@ if (key == null) {
     log.info("Skipping DAO generation", out.file().getName());
     return;
 }
+```
+
+## 0A.L.Enhanced Self-Injection ThisLazy
+
+ThisLazy pattern, inside the bean, calls Spring enhanced methods,
+such as `@Transactional`, `@Cacheable`, `@Async`.
+
+The followings use the `thisLazyAwarePostProcessor` to the auto inject itself.
+
+* `extends ThisLazy<T>` - uses `thisLazy` directly in the subclass
+* `implements ThisLazyAware<T>` - implements the interface
+
+The following code, for manually init and inject `thisLazy`,
+
+```java
+@Setter(onMethod_ = {@Autowired, @Lazy})
+protected RuntimeConfServiceImpl thisLazy = this;
 ```

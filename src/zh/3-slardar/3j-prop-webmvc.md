@@ -375,6 +375,10 @@ setDefaultPasswordEncoderForMatches，id不匹配时，默认解码算法。
 * `api`=`/api/**`
 * `oauth`=`/oauth/**`
 
-### wings.slardar.terminal.include-patterns
+### wings.slardar.terminal.locale-request
 
-`Map<String, String>`，exclude优先于include
+`boolean`=`true`，是否从请求获得Locale，而非服务器
+
+### wings.slardar.terminal.timezone-request
+
+`boolean`=`false`，是否从请求获得Timezone，而非服务器

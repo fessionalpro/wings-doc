@@ -34,15 +34,15 @@ category:
 具有相同前缀的cache，会采用相同的配置项(ttl,idle,size)。
 
 ```java
-@CacheConfig(cacheManager = Manager.Memory, 
+@CacheConfig(cacheManager = Manager.Memory,
 cacheNames = Level.General + "OperatorService")
 
-@Cacheable(key = "'all'", 
-cacheNames = Level.General + "StandardRegion", 
+@Cacheable(key = "'all'",
+cacheNames = Level.General + "StandardRegion",
 cacheManager = Manager.Server)
 
-@CacheEvict(key = "'all'", 
-cacheNames = Level.General + "StandardRegion", 
+@CacheEvict(key = "'all'",
+cacheNames = Level.General + "StandardRegion",
 cacheManager = Manager.Server)
 ```
 
@@ -57,7 +57,7 @@ Resolve扩展，指在`@Cache*`注解指定`cacheResolver`，忽略`cacheManager
 
 ```java
 @CacheConfig(cacheNames = CacheName, cacheResolver = CacheResolver)
-public class WarlockPermServiceImpl implements WarlockPermService 
+public class WarlockPermServiceImpl implements WarlockPermService
 ```
 
 若上示代码中，CacheName=`WarlockPermService!`，全类名为`a.b.c.WarlockPermServiceImpl`，
@@ -122,11 +122,11 @@ TableChangeEvent可通过`wings.faceless.jooq.cud.table`配置表和字段，自
 ```java
 // cache self-invoke
 @Setter(onMethod_ = {@Autowired, @Lazy})
-protected RuntimeConfServiceImpl selfLazy;
+protected RuntimeConfServiceImpl thisLazy = this;
 // interface method
 @Override
 public <T> T getObject(String key, TypeDescriptor type) {
     // @Cacheable method with Cache surfix
-    return selfLazy.getObjectCache(key, type);
+    return thisLazy.getObjectCache(key, type);
 }
 ```

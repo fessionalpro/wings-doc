@@ -96,6 +96,10 @@ Silencer的入口配置，定义了Silencer的自动加载的路径和模式。
 
 `Boolean`=`true`, 是否支持全局或线程的CodeException栈调整
 
+### wings.enabled.silencer.bean-reorder
+
+`Boolean`=`true`, 是否可以通过`wings.reorder.*`配置Bean的Order
+
 ## 1D.4.spring-logging-79.properties
 
 为spring的logging提供了以下配置项。

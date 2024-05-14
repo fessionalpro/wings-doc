@@ -269,7 +269,7 @@ name（建议全小写）在cookie和header中都会使用，为WingsSessionIdRe
 
 * `spring.task.scheduling.pool.size`=`8`
 * `spring.task.scheduling.shutdown.await-termination`=`true`
-* `spring.task.scheduling.shutdown.await-termination-period`=`30s`
+* `spring.task.scheduling.shutdown.await-termination-period`=`180s`
 * `spring.task.scheduling.thread-name-prefix`=`task-`
 
 ## 3I.9.wings-async-79.properties
@@ -284,9 +284,16 @@ name（建议全小写）在cookie和header中都会使用，为WingsSessionIdRe
 * wings.slardar.async.event.shutdown.await-termination-period=60s
 * wings.slardar.async.event.thread-name-prefix=event-
 
-### heavy 重任务线程池
+### fast 轻任务线程池
 
-* wings.slardar.async.heavy.pool.size=8
-* wings.slardar.async.heavy.shutdown.await-termination=true
-* wings.slardar.async.heavy.shutdown.await-termination-period=60s
-* wings.slardar.async.heavy.thread-name-prefix=heavy-
+* wings.slardar.async.fast.pool.size=8
+* wings.slardar.async.fast.shutdown.await-termination=true
+* wings.slardar.async.fast.shutdown.await-termination-period=60s
+* wings.slardar.async.fast.thread-name-prefix=fast-
+
+### Execution前缀
+
+基于 `spring.task.execution.*` 设置线程池前缀
+
+* wings.slardar.async.exec-prefix.lite=`lit-exec-`
+* wings.slardar.async.exec-prefix.application=`app-exec-`

@@ -174,3 +174,34 @@ Wings的FeatureFlags实现，有以下两个层面，
 
 * `FeatureFlag` - 以Class为key获取功能状态
 * `TweakFeature` - 全局或线程级动态开关功能
+
+## 1C.7.配置Bean的Order
+
+使用`wings.reorder.*`属性，其中`*`为，
+
+* `beanName` - 按名字一对一调整，高优先级
+* `beanClass` - 按类型一对多调整
+
+其影响范围包括，
+
+* `List<Bean>` - 注入的有序的集合类
+* `.orderedStream()` - ObjectProvider的排序
+
+以下任一情况，此功能无效，
+
+* 配置项为空或配置的Bean不存在
+* wings.enabled.silencer.bean-reorder=false
+
+也可以通过`wings.primary.*`设置Bean的Primary，但仅支持beanName。
+
+```java
+// wings.reorder.getterClass2 = 3
+@Bean
+public GetterClass getterClass2()
+
+// wings.primary.testReorderServiceImpl2=true
+// wings.reorder.testReorderServiceImpl2 = 3 # or
+// wings.reorder.pro.fessional.wings.silencer.app.service.impl.TestReorderServiceImpl2=3
+@Service
+public class TestReorderServiceImpl2
+```

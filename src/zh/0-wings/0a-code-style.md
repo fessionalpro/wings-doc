@@ -429,3 +429,19 @@ Wings把非以下特征的方法，统称为泄露或者副作用
 * Side Effects(副作用）
 
 编程中，尽量避免方法泄露，规避隐式变量
+
+## 0A.L.增强后的自注入 ThisLazy
+
+ThisLazy模式，在Bean内，可调用被Spring增强方法，如`@Transactional`, `@Cacheable`, `@Async`
+
+以下方式，使用`thisLazyAwarePostProcessor` 完成了自动注，
+
+* `extends ThisLazy<T>` - 子类中直接使用 `thisLazy`
+* `implements ThisLazyAware<T>` - 实现接口。
+
+以下代码，为手动设置初始化和注入`thisLazy`，
+
+```java
+@Setter(onMethod_ = {@Autowired, @Lazy})
+protected RuntimeConfServiceImpl thisLazy = this;
+```

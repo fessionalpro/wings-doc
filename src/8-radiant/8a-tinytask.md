@@ -44,9 +44,9 @@ the database (win_task_define table) takes precedence.
 
 ## 8A.3.Task Schedule
 
-Tasks are divided into light and heavy by execution time, corresponding to 2 different thread pools.
-Tasks that generally finish in seconds are light tasks and run in the fast thread pool,
-otherwise they run in heavy.
+Tasks by execution time are divided into `fast` and `@Scheduled`, corresponding to 2 thread pools.
+Tasks that generally finish in seconds are fast tasks and run in the `fast` thread pool,
+otherwise they run in the `@Scheduled` default.
 
 A task must set one of cron/idle/rate for task scheduling.
 If both are set, cron overrides idle, idle overrides rate.
