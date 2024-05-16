@@ -547,5 +547,12 @@ The following code, for manually init and inject `thisLazy`,
 
 ```java
 @Setter(onMethod_ = {@Autowired, @Lazy})
-protected RuntimeConfServiceImpl thisLazy = this;
+protected RuntimeConfService thisLazy = this;
 ```
+
+Except for the following cases, there are runtime type exceptions,
+where `M` represents the enhanced method used by thisLazy,
+
+* `T` is an interface, and all `M` come from `T` (best practice)
+* `T` is a class, and `M` is enhanced by Cglib (proxyTargetClass=true)
+* no `M`, in which case `T` is itself (but should not use this pattern)
