@@ -18,8 +18,11 @@ Since Github is the most common and easiest, use it as a demo for Oauth login.
 Set up and write down `App ID`, `Client ID` and `Client secret` on Github
 `Settings` | `Developer settings` | `GitHub Apps`, and be careful not to leak them.
 
-* Homepage URL - <http://localhost:8084>
-* Callback URL - <http://localhost:8084/auth/github/login.json>
+* start TestWarlockBondApplication
+* visit <http://localhost:8084/auth/github/login-page.html> to redirect
+* visit <http://localhost:8084/auth/github/login-page.json> to show json
+* auth with github and check the response
+* customize LoginSuccessHandler to response in other style
 
 ## 4A.2.Return 401 or 302
 

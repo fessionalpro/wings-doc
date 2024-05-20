@@ -17,8 +17,11 @@ category:
 在Github上设置并记下`App ID`，`Client ID`和`Client secret`，注意不要外泄。
 设置入口为 `Settings` | `Developer settings` | `GitHub Apps`
 
-* Homepage URL - <http://localhost:8084>
-* Callback URL - <http://localhost:8084/auth/github/login.json>
+* 启动 TestWarlockBondApplication
+* 访问 <http://localhost:8084/auth/github/login-page.html> 重定向
+* 访问 <http://localhost:8084/auth/github/login-page.json> 看数据
+* 授权并检查 github 的响应
+* 定制 LoginSuccessHandler 以实现不同的响应格式
 
 ## 4A.2.是401还是302
 
