@@ -72,6 +72,11 @@ POST with single parameter is recommended to post data directly, eg. common type
 * LocalDateTime:string - `"2021-06-06 06:06:06"`
 * LogLevel.TRACE:string - `"TRACE"`
 
+where boolean and number, the input accepts string form (with double quotes)
+
+* bool - in: `"true"`, `true`, out: `true`
+* number - in: `"123"`, `123`, out: `123`, `"123"` (js precision)
+
 eg. common types in client,
 
 * JSON.stringify("string") - `"string"`

@@ -72,7 +72,7 @@ features:
     link: ./4-warlock/4c-security.html
 
   - icon: more
-    title: Pluggable modules, OOTB features 
+    title: Pluggable modules, OOTB features
     details: Pluggable module, Out-of-the-box feature, script, manual and code generator
     link: ./8-radiant/
 ---
@@ -148,12 +148,12 @@ It's recommended that you get your hands on the code to avoid low-level use and 
 git clone --depth 1 https://github.com/\
 trydofor/professional-wings.git
 ## (2) install dependency useing java8
-# asdf shell java temurin-8.0.382+5
+# asdf shell java temurin-8.0.412+8
 git submodule update --remote --init
 (cd observe/meepo && mvn package install)
 (cd observe/mirana && mvn package install)
 ## (3) install wings using java-21
-# asdf shell java temurin-21.0.1+12.0.LTS
+# asdf shell java temurin-21.0.3+9.0.LTS
 mvn package install
 ```
 

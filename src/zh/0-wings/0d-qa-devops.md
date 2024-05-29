@@ -76,14 +76,19 @@ wings中和springboot一样，默认采用了jackson进行json和xml绑定。
 对于比较复杂的mapping，使用expression，qualifiedByName，spring注入。
 自动生成的代码位于`target/generated-sources/annotations/`
 
-在wings中，推荐使用列编辑和正则（分享视频有讲），对于使用MapStruct的时候，
-可以使用wings提供的`wgmp`(live template)做`A2B`的into生成器。
+在wings中，推荐使用列编辑和正则（分享视频有讲），
 
 * 在业务层代码，推荐MapStruct或列编辑和正则（分享视频有讲）手工制品。
 * 在jdbc中推荐手工RowMapper，避免使用`BeanPropertyRowMapper`。
 * 在jooq中推荐jooq自动生成的record，目前不需要其他mapper。
 
-纯wings中的converter以`-or`结尾(convertor)，以和其他框架的converter区分。  
+使用MapStruct时，wings提供了`wgmp`和`wgme`模板(live template)做`A$B`的转换。
+
+* `wgmp` - 映射`A`和`B`
+* `wgme` - 映射`A`自身
+* 如果在`A`内部，`$$`表示`A`，`$B`表示`B`
+
+纯wings中的converter以`-or`结尾(convertor)，以和其他框架的converter区分。
 包名以converter为准，类名以目的区分，通常纯wings的使用`-or`，其他用`-er`。
 
 根据以下JMH的benchmark评测，对应动态Mapper也可以考虑。
@@ -308,7 +313,7 @@ Bean在spring中有载入顺序，`Processor`，`framework`和业务Bean应该�
 
 ```bash
 # 清理log和tmp文件
-find . -name '*.log' -o -name '*.tmp'  | xargs rm -f 
+find . -name '*.log' -o -name '*.tmp'  | xargs rm -f
 # 重新flatten
 find . -name '.pom.xml' | xargs rm -f
 ```
@@ -352,8 +357,8 @@ IDEA无法正常显示项目，关闭后也无法打开，但命令行下mvn正�
 Errors中有以下信息，升级IDEA或避免其Maven插件升级。
 
 ```text
-java.lang.ClassFormatError: 
-Illegal exception table range in class file 
+java.lang.ClassFormatError:
+Illegal exception table range in class file
 kotlin/reflect/jvm/internal/impl/builtins/KotlinBuiltIns
 ```
 

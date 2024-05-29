@@ -437,11 +437,17 @@ ThisLazy模式，在Bean内，可调用被Spring增强方法，如`@Transactiona
 以下方式，使用`thisLazyAwarePostProcessor` 完成了自动注，
 
 * `extends ThisLazy<T>` - 子类中直接使用 `thisLazy`
-* `implements ThisLazyAware<T>` - 实现接口。
+* `implements ThisLazyAware<T>` - 实现接口
 
 以下代码，为手动设置初始化和注入`thisLazy`，
 
 ```java
 @Setter(onMethod_ = {@Autowired, @Lazy})
-protected RuntimeConfServiceImpl thisLazy = this;
+protected RuntimeConfService thisLazy = this;
 ```
+
+以下情况之外，都有运行时的类型异常，其中`M`为thisLazy使用的增强方法
+
+* `T`为接口，且`M`都来自`T`（最佳实践）
+* `T`为类，且`M`由Cglib增强（proxyTargetClass=true）
+* 无`M`，此时`T`为自身（不应使用此模式）

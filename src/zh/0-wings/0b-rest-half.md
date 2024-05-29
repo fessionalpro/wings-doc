@@ -65,6 +65,11 @@ category:
 * LocalDateTime:string - `"2021-06-06 06:06:06"`
 * LogLevel.TRACE:string - `"TRACE"`
 
+其中的boolean和number，输入时可接受字符串形式（带双引号）
+
+* bool - in: `"true"`, `true`, out: `true`
+* number - in: `"123"`, `123`, out: `123`, `"123"`(js精度)
+
 client端的常见类型举例，
 
 * JSON.stringify("string") - `"string"`

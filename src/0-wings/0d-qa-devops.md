@@ -76,12 +76,17 @@ This must avoid weak typing (map, json) and reflection (bean copy), which inevit
 For more complex mapping, use expression, qualifiedByName, spring injection.
 The automatically generated code is located in `target/generated-sources/annotations/`
 
-In wings, it is recommended to use the column editor or RegExp (talked in video share), for using MapStruct
-You can use the `wgmp`(live template) provided by wings to do the `A2B` generator.
+In wings, it is recommended to use the column editor or RegExp (talked in video share),
 
 * In the business layer code, we recommend MapStruct or column editing or RegExp replacement to do data mapping.
 * In jdbc recommended manual RowMapper, avoid using `BeanPropertyRowMapper`.
 * In jooq recommended jooqgen generated record, currently do not need other mapper.
+
+for using MapStruct, wings have `wgmp` and `wgme` live template to do `A$B` conversion,
+
+* `wgmp` - mapping of `A` and `B`,
+* `wgme` - mapping of `A` itself
+* if inside `A`, `$$` to `A`, `$B` to `B`
 
 The converters in pure wings end with `-or` (convertor) to distinguish from other framework converters.
 Package names are based on the converter, and class names are distinguished by purpose,
@@ -547,5 +552,12 @@ The following code, for manually init and inject `thisLazy`,
 
 ```java
 @Setter(onMethod_ = {@Autowired, @Lazy})
-protected RuntimeConfServiceImpl thisLazy = this;
+protected RuntimeConfService thisLazy = this;
 ```
+
+Except for the following cases, there are runtime type exceptions,
+where `M` represents the enhanced method used by thisLazy,
+
+* `T` is an interface, and all `M` come from `T` (best practice)
+* `T` is a class, and `M` is enhanced by Cglib (proxyTargetClass=true)
+* no `M`, in which case `T` is itself (but should not use this pattern)
