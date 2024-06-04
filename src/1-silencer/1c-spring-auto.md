@@ -182,6 +182,18 @@ In business coding, toggling business logic can be achieved by using the followi
 * `FeatureFlag` - get the feature state using Class as key
 * `TweakFeature` - dynamically toggle feature at global or thread level
 
+the prioriy of flag is as the following,
+
+* `@ConditionalWingsEnabled` - confClass or beanMethod
+  - qualified-key = `prefix.` + `ClassName` + `.methodName`?
+  - absolute-key = `abs()`
+  - relative-key = `prefix.` + `key()`
+  - default = `value()`, only if no prop
+  - `and()`, then `not()` - only if this enabled
+* `wings.enabled.*` - string prop, `one-one`
+* `wings.feature.*` - ant style prop, `one-many`, only if no `one-one`
+* `FeatureFlag` - `TweakFeature`, then `WingsEnabledContext`
+
 ## 1C.7.Config Bean Order
 
 Use the `wings.reorder.*` attribute, where `*` is.
