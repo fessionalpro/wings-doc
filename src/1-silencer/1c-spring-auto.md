@@ -206,7 +206,14 @@ The scope of its impact includes.
 * `List<Bean>` - injected ordered collection class
 * `.orderedStream()` -ObjectProvider ordered stream
 
-disabled if any of the followings,
+The ordering priority is as follows, NOTE, beans are declared or scanned in
+different mechanisms that affect priority.
+
+* `wings.reorder.*` configuration, highest priority
+* if `@Bean`, `@Order` over `Ordered`
+* if `@Component`, `Ordered` over `@Order`
+
+this disabled if any of the followings,
 
 * no property or no defined bean found
 * wings.enabled.silencer.bean-reorder=false

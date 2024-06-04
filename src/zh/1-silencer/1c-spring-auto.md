@@ -199,6 +199,12 @@ Wings的FeatureFlags实现，有以下两个层面，
 * `List<Bean>` - 注入的有序的集合类
 * `.orderedStream()` - ObjectProvider的排序
 
+和顺序有关的优先级如下，注意Bean的声明和扫描机制不同，影响优先级，
+
+* `wings.reorder.*` 配置，最高优先级
+* 当`@Bean`时， `@Order` 高于 `Ordered`
+* 当`@Component`时，`Ordered` 高于`@Order`
+
 以下任一情况，此功能无效，
 
 * 配置项为空或配置的Bean不存在
