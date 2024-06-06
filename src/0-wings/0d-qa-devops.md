@@ -61,6 +61,26 @@ Given the current Fastjson-2.0.18 compatibility and stability is still very prob
 * FastJsonHelper - Global configuration for FastJson compatibility, all JSON should use this class.
 * JacksonHelper - Global configuration for Jackson, recommended for static use.
 
+NOTE: json format has compatibility issues, the following are the diff, see JsonHelperCompatibleTest for details.
+
+* Jackson Default
+  - `byte[]` as base64, `[]` as `""`
+  - `char[]` as String, `[]` as `""`
+* Jackson Wings Help
+  - `LocalDateTime` as `"2023-04-05T06:07:08"`
+  - `ZoneDateTime` as `"2023-04-05T06:07:08[America/New_York]"`
+  - `OffsetDateTime` as `"2023-04-05T06:07:08-04:00"`
+* Jackson Wings Bean
+  - `LocalDateTime` as `"2023-04-05 06:07:08"`
+  - `ZoneDateTime` as `"2023-04-05 06:07:08 Asia/Shanghai"`
+  - `OffsetDateTime` as `"2023-04-05 06:07:08 +08:00"`
+  - `float`,`double` as `"3.14159"`
+  - `BigDecimal`,`BigInteger` as `"299792458"`
+* Fastjson Default
+  - `LocalDateTime` as `"2023-04-05 06:07:08"`
+  - `ZoneDateTime` as `"2023-04-05T06:07:08[America/New_York]"`
+  - `OffsetDateTime` as `"2023-04-05T06:07:08-04:00"`
+
 ## 0D.04.Comparison of Bean Mapping
 
 According to the following article, it is recommended to use the static type-safe of `MapStruct`.

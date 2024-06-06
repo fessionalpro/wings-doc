@@ -132,10 +132,10 @@ com.fasterxml.jackson.databind.DeserializationFeature
 * `spring.jackson.deserialization.FAIL_ON_MISSING_CREATOR_PROPERTIES`=`true`
 * `spring.jackson.deserialization.ACCEPT_SINGLE_VALUE_AS_ARRAY`=`true`
 * `spring.jackson.deserialization.READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE`=`true`
-
+å
 com.fasterxml.jackson.core.JsonGenerator.Feature
 
-* `spring.jackson.generator.WRITE_NUMBERS_AS_STRINGS`=`true`
+* `spring.jackson.generator.WRITE_BIGDECIMAL_AS_PLAIN`=`true`
 
 com.fasterxml.jackson.databind.MapperFeature`
 
@@ -157,7 +157,8 @@ com.fasterxml.jackson.core.JsonParser.Feature
 
 com.fasterxml.jackson.databind.SerializationFeature
 
-* `spring.jackson.serialization.WRITE_DATES_AS_TIMESTAMPS`=`false`默认true
+* `spring.jackson.serialization.WRITE_DATES_AS_TIMESTAMPS`=`false` 默认true
+* `spring.jackson.serialization.FAIL_ON_EMPTY_BEANS`=`false` 默认true
 * `spring.jackson.serialization.CLOSE_CLOSEABLE`=`true`
 
 com.fasterxml.jackson.annotation.JsonInclude.Include

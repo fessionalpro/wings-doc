@@ -135,7 +135,7 @@ com.fasterxml.jackson.databind.DeserializationFeature
 
 com.fasterxml.jackson.core.JsonGenerator.Feature
 
-* `spring.jackson.generator.WRITE_NUMBERS_AS_STRINGS`=`true`
+* `spring.jackson.generator.WRITE_BIGDECIMAL_AS_PLAIN`=`true`
 
 com.fasterxml.jackson.databind.MapperFeature`
 
@@ -158,6 +158,7 @@ com.fasterxml.jackson.core.JsonParser.Feature
 com.fasterxml.jackson.databind.SerializationFeature
 
 * `spring.jackson.serialization.WRITE_DATES_AS_TIMESTAMPS`=`false` default true
+* `spring.jackson.serialization.FAIL_ON_EMPTY_BEANS`=`false` default true
 * `spring.jackson.serialization.CLOSE_CLOSEABLE`=`true`
 
 com.fasterxml.jackson.annotation.JsonInclude.Include

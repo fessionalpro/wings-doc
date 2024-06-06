@@ -61,6 +61,26 @@ wings中和springboot一样，默认采用了jackson进行json和xml绑定。
 * FastJsonHelper - 对FastJson的兼容性全局配置，所有JSON都应该使用该类。
 * JacksonHelper - 对Jackson的全局配置，推荐静态使用。
 
+需要注意的是，json格式有兼容性问题，以下是json格式的差异，详见JsonHelperCompatibleTest
+
+* Jackson Default
+  - `byte[]` 用base64编码，`[]` 为 `""`
+  - `char[]` 用String编码，`[]` 为 `""`
+* Jackson Wings Help
+  - `LocalDateTime` 为 `"2023-04-05T06:07:08"`
+  - `ZoneDateTime` 为 `"2023-04-05T06:07:08[America/New_York]"`
+  - `OffsetDateTime` 为 `"2023-04-05T06:07:08-04:00"`
+* Jackson Wings Bean
+  - `LocalDateTime` 为 `"2023-04-05 06:07:08"`
+  - `ZoneDateTime` 为 `"2023-04-05 06:07:08 Asia/Shanghai"`
+  - `OffsetDateTime` 为 `"2023-04-05 06:07:08 +08:00"`
+  - `float`,`double` 为 `"3.14159"`
+  - `BigDecimal`,`BigInteger` 为 `"299792458"`
+* Fastjson Default
+  - `LocalDateTime` 为 `"2023-04-05 06:07:08"`
+  - `ZoneDateTime` 为 `"2023-04-05T06:07:08[America/New_York]"`
+  - `OffsetDateTime` 为 `"2023-04-05T06:07:08-04:00"`
+
 ## 0D.04.类型间Mapping比较
 
 根据以下文章，推荐使用静态性的`MapStruct`。
