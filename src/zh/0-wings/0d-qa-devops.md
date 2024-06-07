@@ -68,17 +68,17 @@ wings中和springboot一样，默认采用了jackson进行json和xml绑定。
   - `char[]` 用String编码，`[]` 为 `""`
 * Jackson Wings Help
   - `LocalDateTime` 为 `"2023-04-05T06:07:08"`
-  - `ZoneDateTime` 为 `"2023-04-05T06:07:08[America/New_York]"`
+  - `ZonedDateTime` 为 `"2023-04-05T06:07:08[America/New_York]"`
   - `OffsetDateTime` 为 `"2023-04-05T06:07:08-04:00"`
 * Jackson Wings Bean
   - `LocalDateTime` 为 `"2023-04-05 06:07:08"`
-  - `ZoneDateTime` 为 `"2023-04-05 06:07:08 Asia/Shanghai"`
+  - `ZonedDateTime` 为 `"2023-04-05 06:07:08 Asia/Shanghai"`
   - `OffsetDateTime` 为 `"2023-04-05 06:07:08 +08:00"`
   - `float`,`double` 为 `"3.14159"`
   - `BigDecimal`,`BigInteger` 为 `"299792458"`
 * Fastjson Default
   - `LocalDateTime` 为 `"2023-04-05 06:07:08"`
-  - `ZoneDateTime` 为 `"2023-04-05T06:07:08[America/New_York]"`
+  - `ZonedDateTime` 为 `"2023-04-05T06:07:08[America/New_York]"`
   - `OffsetDateTime` 为 `"2023-04-05T06:07:08-04:00"`
 
 ## 0D.04.类型间Mapping比较

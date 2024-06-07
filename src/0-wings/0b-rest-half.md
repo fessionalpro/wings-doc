@@ -67,15 +67,19 @@ Keep path and query parameters simple considering gateway/aspect processing, err
 POST with single parameter is recommended to post data directly, eg. common types in server,
 
 * Boolean:boolean - `true`
-* BigDecimal/Long/Integer:number/string - `123` / `"123"`
+* Long/Integer:number/string - `123`/`"123"`
+* BigDecimal/Double/Float:string - `"3.14159"`
 * String:string - `"string"`
-* LocalDateTime:string - `"2021-06-06 06:06:06"`
+* LocalDateTime:string - `"2023-04-05 06:07:08"`
+* ZonedDateTime:string - `"2023-04-05 06:07:08 Asia/Shanghai"`
+* OffsetDateTime:string - `"2023-04-05 06:07:08 +08:00"`
 * LogLevel.TRACE:string - `"TRACE"`
 
 where boolean and number, the input accepts string form (with double quotes)
 
-* bool - in: `"true"`, `true`, out: `true`
-* number - in: `"123"`, `123`, out: `123`, `"123"` (js precision)
+* bool - input `"true"`/`true`, output `true`
+* number int - input `"123"`/`123`, output `123`/`"123"` (overflow)
+* number float - input `"3.14"`/`3.14`, output `"3.14"` (precision)
 
 eg. common types in client,
 
