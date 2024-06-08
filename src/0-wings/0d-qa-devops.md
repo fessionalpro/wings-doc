@@ -58,18 +58,26 @@ Fastjson has been replaced by Fastjson2 in wings. note the following lib depende
 
 Given the current Fastjson-2.0.18 compatibility and stability is still very problematic and should be avoided.
 
-* FastJsonHelper - Global configuration for FastJson compatibility, all JSON should use this class.
-* JacksonHelper - Global configuration for Jackson, recommended for static use.
+* FastJsonHelper - internal or transient data, static method
+* JacksonHelper - non-web tier, without timezone/i18n auto convertion, static method
+* ObjectMapper - web tier, timezone/i18n auto convertion, inject Bean
 
 NOTE: json format has compatibility issues, the following are the diff, see JsonHelperCompatibleTest for details.
 
 * Jackson Default
+  - `transient` output
+  - `@Transient` No output
   - `byte[]` as base64, `[]` as `""`
   - `char[]` as String, `[]` as `""`
+  - WRITE_DATES_AS_TIMESTAMPS as timestamp UTC
+  - `ZonedDateTime` parse as `2023-04-04T21:07:08Z` lost timezone
+  - `OffsetDateTime` parse as `2023-04-05T10:07:08Z` lost timezone
 * Jackson Wings Help
+  - `transient` No output
+  - WRITE_DATES_AS_TIMESTAMPS = false
   - `LocalDateTime` as `"2023-04-05T06:07:08"`
-  - `ZonedDateTime` as `"2023-04-05T06:07:08[America/New_York]"`
-  - `OffsetDateTime` as `"2023-04-05T06:07:08-04:00"`
+  - `ZonedDateTime` as `"2023-04-05T06:07:08[America/New_York]"` keep timezone
+  - `OffsetDateTime` as `"2023-04-05T06:07:08-04:00"` keep timezone
 * Jackson Wings Bean
   - `LocalDateTime` as `"2023-04-05 06:07:08"`
   - `ZonedDateTime` as `"2023-04-05 06:07:08 Asia/Shanghai"`
@@ -77,6 +85,8 @@ NOTE: json format has compatibility issues, the following are the diff, see Json
   - `float`,`double` as `"3.14159"`
   - `BigDecimal`,`BigInteger` as `"299792458"`
 * Fastjson Default
+  - `transient` No output
+  - `@Transient` output
   - `LocalDateTime` as `"2023-04-05 06:07:08"`
   - `ZonedDateTime` as `"2023-04-05T06:07:08[America/New_York]"`
   - `OffsetDateTime` as `"2023-04-05T06:07:08-04:00"`
