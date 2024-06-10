@@ -73,6 +73,7 @@ The config value in the properties is usually a single line, and the multiple li
 * .conf.SilencerCurseAutoConfiguration
 * .bean.SilencerCurseConfiguration
   - .auditPropRunner (false) = `wings.enabled.silencer.audit-prop`
+  - .infoGitJvmRunner
   - .muteConsoleRunner = `wings.enabled.silencer.mute-console`
   - .runtimeMode
 * .bean.SilencerEncryptConfiguration

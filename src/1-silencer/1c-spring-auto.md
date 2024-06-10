@@ -182,6 +182,18 @@ In business coding, toggling business logic can be achieved by using the followi
 * `FeatureFlag` - get the feature state using Class as key
 * `TweakFeature` - dynamically toggle feature at global or thread level
 
+the prioriy of flag is as the following,
+
+* `@ConditionalWingsEnabled` - confClass or beanMethod
+  - qualified-key = `prefix.` + `ClassName` + `.methodName`?
+  - absolute-key = `abs()`
+  - relative-key = `prefix.` + `key()`
+  - default = `value()`, only if no prop
+  - `and()`, then `not()` - only if this enabled
+* `wings.enabled.*` - string prop, `one-one`
+* `wings.feature.*` - ant style prop, `one-many`, only if no `one-one`
+* `FeatureFlag` - `TweakFeature`, then `WingsEnabledContext`
+
 ## 1C.7.Config Bean Order
 
 Use the `wings.reorder.*` attribute, where `*` is.
@@ -194,7 +206,14 @@ The scope of its impact includes.
 * `List<Bean>` - injected ordered collection class
 * `.orderedStream()` -ObjectProvider ordered stream
 
-disabled if any of the followings,
+The ordering priority is as follows, NOTE, beans are declared or scanned in
+different mechanisms that affect priority.
+
+* `wings.reorder.*` configuration, highest priority
+* if `@Bean`, `@Order` over `Ordered`
+* if `@Component`, `Ordered` over `@Order`
+
+this disabled if any of the followings,
 
 * no property or no defined bean found
 * wings.enabled.silencer.bean-reorder=false

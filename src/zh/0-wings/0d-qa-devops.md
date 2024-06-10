@@ -58,8 +58,38 @@ wings中和springboot一样，默认采用了jackson进行json和xml绑定。
 
 考虑到当前Fastjson-2.0.18的兼容性和稳定性仍存在很大问题，必须避免使用。
 
-* FastJsonHelper - 对FastJson的兼容性全局配置，所有JSON都应该使用该类。
-* JacksonHelper - 对Jackson的全局配置，推荐静态使用。
+* FastJsonHelper - 内部或瞬时数据，静态方法
+* JacksonHelper - 非Web层，不涉及时区及多国语的自动转换，静态方法
+* ObjectMapper - Web层，会自动转换时区及多国语，注入Bean
+
+需要注意的是，json格式有兼容性问题，以下是json格式的差异，详见JsonHelperCompatibleTest
+
+* Jackson Default
+  - `transient` 输出
+  - `@Transient` 不输出
+  - `byte[]` 用base64编码，`[]` 为 `""`
+  - `char[]` 用String编码，`[]` 为 `""`
+  - WRITE_DATES_AS_TIMESTAMPS 用零时区时间戳
+  - `ZonedDateTime` 解析为 `2023-04-04T21:07:08Z` 丢时区
+  - `OffsetDateTime` 解析为 `2023-04-05T10:07:08Z` 丢时区
+* Jackson Wings Help
+  - `transient` 不输出
+  - WRITE_DATES_AS_TIMESTAMPS = false
+  - `LocalDateTime` 为 `"2023-04-05T06:07:08"`
+  - `ZonedDateTime` 为 `"2023-04-05T06:07:08[America/New_York]"` 留时区
+  - `OffsetDateTime` 为 `"2023-04-05T06:07:08-04:00"` 留时区
+* Jackson Wings Bean
+  - `LocalDateTime` 为 `"2023-04-05 06:07:08"`
+  - `ZonedDateTime` 为 `"2023-04-05 06:07:08 Asia/Shanghai"`
+  - `OffsetDateTime` 为 `"2023-04-05 06:07:08 +08:00"`
+  - `float`,`double` 为 `"3.14159"`
+  - `BigDecimal`,`BigInteger` 为 `"299792458"`
+* Fastjson Default
+  - `transient` 不输出
+  - `@Transient` 输出
+  - `LocalDateTime` 为 `"2023-04-05 06:07:08"`
+  - `ZonedDateTime` 为 `"2023-04-05T06:07:08[America/New_York]"`
+  - `OffsetDateTime` 为 `"2023-04-05T06:07:08-04:00"`
 
 ## 0D.04.类型间Mapping比较
 
@@ -320,13 +350,33 @@ find . -name '.pom.xml' | xargs rm -f
 
 ## 0D.22.json的泛型和泛型类的反序列化
 
-spring中，使用ResolvableType和TypeDescriptor描述类型。
+spring中，使用`ResolvableType`和`TypeDescriptor`描述类型。
+Wings中，用`TypeSugar`来简化代码行并缓存结果。
 
 ```java
-TypeDescriptor.map(Map.class, strTd, strTd)
-TypeDescriptor.collection(List.class, strTd)
-ResolvableType.forClassWithGenerics(R.class, Dto.class)
+// Map<List<List<Long[]>>, String>
+var c0 = ResolvableType.forClassWithGenerics(Map.class,
+    ResolvableType.forClassWithGenerics(List.class,
+        ResolvableType.forClassWithGenerics(List.class, Long[].class)
+    ),
+    ResolvableType.forClass(String.class)
+);
+var c1 = TypeSugar.resolve(Map.class, List.class, List.class, Long[].class, String.class);
+
+Assertions.assertEquals(c0, c1);
+
+var c2 = TypeDescriptor.map(Map.class,
+    TypeDescriptor.collection(List.class,
+        TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(Long[].class))
+    ),
+    TypeDescriptor.valueOf(String.class)
+);
+var c3 = TypeSugar.describe(Map.class, List.class, List.class, Long[].class, String.class);
+
+Assertions.assertEquals(c2, c3);
 ```
+
+在Wings 3.2.130后，移除了fastjson和jackson的TypeReference支持。
 
 FastJson中，使用com.alibaba.fastjson.TypeReference，
 注意，TypeReference一定要单行声明，避免自动推导，而丢失类型。

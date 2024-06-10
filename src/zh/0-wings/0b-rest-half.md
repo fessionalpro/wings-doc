@@ -60,15 +60,19 @@ category:
 一个参数的Post请求，推荐直接传递。server端常见类型举例，
 
 * Boolean:boolean - `true`
-* BigDecimal/Long/Integer:number/string - `123` / `"123"`
+* Long/Integer:number/string - `123` / `"123"`
+* BigDecimal/Double/Float:string - `"3.14159"`
 * String:string - `"string"`
-* LocalDateTime:string - `"2021-06-06 06:06:06"`
+* LocalDateTime:string - `"2023-04-05 06:07:08"`
+* ZonedDateTime:string - `"2023-04-05 06:07:08 Asia/Shanghai"`
+* OffsetDateTime:string - `"2023-04-05 06:07:08 +08:00"`
 * LogLevel.TRACE:string - `"TRACE"`
 
 其中的boolean和number，输入时可接受字符串形式（带双引号）
 
-* bool - in: `"true"`, `true`, out: `true`
-* number - in: `"123"`, `123`, out: `123`, `"123"`(js精度)
+* bool 布尔 - 输入 `"true"`/`true`, 输出 `true`
+* number 整型 - 输入 `"123"`/`123`, 输出 `123`/`"123"` (溢出)
+* number 浮点型 - 输入 `"3.14"`/`3.14`, 输出 `"3.14"` (精度)
 
 client端的常见类型举例，
 

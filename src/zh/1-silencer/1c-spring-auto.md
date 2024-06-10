@@ -175,6 +175,18 @@ Wings的FeatureFlags实现，有以下两个层面，
 * `FeatureFlag` - 以Class为key获取功能状态
 * `TweakFeature` - 全局或线程级动态开关功能
 
+功能开关的优先级如下，
+
+* `@ConditionalWingsEnabled` - Conf类 或 Bean方法
+  - qualified-key = `prefix.` + `ClassName` + `.methodName`?
+  - absolute-key = `abs()`
+  - relative-key = `prefix.` + `key()`
+  - default = `value()`，仅当无配置项时
+  - `and()`, 然后 `not()` - 仅当本功能开启时
+* `wings.enabled.*` - 字符串格式配置项，`一对一`
+* `wings.feature.*` - ant风格配置项，`一对多`，仅当无`一对一`时
+* `FeatureFlag` - `TweakFeature`，然后 `WingsEnabledContext`
+
 ## 1C.7.配置Bean的Order
 
 使用`wings.reorder.*`属性，其中`*`为，
@@ -186,6 +198,12 @@ Wings的FeatureFlags实现，有以下两个层面，
 
 * `List<Bean>` - 注入的有序的集合类
 * `.orderedStream()` - ObjectProvider的排序
+
+和顺序有关的优先级如下，注意Bean的声明和扫描机制不同，影响优先级，
+
+* `wings.reorder.*` 配置，最高优先级
+* 当`@Bean`时， `@Order` 高于 `Ordered`
+* 当`@Component`时，`Ordered` 高于`@Order`
 
 以下任一情况，此功能无效，
 
