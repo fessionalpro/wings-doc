@@ -364,13 +364,33 @@ find . -name '.pom.xml' | xargs rm -f
 
 ## 0D.22.Generics in Json and Deserialization
 
-In spring, the type is described using ResolvableType and TypeDescriptor.
+In spring, the type is described by `ResolvableType` and `TypeDescriptor`.
+in Wings, use `TypeSugar` to simple code and cache the result.
 
 ```java
-TypeDescriptor.map(Map.class, strTd, strTd)
-TypeDescriptor.collection(List.class, strTd)
-ResolvableType.forClassWithGenerics(R.class, Dto.class)
+// Map<List<List<Long[]>>, String>
+var c0 = ResolvableType.forClassWithGenerics(Map.class,
+    ResolvableType.forClassWithGenerics(List.class,
+        ResolvableType.forClassWithGenerics(List.class, Long[].class)
+    ),
+    ResolvableType.forClass(String.class)
+);
+var c1 = TypeSugar.resolve(Map.class, List.class, List.class, Long[].class, String.class);
+
+Assertions.assertEquals(c0, c1);
+
+var c2 = TypeDescriptor.map(Map.class,
+    TypeDescriptor.collection(List.class,
+        TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(Long[].class))
+    ),
+    TypeDescriptor.valueOf(String.class)
+);
+var c3 = TypeSugar.describe(Map.class, List.class, List.class, Long[].class, String.class);
+
+Assertions.assertEquals(c2, c3);
 ```
+
+After Wings 3.2.130, remove TypeReference both of fastjson and jackson.
 
 In FastJson, use com.alibaba.fastjson.TypeReference,
 Note: TypeReference must be declared on a single line to avoid auto derivation to lose the type.

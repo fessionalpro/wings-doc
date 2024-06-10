@@ -350,13 +350,33 @@ find . -name '.pom.xml' | xargs rm -f
 
 ## 0D.22.json的泛型和泛型类的反序列化
 
-spring中，使用ResolvableType和TypeDescriptor描述类型。
+spring中，使用`ResolvableType`和`TypeDescriptor`描述类型。
+Wings中，用`TypeSugar`来简化代码行并缓存结果。
 
 ```java
-TypeDescriptor.map(Map.class, strTd, strTd)
-TypeDescriptor.collection(List.class, strTd)
-ResolvableType.forClassWithGenerics(R.class, Dto.class)
+// Map<List<List<Long[]>>, String>
+var c0 = ResolvableType.forClassWithGenerics(Map.class,
+    ResolvableType.forClassWithGenerics(List.class,
+        ResolvableType.forClassWithGenerics(List.class, Long[].class)
+    ),
+    ResolvableType.forClass(String.class)
+);
+var c1 = TypeSugar.resolve(Map.class, List.class, List.class, Long[].class, String.class);
+
+Assertions.assertEquals(c0, c1);
+
+var c2 = TypeDescriptor.map(Map.class,
+    TypeDescriptor.collection(List.class,
+        TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(Long[].class))
+    ),
+    TypeDescriptor.valueOf(String.class)
+);
+var c3 = TypeSugar.describe(Map.class, List.class, List.class, Long[].class, String.class);
+
+Assertions.assertEquals(c2, c3);
 ```
+
+在Wings 3.2.130后，移除了fastjson和jackson的TypeReference支持。
 
 FastJson中，使用com.alibaba.fastjson.TypeReference，
 注意，TypeReference一定要单行声明，避免自动推导，而丢失类型。
