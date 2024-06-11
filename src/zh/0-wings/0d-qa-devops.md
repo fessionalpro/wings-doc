@@ -376,14 +376,25 @@ var c3 = TypeSugar.describe(Map.class, List.class, List.class, Long[].class, Str
 Assertions.assertEquals(c2, c3);
 ```
 
-在Wings 3.2.130后，移除了fastjson和jackson的TypeReference支持。
+在Wings-3.2.130后，移除了fastjson和jackson的`TypeReference`，直接使用`Type`。
 
-FastJson中，使用com.alibaba.fastjson.TypeReference，
-注意，TypeReference一定要单行声明，避免自动推导，而丢失类型。
 ```java
-// 以下类型等价，
-Type tp1 = new TypeReference<R<Dto>>(){}.getType();
-Type tp2 = ResolvableType.forClassWithGenerics(R.class, Dto.class).getType();
+// tp0,tp1,tp2  http://gafter.blogspot.com/2006/12/super-type-tokens.html
+// TypeReference 一定要单行声明，避免自动推导的丢失类型。
+Type tp0 = new com.google.common.reflect.TypeToken<List<String>>(){}.getType();
+Type tp1 = new com.alibaba.fastjson2.TypeReference<List<String>>() {}.getType();
+Type tp2 = new com.fasterxml.jackson.core.type.TypeReference<List<String>>() {}.getType();
+// spring way
+Type tp3 = ResolvableType.forClassWithGenerics(List.class, String.class).getType();
+Type tp4 = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(String.class)).getResolvableType().getType();
+// sugar
+Type tp5 = TypeSugar.type(List.class, String.class);
+
+Assertions.assertEquals(tp0, tp1);
+Assertions.assertEquals(tp0, tp2);
+Assertions.assertEquals(tp0, tp3);
+Assertions.assertEquals(tp0, tp4);
+Assertions.assertEquals(tp0, tp5);
 ```
 
 ## 0D.23.kotlin可能编译失败
