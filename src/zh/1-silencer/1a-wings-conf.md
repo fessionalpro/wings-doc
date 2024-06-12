@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: setting
+icon: gear
 category:
   - 沉默
   - 配置

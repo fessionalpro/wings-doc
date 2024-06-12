@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: tree
+icon: layer-group
 category:
   - Faceless
   - Database

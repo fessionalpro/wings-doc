@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: token
+icon: key
 category:
   - Warlock
   - Authz

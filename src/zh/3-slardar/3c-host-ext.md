@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: extend
+icon: feather
 category:
   - 鱼人
   - 套壳
@@ -54,7 +54,7 @@ category:
 @Controller
 @RequestMapping("/domain/b")
 public class UserController {
- 
+
     @GetMapping("/user-info.json")
     public String fetchUserInfo() {
         // 不支持view，需要手动指定
@@ -71,7 +71,7 @@ public class UserController {
 * DispatcherServlet#doService `call` doDispatch
 * Filter#doFilter `after` chain.doFilter
 
-wings通过WingsDomainFilter，先检查host，如果是继承域，则构造子域全路径url，  
+wings通过WingsDomainFilter，先检查host，如果是继承域，则构造子域全路径url，
 通过检查缓存和DispatchServlet中的HandlerMapping再构造RequestWrapper。
 
 比如用户访问的URL为 /user/login.json，假设满足domain继承，host为trydofor，

@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: cache
+icon: cloud-sun
 category:
   - 蝙蝠
   - 注册中心

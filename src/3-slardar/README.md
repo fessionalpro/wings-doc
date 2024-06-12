@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: speed
+icon: compass
 category:
   - Slardar
   - Home

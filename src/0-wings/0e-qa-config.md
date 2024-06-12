@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: config
+icon: gear
 category:
   - WingsGod
   - Config

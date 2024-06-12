@@ -1,12 +1,12 @@
 ---
 isOriginal: true
-icon: mysql
+icon: database
 category:
   - Faceless
   - Database
 ---
 
-# 2D.Mysql-Compatible Database
+# 2D.Mysql-Like Database
 
 MySql serial refers to mysql and its branches (Percona, MariaDB) or a  protocol compatible database,
 wings use mysql 8/5.7 (has been fully tested).
@@ -118,7 +118,7 @@ GROUP_CONCAT([DISTINCT] expr [,expr ...]
     [SEPARATOR str_val]
 )
 
-SELECT 
+SELECT
     GROUP_CONCAT(CONCAT_WS(', ', contactLastName, contactFirstName)
         SEPARATOR ';')
 FROM customers;
@@ -147,7 +147,7 @@ SELECT BENCHMARK(1000000,(
     SELECT count(author_name) FROM git_log_jetplus
 ));
 -- Show Index Usage
-explain 
+explain
     SELECT author_name FROM git_log_jetplus;
 ```
 
@@ -240,9 +240,9 @@ As of MySQL 5.7.5, the default SQL mode includes ONLY_FULL_GROUP_BY.
 ```sql
 -- ① disable ONLY_FULL_GROUP_BY in current session
 SET @@sql_mode = sys.list_drop(@@sql_mode, 'ONLY_FULL_GROUP_BY');
--- 
+--
 SELECT name, address, MAX(age) FROM t GROUP BY name;
--- enable 
+-- enable
 SET @@sql_mode = sys.list_add(@@sql_mode, 'ONLY_FULL_GROUP_BY');
 
 -- ②, use ANY_VALUE

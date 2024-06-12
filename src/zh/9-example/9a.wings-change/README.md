@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: change
+icon: hat-wizard
 index: false
 category:
   - 实战

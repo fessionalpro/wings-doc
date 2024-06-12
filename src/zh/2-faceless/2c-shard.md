@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: tree
+icon: layer-group
 category:
   - 虚空
   - 分表
@@ -38,7 +38,7 @@ Wings使用shard广泛表示DataSharding，ReadWrite Splitting/Separation。
 * `TRUNCATE TABLE`
 
  其中，除系统为`journal`生成的trigger外，手写删除容易出现数据不一致。
-  
+
 [DML - Data Manipulation Statements](https://dev.mysql.com/doc/refman/8.0/en/sql-syntax-data-manipulation.html)
 
 * `DELETE`

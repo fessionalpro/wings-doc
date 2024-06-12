@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: repair
+icon: fab fa-dev
 category:
   - WingsGod
   - Topic

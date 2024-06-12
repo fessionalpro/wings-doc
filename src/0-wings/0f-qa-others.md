@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: question
+icon: comment-dots
 category:
   - WingsGod
   - Topic

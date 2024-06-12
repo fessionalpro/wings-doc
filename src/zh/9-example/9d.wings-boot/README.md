@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: alias
+icon: seedling
 index: false
 category:
   - 实战

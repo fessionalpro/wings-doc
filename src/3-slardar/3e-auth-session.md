@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: token
+icon: key
 category:
   - Slardar
   - Authn
@@ -97,9 +97,8 @@ As a skill enhancement, the following technical points need source code reading 
 
 The relationship between Session and SecurityContext calls is as follows,
 
-```plantuml
 @startuml
-SessionRepositoryFilter -> SessionRepositoryRequestWrapper
+SessionRepositoryFilter -> SessionRepositoryRequestWrapper: doFilterInternal()
 SecurityContextPersistenceFilter -> SecurityContextRepository: loadContext()
 SecurityContextRepository -> SessionRepositoryRequestWrapper: getSession()
 SecurityContextPersistenceFilter -> SecurityContextHolder: setContext()
@@ -109,7 +108,6 @@ SecurityContextPersistenceFilter -> SecurityContextRepository: saveContext()
 SessionManagementFilter -> SecurityContextRepository: containsContext()
 SessionManagementFilter -> SecurityContextRepository: saveContext()
 @enduml
-```
 
 ## 3E.5.Related Knowledge
 

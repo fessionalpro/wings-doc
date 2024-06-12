@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: define
+icon: circle-check
 category:
   - Silencer
   - Home

@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: extend
+icon: feather
 category:
   - Slardar
   - Tenant
@@ -57,7 +57,7 @@ According to Wings mapping convention, avoid using relative paths, so b.com be p
 @Controller
 @RequestMapping("/domain/b")
 public class UserController {
- 
+
     @GetMapping("/user-info.json")
     public String fetchUserInfo() {
         // View has no support and must be set manually

@@ -1,6 +1,6 @@
 ---
 home: true
-icon: home
+icon: house
 heroImage: /logo.png
 heroText: BKB + BoT + SpringBoot
 tagline: 🎉Fast Delivery 🧩Safe Refactor 🍵Low Tech-debt
@@ -16,7 +16,7 @@ actions:
     link: ./0-wings/0h-prop-index.html
 
 features:
-  - icon: config
+  - icon: screwdriver-wrench
     title: Shard and Cascade Configigruation
     details: Properties can be broken down into separate files that take effect after cascading
     link: ./1-silencer/1a-wings-conf.html
@@ -26,52 +26,52 @@ features:
     details: Automatic timezone config and adjustment, static and dynamic i18n config and conversion
     link: ./1-silencer/1b-wings-i18n.html
 
-  - icon: mysql
+  - icon: code-compare
     title: Versioning of Data and Schema
     details: Manage schema and data changes with a git-like and sql-based tool called flywave
     link: ./2-faceless/2a-flywave.html
 
-  - icon: software
+  - icon: bolt
     title: Powful Type-safe SqlMapping
     details: Achieve business goals faster, pay off tech-debt faster, and refactor safely
     link: ./2-faceless/2b-jooq.html
 
-  - icon: storage
+  - icon: sitemap
     title: Distrib, Spliting and Sharding
     details: Efficient distributed ID, on-demand data sharding and read/write splitting
     link: ./2-faceless/2c-shard.html
 
-  - icon: json
+  - icon: award
     title: Engineered Jackson Configuration
     details: Compatible convention and secure check for biz types, eg. number, datetime, timezone
     link: ./3-slardar/3a-jackson.html
 
-  - icon: extend
+  - icon: signs-post
     title: Host extension and URL override
     details: Domain-based skin, inherit and override URL without reverse proxy, just SpringMVC
     link: ./3-slardar/3c-host-ext.html
 
-  - icon: token
+  - icon: key
     title: Distrib Session and Multi-Auth
     details: Hazelcast-based distributed Session, cookie encryption, and alias name
     link: ./3-slardar/3e-auth-session.html
 
-  - icon: stack
+  - icon: layer-group
     title: JVM/Distrib Cache, Lock, and Objects
     details: JVM and distributed objects, locks, and events with Cache2k and  Hazelcast
     link: ./3-slardar/3f-cache-event.html
 
-  - icon: compare
+  - icon: fan
     title: Throttle, Debounce, Tamper Proof
     details: Backend debounce, service throttle, content tamper proof, captcha protection
     link: ./3-slardar/3g-fun-server.html
 
-  - icon: command
+  - icon: user-shield
     title: 3rd Login, Role/Perm Management
     details: Oauth2 Integration, fine-grained permission based on app, feature and domain
     link: ./4-warlock/4c-security.html
 
-  - icon: more
+  - icon: puzzle-piece
     title: Pluggable modules, OOTB features
     details: Pluggable module, Out-of-the-box feature, script, manual and code generator
     link: ./8-radiant/

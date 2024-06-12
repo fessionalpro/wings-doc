@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: geometry
+icon: ship
 category:
   - WingsGod
   - Model
@@ -67,7 +67,7 @@ for a data flow, handle only the current state.
 * Infrastructure - biz-independent server, eg. db, cache
 
 ```text
-▲ 
+▲
 │ Floor of Abstraction
 ├──────────────┐
 │ Presentation │

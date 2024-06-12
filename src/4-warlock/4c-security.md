@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: command
+icon: umbrella
 category:
   - Warlock
   - Security

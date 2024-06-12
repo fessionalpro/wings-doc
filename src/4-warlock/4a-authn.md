@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: safe
+icon: key
 category:
   - Warlock
   - Authn

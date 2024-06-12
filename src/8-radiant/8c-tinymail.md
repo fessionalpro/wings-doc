@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: news
+icon: mug-hot
 category:
   - Tiny
   - Mail

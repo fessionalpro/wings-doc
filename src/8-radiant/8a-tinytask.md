@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: timer
+icon: clock
 category:
   - Tiny
   - Task

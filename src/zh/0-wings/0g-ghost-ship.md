@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: geometry
+icon: ship
 category:
   - 神翼
   - 模型
@@ -61,7 +61,7 @@ WingsBoot体系的基本架构思路是，纵向做模型，横向贴功能。
 * 设施层 - 业务无关的基础服务，如db, cache
 
 ```text
-▲ 
+▲
 │ Floor of Abstraction
 ├──────────────┐
 │ Presentation │

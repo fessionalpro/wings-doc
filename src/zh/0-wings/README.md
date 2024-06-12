@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: discover
+icon: compass
 category:
   - 神翼
   - 首页

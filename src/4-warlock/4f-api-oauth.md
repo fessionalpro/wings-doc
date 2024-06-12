@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: api
+icon: puzzle-piece
 category:
   - Warlock
   - Security

@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: token
+icon: key
 category:
   - 术士
   - 授权

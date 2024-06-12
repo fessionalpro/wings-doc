@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: tree
+icon: layer-group
 category:
   - Faceless
   - Sharding
@@ -40,7 +40,7 @@ You can also specify the datasource manually to accomplish customized data opera
 * `TRUNCATE TABLE`
 
 Among them, except for the system-generated trigger for `journal`, manual deletion will cause data inconsistency.
-  
+
 [DML - Data Manipulation Statements](https://dev.mysql.com/doc/refman/8.0/en/sql-syntax-data-manipulation.html)
 
 * `DELETE`

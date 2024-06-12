@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: linter
+icon: brush
 category:
   - 神翼
   - 规范

@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: repair
+icon: fab fa-dev
 category:
   - 神翼
   - 话题

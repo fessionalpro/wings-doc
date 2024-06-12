@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: advance
+icon: shield-heart
 category:
   - Slardar
   - Protection

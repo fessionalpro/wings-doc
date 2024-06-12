@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: config
+icon: screwdriver-wrench
 category:
   - 神翼
   - 话题

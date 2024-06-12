@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: git
+icon: code-compare
 category:
   - Faceless
   - Version

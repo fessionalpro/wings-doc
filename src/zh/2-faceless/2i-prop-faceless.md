@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: enum
+icon: folder-tree
 category:
   - 虚空
   - 属性
@@ -88,7 +88,7 @@ sql扫描pattern，逗号分隔。PathMatchingResourcePatternResolver格式
 
 ```sql
 SELECT block_id
-FROM sys_light_sequence 
+FROM sys_light_sequence
 WHERE seq_name = 'singleton_lightid_blockid'
 ```
 
@@ -98,7 +98,7 @@ WHERE seq_name = 'singleton_lightid_blockid'
 
 ```sql
 INSERT INTO sys_light_sequence
-(seq_name, block_id, next_val, step_val, comments) 
+(seq_name, block_id, next_val, step_val, comments)
 VALUES (?,?,?,?,?)
 ```
 
@@ -115,8 +115,8 @@ VALUES (?,?,?,?,?)
 `String`，更新语句。JdbcTemplate的sql，
 
 ```sql
-UPDATE sys_light_sequence 
-SET next_val=? 
+UPDATE sys_light_sequence
+SET next_val=?
 WHERE block_id=? AND seq_name=? AND next_val=?
 ```
 
@@ -132,8 +132,8 @@ WHERE block_id=? AND seq_name=? AND next_val=?
 `String`，单次获取。JdbcTemplate的sql，
 
 ```sql
-SELECT next_val, step_val 
-FROM sys_light_sequence 
+SELECT next_val, step_val
+FROM sys_light_sequence
 WHERE block_id=? AND seq_name=? FOR UPDATE
 ```
 
@@ -147,8 +147,8 @@ WHERE block_id=? AND seq_name=? FOR UPDATE
 `String`，全部获取。JdbcTemplate的sql，
 
 ```sql
-SELECT seq_name, next_val, step_val 
-FROM sys_light_sequence 
+SELECT seq_name, next_val, step_val
+FROM sys_light_sequence
 WHERE block_id=? FOR UPDATE
 ```
 
@@ -161,11 +161,11 @@ WHERE block_id=? FOR UPDATE
 `String`，尝试校验并调整数据库中id，使其正确。设置为`empty`，表示忽略此功能。
 
 ```sql
-SELECT table_name, column_name 
-FROM INFORMATION_SCHEMA.COLUMNS 
-WHERE table_schema = DATABASE() 
-AND UPPER(column_key) = 'PRI' 
-AND UPPER(column_type) like '%INT%' 
+SELECT table_name, column_name
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE table_schema = DATABASE()
+AND UPPER(column_key) = 'PRI'
+AND UPPER(column_type) like '%INT%'
 AND table_name = ?
 ```
 

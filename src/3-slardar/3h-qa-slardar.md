@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: question
+icon: circle-question
 category:
   - Slardar
   - Topic

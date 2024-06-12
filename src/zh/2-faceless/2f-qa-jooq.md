@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: ability
+icon: bolt
 category:
   - 虚空
   - Jooq
@@ -39,7 +39,7 @@ field("replace(substr(quote(zeroblob(({0} + 1) / 2)), 3, {0}), '0', {1})", Strin
 
 // Plain SQL using bind values. The value 5 is bound to the first variable, "Animal Farm" to the second variable:
 create.selectFrom(BOOK).where(
-    "BOOK.ID = ? AND TITLE = ?",     // The SQL string containing bind value placeholders ("?") 
+    "BOOK.ID = ? AND TITLE = ?",     // The SQL string containing bind value placeholders ("?")
     5,                               // The bind value at index 1
     "Animal Farm"                    // The bind value at index 2
 ).fetch();
@@ -103,8 +103,8 @@ The jOOQ template parser behaves according to the following rules:
 但如果有jooq自动生成的代码，是带有`@Repository`，需要禁止spring注入。
 
 ```java
-@ComponentScan(excludeFilters = 
-@Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WingsJooqDaoImpl.class))  
+@ComponentScan(excludeFilters =
+@Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WingsJooqDaoImpl.class))
 ```
 
 ## 2F.03.常见的jooq查询操作

@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: json
+icon: feather
 category:
   - Slardar
   - Convention

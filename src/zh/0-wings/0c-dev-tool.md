@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: tool
+icon: fab fa-dev
 category:
   - 神翼
   - 工具
