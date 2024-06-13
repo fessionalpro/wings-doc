@@ -153,9 +153,14 @@ equal to fixedRate, start to start, 0 means disable, not use Default config.
 
 ### wings.tiny.task.define[default].timing-beat
 
-`Integer`=`0`, the interval seconds of heartbeat, if the task's last_exec is more
-than 2 heartbeats away from now, it is considered as an exception. default auto to
-take rate or idle maximum, cron needs to specify it by itself, not use Default config.
+`Integer`=`0`, the interval seconds of heartbeat and health-check, not use Default config.
+it is considered as an exception if the last_exec is more than 2 heartbeats away from now.
+
+* `<0` - disable check
+* `0` - auto calculate,
+  - when cron, calc next_exec from last_exec,
+  - others, max rate and idle
+* `>0` - fixed positive seconds
 
 ### wings.tiny.task.define[default].during-from
 

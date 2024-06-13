@@ -70,3 +70,35 @@ TinyTask默认提供了控制的Controller
 * TinyTaskConfService - 配置相关服务
 * TinyTaskExecService - 执行相关服务
 * TinyTaskService - 调度任务入口
+
+## 8A.5.执行流程
+
+通常排定 (launch)
+
+@startuml
+TinyTaskExecService -> TinyTaskExecService: launch(id), remove Cancel
+TinyTaskExecService -> JvmGlobalLock: lock(id)
+TinyTaskExecService -> WinTaskDefineDao: load WinTaskDefine by id
+TinyTaskExecService -> TinyTaskExecService: calcNext if enable && app && run
+TinyTaskExecService -> WinTaskDefineDao: save NextExec temp
+TinyTaskExecService --> ThreadPoolTaskScheduler: schedule(task, next)
+ThreadPoolTaskScheduler -> TaskerExec: getTaskerBean
+ThreadPoolTaskScheduler -> NoticeExec: starting notice
+ThreadPoolTaskScheduler -> TaskerExec : invoke task method
+ThreadPoolTaskScheduler -> NoticeExec: result notice, done/fail
+ThreadPoolTaskScheduler -> WinTaskDefineDao: saveResult, clean NextExec
+ThreadPoolTaskScheduler -> TinyTaskExecService: relaunch if schedule
+@enduml
+
+强制执行 (force)
+
+@startuml
+TinyTaskExecService -> TinyTaskExecService: force(id)
+TinyTaskExecService -> WinTaskDefineDao: load WinTaskDefine by id
+TinyTaskExecService --> ThreadPoolTaskScheduler: schedule(task, next)
+ThreadPoolTaskScheduler -> TaskerExec: getTaskerBean
+ThreadPoolTaskScheduler -> NoticeExec: starting notice
+ThreadPoolTaskScheduler -> TaskerExec : invoke task method
+ThreadPoolTaskScheduler -> NoticeExec: result notice, done/fail
+ThreadPoolTaskScheduler -> WinTaskDefineDao: saveResult, clean NextExec
+@enduml

@@ -122,7 +122,13 @@ TinyTask自身任务，清理日志和心跳健康
 
 ### wings.tiny.task.define[default].timing-beat
 
-`Integer`=`0`，心跳间隔秒数，若任务的last_exec距今超过2个心跳，则视其为异常。默认自动，取rate或idle最大值，cron需要自行指定，不会使用Default配置
+`Integer`=`0`，心跳及健康检查间隔秒数，不会使用Default配置。若任务的last_exec距now超过2个心跳，视其为异常，
+
+* `<0` - 禁止
+* `0` - 自动计算，
+  - cron时，以 last_exec 计算的 next_exec
+  - 否则，取rate或idle最大值
+* `>0` - fixed positive seconds
 
 ### wings.tiny.task.define[default].during-from
 
