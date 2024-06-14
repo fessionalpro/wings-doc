@@ -576,3 +576,12 @@ if (key == null) {
     return;
 }
 ```
+
+## 0D.39.@Transactional在接口还是具体类
+
+[官方文档](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html)建议放到具体类上，Wings建议都放置，接口上的为说明锲约，实现类上的为功能实现。
+
+当接口中存在`default`方法时，会导致`@Transactional`失效，原因和内部调用一样。此时，
+
+* `Override`每个方法，在class 上`@Transactional`
+* 编程方式实现事务方法，如 `TransactionHelper`, `TransactionTemplate`

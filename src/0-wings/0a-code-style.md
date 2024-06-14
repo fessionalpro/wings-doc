@@ -449,3 +449,27 @@ Wings refers to methods without the following characteristics as leak or side ef
 * Side Effects
 
 Avoid using leaking methods and implicit variables as much as possible in programming.
+
+## 0A.L.Enhanced Self-Injection ThisLazy
+
+ThisLazy pattern, inside the bean, calls Spring enhanced methods,
+such as `@Transactional`, `@Cacheable`, `@Async`.
+
+The followings use the `thisLazyAwarePostProcessor` to the auto inject itself.
+
+* `extends ThisLazy<T>` - uses `thisLazy` directly in the subclass
+* `implements ThisLazyAware<T>` - implements the interface
+
+The following code, for manually init and inject `thisLazy`,
+
+```java
+@Setter(onMethod_ = {@Autowired, @Lazy})
+protected RuntimeConfService thisLazy = this;
+```
+
+Except for the following cases, there are runtime type exceptions,
+where `M` represents the enhanced method used by thisLazy,
+
+* `T` is an interface, and all `M` come from `T` (best practice)
+* `T` is a class, and `M` is enhanced by Cglib (proxyTargetClass=true)
+* no `M`, in which case `T` is itself (but should not use this pattern)

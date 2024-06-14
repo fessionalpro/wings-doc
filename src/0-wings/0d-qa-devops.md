@@ -598,26 +598,12 @@ if (key == null) {
 }
 ```
 
-## 0A.L.Enhanced Self-Injection ThisLazy
+## 0D.39.@Transactional on interface or impl
 
-ThisLazy pattern, inside the bean, calls Spring enhanced methods,
-such as `@Transactional`, `@Cacheable`, `@Async`.
+[Official Doc](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html) suggest on concrete class,
+Wings suggest on both, on interface for contract, on impl for functional implementation.
 
-The followings use the `thisLazyAwarePostProcessor` to the auto inject itself.
+If there are `default` methods in the interface, `@Transactional` may fail for the same reason as an internal call. At this point.
 
-* `extends ThisLazy<T>` - uses `thisLazy` directly in the subclass
-* `implements ThisLazyAware<T>` - implements the interface
-
-The following code, for manually init and inject `thisLazy`,
-
-```java
-@Setter(onMethod_ = {@Autowired, @Lazy})
-protected RuntimeConfService thisLazy = this;
-```
-
-Except for the following cases, there are runtime type exceptions,
-where `M` represents the enhanced method used by thisLazy,
-
-* `T` is an interface, and all `M` come from `T` (best practice)
-* `T` is a class, and `M` is enhanced by Cglib (proxyTargetClass=true)
-* no `M`, in which case `T` is itself (but should not use this pattern)
+* `Override` all methods, put `@Transactional` on the class
+* Programmatic transaction, e.g. `TransactionHelper`, `TransactionTemplate`
