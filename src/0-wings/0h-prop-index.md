@@ -178,7 +178,6 @@ The config value in the properties is usually a single line, and the multiple li
   - .okhttpClient
   - .okhttpClientBuilder
   - .okhttpConnectionPool
-  - .okhttpHelperRunner
   - .okhttpHostCookieJar
   - .okhttpRedirectNopInterceptor
 * .bean.SlardarTweakConfiguration
