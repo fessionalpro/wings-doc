@@ -247,6 +247,7 @@ The revision numbers currently in use are,
 * 2020_1027_01 - tiny-mail:master/07-mail/2020-10-27v01-tiny_mail.sql
 * 2021_0918_01 - warlock:branch/somefix/01-authn-fix/2021-09-18v01-rename-authn.sql
 * 2021_1220_01 - flywave:branch/somefix/02-v242-201/2021-12-20v01-journal-trg-insert.sql
+* 2021_1026_02 - tiny-task:branch/somefix/03-v32-130/2021-10-26v02-task-tune.sql
 * 2022_0601_01 - testing-faceless:master/2022-0601v01-test.sql
 * 2022_0601_02 - testing-faceless:master/2022-0601v02-test.sql
 * 2022_0222_01 - winx-common:master/00-init/2022-0222v01-demo-init.sql

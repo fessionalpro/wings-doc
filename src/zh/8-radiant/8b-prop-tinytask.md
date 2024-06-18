@@ -53,7 +53,7 @@ TinyTask自身任务，清理日志和心跳健康
 
 ### wings.tiny.task.define[default].version
 
-`Integer`=`0`，版本号，版本高的配置覆盖版本低的，不会使用Default配置
+`Integer`=`0`，配置版本号，高版本的配置覆盖低版本的，相等时配置文件覆盖数据库，不会使用Default配置。
 
 ### wings.tiny.task.define[default].tasker-bean
 
@@ -115,6 +115,14 @@ TinyTask自身任务，清理日志和心跳健康
 ### wings.tiny.task.define[default].timing-rate
 
 `Integer`=`0`，固定频率开始（秒），优先级次于timingIdle，相当于fixedRate，开始到开始，0为无效，不会使用Default配置
+
+### wings.tiny.task.define[default].timing-tune
+
+`Integer`=`0`，提前或延迟tune秒执行任务，不会使用Default配置，像`Scheduled.initialDelay`，但，
+
+* rate - 当前 jvm 上第一次执行
+* idle - 当前 jvm 上第一次执行
+* cron - 每次执行
 
 ### wings.tiny.task.define[default].timing-miss
 

@@ -72,7 +72,8 @@ Check health status every 300 seconds of idle time.
 
 ### wings.tiny.task.define[default].version
 
-`Integer`=`0`, version number, higher version config overrides lower one, not use Default config.
+`Integer`=`0`, config version number, higher version overrides lower one,
+when equals, properties override database, not use Default config.
 
 ### wings.tiny.task.define[default].tasker-bean
 
@@ -145,6 +146,15 @@ equal to fixedDelay, end to start, 0 means disable, not use Default config.
 
 `Integer`=`0`, Fixed frequency interval (seconds), lower priority than timingIdle,
 equal to fixedRate, start to start, 0 means disable, not use Default config.
+
+### wings.tiny.task.define[default].timing-tune
+
+`Integer`=`0`, execute the task before(negative) or after tune seconds, not use Default config.
+like Scheduled.initialDelay, but
+
+* rate - first time on this jvm
+* idle - first time on this jvm
+* cron - each time
 
 ### wings.tiny.task.define[default].timing-miss
 
