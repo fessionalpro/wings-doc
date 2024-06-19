@@ -30,16 +30,16 @@ wings对配置文件的处理方式，是`层叠`和`过滤`，配置以路径�
 
 通过`EnvironmentPostProcessor`扫描`各路径`中`/wings-conf/**/*.*`，规则同
 [Externalized Configuration](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.external-config)
-，和配置文件有关的`各路径`如下，其后者优先级高（为与spring文档叙述一致，程序中倒序执行，FIFO优先级）。
+，和配置文件有关的`各路径`及加载优先级如下。
 
-0. 路径中，优先加载`application.*`，次之`wings-conf/**/*.*`
-1. 以`/`结尾的当做目录，否则作为文件
-2. 任何非`classpath:`,`classpath*:`的，都以`file:`扫描
-3. `classpath:/`会被以`classpath*:/`扫描
-4. default `classpath:/,classpath:/config/,file:./,file:./config/`
-5. OS environment variables. `SPRING_CONFIG_LOCATION`
-6. Java System properties `spring.config.location`
-7. Command line arguments. `--spring.config.location
+1. 命令行，`--spring.config.location`, `--spring.config.additional-location`
+2. Java 系统变量，`spring.config.location`, `spring.config.additional-location`
+3. 系统环境变量，`SPRING_CONFIG_LOCATION`, `SPRING_CONFIG_ADDITIONALLOCATION`
+4. 默认路径，`classpath:/,classpath:/config/,file:./,file:./config/`
+5. `classpath:/` 会被以 `classpath*:/`扫描
+6. 非协议（不含`:`），都以`file:`扫描
+7. 以`/`结尾的当做目录，否则作为文件
+8. 路径中，`application.*`, `wings-conf/**/*.*`
 
 每个配置文件都由以下部分构成:`dirname` + `basename` + `seq` + `profile` + `extname`.
 例如, `classpath:/wings-conf/` + `wings-mirana` + `-79` + `@dev` + `.properties`.
