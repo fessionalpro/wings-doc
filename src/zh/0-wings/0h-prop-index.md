@@ -59,4 +59,9 @@ category:
 * `(false)` 表示默认为false
 * `= key` 表示 `absolute-key`
 
+有关配置文件，
+
+* META-INF/additional-spring-configuration-metadata.json
+* wings-conf/wings-prop-promotion.cnf
+
 属性列表，统一参考[英文版](/0-wings/0h-prop-index.md)

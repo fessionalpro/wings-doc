@@ -59,6 +59,11 @@ The config value in the properties is usually a single line, and the multiple li
 * `(false)` means default false
 * `= key` means `absolute-key`
 
+relative config files,
+
+* META-INF/additional-spring-configuration-metadata.json
+* wings-conf/wings-prop-promotion.cnf
+
 ### .silencer.spring
 
 * .conf.SilencerAutoConfiguration
