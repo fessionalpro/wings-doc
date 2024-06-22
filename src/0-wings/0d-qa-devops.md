@@ -607,3 +607,53 @@ If there are `default` methods in the interface, `@Transactional` may fail for t
 
 * `Override` all methods, put `@Transactional` on the class
 * Programmatic transaction, e.g. `TransactionHelper`, `TransactionTemplate`
+
+## 0D.40.git submodule HEAD detached
+
+Project checkout the main branch in shallow by default, and the submodule's commit is detached.
+
+When the commit is on the main branch, such as docs, `fetch origin` can retrieve the branch.
+
+```bash
+git status
+#> HEAD detached at c30360b
+#> nothing to commit, working tree clean
+
+git fetch origin
+git checkout main
+#> Switched to branch 'main'
+#> Your branch is up to date with 'origin/main'.
+```
+
+When the commit is on the develop branch, such as mirana, needs to switch branch,
+but `git fetch --all` does NOT retrieve it.
+
+```bash
+## branch = main shallow = true
+git branch -r
+#> origin/HEAD -> origin/main
+#> origin/main
+
+## fetch --all # NOT work, only main
+# git fetch --all -v
+#> From github.com:trydofor/professional-mirana
+#>  = [up to date] main -> origin/main
+
+## check remote branch
+git ls-remote -h origin
+#> 4468526dab9	refs/heads/develop
+#> 96d19eb57d3	refs/heads/main
+
+## check fetch setting
+git config --get-all remote.origin.fetch
+#> +refs/heads/main:refs/remotes/origin/main
+git remote set-branches origin '*'
+## fetch and checkout
+git fetch origin -av
+git checkout -t origin/develop
+
+## deinit mirana submodule
+#git submodule deinit -f -- observe/mirana
+## reinit mirana submodule
+#git submodule update --remote --init -- observe/mirana
+```

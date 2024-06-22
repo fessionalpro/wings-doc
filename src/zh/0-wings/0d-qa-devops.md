@@ -585,3 +585,52 @@ if (key == null) {
 
 * `Override`每个方法，在class 上`@Transactional`
 * 编程方式实现事务方法，如 `TransactionHelper`, `TransactionTemplate`
+
+## 0D.40.git submodule HEAD detached
+
+工程默认以 shallow 检出 main 分支，submodule的commit为 detached 状态，
+
+当 commit 在 main 分支时，以 docs 为例，此时 `fetch origin` 可以获取分支。
+
+```bash
+git status
+#> HEAD detached at c30360b
+#> nothing to commit, working tree clean
+
+git fetch origin
+git checkout main
+#> Switched to branch 'main'
+#> Your branch is up to date with 'origin/main'.
+```
+
+当 commit 在 develop 时，以 mirana 为例，需要切换分支，但 `fetch --all` 却无法获取分支。
+
+```bash
+## branch = main shallow = true
+git branch -r
+#> origin/HEAD -> origin/main
+#> origin/main
+
+## fetch --all # 无效，仅有main分支
+# git fetch --all -v
+#> From github.com:trydofor/professional-mirana
+#>  = [up to date] main -> origin/main
+
+## 查看远程分支
+git ls-remote -h origin
+#> 4468526dab9	refs/heads/develop
+#> 96d19eb57d3	refs/heads/main
+
+## 检出 fetch 设置
+git config --get-all remote.origin.fetch
+#> +refs/heads/main:refs/remotes/origin/main
+git remote set-branches origin '*'
+## 获取并检出
+git fetch origin -av
+git checkout -t origin/develop
+
+## 反初始 mirana 子模块
+#git submodule deinit -f -- observe/mirana
+## 重新初始 mirana 子模块
+#git submodule update --remote --init -- observe/mirana
+```
