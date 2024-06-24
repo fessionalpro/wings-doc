@@ -101,8 +101,8 @@ use Default config if null or empty.
 
 ### wings.tiny.task.define[default].tasker-runs
 
-`String`, RunMode(product|test|develop|local), Comma separated, ignore case, default all,
-use Default config if null or empty.
+`String`, RunMode(product|test|develop|local), `!test`,`-test` means NOT(veto) `test`,
+Comma separated, ignore case, default all, use Default config if null or empty.
 
 ### wings.tiny.task.define[default].notice-bean
 

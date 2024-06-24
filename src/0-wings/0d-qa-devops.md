@@ -641,8 +641,8 @@ git branch -r
 
 ## check remote branch
 git ls-remote -h origin
-#> 4468526dab9	refs/heads/develop
-#> 96d19eb57d3	refs/heads/main
+#> 4468526dab9 refs/heads/develop
+#> 96d19eb57d3 refs/heads/main
 
 ## check fetch setting
 git config --get-all remote.origin.fetch

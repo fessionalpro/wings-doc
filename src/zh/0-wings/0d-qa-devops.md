@@ -618,8 +618,8 @@ git branch -r
 
 ## 查看远程分支
 git ls-remote -h origin
-#> 4468526dab9	refs/heads/develop
-#> 96d19eb57d3	refs/heads/main
+#> 4468526dab9 refs/heads/develop
+#> 96d19eb57d3 refs/heads/main
 
 ## 检出 fetch 设置
 git config --get-all remote.origin.fetch

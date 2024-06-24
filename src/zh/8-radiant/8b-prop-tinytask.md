@@ -77,7 +77,8 @@ TinyTask自身任务，清理日志和心跳健康
 
 ### wings.tiny.task.define[default].tasker-runs
 
-`String`，执行模式，RunMode(product|test|develop|local)，逗号分隔忽略大小写，默认所有，null及空时使用Default配置
+`String`，执行模式，RunMode(product|test|develop|local)，`!test`，`-test`为一票否决`test`，
+逗号分隔忽略大小写，默认所有，null及空时使用Default配置
 
 ### wings.tiny.task.define[default].notice-bean
 
