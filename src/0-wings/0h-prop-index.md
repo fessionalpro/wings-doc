@@ -71,7 +71,6 @@ relative config files,
   - .applicationInspectRunner
   - .messageSourceHelper
   - .wingsReorderProcessor = `wings.enabled.silencer.bean-reorder`
-  - .thisLazyAwarePostProcessor
 * .bean.SilencerRunnerConfiguration
   - $ReadyEvent - on ApplicationReadyEvent
   - $StartedEvent - on ApplicationStartedEvent
@@ -80,6 +79,7 @@ relative config files,
   - .auditPropRunner (false) = `wings.enabled.silencer.audit-prop`
   - .infoGitJvmRunner
   - .muteConsoleRunner = `wings.enabled.silencer.mute-console`
+  - .thisLazyAwarePostProcessor
   - .runtimeMode
 * .bean.SilencerEncryptConfiguration
   - .aes256
