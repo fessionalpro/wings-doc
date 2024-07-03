@@ -42,7 +42,21 @@ sql扫描pattern，逗号分隔。PathMatchingResourcePatternResolver格式
 
 补漏行为，任一指定revi未应用时，只升级不能降级，避免危险的删除动作
 
-## 2I.3.wings-lightid-79.properties
+## 2I.3.wings-journal-79.properties
+
+## wings.faceless.journal.propagation
+
+`Propagation`=`REQUIRES_NEW`，生成Journal的默认事务
+
+## wings.faceless.journal.alive
+
+`Integer`=`300`，Journal存活秒数，超过则生成新的
+
+* `<0` - 使用旧值
+* `0` - 每次都使用新值
+* `>0` - 仅超过此值时，使用新值
+
+## 2I.4.wings-lightid-79.properties
 
 对分布式主键lightid的设置。默认事务级别，Propagation.REQUIRES_NEW
 

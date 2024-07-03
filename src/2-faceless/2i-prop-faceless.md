@@ -42,7 +42,21 @@ sql scan pattern, comma separated. PathMatchingResourcePatternResolver format
 
 Post check, if the specified revi is not applied, only upgrade can be performed, not downgrade to avoid dangerous delete.
 
-## 2I.3.wings-lightid-79.properties
+## 2I.3.wings-journal-79.properties
+
+## wings.faceless.journal.propagation
+
+`Propagation`=`REQUIRES_NEW`, transaction to create new Journal
+
+## wings.faceless.journal.alive
+
+`Integer`=`300`, create new journal if the existing is older than alive seconds.
+
+* `<0` - use the old
+* `0`  - new one every time
+* `>0` - new one if older
+
+## 2I.4.wings-lightid-79.properties
 
 The setting for the distributed PK- lightid. default transaction is Propagation.REQUIRES_NEW
 
