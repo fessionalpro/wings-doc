@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: enum
+icon: folder-tree
 category:
   - WingsGod
   - Home
@@ -59,6 +59,11 @@ The config value in the properties is usually a single line, and the multiple li
 * `(false)` means default false
 * `= key` means `absolute-key`
 
+relative config files,
+
+* META-INF/additional-spring-configuration-metadata.json
+* wings-conf/wings-prop-promotion.cnf
+
 ### .silencer.spring
 
 * .conf.SilencerAutoConfiguration
@@ -66,7 +71,6 @@ The config value in the properties is usually a single line, and the multiple li
   - .applicationInspectRunner
   - .messageSourceHelper
   - .wingsReorderProcessor = `wings.enabled.silencer.bean-reorder`
-  - .thisLazyAwarePostProcessor
 * .bean.SilencerRunnerConfiguration
   - $ReadyEvent - on ApplicationReadyEvent
   - $StartedEvent - on ApplicationStartedEvent
@@ -75,6 +79,7 @@ The config value in the properties is usually a single line, and the multiple li
   - .auditPropRunner (false) = `wings.enabled.silencer.audit-prop`
   - .infoGitJvmRunner
   - .muteConsoleRunner = `wings.enabled.silencer.mute-console`
+  - .thisLazyAwarePostProcessor
   - .runtimeMode
 * .bean.SilencerEncryptConfiguration
   - .aes256
@@ -178,7 +183,6 @@ The config value in the properties is usually a single line, and the multiple li
   - .okhttpClient
   - .okhttpClientBuilder
   - .okhttpConnectionPool
-  - .okhttpHelperRunner
   - .okhttpHostCookieJar
   - .okhttpRedirectNopInterceptor
 * .bean.SlardarTweakConfiguration

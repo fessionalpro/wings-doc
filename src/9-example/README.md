@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: actions
+icon: circle-play
 category:
   - Practice
   - Home
@@ -67,7 +67,7 @@ Softlink(`ln -s`) wings-starter.sh to some execution location, using `good-devop
 cd $PROJECT_DIR
 # Create a boot script, one boot.jar corresponds to one pair of `.sh` and `.env`
 ln -s $WINGS_BIN/wings-starter.sh ${PROJECT_PCD}-devops-starter.sh
-# Copy the content of wings-starter.env and 
+# Copy the content of wings-starter.env and
 # save it with the same name as the boot script (different extname)
 cp $WINGS_BIN/wings-starter.env ${PROJECT_PCD}-devops-starter.env
 # good is the default codename, if it has been changed, it must be modified,
@@ -111,7 +111,7 @@ server {
     #if ($scheme = http) {
     #    return 301 https://$host$request_uri;
     #}
-    
+
     # Defensive settings to protect .git
     location .git {
         access_log off;
@@ -124,7 +124,7 @@ server {
         proxy_pass http://good_admin;
         proxy_http_version  1.1;
         proxy_cache_bypass  $http_upgrade;
-    
+
         proxy_set_header  Connection   "";            # long conn
         #proxy_set_header Connection   "upgrade";     # ws
         #proxy_set_header Upgrade      $http_upgrade; # ws

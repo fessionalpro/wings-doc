@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: cache
+icon: cloud-sun
 category:
   - Batrider
   - Provider
@@ -41,7 +41,7 @@ Consistent with the Controller and RequestMapping conventions in wings.
 @RequestMapping(path = "/")
 public class BatriderContractor implements HelloContract {
 
-    @RequestMapping(path = "/batrider-hello/say-hello", 
+    @RequestMapping(path = "/batrider-hello/say-hello",
     method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
     @Override
@@ -69,7 +69,7 @@ In the implementation, the provider uses the contract's SchemaId directly
 @RequestMapping(path = HelloContract.SchemaId)
 public class HelloContractor implements HelloContract {
 
-    @RequestMapping(path = "/say-hello", 
+    @RequestMapping(path = "/say-hello",
     method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
     @Override

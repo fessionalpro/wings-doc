@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: question
+icon: circle-question
 category:
   - 神翼
   - 话题

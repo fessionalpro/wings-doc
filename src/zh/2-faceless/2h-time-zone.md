@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: time
+icon: clock
 category:
   - 虚空
   - 时间

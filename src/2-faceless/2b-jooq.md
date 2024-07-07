@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: ability
+icon: bolt
 category:
   - Faceless
   - TypeSafe

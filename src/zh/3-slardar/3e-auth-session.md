@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: token
+icon: key
 category:
   - 鱼人
   - 认证
@@ -96,9 +96,8 @@ cookie体系下，可通过定制Filter和Wrapper实现以下功能。
 
 Session和SecurityContext的调用关系如下
 
-```plantuml
 @startuml
-SessionRepositoryFilter -> SessionRepositoryRequestWrapper
+SessionRepositoryFilter -> SessionRepositoryRequestWrapper: doFilterInternal()
 SecurityContextPersistenceFilter -> SecurityContextRepository: loadContext()
 SecurityContextRepository -> SessionRepositoryRequestWrapper: getSession()
 SecurityContextPersistenceFilter -> SecurityContextHolder: setContext()
@@ -108,7 +107,6 @@ SecurityContextPersistenceFilter -> SecurityContextRepository: saveContext()
 SessionManagementFilter -> SecurityContextRepository: containsContext()
 SessionManagementFilter -> SecurityContextRepository: saveContext()
 @enduml
-```
 
 ## 3E.5.相关知识
 

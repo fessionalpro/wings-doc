@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: code
+icon: brush
 category:
   - WingsGod
   - Standard

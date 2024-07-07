@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: enum
+icon: folder-tree
 category:
   - 任务
   - 属性
@@ -53,7 +53,7 @@ TinyTask自身任务，清理日志和心跳健康
 
 ### wings.tiny.task.define[default].version
 
-`Integer`=`0`，版本号，版本高的配置覆盖版本低的，不会使用Default配置
+`Integer`=`0`，配置版本号，高版本的配置覆盖低版本的，相等时配置文件覆盖数据库，不会使用Default配置。
 
 ### wings.tiny.task.define[default].tasker-bean
 
@@ -77,7 +77,8 @@ TinyTask自身任务，清理日志和心跳健康
 
 ### wings.tiny.task.define[default].tasker-runs
 
-`String`，执行模式，RunMode(product|test|develop|local)，逗号分隔忽略大小写，默认所有，null及空时使用Default配置
+`String`，执行模式，RunMode(product|test|develop|local)，`!test`，`-test`为一票否决`test`，
+逗号分隔忽略大小写，默认所有，null及空时使用Default配置
 
 ### wings.tiny.task.define[default].notice-bean
 
@@ -116,13 +117,27 @@ TinyTask自身任务，清理日志和心跳健康
 
 `Integer`=`0`，固定频率开始（秒），优先级次于timingIdle，相当于fixedRate，开始到开始，0为无效，不会使用Default配置
 
+### wings.tiny.task.define[default].timing-tune
+
+`Integer`=`0`，提前或延迟tune秒执行任务，不会使用Default配置，像`Scheduled.initialDelay`，但，
+
+* rate - 当前 jvm 上第一次执行
+* idle - 当前 jvm 上第一次执行
+* cron - 每次执行
+
 ### wings.tiny.task.define[default].timing-miss
 
 `Integer`=`0`，错过调度（misfire）多少秒内，需要补救执行，0表示不补救，不会使用Default配置
 
 ### wings.tiny.task.define[default].timing-beat
 
-`Integer`=`0`，心跳间隔秒数，若任务的last_exec距今超过2个心跳，则视其为异常。默认自动，取rate或idle最大值，cron需要自行指定，不会使用Default配置
+`Integer`=`0`，心跳及健康检查间隔秒数，不会使用Default配置。若任务的last_exec距now超过2个心跳，视其为异常，
+
+* `<0` - 禁止
+* `0` - 自动计算，
+  - cron时，以 last_exec 计算的 next_exec
+  - 否则，取rate或idle最大值
+* `>0` - fixed positive seconds
 
 ### wings.tiny.task.define[default].during-from
 

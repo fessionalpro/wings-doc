@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: enum
+icon: folder-tree
 category:
   - 蝙蝠
   - 属性

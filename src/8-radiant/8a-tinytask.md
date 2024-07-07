@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: timer
+icon: clock
 category:
   - Tiny
   - Task
@@ -72,3 +72,35 @@ Recommended to control task in hardcoding, for more secure and strongly typed,
 * TinyTaskConfService - configuration related service
 * TinyTaskExecService - execute related services
 * TinyTaskService - scheduling task entry
+
+## 8A.5.execute flow
+
+nomal schedule (launch)
+
+@startuml
+TinyTaskExecService -> TinyTaskExecService: launch(id), remove Cancel
+TinyTaskExecService -> JvmGlobalLock: lock(id)
+TinyTaskExecService -> WinTaskDefineDao: load WinTaskDefine by id
+TinyTaskExecService -> TinyTaskExecService: calcNext if enable && app && run
+TinyTaskExecService -> WinTaskDefineDao: save NextExec temp
+TinyTaskExecService --> ThreadPoolTaskScheduler: schedule(task, next)
+ThreadPoolTaskScheduler -> TaskerExec: getTaskerBean
+ThreadPoolTaskScheduler -> NoticeExec: starting notice
+ThreadPoolTaskScheduler -> TaskerExec : invoke task method
+ThreadPoolTaskScheduler -> NoticeExec: result notice, done/fail
+ThreadPoolTaskScheduler -> WinTaskDefineDao: saveResult, clean NextExec
+ThreadPoolTaskScheduler -> TinyTaskExecService: relaunch if schedule
+@enduml
+
+force execute (force)
+
+@startuml
+TinyTaskExecService -> TinyTaskExecService: force(id)
+TinyTaskExecService -> WinTaskDefineDao: load WinTaskDefine by id
+TinyTaskExecService --> ThreadPoolTaskScheduler: schedule(task, next)
+ThreadPoolTaskScheduler -> TaskerExec: getTaskerBean
+ThreadPoolTaskScheduler -> NoticeExec: starting notice
+ThreadPoolTaskScheduler -> TaskerExec : invoke task method
+ThreadPoolTaskScheduler -> NoticeExec: result notice, done/fail
+ThreadPoolTaskScheduler -> WinTaskDefineDao: saveResult, clean NextExec
+@enduml

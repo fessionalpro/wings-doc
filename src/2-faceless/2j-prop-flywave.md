@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: enum
+icon: folder-tree
 category:
   - Faceless
   - Porperty
@@ -116,10 +116,10 @@ AfterInsert Trigger, `String`, default
 ```sql
 CREATE TRIGGER `ai__{{TABLE_NAME}}` AFTER INSERT ON `{{TABLE_NAME}}`
 FOR EACH ROW BEGIN
-  IF (@DISABLE_FLYWAVE IS NULL) THEN 
+  IF (@DISABLE_FLYWAVE IS NULL) THEN
     INSERT INTO `{{TABLE_NAME}}__` SELECT NULL, NOW(3), 'C', t.* FROM `{{TABLE_NAME}}` t
     WHERE t.id = NEW.id ;
-  END IF; 
+  END IF;
 END
 ```
 
@@ -145,10 +145,10 @@ AfterUpdate Trigger, `String`, default
 ```sql
 CREATE TRIGGER `au__{{TABLE_NAME}}` AFTER UPDATE ON `{{TABLE_NAME}}`
 FOR EACH ROW BEGIN
-  IF (@DISABLE_FLYWAVE IS NULL) THEN 
+  IF (@DISABLE_FLYWAVE IS NULL) THEN
     INSERT INTO `{{TABLE_NAME}}__` SELECT NULL, NOW(3), 'U', t.* FROM `{{TABLE_NAME}}` t
     WHERE t.id = NEW.id ;
-  END IF; 
+  END IF;
 END
 ```
 
@@ -174,9 +174,9 @@ BeforeDelete Trigger, `String`, default
 ```sql
 CREATE TRIGGER `bd__{{TABLE_NAME}}` BEFORE DELETE ON `{{TABLE_NAME}}`
 FOR EACH ROW BEGIN
-  IF (@DISABLE_FLYWAVE IS NULL) THEN 
+  IF (@DISABLE_FLYWAVE IS NULL) THEN
     INSERT INTO `{{TABLE_NAME}}__` SELECT NULL, NOW(3), 'D', t.* FROM `{{TABLE_NAME}}` t
     WHERE t.id = OLD.id ;
-  END IF; 
+  END IF;
 END
 ```

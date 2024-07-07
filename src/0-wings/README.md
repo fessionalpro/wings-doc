@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: discover
+icon: compass
 category:
   - WingsGod
   - Home

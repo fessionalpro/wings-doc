@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: time
+icon: clock
 category:
   - 虚空
   - 首页
@@ -10,7 +10,7 @@ category:
 
 ![faceless_void](/faceless_icon.png)
 
-> `Void`，J8脸, `public static void main`  
+> `Void`，J8脸, `public static void main`
 > 他是来自超维视界的一名访客，一个时间之外的境域。
 
 数据层（MySql兼容系，如H2)封装。支持表和数据的版本管理，强类型支持，分表分库能力。

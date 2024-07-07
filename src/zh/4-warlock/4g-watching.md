@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: debug
+icon: bug-slash
 category:
   - 术士
   - 调试
@@ -31,7 +31,7 @@ category:
 
 ```text
 +--s--ms------ns-+---%-+---------------+---------------
-|  1,426,497,039 | 100 | thread  | task and timing 
+|  1,426,497,039 | 100 | thread  | task and timing
 |    922,167,066 |  64 | XNIO-4  | /test/watching.json
 |    504,329,973 |  35 | wings-1 | AsyncWatch.BadSelect
 |    504,059,463 |  35 | wings-1 | ¦-AsyncWatch.sleep

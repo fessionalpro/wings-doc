@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: git
+icon: code-compare
 category:
   - 虚空
   - 版本
@@ -221,6 +221,9 @@ wings的内置Revision和真实日期无关，主要集中在2019至2021，仅�
 * 2020_1027_01 - tiny-mail:master/07-mail/2020-10-27v01-tiny_mail.sql
 * 2021_0918_01 - warlock:branch/somefix/01-authn-fix/2021-09-18v01-rename-authn.sql
 * 2021_1220_01 - flywave:branch/somefix/02-v242-201/2021-12-20v01-journal-trg-insert.sql
+* 2021_1026_02 - tiny-task:branch/somefix/03-task-tune/2021-10-26v02-task-tune.sql
+* 2021_1026_03 - warlock:branch/somefix/04-conf-size/2021-10-26v02-conf-size.sql
+* 2021_1026_05 - faceless:branch/somefix/05-journal-elapse/2021-10-26v05-journal-elapse.sql
 * 2022_0601_01 - testing-faceless:master/2022-0601v01-test.sql
 * 2022_0601_02 - testing-faceless:master/2022-0601v02-test.sql
 * 2022_0222_01 - winx-common:master/00-init/2022-0222v01-demo-init.sql
@@ -302,3 +305,39 @@ wings的内置Revision和真实日期无关，主要集中在2019至2021，仅�
 `kotlin`中的测试用例，主要是场景演示。需要单个执行，确保成功。
 统一执行时，springboot为了有效使用资源，不会全部重新初始化`context`，
 这样会使有些`ApplicationListener`得不到触发，可能导致部分TestCase失败。
+
+## 2A.8.手动更新
+
+在开发阶段或不使用flywave时，也希望记录schema的变更，可以采用以下方式，
+
+```sql
+-- drop
+DROP PROCEDURE IF EXISTS FLYWAVE;
+
+-- create
+DELIMITER $$
+CREATE PROCEDURE FLYWAVE(IN filename VARCHAR(50))
+BEGIN
+    DECLARE revi VARCHAR(20);
+    SET revi = REGEXP_REPLACE(REGEXP_SUBSTR(filename, '[-_0-9]{8,}[uv][0-9]{2,}', 1, 1, 'i'), '[^0-9]', '');
+    IF REGEXP_LIKE(filename, '[-_0-9]{8,}[v][0-9]{2,}','i') = 1 THEN
+        INSERT INTO `sys_schema_version` (`revision`, `apply_dt`, `comments`, `commit_id`, `upto_sql`, `undo_sql`)
+        VALUES (revi, NOW(3), filename, 0, '', '')
+        ON DUPLICATE KEY UPDATE `apply_dt` = NOW(3);
+    ELSE
+        UPDATE `sys_schema_version`
+        SET `apply_dt` = '1000-01-01',
+            `modify_dt`= NOW(3)
+        WHERE `revision` = revi;
+    END IF;
+END$$
+DELIMITER ;
+``
+
+创建 `FLYWAVE` 存储过程，其参数为脚本名，以注释的形式置于升级或降级脚本末尾，手动选中执行。
+
+
+```sql
+-- CALL FLYWAVE('2019-05-12u02-version-add-column.sql');
+-- CALL FLYWAVE('2019-05-12v02-version-add-column.sql');
+```

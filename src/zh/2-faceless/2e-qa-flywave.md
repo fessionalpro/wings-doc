@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: git
+icon: code-compare
 category:
   - 虚空
   - 版本
@@ -76,7 +76,7 @@ ALTER TABLE `win_user`
 
 ```sql
 -- 仅跟踪表
-SELECT 
+SELECT
   reverse(substring(reverse(table_name),length(substring_index(table_name,'__',-1))+1)) as tbl,
   group_concat(SUBSTRING_INDEX(table_name,'__',-1)) as log
 FROM INFORMATION_SCHEMA.TABLES
@@ -92,7 +92,7 @@ WHERE table_schema = DATABASE()
   AND table_name RLIKE '\\$|__';
 
 -- 仅分表
-SELECT 
+SELECT
   reverse(substring(reverse(table_name),length(substring_index(table_name,'_',-1))+1)) as tbl,
   group_concat(SUBSTRING_INDEX(table_name,'_',-1)) as num
 FROM INFORMATION_SCHEMA.TABLES
@@ -229,8 +229,8 @@ DELIMITER ;
 -- SET @group_concat_max_len = @@global.max_allowed_packet;
 SET @tabl = 'win_user_basis';
 SET @cols = (
-  SELECT CONCAT('`',GROUP_CONCAT(COLUMN_NAME SEPARATOR '`, `'), '`') 
-  FROM INFORMATION_SCHEMA.COLUMNS 
+  SELECT CONCAT('`',GROUP_CONCAT(COLUMN_NAME SEPARATOR '`, `'), '`')
+  FROM INFORMATION_SCHEMA.COLUMNS
   WHERE TABLE_SCHEMA = database() AND TABLE_NAME = @tabl
   ORDER BY ORDINAL_POSITION
 );
@@ -243,7 +243,7 @@ SET @restoreSql = CONCAT(
 ')');
 
 SELECT @restoreSql;
--- 
+--
 
 SET @DISABLE_FLYWAVE = 1;
 PREPARE stmt FROM @restoreSql;

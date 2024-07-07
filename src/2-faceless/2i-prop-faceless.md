@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: enum
+icon: folder-tree
 category:
   - Faceless
   - Porperty
@@ -42,7 +42,21 @@ sql scan pattern, comma separated. PathMatchingResourcePatternResolver format
 
 Post check, if the specified revi is not applied, only upgrade can be performed, not downgrade to avoid dangerous delete.
 
-## 2I.3.wings-lightid-79.properties
+## 2I.3.wings-journal-79.properties
+
+## wings.faceless.journal.propagation
+
+`Propagation`=`REQUIRES_NEW`, transaction to create new Journal
+
+## wings.faceless.journal.alive
+
+`Integer`=`300`, create new journal if the existing is older than alive seconds.
+
+* `<0` - use the old
+* `0`  - new one every time
+* `>0` - new one if older
+
+## 2I.4.wings-lightid-79.properties
 
 The setting for the distributed PK- lightid. default transaction is Propagation.REQUIRES_NEW
 
@@ -88,7 +102,7 @@ The setting for the distributed PK- lightid. default transaction is Propagation.
 
 ```sql
 SELECT block_id
-FROM sys_light_sequence 
+FROM sys_light_sequence
 WHERE seq_name = 'singleton_lightid_blockid'
 ```
 
@@ -98,7 +112,7 @@ WHERE seq_name = 'singleton_lightid_blockid'
 
 ```sql
 INSERT INTO sys_light_sequence
-(seq_name, block_id, next_val, step_val, comments) 
+(seq_name, block_id, next_val, step_val, comments)
 VALUES (?,?,?,?,?)
 ```
 
@@ -115,8 +129,8 @@ See `LightSequenceModifyJdbc` for details, the parameters are,
 `String`, update statement for JdbcTemplate.
 
 ```sql
-UPDATE sys_light_sequence 
-SET next_val=? 
+UPDATE sys_light_sequence
+SET next_val=?
 WHERE block_id=? AND seq_name=? AND next_val=?
 ```
 
@@ -132,8 +146,8 @@ See `LightSequenceModifyJdbc` for details, the parameters are,
 `String`, fetch one sql for JdbcTemplate.
 
 ```sql
-SELECT next_val, step_val 
-FROM sys_light_sequence 
+SELECT next_val, step_val
+FROM sys_light_sequence
 WHERE block_id=? AND seq_name=? FOR UPDATE
 ```
 
@@ -147,8 +161,8 @@ See `LightSequenceSelectJdbc` for details, the parameters are,
 `String`, fetch all sql for JdbcTemplate.
 
 ```sql
-SELECT seq_name, next_val, step_val 
-FROM sys_light_sequence 
+SELECT seq_name, next_val, step_val
+FROM sys_light_sequence
 WHERE block_id=? FOR UPDATE
 ```
 
@@ -161,11 +175,11 @@ See `LightSequenceSelectJdbc` for details, the parameters are,
 `String`, try to verify and adjust the id in the database to make it correct. Set to `empty` to ignore this feature.
 
 ```sql
-SELECT table_name, column_name 
-FROM INFORMATION_SCHEMA.COLUMNS 
-WHERE table_schema = DATABASE() 
-AND UPPER(column_key) = 'PRI' 
-AND UPPER(column_type) like '%INT%' 
+SELECT table_name, column_name
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE table_schema = DATABASE()
+AND UPPER(column_key) = 'PRI'
+AND UPPER(column_type) like '%INT%'
 AND table_name = ?
 ```
 

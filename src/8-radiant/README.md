@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: ubuntu
+icon: gift
 category:
   - Radiant
   - Home

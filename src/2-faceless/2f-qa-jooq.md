@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: ability
+icon: bolt
 category:
   - Faceless
   - Jooq
@@ -41,7 +41,7 @@ field("replace(substr(quote(zeroblob(({0} + 1) / 2)), 3, {0}), '0', {1})", Strin
 
 // Plain SQL using bind values. The value 5 is bound to the first variable, "Animal Farm" to the second variable:
 create.selectFrom(BOOK).where(
-    "BOOK.ID = ? AND TITLE = ?",     // The SQL string containing bind value placeholders ("?") 
+    "BOOK.ID = ? AND TITLE = ?",     // The SQL string containing bind value placeholders ("?")
     5,                               // The bind value at index 1
     "Animal Farm"                    // The bind value at index 2
 ).fetch();
@@ -105,8 +105,8 @@ To disable it at runtime, set `wings.enabled.pro.fessional.wings.faceless.spring
 However, if there is jooq auto-generated code with `@Repository`, you need to disable spring injection.
 
 ```java
-@ComponentScan(excludeFilters = 
-@Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WingsJooqDaoImpl.class))  
+@ComponentScan(excludeFilters =
+@Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WingsJooqDaoImpl.class))
 ```
 
 ## 2F.03.Common Jooq Query

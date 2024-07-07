@@ -41,7 +41,7 @@ export default hopeTheme({
     url: 'https://www.trydofor.com',
   },
   themeColor: true,
-  iconAssets: 'iconfont',
+  iconAssets: 'fontawesome-with-brands', // https://fontawesome.com/search?o=r&m=free&f=brands%2Cclassic
   logo: '/logo.png',
   repo: 'trydofor/professional-wings',
   docsRepo: 'fessionalpro/wings-doc',
@@ -82,6 +82,8 @@ export default hopeTheme({
       imgMark: true,
       tasklist: true,
       mermaid: true,
+      plantuml: true,
+      spoiler: true,
       stylize: [
         stylizeIt(/^(?:MUST|必须)$/u, '', 'info', 'strong', 'sup'),
         stylizeIt(/^(?:SHOULD|RECOMMENDED|TIP|推荐|建议)$/u, '', 'tip', 'strong', 'sup'),

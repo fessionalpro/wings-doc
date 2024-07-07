@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: enum
+icon: folder-tree
 category:
   - Tiny
   - Task
@@ -72,7 +72,8 @@ Check health status every 300 seconds of idle time.
 
 ### wings.tiny.task.define[default].version
 
-`Integer`=`0`, version number, higher version config overrides lower one, not use Default config.
+`Integer`=`0`, config version number, higher version overrides lower one,
+when equals, properties override database, not use Default config.
 
 ### wings.tiny.task.define[default].tasker-bean
 
@@ -100,8 +101,8 @@ use Default config if null or empty.
 
 ### wings.tiny.task.define[default].tasker-runs
 
-`String`, RunMode(product|test|develop|local), Comma separated, ignore case, default all,
-use Default config if null or empty.
+`String`, RunMode(product|test|develop|local), `!test`,`-test` means NOT(veto) `test`,
+Comma separated, ignore case, default all, use Default config if null or empty.
 
 ### wings.tiny.task.define[default].notice-bean
 
@@ -146,6 +147,15 @@ equal to fixedDelay, end to start, 0 means disable, not use Default config.
 `Integer`=`0`, Fixed frequency interval (seconds), lower priority than timingIdle,
 equal to fixedRate, start to start, 0 means disable, not use Default config.
 
+### wings.tiny.task.define[default].timing-tune
+
+`Integer`=`0`, execute the task before(negative) or after tune seconds, not use Default config.
+like Scheduled.initialDelay, but
+
+* rate - first time on this jvm
+* idle - first time on this jvm
+* cron - each time
+
 ### wings.tiny.task.define[default].timing-miss
 
 `Integer`=`0`, Within how many seconds of a misfire, execution is required,
@@ -153,9 +163,14 @@ equal to fixedRate, start to start, 0 means disable, not use Default config.
 
 ### wings.tiny.task.define[default].timing-beat
 
-`Integer`=`0`, the interval seconds of heartbeat, if the task's last_exec is more
-than 2 heartbeats away from now, it is considered as an exception. default auto to
-take rate or idle maximum, cron needs to specify it by itself, not use Default config.
+`Integer`=`0`, the interval seconds of heartbeat and health-check, not use Default config.
+it is considered as an exception if the last_exec is more than 2 heartbeats away from now.
+
+* `<0` - disable check
+* `0` - auto calculate,
+  - when cron, calc next_exec from last_exec,
+  - others, max rate and idle
+* `>0` - fixed positive seconds
 
 ### wings.tiny.task.define[default].during-from
 

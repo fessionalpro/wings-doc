@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: repair
+icon: fab fa-dev
 category:
   - WingsGod
   - Topic
@@ -390,15 +390,25 @@ var c3 = TypeSugar.describe(Map.class, List.class, List.class, Long[].class, Str
 Assertions.assertEquals(c2, c3);
 ```
 
-After Wings 3.2.130, remove TypeReference both of fastjson and jackson.
-
-In FastJson, use com.alibaba.fastjson.TypeReference,
-Note: TypeReference must be declared on a single line to avoid auto derivation to lose the type.
+After Wings-3.2.130, remove `TypeReference` of fastjson and jackson, use `Type` directly.
 
 ```java
-// these are same
-Type tp1 = new TypeReference<R<Dto>>(){}.getType();
-Type tp2 = ResolvableType.forClassWithGenerics(R.class, Dto.class).getType();
+// tp0,tp1,tp2  http://gafter.blogspot.com/2006/12/super-type-tokens.html
+// TypeReference must be a single line to avoid type loss during auto derivation.
+Type tp0 = new com.google.common.reflect.TypeToken<List<String>>(){}.getType();
+Type tp1 = new com.alibaba.fastjson2.TypeReference<List<String>>() {}.getType();
+Type tp2 = new com.fasterxml.jackson.core.type.TypeReference<List<String>>() {}.getType();
+// spring way
+Type tp3 = ResolvableType.forClassWithGenerics(List.class, String.class).getType();
+Type tp4 = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(String.class)).getResolvableType().getType();
+// sugar
+Type tp5 = TypeSugar.type(List.class, String.class);
+
+Assertions.assertEquals(tp0, tp1);
+Assertions.assertEquals(tp0, tp2);
+Assertions.assertEquals(tp0, tp3);
+Assertions.assertEquals(tp0, tp4);
+Assertions.assertEquals(tp0, tp5);
 ```
 
 ## 0D.23.Kotlin May Fail to Compile
@@ -588,26 +598,62 @@ if (key == null) {
 }
 ```
 
-## 0A.L.Enhanced Self-Injection ThisLazy
+## 0D.39.@Transactional on interface or impl
 
-ThisLazy pattern, inside the bean, calls Spring enhanced methods,
-such as `@Transactional`, `@Cacheable`, `@Async`.
+[Official Doc](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html) suggest on concrete class,
+Wings suggest on both, on interface for contract, on impl for functional implementation.
 
-The followings use the `thisLazyAwarePostProcessor` to the auto inject itself.
+If there are `default` methods in the interface, `@Transactional` may fail for the same reason as an internal call. At this point.
 
-* `extends ThisLazy<T>` - uses `thisLazy` directly in the subclass
-* `implements ThisLazyAware<T>` - implements the interface
+* `Override` all methods, put `@Transactional` on the class
+* Programmatic transaction, e.g. `TransactionHelper`, `TransactionTemplate`
 
-The following code, for manually init and inject `thisLazy`,
+## 0D.40.git submodule HEAD detached
 
-```java
-@Setter(onMethod_ = {@Autowired, @Lazy})
-protected RuntimeConfService thisLazy = this;
+Project checkout the main branch in shallow by default, and the submodule's commit is detached.
+
+When the commit is on the main branch, such as docs, `fetch origin` can retrieve the branch.
+
+```bash
+git status
+#> HEAD detached at c30360b
+#> nothing to commit, working tree clean
+
+git fetch origin
+git checkout main
+#> Switched to branch 'main'
+#> Your branch is up to date with 'origin/main'.
 ```
 
-Except for the following cases, there are runtime type exceptions,
-where `M` represents the enhanced method used by thisLazy,
+When the commit is on the develop branch, such as mirana, needs to switch branch,
+but `git fetch --all` does NOT retrieve it.
 
-* `T` is an interface, and all `M` come from `T` (best practice)
-* `T` is a class, and `M` is enhanced by Cglib (proxyTargetClass=true)
-* no `M`, in which case `T` is itself (but should not use this pattern)
+```bash
+## branch = main shallow = true
+git branch -r
+#> origin/HEAD -> origin/main
+#> origin/main
+
+## fetch --all # NOT work, only main
+# git fetch --all -v
+#> From github.com:trydofor/professional-mirana
+#>  = [up to date] main -> origin/main
+
+## check remote branch
+git ls-remote -h origin
+#> 4468526dab9 refs/heads/develop
+#> 96d19eb57d3 refs/heads/main
+
+## check fetch setting
+git config --get-all remote.origin.fetch
+#> +refs/heads/main:refs/remotes/origin/main
+git remote set-branches origin '*'
+## fetch and checkout
+git fetch origin -av
+git checkout -t origin/develop
+
+## deinit mirana submodule
+#git submodule deinit -f -- observe/mirana
+## reinit mirana submodule
+#git submodule update --remote --init -- observe/mirana
+```

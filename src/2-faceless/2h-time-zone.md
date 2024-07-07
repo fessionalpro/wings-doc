@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: time
+icon: clock
 category:
   - Faceless
   - Time
@@ -51,7 +51,7 @@ The cause of the problem, currently, is the jdbc and timestamp history problems
 The following SQL can examine the DB execution on the mysql client.
 
 ```sql
---  check timezone of system, server, session 
+--  check timezone of system, server, session
 SELECT @@system_time_zone,  @@global.time_zone, @@session.time_zone;
 -- @@system_time_zone, @@global.time_zone, @@session.time_zone
 -- UTC, Asia/Shanghai, Asia/Shanghai

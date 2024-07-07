@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: setting
+icon: gear
 category:
   - Silencer
   - Config
@@ -15,7 +15,7 @@ Supports `split`, `override`, `disable` and `profile` of config files, which is 
 * Disable - disable config  loading by  block-list
 * Profile,  just like Spring rules.
 
-The way Wings handles profiles is `cascading` and `filtering`, with configurations ordered by path order and file number.
+The way Wings handles profiles is `cascading` and `filtering`, with configurations sorted by path order and file number.
 
 * Cascading - sorting by priority (higher in front), higher overrides lower
 * Filtering - filtering by profile
@@ -31,17 +31,16 @@ and collaboration. Any big things should be broken down.
 
 Using `EnvironmentPostProcessor` to scan `/wings-conf/**/*. *` in the application `paths` , same rules as
 [Externalized Configuration](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.external-config),
-and the `paths` related to the config file are as follows, the latter with high priority
-(for consistency with the Spring docs, the program is executed in reverse order, FIFO priority).
+the `paths` and scaning priority of config file are as follows.
 
-1. in the path, load all `application.*` first, then `wings-conf/**/*. *`.
-2. path ending with `/` is a directory, otherwise a file
-3. not `classpath:` or `classpath*:` is scanned with `file:`
-4. `classpath:/` will be scanned with `classpath*:/`
-5. default `classpath:/,classpath:/config/,file:. /,file:. /config/`
-6. OS environment variables. `SPRING_CONFIG_LOCATION`.
-7. Java System properties `spring.config.location`
-8. command line arguments. `--spring.config.location
+1. command line arguments, `--spring.config.location`, `--spring.config.additional-location`
+2. Java System properties, `spring.config.location`, `spring.config.additional-location`
+3. OS environment variables, `SPRING_CONFIG_LOCATION`, `SPRING_CONFIG_ADDITIONALLOCATION`
+4. default path, `classpath:/,classpath:/config/,file:./,file:./config/`
+5. `classpath:/` will be scanned as `classpath*:/`
+6. non-protocol(not contain `:`) is scanned as `file:`
+7. path ending with `/` is a directory, otherwise a file
+8. in the path, load all `application.*` first, then `wings-conf/**/*.*`.
 
 Each config filename is made up of `dirname` + `basename` + `seq` + `profile` + `extname`.
 For example, `classpath:/wings-conf/` + `wings-mirana` + `-79` + `@dev` + `.properties`.

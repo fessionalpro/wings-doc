@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: actions
+icon: circle-play
 category:
   - 实战
 ---
@@ -108,7 +108,7 @@ server {
     #if ($scheme = http) {
     #    return 301 https://$host$request_uri;
     #}
-    
+
     # 防御性设置，禁止发布git工程
     location .git {
         access_log off;
@@ -121,7 +121,7 @@ server {
         proxy_pass http://good_admin;
         proxy_http_version  1.1;
         proxy_cache_bypass  $http_upgrade;
-    
+
         proxy_set_header  Connection   "";            # 长连接
         #proxy_set_header Connection   "upgrade";     # ws
         #proxy_set_header Upgrade      $http_upgrade; # ws

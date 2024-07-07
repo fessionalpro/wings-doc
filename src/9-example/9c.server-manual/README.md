@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: rank
+icon: book
 index: false
 category:
   - Practice

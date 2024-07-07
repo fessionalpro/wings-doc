@@ -1,6 +1,6 @@
 ---
 home: true
-icon: home
+icon: house
 heroImage: /logo.png
 heroText: BKB+飞鞋+SpringBoot
 tagline: 🎉快速交付 🧩安全重构 🍵低技术债
@@ -16,7 +16,7 @@ actions:
     link: ./0-wings/0h-prop-index.html
 
 features:
-  - icon: config
+  - icon: screwdriver-wrench
     title: 分隔和层叠配置
     details: 配置项可按模块分成独立文件，按其优先级层叠后生效
     link: ./1-silencer/1a-wings-conf.html
@@ -26,52 +26,52 @@ features:
     details: 自动配置及校对时区，静态及动态的多国语配置及转化
     link: ./1-silencer/1b-wings-i18n.html
 
-  - icon: mysql
+  - icon: code-compare
     title: 库及数据的版本管理
     details: 基于flywave工具，用git和sql管理表结构和数据变化
     link: ./2-faceless/2a-flywave.html
 
-  - icon: software
+  - icon: bolt
     title: 强类型的SqlMapping
     details: 快速实现业务目标，快速偿还技术债务，安全的面对重构
     link: ./2-faceless/2b-jooq.html
 
-  - icon: storage
+  - icon: sitemap
     title: 分布式ID及分表分库
     details: 高效的分布式ID及加密算法，按需按业务灵活分表分库策略
     link: ./2-faceless/2c-shard.html
 
-  - icon: json
+  - icon: award
     title: 工程化Jackson配置
     details: 对数字，日期时间，时区等业务类型做了兼容约定及安全检查
     link: ./3-slardar/3a-jackson.html
 
-  - icon: extend
+  - icon: signs-post
     title: Host继承和URL重载
     details: 无需反向代理rewrite，MVC实现URL继承和重载，按域换肤
     link: ./3-slardar/3c-host-ext.html
 
-  - icon: token
+  - icon: key
     title: 分布式session和多种认证
     details: 基于Hazelcast的分布式Session，Cookie可加密，别名
     link: ./3-slardar/3e-auth-session.html
 
-  - icon: stack
+  - icon: layer-group
     title: Jvm及分布式的缓存、锁和对象
     details: 基于Cache2k和hazelcast实现的Jvm及分布式对象，锁和事件
     link: ./3-slardar/3f-cache-event.html
 
-  - icon: compare
+  - icon: fan
     title: 防连击，防抖，防篡改
     details: 后端的请求防抖，服务防连击，编辑内容防篡改，验证码保护等
     link: ./3-slardar/3g-fun-server.html
 
-  - icon: command
+  - icon: user-shield
     title: 第三方登录，角色权限管理
     details: 集成Oauth登录，可按应用，功能，来源等细粒度的管理权限
     link: ./4-warlock/4c-security.html
 
-  - icon: more
+  - icon: puzzle-piece
     title: 开箱即用的功能，可插拔模块
     details: 开箱即用的功能，可插拔模块，devops脚本和手册，代码自动生成器
     link: ./8-radiant/

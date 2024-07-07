@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: mysql
+icon: database
 category:
   - 虚空
   - 数据
@@ -113,7 +113,7 @@ GROUP_CONCAT([DISTINCT] expr [,expr ...]
     [SEPARATOR str_val]
 )
 
-SELECT 
+SELECT
     GROUP_CONCAT(CONCAT_WS(', ', contactLastName, contactFirstName)
         SEPARATOR ';')
 FROM customers;
@@ -129,7 +129,7 @@ FROM customers;
 
 ### 05.慎用Json数据类型
 
-As of MySQL 5.7.8, MySQL supports a native JSON data type defined by RFC 7159  
+As of MySQL 5.7.8, MySQL supports a native JSON data type defined by RFC 7159
 新的操作符`->`和`->>`，需要注意词法分析框架的兼容性，所以在java中处理更为妥当。
 
 ### 06.性能分析explain和BENCHMARK
@@ -140,7 +140,7 @@ SELECT BENCHMARK(1000000,(
     SELECT count(author_name) FROM git_log_jetplus
 ));
 -- 查看索引使用情况
-explain 
+explain
     SELECT author_name FROM git_log_jetplus;
 ```
 
@@ -231,7 +231,7 @@ SELECT 'Michael!' NOT REGEXP '.*';
 -- 方案①，临时关闭
 -- disable ONLY_FULL_GROUP_BY in current session
 SET @@sql_mode = sys.list_drop(@@sql_mode, 'ONLY_FULL_GROUP_BY');
--- 
+--
 SELECT name, address, MAX(age) FROM t GROUP BY name;
 -- enable ONLY_FULL_GROUP_BY
 SET @@sql_mode = sys.list_add(@@sql_mode, 'ONLY_FULL_GROUP_BY');

@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: build
+icon: toolbox
 index: false
 category:
   - Radiant

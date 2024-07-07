@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: repair
+icon: fab fa-dev
 category:
   - 神翼
   - 话题
@@ -376,14 +376,25 @@ var c3 = TypeSugar.describe(Map.class, List.class, List.class, Long[].class, Str
 Assertions.assertEquals(c2, c3);
 ```
 
-在Wings 3.2.130后，移除了fastjson和jackson的TypeReference支持。
+在Wings-3.2.130后，移除了fastjson和jackson的`TypeReference`，直接使用`Type`。
 
-FastJson中，使用com.alibaba.fastjson.TypeReference，
-注意，TypeReference一定要单行声明，避免自动推导，而丢失类型。
 ```java
-// 以下类型等价，
-Type tp1 = new TypeReference<R<Dto>>(){}.getType();
-Type tp2 = ResolvableType.forClassWithGenerics(R.class, Dto.class).getType();
+// tp0,tp1,tp2  http://gafter.blogspot.com/2006/12/super-type-tokens.html
+// TypeReference 一定要单行声明，避免自动推导的丢失类型。
+Type tp0 = new com.google.common.reflect.TypeToken<List<String>>(){}.getType();
+Type tp1 = new com.alibaba.fastjson2.TypeReference<List<String>>() {}.getType();
+Type tp2 = new com.fasterxml.jackson.core.type.TypeReference<List<String>>() {}.getType();
+// spring way
+Type tp3 = ResolvableType.forClassWithGenerics(List.class, String.class).getType();
+Type tp4 = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(String.class)).getResolvableType().getType();
+// sugar
+Type tp5 = TypeSugar.type(List.class, String.class);
+
+Assertions.assertEquals(tp0, tp1);
+Assertions.assertEquals(tp0, tp2);
+Assertions.assertEquals(tp0, tp3);
+Assertions.assertEquals(tp0, tp4);
+Assertions.assertEquals(tp0, tp5);
 ```
 
 ## 0D.23.kotlin可能编译失败
@@ -564,4 +575,62 @@ if (key == null) {
     log.info("Skipping DAO generation", out.file().getName());
     return;
 }
+```
+
+## 0D.39.@Transactional在接口还是具体类
+
+[官方文档](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html)建议放到具体类上，Wings建议都放置，接口上的为说明锲约，实现类上的为功能实现。
+
+当接口中存在`default`方法时，会导致`@Transactional`失效，原因和内部调用一样。此时，
+
+* `Override`每个方法，在class 上`@Transactional`
+* 编程方式实现事务方法，如 `TransactionHelper`, `TransactionTemplate`
+
+## 0D.40.git submodule HEAD detached
+
+工程默认以 shallow 检出 main 分支，submodule的commit为 detached 状态，
+
+当 commit 在 main 分支时，以 docs 为例，此时 `fetch origin` 可以获取分支。
+
+```bash
+git status
+#> HEAD detached at c30360b
+#> nothing to commit, working tree clean
+
+git fetch origin
+git checkout main
+#> Switched to branch 'main'
+#> Your branch is up to date with 'origin/main'.
+```
+
+当 commit 在 develop 时，以 mirana 为例，需要切换分支，但 `fetch --all` 却无法获取分支。
+
+```bash
+## branch = main shallow = true
+git branch -r
+#> origin/HEAD -> origin/main
+#> origin/main
+
+## fetch --all # 无效，仅有main分支
+# git fetch --all -v
+#> From github.com:trydofor/professional-mirana
+#>  = [up to date] main -> origin/main
+
+## 查看远程分支
+git ls-remote -h origin
+#> 4468526dab9 refs/heads/develop
+#> 96d19eb57d3 refs/heads/main
+
+## 检出 fetch 设置
+git config --get-all remote.origin.fetch
+#> +refs/heads/main:refs/remotes/origin/main
+git remote set-branches origin '*'
+## 获取并检出
+git fetch origin -av
+git checkout -t origin/develop
+
+## 反初始 mirana 子模块
+#git submodule deinit -f -- observe/mirana
+## 重新初始 mirana 子模块
+#git submodule update --remote --init -- observe/mirana
 ```

@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: proxy
+icon: circle-user
 category:
   - Warlock
   - Home

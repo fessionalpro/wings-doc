@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: debug
+icon: bug-slash
 category:
   - 术士
   - 调试

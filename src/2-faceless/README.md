@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: time
+icon: clock
 category:
   - Faceless
   - Home
@@ -10,7 +10,7 @@ category:
 
 ![faceless_void](/faceless_icon.png)
 
-> `Void` interface `public static void main`  
+> `Void` interface `public static void main`
 > a visitor from Claszureme, a realm outside of time.
 
 Data layer (MySql compatible system, such as H2) utility. Support for table and data versioning,
