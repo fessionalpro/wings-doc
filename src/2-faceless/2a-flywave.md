@@ -249,6 +249,7 @@ The revision numbers currently in use are,
 * 2021_1220_01 - flywave:branch/somefix/02-v242-201/2021-12-20v01-journal-trg-insert.sql
 * 2021_1026_02 - tiny-task:branch/somefix/03-task-tune/2021-10-26v02-task-tune.sql
 * 2021_1026_03 - warlock:branch/somefix/04-conf-size/2021-10-26v02-conf-size.sql
+* 2021_1026_05 - faceless:branch/somefix/05-journal-elapse/2021-10-26v05-journal-elapse.sql
 * 2022_0601_01 - testing-faceless:master/2022-0601v01-test.sql
 * 2022_0601_02 - testing-faceless:master/2022-0601v02-test.sql
 * 2022_0222_01 - winx-common:master/00-init/2022-0222v01-demo-init.sql
@@ -332,3 +333,39 @@ and is run first by default (before its upgrade).
 The test cases in `kotlin` are mainly for demo purposed. They should be run individually to ensure success.
 If they are run together, springboot will not reinitialize `context` all the time in order to reuse resources efficiently.
 This will cause some `ApplicationListener` not to fire  and some TestCase to fail.
+
+## 2A.8.manual update
+
+During the dev or without using flywave, if you want to handle the schema revision,
+
+```sql
+-- drop
+DROP PROCEDURE IF EXISTS FLYWAVE;
+
+-- create
+DELIMITER $$
+CREATE PROCEDURE FLYWAVE(IN filename VARCHAR(50))
+BEGIN
+    DECLARE revi VARCHAR(20);
+    SET revi = REGEXP_REPLACE(REGEXP_SUBSTR(filename, '[-_0-9]{8,}[uv][0-9]{2,}', 1, 1, 'i'), '[^0-9]', '');
+    IF REGEXP_LIKE(filename, '[-_0-9]{8,}[v][0-9]{2,}','i') = 1 THEN
+        INSERT INTO `sys_schema_version` (`revision`, `apply_dt`, `comments`, `commit_id`, `upto_sql`, `undo_sql`)
+        VALUES (revi, NOW(3), filename, 0, '', '')
+        ON DUPLICATE KEY UPDATE `apply_dt` = NOW(3);
+    ELSE
+        UPDATE `sys_schema_version`
+        SET `apply_dt` = '1000-01-01',
+            `modify_dt`= NOW(3)
+        WHERE `revision` = revi;
+    END IF;
+END$$
+DELIMITER ;
+```
+
+Create the `FLYWAVE` stored procedure with the using sql-file naming as its parameter,
+Place them as a comment at the end of sql-script, manually select and execute it.
+
+```sql
+-- CALL FLYWAVE('2019-05-12u02-version-add-column.sql');
+-- CALL FLYWAVE('2019-05-12v02-version-add-column.sql');
+```
