@@ -193,6 +193,7 @@ ALTER TABLE `win_admin` DROP INDEX ix_login_name;
 * 引入 faceless-flywave 依赖
 * wings.enabled.faceless.flywave=true
 * wings.faceless.flywave.auto-init=true
+* wings.faceless.flywave.checker=true
 
 因无法确认程序执行账号是否具有CREATE权限，wings默认是WARN。
 
@@ -332,10 +333,9 @@ BEGIN
     END IF;
 END$$
 DELIMITER ;
-``
+```
 
 创建 `FLYWAVE` 存储过程，其参数为脚本名，以注释的形式置于升级或降级脚本末尾，手动选中执行。
-
 
 ```sql
 -- CALL FLYWAVE('2019-05-12u02-version-add-column.sql');
