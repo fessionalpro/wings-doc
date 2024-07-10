@@ -212,7 +212,11 @@ wings.tiny.mail.service.max-done
 
 ### wings.tiny.mail.service.boot-scan
 
-`Duration`=`60s`，启动后多久，扫描未发送的邮件，`0`为不扫描
+`Duration`=`60s`，bean设值后多久开始扫描未发送的邮件，`<=0` 为禁止。
+
+### wings.tiny.mail.service.scan-idle
+
+`Duration`=`5s`，空闲多久开始扫描未发送的邮件，`<=0` 为禁止。
 
 ### wings.tiny.mail.service.only-app
 

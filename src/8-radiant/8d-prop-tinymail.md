@@ -227,7 +227,11 @@ wings.tiny.mail.service.max-done
 
 ### wings.tiny.mail.service.boot-scan
 
-`Duration`=`60s`, how long after start, scan for unsent mail, `0` for no scan.
+`Duration`=`60s`, idle time after afterPropertiesSet to scan for unsent/misfired mail, `<=0` for disable.
+
+### wings.tiny.mail.service.scan-idle
+
+`Duration`=`5m`, idle time to scan for unsent/misfired mail. `<=0` for disable.
 
 ### wings.tiny.mail.service.only-app
 
