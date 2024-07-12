@@ -225,6 +225,7 @@ wings的内置Revision和真实日期无关，主要集中在2019至2021，仅�
 * 2021_1026_02 - tiny-task:branch/somefix/03-task-tune/2021-10-26v02-task-tune.sql
 * 2021_1026_03 - warlock:branch/somefix/04-conf-size/2021-10-26v02-conf-size.sql
 * 2021_1026_05 - faceless:branch/somefix/05-journal-elapse/2021-10-26v05-journal-elapse.sql
+* 2021_1026_06 - tiny-mail:branch/somefix/06-lazy-mail/2021-10-26v06-lazy-mail.sql
 * 2022_0601_01 - testing-faceless:master/2022-0601v01-test.sql
 * 2022_0601_02 - testing-faceless:master/2022-0601v02-test.sql
 * 2022_0222_01 - winx-common:master/00-init/2022-0222v01-demo-init.sql
