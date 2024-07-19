@@ -409,7 +409,9 @@ public class TestToyApiController extends AbstractApiAuthController {
   @PostMapping(ApiSimple)
   public void requestMapping(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response) {
     log.info("ApiRequestMapping...");
-    super.requestMapping(request, response);
+    boolean ticket = "true".equalsIgnoreCase(request.getHeader("ticket"));
+    boolean signed = "true".equalsIgnoreCase(request.getHeader("signed"));
+    super.requestMapping(request, response, ticket, signed);
   }
 
   // 处理业务逻辑并返回结果
