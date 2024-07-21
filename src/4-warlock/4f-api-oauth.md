@@ -41,6 +41,18 @@ and define the error with the business code
 * 403 - If the signature verification fails, you can use the body to return the error details
 * 200 - only indicates the success of the response, and the business result is defined by the business code in the body
 
+ApiAuth has the following 2 kind of client key,
+
+* use ticket - more flexible, can be expired and revoked
+* use others string - only hash and equal
+
+and 3 level of security verfication,
+
+* single credential - use complex key to validate, compatible to older styles
+* credential and signature - use client and secret to identify and verify data
+  - HMAC, with secret in the signature
+  - non HMAC, with or without a secret in the signature
+
 ## 4F.1.PostJson Model
 
 By design, BS and SS are different in terms of service objects, request frequency, security level,
