@@ -304,6 +304,13 @@ For example, `' ERROR '` becomes ` ERROR `, `'' WARN ''` becomes `' WARN '`.
 
 `String`=`http://${server.address:localhost}:${server.port:80}`, host or ip for external access.
 
+### wings.slardar.monitor.view.header
+
+`Pattern`=`^\\d{4}-\\d{2}-\\d{2}[T ]\\d{2}:\\d{2}:\\d{2}[-+.:0-9]*\\s+`, regexp of section header, e.g.
+
+* `2023-02-04T11:09:32.692+08:00 DEBUG 10884 ---`
+* `2024-07-23 01:31:59.063 DEBUG 10884 ---`
+
 ### wings.slardar.monitor.view.ignore
 
 `Map<String, String>`, ignored alert string in logs.

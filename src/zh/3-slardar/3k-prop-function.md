@@ -304,6 +304,13 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 `String`=`http://${server.address:localhost}:${server.port:80}`，外部访问的主机,ip等
 
+### wings.slardar.monitor.view.header
+
+`Pattern`=`^\\d{4}-\\d{2}-\\d{2}[T ]\\d{2}:\\d{2}:\\d{2}[-+.:0-9]*\\s+`，段落开始的正则，比如，
+
+* `2023-02-04T11:09:32.692+08:00 DEBUG 10884 ---`
+* `2024-07-23 01:31:59.063 DEBUG 10884 ---`
+
 ### wings.slardar.monitor.view.ignore
 
 `Map<String, String>`，日志中可以忽略警报的字符串
