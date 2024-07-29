@@ -6,6 +6,7 @@ and special thanks to the following projects,
 
 * [vuepress](https://v2.vuepress.vuejs.org/zh)
 * [vuepress-theme-hope](https://theme-hope.vuejs.press/)
+* [fontawesome icon](https://fontawesome.com/search?o=r&m=free&f=brands%2Cclassic)
 
 ## Development Tips
 

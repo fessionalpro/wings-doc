@@ -8,13 +8,31 @@ category:
 
 # 8B.小任务属性
 
-## 8B.1.wings-tinytask-exec-79.properties
+## 8B.1.wings-enabled-79.properties
+
+### wings.enabled.tiny.task.autorun
+
+`Boolean`=`true`, 是否自动注册 TinyTask.Auto.
+
+### wings.enabled.tiny.task.mvc-conf
+
+`Boolean`=`true`, 是否开启 TaskConfController.
+
+### wings.enabled.tiny.task.mvc-exec
+
+`Boolean`=`true`, 是否开启 TaskExecController.
+
+### wings.enabled.tiny.task.mvc-list
+
+`Boolean`=`true`, 是否开启 TaskListController.
+
+## 8B.2.wings-tinytask-exec-79.properties
 
 ### wings.tiny.task.exec.dryrun
 
 `Boolean`=`false`，是否干跑，仅记录日志不真正执行任务
 
-## 8B.2.wings-flywave-fit-79.properties
+## 8B.3.wings-flywave-fit-79.properties
 
 ### wings.faceless.flywave.fit.tiny-task
 
@@ -24,7 +42,7 @@ category:
 * `revi`=`2020_1026_01L`
 * `lost`=`EXEC`
 
-## 8B.3.wings-tinytask-beat-79.properties
+## 8B.4.wings-tinytask-beat-79.properties
 
 TinyTask自身任务，清理日志和心跳健康
 
@@ -39,7 +57,7 @@ TinyTask自身任务，清理日志和心跳健康
 * `timing-idle`=`300`
 * `notice-when`=`tail,done`
 
-## 8B.4.wings-tinytask-define-79.properties
+## 8B.5.wings-tinytask-define-79.properties
 
 任务的Default配置 `wings.tiny.task.define[default]`
 
@@ -159,7 +177,7 @@ TinyTask自身任务，清理日志和心跳健康
 
 `Integer`=`0`，总计成功执行多少次后，结束调度，不会使用Default配置
 
-### wings.tiny.task.define[default].during-boot=0
+### wings.tiny.task.define[default].during-boot
 
 `Integer`=`0`，每应用每启动时重新计数，总计成功执行多少次后，结束调度，默认无效，不会使用Default配置
 
@@ -167,7 +185,7 @@ TinyTask自身任务，清理日志和心跳健康
 
 `Integer`=`60`，执行结果保存的天数，默认60天，0为不保存，null时使用Default配置
 
-## 8B.5.wings-tinytask-urlmap-79.properties
+## 8B.6.wings-tinytask-urlmap-79.properties
 
 内置功能的URL
 

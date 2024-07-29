@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: mug-hot
+icon: envelope
 category:
   - 小小
   - 邮件
