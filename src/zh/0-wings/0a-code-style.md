@@ -270,8 +270,8 @@ enum Jane {
 * `日期时间`，以`DATETIME`或`DATETIME(3)`和`LocalDateTime`存储
 * `日期`，以`DATE`和`LocalDate`存储
 * `时间`，以`TIME`或`TIME(3)`和`LocalTime`存储
-* `时区`，以`VARCHAR(40)`或`INT(11)`存储
-* 特别场景，以`BIGINT(20)`或`VARCHAR(20)`存储
+* `时区`，以`VARCHAR(40)`或`INT`存储
+* 特别场景，以`BIGINT`或`VARCHAR(20)`存储
 
 字段命名规则，存在以下后缀约定，
 
@@ -343,9 +343,9 @@ Wings中推荐使用以下类型，主要考虑了sql和json的兼容性，sql�
 
 | JAVA | MYSQL/H2 | JS/JSON |
 | ---- | --- | ------- |
-| Boolean/boolean | TINYINT(1)/BOOLEAN | boolean |
-| Integer/int | INT/INT(11) | number |
-| Long/long | BIGINT/BIGINT(20) | BigInt/bigint |
+| Boolean/boolean | BOOLEAN | boolean |
+| Integer/int | INT | number |
+| Long/long | BIGINT | BigInt/bigint |
 | BigDecimal | DECIMAL(M,D) | string |
 | String | CHAR(N)/VARCHAR(N)/TEXT | string |
 | LocalDateTime | DATETIME(3) | string |

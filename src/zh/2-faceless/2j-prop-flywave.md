@@ -101,7 +101,7 @@ AfterInsert的跟踪表（建立原主键索引），`String`，默认
 
 ```sql
 CREATE TABLE `{{TABLE_NAME}}__` (
-    `_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+    `_id` BIGINT NOT NULL AUTO_INCREMENT,
     `_dt` DATETIME(3) NOT NULL DEFAULT '1000-01-01 00:00:00',
     `_tp` CHAR(1) NOT NULL DEFAULT 'Z',
     {{TABLE_BONE}},
@@ -130,7 +130,7 @@ AfterUpdate的跟踪表（建立原主键索引），`String`，默认
 
 ```sql
 CREATE TABLE `{{TABLE_NAME}}__` (
-    `_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+    `_id` BIGINT NOT NULL AUTO_INCREMENT,
     `_dt` DATETIME(3) NOT NULL DEFAULT '1000-01-01 00:00:00',
     `_tp` CHAR(1) NOT NULL DEFAULT 'Z',
     {{TABLE_BONE}},
@@ -159,7 +159,7 @@ BeforeDelete 的跟踪表（建立原主键索引），`String`，默认
 
 ```sql
 CREATE TABLE `{{TABLE_NAME}}__` (
-    `_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+    `_id` BIGINT NOT NULL AUTO_INCREMENT,
     `_dt` DATETIME(3) NOT NULL DEFAULT '1000-01-01 00:00:00',
     `_tp` CHAR(1) NOT NULL DEFAULT 'Z',
     {{TABLE_BONE}},
