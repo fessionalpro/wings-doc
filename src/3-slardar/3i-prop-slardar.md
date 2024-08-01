@@ -275,7 +275,9 @@ Cannot set @Primary, otherwise @Async thread pool will be overridden.
 
 ## 3I.9.wings-async-79.properties
 
-### Event Threadpool Config
+### wings.slardar.async.event
+
+Event Threadpool Config, see `TaskExecutionProperties`
 
 * wings.slardar.async.event.pool.core-size=8
 * wings.slardar.async.event.pool.keep-alive=60s
@@ -285,7 +287,9 @@ Cannot set @Primary, otherwise @Async thread pool will be overridden.
 * wings.slardar.async.event.shutdown.await-termination-period=60s
 * wings.slardar.async.event.thread-name-prefix=event-
 
-### Fast Threadpool Config
+### wings.slardar.async.fast
+
+Fast task Threadpool Config, see `TaskSchedulingProperties`
 
 * wings.slardar.async.fast.pool.size=8
 * wings.slardar.async.fast.shutdown.await-termination=true

@@ -100,7 +100,7 @@ Trace table for AfterInsert (create the original PK index), `String`, default
 
 ```sql
 CREATE TABLE `{{TABLE_NAME}}__` (
-    `_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+    `_id` BIGINT NOT NULL AUTO_INCREMENT,
     `_dt` DATETIME(3) NOT NULL DEFAULT '1000-01-01 00:00:00',
     `_tp` CHAR(1) NOT NULL DEFAULT 'Z',
     {{TABLE_BONE}},
@@ -129,7 +129,7 @@ Trace table for AfterUpdate (create the original PK index), `String`, default
 
 ```sql
 CREATE TABLE `{{TABLE_NAME}}__` (
-    `_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+    `_id` BIGINT NOT NULL AUTO_INCREMENT,
     `_dt` DATETIME(3) NOT NULL DEFAULT '1000-01-01 00:00:00',
     `_tp` CHAR(1) NOT NULL DEFAULT 'Z',
     {{TABLE_BONE}},
@@ -158,7 +158,7 @@ Trace table for BeforeDelete (create the original PK index),`String`, default
 
 ```sql
 CREATE TABLE `{{TABLE_NAME}}__` (
-    `_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+    `_id` BIGINT NOT NULL AUTO_INCREMENT,
     `_dt` DATETIME(3) NOT NULL DEFAULT '1000-01-01 00:00:00',
     `_tp` CHAR(1) NOT NULL DEFAULT 'Z',
     {{TABLE_BONE}},

@@ -532,7 +532,7 @@ Controller中RequestMapping的URL常量
 
 ### wings.warlock.ticket.client
 
-`Map<String, Pass>`，静态配置 client 登录信息。
+`Map<String, Pass>`，静态配置 client 登录信息。client为空时，使用配置的key。
 
 * 测试 `wings-trydofor.user-id`=`79`
 * 测试 `wings-trydofor.secret`=`wings-trydofor-secret`
@@ -560,10 +560,6 @@ Controller中RequestMapping的URL常量
 ### wings.warlock.apiauth.digest-max
 
 `DataSize`=`5MB`，超过此size不做digest，默认5M
-
-### wings.warlock.apiauth.must-signature
-
-`Boolean`=`true`，是否一定要签名，可兼容旧api
 
 ### wings.warlock.apiauth.file-json-body
 

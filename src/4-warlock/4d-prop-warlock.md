@@ -538,7 +538,7 @@ automatically response based on content-type, requires PathVar `{extName}` `{aut
 
 ### wings.warlock.ticket.client
 
-`Map<String, Pass>`, static config of client login.
+`Map<String, Pass>`, static config of client login. if client is empty use the config key.
 
 * test `wings-trydofor.user-id`=`79`
 * test `wings-trydofor.secret`=`wings-trydofor-secret`
@@ -566,10 +566,6 @@ automatically response based on content-type, requires PathVar `{extName}` `{aut
 ### wings.warlock.apiauth.digest-max
 
 `DataSize`=`5MB`, no digest over this size, default 5M.
-
-### wings.warlock.apiauth.must-signature
-
-`Boolean`=`true`, whether it must be signed, compatible with the old api.
 
 ### wings.warlock.apiauth.file-json-body
 

@@ -212,7 +212,11 @@ wings.tiny.mail.service.max-done
 
 ### wings.tiny.mail.service.boot-scan
 
-`Duration`=`60s`，启动后多久，扫描未发送的邮件，`0`为不扫描
+`Duration`=`60s`，bean设值后多久开始扫描未发送的邮件，`<=0` 为禁止。
+
+### wings.tiny.mail.service.scan-idle
+
+`Duration`=`5s`，空闲多久开始扫描未发送的邮件，`<=0` 为禁止。
 
 ### wings.tiny.mail.service.only-app
 
@@ -221,6 +225,15 @@ wings.tiny.mail.service.max-done
 ### wings.tiny.mail.service.only-run
 
 `Boolean`=`true`，是否仅发送本RumMode的邮件
+
+### wings.tiny.mail.service.scheduler
+
+邮件线程池配置，参考 `TaskSchedulingProperties`
+
+* `wings.tiny.mail.service.scheduler.pool.size`=`2`
+* `wings.tiny.mail.service.scheduler.shutdown.await-termination`=`true`
+* `wings.tiny.mail.service.scheduler.shutdown.await-termination-period`=`60s`
+* `wings.tiny.mail.service.scheduler.thread-name-prefix`=`mail-`
 
 ## 8D.7.wings-tinymail-urlmap-79.properties
 

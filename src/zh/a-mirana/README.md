@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: toolbox
+icon: cat
 index: false
 category:
   - 天辉

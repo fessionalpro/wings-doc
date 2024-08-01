@@ -21,7 +21,9 @@ category:
 
 ## 8.2.相关项目
 
-* [小小任务](./8a-tinytask.md) - 以Database为核心可启停的任务
+* [小任务](./8a-tinytask.md) - 以Database为核心可启停的任务
 * [任务的属性](./8b-prop-tinytask.md) - TinyTask的配置
-* [小小邮件](./8c-tinymail.md) - 以Database为核心有事务的邮件
+* [小邮件](./8c-tinymail.md) - 以Database为核心有事务的邮件
 * [邮件的属性](./8d-prop-tinymail.md) - TinyMail的配置
+* [小成长](./8e-tinygrow.md) - 小的数据跟踪及成长分析功能
+* [成长的烦恼](./8f-prop-tinygrow.md) - TinyGrow的配置

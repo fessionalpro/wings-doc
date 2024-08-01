@@ -275,7 +275,9 @@ name（建议全小写）在cookie和header中都会使用，为WingsSessionIdRe
 
 ## 3I.9.wings-async-79.properties
 
-### event 事件总线线程池
+### wings.slardar.async.event
+
+事件总线线程池设置，参考 `TaskExecutionProperties`
 
 * wings.slardar.async.event.pool.core-size=8
 * wings.slardar.async.event.pool.keep-alive=60s
@@ -285,7 +287,9 @@ name（建议全小写）在cookie和header中都会使用，为WingsSessionIdRe
 * wings.slardar.async.event.shutdown.await-termination-period=60s
 * wings.slardar.async.event.thread-name-prefix=event-
 
-### fast 轻任务线程池
+### wings.slardar.async.fast
+
+轻任务线程池设置，参考 `TaskSchedulingProperties`
 
 * wings.slardar.async.fast.pool.size=8
 * wings.slardar.async.fast.shutdown.await-termination=true

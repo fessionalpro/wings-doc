@@ -39,6 +39,18 @@ ApiAuth的模式约定是双向的，response采用request相同的约定回复�
 * 403 - 验签失败时，可以使用body返回错误细节
 * 200 - 仅表示response成功，而业务成功与否由body中的业务code定义
 
+ApiAuth以下两类client的表示法
+
+* 使用ticket - 更灵活，可以过期和吊销
+* 其他字符串 - 单一hash和equal比较
+
+和三种安全级别的验证，
+
+* 单一凭证 - 仅凭复杂的client作为key验证，以兼容老旧风格
+* 凭证加验签 - 通过client和secret完成身份验证和数据验签。
+  - 用HMAC，有secret参与签名
+  - 非HMAC，有或无secret参与的签名
+
 ## 4F.1.PostJson模式
 
 设计上，BS和SS在服务对象，请求频次，安全等级，功能粒度都是不同的，不应该混用。
@@ -409,7 +421,9 @@ public class TestToyApiController extends AbstractApiAuthController {
   @PostMapping(ApiSimple)
   public void requestMapping(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response) {
     log.info("ApiRequestMapping...");
-    super.requestMapping(request, response);
+    boolean ticket = "true".equalsIgnoreCase(request.getHeader("ticket"));
+    boolean signed = "true".equalsIgnoreCase(request.getHeader("signed"));
+    super.requestMapping(request, response, ticket, signed);
   }
 
   // 处理业务逻辑并返回结果

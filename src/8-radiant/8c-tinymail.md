@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: mug-hot
+icon: envelope
 category:
   - Tiny
   - Mail
@@ -35,12 +35,16 @@ Core features and components send mail without transaction or database.
 * MailNotice - non-transaction sync/async mail notification
 * MailConfigProvider - provides spring.mail compatible configuration by name
 * MailSenderProvider - provide singleton JavaMailSender by the configuration
-* MailSenderManager - unified management of mail sending, handling the host level frequency limit
+* MailSenderManager - manage mail sending, handle host level frequency limit
 * MailWaitException - need to delay the mail sending
+* MailStopException - stop sending, e.g. format error
+* MailRetryException - retry at next schedule time
 
 Database based , transactional mail send service, can auto handle some mail exceptions .
 
 * TinyMailService - sync/async, retry/batch resend
+* TinyMail - typed mail
+* TinyMailLazy - lazy edit mail
 
 ## 8C.3.General Usage
 
@@ -112,10 +116,34 @@ Email exceptions, mainly have three categories
 * Network error - depending on the network, usually can retry soon
 
 according to the above types and the server response message,
-throw MailWaitException  and leave it to the caller to handle.
+throw the following exception  and leave it to the caller to handle.
+
+* MailStopException - shoul stop sending
+* MailWaitException - retry after waiting
+* MailRetryException - retry at next schedule
 
 ## 8C.7.Status Hook
 
 use StatusHook to handle success/failure status when sending emails with TinyMailService,
 
 * stop() - true, it will stop retrying the email and set NextSend to empty.
+
+## 8C.8.Lazy Mail
+
+normally, tinymail only responsible for sending mail, not care about mail information
+(subject, content, attachment, sender and receiver, etc.)
+That is, the mail is pre-generated and saved, and the information for the sender is read-only.
+
+But in most business, emails are only notification phase and should not affect the main business
+(e.g., network connectivity leading to long transactions, errors leading to database rollbacks, etc.).
+Such case of email should send async or edit lazily, even if the error, can be repaired and resend after.
+
+* `content == null` - identifies lazy editing
+* `setMailLazy(bean, para)` - sets the lazy editing function and parameters.
+* `TinyMailLazy` - interface of lazy editing email
+
+Lazy emails that meet all of the above, will be edited only for the following before sending,
+
+* subject - not recommended lazy, should be set in advance
+* content - may be lazy, considering template errors
+* attachments - dynamic attachments may be lazy

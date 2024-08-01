@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: palette
+icon: dog
 index: false
 category:
   - 米波

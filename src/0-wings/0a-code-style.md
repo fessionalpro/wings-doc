@@ -279,8 +279,8 @@ There're 2 types of time `system` and `local` in wings. mapping on database and 
 * `datetime` - `DATETIME` or `DATETIME(3)` to `LocalDateTime`
 * `date` - `DATE` to `LocalDate`
 * `time` - `TIME` or `TIME(3)` to `LocalTime`
-* `timezone` - `VARCHAR(40)` or `INT(11)` to `ZoneId`
-* Special scenario, stored as `BIGINT(20)` or `VARCHAR(20)`
+* `timezone` - `VARCHAR(40)` or `INT` to `ZoneId`
+* Special scenario, stored as `BIGINT` or `VARCHAR(20)`
 
 There are the following suffix conventions for field naming rules,
 
@@ -360,9 +360,9 @@ sql is mainly mysql and h2database.
 
 | JAVA | MYSQL/H2 | JS/JSON |
 | ---- | --- | ------- |
-| Boolean/boolean | TINYINT(1)/BOOLEAN | boolean |
-| Integer/int | INT/INT(11) | number |
-| Long/long | BIGINT/BIGINT(20) | BigInt/bigint |
+| Boolean/boolean | BOOLEAN | boolean |
+| Integer/int | INT | number |
+| Long/long | BIGINT | BigInt/bigint |
 | BigDecimal | DECIMAL(M,D) | string |
 | String | CHAR(N)/VARCHAR(N)/TEXT | string |
 | LocalDateTime | DATETIME(3) | string |

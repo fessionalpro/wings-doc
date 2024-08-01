@@ -1,6 +1,6 @@
 ---
 isOriginal: true
-icon: mug-hot
+icon: envelope
 category:
   - 小小
   - 邮件
@@ -37,10 +37,14 @@ category:
 * MailSenderProvider - 根据配置，提供单例的JavaMailSender
 * MailSenderManager - 统一管理邮件发送，处理host级别的限频
 * MailWaitException - 需要延期发送的异常
+* MailStopException - 停止发送，如准备阶段错误
+* MailRetryException - 稍后重试，发送错误
 
 基于database，有一定事务性的邮件发送服务，能够对邮件异常做自动识别。
 
 * TinyMailService - 同步/异步，重试/批量补发
+* TinyMail - 强类型邮件
+* TinyMailLazy - 延迟编辑邮件
 
 ## 8C.3.基本使用
 
@@ -109,10 +113,32 @@ wings在异步emit和补发时，采用批量发送，可减少登录次数。
 * 账号错误，如服务商限频，账号锁死，待锁定结束后可以
 * 网络错误，视网络波动情况，一般很快可以重试
 
-按以上类型和异常的message特征，构造MailWaitException，交由调用者处理。
+按以上类型和异常的message特征，分别构造以下异常，交由调用者处理。
+
+* MailStopException - 应该停止发送
+* MailWaitException - 等待后发送
+* MailRetryException - 下次重试
 
 ## 8C.7.状态钩子
 
 使用TinyMailService发邮件时，可以使用StatusHook处理成功和失败状态。
 
 * stop() - true，会终止邮件的重试，设置NextSend为空
+
+## 8C.8.惰性邮件
+
+通常情况下，tinymail仅负责邮件的发送，而不关心邮件的内容（标题，正文，附件，收发件人等），
+即，邮件是预先生成并固化的，对发送者来说其信息是只读的。
+
+大多数业务中，邮件仅是通知项，不应该影响主业务（如网络连接导致事务过长，错误导致数据库回滚等），
+此类邮件，需要异步发送或延迟编辑，即便出错，也可以事后修复，重发邮件。
+
+* `content == null` - 标识延迟编辑
+* `setMailLazy(bean, para)` - 设置延迟编辑函数和参数
+* `TinyMailLazy` - 延迟编辑邮件的接口
+
+同时满足以上条件的延迟邮件，会在发送前，仅对以下内容的进行编辑。
+
+* 标题 - 不建议延迟编辑，应该提前固化
+* 正文 - 考虑模板错误，可以延迟编辑
+* 附件 - 动态附件可延迟编辑

@@ -218,6 +218,7 @@ With `wings.faceless.flywave.fit.*` you can automatically check for revision dep
 * import faceless-flywave dependency
 * wings.enabled.faceless.flywave=true
 * wings.faceless.flywave.auto-init=true
+* wings.faceless.flywave.checker=true
 
 Since it is not possible to check the CREATE permission, wings use WARN by default.
 
@@ -250,6 +251,7 @@ The revision numbers currently in use are,
 * 2021_1026_02 - tiny-task:branch/somefix/03-task-tune/2021-10-26v02-task-tune.sql
 * 2021_1026_03 - warlock:branch/somefix/04-conf-size/2021-10-26v02-conf-size.sql
 * 2021_1026_05 - faceless:branch/somefix/05-journal-elapse/2021-10-26v05-journal-elapse.sql
+* 2021_1026_06 - tiny-mail:branch/somefix/06-lazy-mail/2021-10-26v06-lazy-mail.sql
 * 2022_0601_01 - testing-faceless:master/2022-0601v01-test.sql
 * 2022_0601_02 - testing-faceless:master/2022-0601v02-test.sql
 * 2022_0222_01 - winx-common:master/00-init/2022-0222v01-demo-init.sql
@@ -334,7 +336,7 @@ The test cases in `kotlin` are mainly for demo purposed. They should be run indi
 If they are run together, springboot will not reinitialize `context` all the time in order to reuse resources efficiently.
 This will cause some `ApplicationListener` not to fire  and some TestCase to fail.
 
-## 2A.8.manual update
+## 2A.8.Manual Update
 
 During the dev or without using flywave, if you want to handle the schema revision,
 

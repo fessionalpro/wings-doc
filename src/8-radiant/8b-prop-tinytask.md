@@ -194,7 +194,7 @@ it is considered as an exception if the last_exec is more than 2 heartbeats away
 
 `Integer`=`0`, stop schedule after how many successful executions, not use Default config.
 
-### wings.tiny.task.define[default].during-boot=0
+### wings.tiny.task.define[default].during-boot
 
 `Integer`=`0`, recount each time the app is started, and stop schedule after how many
 successful executions, disable by default, not use Default config.

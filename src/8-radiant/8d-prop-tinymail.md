@@ -227,7 +227,11 @@ wings.tiny.mail.service.max-done
 
 ### wings.tiny.mail.service.boot-scan
 
-`Duration`=`60s`, how long after start, scan for unsent mail, `0` for no scan.
+`Duration`=`60s`, idle time after afterPropertiesSet to scan for unsent/misfired mail, `<=0` for disable.
+
+### wings.tiny.mail.service.scan-idle
+
+`Duration`=`5m`, idle time to scan for unsent/misfired mail. `<=0` for disable.
 
 ### wings.tiny.mail.service.only-app
 
@@ -236,6 +240,15 @@ wings.tiny.mail.service.max-done
 ### wings.tiny.mail.service.only-run
 
 `Boolean`=`true`, whether to send emails from this RumMode only.
+
+### wings.tiny.mail.service.scheduler
+
+Mail Threadpool Config, see `TaskSchedulingProperties`
+
+* `wings.tiny.mail.service.scheduler.pool.size`=`2`
+* `wings.tiny.mail.service.scheduler.shutdown.await-termination`=`true`
+* `wings.tiny.mail.service.scheduler.shutdown.await-termination-period`=`60s`
+* `wings.tiny.mail.service.scheduler.thread-name-prefix`=`mail-`
 
 ## 8D.7.wings-tinymail-urlmap-79.properties
 
