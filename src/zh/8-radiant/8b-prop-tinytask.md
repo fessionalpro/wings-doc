@@ -32,6 +32,10 @@ category:
 
 `Boolean`=`false`，是否干跑，仅记录日志不真正执行任务
 
+### wings.tiny.task.exec.notice-prefix
+
+`String`=`tiny-task`，通知的标题的前缀
+
 ## 8B.3.wings-flywave-fit-79.properties
 
 ### wings.faceless.flywave.fit.tiny-task

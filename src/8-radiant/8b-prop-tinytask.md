@@ -33,6 +33,10 @@ category:
 
 `Boolean`=`false`, whether to dry run, log only without realy exec the task.
 
+### wings.tiny.task.exec.notice-prefix
+
+`String`=`tiny-task`, prefix of notice subject.
+
 ## 8B.3.wings-flywave-fit-79.properties
 
 ### wings.faceless.flywave.fit.tiny-task
