@@ -182,32 +182,50 @@ In wings principle, the config entry must have default value, and sometimes the 
 
 ## 0E.12.Execution Order in Spring
 
-In the Spring lifecycle, using @Configuration as an example, the following order of execution is as follows,
+In the Spring lifecycle, using TestSilencerCurseApplication as an example, the following order of execution is as follows,
 where `spring.facts` means spring boot [lifecirle events](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.spring-application.application-events-and-listeners)
 
-* ApplicationEnvironmentPreparedEvent(spring.factories)
-* ApplicationContextInitializedEvent(spring.factories)
-* ApplicationPreparedEvent(spring.factories)
-* Constructor - constructor are executed first
-* @Autowired - dependency injection
-* @PostConstruct - executed after dependency injection, no parameters
-* afterPropertiesSet - InitializingBean interface
-* @Bean - On-demand or sequential execution
-* ContextRefreshedEvent(spring.factories)
-* ApplicationStartedEvent - Started, event parameter
-* CommandLineRunner - Runner, injected dependencies
-* ApplicationReadyEvent - Ready, event parameter
+* #01,  244ms, (spring.factories): ApplicationStartingEvent
+* #02, 2209ms, (spring.factories): ApplicationEnvironmentPreparedEvent
+* #03, 2758ms, (spring.factories): ApplicationContextInitializedEvent
+* #04, 2809ms, (spring.factories): ApplicationPreparedEvent
+* #05, 3365ms, @PostConstruct: TestSpringOrderService
+* #06, 3365ms, @Override: InitializingBean TestSpringOrderService
+* #07, 3381ms, (constructor): can inject para, autoconf=true
+* #08, 3384ms, @Autowired: testAutowired1 can inject para, autoconf=true
+* #09, 3384ms, @PostConstruct: postConstruct1
+* #10, 3384ms, @PostConstruct: postConstruct2
+* #11, 3385ms, @Override: InitializingBean TestSpringOrderConfiguration
+* #12, 3385ms, @Bean: testBean1 can inject para, autoconf=true
+* #13, 3386ms, @Bean: testBean2 can inject para, autoconf=true
+* #14, 3657ms, (spring.factories): ContextRefreshedEvent
+* #15, 3662ms, (spring.factories): ApplicationStartedEvent
+* #16, 3664ms, @EventListener: ApplicationStartedEvent
+* #17, 3665ms, (spring.factories): AvailabilityChangeEvent
+* #18, 3669ms, CommandLineRunner: CommandLineRunner1
+* #19, 3673ms, CommandLineRunner: CommandLineRunner2
+* #20, 3674ms, (spring.factories): ApplicationReadyEvent
+* #21, 3675ms, @EventListener: ApplicationReadyEvent
+* #22, 3676ms, (spring.factories): AvailabilityChangeEvent
+* #23, 3678ms, Jvm ShutdownHook
+* #24, 3679ms, (spring.factories): ContextClosedEvent
+* #25, 3679ms, @EventListener: ContextClosedEvent
+* #26, 3682ms, @PreDestroy: TestSpringOrderConfiguration
+* #27, 3682ms, @Override: DisposableBean TestSpringOrderConfiguration
+* #28, 3682ms, @PreDestroy: TestSpringOrderService
+* #29, 3682ms, @Override: DisposableBean TestSpringOrderService
 
 The common configuration methods and order in Wings are as follows.
 
 * Constructor - global, required dependency, injected as a final by constructor
 * @Autowired - local, optional dependency, injected as a setter
-* @PostConstruct - Executes the end of the current configuration, without parameters.
+* InitializingBean/@PostConstruct - Executes the end of the current configuration, without parameters.
 * ApplicationStartedEventRunner - before app/cmd runners initialize Helper
 * ApplicationRunnerOrdered - custom ordered ApplicationRunner
 * CommandLineRunnerOrdered - custom ordered CommandLineRunner
 * ApplicationInspectRunner - LOWEST_PRECEDENCE ApplicationRunner
 * ApplicationReadyEventRunner - after app/cmd runners called
+* DisposableBean/@PreDestroy - stop service, without parameters.
 
 Helper will be initialized when ApplicationStartedEvent. configuration and common beans are defined by constants
 
