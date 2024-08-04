@@ -149,13 +149,17 @@ TinyTask自身任务，清理日志和心跳健康
 
 ### wings.tiny.task.define[default].timing-miss
 
-`Integer`=`0`，错过调度（misfire）多少秒内，需要补救执行，0表示不补救，不会使用Default配置
+`Long`=`0`，错过调度（misfire）多少秒内，需要补救执行，不会使用Default配置
+
+* `<0` - 按`0`执行，如果 now + miss * 1000 >= 0
+* `0` - 执行，如果 N0 < now <= N0 + (N1-N0) * 25% < N1
+* `>0` - 执行，如果 N1 < now <= N1 + miss * 1000
 
 ### wings.tiny.task.define[default].timing-beat
 
-`Integer`=`0`，心跳及健康检查间隔秒数，不会使用Default配置。若任务的last_exec距now超过2个心跳，视其为异常，
+`Long`=`0`，心跳及健康检查间隔秒数，不会使用Default配置。若任务的last_exec距now超过2个心跳，视其为异常，
 
-* `<0` - 禁止
+* `<0` - 按`0`计算，如果 now + beat * 1000 >= 0
 * `0` - 自动计算，
   - cron时，以 last_exec 计算的 next_exec
   - 否则，取rate或idle最大值
