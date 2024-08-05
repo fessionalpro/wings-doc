@@ -246,8 +246,7 @@ wings.tiny.mail.service.max-done
 Mail Threadpool Config, see `TaskSchedulingProperties`
 
 * `wings.tiny.mail.service.scheduler.pool.size`=`2`
-* `wings.tiny.mail.service.scheduler.shutdown.await-termination`=`true`
-* `wings.tiny.mail.service.scheduler.shutdown.await-termination-period`=`60s`
+* `wings.tiny.mail.service.scheduler.shutdown.await-termination`=`false`
 * `wings.tiny.mail.service.scheduler.thread-name-prefix`=`mail-`
 
 ## 8D.7.wings-tinymail-urlmap-79.properties
