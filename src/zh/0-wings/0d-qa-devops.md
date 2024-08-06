@@ -634,3 +634,26 @@ git checkout -t origin/develop
 ## 重新初始 mirana 子模块
 #git submodule update --remote --init -- observe/mirana
 ```
+
+## 0D.41.快速而优雅的停机
+
+wings的线程池，默认配置如下，会等待任务（执行中及队列中）结束或超时，
+
+* shutdown.await-termination=true
+* shutdown.await-termination-period=###
+
+如果不需要等待，可参考以下功能，监听shutdown，取消队列中任务，
+
+* spring `@Scheduled` - 会misfire
+* tiny mail - 有misfire检查
+* tiny task - 有misfire检查
+
+当 await-termination=false时，线程池会发中断信息到所有线程，
+
+* 执行中任务，可执行结束或被中断（如有sleep,wait,join或检查中断状态）
+* 队列中任务，被动丢失，会主动取消
+
+所以，当处理异步或未来任务时，需要考虑中断，取消和关闭的情况，
+
+* 可丢失型，await-termination=false
+* 可恢复型，await-termination=true，主动处理中断或取消
