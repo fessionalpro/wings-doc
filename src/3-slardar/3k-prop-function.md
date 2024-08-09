@@ -388,6 +388,12 @@ See wings-dingnotice-79.properties for details
 
 `Boolean`=`false`, whether to temporarily do nothing when follow-redirect.
 
+### wings.slardar.okhttp.intercept-nop
+
+`Map<String,String>`, do NOT intercept if the token contained in URL
+
+* `ding-talk` = `oapi.dingtalk.com`
+
 ## 3K.8.wings-overload-79.properties
 
 Overload protection filter, how to handle fast requests and slow responses. disable by

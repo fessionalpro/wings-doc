@@ -388,6 +388,12 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 `Boolean`=`false`，是否在follow-redirect时，暂时不follow
 
+### wings.slardar.okhttp.intercept-nop
+
+`Map<String,String>`，如果token包含在URL中，则不进行intercept
+
+* `ding-talk` = `oapi.dingtalk.com`
+
 ## 3K.8.wings-overload-79.properties
 
 过载保护过滤器，如何处理快请求和慢响应。默认关闭，因容易误杀，不推荐使用。
