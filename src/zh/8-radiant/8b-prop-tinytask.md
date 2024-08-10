@@ -52,13 +52,13 @@ TinyTask自身任务，清理日志和心跳健康
 
 ### wings.tiny.task.define[TinyTaskCleanResult]
 
-`timing-cron`=`0 1 2 * * *`
+`timing-cron`=`7 11 13 * * *`，清理任务记录在系统时区的13:11:07
 
 ### wings.tiny.task.define[TinyTaskCheckHealth]
 
-每空闲300秒，检查一下健康状态
+每空闲347秒，检查一下健康状态
 
-* `timing-idle`=`300`
+* `timing-idle`=`347`
 * `notice-when`=`tail,done`
 
 ## 8B.5.wings-tinytask-define-79.properties

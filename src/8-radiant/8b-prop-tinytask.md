@@ -53,13 +53,13 @@ TinyTask's own tasks, clearing logs and healthy heartbeat.
 
 ### wings.tiny.task.define[TinyTaskCleanResult]
 
-`timing-cron`=`0 1 2 * * *`
+`timing-cron`=`7 11 13 * * *`, clean the result at system timezone 13:11:07
 
 ### wings.tiny.task.define[TinyTaskCheckHealth]
 
-Check health status every 300 seconds of idle time.
+Check health status every 347 seconds of idle time.
 
-* `timing-idle`=`300`
+* `timing-idle`=`347`
 * `notice-when`=`tail,done`
 
 ## 8B.5.wings-tinytask-define-79.properties

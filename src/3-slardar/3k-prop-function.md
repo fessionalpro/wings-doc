@@ -185,9 +185,9 @@ Setting of app builtin simple monitoring, `-1` in the threshold value means igno
 
 ### wings.slardar.monitor.cron
 
-`String`=`0 */10 * * * ?`
+`String`=`17 */17 * * * ?`
 
-Monitor its own cron, `-` means stop this cron, default 10 minutes.
+Monitor its own cron, `-` means stop this cron, default 17 minutes.
 
 ### wings.slardar.monitor.hook
 
@@ -209,7 +209,7 @@ the entire system with all cores, range `[0, 100]`
 
 ### wings.slardar.monitor.jvm.process-load
 
-`Integer`=`150`, process Cpu Load without percentage, range `[0, 100*cores]`
+`Integer`=`320`, process Cpu Load without percentage, range `[0, 100*cores]`, default=80*4
 
 ### wings.slardar.monitor.jvm.memory-load
 

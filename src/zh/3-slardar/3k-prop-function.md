@@ -188,9 +188,9 @@ double-kill, DoubleKillExceptionResolver的设置，支持变量 `{key}` 和 `{t
 
 ### wings.slardar.monitor.cron
 
-`String`=`0 */10 * * * ?`
+`String`=`17 */17 * * * ?`
 
-monitor自身的cron，`-`表示停止此cron，默认频率10分钟
+monitor自身的cron，`-`表示停止此cron，默认频率17分钟
 
 ### wings.slardar.monitor.hook
 
@@ -202,7 +202,7 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ### wings.slardar.monitor.jvm.system-load
 
-`Integer`=`-1`，系统Cpu Load未折算，范围`[0，100*核数]`
+`Integer`=`-1`，系统Cpu Load未折算成百分比，范围`[0，100*核数]`
 
 ### wings.slardar.monitor.jvm.process-cent
 
@@ -210,7 +210,7 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ### wings.slardar.monitor.jvm.process-load
 
-`Integer`=`150`，进程Cpu load 未折算，范围`[0，100*核数]`
+`Integer`=`320`，进程Cpu load 未折算成百分比，范围`[0，100*核数]`，默认=80x4
 
 ### wings.slardar.monitor.jvm.memory-load
 
