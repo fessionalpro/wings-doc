@@ -268,6 +268,10 @@ For example, `' ERROR '` becomes ` ERROR `, `'' WARN ''` becomes `' WARN '`.
 
 `Integer`=`10`, preview lines after found keyword.
 
+### wings.slardar.monitor.log.default.section
+
+`Integer`=`50`, section size of intended lines.
+
 ### wings.slardar.monitor.log.default.charset
 
 `String`=`UTF8`, log charset

@@ -268,6 +268,10 @@ monitor自身的cron，`-`表示停止此cron，默认频率17分钟
 
 `Integer`=`10`，当找到keyword时，展示其后面的行数
 
+### wings.slardar.monitor.log.default.section
+
+`Integer`=`50`，日志块中的缩进行的行数
+
 ### wings.slardar.monitor.log.default.charset
 
 `String`=`UTF8`，日志字符集
