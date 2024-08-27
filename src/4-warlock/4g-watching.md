@@ -65,6 +65,8 @@ we define 100ms as the threshold, and set the configuration directly.
 If you need to count the Service layer, you need to manually add the `@Watching` annotation
 to the methods to be watched.
 
+Timing results are output to the log by default, can be set otherwise via Watches.setWatchHandler.
+
 ## 4G.3.Caution
 
 This feature is somewhat invasive and is mainly used for tuning during development,
