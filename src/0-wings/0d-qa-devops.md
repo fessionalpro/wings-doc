@@ -657,3 +657,27 @@ git checkout -t origin/develop
 ## reinit mirana submodule
 #git submodule update --remote --init -- observe/mirana
 ```
+
+## 0D.41.Fast and graceful shutdown
+
+wings threadpool has the following default config, which will wait for
+tasks (running or in queque) to complete or timeout,
+
+* shutdown.await-termination=true
+* shutdown.await-termination-period=###
+
+if no need to wait, see the following, listen shutdown to cancel the quequed tasks,
+
+* spring `@Scheduled` - cancel, will misfire
+* tiny mail - cancel, check misfire
+* tiny task - cancel, check misfire
+
+when await-termination=false, threadpool set interrupt to all threads,
+
+* running task, complete or interrupted (if has sleep, wait, join or check interruption)
+* quequed task, passively lost, or actively canceled.
+
+so, when handling async/future tasks, interrupt, cancel and shutdown need to be considered,
+
+* Tolerant of loss, await-termination=false
+* Recoverable, await-termination=true, actively interrupt or cancel

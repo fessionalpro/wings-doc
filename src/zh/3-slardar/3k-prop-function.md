@@ -188,9 +188,9 @@ double-kill, DoubleKillExceptionResolver的设置，支持变量 `{key}` 和 `{t
 
 ### wings.slardar.monitor.cron
 
-`String`=`0 */10 * * * ?`
+`String`=`17 */17 * * * ?`
 
-monitor自身的cron，`-`表示停止此cron，默认频率10分钟
+monitor自身的cron，`-`表示停止此cron，默认频率17分钟
 
 ### wings.slardar.monitor.hook
 
@@ -202,7 +202,7 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ### wings.slardar.monitor.jvm.system-load
 
-`Integer`=`-1`，系统Cpu Load未折算，范围`[0，100*核数]`
+`Integer`=`-1`，系统Cpu Load未折算成百分比，范围`[0，100*核数]`
 
 ### wings.slardar.monitor.jvm.process-cent
 
@@ -210,7 +210,7 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 
 ### wings.slardar.monitor.jvm.process-load
 
-`Integer`=`150`，进程Cpu load 未折算，范围`[0，100*核数]`
+`Integer`=`320`，进程Cpu load 未折算成百分比，范围`[0，100*核数]`，默认=80x4
 
 ### wings.slardar.monitor.jvm.memory-load
 
@@ -267,6 +267,10 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 ### wings.slardar.monitor.log.default.preview
 
 `Integer`=`10`，当找到keyword时，展示其后面的行数
+
+### wings.slardar.monitor.log.default.section
+
+`Integer`=`50`，日志块中的缩进行的行数
 
 ### wings.slardar.monitor.log.default.charset
 
@@ -387,6 +391,12 @@ monitor自身的cron，`-`表示停止此cron，默认频率10分钟
 ### wings.slardar.okhttp.redirect-nop
 
 `Boolean`=`false`，是否在follow-redirect时，暂时不follow
+
+### wings.slardar.okhttp.intercept-nop
+
+`Map<String,String>`，如果token包含在URL中，则不进行intercept
+
+* `ding-talk` = `oapi.dingtalk.com`
 
 ## 3K.8.wings-overload-79.properties
 

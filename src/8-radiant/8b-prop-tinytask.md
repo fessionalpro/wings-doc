@@ -33,6 +33,10 @@ category:
 
 `Boolean`=`false`, whether to dry run, log only without realy exec the task.
 
+### wings.tiny.task.exec.notice-prefix
+
+`String`=`tiny-task`, prefix of notice subject.
+
 ## 8B.3.wings-flywave-fit-79.properties
 
 ### wings.faceless.flywave.fit.tiny-task
@@ -49,13 +53,13 @@ TinyTask's own tasks, clearing logs and healthy heartbeat.
 
 ### wings.tiny.task.define[TinyTaskCleanResult]
 
-`timing-cron`=`0 1 2 * * *`
+`timing-cron`=`7 11 13 * * *`, clean the result at system timezone 13:11:07
 
 ### wings.tiny.task.define[TinyTaskCheckHealth]
 
-Check health status every 300 seconds of idle time.
+Check health status every 347 seconds of idle time.
 
-* `timing-idle`=`300`
+* `timing-idle`=`347`
 * `notice-when`=`tail,done`
 
 ## 8B.5.wings-tinytask-define-79.properties
@@ -158,15 +162,18 @@ like Scheduled.initialDelay, but
 
 ### wings.tiny.task.define[default].timing-miss
 
-`Integer`=`0`, Within how many seconds of a misfire, execution is required,
-0 means no execution. not use Default config.
+`Long`=`0`, Within how many seconds of a misfire, execution is required, not use Default config.
+
+* `<0` - execute as `0` if now + miss * 1000 >= 0
+* `0` - execute if N0 < now <= N0 + (N1-N0) * 25% < N1
+* `>0` - execute if N1 < now <= N1 + miss * 1000
 
 ### wings.tiny.task.define[default].timing-beat
 
-`Integer`=`0`, the interval seconds of heartbeat and health-check, not use Default config.
+`Long`=`0`, the interval seconds of heartbeat and health-check, not use Default config.
 it is considered as an exception if the last_exec is more than 2 heartbeats away from now.
 
-* `<0` - disable check
+* `<0` - calculate as `0` if now + beat * 1000 >= 0
 * `0` - auto calculate,
   - when cron, calc next_exec from last_exec,
   - others, max rate and idle

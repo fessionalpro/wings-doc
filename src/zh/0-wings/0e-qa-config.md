@@ -177,31 +177,49 @@ wings原则上，所以配置项都必有默认配置，而有时候需要忽略
 
 ## 0E.12.Spring中的执行顺序
 
-在Spring生命周期中，以@Configuration为例，存在以下顺序执行，其中`spring.factories`表示spring boot的[生命周期事件](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.spring-application.application-events-and-listeners)
+在Spring生命周期中，以TestSilencerCurseApplication为例，存在以下顺序执行，其中`spring.factories`表示spring boot的[生命周期事件](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.spring-application.application-events-and-listeners)
 
-* ApplicationEnvironmentPreparedEvent(spring.factories)
-* ApplicationContextInitializedEvent(spring.factories)
-* ApplicationPreparedEvent(spring.factories)
-* Constructor - 构造函数优先执行
-* @Autowired - 依赖注入
-* @PostConstruct - 依赖注入后执行，无参数
-* afterPropertiesSet - InitializingBean接口
-* @Bean - 按需或按顺序执行
-* ContextRefreshedEvent(spring.factories)
-* ApplicationStartedEvent - Started，事件参数
-* CommandLineRunner - Runner，注入依赖
-* ApplicationReadyEvent -  Ready，事件参数
+* #01,  244ms, (spring.factories): ApplicationStartingEvent
+* #02, 2209ms, (spring.factories): ApplicationEnvironmentPreparedEvent
+* #03, 2758ms, (spring.factories): ApplicationContextInitializedEvent
+* #04, 2809ms, (spring.factories): ApplicationPreparedEvent
+* #05, 3365ms, @PostConstruct: TestSpringOrderService
+* #06, 3365ms, @Override: InitializingBean TestSpringOrderService
+* #07, 3381ms, (constructor): can inject para, autoconf=true
+* #08, 3384ms, @Autowired: testAutowired1 can inject para, autoconf=true
+* #09, 3384ms, @PostConstruct: postConstruct1
+* #10, 3384ms, @PostConstruct: postConstruct2
+* #11, 3385ms, @Override: InitializingBean TestSpringOrderConfiguration
+* #12, 3385ms, @Bean: testBean1 can inject para, autoconf=true
+* #13, 3386ms, @Bean: testBean2 can inject para, autoconf=true
+* #14, 3657ms, (spring.factories): ContextRefreshedEvent
+* #15, 3662ms, (spring.factories): ApplicationStartedEvent
+* #16, 3664ms, @EventListener: ApplicationStartedEvent
+* #17, 3665ms, (spring.factories): AvailabilityChangeEvent
+* #18, 3669ms, CommandLineRunner: CommandLineRunner1
+* #19, 3673ms, CommandLineRunner: CommandLineRunner2
+* #20, 3674ms, (spring.factories): ApplicationReadyEvent
+* #21, 3675ms, @EventListener: ApplicationReadyEvent
+* #22, 3676ms, (spring.factories): AvailabilityChangeEvent
+* #23, 3678ms, Jvm ShutdownHook
+* #24, 3679ms, (spring.factories): ContextClosedEvent
+* #25, 3679ms, @EventListener: ContextClosedEvent
+* #26, 3682ms, @PreDestroy: TestSpringOrderConfiguration
+* #27, 3682ms, @Override: DisposableBean TestSpringOrderConfiguration
+* #28, 3682ms, @PreDestroy: TestSpringOrderService
+* #29, 3682ms, @Override: DisposableBean TestSpringOrderService
 
 Wings中常用的配置方式及顺序如下，
 
 * Constructor - 全局的，必须的依赖，以final构造注入
 * @Autowired - 局部的，选用的依赖，以setter注入
-* @PostConstruct - 执行当前配置的收尾，无参数的
+* InitializingBean/@PostConstruct - 执行当前配置的收尾，无参数的
 * ApplicationStartedEventRunner - before app/cmd runners 初始化Helper
 * ApplicationRunnerOrdered - 自定义ordered的ApplicationRunner
 * CommandLineRunnerOrdered - 自定义ordered的CommandLineRunner
 * ApplicationInspectRunner - LOWEST_PRECEDENCE ApplicationRunner
 * ApplicationReadyEventRunner - after app/cmd runners called
+* DisposableBean/@PreDestroy - 停止服务，无参数的
 
 Helper会在ApplicationStartedEvent时初始化。Configuration和常用Bean由常量定义
 

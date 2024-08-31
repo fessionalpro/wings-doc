@@ -185,9 +185,9 @@ Setting of app builtin simple monitoring, `-1` in the threshold value means igno
 
 ### wings.slardar.monitor.cron
 
-`String`=`0 */10 * * * ?`
+`String`=`17 */17 * * * ?`
 
-Monitor its own cron, `-` means stop this cron, default 10 minutes.
+Monitor its own cron, `-` means stop this cron, default 17 minutes.
 
 ### wings.slardar.monitor.hook
 
@@ -209,7 +209,7 @@ the entire system with all cores, range `[0, 100]`
 
 ### wings.slardar.monitor.jvm.process-load
 
-`Integer`=`150`, process Cpu Load without percentage, range `[0, 100*cores]`
+`Integer`=`320`, process Cpu Load without percentage, range `[0, 100*cores]`, default=80*4
 
 ### wings.slardar.monitor.jvm.memory-load
 
@@ -267,6 +267,10 @@ For example, `' ERROR '` becomes ` ERROR `, `'' WARN ''` becomes `' WARN '`.
 ### wings.slardar.monitor.log.default.preview
 
 `Integer`=`10`, preview lines after found keyword.
+
+### wings.slardar.monitor.log.default.section
+
+`Integer`=`50`, section size of intended lines.
 
 ### wings.slardar.monitor.log.default.charset
 
@@ -387,6 +391,12 @@ See wings-dingnotice-79.properties for details
 ### wings.slardar.okhttp.redirect-nop
 
 `Boolean`=`false`, whether to temporarily do nothing when follow-redirect.
+
+### wings.slardar.okhttp.intercept-nop
+
+`Map<String,String>`, do NOT intercept if the token contained in URL
+
+* `ding-talk` = `oapi.dingtalk.com`
 
 ## 3K.8.wings-overload-79.properties
 
