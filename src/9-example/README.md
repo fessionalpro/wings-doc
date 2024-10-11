@@ -119,9 +119,9 @@ server {
         deny all;
     }
 
-    # backend, resource url in res-id-{base64_urlsafe}.{pdf} format
-    location ~* (\.json|/res-id-[\-=_0-9a-z]+\.[0-9a-z]+)$ {
-        proxy_pass http://good_admin;
+    # backend, proxy_pass must with `/`
+    location ^~ /api/v1/ {
+        proxy_pass http://good_admin/;
         proxy_http_version  1.1;
         proxy_cache_bypass  $http_upgrade;
 
