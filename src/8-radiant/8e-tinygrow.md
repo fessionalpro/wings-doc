@@ -64,7 +64,7 @@ return TinyTrackHelper.track(key, trk -> {
 });
 ```
 
-By try-catch, manully set all properties except `elapse`.
+By try-catch, manually set all properties except `elapse`.
 
 ```java
 final var trk = TinyTrackHelper.track(key);

@@ -8,7 +8,7 @@ category:
 
 # 5B.Service Consumer
 
-Prefer to use the Rpc to consum service, also use RestTemplate to simplify the call.
+Prefer to use the Rpc to consume service, also use RestTemplate to simplify the call.
 
 ## 5B.1.Consumer Convention
 
@@ -52,11 +52,11 @@ This service can be accessed by the following call style.
 * `@RpcReference(microserviceName = "winx-api", schemaId = "winx-hello")`
 * restTemplate `cse://winx-api/winx-hello/say-hello?name=bbb`
 * with auth `http://localhost:8095/servcomber/winx-hello/say-hello?name=null`
-* witout auth `http://localhost:8085/servcomber/batrider-hello/say-hello?name=undefined`
+* without auth `http://localhost:8085/servcomber/batrider-hello/say-hello?name=undefined`
 
 Tracing the `OperationLocator`, we find the difference as follows.
 
 * Rpc locates by microserviceName, schemaId and method operationId
 * restTemplate is located by microserviceName and path
-* broswer http is located by endpoint ip and port, rest prefix and path
+* browser http is located by endpoint ip and port, rest prefix and path
 * path is `basePath` + `paths`, basePath is `/` by default

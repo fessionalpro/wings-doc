@@ -30,7 +30,7 @@ category:
 * java.time.Xxxx.now - Now.xxx()
 * 任何需要调试的日期，都应该从Now取值
 
-在Slardar中，通过TerminalIterceptor设置TerminalContext，
+在Slardar中，通过TerminalInterceptor设置TerminalContext，
 此时，通过TweakEventListener及对应的事件，可完成单应用或集群的调试控制。
 
 OkHttpTweakLogInterceptor可以使okhttp日志与TweakLogger联动

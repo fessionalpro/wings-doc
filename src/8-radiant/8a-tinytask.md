@@ -38,7 +38,7 @@ The task configuration is merged first, with priority from highest to lowest.
 * default value of the task
 * value from the annotation
 
-The above merged config becomes the taks properties and will be compared with the current value
+The above merged config becomes the tasks properties and will be compared with the current value
 in the database. The larger version takes precedence, and if equal,
 the database (win_task_define table) takes precedence.
 
@@ -75,7 +75,7 @@ Recommended to control task in hardcoding, for more secure and strongly typed,
 
 ## 8A.5.execute flow
 
-nomal schedule (launch)
+normal schedule (launch)
 
 @startuml
 TinyTaskExecService -> TinyTaskExecService: launch(id), remove Cancel

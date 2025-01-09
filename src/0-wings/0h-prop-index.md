@@ -40,21 +40,21 @@ The config value in the properties is usually a single line, and the multiple li
 ## 0H.3.Properties Files
 
 * [Silencer Properties](../1-silencer/1d-prop-silencer.md) - Autoload default utility and feature
-* [Faceless Properties](../2-faceless/2i-prop-faceless.md) - Database Acess, basic I18n configuration
+* [Faceless Properties](../2-faceless/2i-prop-faceless.md) - Database Access, basic I18n configuration
 * [Flywave Properties](../2-faceless/2j-prop-flywave.md) - Flywave's config for schema management
 * [Jooq Properties](../2-faceless/2k-prop-jooq.md) - Jooq config
 * [Slardar Properties](../3-slardar/3i-prop-slardar.md) - Basic config of Slardar and Spring
 * [WebMvc Properties](../3-slardar/3j-prop-webmvc.md) - Basic config of Spring WebMvc
 * [WebFun Properties](../3-slardar/3k-prop-function.md) - Basic config of Spring Web
 * [Hazelcast Properties](../3-slardar/3l-prop-hazelcast.md) - Hazelcast config
-* [Warlock Properties](../4-warlock/4d-prop-warlock.md) - Warlock login autnn config
+* [Warlock Properties](../4-warlock/4d-prop-warlock.md) - Warlock login authn config
 * [TinyTask Properties](../8-radiant/8b-prop-tinytask.md) - TinyTask config
 * [TinyMail Properties](../8-radiant/8d-prop-tinymail.md) - TinyMail config
 * [TinyGrow Properties](../8-radiant/8f-prop-tinygrow.md) - TinyGrow config
 
 ## 0H.4.wings.enabled.pro.fessional.wings
 
-`@ConditionalWingsEnabled` are grouped by module, orderd by ascii.
+`@ConditionalWingsEnabled` are grouped by module, ordered by ascii.
 
 * `empty` means default true
 * `(false)` means default false

@@ -38,7 +38,7 @@ TinyTask设计为强类型，静态的，因此默认限制了动态添加任务
 * 任务的default值
 * annotation注解值
 
-以上合并后的配置文件，成为taks的property，会和database中当前值比较version
+以上合并后的配置文件，成为tasks的property，会和database中当前值比较version
 以version大者优先，相等时，以database（win_task_define表）优先。
 
 ## 8A.3.任务调度

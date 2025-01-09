@@ -65,10 +65,10 @@ Follows the Unix philosophy and partially answers `why` and `why not`?
   we still advocate "eat less sugar, write good java"
 * WebMvc - Although `webflux` has better design and performance than servlet,
   the TX scenario is currently more of blocking IO, multi-threaded.
-* Lombok - Make java code simple, aslo with the experimental feature, need to add them to pom manually.
+* Lombok - Make java code simple, also with the experimental feature, need to add them to pom manually.
 * Git-flow - Best practices for git management.
 * Trunk-based - CI/CD Best practices.
-* Guava, commons-lang3, commons-io - Must-have toolkits for engineers.
+* Guava, commons-lang3, commons-io - Must-have toolkit for engineers.
 * ShardingSphere - RW split and data sharding is enough to solve 90% of the `data big` problems.
 * Hazelcast - Compared to Redis, Hazelcast is simpler and more integrated.
 * ServiceComb - more engineering and compact microservice/cloud solution
@@ -104,7 +104,7 @@ and is abbreviated if no ambiguity, such as curse, flywave, etc.
 * [Dev Tool](./0c-dev-tool.md) - To do a good job, sharpen the tools first
 * [DevOps Topics](./0d-qa-devops.md) - Coding, operation and other topics
 * [Config Topics](./0e-qa-config.md) - maven, properties, spring topics
-* [Other Topics](./0f-qa-others.md) - Uncategorized topics
+* [Other Topics](./0f-qa-others.md) - Uncategorised topics
 * [GhostShip Model](./0g-ghost-ship.md) - The basic building model for Wings
 * [Properties Index](./0h-prop-index.md) - All properties of wings configuration
 * [I18n Message](./0i-i18n-message.md) - Matching Rule and Builtin Message

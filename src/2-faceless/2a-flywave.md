@@ -123,7 +123,7 @@ when the reference count reaches 0.
 Any data changes should have the `commit_id`, which records the event information (user, event, business info, etc.).
 The latest data remains in the `plain` table and the old data is inserted into the `trace` table via `trigger`.
 The trace table is also called the `$log` table, which is form the original naming convention (plain table + `$log` suffix),
-but then due to some tool defect, mistakenly treats `$` as a variable, allthough `$` is a mysql official legal character,
+but then due to some tool defect, mistakenly treats `$` as a variable, although `$` is a mysql official legal character,
 flywave adjusted `$` to double underscore `__` suffix after version 210.
 
 `journal` generates `trace` tables and `triggers` via `sys_schema_journal`.
@@ -201,7 +201,7 @@ DROP TRIGGER IF EXISTS `wgs_order$bd`;
 ALTER TABLE `win_admin` DROP INDEX ix_login_name;
 -- apply@nut error@skip same as previous sentence
 ALTER TABLE `win_admin` DROP INDEX ix_login_name;
--- apply@log error@skip apply to tracke table only
+-- apply@log error@skip apply to trace table only
 ALTER TABLE `win_admin` DROP INDEX ix_login_name;
 ```
 

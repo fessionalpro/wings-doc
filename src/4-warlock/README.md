@@ -19,7 +19,7 @@ access control, data isolation, and other features.
 
 * warlock - integrate jooq and slardar
 * warlock-shadow - integrate slardar-sprint
-* warlock-bond - implement login, autun and authz
+* warlock-bond - implement login, authn and authz
 * warlock-codegen - codegen for the project
 * warlock-test - testing utility and login
 

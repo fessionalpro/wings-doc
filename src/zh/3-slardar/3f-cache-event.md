@@ -111,7 +111,7 @@ TableChangeEvent可通过`wings.faceless.jooq.cud.table`配置表和字段，自
 注意，默认的基于代理的AOP加强的`@Cacheable`系列注解，仅代理对象可用，以下情况无法获得代理对象。
 
 * 内部调用 - 类内的方法在类的内部进行调用。
-* 继承调用 - 接口上`default`方法调用`abstarct`方法。
+* 继承调用 - 接口上`default`方法调用`abstract`方法。
 * 静态方法 - 无法对静态方法应用增强。
 
 以下编程模式在对象内获取self引用，
@@ -126,7 +126,7 @@ protected RuntimeConfServiceImpl thisLazy = this;
 // interface method
 @Override
 public <T> T getObject(String key, TypeDescriptor type) {
-    // @Cacheable method with Cache surfix
+    // @Cacheable method with Cache suffix
     return thisLazy.getObjectCache(key, type);
 }
 ```

@@ -9,7 +9,7 @@ category:
 
 # 3G.Backend Protection
 
-Provide some protection and control for backsend services.
+Provide some protection and control for backend services.
 
 ## 3G.1.Backend Debounce
 
@@ -127,7 +127,7 @@ It is only used by the filter, interceptor, advice and other mechanisms to enabl
 
 You must be aware of the filter order to ensure the wrapper is complete before using it.
 
-## 3G.7.Request and Response Loging
+## 3G.7.Request and Response Logging
 
 Request and response logging can be implemented by injecting RequestResponseLogging into WingsReuseStreamFilter.
 Unlike CommonsRequestLoggingFilter, this feature is used on demand and supports both request and response.
@@ -208,9 +208,9 @@ Among them, the `fast requests` or `slow requests` can be disabled with the foll
 
 ## 3G.10.Pagination Query
 
-PageQuery and PageDefault are used in Wings instead of Pagable in SpringData.
+PageQuery and PageDefault are used in Wings instead of Pageable in SpringData.
 
-* PageQuery can only be passed using the QueryString method and is not part of the RequesBody section.
+* PageQuery can only be passed using the QueryString method and is not part of the RequestBody section.
 * `@ParameterObject` PageQuery pq
 * `@ParameterObject` `@PageDefault(size=30)` PageQuery pq
 
@@ -218,10 +218,10 @@ The @ParameterObject annotation is used so that Swagger can automatically recogn
 
 As with PageQuery, the pagination return uses PageResult as the container and Wings has tool to handle it.
 
-When PageQuery is used as @RequesBody, it usually looks like this
+When PageQuery is used as @RequestBody, it usually looks like this
 
 * as super `Ins extends PageQuery`
-* as field `private PageQuery pagable`
+* as field `private PageQuery pageable`
 
 cannot use PageDefault and aliases, and is handled by the following classes, just like a normal json pojo.
 

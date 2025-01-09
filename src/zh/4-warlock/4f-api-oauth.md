@@ -10,7 +10,7 @@ category:
 
 不同于用户登录(BindAuth)，对外Api是限定功能的，非SecurityFilter体系。
 
-* BindAuth - 以Filter和Cookie为基础，是传统的Broswer-Server模式，简称BS
+* BindAuth - 以Filter和Cookie为基础，是传统的Browser-Server模式，简称BS
 * ApiAuth - 以Token和Signature为基础，是外部的Server-Server模式，简称SS
 * ServiceComb - 内部的ServerServer微服务及云模式
 
@@ -26,7 +26,7 @@ ApiAuth的模式约定是双向的，response采用request相同的约定回复�
 * digest - 文件摘要，交换文件时使用
 * secret - 用户设定，明文存在，用于签名
 
-一个Request用以下3个部分用来发送信息，而Response没有QuereyString，
+一个Request用以下3个部分用来发送信息，而Response没有QueryString，
 
 * 验签参数 - `key:value`格式，getHeader获取
 * 业务参数 - `k=v(&k1=v1)*`格式，getParameterMap获取
@@ -319,7 +319,7 @@ response文件时，不对body直接签名，增加以下步骤外，和Json部�
 
 若不希望以client作为身份标识的时候，可以使用OAuth的AccessToken代替，
 
-假设client的id为`wings-trydofor`，AccesssToken为`win-access-token`，
+假设client的id为`wings-trydofor`，AccessToken为`win-access-token`，
 原`Auth-Client:wings-trydofor`变为`Auth-Client:win-access-token`
 
 ### 4a.OAuth功能

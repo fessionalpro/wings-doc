@@ -6,7 +6,7 @@ category:
   - Provider
 ---
 
-# 5A.Serivce Provider
+# 5A.Service Provider
 
 Use SpringMvc annotations to provide services and cowork with WebMvc.
 

@@ -31,7 +31,7 @@ To tweak the clock, the following substitution is required in the code
 * java.time.Xxxx.now - Now.xxx()
 * Any date that needs to be debugged should be taken from Now
 
-In Slardar, set the TerminalContext using TerminalIterceptor.
+In Slardar, set the TerminalContext using TerminalInterceptor.
 At this point, through the TweakEventListener and its Event, you can tweak of single application or cluster.
 
 OkHttpTweakLogInterceptor can make okhttp log and TweakLogger work together.
@@ -43,8 +43,8 @@ Due to the large impact of system-level global settings, no default implementati
 ## 4E.3.Caution
 
 Thread-level tweaking is mainly based on TransmittableThreadLocal, so its conventions should be
-followed when using it. Especially for threads not from the wings preconfiged thread pool, you need to
-pay attention to Context replication to avoid losing them.
+followed when using it. Especially for threads not from the wings preconfigured thread pool,
+you need to pay attention to Context replication to avoid losing them.
 
 Date and time in the business, try to use Now, use a very few performance cost can get the ability to cross timeline.
 Try not to tweak the system clock to avoid causing confusion of events or even failure of checks at startup.

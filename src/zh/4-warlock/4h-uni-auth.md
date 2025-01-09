@@ -38,12 +38,12 @@ User ->> +App2: visit App2 with TK1
 
 alt logined App2
     App2 ->> +App1: TK1 ok ? bind TK2(TP+ID)?
-    App1 -->> -App2: bind TK1 and TK2, retrun ok
+    App1 -->> -App2: bind TK1 and TK2, return ok
 else no login
     App2 ->> +App1: TK1 ok ?
     App1 ->> +App2: login App2 with TP
-    App2 -->>-App1: bind TK1 and TK2, retrun TK2
-    App1 -->>-App2: bind TK1 and TK2, retrun ok
+    App2 -->>-App1: bind TK1 and TK2, return TK2
+    App1 -->>-App2: bind TK1 and TK2, return ok
 end
 
 App2 -->> -User: return ok with TK1

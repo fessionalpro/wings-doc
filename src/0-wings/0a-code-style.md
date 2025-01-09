@@ -25,9 +25,9 @@ Defensive programming considers boundary and exception everywhere, May The `fals
 Follow the standard Java coding spec (idea hints are fine), but readability takes precedence.
 
 * `static final` don't have to be all-caps, `log` is preferred to `LOG`
-* `BIG_SNAKE` could be`PascalNaming`, lowercase is readbale than uppercase
+* `BIG_SNAKE` could be`PascalNaming`, lowercase is readable than uppercase
 * All-caps (abbr. or proper) should use PascalNaming. `Json`, `Html`, `Id`
-* Prefix/suffix/abbr must be 2+ letters, 3 letters recommended (camalNaming)
+* Prefix/suffix/abbr must be 2+ letters, 3 letters recommended (camelNaming)
 * Local language can be used for industry jargon that has no common English name.
 * Remember words with 4-8 letters. Use verb-object or adverb to name
 * Null-safe, use empty instead of null, Set/List/Array/Map
@@ -58,7 +58,7 @@ The number is planned by the business architecture, e.g. 10x for system, 11x for
 
 ## 0A.3.Properties First in Configuration
 
-Recommand `properties`, as the indentation of `yml` is difficult to edit, copy, and share in parts.
+Recommend `properties`, as the indentation of `yml` is difficult to edit, copy, and share in parts.
 
 * Group related properties in a separate `properties` file,
   split the large file  into smaller ones for easy management and versioning
@@ -69,7 +69,7 @@ Recommand `properties`, as the indentation of `yml` is difficult to edit, copy, 
 * `wings-*` is used for the wings configuration,
   - Use the codename of project/module, e.g. `wings.slardar.*`
   - Provide the default configuration with `-79` serial number
-* Recommend `kebab-caseae` naming, i.e. `key` is all lowercase, `-` splitted
+* Recommend `kebab-case` naming, i.e. `key` is all lowercase, `-` split
 * document-type comments, using double one-line comments, such as `##` in Properties
 * function-type comments, using a single one-line comment, such as `#` in Properties
 
@@ -154,7 +154,7 @@ Because of the strong type principle, all magic code and const should be
 converted to enum and passed between business layers.
 
 * In the service layer, the enum is autogen by template, and converted by `*EnumUtil`
-* In the db layer, reading and writing with basic types (int,varchar)
+* In the db layer, reading and writing with basic types (int, varchar)
 * In the user layer, display the enum content in an i18n format
 * Magic values that cannot be converted to enum, marked with `@MagicConstant`
 
@@ -162,7 +162,7 @@ converted to enum and passed between business layers.
 
 * Multi-module has main project (parent|packaging=pom) and sub-projects (module|packaging=jar)
 * The main project defines libs in dependencyManagement and does not manage specific dependencies
-* the sbproject manage its own dependencies and cannot redefine version number
+* the sub-project manage its own dependencies and cannot redefine version number
 * In dependency conflicts, Maven follows the shortest path principle, so redefining the project in the closest
 
 ## 0A.9.Api Testing and Docs Convention
@@ -230,7 +230,7 @@ When config `@Bean` in the `@Configuration`, the DI principle as follows,
 
 * use constructor+final first
 * use parameters of methods to declare bean
-* can use Field inection in Config
+* can use Field injection in Config
 * avoid setter injection in Config, because the dependency error is too late
 * Autowired method for tool initialization
 
@@ -325,7 +325,7 @@ So, we will use different time in the following scenarios,
 
 According to the reading and writing ratio, when storing datetime, should consider,
 
-* Statistical services, usually converte on write, store the user localtime (and timezone), not converted on read
+* Statistical services, usually convert on write, store the user localtime (and timezone), not converted on read
 * Collaborative operations, typically using system time on write and convert on read
 
 If time conversion is required, it should to be handled uniformly in the user interface (e.g. controller).

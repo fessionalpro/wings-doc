@@ -31,7 +31,7 @@ category:
 
 ### wings.tiny.task.exec.dryrun
 
-`Boolean`=`false`, whether to dry run, log only without realy exec the task.
+`Boolean`=`false`, whether to dry run, log only without really exec the task.
 
 ### wings.tiny.task.exec.notice-prefix
 

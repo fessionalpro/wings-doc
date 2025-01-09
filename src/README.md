@@ -17,7 +17,7 @@ actions:
 
 features:
   - icon: screwdriver-wrench
-    title: Shard and Cascade Configigruation
+    title: Shard and Cascade Configuration
     details: Properties can be broken down into separate files that take effect after cascading
     link: ./1-silencer/1a-wings-conf.html
 
@@ -32,12 +32,12 @@ features:
     link: ./2-faceless/2a-flywave.html
 
   - icon: bolt
-    title: Powful Type-safe SqlMapping
+    title: Powerful Type-safe SqlMapping
     details: Achieve business goals faster, pay off tech-debt faster, and refactor safely
     link: ./2-faceless/2b-jooq.html
 
   - icon: sitemap
-    title: Distrib, Spliting and Sharding
+    title: Distribution, Splitting and Sharding
     details: Efficient distributed ID, on-demand data sharding and read/write splitting
     link: ./2-faceless/2c-shard.html
 
@@ -52,12 +52,12 @@ features:
     link: ./3-slardar/3c-host-ext.html
 
   - icon: key
-    title: Distrib Session and Multi-Auth
+    title: Distributed Session and Multi-Auth
     details: Hazelcast-based distributed Session, cookie encryption, and alias name
     link: ./3-slardar/3e-auth-session.html
 
   - icon: layer-group
-    title: JVM/Distrib Cache, Lock, and Objects
+    title: JVM/Distributed Cache, Lock, and Objects
     details: JVM and distributed objects, locks, and events with Cache2k and  Hazelcast
     link: ./3-slardar/3f-cache-event.html
 
@@ -104,15 +104,15 @@ For example, starting from a single app, to sharding, to micro service and to cl
 ## 📦 Tech Architecture
 
 <!-- markdownlint-disable MD013 -->
-* [![SpringBoot-3.2](https://img.shields.io/badge/springboot-3.2-green?logo=springboot)](https://spring.io/projects/spring-boot) Philosophy and Conventions, Non-Intrusion Enhancement 🌱 [Apache2]
+* [![SpringBoot-3.3](https://img.shields.io/badge/springboot-3.3-green?logo=springboot)](https://spring.io/projects/spring-boot) Philosophy and Conventions, Non-Intrusion Enhancement 🌱 [Apache2]
 * [![Java-21](https://img.shields.io/badge/java-21-gold)](https://adoptium.net/temurin/releases/?version=11) Main business language, OpenJDK long-time running ☕️ [GPLv2+CE]
 * [![Kotlin-1.9](https://img.shields.io/badge/kotlin-1.9-gold)](https://kotlinlang.org/docs/reference/) Assisted language, as a better Java [Apache2]
-* [![Jooq-3.18](https://img.shields.io/badge/jooq-3.18-cyan)](https://www.jooq.org/download/)  The main type-safe SqlMapping 🏅 [Apache2]
+* [![Jooq-3.19](https://img.shields.io/badge/jooq-3.19-cyan)](https://www.jooq.org/download/)  The main type-safe SqlMapping 🏅 [Apache2]
 * [![Mysql-8.0](https://img.shields.io/badge/mysql-8.0-blue)](https://dev.mysql.com/downloads/mysql/) Main business database, recommend 8.0.31 💡 [GPLv2]
 * [![H2Database-2.2](https://img.shields.io/badge/h2db-2.2-blue)](https://h2database.com/html/main.html) Standalone database for offline and disconnected operations [MPL2] or [EPL1]
-* [![Hazelcast-5.3](https://img.shields.io/badge/hazelcast-5.3-violet)](https://docs.hazelcast.com/hazelcast/) Distributed caching, messaging, streaming, etc. [Apache2]
-* [![ServiceComb-3.0](https://img.shields.io/badge/servicecomb-3.0-violet)](https://servicecomb.apache.org) More engineering and compact Cloud solution [Apache2]
-* [![ShardingSphere-5.4](https://img.shields.io/badge/shardingsphere-5.4-violet)](https://shardingsphere.apache.org) Database RW splitting, data sharding and elastic scaling [Apache2]
+* [![Hazelcast-5.4](https://img.shields.io/badge/hazelcast-5.4-violet)](https://docs.hazelcast.com/hazelcast/) Distributed caching, messaging, streaming, etc. [Apache2]
+* [![ServiceComb-3.2](https://img.shields.io/badge/servicecomb-3.2-violet)](https://servicecomb.apache.org) More engineering and compact Cloud solution [Apache2]
+* [![ShardingSphere-5.5](https://img.shields.io/badge/shardingsphere-5.5-violet)](https://shardingsphere.apache.org) Database RW splitting, data sharding and elastic scaling [Apache2]
 
 [Apache2]: https://www.apache.org/licenses/LICENSE-2.0
 [GPLv2+CE]: https://openjdk.org/legal/gplv2+ce.html
@@ -147,7 +147,7 @@ It's recommended that you get your hands on the code to avoid low-level use and 
 ## (1) get source code
 git clone --depth 1 https://github.com/\
 trydofor/professional-wings.git
-## (2) install dependency useing java8
+## (2) install dependency using java8
 # asdf shell java temurin-8.0.412+8
 git submodule update --remote --init
 (cd observe/meepo && mvn package install)

@@ -8,7 +8,7 @@ category:
 
 # 0F.Other Topic
 
-Uncategorized topics.
+Uncategorised topics.
 
 ## 0F.01.Why is The Hero of Dota
 
@@ -49,7 +49,7 @@ Currently, the design of TinyTask is quite a stretch and is just an improved ver
 
 ```js
 // https://dota2.fandom.com/wiki/Minimap
-// $0 = parrent p of img.pixelart
+// $0 = parent p of img.pixelart
 // save console as minimap.sh, and download them all
 $0.childNodes.forEach(a=>console.log('curl ' + a.firstChild.src.
     replace(/^.*\/([^\/]+)(_minimap_icon.png).*$/, (p1, p2, p3)=>

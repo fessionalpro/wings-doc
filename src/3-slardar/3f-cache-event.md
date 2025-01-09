@@ -76,7 +76,7 @@ synchronous/asynchronous/standalone/clustered events,
 * AsyncSpring - asynchronous, within the Spring jvm, using slardarEventExecutor thread pool
 * AsyncGlobal - asynchronous, topic-based publish-subscribe mechanism
 
-Note that SpringBoot by default is synchronous and withou exception handling, so that it can be well
+Note that SpringBoot by default is synchronous and without exception handling, so that it can be well
 synchronized to handle business etc. SlardarAsyncConfiguration checks this mechanism at startup and
 will log a Warn if it is broken.
 
@@ -120,7 +120,7 @@ Note that the `@Cacheable` series of annotations, default enhanced by proxy-base
 the following cases can not access the proxy object.
 
 * Internal calls - methods within a class are called from within the class.
-* Inheritance calls - `default` methods on an interface call `abstarct` methods.
+* Inheritance calls - `default` methods on an interface call `abstract` methods.
 * Static methods - Enhancements cannot be applied to static methods.
 
 The following programming pattern can get the self reference inside the object,
@@ -135,7 +135,7 @@ protected RuntimeConfServiceImpl thisLazy = this;
 // interface method
 @Override
 public <T> T getObject(String key, TypeDescriptor type) {
-    // @Cacheable method with Cache surfix
+    // @Cacheable method with Cache suffix
     return thisLazy.getObjectCache(key, type);
 }
 ```

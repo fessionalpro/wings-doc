@@ -93,7 +93,7 @@ SavedRequestAwareAuthenticationSuccessHandler and RequestCache can be combined.
 In the case of frontend and backend separation, no backend control is needed,
 so RequestCache should be disabled.
 
-* HTTP Referer header - some browsers don't give refer
+* HTTP Referrer header - some browsers don't give refer
 * saving the original request in the session - need session support
 * base64 original URL to the redirected login URL - the usual SSO impl
 

@@ -8,7 +8,7 @@ category:
 
 # 0I.多国语信息
 
-同`*.Properties`一样，Wings以分隔的配置来加强默认的messages.properties。
+同`*.properties`一样，Wings以分隔的配置来加强默认的messages.properties。
 
 ## 0I.1.匹配规则
 
@@ -27,7 +27,7 @@ category:
 find . -type d -name 'wings-i18n'| egrep -v -E 'target/|test/'
 ```
 
-### 2a.AnthnErrorEnum slardar-webmvc
+### 2a.AuthnErrorEnum slardar-webmvc
 
 spring security的验证错误
 

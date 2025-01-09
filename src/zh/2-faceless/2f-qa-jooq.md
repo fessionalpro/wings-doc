@@ -263,7 +263,7 @@ springboot 可能在3.0中停止支持jooq，摘要如下，详情看issue链接
 > For Boot 2.x users that want to upgrade jOOQ's version, switching to the `jakarta.xml.bind.*`
 > classes may cause problems if other parts of their app use `javax.xml.bind.*`. This is
 > compounded by the fact that the jakarta.xml.bind:jakarta.xml.bind-api coordinates can provide
-> either the `jakarta.*` classes or the `javax.xml.bind.*` classes depending on theversion you use.
+> either the `jakarta.*` classes or the `javax.xml.bind.*` classes depending on the version you use.
 > This makes it hard to have both on the classpath if that's something you can tolerate.
 
 * <https://github.com/jOOQ/jOOQ/issues/9641>

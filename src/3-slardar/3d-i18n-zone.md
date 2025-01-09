@@ -9,7 +9,7 @@ category:
 
 # 3D.Multiple Time and Lang
 
-In Silencer configuration, all I18n messages located in `wigns-i18n/` are automatically loaded.
+In Silencer configuration, all I18n messages located in `wings-i18n/` are automatically loaded.
 
 ## 3D.1.Loading Order
 
@@ -23,7 +23,7 @@ With `LocaleResolver`, the current locale are set in the following order of prio
 6. system default value
 
 Note: `zoneid` is a word in DB and config, while `ZoneId` is a class (I capitalized) in java.
-So, when selecting from Db and geting it by reflection, it is easy to miss the assignment of
+So, when selecting from Db and getting it by reflection, it is easy to miss the assignment of
 ZoneId due to case sensitive.
 
 The `LocaleResolver` acts in the `doService`, after the `doFilter`, so there is no Context in the `Filter`.
