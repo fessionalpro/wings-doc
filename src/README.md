@@ -147,7 +147,7 @@ It's recommended that you get your hands on the code to avoid low-level use and 
 ## (1) get source code
 git clone --depth 1 https://github.com/\
 trydofor/professional-wings.git
-## (2) install dependency useing java8
+## (2) install dependency using java8
 # asdf shell java temurin-8.0.412+8
 git submodule update --remote --init
 (cd observe/meepo && mvn package install)
