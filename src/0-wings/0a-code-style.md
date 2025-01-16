@@ -473,3 +473,17 @@ where `M` represents the enhanced method used by thisLazy,
 * `T` is an interface, and all `M` come from `T` (best practice)
 * `T` is a class, and `M` is enhanced by Cglib (proxyTargetClass=true)
 * no `M`, in which case `T` is itself (but should not use this pattern)
+
+## 0A.M.Pojo Setter Naming and Transient rule
+
+Setter naming in Pojo, taking into account the common serialization tool compatibility, the convention is as follows.
+
+* non-serialized field, use `transient` keyword
+* non-serialized Setter, do not use `setXxx`, use `setXxxBy`
+* non-serialized Setter, use `@Transient` recommended
+* conditional Setter, use `setXxxIf` form
+
+In this context, non-serialized Setters refer to polymorphic Setters with the same name but different parameters.
+In particular, a single parameter tends to interfere with the serialization of pojo's real Setters.
+
+For differences between jackson and fastjson, see [0D.03.jackson and fastjson](. /0d-qa-devops.md#0d03)
