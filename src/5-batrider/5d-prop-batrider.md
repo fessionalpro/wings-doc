@@ -12,7 +12,7 @@ Properties of servicecomb as microservices.
 
 ## 5D.1.spring-servicecomb-79.properties
 
-Apache ServiceComb [Offical Document](https://servicecomb.apache.org/references/java-chassis/en_US/) Configuration.
+Apache ServiceComb [Official Document](https://servicecomb.apache.org/references/java-chassis/en_US/) Configuration.
 
 ### servicecomb.service.application
 
@@ -58,7 +58,7 @@ must be configured as the same as the web container.
 
 ### servicecomb.provider.rest.scanRestController
 
-`Boolean`=`false`, whether to scan the RestController, i.e. not distinguish from @RestSchma.
+`Boolean`=`false`, whether to scan the RestController, i.e. not distinguish from @RestSchema.
 
 ### servicecomb.handler.chain.Consumer.default
 

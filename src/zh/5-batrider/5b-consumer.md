@@ -58,5 +58,5 @@ paths:
 
 * Rpc根据microserviceName和schemaId以及方法operationId定位
 * restTemplate通过microserviceName和path定位
-* broswer http 通过endpoint的ip端口，rest前缀和path定位
+* browser http 通过endpoint的ip端口，rest前缀和path定位
 * path为`basePath`+`paths`，basePath默认为`/`

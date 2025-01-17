@@ -56,7 +56,7 @@ Apache ServiceComb [官方文档](https://servicecomb.apache.org/references/java
 
 ### servicecomb.provider.rest.scanRestController
 
-`Boolean`=`false` 是否扫描RestController，即不和@RestSchma区分
+`Boolean`=`false` 是否扫描RestController，即不和@RestSchema区分
 
 ### servicecomb.handler.chain.Consumer.default
 

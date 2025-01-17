@@ -116,9 +116,9 @@ server {
         deny all;
     }
 
-    # 后端分流，资源类遵循res-id-{base64_urlsafe}.{pdf}格式
-    location ~* (\.json|/res-id-[\-=_0-9a-z]+\.[0-9a-z]+)$ {
-        proxy_pass http://good_admin;
+    # 后端分流，proxy_pass 必须加 `/`
+    location ^~ /api/v1/ {
+        proxy_pass http://good_admin/;
         proxy_http_version  1.1;
         proxy_cache_bypass  $http_upgrade;
 

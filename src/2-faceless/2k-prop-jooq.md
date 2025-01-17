@@ -3,7 +3,7 @@ isOriginal: true
 icon: folder-tree
 category:
   - Faceless
-  - Porperty
+  - Property
 ---
 
 # 2K.Jooq Properties

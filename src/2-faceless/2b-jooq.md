@@ -20,7 +20,7 @@ SqlMapping is recommended because the ORM is too heavy, and Jooq and JdbcTemplat
 
 MyBatis is the first choice for most projects in China, inherent in its excellence,
 but its lack of constraint power and the laziness of developers makes string-based
-sql difficult to refactory safely, and the following problems will come easily.
+sql difficult to refactor safely, and the following problems will come easily.
 
 * Often `select *` queries with lots of useless fields
 * Easy to write large complex SQL to difficult to split the service
@@ -147,7 +147,7 @@ there are 2 Mock way in wings,
 * `@Bean ConnectionProvider` - global inject, app level
 * `Dao.setDslContext` - instance level (default singleton)
 
-Refering the following source code,
+Referring the following source code,
 
 ```java
 @Bean

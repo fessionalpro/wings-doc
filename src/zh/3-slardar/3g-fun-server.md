@@ -198,9 +198,9 @@ OverloadFilter可限定请求并发，默认`false`
 
 ## 3G.10.分页查询
 
-Wings中使用PageQuery和PageDefault取代了SpringData中的Pagable。
+Wings中使用PageQuery和PageDefault取代了SpringData中的Pageable。
 
-* PageQuery只能使用QueryString方式传递，不属于RequesBody部分。
+* PageQuery只能使用QueryString方式传递，不属于RequestBody部分。
 * `@ParameterObject` PageQuery pq
 * `@ParameterObject` `@PageDefault(size=30)` PageQuery pq
 
@@ -208,10 +208,10 @@ Wings中使用PageQuery和PageDefault取代了SpringData中的Pagable。
 
 同PageQuery一样，返回分页使用PageResult作为容器，Wings中有相应的工具类。
 
-当PageQuery作为@RequesBody使用时，一般如下形式，
+当PageQuery作为@RequestBody使用时，一般如下形式，
 
 * 继承 Ins extends PageQuery
-* 组合 private PageQuery pagable
+* 组合 private PageQuery pageable
 
 不能享有PageDefault及别名，和普通的json对象一样，由以下类处理。
 

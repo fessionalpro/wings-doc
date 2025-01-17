@@ -66,7 +66,7 @@ SQL脚本可以很好的编辑，比较，文档化，包括业务表的分层�
 * `wings-*`放置wings配置key，
   - 带有工程或模块代号，如`wings.slardar.*`
   - 提供默认配置，使用`-79`序号
-* 推荐`kebab-caseae`命名，即`key`全小写，使用`-`分割
+* 推荐`kebab-case`命名，即`key`全小写，使用`-`分割
 * 说明类型的注释，使用两个单号注释，如Properties中`##`
 * 功能关闭类的注释，使用单个单行注释，如Properties中`#`
 
@@ -451,3 +451,16 @@ protected RuntimeConfService thisLazy = this;
 * `T`为接口，且`M`都来自`T`（最佳实践）
 * `T`为类，且`M`由Cglib增强（proxyTargetClass=true）
 * 无`M`，此时`T`为自身（不应使用此模式）
+
+## 0A.M.Pojo的Setter命名和Transient约定
+
+在Pojo的Setter命名，考虑到通常的序列化工具的兼容性，约定如下。
+
+* 非序列化字段，使用 `transient` 关键词
+* 非序列化Setter，不可使用`setXxx`，使用 `setXxxBy`
+* 非序列化Setter，建议使用`@Transient`
+* 条件Setter，使用`setXxxIf`形式
+
+其中，非序列化Setter指同名但不同参数的多态Setter。尤其是单个参数，容易影响pojo的真正Setter的序列化。
+
+jackson和fastjson的差异，可参考 [0D.03.jackson和fastjson](./0d-qa-devops.md#0d03)

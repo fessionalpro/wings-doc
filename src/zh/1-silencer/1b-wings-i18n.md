@@ -27,7 +27,7 @@ category:
 * 自动扫描`wings.silencer.i18n.bundle`配置项（逗号分隔多个路径）
 * 加载分隔成多份的配置，路径优先级层叠配置
 
-## 1B.2.sping的机制
+## 1B.2.spring的机制
 
 spring对MessageSource的加载与configuration的机制不同，不需要unicode转义。
 

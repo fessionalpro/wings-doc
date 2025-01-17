@@ -182,7 +182,7 @@ In business coding, toggling business logic can be achieved by using the followi
 * `FeatureFlag` - get the feature state using Class as key
 * `TweakFeature` - dynamically toggle feature at global or thread level
 
-the prioriy of flag is as the following,
+the priority of flag is as the following,
 
 * `@ConditionalWingsEnabled` - confClass or beanMethod
   - qualified-key = `prefix.` + `ClassName` + `.methodName`?

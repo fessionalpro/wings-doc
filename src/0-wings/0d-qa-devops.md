@@ -59,8 +59,8 @@ Fastjson has been replaced by Fastjson2 in wings. note the following lib depende
 Given the current Fastjson-2.0.18 compatibility and stability is still very problematic and should be avoided.
 
 * FastJsonHelper - internal or transient data, static method
-* JacksonHelper - non-web tier, without timezone/i18n auto convertion, static method
-* ObjectMapper - web tier, timezone/i18n auto convertion, inject Bean
+* JacksonHelper - non-web tier, without timezone/i18n auto conversion, static method
+* ObjectMapper - web tier, timezone/i18n auto conversion, inject Bean
 
 NOTE: json format has compatibility issues, the following are the diff, see JsonHelperCompatibleTest for details.
 
@@ -196,7 +196,7 @@ to forward public requests to the development machine for debugging.
 
 ## 0D.09.IDEA Hits Component/Scanned
 
-When importing the Wings project, IDEA cannot be able to handle the WingsAutoConfiguration in spring.factsories,
+When importing the Wings project, IDEA cannot be able to handle the WingsAutoConfiguration in spring.factories,
 and will report a message similar to the following,
 
 Not registered via @EnableConfigurationProperties, marked as Spring component,
@@ -265,7 +265,7 @@ resulting in swagger scan time is too long.
 * ModelKey{qualifiedModelName=ModelName{namespace='java.time', name='Instant'}
 * ModelKey{qualifiedModelName=ModelName{namespace='java.time', name='LocalDateTime'}
 
-springfox swagger 3.0.0 has bugs that will be fixed in 3.0.1.
+springbok swagger 3.0.0 has bugs that will be fixed in 3.0.1.
 <https://github.com/springfox/springfox/issues/3452>
 
 Wings can automatically inject the exposed AlternateTypeRule bean into the docket.
@@ -277,7 +277,7 @@ The deserialization libs involved include, hazelcast, kryo, cache
 * Exactly the same class, but throwing ClassCastException on deserialization
 * The hash and equals of the same Enum are different, causing the compare or map to fail
 
-Most likely, the project uses spring-boot-devtools during development, which causes the IDE and jar to be in different classloaders.
+Most likely, the project uses spring-boot-devtools during development, which causes the IDE and jar to be in different classloader.
 The IDE uses `restart` of devtools, while the non-IDE jar is `base`.
 
 * Option 1, always use `spring.hazelcast.config` in wings to configure hazelcast
@@ -320,9 +320,9 @@ You can't use jar to unzip because spring repacks in the executable zip format.
 
 ```bash
 # show the file list
-unzip -l demo-exmaple-1.0.0-SNAPSHOT.jar
+unzip -l demo-example-1.0.0-SNAPSHOT.jar
 # show the content
-head demo-exmaple-1.0.0-SNAPSHOT.jar
+head demo-example-1.0.0-SNAPSHOT.jar
 #!/bin/bash
 #
 #    .   ____          _            __ _ _
@@ -424,7 +424,7 @@ Assertions.assertEquals(tp0, tp5);
 Silencer's ApplicationContextHelper provides a static Ioc capability with a NPE case,
 
 * Use before `PreparedEvent` in SpringBoot lifecycle
-* Used in different classloaders, such as devtool's `restart`
+* Used in different classloader, such as devtool's `restart`
 
 ## 0D.25.ClassFormatError, IDEA cannot open the project
 
@@ -533,7 +533,7 @@ When the above is `(false, true)` (by default), the Unrecognized field will appe
 > reason: class file for javax.annotation.meta.When not found
 
 `When.MAYBE` is from `com.google.code.findbugs:jsr305:3.0.2`,
-used by `org.springframework.lang.Nullable`, but NOT dependened by wings.
+is used by `org.springframework.lang.Nullable`, NOT by wings.
 
 when using `@Nullable` and `NxxNull`, MUST be from `org.jetbrains.annotations`
 
@@ -559,7 +559,7 @@ when using `@Nullable` and `NxxNull`, MUST be from `org.jetbrains.annotations`
 things to be care of,
 
 * (a) EOF error if read InputStream
-* (b) directly read the paramete to avoid the EOF error
+* (b) directly read the parameter to avoid the EOF error
 * (c) no EOF error
 
 ## 0D.37. Show/Hide the Exception StackTrace
@@ -661,12 +661,12 @@ git checkout -t origin/develop
 ## 0D.41.Fast and graceful shutdown
 
 wings threadpool has the following default config, which will wait for
-tasks (running or in queque) to complete or timeout,
+tasks (running or in queue) to complete or timeout,
 
 * shutdown.await-termination=true
 * shutdown.await-termination-period=###
 
-if no need to wait, see the following, listen shutdown to cancel the quequed tasks,
+if no need to wait, see the following, listen shutdown to cancel the queued tasks,
 
 * spring `@Scheduled` - cancel, will misfire
 * tiny mail - cancel, check misfire
@@ -675,7 +675,7 @@ if no need to wait, see the following, listen shutdown to cancel the quequed tas
 when await-termination=false, threadpool set interrupt to all threads,
 
 * running task, complete or interrupted (if has sleep, wait, join or check interruption)
-* quequed task, passively lost, or actively canceled.
+* queued task, passively lost, or actively canceled.
 
 so, when handling async/future tasks, interrupt, cancel and shutdown need to be considered,
 

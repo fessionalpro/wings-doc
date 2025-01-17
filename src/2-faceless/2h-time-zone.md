@@ -4,7 +4,7 @@ icon: clock
 category:
   - Faceless
   - Time
-  - Convension
+  - Convention
 ---
 
 # 2H.Datetime and Timezone

@@ -117,7 +117,7 @@ add your own `repository`, such as `~/.m2/settings.xml`
 ## 0E.06.Removing Tomcat or Hazelcast
 
 When using wings as a parent through dependencyManagement, the default inheritance of wings does not need to be changed.
-However, if you donot inherit the wings, the following two items may be changed by yourself depending on the situation.
+However, if you dont inherit the wings, the following two items may be changed by yourself depending on the situation.
 
 * spring-boot-starter-web/spring-boot-starter-tomcat, because the default use of undertow
 * spring-session-hazelcast/hazelcast, use the latest version
@@ -155,7 +155,7 @@ build/resources/resource/filtering=true so that mvn replaces it automatically.
 
 However, enabling filter can cause replacement to fail, such as binary files, and wings ignores some binaries by default.
 
-## 0E.10.SPA and Reverse Proxy Cache Cettings
+## 0E.10.SPA and Reverse Proxy Cache Settings
 
 By default, Springboot automatically adds the following Response Header,
 `Cache-Control`=`no-cache,no-store,max-age=0,must-revalidate` so that the reverse proxy
@@ -178,12 +178,12 @@ In wings principle, the config entry must have default value, and sometimes the 
 
 * `String` invalid value - `empty` or `-` is the default invalid value
 * `Map<String, String>` - the value of the invalid key
-* `Map<String, Set<String>>` - the value of overrided key
+* `Map<String, Set<String>>` - the value of override key
 
 ## 0E.12.Execution Order in Spring
 
 In the Spring lifecycle, using TestSilencerCurseApplication as an example, the following order of execution is as follows,
-where `spring.facts` means spring boot [lifecirle events](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.spring-application.application-events-and-listeners)
+where `spring.facts` means spring boot [lifecycle events](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.spring-application.application-events-and-listeners)
 
 * #01,  244ms, (spring.factories): ApplicationStartingEvent
 * #02, 2209ms, (spring.factories): ApplicationEnvironmentPreparedEvent

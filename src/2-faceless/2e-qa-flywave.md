@@ -15,7 +15,7 @@ Topic about flywave, schema/data versioning, journal data.
 
 Inject high priority `journalService`, see `SecurityJournalService` of example project
 
-## 2E.02.No chemaRevisionManager
+## 2E.02.No schemaRevisionManager
 
 After 2.2.6, `wings.enabled.faceless.flywave=false` is disabled by default.
 needs to enable during initialization, for example by adding a temporary turn on in test

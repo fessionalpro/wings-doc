@@ -28,7 +28,7 @@ Also, Spring itself has good support for I18N, and can be better engineered with
 * Auto scan for `wings.silencer.i18n.bundle` config (comma separated paths)
 * Load separated i18n messages, path priority cascading like auto-config
 
-## 1B.2.Sping Mechanism
+## 1B.2.Spring Mechanism
 
 Spring's loading MessageSource is different from that of configuration, and does not require Unicode escaping.
 

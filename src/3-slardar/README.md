@@ -37,7 +37,7 @@ Slardar is configured by default according to the following architecture and per
 
 ## 3.3.SpringMvc Enhancement
 
-Base on springmvc, Salrdar provides potential capabilities and out-of-the-box features,
+Base on springMvc, Slardar provides potential capabilities and out-of-the-box features,
 
 * concurrency control, multi-level caching, event publish/subscribe
 * spring-boot-admin and actuator management and monitoring capability
@@ -63,11 +63,10 @@ reference,
 * <https://docs.spring.io/spring-framework/reference/integration/scheduling.html>
 * <https://docs.spring.io/spring-boot/reference/features/task-execution-and-scheduling.html>
 
-
 ## 3.5.More Sections
 
-* [Jackson Convention](./3a-jackson.md) - Json convertion and i18n message
-* [Hazelcast Middleware](./3b-hazelcast.md) - distributed session, chaching, messaging
+* [Jackson Convention](./3a-jackson.md) - Json conversion and i18n message
+* [Hazelcast Middleware](./3b-hazelcast.md) - distributed session, caching, messaging
 * [Host Extend and URL Override](./3c-host-ext.md) - Override URL, Multiple Hosts and skinning
 * [Multiple Time and Lang](./3d-i18n-zone.md) - DateTime, Validation, Locale
 * [Session and Authn](./3e-auth-session.md) - Multiple logins, credentials, hierarchical permissions

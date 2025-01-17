@@ -10,7 +10,7 @@ category:
 
 Unlike user login (BindAuth), open Api is limited function, non-SecurityFilter system.
 
-* BindAuth - Based on Filter and Cookie, it is the traditional Broswer-Server model, or BS for short
+* BindAuth - Based on Filter and Cookie, it is the traditional Browser-Server model, or BS for short
 * ApiAuth - Based on Token and Signature, it is the external Server-Server model, or SS for short
 * ServiceComb - internal ServerServer microservices and cloud model
 
@@ -20,14 +20,14 @@ while ApiAuth has only TerminalContext.
 
 ApiAuth model is bidirection, the response uses the same convention as the request reply, including,
 
-* client - like the usename, also known as clientId, appId, accessKey
+* client - like the username, also known as clientId, appId, accessKey
 * secret - like the password, also known as clientSecret, appKey, accessSecret
 * timestamp - the response uses the timestamp of the request, if not in the request, the response uses the current timestamp
 * signature - the response uses the same algorithm as the request, based on the length
 * digest - file digest, used when exchanging files
 * secret - user set, exists in clear text, used for signing
 
-A Request uses the following 3 parts to send a message, while a Response does not have a QuereyString
+A Request uses the following 3 parts to send a message, while a Response does not have a QueryString
 
 * Signature parameter - `key:value` format, getHeader to get it
 * Business parameters - `k=v(&k1=v1)*` format, getParameterMap to get
@@ -46,7 +46,7 @@ ApiAuth has the following 2 kind of client key,
 * use ticket - more flexible, can be expired and revoked
 * use others string - only hash and equal
 
-and 3 level of security verfication,
+and 3 level of security verification,
 
 * single credential - use complex key to validate, compatible to older styles
 * credential and signature - use client and secret to identify and verify data

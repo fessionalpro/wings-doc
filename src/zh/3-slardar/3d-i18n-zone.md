@@ -9,7 +9,7 @@ category:
 
 # 3D.多国语和多时区
 
-在Silencer配置中，所有位于`wigns-i18n/`的I18n的消息，都会自动加载。
+在Silencer配置中，所有位于`wings-i18n/`的I18n的消息，都会自动加载。
 
 ## 3D.1.加载顺序
 
@@ -85,7 +85,7 @@ public static class Ins {
 
 @RequestMapping("/test/binding-error-from.json")
 public R<?> bindingErrorFrom(@Valid Ins ins) {
-    return R.okData(ins);
+    return R.ok(ins);
 }
 ```
 

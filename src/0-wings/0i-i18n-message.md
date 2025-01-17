@@ -8,7 +8,7 @@ category:
 
 # 0I.I18n Message
 
-As `*.Properties`, Wings enhances the default messages.properties with a separated configuration.
+As `*.properties`, Wings enhances the default messages.properties with a separated configuration.
 
 ## 0I.1.Matching Rule
 
@@ -27,7 +27,7 @@ rules of matching i18n language are `lang_region` > `lang` > `default`
 find . -type d -name 'wings-i18n'| egrep -v -E 'target/|test/'
 ```
 
-### 2a.AnthnErrorEnum slardar-webmvc
+### 2a.AuthnErrorEnum slardar-webmvc
 
 authn error of spring security.
 

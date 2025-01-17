@@ -31,7 +31,7 @@ and collaboration. Any big things should be broken down.
 
 Using `EnvironmentPostProcessor` to scan `/wings-conf/**/*. *` in the application `paths` , same rules as
 [Externalized Configuration](https://docs.spring.io/spring-boot/docs/3.0.3/reference/htmlsingle/#features.external-config),
-the `paths` and scaning priority of config file are as follows.
+the `paths` and scanning priority of config file are as follows.
 
 1. command line arguments, `--spring.config.location`, `--spring.config.additional-location`
 2. Java System properties, `spring.config.location`, `spring.config.additional-location`

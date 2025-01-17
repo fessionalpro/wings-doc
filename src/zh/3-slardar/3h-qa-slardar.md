@@ -89,7 +89,7 @@ security一定是系统中最为重要的部分，也是所有渗透入侵的重
 SavedRequestAwareAuthenticationSuccessHandler和RequestCache 进行搭配即可。
 在前后端分离的情况下，不需要后端控制，所以应该关闭RequestCache。
 
-* HTTP Referer header - 有些浏览器不给refer
+* HTTP Referrer header - 有些浏览器不给refer
 * saving the original request in the session - 要session支持
 * base64 original URL to the redirected login URL - 通常的SSO实现
 

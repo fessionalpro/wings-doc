@@ -69,7 +69,6 @@ Useful plug-ins
 * HTTP Client - official support for the `*.http` file format
 * Test Management - handle `*.t.md`
 
-
 ## 0C.2.Kotlin Development
 
 Wings supports mixed java and kotlin development, but prefers to write java in order to avoid
@@ -107,7 +106,7 @@ mvn help:effective-pom
 
 ## 0C.5.Http Testing
 
-It is recommended to create `*.http` supported by IDEA to descript and test web interface under each project test,
+It is recommended to create `*.http` supported by IDEA to describe and test web interface under each project test,
 the official documentation is as follows,
 
 * <https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html>

@@ -12,7 +12,7 @@ category:
 
 ## 0C.1.Java开发
 
-使用`IntelliJIdea`作为开发`IDE`，可使用`code style`和`live templates`。
+使用`IntelliJ Idea`作为开发`IDE`，可使用`code style`和`live templates`。
 
 * `wings-idea-style.xml`在`Setting/Editor/Code Style`导入。
 * `wings-idea-live.xml`需要手动放到`$config/templates/`，没有则新建。

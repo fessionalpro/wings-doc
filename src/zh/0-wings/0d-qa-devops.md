@@ -307,9 +307,9 @@ IDE使用了devtools的`restart`, 而非IDE内的jar则是`base`。
 
 ```bash
 # 显示文件列表
-unzip -l demo-exmaple-1.0.0-SNAPSHOT.jar
+unzip -l demo-example-1.0.0-SNAPSHOT.jar
 # 查看文件内容
-head demo-exmaple-1.0.0-SNAPSHOT.jar
+head demo-example-1.0.0-SNAPSHOT.jar
 #!/bin/bash
 #
 #    .   ____          _            __ _ _

@@ -9,11 +9,11 @@ category:
 
 # 9A.WingsBoot Change
 
-miro version change log, majo version upgrade guide.
+miro version change log, major version upgrade guide.
 
 ## Changelog
 
-* [Notable Changlog](./9a0.notable.md)
+* [Notable Changelog](./9a0.notable.md)
 
 ## Upgrade Guide
 
@@ -23,3 +23,4 @@ miro version change log, majo version upgrade guide.
 * [Upgrade 3.0.3.300 Guide](./9a4.303-300.md)
 * [Upgrade 3.0.6.300 Guide](./9a5.306-300.md)
 * [Upgrade 3.2.100 Guide](./9a6.320-100.md)
+* [Upgrade 3.3.140 Guide](./9a7.330-140.md)

@@ -12,7 +12,7 @@ Based on Spring Mail, provides database-centric mail send service
 
 * sync/async, single/batch send
 * limited frequency, send wait by error type
-* Stop sending by success staus or failure count
+* Stop sending by success status or failure count
 * concurrent or isolated send for multiple applications
 * Support multiple email accounts
 * Support dryrun, send by app, by runmode
@@ -118,7 +118,7 @@ Email exceptions, mainly have three categories
 according to the above types and the server response message,
 throw the following exception  and leave it to the caller to handle.
 
-* MailStopException - shoul stop sending
+* MailStopException - should stop sending
 * MailWaitException - retry after waiting
 * MailRetryException - retry at next schedule
 

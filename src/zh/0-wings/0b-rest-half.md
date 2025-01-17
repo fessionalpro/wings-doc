@@ -89,3 +89,68 @@ client端的常见类型举例，
 * 后缀如，应答内容扩展名`.pdf`
 * 从后往前做时，建议与项目分包一致
 * 从前往后做时，建议与页面功能一致
+
+## 0B.5.请求数据叫Body，应答数据叫Data
+
+考虑到类型自动合并，在ts中，使用interface而不是type定义数据类型。
+为了标识为网络请求和应答，采用`Api`前置和`Body`和`Data`后缀，
+
+* Request - interface ApiXxxBody
+* Response - interface ApiXxxData
+
+在Response时，业务Data由三个层级的状态表示，
+
+* http层的status - 网络请求是否成功
+* 业务层的success - 业务处理是否成功（可能存在data）
+* 业务层的errors - 是否为error失败（一定没有data）
+
+在http层，以下状态外，视为Error，由errorHandler统一处理，
+
+* 200 - 网络请求成功
+* 301,302 - 自动跟随
+
+业务层的数据，为便于说明，约定以下数据结构表示，
+
+```ts
+interface I18nNotice {
+  type: string; // 'Validation', 'IllegalArgument', 'IllegalState'
+  target?: string; // target input, 'city', 'tab1.zipcode'
+  message?: string; // default i18n message
+  i18nCode?: string; // i18n template code
+  i18nArgs?: unknown[]; // i18n template args
+}
+interface ErrorResult {
+  success: false; // no business process
+  errors: I18nNotice[]; // reason for process stop
+}
+interface DataResult<T> {
+  success: boolean; // business result
+  data?: T; // business data
+  message?: string; // default i18n message
+  code?: string; // business code
+}
+type ApiResult<T> = DataResult<T> | ErrorResult;
+```
+
+这里用ApiResult表示应答数据，根据errors分为两者情况，
+
+* ErrorResult - 有errors，业务终止，没有业务数据，走`catch`流程
+* DataResult - 无errors，业务完成，可能有业务数据，走正常业务流程
+
+当ErrorResult时，通常有三类错误，可以定位输入，
+
+* IllegalArgument - 前置检查，验证方法输入参数
+* IllegalState - 后置检查，验证方法中数据状态
+* Validation - DataBinding是的validate
+
+当DataResult时，根据success分为两种，成功时，继续执行正常业务流程，
+失败时，则应该视为Error，走`catch`流程，
+
+* message - 有业务信息，应该显示，通常成功时没有
+* data - 有业务数据，按业务处理。通常失败时没有
+* code - 有业务代码，细化业务逻辑。通常没有
+
+当简单的message或code不能满足复杂业务时，应该在data中包含他们，比如，
+
+* 多条业务消息，需要分步，或非常规处理
+* 多个业务代码，需要执行不同的业务逻辑
