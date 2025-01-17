@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "antfu.file-nesting",
+        "streetsidesoftware.code-spell-checker",
+        "editorconfig.editorconfig",
+        "mhutchie.git-graph",
+        "seatonjiang.gitmoji-vscode",
+        "davidanson.vscode-markdownlint"
+    ]
+}
