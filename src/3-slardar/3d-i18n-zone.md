@@ -89,7 +89,7 @@ public static class Ins {
 
 @RequestMapping("/test/binding-error-from.json")
 public R<?> bindingErrorFrom(@Valid Ins ins) {
-    return R.okData(ins);
+    return R.ok(ins);
 }
 ```
 
