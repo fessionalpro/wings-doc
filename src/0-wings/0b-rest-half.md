@@ -96,3 +96,117 @@ In the scenario, each URL is a specific role, with its family and profession.
 * Suffix such as, response content extension `.pdf`
 * When from backend to frontend, consistent with the project package
 * When from frontend to backend, consistent with the page feature
+
+## 0B.5.RequestData as Body, ResponseData as Data
+
+Considering the type merging of ts, use interface instead of type to define
+data structures, and prefix the network request/response with `Api`,
+suffix with `Body` and `Data`,
+
+* Request - interface ApiXxxBody
+* Response - interface ApiXxxData
+
+For responses, biz-data is represented with 3 layers of status,
+
+* net-layer (status) - whether the request is successful
+* biz-layer (errors) - whether the biz has failed due to errors (no data)
+* biz-layer (success) - whether the biz result is successful (possible with data)
+
+At the net-layer, any HTTP status other than the following is treated as an error
+and will be handled by a unified errorHandler,
+
+* 200 - network request successful
+* 301, 302 - automatically followed
+
+At the biz-layer, the result structures are represented as follows,
+
+```ts
+interface I18nMessage {
+  message?: string; // default i18n message or template
+  i18nCode?: string; // i18n template code
+  i18nArgs?: unknown[]; // i18n template args
+}
+
+interface I18nNotice extends I18nMessage {
+  type: string; // message type, 'Validation', 'IllegalArgument', 'IllegalState'
+  target?: string; // target input name, 'city', 'tab1.zipcode'
+}
+
+interface ActionResult {
+  success: boolean; // whether the result is success, default false.
+  code?: string; // biz-code/err-code to the caller, should be null if empty
+}
+
+interface ErrorResult extends ActionResult {
+  errors: I18nNotice[]; //  errors cause success to be false, should be null if empty.
+}
+
+interface DataResult<T> extends ActionResult, I18nMessage {
+  data?: T; // biz-data to the caller
+}
+
+type ApiResult<T=unknown> = DataResult<T> | ErrorResult;
+
+class ApiResultError extends Error {
+  public falseResult: DataResult | undefined | null;
+  public errorResult: ErrorResult | undefined | null;
+  // constructor(result: ApiResult) ....
+}
+```
+
+The `ApiResult` is used to represent the response data, which is divided into 2 types according to `errors`.
+
+* ErrorResult - with errors, the business is aborted, called `errorResult`.
+* DataResult - without errors, the business is completed,  the result may succeed or fail.
+
+When `ErrorResult`, should throw `ApiResultError(errorResult)`, should only handle
+code and  errors. and there are 3 types of error's type can locate the input,
+
+* IllegalArgument - pre-check, validates the method input argument
+* IllegalState - post-check, validates the state of the data in the method.
+* Validation - DataBinding is validation
+
+When `DataResult`, it is divided into 2 types according to success. when success,
+it carries out the normal business result, otherwise, it is called `falseResult`
+and throws `ApiResultError(falseResult)`,
+
+* message - a biz message should be displayed, usually none if success=true
+* data - the biz data, processed as business. usually none if success=false
+* code - the biz code to refine the business logic. usually none
+
+When a simple message or code cannot satisfy complex business, they should be
+included in data, for example.
+
+* multiple biz messages that require step-by-step, or non-routine processing
+* multiple biz codes that need to execute different business logic
+
+Combining the above, the front-end response handling should be, for example,
+
+* unified fetchApi, intercept the response, parse and process the ApiResult,
+  - When there are `errors`, throw `ApiResultError(errorResult)
+  - when `success=false`, throw `ApiResultError(falseResult)`
+  - When `message` is present, emit global i18n messages by default
+  - use `options` to **pre** handle the above processes
+* unified errorHandler, catch `ApiResultError` globally **post** handle it
+* the normal biz code, `try fetchApi(body,opts)`
+* must be `success=true` for `data` normal business logic
+* catch `ApiResultError` if handle by yourself, throw if you can't
+* to interrupt business logic, throw error to the unified errorHandler
+
+```ts
+try {
+  const dataResult = fetchLoginApi(loginBody);
+  // normal biz-logic
+}
+catch (err) {
+  // rethrow to default errorHandlers
+  if (!(err instanceof ApiResultError)) throw err;
+
+  if (err.errorResult != null) {
+    // handle errors
+  }
+  else {
+    // handle success=false
+  }
+}
+```

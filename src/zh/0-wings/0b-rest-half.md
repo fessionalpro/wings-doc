@@ -100,57 +100,102 @@ client端的常见类型举例，
 
 在Response时，业务Data由三个层级的状态表示，
 
-* http层的status - 网络请求是否成功
-* 业务层的success - 业务处理是否成功（可能存在data）
-* 业务层的errors - 是否为error失败（一定没有data）
+* 网络层的status - 网络请求是否成功
+* 业务层的errors - 是否因error终止（一定没有data）
+* 业务层的success - 业务结果是否成功（可能存在data）
 
-在http层，以下状态外，视为Error，由errorHandler统一处理，
+在网络层，以下http状态外，视为Error，由errorHandler统一处理，
 
 * 200 - 网络请求成功
 * 301,302 - 自动跟随
 
-业务层的数据，为便于说明，约定以下数据结构表示，
+业务层的结果，为便于说明，约定以下数据结构表示，
 
 ```ts
-interface I18nNotice {
-  type: string; // 'Validation', 'IllegalArgument', 'IllegalState'
-  target?: string; // target input, 'city', 'tab1.zipcode'
-  message?: string; // default i18n message
-  i18nCode?: string; // i18n template code
-  i18nArgs?: unknown[]; // i18n template args
+interface I18nMessage {
+  message?: string; // 默认多国语信息或模板
+  i18nCode?: string; // 多国语模板代码
+  i18nArgs?: unknown[]; //多国语模板参数
 }
-interface ErrorResult {
-  success: false; // no business process
-  errors: I18nNotice[]; // reason for process stop
+
+interface I18nNotice extends I18nMessage {
+  type: string; // 消息类型, 'Validation', 'IllegalArgument', 'IllegalState'
+  target?: string; // 输入项名字, 'city', 'tab1.zipcode'
 }
-interface DataResult<T> {
-  success: boolean; // business result
-  data?: T; // business data
-  message?: string; // default i18n message
-  code?: string; // business code
+
+interface ActionResult {
+  success: boolean; // 是否成功，默认false
+  code?: string; // 给调用者的业务码或错误码，空时应该设置null
 }
-type ApiResult<T> = DataResult<T> | ErrorResult;
+
+interface ErrorResult extends ActionResult {
+  errors: I18nNotice[]; //  导致业务失败的错误，空时应该设置null
+}
+
+interface DataResult<T> extends ActionResult, I18nMessage {
+  data?: T; // 给调用者的业务数据
+}
+
+type ApiResult<T=unknown> = DataResult<T> | ErrorResult;
+
+class ApiResultError extends Error {
+  public falseResult: DataResult | undefined | null;
+  public errorResult: ErrorResult | undefined | null;
+  // constructor(result: ApiResult) ....
+}
 ```
 
-这里用ApiResult表示应答数据，根据errors分为两者情况，
+这里用ApiResult表示应答数据，根据是否存在`errors`分为两种，
 
-* ErrorResult - 有errors，业务终止，没有业务数据，走`catch`流程
-* DataResult - 无errors，业务完成，可能有业务数据，走正常业务流程
+* ErrorResult - 有errors，业务终止，称为 `errorResult`
+* DataResult - 无errors，业务完成，结果可能成功或失败。
 
-当ErrorResult时，通常有三类错误，可以定位输入，
+当为`ErrorResult`时，应该抛出 `ApiResultError(errorResult)`，
+应该只处理code和errors。其中error的type有三类错误，可以定位输入项，
 
 * IllegalArgument - 前置检查，验证方法输入参数
 * IllegalState - 后置检查，验证方法中数据状态
 * Validation - DataBinding是的validate
 
-当DataResult时，根据success分为两种，成功时，继续执行正常业务流程，
-失败时，则应该视为Error，走`catch`流程，
+当为`DataResult`时，根据success分为两种，成功时，进行正常业务流程，
+否则，称为`falseResult` 抛出 `ApiResultError(falseResult)`，
 
-* message - 有业务信息，应该显示，通常成功时没有
-* data - 有业务数据，按业务处理。通常失败时没有
+* message - 有业务信息，应该显示，通常success=true时没有
+* data - 有业务数据，按业务处理。通常success=false时没有
 * code - 有业务代码，细化业务逻辑。通常没有
 
 当简单的message或code不能满足复杂业务时，应该在data中包含他们，比如，
 
 * 多条业务消息，需要分步，或非常规处理
 * 多个业务代码，需要执行不同的业务逻辑
+
+综合以上，在前端处理应答的流程应该为，
+
+* 统一的fetchApi，拦截response，解析ApiResult并处理
+  - 当存在`errors`时，throw `ApiResultError(errorResult)`
+  - 当`success=false`时，throw `ApiResultError(falseResult)`
+  - 当存在`message`时，默认emit全局的i18n消息
+  - 存在`options`，可**事前**处理以上行为
+* 统一的errorHandler，在**事后**处理`ApiResultError`
+* 正常的业务代码，`try fetchApi(body,opts)`
+* 一定是`success=true`，进行`data`正常的业务逻辑
+* 若自行处理`ApiResultError`，若catch, 不能处理的throw
+* 中断业务逻辑，可以throw error，交给 errorHandler 统一处理
+
+```ts
+try {
+  const dataResult = fetchLoginApi(loginBody);
+  // 正常的业务逻辑
+}
+catch (err) {
+  // 抛给全局errorHandler处理
+  if (!(err instanceof ApiResultError)) throw err;
+
+  if (err.errorResult != null) {
+    // 处理 errors
+  }
+  else {
+    // 处理 success=false
+  }
+}
+```
