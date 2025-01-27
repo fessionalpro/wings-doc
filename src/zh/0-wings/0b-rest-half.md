@@ -128,7 +128,7 @@ interface ActionResult {
   code?: string; // 给调用者的业务码或错误码，空时应该设置null
 }
 
-interface ErrorResult extends ActionResult {
+interface ErrorResult extends ActionResult, I18nMessage {
   errors: I18nNotice[]; //  导致业务失败的错误，空时应该设置null
 }
 
@@ -147,24 +147,17 @@ class ApiResultError extends Error {
 
 这里用ApiResult表示应答数据，根据是否存在`errors`分为两种，
 
-* ErrorResult - 有errors，业务终止，称为 `errorResult`
-* DataResult - 无errors，业务完成，结果可能成功或失败。
+* `ErrorResult` 有 `errors` -  服务异常终止，未完成。
+  - `success` - 必须为 `false`
+  - 若有 `message` - 应该是第一个错误的 `message`
+  - 若有 `code` - 错误代码，用来明确详细错误。
+* `DataResult` 没有 `errors` - 服务正常结束，已完成。
+  - `success` - 可以是 `true` 或 `false`
+  - 若有 `message` -  为使用者提供更多信息。
+  - 若有 `code` - 业务代码，用来明确详细数据。
+  - 若有 `data` - 业务数据，不过`success`与否。
 
-当为`ErrorResult`时，应该抛出 `ApiResultError(errorResult)`，
-应该只处理code和errors。其中error的type有三类错误，可以定位输入项，
-
-* IllegalArgument - 前置检查，验证方法输入参数
-* IllegalState - 后置检查，验证方法中数据状态
-* Validation - DataBinding是的validate
-
-当为`DataResult`时，根据success分为两种，成功时，进行正常业务流程，
-否则，称为`falseResult` 抛出 `ApiResultError(falseResult)`，
-
-* message - 有业务信息，应该显示，通常success=true时没有
-* data - 有业务数据，按业务处理。通常success=false时没有
-* code - 有业务代码，细化业务逻辑。通常没有
-
-当简单的message或code不能满足复杂业务时，应该在data中包含他们，比如，
+当简单`message`或`code`不能满足复杂业务时，应该在`data`中包含他们，比如，
 
 * 多条业务消息，需要分步，或非常规处理
 * 多个业务代码，需要执行不同的业务逻辑

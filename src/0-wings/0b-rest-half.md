@@ -137,7 +137,7 @@ interface ActionResult {
   code?: string; // biz-code/err-code to the caller, should be null if empty
 }
 
-interface ErrorResult extends ActionResult {
+interface ErrorResult extends ActionResult, I18nMessage {
   errors: I18nNotice[]; //  errors cause success to be false, should be null if empty.
 }
 
@@ -156,26 +156,18 @@ class ApiResultError extends Error {
 
 The `ApiResult` is used to represent the response data, which is divided into 2 types according to `errors`.
 
-* ErrorResult - with errors, the business is aborted, called `errorResult`.
-* DataResult - without errors, the business is completed,  the result may succeed or fail.
+* `ErrorResult` with `errors` -  the service is abnormal and incomplete.
+  - `success` - must be `false`.
+  - if has `message` - should be the 1st error message.
+  - if has `code` - the err-code to clarify the detailed error.
+* `DataResult` without `errors` - the service is normal and complete.
+  - `success` - can be `true` or `false`.
+  - if has `message` -  give more information to the user.
+  - if has `code` - the biz-code to clarify the detailed data.
+  - if has `data` - the biz-data to the user, regardless of `success`.
 
-When `ErrorResult`, should throw `ApiResultError(errorResult)`, should only handle
-code and  errors. and there are 3 types of error's type can locate the input,
-
-* IllegalArgument - pre-check, validates the method input argument
-* IllegalState - post-check, validates the state of the data in the method.
-* Validation - DataBinding is validation
-
-When `DataResult`, it is divided into 2 types according to success. when success,
-it carries out the normal business result, otherwise, it is called `falseResult`
-and throws `ApiResultError(falseResult)`,
-
-* message - a biz message should be displayed, usually none if success=true
-* data - the biz data, processed as business. usually none if success=false
-* code - the biz code to refine the business logic. usually none
-
-When a simple message or code cannot satisfy complex business, they should be
-included in data, for example.
+When a simple `message` or `code` cannot satisfy complex business, they should be
+included in `data`, for example.
 
 * multiple biz messages that require step-by-step, or non-routine processing
 * multiple biz codes that need to execute different business logic
