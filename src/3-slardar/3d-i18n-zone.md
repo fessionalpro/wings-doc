@@ -35,6 +35,9 @@ The `LocaleResolver` acts in the `doService`, after the `doFilter`, so there is 
 * After user login, Locale and ZoneId is automatically generated in the Context
 * `SecurityContextUtil` gets the Context in the Mvc layer, implemented by Filter
 * `WingsTerminalContext` is used in the Service layer, implemented by TerminalInterceptor
+* `LocaleZoneIdUtil` is based on `WingsTerminalContext`, used in non-spring bean
+* `LocaleContextHolder` is from SpringMvc, used in Mvc without request
+* `RequestHelper` is used in Mvc with request
 
 For multiple timezones, the Enum is used to automatically generate the standard timezones to parse and use.
 In terms of encoding naming, the type relationships and naming conventions are as follows.

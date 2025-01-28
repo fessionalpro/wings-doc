@@ -34,6 +34,9 @@ category:
 * 用户登录后，自动生成Locale和ZoneId有关的Context
 * `SecurityContextUtil`在Mvc层获取相关的Context，由Filter实现
 * `WingsTerminalContext`在Service层使用，由TerminalInterceptor实现
+* `LocaleZoneIdUtil` 基于 `WingsTerminalContext` 在非Spring Bean中使用
+* `LocaleContextHolder` 是SpringMvc的，在Mvc中，无request时使用
+* `RequestHelper` 在Mvc中，有request时使用
 
 多时区方面，通过Enum类，自动生成业务上的标准时区，以供解析和使用。
 在编码命名上，类型关系和命名约定如下，
