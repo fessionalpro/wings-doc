@@ -41,7 +41,6 @@ export default hopeTheme({
     url: 'https://www.trydofor.com',
   },
   themeColor: true,
-  iconAssets: 'fontawesome-with-brands', // https://fontawesome.com/search?o=r&m=free&f=brands%2Cclassic
   logo: '/logo.png',
   repo: 'trydofor/professional-wings',
   docsRepo: 'fessionalpro/wings-doc',
@@ -52,7 +51,29 @@ export default hopeTheme({
   copyright: 'Copyright© <a href="https://www.trydofor.com" target="_blank">trydofor</a>',
   displayFooter: true,
   pageInfo: ['Author', 'Original', 'Date', 'Category', 'Tag', 'ReadingTime'],
-
+  markdown: {
+    alert: true,
+    align: true,
+    codeTabs: true,
+    footnote: true,
+    hint: true,
+    imgMark: true,
+    mark: true,
+    mermaid: true,
+    plantuml: true,
+    spoiler: true,
+    sub: true,
+    sup: true,
+    tabs: true,
+    tasklist: true,
+    vPre: true,
+    stylize: [
+      stylizeIt(/^(?:MUST|必须)$/u, '', 'info', 'strong', 'sup'),
+      stylizeIt(/^(?:SHOULD|RECOMMENDED|TIP|推荐|建议)$/u, '', 'tip', 'strong', 'sup'),
+      stylizeIt(/^(?:MAY|NOTE|可选|不推荐|不建议)$/u, '', 'note', 'strong', 'sup'),
+      stylizeIt(/^(?:NOT|WARN|慎用)$/u, '', 'warning', 'strong', 'sup'),
+    ],
+  },
   plugins: {
     blog: false,
     comment: {
@@ -67,29 +88,8 @@ export default hopeTheme({
       apiKey: 'c70807b7265d204d74d39aeee10b4474',
       indexName: 'wingsboot',
     },
-    //components: ['Badge', 'FontIcon'],
-    mdEnhance: {
-      alert: true,
-      hint: true,
-      vPre: true,
-      tabs: true,
-      codetabs: true,
-      align: true,
-      sup: true,
-      sub: true,
-      footnote: true,
-      mark: true,
-      imgMark: true,
-      tasklist: true,
-      mermaid: true,
-      plantuml: true,
-      spoiler: true,
-      stylize: [
-        stylizeIt(/^(?:MUST|必须)$/u, '', 'info', 'strong', 'sup'),
-        stylizeIt(/^(?:SHOULD|RECOMMENDED|TIP|推荐|建议)$/u, '', 'tip', 'strong', 'sup'),
-        stylizeIt(/^(?:MAY|NOTE|可选|不推荐|不建议)$/u, '', 'note', 'strong', 'sup'),
-        stylizeIt(/^(?:NOT|WARN|慎用)$/u, '', 'warning', 'strong', 'sup'),
-      ],
+    icon:{
+      assets: 'fontawesome-with-brands', // https://fontawesome.com/search?o=r&m=free&f=brands%2Cclassic
     },
   },
 });
