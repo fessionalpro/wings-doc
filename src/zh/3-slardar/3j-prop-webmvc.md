@@ -185,6 +185,14 @@ H[:m][:s][.SSS]
 
 `Boolean`=`true`，是否处理I18nResult的message
 
+### wings.slardar.jackson.i18n-result-compatible
+
+`Integer=`, 在R中，是否设置第一个error 作为message
+
+* 0, null - 禁止
+* 1 - 仅设置 message
+* 2 - 设置 message, i18nCode 和 i18nArgs
+
 ## 3J.4.wings-locale-resolver-79.properties
 
 ### Locale或Language
