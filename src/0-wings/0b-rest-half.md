@@ -128,7 +128,7 @@ interface I18nMessage {
 }
 
 interface I18nNotice extends I18nMessage {
-  type: string; // message type, 'Validation', 'IllegalArgument', 'IllegalState'
+  type: string; // message type, 'Validation', 'IllegalArgument'
   target?: string; // target input name, 'city', 'tab1.zipcode'
 }
 

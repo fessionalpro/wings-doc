@@ -92,6 +92,8 @@ public R<?> bindingErrorFrom(@Valid Ins ins) {
 }
 ```
 
+注意，当方法参数中存在 `BindingResult`，则不会抛出异常，表示手工处理。
+
 ### 4b.读写分组验证
 
 在Mvc实践中，推荐的模式是，用groups分组，以区分insert和update的验证
