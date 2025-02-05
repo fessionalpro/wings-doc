@@ -162,7 +162,7 @@ The following will cause serialization and deserialization inconsistencies.
 
 ### wings.slardar.jackson.empty-date
 
-`String`=`1000-01-01`, `empty` date is not output, empty means ignore this.
+`LocalDate`=`1000-01-01`, `empty` date is not output, empty means ignore this.
 
 support LocalDate, LocalDateTime, ZonedDateTime, OffsetDateTime, util.Date
 
@@ -170,17 +170,6 @@ support LocalDate, LocalDateTime, ZonedDateTime, OffsetDateTime, util.Date
 
 `Integer`=12, considering the time zone offset, and the system time difference
 within plus or minus 12 hours, it is treated as `empty`.
-
-### wings.slardar.jackson.empty-list
-
-`Boolean`=`false`, whether to output `empty` list.
-
-Includes `empty` of Array and java.util.Collection. disabled by default for 3rd unfriendly.
-eg. spring-boot-admin's js use `.length` and `key` to check value existence.
-
-### wings.slardar.jackson.empty-map
-
-`Boolean`=`false`, whether to output `empty` map, includes java.util.Map
 
 ### wings.slardar.jackson.i18n-result
 
