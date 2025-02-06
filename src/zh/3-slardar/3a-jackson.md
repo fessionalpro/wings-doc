@@ -42,13 +42,13 @@ category:
 
 ## 3A.3.内容的国际化
 
-通过注解和类型自动对内容进行i18n转换，以字符串输出。
+通过注解和I18nAwarePropertyFilter自动对内应用语言。
 
 * `I18nString`类型会自动转换
 * `@JsonI18nString`注解的`CharSequence`当做message_code转化
 * `@JsonI18nString(false)`可以关闭自动转换
-* `R.I<T>`为常用返回值类型，当存在`i18nCode`时，会用i18n信息自动替换`message`
-  自动转化使用注入的`messageSource`和`WingsI18nContext`获得相应语言
+* `I18nMessage`自动根据locale设置message
+* `I18nAware`自动根据locale自动转换
 
 ## 3A.4.日期时间的格式
 
@@ -98,10 +98,13 @@ wings.slardar.number.decimal.separator=_
 
 ## 3A.6.空Empty数据处理
 
-此功能默认开启，会造成正反序列化的不一致。需要自行处理差异
+通过`configOverride` 和 `NON_EMPTY`，默认排除了以下类型的empty。
 
-* 日期empty视为null，不输出，避免出现很多1000-01-01的数据
-* array/Collection/Map为empty时，不输出
+* util.Date/sql.Date
+* time.LocalDate
+* time.LocalDateTime
+* time.ZonedDateTime
+* time.OffsetDateTime
 
 ## 3A.7.常用Jackson注解
 

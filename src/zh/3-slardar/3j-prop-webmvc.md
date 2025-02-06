@@ -162,7 +162,7 @@ H[:m][:s][.SSS]
 
 ### wings.slardar.jackson.empty-date
 
-`String`=`1000-01-01`，`空`日期不输出，空表示忽略此功能。
+`LocalDate`=`1000-01-01`，`空`日期不输出，空表示忽略此功能。
 
 支持LocalDate，LocalDateTime，ZonedDateTime，OffsetDateTime，util.Date
 
@@ -170,20 +170,17 @@ H[:m][:s][.SSS]
 
 `Integer`=12，考虑时区影响，和系统时间相差正负[12]小时内，认为`空`
 
-### wings.slardar.jackson.empty-list
-
-`Boolean`=`false`，当`空`时，是否不输出。
-
-包括Array和java.util.Collection的`空`。第三方不友好，默认关闭，
-如spring-boot-admin在js中以`.length`和`key`检查而无前置判断。
-
-### wings.slardar.jackson.empty-map
-
-`Boolean`=`false`，当`空`时，是否不输出，包括java.util.Map。
-
 ### wings.slardar.jackson.i18n-result
 
 `Boolean`=`true`，是否处理I18nResult的message
+
+### wings.slardar.jackson.i18n-result-compatible
+
+`Integer=`, 在R中，是否设置第一个error 作为message
+
+* 0, null - 禁止
+* 1 - 仅设置 message
+* 2 - 设置 message, i18nCode 和 i18nArgs
 
 ## 3J.4.wings-locale-resolver-79.properties
 

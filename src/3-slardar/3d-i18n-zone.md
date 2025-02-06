@@ -96,6 +96,9 @@ public R<?> bindingErrorFrom(@Valid Ins ins) {
 }
 ```
 
+NOTE: no exception is thrown if BindingResult is included in the method parameters,
+which indicating manual handling.
+
 ### 4b.R/W Group Verification
 
 In Mvc practice, the recommended pattern is to use groups to distinguish between insert and update validation

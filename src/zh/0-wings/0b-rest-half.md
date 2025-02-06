@@ -119,7 +119,7 @@ interface I18nMessage {
 }
 
 interface I18nNotice extends I18nMessage {
-  type: string; // 消息类型, 'Validation', 'IllegalArgument', 'IllegalState'
+  type: string; // 消息类型, 'Validation', 'IllegalArgument'
   target?: string; // 输入项名字, 'city', 'tab1.zipcode'
 }
 

@@ -45,13 +45,13 @@ Because `sCount` will lead to parsing errors, see test OkHttpClientHelperTest.te
 
 ## 3A.3.I18n of Content
 
-Auto I18n conversion of content by annotation and type to string output.
+Auto apply the locale by annotation and I18nAwarePropertyFilter.
 
 * `I18nString` type is automatically converted
 * `CharSequence` with `@JsonI18nString` annotation is converted as message_code
 * `@JsonI18nString(false)` disables auto-conversion
-* `R.I<T>` is the common return type and will auto replace `message` with i18n when `i18nCode` is present,
-  Auto-conversion uses the injected `messageSource` and `WingsI18nContext` to get the appropriate language
+* `I18nMessage` auto apply locale to set message
+* `I18nAware` auto apply locale
 
 ## 3A.4.DateTime Format
 
@@ -102,11 +102,13 @@ need to be used with caution, check type or disable `auto`(`false`)
 
 ## 3A.6.Empty Data Handling
 
-This feature is enabled by default and will cause inconsistencies in the serialization
-and deserialization. Must handle the difference yourself.
+Exclude the empty dates via `configOverride` and `NON_EMPTY` by default.
 
-* Empty date is considered null, not output to avoid a lot of 1000-01-01 data
-* Array/Collection/Map is not output if it is empty
+* util.Date/sql.Date
+* time.LocalDate
+* time.LocalDateTime
+* time.ZonedDateTime
+* time.OffsetDateTime
 
 ## 3A.7.Common Jackson Annotations
 
