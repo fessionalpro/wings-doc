@@ -80,7 +80,7 @@ $0.childNodes.forEach(a=>console.log('![' + a.title +'](' + a.firstChild.src.
 | ![Ancient Apparition](/ancientapparition_minimap_icon.png) Ancient Apparition | 2023-10-20 | ![Ti12](/team_spirit.png) Ti12 Team Spirit | 2023-12-12 |
 | ![Anti-Mage](/antimage_minimap_icon.png) Anti-Mage | 2024-01-29 | ![Arc Warden](/arcwarden_minimap_icon.png) Arc Warden | 2024-03-03 |
 | ![Bane](/bane_minimap_icon.png "Bane") Bane | 2024-05-14 | ![Batrider](/batrider_minimap_icon.png "Batrider") Batrider | 2024-08-31 |
-| ![Bloodseeker](/bloodseeker_minimap_icon.png "Bloodseeker") Bloodseeker | - | ![Bounty Hunter](/bountyhunter_minimap_icon.png "Bounty Hunter") Bounty Hunter | - |
+| ![Bloodseeker](/bloodseeker_minimap_icon.png "Bloodseeker") Bloodseeker | 2025-02-08 | ![Bounty Hunter](/bountyhunter_minimap_icon.png "Bounty Hunter") Bounty Hunter | - |
 | ![Broodmother](/broodmother_minimap_icon.png "Broodmother") Broodmother | - | ![Chen](/chen_minimap_icon.png "Chen") Chen | - |
 
 ---
