@@ -36,14 +36,18 @@ wings中，默认存在2个AuthenticationEntryPoint，
 LoginUrl可以通过设置login-forward，选择以何种形式提供给用户端登录。
 
 在EntryPoint的选择上，可以设置`http header`来满足特定的匹配规则。
-以下设置可跳过basic验证规则，详见 HttpBasicConfigurer.registerDefaults
+以下设置任意规则满足，则符合 basic 验证，详见 [HttpBasicConfigurer.registerDefaults](https://github.com/spring-projects/spring-security/blob/39a80497c27b4cbab70f331f1f92eac7d555f502/config/src/main/java/org/springframework/security/config/annotation/web/configurers/HttpBasicConfigurer.java#L168-L187)
 
-* 不含`X-Requested-With: XMLHttpRequest` header
-* `Accept`中包括以下任意值
-  - application/xhtml+xml
-  - image/*
-  - text/html
-  - text/plain
+* X_REQUESTED_WITH - 含`X-Requested-With: XMLHttpRequest` header
+* restNotHtmlMatcher - `Accept` 不含 `text/html`，且包含以下值之一
+  - application/atom+xml
+  - application/x-www-form-urlencoded
+  - application/json
+  - application/octet-stream
+  - application/xml
+  - multipart/form-data
+  - text/xml
+* allMatcher - `Accept` 包含 `*/*`
 
 ## 4A.3.OpenAPI3特点
 
