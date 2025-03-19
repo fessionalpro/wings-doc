@@ -486,4 +486,4 @@ Setter naming in Pojo, taking into account the common serialization tool compati
 In this context, non-serialized Setters refer to polymorphic Setters with the same name but different parameters.
 In particular, a single parameter tends to interfere with the serialization of pojo's real Setters.
 
-For differences between jackson and fastjson, see [0D.03.jackson and fastjson](. /0d-qa-devops.md#0d03)
+For differences between jackson and fastjson, see [0D.03.jackson and fastjson](./0d-qa-devops.md#0d03)

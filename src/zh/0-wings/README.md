@@ -29,7 +29,7 @@ WingsBoot(代号神翼)是SpringBoot的一个脚手架，没有魔法和定制�
 
 ## 0.1.版本号说明
 
-Wings版本号为标准的[3段式](https://semver.org/lang/zh-CN/)，
+从`x01.x.x`起，Wings版本号为标准的[3段式](https://semver.org/lang/zh-CN/)，
 由基于SpringBoot（`M.N.P`）的开发版（`m.n.p-SNAPSHOT`）组合而成，
 
 `V` = `M*100+m`.`N*100+n`.`P*100+p`-`SNAPSHOT`
@@ -38,6 +38,12 @@ Wings版本号为标准的[3段式](https://semver.org/lang/zh-CN/)，
 
 * SpringBoot - `3.2.12`
 * Wings开发版 - `0.1.30-SNAPSHOT`
+
+但是，版本为`x00.x.x`，即wings开发版为`0.x.x`时，语义降级，
+
+* `SNAPSHOT` 相当于 `path`
+* `path` 相当于 `minor`
+* `minor` 相当于 `major`
 
 Wings使用了`revision`和`changelist`的CI占位属性，Maven需要3.5.0以上。
 

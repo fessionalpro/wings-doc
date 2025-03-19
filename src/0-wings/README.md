@@ -30,7 +30,7 @@ to microservices. At any project stage and business size, it can:
 
 ## 0.1.Version Number
 
-The Wings version is a standard [3-segment](https://semver.org),
+From `x01.x.x`, Wings version is a standard [3-segment](https://semver.org),
 Combined with the dev version (`m.n.p-SNAPSHOT`) based on SpringBoot (`M.N.P`).
 
 `V` = `M*100+m`.`N*100+n`.`P*100+p`-`SNAPSHOT`
@@ -39,6 +39,12 @@ So, a Wings version is `300.201.1230-SNAPSHOT`, then.
 
 * SpringBoot - `3.2.12`
 * Wings Dev - `0.1.30-SNAPSHOT`
+
+But, under `x00.x.x`, i.e. Wings dev is `0.x.x`, semantic downgrades,
+
+* `SNAPSHOT` equals to `path`
+* `path` equals to `minor`
+* `minor` equals to `major`
 
 Wings uses the `revision` and `changelist` CI placeholders, requires Maven 3.5.0+.
 
