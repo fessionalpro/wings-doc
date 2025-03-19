@@ -14,7 +14,8 @@ make sure the versions matches,
 
 * `vue` to [hope vue]
 * `vuepress/*` to [hope vue]
-* `execa` to [hope npm]
+* `execa` to [hope cli]
+* `prettier` to [hope npm]
 * `deploy-docs.yml` to [git workflow]
 
 then npm commands,
@@ -24,7 +25,8 @@ then npm commands,
 * `npm run docs:dev-clean` - clean and review
 * `npm run docs:update-package` - update deps helper
 
-[hope vue]: https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/packages/components/package.json
+[hope vue]: https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/pnpm-workspace.yaml
+[hope cli]: https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/packages/create/package.json
 [hope npm]: https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/package.json
 [git workflow]: https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/packages/create/src/config/workflow.ts
 

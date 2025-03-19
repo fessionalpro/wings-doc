@@ -37,14 +37,19 @@ In Wings, there are 2 AuthenticationEntryPoint by default.
 LoginUrl can select which form of login to provide to the user by login-forward setting.
 
 On the EntryPoint selection, `http header` can be set to satisfy specific matching rules.
-The following settings can skip basic authentication rules, see HttpBasicConfigurer.registerDefaults for details
+The following settings use basic authentication if any of the rules are met.
+see [HttpBasicConfigurer.registerDefaults](https://github.com/spring-projects/spring-security/blob/39a80497c27b4cbab70f331f1f92eac7d555f502/config/src/main/java/org/springframework/security/config/annotation/web/configurers/HttpBasicConfigurer.java#L168-L187) for details
 
-* Without the `X-Requested-With: XMLHttpRequest` header
-* Include any of the following values in `Accept`
-  - application/xhtml+xml
-  - image/*
-  - text/html
-  - text/plain
+* X_REQUESTED_WITH - contains `X-Requested-With: XMLHttpRequest` header
+* restNotHtmlMatcher - `Accept` dont contain `text/html`, and contains any of the following,
+  - application/atom+xml
+  - application/x-www-form-urlencoded
+  - application/json
+  - application/octet-stream
+  - application/xml
+  - multipart/form-data
+  - text/xml
+* allMatcher - `Accept` contains `*/*`
 
 ## 4A.3.OpenAPI3 Features
 
