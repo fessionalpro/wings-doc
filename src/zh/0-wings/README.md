@@ -29,8 +29,14 @@ WingsBoot(代号神翼)是SpringBoot的一个脚手架，没有魔法和定制�
 
 ## 0.1.版本号说明
 
-从`x01.x.x`起，Wings版本号为标准的[3段式](https://semver.org/lang/zh-CN/)，
-由基于SpringBoot（`M.N.P`）的开发版（`m.n.p-SNAPSHOT`）组合而成，
+从`x01.x.x`起，Wings版本号为标准的[3段式](https://semver.org/lang/zh-CN/)，并且，
+
+* 主版本 - 主要为工程的兼容，包括工程的主要依赖
+* 次版本 - 主要为结构或框架性新增，防御性编译错误
+* 修订号 - 包括功能的增强，选项及配置的增加
+* 防御性编译错误 - 以编译错误代替运行时错误
+
+其数值由基于SpringBoot（`M.N.P`）的开发版（`m.n.p-SNAPSHOT`）组合而成，
 
 `V` = `M*100+m`.`N*100+n`.`P*100+p`-`SNAPSHOT`
 
