@@ -125,7 +125,7 @@ server {
         proxy_http_version  1.1;
         proxy_cache_bypass  $http_upgrade;
 
-        proxy_set_header  Connection   "";            # long conn
+        proxy_set_header  Connection   "";            # delete header, long conn
         #proxy_set_header Connection   "upgrade";     # ws
         #proxy_set_header Upgrade      $http_upgrade; # ws
         proxy_set_header  Host         $host;

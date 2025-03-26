@@ -122,7 +122,7 @@ server {
         proxy_http_version  1.1;
         proxy_cache_bypass  $http_upgrade;
 
-        proxy_set_header  Connection   "";            # 长连接
+        proxy_set_header  Connection   "";            # 删除头，长连接
         #proxy_set_header Connection   "upgrade";     # ws
         #proxy_set_header Upgrade      $http_upgrade; # ws
         proxy_set_header  Host         $host;

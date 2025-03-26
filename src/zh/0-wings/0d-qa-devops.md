@@ -190,6 +190,39 @@ Mapper        ReMap-4.2.6  thrpt   25    505843.993 ±   25950.082  ops/s
 * 持久用 frp - <https://gofrp.org/docs/>
 * 简单用 netapp - <https://natapp.cn/>
 
+以 local.moilioncircle.com 为例，临时使用 ssh + nginx 以下转发
+
+* 本地端口 8080
+* 公网域名 local.moilioncircle.com
+* 公网端口 9988, 及 http(80), 443 https(443)
+* 转发公网的请求到 localhost:8080
+
+```nginx
+# ssh -R 9988:127.0.0.1:8080 ubuntu@local.moilioncircle.com
+server {
+    listen       80;
+    listen       443 ssl;
+    server_name  local.moilioncircle.com;
+
+    access_log /data/logs/nginx/local.moilioncircle.com-access.log;
+    error_log  /data/logs/nginx/local.moilioncircle.com-error.log;
+
+    ssl_certificate     /data/nginx/cert/moilioncircle.com/fullchain.pem;
+    ssl_certificate_key /data/nginx/cert/moilioncircle.com/privkey.pem;
+
+    location / {
+      proxy_pass                      http://127.0.0.1:9988;
+      proxy_http_version              1.1;
+      proxy_cache_bypass              $http_upgrade;
+      proxy_set_header    Upgrade     $http_upgrade;
+      proxy_set_header    Connection  $http_connection;
+      proxy_set_header    Host        localhost;
+      proxy_set_header    X-Real-IP   $remote_addr;
+      proxy_redirect      http://     $scheme://;
+    }
+}
+```
+
 ## 0D.09.IDEA提示component/scanned
 
 导入wings工程，Idea会无法处理spring.factories中的WingsAutoConfiguration，会报类似以下信息
@@ -216,8 +249,8 @@ at org.jooq.impl.AbstractQuery.execute(AbstractQuery.java:390)
 ## 0D.11.错误`Input length = 1`
 
 ```text
- Failed to execute goal org.apache.maven.plugins:maven-resources-plugin:3.2.0:resources
-  (default-resources) on project xxx-common: Input length = 1
+Failed to execute goal org.apache.maven.plugins:maven-resources-plugin:3.2.0:resources
+(default-resources) on project xxx-common: Input length = 1
 ```
 
 原因是maven-resources-plugin的filter目录中存在非文本文件(不可按字符串读取)，
