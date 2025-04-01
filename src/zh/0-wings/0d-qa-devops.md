@@ -690,3 +690,21 @@ wings的线程池，默认配置如下，会等待任务（执行中及队列中
 
 * 可丢失型，await-termination=false
 * 可恢复型，await-termination=true，主动处理中断或取消
+
+## 0D.42.git fixup 提交
+
+```bash
+git log --oneline -n 5 | cat -n # check commit history
+# 1  86f226c 📝 changelog of 337, 346
+# 2  0fccb54 ✨ ssh+nginx to test Oauth
+# 3  32d98bc 📝 changelog of 301.741
+# 4  fb31cf0 📝 semver detail meaning
+# 5  0fb5232 📝 typo Wings TerminalContext
+git add . # add all changes
+git status # check changes
+
+## fixup by hash or ^4
+git commit --fixup=fb31cf0 # HEAD^4
+git rebase -i --autosquash fb31cf0^ # HEAD^5
+git push -f
+```

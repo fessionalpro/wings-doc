@@ -714,3 +714,21 @@ so, when handling async/future tasks, interrupt, cancel and shutdown need to be 
 
 * Tolerant of loss, await-termination=false
 * Recoverable, await-termination=true, actively interrupt or cancel
+
+## 0D.42.Git fixup commit
+
+```bash
+git log --oneline -n 5 | cat -n # check commit history
+# 1  86f226c 📝 changelog of 337, 346
+# 2  0fccb54 ✨ ssh+nginx to test Oauth
+# 3  32d98bc 📝 changelog of 301.741
+# 4  fb31cf0 📝 semver detail meaning
+# 5  0fb5232 📝 typo Wings TerminalContext
+git add . # add all changes
+git status # check changes
+
+## fixup by hash or ^4
+git commit --fixup=fb31cf0 # HEAD^4
+git rebase -i --autosquash fb31cf0^ # HEAD^5
+git push -f
+```
