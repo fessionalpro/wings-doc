@@ -190,9 +190,42 @@ To get information about server, use the following,
 When debugging third-party integrations such as Oauth, payments, etc., you need to have a public ip or domain
 to forward public requests to the development machine for debugging.
 
-* Temporarily with ssh - `ssh -R 9988:127.0.0.1:8080 user@remote`
+* Temporarily with ssh - `ssh -R 9988:localhost:8080 user@remote`
 * persistent with frp - <https://gofrp.org/docs/>
 * Simple with netapp - <https://natapp.cn/>
+
+take local.moilioncircle.com for example, use ssh + nginx to forward
+
+* local port 8080
+* public domain local.moilioncircle.com
+* public port 9988, also http(80), 443 https(443)
+* forward request from public to localhost:8080
+
+```nginx
+# ssh -R 9988:localhost:8080 ubuntu@local.moilioncircle.com
+server {
+    listen       80;
+    listen       443 ssl;
+    server_name  local.moilioncircle.com;
+
+    access_log /data/logs/nginx/local.moilioncircle.com-access.log;
+    error_log  /data/logs/nginx/local.moilioncircle.com-error.log;
+
+    ssl_certificate     /data/nginx/cert/moilioncircle.com/fullchain.pem;
+    ssl_certificate_key /data/nginx/cert/moilioncircle.com/privkey.pem;
+
+    location / {
+      proxy_pass                      http://127.0.0.1:9988;
+      proxy_http_version              1.1;
+      proxy_cache_bypass              $http_upgrade;
+      proxy_set_header    Upgrade     $http_upgrade;
+      proxy_set_header    Connection  $http_connection;
+      proxy_set_header    Host        localhost;
+      proxy_set_header    X-Real-IP   $remote_addr;
+      proxy_redirect      http://     $scheme://;
+    }
+}
+```
 
 ## 0D.09.IDEA Hits Component/Scanned
 
@@ -222,8 +255,8 @@ at org.jooq.impl.AbstractQuery.execute(AbstractQuery.java:390)
 ## 0D.11.`Input length = 1` Error
 
 ```text
- Failed to execute goal org.apache.maven.plugins:maven-resources-plugin:3.2.0:resources
-  (default-resources) on project xxx-common: Input length = 1
+Failed to execute goal org.apache.maven.plugins:maven-resources-plugin:3.2.0:resources
+(default-resources) on project xxx-common: Input length = 1
 ```
 
 The reason is that there are non-text files (not readable by string) in the filter directory of the maven-resources-plugin.
@@ -681,3 +714,21 @@ so, when handling async/future tasks, interrupt, cancel and shutdown need to be 
 
 * Tolerant of loss, await-termination=false
 * Recoverable, await-termination=true, actively interrupt or cancel
+
+## 0D.42.Git fixup commit
+
+```bash
+git log --oneline -n 5 | cat -n # check commit history
+# 1  86f226c 📝 changelog of 337, 346
+# 2  0fccb54 ✨ ssh+nginx to test Oauth
+# 3  32d98bc 📝 changelog of 301.741
+# 4  fb31cf0 📝 semver detail meaning
+# 5  0fb5232 📝 typo Wings TerminalContext
+git add . # add all changes
+git status # check changes
+
+## fixup by hash or ^4
+git commit --fixup=fb31cf0 # HEAD^4
+git rebase -i --autosquash fb31cf0^ # HEAD^5
+git push -f
+```
