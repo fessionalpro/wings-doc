@@ -603,15 +603,25 @@ code tracking , default `-1` means disable; `0` means fully enable.
 
 ### wings.warlock.watching.jooq-threshold
 
-`Long`=`-1`, threshold millis for jooq execution.
+`Long`=`60`, threshold millis for jooq execution.
 
 ### wings.warlock.watching.service-threshold
 
-`Long`=`-1`, threshold millis for Watching annotation.
+`Long`=`200`, threshold millis for all Watching annotation
+
+### wings.warlock.watching.service-threshold-name
+
+`Map<String, Long>`, threshold millis for Watching annotation
+whose name is matched by `AntPathMatcher('.')`
 
 ### wings.warlock.watching.controller-threshold
 
-`Long`=`-1`, threshold millis for Controller.
+`Long`=`2000`, threshold millis for Controller.
+
+### wings.warlock.watching.controller-threshold-uri
+
+`Map<String, Long>`, threshold millis for WebMvc Controller
+whose uri is matched by `AntPathMatcher('/')`
 
 ## 4D.D.wings-warlock-danger-77.properties
 

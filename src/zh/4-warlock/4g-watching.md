@@ -67,3 +67,20 @@ category:
 此功能具有一定的入侵性，主要用在开发过程中的调优，当线上产品建议关闭，避免无意义的资源消耗。
 
 无入侵的动态的程序诊断，推荐使用[Arthas](https://github.com/alibaba/arthas)
+
+## 4G.4.按名微调
+
+在Watching开启的情况下，可以根据name，微调threshold，从而微调指定的慢请求警报。
+
+* 数据层 - 不支持，因sql匹配的性能问题
+* 服务层 - Ant匹配AOP的名字（默认class#method）
+* Web层 - Ant匹配URI
+
+以下设置，指定`/demo-uri.json`和`com.clz#method` 有别于默认的阈值。
+
+```properties
+wings.warlock.watching.controller-threshold-uri[/demo-uri.json]=50000
+wings.warlock.watching.service-threshold-name[com.clz#method]=50000
+```
+
+如果存在多条规则满足，精确匹配优先，次之为Ant匹配，规则的按设置顺序排序。
