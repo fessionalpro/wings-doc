@@ -119,9 +119,23 @@ server {
         deny all;
     }
 
-    # backend, proxy_pass must with `/`
+    # backend, without `/` to proxy_pass /auth/xxx to /auth/xxx
+    location ^~ /auth/ {
+        proxy_pass http://good_admin;  # without `/`
+        proxy_http_version  1.1;
+        proxy_cache_bypass  $http_upgrade;
+
+        proxy_set_header  Connection   "";            # delete header, long conn
+        #proxy_set_header Connection   "upgrade";     # ws
+        #proxy_set_header Upgrade      $http_upgrade; # ws
+        proxy_set_header  Host         $host;
+        proxy_set_header  X-Real-IP    $remote_addr;
+        proxy_redirect    http://      $scheme://;    # https
+    }
+
+    # backend, with `/` to proxy_pass /api/v1/xxx to /xxx
     location ^~ /api/v1/ {
-        proxy_pass http://good_admin/;
+        proxy_pass http://good_admin/; # with `/`
         proxy_http_version  1.1;
         proxy_cache_bypass  $http_upgrade;
 

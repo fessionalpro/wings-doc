@@ -116,9 +116,23 @@ server {
         deny all;
     }
 
-    # 后端分流，proxy_pass 必须加 `/`
+    # 后端分流, 没有 `/` 把 /auth/xxx 代理到 /auth/xxx
+    location ^~ /auth/ {
+        proxy_pass http://good_admin;  # without `/`
+        proxy_http_version  1.1;
+        proxy_cache_bypass  $http_upgrade;
+
+        proxy_set_header  Connection   "";            # 删除头，长连接
+        #proxy_set_header Connection   "upgrade";     # ws
+        #proxy_set_header Upgrade      $http_upgrade; # ws
+        proxy_set_header  Host         $host;
+        proxy_set_header  X-Real-IP    $remote_addr;
+        proxy_redirect    http://      $scheme://;    # https
+    }
+
+    # 后端分流, 有 `/` 把 /api/v1/xxx 代理到 /xxx
     location ^~ /api/v1/ {
-        proxy_pass http://good_admin/;
+        proxy_pass http://good_admin/; # with `/`
         proxy_http_version  1.1;
         proxy_cache_bypass  $http_upgrade;
 
