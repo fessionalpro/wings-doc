@@ -109,14 +109,20 @@ server {
     #    return 301 https://$host$request_uri;
     #}
 
-    # 防御性设置，禁止发布git工程
-    location .git {
+    ## 防御性设置，禁止发布git工程
+    location ^~ /.git {
         access_log off;
         log_not_found off;
         deny all;
     }
 
-    # 后端分流, 没有 `/` 把 /auth/xxx 代理到 /auth/xxx
+    ## 保护 js sourcemap
+    location ~ \.js\.map$ {
+        allow 192.168.1.100;  # developer IP
+        deny all;
+    }
+
+    ## 后端分流, 没有 `/` 把 /auth/xxx 代理到 /auth/xxx
     location ^~ /auth/ {
         proxy_pass http://good_admin;  # without `/`
         proxy_http_version  1.1;
@@ -130,7 +136,7 @@ server {
         proxy_redirect    http://      $scheme://;    # https
     }
 
-    # 后端分流, 有 `/` 把 /api/v1/xxx 代理到 /xxx
+    ## 后端分流, 有 `/` 把 /api/v1/xxx 代理到 /xxx
     location ^~ /api/v1/ {
         proxy_pass http://good_admin/; # with `/`
         proxy_http_version  1.1;
@@ -144,7 +150,7 @@ server {
         proxy_redirect    http://      $scheme://;    # https
     }
 
-    # 前端分流
+    ## 前端分流
     location / {
         #add_header 'Access-Control-Allow-Origin' '*'; #允许跨域
         root /data/static/good-admin-spa/;

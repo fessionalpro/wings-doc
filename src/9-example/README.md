@@ -112,14 +112,20 @@ server {
     #    return 301 https://$host$request_uri;
     #}
 
-    # Defensive settings to protect .git
-    location .git {
+    ## Defensive settings to protect .git
+    location ^~ /.git {
         access_log off;
         log_not_found off;
         deny all;
     }
 
-    # backend, without `/` to proxy_pass /auth/xxx to /auth/xxx
+    ## protect js sourcemap
+    location ~ \.js\.map$ {
+        allow 192.168.1.100;  # developer IP
+        deny all;
+    }
+
+    ## backend, without `/` to proxy_pass /auth/xxx to /auth/xxx
     location ^~ /auth/ {
         proxy_pass http://good_admin;  # without `/`
         proxy_http_version  1.1;
@@ -133,7 +139,7 @@ server {
         proxy_redirect    http://      $scheme://;    # https
     }
 
-    # backend, with `/` to proxy_pass /api/v1/xxx to /xxx
+    ## backend, with `/` to proxy_pass /api/v1/xxx to /xxx
     location ^~ /api/v1/ {
         proxy_pass http://good_admin/; # with `/`
         proxy_http_version  1.1;
@@ -147,7 +153,7 @@ server {
         proxy_redirect    http://      $scheme://;    # https
     }
 
-    # frontend
+    ## frontend
     location / {
         #add_header 'Access-Control-Allow-Origin' '*'; #Allow CORS
         root /data/static/good-admin-spa/;
