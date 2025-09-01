@@ -61,6 +61,7 @@ $0.childNodes.forEach(a=>console.log('![' + a.title +'](' + a.firstChild.src.
       '/' + p2.replace(/[^a-z]/gi,'').toLowerCase() + p3) +
    ' "' + a.title +'")')
 )
+// https://liquipedia.net/commons/File:Kez_mapicon_dota2_gameasset.png
 ```
 
 <!-- markdownlint-disable MD013 -->
@@ -106,6 +107,7 @@ $0.childNodes.forEach(a=>console.log('![' + a.title +'](' + a.firstChild.src.
 ![Jakiro](/jakiro_minimap_icon.png "Jakiro")
 ![Juggernaut](/juggernaut_minimap_icon.png "Juggernaut")
 ![Keeper of the Light](/keeperofthelight_minimap_icon.png "Keeper of the Light")
+![Kez](/kez_minimap_icon.png "Kez")
 ![Legion Commander](/legioncommander_minimap_icon.png "Legion Commander")
 ![Leshrac](/leshrac_minimap_icon.png "Leshrac")
 ![Lich](/lich_minimap_icon.png "Lich")
@@ -140,6 +142,7 @@ $0.childNodes.forEach(a=>console.log('![' + a.title +'](' + a.firstChild.src.
 ![Pugna](/pugna_minimap_icon.png "Pugna")
 ![Razor](/razor_minimap_icon.png "Razor")
 ![Riki](/riki_minimap_icon.png "Riki")
+![Ringmaster](/ringmaster_minimap_icon.png "Ringmaster")
 ![Rubick](/rubick_minimap_icon.png "Rubick")
 ![Sand King](/sandking_minimap_icon.png "Sand King")
 ![Shadow Demon](/shadowdemon_minimap_icon.png "Shadow Demon")
@@ -187,3 +190,5 @@ $0.childNodes.forEach(a=>console.log('![' + a.title +'](' + a.firstChild.src.
 ![Azure Ray](/team_ar.png "Azure Ray")&nbsp;
 ![Xtreme Gaming](/team_xg.png "Xtreme Gaming")&nbsp;
 ![LGD Gaming](/team_lgd.png "LGD Gaming")&nbsp;
+![Yakult Brothers](/team-yakultbrothers.png "Yakult Brothers")&nbsp;
+![Team Tidebound](/team_tidebound.png "Team Tidebound")&nbsp;
