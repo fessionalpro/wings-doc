@@ -287,7 +287,7 @@ FROM BOOK;
 SET @@GROUP_CONCAT_MAX_LEN = @T;
 ```
 
-wings默认通过spring.wings.faceless.jooq.enabled.render-group-concat=false 关闭了次功能，
+wings默认通过wings.faceless.jooq.conf.render-group-concat=false 关闭了次功能，
 因为在推荐的mysqld配置中，以进行了global的设置。
 
 千万不可使用 jdbc:mysql://localhost/test?allowMultiQueries=true，会有sql注入风险。

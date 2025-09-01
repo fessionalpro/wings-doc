@@ -1,9 +1,12 @@
 import { defineUserConfig } from 'vuepress';
 import hopeTheme from './configs/theme';
-import { execa } from 'execa';
+import { execFileSync } from 'node:child_process';
 
-// 2022-10-22 e660ee1a6acf4f32a1d7ec7bbe548bba6b3fe051
-const { stdout } = await execa('git', ['--no-pager', 'log', '-1', '--format=%as %H'], { stdin: 'inherit' });
+const stdout = execFileSync(
+  'git',
+  ['--no-pager', 'log', '-1', '--format=%as %H'],
+  { encoding: 'utf8', windowsHide: true }
+);
 
 export default defineUserConfig({
   locales: {

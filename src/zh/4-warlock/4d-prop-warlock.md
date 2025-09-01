@@ -596,15 +596,23 @@ Client错误时的应答，
 
 ### wings.warlock.watching.jooq-threshold
 
-`Long`=`-1`，jooq执行的阈值毫秒
+`Long`=`20`，jooq执行的阈值毫秒
 
 ### wings.warlock.watching.service-threshold
 
-`Long`=`-1`，Watching注解的阈值毫秒
+`Long`=`200`，Watching注解的阈值毫秒
+
+### wings.warlock.watching.service-threshold-name
+
+`Map<String, Long>`, 以`AntPathMatcher('.')`匹配name的Watching注解的阈值毫秒
 
 ### wings.warlock.watching.controller-threshold
 
-`Long`=`-1`，Controller的阈值毫秒
+`Long`=`2000`，Controller的阈值毫秒
+
+### wings.warlock.watching.controller-threshold-uri
+
+`Map<String, Long>`, 以`AntPathMatcher('/')`匹配uri的Controller的阈值毫秒
 
 ## 4D.D.wings-warlock-danger-77.properties
 

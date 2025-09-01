@@ -73,3 +73,23 @@ This feature is somewhat invasive and is mainly used for tuning during developme
 it is recommended to close it in the online products to avoid wasting unnecessary resources.
 
 Non-invasive and dynamic program diagnosis, recommended to use [Arthas](https://github.com/alibaba/arthas)
+
+## 4G.4.tuning by name
+
+When Watching is enabled, thresholds can be fine-tuned based on names
+to adjust slow request waning.
+
+* Data Layer - Not supported due to performance with SQL matching
+* Service Layer - Ant-style matching of AOP names (default `class#method`).
+* Web Layer - Ant-style matching of URIs.
+
+The following config specifies thresholds for
+`/demo-uri.json` and `com.clz#method` diff to the default.
+
+```properties
+wings.warlock.watching.controller-threshold-uri[/demo-uri.json]=50000
+wings.warlock.watching.service-threshold-name[com.clz#method]=50000
+```
+
+If multiple rules match, exact matches take precedence, then Ant-style matches,
+with rules applied in the order they are defined.

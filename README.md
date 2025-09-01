@@ -14,7 +14,6 @@ make sure the versions matches,
 
 * `vue` to [hope vue]
 * `vuepress/*` to [hope vue]
-* `execa` to [hope cli]
 * `prettier` to [hope npm]
 * `deploy-docs.yml` to [git workflow]
 
